@@ -1,0 +1,157 @@
+{% extends "front/base_update.html" %}
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+{% get_media_prefix as MEDIA_PREFIX %}
+
+{% block title %}Paying for College Cost Comparison Worksheet{% endblock %}
+
+{% block content %}
+	<div id="comparison-tool" page="choose">
+	
+		<header id="comparison-tool-header">
+			<h1>Paying for College<sup>Beta</sup></h1>
+			<h4>Cost Comparison Worksheet</h4>
+		</header><!-- end #comparison-tool-header -->
+		
+		<div class="container">
+			<div class="wrapper">
+				<section id="trischool">
+					<div class="intro pre3 col5 suf2">
+						<h3>Cost Comparison Worksheet</h3>
+						<p>Evaluate the costs and risks involved in paying for school. Use this tool to compare school data and relevant financial factors to make a more informed decision for your future.</p>
+						<p><b>To get started with a basic comparison, enter up to 3 schools that you’re interested in.</b></p>
+					</div><!-- end .intro -->
+					<div class="clear"></div>
+					<form method="post" action="{% url worksheet %}" id="selectschools">
+					
+						<fieldset class="clearfix">
+							<div class="school-label pre1 col2">
+								<label class="primary" for="school-1">School Name</label>
+							</div>
+							<div class="school-select col5 suf2">
+								<input class="unitid" type="hidden" value="" name="school-1-unitid">
+								<input name="school-1" id="school-1" class="school-input" type="text">
+								<fieldset class="school-state-select hidden">
+									<input id="school-state-1-in" type="radio" name="school-state-1" checked="checked" value="in"> <label for="school-state-1-in">In State</label><br>
+									<input id="school-state-1-out"  type="radio" name="school-state-1" value="out"> <label for="school-state-1-out">Out of State</label>
+								</fieldset>
+							</div>
+						</fieldset>
+						
+						<fieldset class="clearfix">
+							<div class="school-label pre1 col2">
+								<label class="primary" for="school-2">School Name</label>
+							</div>
+							<div class="school-select col5 suf2">
+								<input class="unitid" type="hidden" value="" name="school-2-unitid">
+								<input name="school-2" id="school-2" class="school-input" type="text">
+								<fieldset class="school-state-select hidden">
+									<input id="school-state-2-in" type="radio" name="school-state-2" checked="checked" value="in"> <label for="school-state-2-in">In State</label><br>
+									<input id="school-state-2-out"  type="radio" name="school-state-2" value="out"> <label for="school-state-2-out">Out of State</label>
+								</fieldset>
+							</div>
+						</fieldset>
+						
+						<fieldset class="clearfix">
+							<div class="school-label pre1 col2">
+								<label class="primary" for="school-3">School Name</label>
+							</div>
+							<div class="school-select col5 suf2">
+								<input class="unitid" type="hidden" value="" name="school-3-unitid">
+								<input name="school-3" id="school-3" class="school-input" type="text">
+								<fieldset class="school-state-select hidden">
+									<input id="school-state-3-in" type="radio" name="school-state-3" checked="checked" value="in"> <label for="school-state-3-in">In State</label><br>
+									<input id="school-state-3-out"  type="radio" name="school-state-3" value="out"> <label for="school-state-3-out">Out of State</label>
+								</fieldset>
+							</div>
+						</fieldset>
+						
+						<fieldset class="clearfix">
+							<div class="pre3 col5 suf2">
+								<input id="school-program-ba" type="radio" name="school-program" checked="checked" value="ba"> <label for="school-program-ba">Bachelors</label>
+								<input id="school-program-aa" type="radio" name="school-program" value="aa"> <label for="school-program-aa">AA/Certificate</label>
+							</div>
+						</fieldset>
+						
+						<fieldset class="clearfix">
+							<div class="pre3 col5 suf2">
+								<button id="compare-button" disabled="disabled">Compare</button>
+							</div>
+						</fieldset>
+					{% csrf_token %}	
+					</form>
+				</section><!-- end #tri-school -->
+				<div class="clear"></div>
+			</div><!-- end .wrapper -->
+		</div><!-- end .container -->
+		
+	</div><!-- end #comparison-tool -->
+
+
+{% endblock content %}
+
+
+{% block app_css %}
+
+
+
+<!-- comparison tool css -->
+<link type="text/css" href="{{ STATIC_PREFIX }}comparisontool/css/smoothness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/jquery.qtip.min.css">
+<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
+{% endblock %}
+
+
+{% block page_js %}
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/jquery.ui.js"></script>
+<script src="{{ STATIC_PREFIX }}comparisontool/js/landing.js"> </script>
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/cfpb-comparison-analytics-min.js"></script>
+<script>
+
+jQuery(document).ajaxSend(function(event, xhr, settings) {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function sameOrigin(url) {
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+    function safeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
+});
+
+$(document).ready(function() {
+	$(".school-input").each(function() {
+		$(this).val("");
+	});
+});
+
+</script>
+{% endblock %}
+
+

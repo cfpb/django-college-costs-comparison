@@ -1,0 +1,63 @@
+{% extends "front/base_update.html" %} 
+
+{% block title %}Paying for College{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
+{% endblock %}
+
+
+
+{% block page_js %}
+
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/cfpb-comparison-analytics-min.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+
+<div id="comparison-tool">
+<header id="comparison-tool-header">
+<h1>Paying for College<sup>Beta</sup></h1>
+<h4>Cost Comparison Worksheet</h4>
+</header>
+</div>
+<p><a href="worksheet.html">Continue to the worksheet...</a></p>
+
+<p>This year, more than 1.5 million students and their families will likely sift through about 5 million college acceptances. Getting accepted to college should be cause for celebration, a point of pride for both students and their families. But the prospect of financing that education can sometimes be overwhelming. After all, there’s a lot of information on schools and loans, but it can definitely be tough to navigate.<p>
+
+
+	<div class="right">
+	     <img src="http://files.consumerfinance.gov/a/comparisontool/images/pfc.png" width="100%">
+	     <form class="signup inlineSignup" action="https://public.govdelivery.com/service/process_ss.xml" method="GET">
+	<fieldset>
+	<p><strong>To get updates on this project and our other projects for students, subscribe below.</strong></p>
+	<p>
+	<input type="hidden" name="code" value="USCFPB_7"><label for="email">Email address</label><br>
+	<input type="email" name="email">
+	</p>
+	<p><button>Send me email updates</button></p></fieldset><p></p>
+	</form>
+	</div>
+
+
+<p>We want it to be easier to compare different options when making decisions on student debt. In April, we launched a beta version of a tool to help students and families in this process. This “thought starter” was designed to help users make side by side cost comparisons using their own unique financial circumstances.</p>
+
+<p>We ran this beta test for a month as a first step. We are reviewing the user feedback we received, both what people told us and how they used the tool.  We’ll be sure to let you know on our blog about what we’ve learned and when we intend release a new version. Our goal is for students and families to have an even more useful interactive tool for next year’s financial aid season to help them make one of the most important decisions of their financial lives.
+	</p>
+
+
+<p>As part of the beta, we enabled a save-and-share function. Users who saved their work received a unique URL so they could return to where they left off. If you previously saved your work, you can still use that URL to review any information you have already entered.</p>
+
+
+
+
+
+
+
+
+{% endblock content %}
