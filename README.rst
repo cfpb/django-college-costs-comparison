@@ -10,6 +10,7 @@ Prerequisites: working virtualenv and virtualenvwrapper::
     # checkout this repo, and cd into it
     mkvirtualenv comparisontool
     add2virtualenv <path to the cfpb_common checkout>
+    add2virtualenv .
     pip install -r requirements.txt
     django-admin.py runserver --settings=example_project.settings
     # open http://127.0.0.1:8000/comparisontool/ in your browser!
