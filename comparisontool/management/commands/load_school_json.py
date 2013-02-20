@@ -40,13 +40,3 @@ class Command(BaseCommand):
                         alias=Alias(alias=school_alias, institution=school)
                         alias.save()
                     
-            
-            #try:
-            #    poll = Poll.objects.get(pk=int(poll_id))
-            #except Poll.DoesNotExist:
-            #    raise CommandError('Poll "%s" does not exist' % poll_id)
-
-            #poll.opened = False
-            #poll.save()
-
-            #self.stdout.write('Successfully closed poll "%s"\n' % poll_id)
