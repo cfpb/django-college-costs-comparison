@@ -2,6 +2,7 @@
 import json, logging
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.middleware import csrf
+from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.core import serializers
@@ -13,11 +14,8 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse
 from haystack.query import SearchQuerySet
 
-from models import Alias, Institution, SavedState, Feedback
+from models import Alias, School, Worksheet, Feedback
 from forms import FeedbackForm
-
-
-
 
 
 def select_schools(request):
@@ -162,26 +160,7 @@ class BuildComparisonView(MethodDispatcher):
                                   locals(),
                                   context_instance=RequestContext(request))
                 
-        
-
-
-class AutoCompleteView(object):
-    def __call__(self, request, *args, **kwargs):
-        sqs=SearchQuerySet().models(Alias).order_by('-enrollment')
-        term=request.GET.get('term', '')
-        results= [{'unitid': result.unitid, 'value': result.text, 'public':result.is_public } for result in sqs.autocomplete(autocomplete=term)[:10]]
-        found_unitids=[]
-        filtered_results=[]
-        for r in results:
-            if r['unitid'] not in found_unitids:
-                filtered_results.append(r)
-                found_unitids.append(r['unitid'])
-        
-        
-        return HttpResponse(json.dumps(filtered_results), mimetype='application/json')
-        
-        
-        
+#TODO: CLASS BASED VIEWS LOL
 class SchoolRepresentation(MethodDispatcher):
     
     def __init__(self, format='html', *args, **kwargs):
@@ -190,18 +169,15 @@ class SchoolRepresentation(MethodDispatcher):
         
     
 
-    def get_institution(self, unitid):
-        return get_object_or_404(Institution, pk=unitid)
+    def get_school(self, school_id):
+        return get_object_or_404(School, pk=school_id)
         
-    def xhr_get(self, request, *args, **kwargs):
-        institution = self.get_institution(kwargs['unitid'])
-        field_dict=serializers.serialize("python", [institution])[0]['fields']
-        field_dict["institution name"]=unicode(institution.primary_alias)
-        js=json.dumps(field_dict)
-        return HttpResponse(js, mimetype='application/json')
+    def get(self, request, school_id, **kwargs):
+        school = self.get_school(school_id)
+        return HttpResponse(school.data_json, mimetype='application/json')
         
 
-
+#TODO: get the email copy out of the view!
 class EmailLink(MethodDispatcher):
     def xhr_post(self, request):
         logging.warning("email triggered with %s" % request.POST)
@@ -234,10 +210,15 @@ class DataStorageView(MethodDispatcher):
         logging.warning(data.guid)
         return HttpResponse(json.dumps({'id': unicode(data.guid)}))
         
-    def xhr_get(self, request):
+    def get(self, request):
         guid=request.GET.get('id')
         data=SavedState.objects.get(guid=guid)
         return HttpResponse(data.saved_data, mimetype='application/json')
         
-    get=xhr_get
-        
+
+def school_search_api(request):
+    sqs = SearchQuerySet().models(Alias)
+    sqs = sqs.autocomplete(autocomplete=request.GET.get('q', ''))
+    found_aliases = [(result.text, reverse('school-json', args=[result.school_id])) for result in sqs]
+    json_doc = json.dumps(found_aliases)
+    return HttpResponse(json_doc, mimetype='application/json')
