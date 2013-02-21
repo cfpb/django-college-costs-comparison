@@ -16,6 +16,77 @@ Prerequisites: working virtualenv and virtualenvwrapper::
     # open http://127.0.0.1:8000/comparisontool/ in your browser!
 
 
+Setting up Solr
+------------------------------------
+
+- Download the latest release of Solr 3.x and unzip it somewhere
+- Generate the solr schema with::
+
+    django-admin.py build_solr_schema --settings=example_project.settings >  schema.xml
+
+put that schema.xml whereever you unpacked Solr: example/solr/conf/schema.xml
+
+Start solr by::
+
+    cd <whereever you put solr>/example
+    java -jar start.jar
+
+
+Loading the data
+------------------------------------
+use the load_school command::
+
+    django-admin.py load_school data/schools.csv
+
+Shove it into Solr::
+    
+    django-admin.py rebuild_index
+
+The school search API
+------------------------------------
+
+Search the schools with search_schools.json:
+http://localhost:8000/comparisontool/api/search-schools.json?q=Harrisburg
+
+The search results include the URL for more data on each school::
+
+    [
+    [
+    "Harrisburg Area Community College-Harrisburg",
+    "/comparisontool/api/school/212878.json"
+    ],
+    [
+    "ITT Technical Institute-Harrisburg",
+    "/comparisontool/api/school/430351.json"
+    ],
+    [
+    "Kaplan Career Institute-Harrisburg",
+    "/comparisontool/api/school/251075.json"
+    ],
+    [
+    "Empire Beauty School-Harrisburg",
+    "/comparisontool/api/school/212382.json"
+    ],
+    [
+    "Widener University-Harrisburg Campus",
+    "/comparisontool/api/school/402828.json"
+    ],
+    [
+    "Harrisburg University of Science and Technology",
+    "/comparisontool/api/school/446640.json"
+    ],
+    [
+    "Pennsylvania State University-Penn State Harrisburg",
+    "/comparisontool/api/school/214713.json"
+    ],
+    [
+    "University of Phoenix-Harrisburg Campus",
+    "/comparisontool/api/school/448831.json"
+    ]
+    ]
+
+The school detail json files are simply a dictionary of keys from the CSV.
+
 Running the Tests
 ------------------------------------
 
