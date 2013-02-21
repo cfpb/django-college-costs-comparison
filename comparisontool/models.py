@@ -15,6 +15,7 @@ class School(models.Model):
 
 
 class Alias(models.Model):
+    """One of potentially several names for a school"""
     institution = models.ForeignKey(School)
     alias = models.TextField()
     is_primary = models.BooleanField(default=False)
@@ -24,6 +25,7 @@ class Alias(models.Model):
 
 
 class Worksheet(models.Model):
+    """The saved state of a students comaprison worksheet"""
     guid = models.CharField(max_length=64, primary_key=True)
     saved_data = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -31,5 +33,6 @@ class Worksheet(models.Model):
 
 
 class Feedback(models.Model):
+    """User-submitted feedback"""
     created = models.DateTimeField(auto_now_add=True)
     message = models.TextField()
