@@ -1232,9 +1232,7 @@ $(document).ready(function() {
 		random = Math.random();
         posturl = "storage/?r=" + random;
         json_schools = JSON.stringify(schools);	
-        
-        $.post(sessionHistory, function(){
-        
+             
         $.ajax({
             type: 'POST',
             url: posturl,
@@ -1262,7 +1260,7 @@ $(document).ready(function() {
             	alert("Request error: " + xhr.status + ", " + thrownError);
             }
 		});
-        })
+   
     });  
 });
 

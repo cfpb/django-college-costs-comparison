@@ -37,3 +37,4 @@ nosetests.xml
 
 # Miscellany
 example_project/dev.sqlite3
+*.swp
