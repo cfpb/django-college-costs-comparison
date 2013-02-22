@@ -87,6 +87,22 @@ The search results include the URL for more data on each school::
 
 The school detail json files are simply a dictionary of keys from the CSV.
 
+The worksheet API
+-----------------------------------
+*api/worksheet*
+
+Accepts an otherwise-empyt post request, responds with a JSON dictionary that includes a WORKSHEET ID.
+
+*api/worksheet/WORKSHEET ID.json*
+
+Accepts only POST requests.
+
+Returns the current saved worksheet as JSON
+
+If you include data in your POST request, it will be saved (and reflected back to you in the response)
+
+
+
 Running the Tests
 ------------------------------------
 
