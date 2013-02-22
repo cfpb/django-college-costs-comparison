@@ -102,6 +102,18 @@ Returns the current saved worksheet as JSON
 If you include data in your POST request, it will be saved (and reflected back to you in the response)
 
 
+The email API
+------------------------------------
+*api/email*
+
+Accepts post requests with two parameters: 'id' and 'email'.
+
+'id' is a WORKSHEET ID
+
+'email' is the recipients email.
+
+example_project.settings is now configured to use the "console" backend, as described here:
+https://docs.djangoproject.com/en/dev/topics/email/#console-backend
 
 Running the Tests
 ------------------------------------
