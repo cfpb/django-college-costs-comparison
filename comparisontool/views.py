@@ -120,7 +120,6 @@ class BuildComparisonView(View):
                                   context_instance=RequestContext(request))
 
 
-# TODO: CLASS BASED VIEWS LOL
 class SchoolRepresentation(View):
 
     def get_school(self, school_id):
