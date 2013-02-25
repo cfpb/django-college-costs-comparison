@@ -25,9 +25,8 @@ The syncdb/migrate dance::
     django-admin.py migrate comparisontool   --settings=example_project.settings
 
 
-
 Setting up Solr
-------------------------------------
+----------------------------------------
 
 - Download the latest release of Solr 3.x and unzip it somewhere
 - Generate the solr schema with::
@@ -46,7 +45,7 @@ Loading the data
 ------------------------------------
 use the load_school command::
 
-    django-admin.py load_school_json data/schools.csv
+    django-admin.py load_school data/schools.csv
 
 Shove it into Solr::
     
