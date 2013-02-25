@@ -16,6 +16,16 @@ Prerequisites: working virtualenv and virtualenvwrapper::
     # open http://127.0.0.1:8000/comparisontool/ in your browser!
 
 
+Create the database and tables
+----------------------------------------
+
+The syncdb/migrate dance::
+    
+    django-admin.py syncdb  --settings=example_project.settings
+    django-admin.py migrate comparisontool   --settings=example_project.settings
+
+
+
 Setting up Solr
 ------------------------------------
 
@@ -36,7 +46,7 @@ Loading the data
 ------------------------------------
 use the load_school command::
 
-    django-admin.py load_school data/schools.csv
+    django-admin.py load_school_json data/schools.csv
 
 Shove it into Solr::
     
