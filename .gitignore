@@ -34,3 +34,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Miscellany
+example_project/dev.sqlite3
+*.swp
