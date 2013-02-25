@@ -74,7 +74,7 @@ class Migration(SchemaMigration):
         'comparisontool.savedstate': {
             'Meta': {'object_name': 'SavedState'},
             'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'guid': ('django.db.models.fields.CharField', [], {'default': "UUID('baca72d4-a31f-4dd3-9890-27331d9f188d')", 'max_length': '64', 'primary_key': 'True'}),
+            'guid': ('django.db.models.fields.CharField', [], {'default': "'dummy'", 'max_length': '64', 'primary_key': 'True'}),
             'saved_data': ('django.db.models.fields.TextField', [], {}),
             'updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         },
