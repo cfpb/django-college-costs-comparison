@@ -1117,6 +1117,13 @@ $(document).ready(function() {
 		}, 500);
 	});
 
+	// toggle Military calculator
+	$("#military-calc-toggle").click(function(){
+		$("#military-calc-panel").toggleClass("hidden");
+		$("#military-calc-toggle").addClass("active").html("Military Benefit Calculator <span>&#9650;</span>");
+	});
+
+
 	// toggle drawer
 	$(".school-drawer-toggle").live("click", function() {
 		var toggle = $(this);
