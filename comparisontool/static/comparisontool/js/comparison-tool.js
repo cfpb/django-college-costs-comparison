@@ -891,6 +891,7 @@ function process_school_list(schools) {
 }
 
 function school_search_results(query) {
+	$("#test").html(query);
 	var qurl = "http://127.0.0.1:8000/comparisontool/api/search-schools.json?q=" + query;
 	var request = $.ajax({
 		url: qurl,
@@ -968,9 +969,10 @@ $(document).ready(function() {
 	$("#school-search-results .school-result a").live("click", function(ev) {
 		var id = $(this).attr("href");
 		var name = $(this).html();
-		alert(id + name);
+		$("#add-panel #instruction").html("Please enter the costs below to begin the visual calculator.");
+		$("#school-search").slideUp();
+		$("#add-panel").append($("#add-school-template").html());
 		return false;
-
 	});
 
 	// thisequals menu
