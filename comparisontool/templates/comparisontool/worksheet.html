@@ -180,7 +180,7 @@ var csrftok = "{{ csrf_token }}";
 			<p>While we're working to build new features, try out this basic version. If you have any ideas or feedback on what should be included in the fully functioning version due next spring, <a href="{% url pfc-feedback %}" target="compare_info">let us know.</a></p>
 			<div id="intro-form">
 				<h4>Building your cost comparison...</h4>
-				<p>Please fill in the following costs to add your first school to the comparison.</p>
+				<p id="#instruction">First, please find your school by using the search below.</p>
 			</div>		
 		</div>
 		<div id="school-container">
@@ -573,7 +573,10 @@ var csrftok = "{{ csrf_token }}";
 		<div id="school-search-template" class="hidden">
 			<form id="school-search">
 				<label for="schoolname">School name:</label><input type="text" name="schoolname">
-				<p id="school-search-results"></p>
+				<div id="school-search-results">
+					<p>Please choose your school from the list:</p>
+					<ul></ul>
+				</div>
 			</form>
 		</div><!-- end #school-select-panel" -->
 		<div id="add-school-template" class="hidden">

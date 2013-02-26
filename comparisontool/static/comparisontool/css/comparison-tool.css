@@ -245,9 +245,7 @@
 }
 
 #comparison-tool #introduction #intro-form button {
-	margin: .35em 0;
-	left: 25%;
-	width: 50%;
+
 }
 
 #comparison-tool #introduction #intro-form label {
@@ -267,6 +265,15 @@
 	text-align: center;
 }
 
+/* school-search
+----------------------------------------------------*/
+#school-search-results {
+
+}
+
+#school-search-results > li {
+	list-style-type: none;
+}
 
 /* trischool
 -------------------------------------------------------------------------------*/
