@@ -890,26 +890,24 @@ function process_school_list(schools) {
 	return op;
 }
 
-function school_search(query) {
-	if (query.length > 2) {
-		var qurl = "http://127.0.0.1:8000/comparisontool/api/search-schools.json?q=" + query;
-		var request = $.ajax({
-			url: qurl,
-			dataType: "json"
+function school_search_results(query) {
+	var qurl = "http://127.0.0.1:8000/comparisontool/api/search-schools.json?q=" + query;
+	var request = $.ajax({
+		url: qurl,
+		dataType: "json"
+	});
+	request.done(function(data) {
+		dump = "";
+		$.each(data, function(i, val) {
+			dump += '<li class="school-result">';
+			dump += '<a href="' + val.id + '">' + val.schoolname + '</a></li>';
 		});
-		request.done(function(data) {
-			dump = "";
-			$.each(data, function(i, val) {
-				dump += '<li>';
-				dump += val[0] + '</li>';
-			});
-			$("#school-search-results").html("SCHOOL");
-			$("#school-search-results").append(dump);
-		});
-		request.fail(function() {
-			// alert("ERROR");
-		});
-	}
+		$("#school-search-results").show();
+		$("#school-search-results ul").html(dump);
+	});
+	request.fail(function() {
+		// alert("ERROR");
+	});
 }
 
 
@@ -966,9 +964,18 @@ $(document).ready(function() {
 
 //-------- JQUERY EVENT HANDLERS --------//
 
+	// #school-search-results list links
+	$("#school-search-results .school-result a").live("click", function(ev) {
+		var id = $(this).attr("href");
+		var name = $(this).html();
+		alert(id + name);
+		return false;
+
+	});
+
 	// thisequals menu
 	$("a.moreitems").live("click", function(ev) {
-		ev.disableDefault;
+		ev.disableDefault();
 		$(this).parents(".thisequals").children("div.this_equals_menu").fadeIn(200);
 		$("html").on('click', function() {
 			$("div.this_equals_menu").fadeOut(200);
@@ -1134,7 +1141,7 @@ $(document).ready(function() {
 	// Do a search when the school-search input has keyup...
 	$('#school-search').live('keyup', function (ev) {
 		var query = $("#school-search [name=schoolname]").val()
-		school_search(query);
+		school_search_results(query);
 	});
 
 	// Perform a calculation when a keyup occurs in the school fields...
