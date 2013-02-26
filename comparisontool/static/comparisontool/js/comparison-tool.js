@@ -882,9 +882,45 @@ function build_school_element(school_id) {
 	school.calc_this_equals(thisequals[0]);
 }
 
+function process_school_list(schools) {
+	var op = "";
+	$.each(schools, function(i, val) {
+		op = op + i + "(" + val + ") ";
+	});
+	return op;
+}
+
+function school_search(query) {
+	if (query.length > 2) {
+		var qurl = "http://127.0.0.1:8000/comparisontool/api/search-schools.json?q=" + query;
+		var request = $.ajax({
+			url: qurl,
+			dataType: "json"
+		});
+		request.done(function(data) {
+			dump = "";
+			$.each(data, function(i, val) {
+				dump += '<li>';
+				dump += val[0] + '</li>';
+			});
+			$("#school-search-results").html("SCHOOL");
+			$("#school-search-results").append(dump);
+		});
+		request.fail(function() {
+			// alert("ERROR");
+		});
+	}
+}
+
+
 //-------- DOCUMENT.READY --------//
 
 $(document).ready(function() {
+	// initialize page
+
+	$("#intro-form").append($("#school-search-template").html());
+	$("#intro-form").find($("#school-search")).show();
+
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
 		schools = restoredata;
@@ -1095,7 +1131,13 @@ $(document).ready(function() {
 		}
 	});
 
-	// Perform a calculation...
+	// Do a search when the school-search input has keyup...
+	$('#school-search').live('keyup', function (ev) {
+		var query = $("#school-search [name=schoolname]").val()
+		school_search(query);
+	});
+
+	// Perform a calculation when a keyup occurs in the school fields...
 	$('.school input').live('keyup', function (ev) {
 		// ...immediately when the user hits enter
 		if (ev.keyCode == 13) {
