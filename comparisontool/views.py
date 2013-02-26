@@ -172,7 +172,7 @@ class DataStorageView(View):
 def school_search_api(request):
     sqs = SearchQuerySet().models(Alias)
     sqs = sqs.autocomplete(autocomplete=request.GET.get('q', ''))
-    found_aliases = [(result.text, reverse(
-        'school-json', args=[result.school_id])) for result in sqs]
+    found_aliases = [{'schoolname': result.text, 'id': result.school_id, 'url': reverse(
+        'school-json', args=[result.school_id])} for result in sqs]
     json_doc = json.dumps(found_aliases)
     return HttpResponse(json_doc, mimetype='application/javascript')
