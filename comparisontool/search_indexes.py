@@ -1,16 +1,19 @@
 from haystack.indexes import *
 from haystack import site
-from comparisontool.models import Alias
+from comparisontool.models import School
 
 
-class AliasIndex(SearchIndex):
-    text = CharField(document=True, model_attr='alias')
-    autocomplete = EdgeNgramField(model_attr='alias')
-    school_id = IntegerField(model_attr='institution_id')
+class SchoolIndex(SearchIndex):
+    text = CharField(document=True, model_attr='primary_alias')
+    autocomplete = EdgeNgramField()
+    school_id = IntegerField(model_attr='school_id')
 
     def index_queryset(self):
         """Used when the entire index for model is updated."""
-        return Alias.objects.all()
+        return School.objects.all()
 
+    def prepare_autocomplete(self, obj):
+        alias_strings = [a.alias for a in obj.alias_set.all()]
+        return ' '.join(alias_strings)
 
-site.register(Alias, AliasIndex)
+site.register(School, SchoolIndex)
