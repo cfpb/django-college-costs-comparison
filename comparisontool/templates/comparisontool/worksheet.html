@@ -180,7 +180,7 @@ var csrftok = "{{ csrf_token }}";
 			<p>While we're working to build new features, try out this basic version. If you have any ideas or feedback on what should be included in the fully functioning version due next spring, <a href="{% url pfc-feedback %}" target="compare_info">let us know.</a></p>
 			<div id="intro-form">
 				<h4>Building your cost comparison...</h4>
-				<p>Please fill in the following costs to add your first school to the comparison.</p>
+				<p id="instruction">First, please find your school by using the search below.</p>
 			</div>		
 		</div>
 		<div id="school-container">
@@ -577,17 +577,27 @@ var csrftok = "{{ csrf_token }}";
 			</form>
 		</div><!-- end #school-select-panel" -->
 		<div id="add-school-template" class="hidden">
+			<h2 name="schoolname"></h2>
+			<p><label for="cb_tuitionfees"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label><input tabindex="9992" type="text" value="" name="cb_tuitionfees"></p>
+			<p><label for="cb_roombrd"><span class="tooltip-info" tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label><input tabindex="9993" type="text" value="" name="cb_roombrd"></p>
+			<p><label for="cb_books"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label><input tabindex="9994" type="text" value="" name="cb_books"></p>
+			<p><label for="cb_transportation"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label><input tabindex="9995" type="text" value="" name="cb_transportation"></p>
+			<p><label for="cb_otherexpenses"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label><input tabindex="9995" type="text" value="" name="cb_otherexpenses"></p>
+			<p class="navigatorlink"><a href="http://nces.ed.gov/collegenavigator/" target="_blank">Look up school information using College Navigator.</a></p>
+			<button class="button add_to_comparison start_comparing">Start Visualization</button>			
+		</div>
+		<div id="older-add-school-template" class="hidden">
 			<p><label for="cb_institutionname">School Name</label><input tabindex="9991" type="text" value="" name="cb_institutionname"></p>
-				<p><label for="cb_tuitionfees"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label><input tabindex="9992" type="text" value="" name="cb_tuitionfees"></p>
-				<p><label for="cb_roombrd"><span class="tooltip-info" tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label><input tabindex="9993" type="text" value="" name="cb_roombrd"></p>
-				<p><label for="cb_books"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label><input tabindex="9994" type="text" value="" name="cb_books"></p>
-				<p><label for="cb_transportation"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label><input tabindex="9995" type="text" value="" name="cb_transportation"></p>
-				<p><label for="cb_otherexpenses"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label><input tabindex="9995" type="text" value="" name="cb_otherexpenses"></p>
-				<p class="navigatorlink"><a href="http://nces.ed.gov/collegenavigator/" target="_blank">Look up school information using College Navigator.</a></p>
-				<button class="button add_to_comparison start_comparing">Start Visualization</button>
-				<br>
-				<button class="add_average_public button preset">Set values to Average Public 4-Year University</button><br>
-				<button class="add_average_private button preset">Set values to Average Private 4-Year University</button><br>
+			<p><label for="cb_tuitionfees"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label><input tabindex="9992" type="text" value="" name="cb_tuitionfees"></p>
+			<p><label for="cb_roombrd"><span class="tooltip-info" tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label><input tabindex="9993" type="text" value="" name="cb_roombrd"></p>
+			<p><label for="cb_books"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label><input tabindex="9994" type="text" value="" name="cb_books"></p>
+			<p><label for="cb_transportation"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label><input tabindex="9995" type="text" value="" name="cb_transportation"></p>
+			<p><label for="cb_otherexpenses"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label><input tabindex="9995" type="text" value="" name="cb_otherexpenses"></p>
+			<p class="navigatorlink"><a href="http://nces.ed.gov/collegenavigator/" target="_blank">Look up school information using College Navigator.</a></p>
+			<button class="button add_to_comparison start_comparing">Start Visualization</button>
+			<br>
+			<button class="add_average_public button preset">Set values to Average Public 4-Year University</button><br>
+			<button class="add_average_private button preset">Set values to Average Private 4-Year University</button><br>
 		</div><!-- end #add-school-form -->
 		<div id="add-panel">
 			<button tabindex="2001" id="add_a_school">Add a School to the Comparison</button>

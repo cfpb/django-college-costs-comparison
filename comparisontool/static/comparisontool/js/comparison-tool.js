@@ -890,12 +890,18 @@ function process_school_list(schools) {
 	return op;
 }
 
-function school_search(query) {
-	if (query.length > 2) {
-		var qurl = "http://127.0.0.1:8000/comparisontool/api/search-schools.json?q=" + query;
-		var request = $.ajax({
-			url: qurl,
-			dataType: "json"
+function school_search_results(query) {
+	$("#test").html(query);
+	var qurl = "http://127.0.0.1:8000/comparisontool/api/search-schools.json?q=" + query;
+	var request = $.ajax({
+		url: qurl,
+		dataType: "json"
+	});
+	request.done(function(data) {
+		dump = "";
+		$.each(data, function(i, val) {
+			dump += '<li class="school-result">';
+			dump += '<a href="' + val.id + '">' + val.schoolname + '</a></li>';
 		});
 		request.done(function(data) {
 			dump = "";
@@ -966,6 +972,19 @@ $(document).ready(function() {
 
 //-------- JQUERY EVENT HANDLERS --------//
 
+<<<<<<< HEAD
+=======
+	// #school-search-results list links
+	$("#school-search-results .school-result a").live("click", function(ev) {
+		var id = $(this).attr("href");
+		var name = $(this).html();
+		$("#add-panel #instruction").html("Please enter the costs below to begin the visual calculator.");
+		$("#school-search").slideUp();
+		$("#add-panel").append($("#add-school-template").html());
+		return false;
+	});
+
+>>>>>>> integrating search
 	// thisequals menu
 	$("a.moreitems").live("click", function(ev) {
 		ev.disableDefault;
