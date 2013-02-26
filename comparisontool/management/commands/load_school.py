@@ -34,5 +34,5 @@ class Command(BaseCommand):
                         for (index, alias_str) in enumerate(aliases):
                             alias = Alias(institution=school,
                                           alias=alias_str,
-                                          is_primary=(index == 0))
+                                          is_primary=(alias_str == primary_school_name))
                             alias.save()
