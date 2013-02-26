@@ -175,4 +175,4 @@ def school_search_api(request):
     found_aliases = [{'schoolname': result.text, 'id': result.school_id, 'url': reverse(
         'school-json', args=[result.school_id])} for result in sqs]
     json_doc = json.dumps(found_aliases)
-    return HttpResponse(json_doc, mimetype='application/json')
+    return HttpResponse(json_doc, mimetype='application/javascript')

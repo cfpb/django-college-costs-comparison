@@ -229,7 +229,7 @@
 #comparison-tool #introduction {
 	font-family: "Avenir Next", Verdana, sans-serif;
 }
-#comparison-tool #introduction #intro_form {
+#comparison-tool #introduction #intro-form {
 	border: 3px solid #d0d2d3;
 	font-size: .9em;
 	padding: 1.875em 30px;
@@ -237,31 +237,32 @@
 	width: 80%;
 }
 
-#comparison-tool #introduction #intro_form h4 {
+#comparison-tool #introduction #intro-form h4 {
 	font-size: 1.313em;
 	font-weight: 700;
 	letter-spacing: 0;
 	color: #D83D00;
 }
 
-#comparison-tool #introduction #intro_form button {
+#comparison-tool #introduction #intro-form button {
 	margin: .35em 0;
 	left: 25%;
 	width: 50%;
 }
 
-#comparison-tool #introduction #intro_form label {
+#comparison-tool #introduction #intro-form label {
 	display:inline-block;
 	margin: .2em .3em;
 	text-align: right;
-	width: 40%;
+	width: 20%;
 }
 
-#comparison-tool #introduction #intro_form input {
+#comparison-tool #introduction #intro-form input {
 	margin: .2em .3em;
+	width: 50%;
 }
 
-#comparison-tool #introduction #intro_form p.navigatorlink {
+#comparison-tool #introduction #intro-form p.navigatorlink {
 	font-size: .8em;
 	text-align: center;
 }
