@@ -1,9 +1,6 @@
 /*	Rewrite by wernerc */
 
-/* When school database is live, we probably want to AJAX data from it, allowing users to add and
-	remove schools on the fly. However, data on averages and general setup data will still come from
-	that database, so some form of "starting data" will still need to be pulled. This is stand-in data
-	for that eventual database code. -wernerc */
+/* A few default settings: */
 
 var data = 
 	{
@@ -19,23 +16,19 @@ var data =
 			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "active": false }
 	}
 };
-
-/* end stand-in code */
+ 
+/* an object to hold schools: */
+var schools = new Object();
 
 // Determine if global data exists
 if (data.global != "undefined") {
 	global = data.global;
 }
 else {
-	/*	If, school when data is live, globals can't be loaded from the database, there ought to be
+	/*	If globals can't be loaded from the database, there ought to be
 		some error handling. The application can still run without data, so a database failure
 		shouldn't put it out of commission -wernerc */
 }
-
-// Schools object is initialized, then filled later
-var schools = new Object();
-schools.csrfmiddlewaretoken = csrftok;
-
 presets = data.presets;
 
 //-------- Initialize --------//
@@ -209,10 +202,11 @@ jQuery.fn.check_max_alert = function() {
 }
 
 // draw_the_bars - Redraw the bar graphs for the specified .school element
-jQuery.fn.draw_the_bars = function() {
-	var school = $(this);
+function draw_the_bars(school) {
+	var school_id = school.attr("id");
+	var schooldata = schools[school_id];
 	var pixel_price = 496 / highest_cost;
-	var cost = money_to_num($(this).find("h4 span[name='firstyrcostattend']").text());
+	var cost = money_to_num(school.find("h4 span[name='firstyrcostattend']").text());
 	var chart_width = Math.round(cost * pixel_price);
 	var marginright = 0;
 	school.find(".bars").width(chart_width);
@@ -310,7 +304,7 @@ function center_lightboxes() {
 
 // calculate_school(school_id) - Calculate the numbers for a particular school
 function calculate_school(school_id) {
-	var school = $("#school-container #" + school_id +".school");
+	var school = $("#" + school_id);
 	var schooldata = schools[school_id];
 
 	// Set default terms
@@ -808,11 +802,11 @@ function calculate_school(school_id) {
 	// Get the most expensive sticker price (for chart width histogram)
 	if (check_highest_cost() === true) {
 		$(".school").not("#template").each(function() {
-			$(this).draw_the_bars();
+			draw_the_bars($(this));
 		});
 	}
 	else {
-		school.draw_the_bars();
+		draw_the_bars(school);
 	}	
 
 	left_to_pay = schooldata.gap;
@@ -929,10 +923,10 @@ $(document).ready(function() {
 			}
 		});
 		if ($("#school-container .school").length >= 3) {
-			$("#add_a_school").hide();
+			$("#add-a-school").hide();
 		}
 		else {
-			$("#add_a_school").show();
+			$("#add-a-school").show();
 		}
 	}
 
@@ -950,7 +944,7 @@ $(document).ready(function() {
 	$("#start-again").hide();
 
 	$(".template").hide();
-	$("#add_a_school").hide();
+	$("#add-a-school").hide();
 
 	center_lightboxes();
 
@@ -973,6 +967,7 @@ $(document).ready(function() {
 		cbuilder.find("#school-search").slideUp();
 		cbuilder.append($("#add-school-template").html());
 		cbuilder.find("h2[name='cb_institutionname']").html(schoolname);
+		cbuilder.find("h2[name='cb_institutionname']").attr("data-id", id)
 		return false;
 	});
 
@@ -999,7 +994,7 @@ $(document).ready(function() {
 	});
 
 	// Pop up the option to add a school
-	$("#add_a_school").live("click", function() {
+	$("#add-a-school").live("click", function() {
 		$("#add_average_private").show();
 		$("#add_average_public").show();
 		$("#overlay").show();
@@ -1011,10 +1006,11 @@ $(document).ready(function() {
 	});
 
 	//---- Add a school element to the comparison ----//
-	$(".add_to_comparison").live("click", function(ev) {
+	$(".add-to-comparison").live("click", function(ev) {
+		var costbuilder = $(this).parents(".costbuilder");
+		var school_id = costbuilder.find("[name='cb_institutionname']").attr("data-id");
+
 		var schooldata = new Object();
-		var school_id = "school_" + "custom_" + (schoolcounter++);
-		costbuilder = $(this).parents(".costbuilder");
 		schooldata.institutionname = costbuilder.find("h2[name='cb_institutionname']").html();
 		if (schooldata.institutionname.length < 1) {
 			schooldata.institutionname = "Unnamed University";
@@ -1033,12 +1029,12 @@ $(document).ready(function() {
 
 		// If there are 3 or more school elements, hide the "add a school" link
 		if ($("#school-container .school").length >= 3) {
-			$("#add_a_school").hide();
+			$("#add-a-school").hide();
 		}
 		// If this is the first school, hide some elements, show others
 		if ($(this).hasClass('start_comparing')) {
 			$("#introduction").slideUp(500);
-			$("#add_a_school").fadeIn(200);
+			$("#add-a-school").fadeIn(200);
 			$("#save-drawer-toggle").show();
 			$("#start-again").show();
 			school.find(".school-drawer-toggle").trigger('click');
@@ -1107,12 +1103,12 @@ $(document).ready(function() {
 		else {
 			$("#overlay").fadeOut(300);
 		}
-		$("#add_a_school").show();
+		$("#add-a-school").show();
 
 		// Check the costs versus highest cost, in case we removed highest cost school
 		if (check_highest_cost() === true) {
 			$(".school").not("#template").each(function() {
-				$(this).draw_the_bars();
+				draw_the_bars($(this));
 			});
 		}
 	});
@@ -1209,7 +1205,7 @@ $(document).ready(function() {
 			$("#overlay").fadeOut(200);
 			$("#lightbox-start-over").fadeOut(300);
 			$("#introduction").slideDown(500);
-			$("#add_a_school").hide();		
+			$("#add-a-school").hide();		
 		});
 		schools = {};	
 	});
