@@ -891,24 +891,23 @@ function process_school_list(schools) {
 }
 
 function school_search_results(query) {
-	$("#test").html(query);
+	var dump = "";
 	var qurl = "http://127.0.0.1:8000/comparisontool/api/search-schools.json?q=" + query;
 	var request = $.ajax({
-		url: qurl,
-		dataType: "json"
+		async: false,
+		dataType: "json",
+		url: qurl
 	});
 	request.done(function(data) {
-		dump = "";
 		$.each(data, function(i, val) {
 			dump += '<li class="school-result">';
 			dump += '<a href="' + val.id + '">' + val.schoolname + '</a></li>';
 		});
-		$("#school-search-results").show();
-		$("#school-search-results ul").html(dump);
 	});
 	request.fail(function() {
 		// alert("ERROR");
 	});
+	return dump;
 }
 
 
@@ -918,7 +917,6 @@ $(document).ready(function() {
 	// initialize page
 
 	$("#intro-form").append($("#school-search-template").html());
-	$("#intro-form").find($("#school-search")).show();
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
@@ -951,7 +949,7 @@ $(document).ready(function() {
 	$("#save-drawer-toggle").hide();
 	$("#start-again").hide();
 
-	$("#template").hide();
+	$(".template").hide();
 	$("#add_a_school").hide();
 
 	center_lightboxes();
@@ -967,11 +965,14 @@ $(document).ready(function() {
 
 	// #school-search-results list links
 	$("#school-search-results .school-result a").live("click", function(ev) {
+		// find the .add-panel container it lives in
+		cbuilder = $(this).parents(".costbuilder");
 		var id = $(this).attr("href");
-		var name = $(this).html();
-		$("#add-panel #instruction").html("Please enter the costs below to begin the visual calculator.");
-		$("#school-search").slideUp();
-		$("#add-panel").append($("#add-school-template").html());
+		var schoolname = $(this).html();
+		cbuilder.find("#instruction").html("Please enter the costs below to begin the visual calculator.");
+		cbuilder.find("#school-search").slideUp();
+		cbuilder.append($("#add-school-template").html());
+		cbuilder.find("h2[name='cb_institutionname']").html(schoolname);
 		return false;
 	});
 
@@ -1001,16 +1002,11 @@ $(document).ready(function() {
 	$("#add_a_school").live("click", function() {
 		$("#add_average_private").show();
 		$("#add_average_public").show();
-		if ($("#average_private").exists()) {
-			$("#add_average_private").hide();
-		}
-		if ($("#average_public").exists()) {
-			$("#add_average_public").hide();
-		}
 		$("#overlay").show();
 		$("#lightbox-add").show();
 		$("#template").hide();
 		center_lightboxes();
+		$(".costbuilder:visible").append($("#school-search-template").html());
 
 	});
 
@@ -1019,7 +1015,7 @@ $(document).ready(function() {
 		var schooldata = new Object();
 		var school_id = "school_" + "custom_" + (schoolcounter++);
 		costbuilder = $(this).parents(".costbuilder");
-		schooldata.institutionname = costbuilder.find("input[name='cb_institutionname']").val();
+		schooldata.institutionname = costbuilder.find("h2[name='cb_institutionname']").html();
 		if (schooldata.institutionname.length < 1) {
 			schooldata.institutionname = "Unnamed University";
 		}
@@ -1141,9 +1137,10 @@ $(document).ready(function() {
 	});
 
 	// Do a search when the school-search input has keyup...
-	$('#school-search').live('keyup', function (ev) {
-		var query = $("#school-search [name=schoolname]").val()
-		school_search_results(query);
+	$("#school-search").live('keyup', function (ev) {
+		var query = $(this).find("[name='schoolname']").val()
+		var results = school_search_results(query);
+		$(this).find("#school-search-results ul").html(results);
 	});
 
 	// Perform a calculation when a keyup occurs in the school fields...
