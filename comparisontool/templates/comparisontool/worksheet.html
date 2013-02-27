@@ -178,14 +178,14 @@ var csrftok = "{{ csrf_token }}";
             <p>If you have received <a href="http://studentaid.ed.gov/glossary#Financial_Aid_Offer" target="_blank">financial aid offers</a> from any four-year colleges, use this tool to understand how all those numbers impact your payments down the road. Just researching costs? Check out <a href="http://nces.ed.gov/collegenavigator/" target="_blank">College Navigator</a>.</p>
             <p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="_blank">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="_blank">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we are building a tool that complements the shopping sheet and helps students make comparisons tailored to their individual circumstances.</p>
 			<p>While we're working to build new features, try out this basic version. If you have any ideas or feedback on what should be included in the fully functioning version due next spring, <a href="{% url pfc-feedback %}" target="compare_info">let us know.</a></p>
-			<div id="intro-form">
+			<div id="intro-form" class="add-panel">
 				<h4>Building your cost comparison...</h4>
 				<p id="instruction">First, please find your school by using the search below.</p>
 			</div>		
 		</div>
 		<div id="school-container">
 		</div>
-		<div id="template">
+		<div id="template" class="template"3>
 			<section class="school">
 				<a name="focus_target">
 				<div class="container">
@@ -570,7 +570,7 @@ var csrftok = "{{ csrf_token }}";
 				</div><!-- end .container -->
 			</section><!-- end .school -->
 		</div><!-- end #template -->
-		<div id="school-search-template" class="hidden">
+		<div id="school-search-template" class="template">
 			<form id="school-search">
 				<label for="schoolname">School name:</label><input type="text" name="schoolname">
 				<div id="school-search-results">
@@ -579,15 +579,17 @@ var csrftok = "{{ csrf_token }}";
 				</div>
 			</form>
 		</div><!-- end #school-select-panel" -->
-		<div id="add-school-template" class="hidden">
-			<h2 name="schoolname"></h2>
+		<div id="add-school-template" class="template">
+			<h2 name="cb_institutionname"></h2>
 			<p><label for="cb_tuitionfees"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label><input tabindex="9992" type="text" value="" name="cb_tuitionfees"></p>
 			<p><label for="cb_roombrd"><span class="tooltip-info" tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label><input tabindex="9993" type="text" value="" name="cb_roombrd"></p>
 			<p><label for="cb_books"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label><input tabindex="9994" type="text" value="" name="cb_books"></p>
 			<p><label for="cb_transportation"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label><input tabindex="9995" type="text" value="" name="cb_transportation"></p>
 			<p><label for="cb_otherexpenses"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label><input tabindex="9995" type="text" value="" name="cb_otherexpenses"></p>
 			<p class="navigatorlink"><a href="http://nces.ed.gov/collegenavigator/" target="_blank">Look up school information using College Navigator.</a></p>
-			<button class="button add_to_comparison start_comparing">Start Visualization</button>			
+			<button class="button add_to_comparison start_comparing">Start Visualization</button>			<br>
+			<button class="add_average_public button preset">Set values to Average Public 4-Year University</button><br>
+			<button class="add_average_private button preset">Set values to Average Private 4-Year University</button><br>			
 		</div>
 		<div id="older-add-school-template" class="hidden">
 			<p><label for="cb_institutionname">School Name</label><input tabindex="9991" type="text" value="" name="cb_institutionname"></p>
@@ -652,17 +654,7 @@ var csrftok = "{{ csrf_token }}";
 		<div class="lightbox-content costbuilder">
 			<a href="#" class="close-lightbox" title="Close"></a>
 			<h4>Building your cost comparison...</h4>
-			<p><label for="cb_institutionname" style="display:inline-block; text-align: right; font-size: 15px; width:200px; padding: 0px 10px;">School Name</label><input tabindex="9991" type="text" value="" name="cb_institutionname"></p>
-			<p><label for="cb_tuitionfees" style="display:inline-block; text-align: right; font-size: 15px; width:200px; padding: 0px 10px;"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label><input tabindex="9992" type="text" value="" name="cb_tuitionfees"></p>
-			<p><label for="cb_roombrd" style="display:inline-block; text-align: right; font-size: 15px; width:200px; padding: 0px 10px;"><span class="tooltip-info" tooltip="Housing &amp; Meals Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label><input tabindex="9993" type="text" value="" name="cb_roombrd"></p>
-			<p><label for="cb_books" style="display:inline-block; text-align: right; font-size: 15px; width:200px; padding: 0px 10px;"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label><input tabindex="9994" type="text" value="" name="cb_books"></p>
-			<p><label for="cb_transportation" style="display:inline-block; text-align: right; font-size: 15px; width:200px; padding: 0px 10px;"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label><input tabindex="9995" type="text" value="" name="cb_transportation"></p>
-			<p><label for="cb_otherexpenses" style="display:inline-block; text-align: right; font-size: 15px; width:200px; padding: 0px 10px;"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label><input tabindex="9995" type="text" value="" name="cb_otherexpenses"></p>
-			<p class="navigatorlink"><a href="http://nces.ed.gov/collegenavigator/" target="_blank">Look up school information using College Navigator</a></p>
-			<button class="add_to_comparison button" style="left: 25%; width: 50%;">Add to Comparison View</button>
-			<br>
-			<button class="add_average_public button" style="left: 25%; width: 50%; background-color: #999;">Set values to Average Public University</button><br>
-			<button class="add_average_private button" style="left: 25%; width: 50%; background-color: #999;">Set values to Average Private University</button><br>
+
 		</div><!-- end .lightbox-content -->
 	</div><!-- end #lightbox-add -->
 	
