@@ -960,14 +960,14 @@ $(document).ready(function() {
 	// #school-search-results list links
 	$("#school-search-results .school-result a").live("click", function(ev) {
 		// find the .add-panel container it lives in
-		cbuilder = $(this).parents(".costbuilder");
+		var addpanel = $(this).parents(".add-panel");
 		var id = $(this).attr("href");
 		var schoolname = $(this).html();
-		cbuilder.find("#instruction").html("Please enter the costs below to begin the visual calculator.");
-		cbuilder.find("#school-search").slideUp();
-		cbuilder.append($("#add-school-template").html());
-		cbuilder.find("h2[name='cb_institutionname']").html(schoolname);
-		cbuilder.find("h2[name='cb_institutionname']").attr("data-id", id)
+		addpanel.find("#instruction").html("Please enter the costs below to begin the visual calculator.");
+		addpanel.find("#school-search").slideUp();
+		addpanel.append($("#add-school-template").html());
+		addpanel.find("h2[name='cb_institutionname']").html(schoolname);
+		addpanel.find("h2[name='cb_institutionname']").attr("data-id", id)
 		return false;
 	});
 
