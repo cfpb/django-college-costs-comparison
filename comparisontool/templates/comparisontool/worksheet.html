@@ -178,9 +178,11 @@ var csrftok = "{{ csrf_token }}";
             <p>If you have received <a href="http://studentaid.ed.gov/glossary#Financial_Aid_Offer" target="_blank">financial aid offers</a> from any four-year colleges, use this tool to understand how all those numbers impact your payments down the road. Just researching costs? Check out <a href="http://nces.ed.gov/collegenavigator/" target="_blank">College Navigator</a>.</p>
             <p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="_blank">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="_blank">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we are building a tool that complements the shopping sheet and helps students make comparisons tailored to their individual circumstances.</p>
 			<p>While we're working to build new features, try out this basic version. If you have any ideas or feedback on what should be included in the fully functioning version due next spring, <a href="{% url pfc-feedback %}" target="compare_info">let us know.</a></p>
-			<div id="intro-form" class="add-panel">
+			<div id="intro-form">
 				<h4>Building your cost comparison...</h4>
-				<p id="instruction">First, please find your school by using the search below.</p>
+				<div class="add-panel">
+					<p id="instruction">First, please find your school by using the search below.</p>
+				</div>
 			</div>		
 		</div>
 		<div id="school-container">
@@ -651,10 +653,10 @@ var csrftok = "{{ csrf_token }}";
 	<div id="overlay"></div><!-- end #overlay -->
 	
 	<div id="lightbox-add" class="lightbox">
-		<div class="lightbox-content costbuilder add-panel">
+		<div class="lightbox-content costbuilder">
 			<a href="#" class="close-lightbox" title="Close"></a>
 			<h4>Building your cost comparison...</h4>
-
+			<div class="add-panel"></div>
 		</div><!-- end .lightbox-content -->
 	</div><!-- end #lightbox-add -->
 	
