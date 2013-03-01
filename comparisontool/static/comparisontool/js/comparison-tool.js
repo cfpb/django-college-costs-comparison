@@ -832,7 +832,6 @@ function calculate_school(school_id) {
 // Build a section.school element for a school, fill in data
 // school's data must be in the schools object first
 function build_school_element(school_id) {
-
 	if (schools[school_id] != undefined) {
 		var schooldata = schools[school_id];
 	}
@@ -887,14 +886,14 @@ function process_school_list(schools) {
 
 function school_search_results(query) {
 	var dump = "";
-	var qurl = "/comparisontool/api/search-schools.json?q=" + query;
+	var qurl = "api/search-schools.json?q=" + query;
 	var request = $.ajax({
 		async: false,
 		dataType: "json",
 		url: qurl
 	});
-	request.done(function(response) {
-		$.each(response, function(i, val) {
+	request.done(function(data) {
+		$.each(data, function(i, val) {
 			dump += '<li class="school-result">';
 			dump += '<a href="' + val.id + '">' + val.schoolname + '</a></li>';
 		});
@@ -911,7 +910,7 @@ function school_search_results(query) {
 $(document).ready(function() {
 	// initialize page
 
-	$("#intro-form .add-panel").append($("#school-search-template").html());
+	$("#intro-form").append($("#school-search-template").html());
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
@@ -1002,7 +1001,7 @@ $(document).ready(function() {
 		$("#lightbox-add").show();
 		$("#template").hide();
 		center_lightboxes();
-		$(".costbuilder:visible .add-panel").html($("#school-search-template").html());
+		$(".costbuilder:visible").append($("#school-search-template").html());
 
 	});
 
@@ -1022,25 +1021,6 @@ $(document).ready(function() {
 		schooldata.transportation = money_to_num(costbuilder.find("input[name='cb_transportation']").val());
 		schooldata.otherexpenses = money_to_num(costbuilder.find("input[name='cb_otherexpenses']").val());
 		schooldata.source = "user";
-
-		// AJAX out the school data from the API
-		var surl = "/comparisontool/api/school/" + school_id + ".json";
-		var request = $.ajax({
-			async: true,
-			dataType: "json",
-			url: surl
-		});
-		request.done(function(response) {
-			$.each(response, function(i, val) {
-				i = i.toLowerCase();
-				if (schooldata[i] == undefined) {
-					schooldata[i] = val;
-				}
-			});
-		});
-		request.fail(function() {
-			// alert("ERROR");
-		});	
 
 		schools[school_id] = schooldata;
 
@@ -1101,6 +1081,7 @@ $(document).ready(function() {
 	});
 
 	$(".remove_school_link").live("click", function(ev) {
+		ev.preventDefault();
 		var school_id = $(this).parents(".school").attr("id");
 		$("#school_id_to_remove").val(school_id);
 		var institutionname = $("#"+school_id).find("h2[name='institutionname']").text(); 
@@ -1108,7 +1089,6 @@ $(document).ready(function() {
 		$("#overlay").fadeIn(300);
 		$("#lightbox-remove-check").fadeIn(500);
 		center_lightboxes();
-		return false;
 	});
 
 	$("#remove_school").live("click", function() {
@@ -1117,7 +1097,8 @@ $(document).ready(function() {
 		delete schools[school_id];
 		$("#lightbox-remove-check").fadeOut(200);
 		if ($("#school-container .school").length === 0) {
-			$("#add-a-school").trigger("click");
+			$("#lightbox-add").fadeIn(400);
+			center_lightboxes();
 		}
 		else {
 			$("#overlay").fadeOut(300);
@@ -1184,7 +1165,6 @@ $(document).ready(function() {
 	$("#military-calc-toggle").click(function(){
 		$("#military-calc-panel").toggleClass("hidden");
 		$("#military-calc-toggle").addClass("active").html("Military Benefit Calculator <span>&#9650;</span>");
-		return false;
 	});
 
 
@@ -1324,7 +1304,7 @@ $(document).ready(function() {
                     }
                 });
             },
-            failure: function(response) {
+            failure: function(data) {
             	alert("Request failure: " + xhr.status + ", " + thrownError);
             },
             error: function(xhr, ajaxOptions, thrownError) {
