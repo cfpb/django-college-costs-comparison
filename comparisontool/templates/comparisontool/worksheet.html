@@ -136,7 +136,7 @@ var csrftok = "{{ csrf_token }}";
 								<input id="vet-yes" type="radio" name="vet" value="yes"> <label for="vet-yes">Yes</label>
 							</div>
 						</fieldset>
-						<fieldset class="clearfix military-disabled disabled">
+						<fieldset class="clearfix military-disabler disabled">
 							<div class="colleft">
 								<legend>Are you serving now?</legend>
 							</div>
@@ -146,7 +146,7 @@ var csrftok = "{{ csrf_token }}";
 								<input id="serving-ng" type="radio" name="serving" value="ng" disabled="disabled"> <label for="serving-ng">Guard/Reserve</label>
 							</div>
 						</fieldset>
-						<fieldset class="clearfix military-disabled disabled">
+						<fieldset class="clearfix military-disabler disabled">
 							<div class="colleft">
 								<label for="tier">Cumulative Active Duty since September 11, 2001</label>
 							</div>
@@ -606,7 +606,7 @@ var csrftok = "{{ csrf_token }}";
 			<button class="add_average_public button preset">Set values to Average Public 4-Year University</button><br>
 			<button class="add_average_private button preset">Set values to Average Private 4-Year University</button><br>
 		</div><!-- end #add-school-form -->
-		<div id="add-panel">
+		<div class="add-panel">
 			<button tabindex="2001" id="add-a-school">Add a School to the Comparison</button>
 		</div>
 		<div id="save-footer">
