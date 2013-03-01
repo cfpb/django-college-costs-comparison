@@ -14,7 +14,7 @@ from django.http import HttpResponse
 
 from haystack.query import SearchQuerySet
 
-from models import Alias, School, Worksheet, Feedback
+from models import School, Worksheet, Feedback
 from forms import FeedbackForm
 
 
