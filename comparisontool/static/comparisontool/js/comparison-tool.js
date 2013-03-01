@@ -401,8 +401,8 @@ function calculate_school(school_id) {
 	}
 	school.setbyname("tuitionassist", schooldata.tuitionassist, true);
 
-	// GI Bill (more accurate than user input(?))
-/*
+	// GI Bill
+
 	if (global.vet == false) {
 		schooldata.gibilltf = 0;
 	}
@@ -455,8 +455,8 @@ function calculate_school(school_id) {
 	}
 
 	schooldata.gibill = schooldata.gibilltf + schooldata.gibillla + schooldata.gibillbs;
-*/
 	school.setbyname("gibill", schooldata.gibill, true);
+	
 
 	// Total Grants
 	schooldata.grantstotal = schooldata.pell + schooldata.scholar + schooldata.gibill + schooldata.tuitionassist;
@@ -910,7 +910,7 @@ function school_search_results(query) {
 
 $(document).ready(function() {
 	// initialize page
-
+	$("#military-calc-toggle").hide();
 	$("#intro-form .add-panel").append($("#school-search-template").html());
 
 	// Check to see if there is restoredata
@@ -958,6 +958,42 @@ $(document).ready(function() {
 
 //-------- JQUERY EVENT HANDLERS --------//
 
+	// toggle Military calculator
+	$("#military-calc-toggle").click(function(){
+		$("#military-calc-panel").toggleClass("hidden");
+		$("#military-calc-panel > div").show(); // Bug fix, hopefully temporary
+		$("#military-calc-toggle").toggleClass("active");
+		if ( $("#military-calc-toggle").hasClass("active") ) {
+			$("#military-calc-toggle").html("Military Benefit Calculator <span>&#9650;</span>");
+		}
+		else {
+			$("#military-calc-toggle").html("Military Benefit Calculator <span>&#9660;</span>");
+		}
+		return false;
+	});
+
+	// #vet handler - user clicks "yes" under GI benefits
+	$("#vet #vet-yes").click(function (ev) {
+		$(".military-disabler").removeClass("disabled");
+		$(".military-disabler input, .military-disabler select").attr("disabled", false);
+
+	});
+
+	// user clicks 'no' under GI benefits
+	$("#vet #vet-no").click(function (ev) {
+		$(".military-disabler").addClass("disabled");
+		$(".military-disabler input, .military-disabler select").attr("disabled", "disabled");		
+	});
+
+	// user clicks 'Update...' under GI benefits
+	$("#military-calc-button").click(function(ev) {
+		$("#military-calc-toggle").trigger("click");
+		$(".school").each( function() {
+			var id = $(this).attr("id");
+			calculate_school(id);
+		});
+	});
+
 	// #school-search-results list links
 	$("#school-search-results .school-result a").live("click", function(ev) {
 		// find the .add-panel container it lives in
@@ -974,11 +1010,11 @@ $(document).ready(function() {
 
 	// thisequals menu
 	$("a.moreitems").live("click", function(ev) {
-		ev.disableDefault();
 		$(this).parents(".thisequals").children("div.this_equals_menu").fadeIn(200);
 		$("html").on('click', function() {
 			$("div.this_equals_menu").fadeOut(200);
 		});
+		return false;
 	});
 	$("a.this_equals_select").live("click", function(ev) {
 		var item = $(this).attr("href").substr(1);
@@ -1057,6 +1093,7 @@ $(document).ready(function() {
 			$("#add-a-school").fadeIn(200);
 			$("#save-drawer-toggle").show();
 			$("#start-again").show();
+			$("#military-calc-toggle").show();
 			school.find(".school-drawer-toggle").trigger('click');
 		}
 
@@ -1180,12 +1217,7 @@ $(document).ready(function() {
 		}, 500);
 	});
 
-	// toggle Military calculator
-	$("#military-calc-toggle").click(function(){
-		$("#military-calc-panel").toggleClass("hidden");
-		$("#military-calc-toggle").addClass("active").html("Military Benefit Calculator <span>&#9650;</span>");
-		return false;
-	});
+
 
 
 	// toggle drawer
