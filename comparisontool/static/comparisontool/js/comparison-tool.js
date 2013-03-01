@@ -401,8 +401,8 @@ function calculate_school(school_id) {
 	}
 	school.setbyname("tuitionassist", schooldata.tuitionassist, true);
 
-	// GI Bill (more accurate than user input(?))
-/*
+	// GI Bill
+
 	if (global.vet == false) {
 		schooldata.gibilltf = 0;
 	}
@@ -455,8 +455,8 @@ function calculate_school(school_id) {
 	}
 
 	schooldata.gibill = schooldata.gibilltf + schooldata.gibillla + schooldata.gibillbs;
-*/
 	school.setbyname("gibill", schooldata.gibill, true);
+	
 
 	// Total Grants
 	schooldata.grantstotal = schooldata.pell + schooldata.scholar + schooldata.gibill + schooldata.tuitionassist;
@@ -832,6 +832,7 @@ function calculate_school(school_id) {
 // Build a section.school element for a school, fill in data
 // school's data must be in the schools object first
 function build_school_element(school_id) {
+
 	if (schools[school_id] != undefined) {
 		var schooldata = schools[school_id];
 	}
@@ -886,14 +887,14 @@ function process_school_list(schools) {
 
 function school_search_results(query) {
 	var dump = "";
-	var qurl = "api/search-schools.json?q=" + query;
+	var qurl = "/comparisontool/api/search-schools.json?q=" + query;
 	var request = $.ajax({
 		async: false,
 		dataType: "json",
 		url: qurl
 	});
-	request.done(function(data) {
-		$.each(data, function(i, val) {
+	request.done(function(response) {
+		$.each(response, function(i, val) {
 			dump += '<li class="school-result">';
 			dump += '<a href="' + val.id + '">' + val.schoolname + '</a></li>';
 		});
@@ -909,8 +910,8 @@ function school_search_results(query) {
 
 $(document).ready(function() {
 	// initialize page
-
-	$("#intro-form").append($("#school-search-template").html());
+	$("#military-calc-toggle").hide();
+	$("#intro-form .add-panel").append($("#school-search-template").html());
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
@@ -957,6 +958,42 @@ $(document).ready(function() {
 
 //-------- JQUERY EVENT HANDLERS --------//
 
+	// toggle Military calculator
+	$("#military-calc-toggle").click(function(){
+		$("#military-calc-panel").toggleClass("hidden");
+		$("#military-calc-panel > div").show(); // Bug fix, hopefully temporary
+		$("#military-calc-toggle").toggleClass("active");
+		if ( $("#military-calc-toggle").hasClass("active") ) {
+			$("#military-calc-toggle").html("Military Benefit Calculator <span>&#9650;</span>");
+		}
+		else {
+			$("#military-calc-toggle").html("Military Benefit Calculator <span>&#9660;</span>");
+		}
+		return false;
+	});
+
+	// #vet handler - user clicks "yes" under GI benefits
+	$("#vet #vet-yes").click(function (ev) {
+		$(".military-disabler").removeClass("disabled");
+		$(".military-disabler input, .military-disabler select").attr("disabled", false);
+
+	});
+
+	// user clicks 'no' under GI benefits
+	$("#vet #vet-no").click(function (ev) {
+		$(".military-disabler").addClass("disabled");
+		$(".military-disabler input, .military-disabler select").attr("disabled", "disabled");		
+	});
+
+	// user clicks 'Update...' under GI benefits
+	$("#military-calc-button").click(function(ev) {
+		$("#military-calc-toggle").trigger("click");
+		$(".school").each( function() {
+			var id = $(this).attr("id");
+			calculate_school(id);
+		});
+	});
+
 	// #school-search-results list links
 	$("#school-search-results .school-result a").live("click", function(ev) {
 		// find the .add-panel container it lives in
@@ -973,11 +1010,11 @@ $(document).ready(function() {
 
 	// thisequals menu
 	$("a.moreitems").live("click", function(ev) {
-		ev.disableDefault();
 		$(this).parents(".thisequals").children("div.this_equals_menu").fadeIn(200);
 		$("html").on('click', function() {
 			$("div.this_equals_menu").fadeOut(200);
 		});
+		return false;
 	});
 	$("a.this_equals_select").live("click", function(ev) {
 		var item = $(this).attr("href").substr(1);
@@ -1001,7 +1038,7 @@ $(document).ready(function() {
 		$("#lightbox-add").show();
 		$("#template").hide();
 		center_lightboxes();
-		$(".costbuilder:visible").append($("#school-search-template").html());
+		$(".costbuilder:visible .add-panel").html($("#school-search-template").html());
 
 	});
 
@@ -1022,6 +1059,25 @@ $(document).ready(function() {
 		schooldata.otherexpenses = money_to_num(costbuilder.find("input[name='cb_otherexpenses']").val());
 		schooldata.source = "user";
 
+		// AJAX out the school data from the API
+		var surl = "/comparisontool/api/school/" + school_id + ".json";
+		var request = $.ajax({
+			async: true,
+			dataType: "json",
+			url: surl
+		});
+		request.done(function(response) {
+			$.each(response, function(i, val) {
+				i = i.toLowerCase();
+				if (schooldata[i] == undefined) {
+					schooldata[i] = val;
+				}
+			});
+		});
+		request.fail(function() {
+			// alert("ERROR");
+		});	
+
 		schools[school_id] = schooldata;
 
 		build_school_element(school_id);
@@ -1037,6 +1093,7 @@ $(document).ready(function() {
 			$("#add-a-school").fadeIn(200);
 			$("#save-drawer-toggle").show();
 			$("#start-again").show();
+			$("#military-calc-toggle").show();
 			school.find(".school-drawer-toggle").trigger('click');
 		}
 
@@ -1081,7 +1138,6 @@ $(document).ready(function() {
 	});
 
 	$(".remove_school_link").live("click", function(ev) {
-		ev.preventDefault();
 		var school_id = $(this).parents(".school").attr("id");
 		$("#school_id_to_remove").val(school_id);
 		var institutionname = $("#"+school_id).find("h2[name='institutionname']").text(); 
@@ -1089,6 +1145,7 @@ $(document).ready(function() {
 		$("#overlay").fadeIn(300);
 		$("#lightbox-remove-check").fadeIn(500);
 		center_lightboxes();
+		return false;
 	});
 
 	$("#remove_school").live("click", function() {
@@ -1097,8 +1154,7 @@ $(document).ready(function() {
 		delete schools[school_id];
 		$("#lightbox-remove-check").fadeOut(200);
 		if ($("#school-container .school").length === 0) {
-			$("#lightbox-add").fadeIn(400);
-			center_lightboxes();
+			$("#add-a-school").trigger("click");
 		}
 		else {
 			$("#overlay").fadeOut(300);
@@ -1161,11 +1217,7 @@ $(document).ready(function() {
 		}, 500);
 	});
 
-	// toggle Military calculator
-	$("#military-calc-toggle").click(function(){
-		$("#military-calc-panel").toggleClass("hidden");
-		$("#military-calc-toggle").addClass("active").html("Military Benefit Calculator <span>&#9650;</span>");
-	});
+
 
 
 	// toggle drawer
@@ -1304,7 +1356,7 @@ $(document).ready(function() {
                     }
                 });
             },
-            failure: function(data) {
+            failure: function(response) {
             	alert("Request failure: " + xhr.status + ", " + thrownError);
             },
             error: function(xhr, ajaxOptions, thrownError) {
