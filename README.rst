@@ -51,6 +51,9 @@ Shove it into Solr::
     
     django-admin.py rebuild_index
 
+Load the BAH Rates::
+    django-admin.py load_bah data/bah-lookup.csv
+
 The school search API
 ------------------------------------
 
@@ -95,6 +98,17 @@ The search results include the URL for more data on each school::
     ]
 
 The school detail json files are simply a dictionary of keys from the CSV.
+
+The BAH Lookup API
+----------------------------------
+
+As simple as could be:
+
+/comparisontool/api/bah-lookup.json?zip5=17033
+
+If the zip code is found, it returns a dictionary with a single 'rate' member representing the BAH rate.
+
+If the zip code was not found, it returns an empty dictionary.
 
 The worksheet API
 -----------------------------------
