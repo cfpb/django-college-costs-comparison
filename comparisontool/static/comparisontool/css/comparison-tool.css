@@ -449,7 +449,7 @@
 	margin-bottom: 2em;
 }
 #comparison-tool .school .school-header {
-	margin: 1em 0 2em 0;
+	margin: 1em 0 0 0;
 }
 #comparison-tool .school .school-header h2 {
 	font-size: 2.25em;
@@ -460,15 +460,26 @@
 }
 
 #comparison-tool .school .school-header .remove-school {
-	font-size: .8em;
 	clear: both;
-	margin: .2em 0em 2em 0em;
+	display: inline-block;
+	font-size: .8em;
+	margin: .2em 2em 2em 2em;
 }
 
 #comparison-tool .school .school-header a.remove_this_school {
 	color: #600;
 	text-decoration: none;
 }
+
+#comparison-tool .school .state-toggle {
+	display: inline-block;
+	font-size: .75em;
+	padding-top: .75em;
+}
+#comparison-tool .school .state-toggle input {
+	margin-left: .5em;
+}
+
 
 #comparison-tool .school .school-header .campus-toggle {
 	float: right;
@@ -479,6 +490,7 @@
 #comparison-tool .school .school-header .campus-toggle #campus-off {
 	margin-left: .5em;
 }
+
 
 /* snapshot */
 
