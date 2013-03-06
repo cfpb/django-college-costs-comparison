@@ -194,6 +194,12 @@ var csrftok = "{{ csrf_token }}";
 					<header class="school-header">
 						<h2 name="institutionname">Loading</h2>
 						<div class="remove-school"><a class="remove_school_link" href="#">Remove This School</a></div>
+						<div class="state-toggle">
+							<fieldset>
+								<input id="in-state" type="radio" name="state" checked="checked" value="true"> <label for="in-state">In-State</label>
+								<input id="out-of-state" type="radio" name="state" value="false"> <label for="out-of-state">Out-of-State</label>
+							</fieldset>
+						</div><!-- end .state-toggle -->
 						<div class="clear"></div>
 
 					</header><!-- end .school-header -->
