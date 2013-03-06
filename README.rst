@@ -52,6 +52,7 @@ Shove it into Solr::
     django-admin.py rebuild_index
 
 Load the BAH Rates::
+
     django-admin.py load_bah data/bah-lookup.csv
 
 The school search API
