@@ -930,11 +930,7 @@ function process_school_list(schools) {
 
 function school_search_results(query) {
 	var dump = "";
-<<<<<<< HEAD
 	var qurl = "/comparisontool/api/search-schools.json?q=" + query;
-=======
-	var qurl = "api/search-schools.json?q=" + query;
->>>>>>> 55ce4ea586011d5d49d63819aa08286d7f53974e
 	var request = $.ajax({
 		async: false,
 		dataType: "json",
