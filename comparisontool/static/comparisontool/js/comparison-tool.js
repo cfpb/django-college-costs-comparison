@@ -319,6 +319,15 @@ function calculate_school(school_id) {
 	schooldata.color = true;
 	schooldata.state529plan = 0;
 
+	// Determine in-state and out-of-state
+
+	if ( $(school).find("#in-state").is(":checked") ) {
+		schooldata.instate = true;
+	}
+	else {
+		schooldata.instate = false;
+	} 
+
 	// Supplement/replace data with customized fields
 	school.find("input").each(function() {
 		schooldata[$(this).attr("name")] = money_to_num($(this).val());
@@ -401,32 +410,65 @@ function calculate_school(school_id) {
 	}
 	school.setbyname("tuitionassist", schooldata.tuitionassist, true);
 
-	// GI Bill
-
-	if (global.vet == false) {
-		schooldata.gibilltf = 0;
+	// GI Bill 
+	// Determine if global.vet is true or false:
+	if ($("#vet-yes").is(":checked")) {
+		global.vet = true;
 	}
-	else { 			
-		if (schooldata.public == true && schooldata.instate == true) {
-			schooldata.gibilltf =
-				Math.max(0, (schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist)) * global.tier;
+	else {
+		global.vet = false;
+	}
+
+	// Tuition & Fees benefits:
+	if (global.vet === false) {
+		schooldata.gibilltf = 0; 
+	}
+	else {
+		 global.tier = $("#tier select").find(":selected").val();
+		// Calculate veteran benefits:		
+		if ( ( schooldata.control == "Public" ) && ( schooldata.instate === true ) ) {
+			schooldata.gibilltf = ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
+			if ( schooldata.gibilltf < 0 ) {
+				schooldata.gibilltf = 0;
+			}
+		}
+		else if ( ( schooldata.control == "Public" ) && ( schooldata.instate === false ) ) {
+			if ( schooldata.undergrad === true ) {
+				schooldata.gibilltf = schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist;
+				if ( schooldata.gibilltf < 0 ) {
+					schooldata.gibilltf = 0;
+				}
+				if ( schooldata.gibilltf > schooldata.tuitionunderins) {
+					schooldata.gibilltf = schooldata.tuitionunderins;
+				}
+				schooldata.gibilltf = schooldata.gibilltf * global.tier;
+			}
+			else { // schooldata.undergrad is not true
+				schooldata.gibilltf = schooldata.tuitionfees -  schooldata.pell - schooldata.scholar - schooldata.tuitionfees;
+				if ( schooldata.gibilltf < 0 ) {
+					schooldata.gibilltf = 0;
+				}
+				if ( schooldata.gibilltf > schooldata.tuitiongradins ) {
+					schooldata.gibilltf = schooldata.tuitiongradins;
+				}
+				schooldata.gibilltf = schooldata.gibilltf * global.tier;
+			}
 		}
 		else {
-			if (schooldata.public == true && schooldata.instate == false) {
-				if (schooldata.undergrad == true) {
-					schooldata.gibilltf = Math.min(schooldata.tuitionunderins, Math.max(0, (schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist))) * global.tier;
-				}
-				else {
-					schooldata.gibilltf = Math.min(schooldata.tuitiongradins, Math.max(0, (schooldata.tuitionfees - schooldata.pell - schooldata.scholar - schooldata.tuitionassist))) * global.tier;
-				}
+			schooldata.gibilltf = schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist;
+			if ( schooldata.gibilltf < 0 ) {
+				schooldata.gibilltf = 0;
 			}
-			else {
-				schooldata.gibilltf = Math.min(Math.max(0, (schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist)), 17500) * global.tier;
+			if ( schooldata.gibilltf > 17500 ) {
+				schooldata.gibilltf = 17500;
 			}
+			schooldata.gibilltf = schooldata.gibilltf * global.tier;
 		}
 	}
 
-	if (global.vet == false) {
+	// GI living allowance benefits:
+	global.serving = $('#serving input[name="serving"]:checked').val();
+	if (global.vet === false) {
 		schooldata.gibillla = 0;
 	}
 	else { 
@@ -434,7 +476,7 @@ function calculate_school(school_id) {
 			schooldata.gibillla = 0;
 		}
 		else {
-			if (global.tier == 0 && global.serving == "ng") {
+			if (global.tier === 0 && global.serving == "ng") {
 				schooldata.gibillla = 345 * 9;
 			}
 			else {
@@ -446,8 +488,10 @@ function calculate_school(school_id) {
 				}
 			}
 		}
-	}	
-	if (global.vet == false) {
+	}
+
+	// GI Bill Book Stipend
+	if (global.vet === false) {
 		schooldata.gibillbs = 0;
 	}
 	else {
@@ -456,7 +500,6 @@ function calculate_school(school_id) {
 
 	schooldata.gibill = schooldata.gibilltf + schooldata.gibillla + schooldata.gibillbs;
 	school.setbyname("gibill", schooldata.gibill, true);
-	
 
 	// Total Grants
 	schooldata.grantstotal = schooldata.pell + schooldata.scholar + schooldata.gibill + schooldata.tuitionassist;
