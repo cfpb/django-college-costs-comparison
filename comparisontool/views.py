@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import View, TemplateView
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core import serializers
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.template import RequestContext
 from django.template.loader import get_template
@@ -14,7 +15,7 @@ from django.http import HttpResponse
 
 from haystack.query import SearchQuerySet
 
-from models import Alias, School, Worksheet, Feedback
+from models import School, Worksheet, Feedback, BAHRate
 from forms import FeedbackForm
 
 
@@ -167,6 +168,17 @@ class DataStorageView(View):
             worksheet.save()
 
         return HttpResponse(worksheet.saved_data)
+
+
+def bah_lookup_api(request):
+    zip5 = request.GET.get('zip5')
+    try:
+        rate = BAHRate.objects.filter(zip5=zip5).get()
+        document = {'rate': rate.value}
+        document_as_json = json.dumps(document)
+    except:
+        document_as_json = json.dumps({})
+    return HttpResponse(document_as_json, mimetype='application/javascript')
 
 
 def school_search_api(request):
