@@ -948,6 +948,9 @@ function school_search_results(query) {
 	return dump;
 }
 
+function retrieve_school_data(school_id) {
+	
+}
 
 //-------- DOCUMENT.READY --------//
 
