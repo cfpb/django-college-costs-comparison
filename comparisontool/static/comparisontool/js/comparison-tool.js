@@ -8,10 +8,10 @@ var data =
 		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		 "tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000, "salary": 30922 },
 	"presets" : {
-		"average_public" :
+		"average-public" :
 			{"institutionname":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
 			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "active": false },
-		"average_private" :
+		"average-private" :
 			{"institutionname":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
 			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "active": false }
 	}
@@ -97,6 +97,14 @@ var delay = (function(){
 })();
 
 // setbyname - set an element to the matching schooldata object property (converted to money string)
+
+function set_by_name(col_num, name, value) {
+	var school_id = $("#comparison-tables #institution-row th:eq(" + col_num + ") h2").attr("id");
+	var schooldata = schools[school_id];
+	element = $("#comparison-tables td:eq(" + col_num + ") [name='" + name + "']");
+	element.val(num_to_money(value, ""));
+}
+
 jQuery.fn.setbyname = function(name, value, overwrite) {
 	school_id = $(this[0]).attr("id");
 	schooldata = schools[school_id];
@@ -130,27 +138,38 @@ jQuery.fn.exists = function() {
 
 function hide_column(col_num) {
 	var index = col_num - 1; // The input is column number; subtract 1 for index
-	$("#comparison-tables td:eq(" + index + ")").hide();
+	$("#comparison-tables table tr").each( function() {
+		$(this).find("td:eq(" + index + ")").not(".width-holder").hide();
+		$(this).find("th:eq(" + index + ")").children().hide();
+	}); 
 }
 
 function fade_header() {
-		window_scroll = $(this).scrollTop();
-		if ( window_scroll > $('table > thead > tr').height() ) {
-			$('table > thead > tr').addClass('fixed');
-		}
-		else {
-			$('table > thead > tr').removeClass('fixed');
-		}
-		var theight = $('table > thead > tr').height();
-		var coffset = $('.contributions').offset().top - 500;
-		if ( ( window_scroll > theight ) && ( window_scroll < coffset ) ) {
-			$('.breakdown').addClass('fixed');
-
-		}
-		else {
-			$('.breakdown').removeClass('fixed');
-		}
+	var window_scroll = $(this).scrollTop();
+	var table_top = $("#first-year-costs").offset().top;
+	var headheight = $("#comparison-tables table > thead > tr").height();
+	if (window_scroll < ( table_top - headheight ) ) {
+		$('#comparison-tables table > thead > tr').removeClass('fixed');
 	}
+	else {
+		$("#comparison-tables table > thead > tr").addClass('fixed');
+	}
+
+	var theight = $('table > thead > tr').height();
+	var coffset = $('.contributions').offset().top - 500;
+	if ( ( window_scroll > theight ) && ( window_scroll < coffset ) ) {
+		$('.breakdown').addClass('fixed');
+	}
+	else {
+		$('.breakdown').removeClass('fixed');
+	}
+}
+
+function fix_widths() {
+	var totalwidth = $("#comparison-tables").width();
+	$(".width-holder").css("min-width", "25%");
+	$(".fixed th").css("min-width", "25%");
+}
 
 //---- CALCULATION FUNCTIONS ----//
 
@@ -204,6 +223,7 @@ function build_school_element(school_id) {
 
 // calculate_school(school_id) - Calculate the numbers for a particular school
 function calculate_school(school_id) {
+	var col_num = $("#" + school_id).parent().index();
 	var school = $("#" + school_id);
 	var schooldata = schools[school_id];
 
@@ -947,9 +967,10 @@ function school_search_results(query) {
 $(document).ready(function() {
 	// initialize page
 	$("#military-calc-toggle").hide();
-	$("#comparison-tables").find("input").hide();
 	hide_column(2);
 	hide_column(3);
+	fix_widths();
+
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
