@@ -151,10 +151,10 @@ table h3 {
 	display:none;
 }
 
-.arrw th {
+.arrw th:first-child {
 	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_collapse.png) no-repeat 0.25em 0.3em;
 }
-.arrw-collapse th {
+.arrw-collapse th:first-child {
 	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_expand.png) no-repeat 0.25em 0.3em;
 }
 td, td input {
@@ -330,6 +330,12 @@ td input:focus, td input:hover {
 	box-shadow: inset 0px 1px 3px #CCC;
 	-webkit-box-sizing: border-box;
 	background-color: white;
+}
+
+td input.disabled, td input.disabled:hover,  
+td h6.disabled, td h6.disabled:hover {
+	border: none;
+	color: transparent;
 }
 
 #tooltip-container {

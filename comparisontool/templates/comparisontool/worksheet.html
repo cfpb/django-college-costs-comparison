@@ -126,33 +126,37 @@ var csrftok = "{{ csrf_token }}";
 		<section id="comparison-tables">
 			<table>
 				<thead>
-					<tr>
-						<th></th>
-					<th>
-						<h2 name="institutionname"></h2>
-						<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div></th>
-					<th>
-						<h2 name="institutionname"></h2>
-						<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
-					</th>
-					<th>
-						<h2 name="institutionname"></h2>
-						<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
-					</th>
+					<tr id="institution-row">
+						<td></td>
+						<th scope="col">
+							<h2 name="institutionname" id="average-public"></h2>
+							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
+						</th>
+						<th scope="col">
+							<h2 name="institutionname" id="2"></h2>
+							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
+						</th>
+						<th scope="col">
+							<h2 name="institutionname" id="3"></h2>
+							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="show arrw">
-						<th><h3>First Year Costs</h3></th>
+						<th class="width-holder"><h3 id="first-year-costs">First Year Costs</h3></th>
+						<th class="width-holder"></th>
+						<th class="width-holder"></th>
+						<th class="width-holder"></th>
 					</tr>
 					<tr class="totalcost show">
-						<th><h4>Total cost</h4></th>
+						<th scope="row"><h4>Total cost</h4></th>
 						<td><h6 class="data-total" name="totalcost">$0</h6></td>
 						<td><h6 class="data-total" name="totalcost">$0</h6></td>
 						<td><h6 class="data-total" name="totalcost">$0</h6></td>
 					</tr>
 					<tr>
-						<th><label for="tuitionfees"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label></th>
+						<th scope="row"><label for="tuitionfees"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label></th>
 						<td><input type="text" value="0" name="tuitionfees"></td>
 						<td><input type="text" value="0" name="tuitionfees"></td>
 						<td><input type="text" value="0" name="tuitionfees"></td>
@@ -164,19 +168,19 @@ var csrftok = "{{ csrf_token }}";
 						<td><input type="text" value="0" name="roombrd"></td>
 					</tr>
 					<tr>
-						<th><label for="books"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label></th>
+						<th scope="row"><label for="books"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label></th>
 						<td><input type="text" value="0" name="books"></td>
 						<td><input type="text" value="0" name="books"></td>
 						<td><input type="text" value="0" name="books"></td>
 					</tr>
 					<tr>
-						<th><label for="transportation"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label></th>
+						<th scope="row"><label for="transportation"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label></th>
 						<td><input type="text" value="0" name="transportation"></td>
 						<td><input type="text" value="0" name="transportation"></td>
 						<td><input type="text" value="0" name="transportation"></td>
 					</tr>
 					<tr>
-						<th><label for="otherexpenses"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label></th>
+						<th scope="row"><label for="otherexpenses"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label></th>
 						<td><input type="text" value="0" name="otherexpenses"></td>
 						<td><input type="text" value="0" name="otherexpenses"></td>
 						<td><input type="text" value="0" name="otherexpenses"></td>
@@ -187,31 +191,31 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>First Year Financial Aid Offer</h3></th>
 					</tr>
 					<tr class="totalcont show">
-						<th><h4>Total contributions</h4></th>
+						<th scope="row"><h4>Total contributions</h4></th>
 						<td><h6 class="data-total" name="totalcontributions">$0</h6></td>
 						<td><h6 class="data-total" name="totalcontributions">$0</h6></td>
 						<td><h6 class="data-total" name="totalcontributions">$0</h6></td>
 					</tr>
 					<tr class="grants collapse arrw">
-						<th><h5>Scholarships & grants</h5></th>
+						<th scope="row"><h5>Scholarships & grants</h5></th>
 						<td><h6 class="data-total" name="totalcost">$0</h6></td>
 						<td><h6 class="data-total" name="totalcost">$0</h6></td>
 						<td><h6 class="data-total" name="totalcost">$0</h6></td>
 					</tr>
 					<tr class="grants-row">
-						<th><label for="pell" class="tooltip-info" tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year.">Pell Grant</label></th>
+						<th scope="row"><label for="pell" class="tooltip-info" tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year.">Pell Grant</label></th>
 						<td><input type="text" value="0" name="pell"></td>
 						<td><input type="text" value="0" name="pell"></td>
 						<td><input type="text" value="0" name="pell"></td>
 					</tr>
 					<tr class="grants-row">
-						<th><label for="scholar" class="tooltip-info" tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. ">Other Scholarships &amp; Grants</label></th>
+						<th scope="row"><label for="scholar" class="tooltip-info" tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. ">Other Scholarships &amp; Grants</label></th>
 						<td><input type="text" value="0" name="scholar"></td>
 						<td><input type="text" value="0" name="scholar"></td>
 						<td><input type="text" value="0" name="scholar"></td>
 					</tr>
 					<tr class="grants-row">
-						<th><label for="tuitionassist" class="tooltip-info" tooltip="Military Tuition Assistance: Service members (active &amp; reserve) are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.">Military Tuition Assistance</label></th>
+						<th scope="row"><label for="tuitionassist" class="tooltip-info" tooltip="Military Tuition Assistance: Service members (active &amp; reserve) are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.">Military Tuition Assistance</label></th>
 						<td><input type="text" value="0" name="tuitionassist"></td>
 						<td><input type="text" value="0" name="tuitionassist"></td>
 						<td><input type="text" value="0" name="tuitionassist"></td>
@@ -223,19 +227,19 @@ var csrftok = "{{ csrf_token }}";
 						<td><h6 class="data-total" name="federaltotal">$0</h6></td>
 					</tr>
 					<tr class="federal-row">
-						<th><label for="perkins" class="tooltip-info" tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
+						<th scope="row"><label for="perkins" class="tooltip-info" tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
 						<td><input type="text" value="0" name="perkins"></td>
 						<td><input type="text" value="0" name="perkins"></td>
 						<td><input type="text" value="0" name="perkins"></td>
 					</tr>
 					<tr class="federal-row">
-						<th><label for="staffsubsidized" class="tooltip-info" tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
+						<th scope="row"><label for="staffsubsidized" class="tooltip-info" tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
 						<td><input type="text" value="0"></td>
 						<td><input type="text" value="0"></td>
 						<td><input type="text" value="0"></td>
 					</tr>
 					<tr class="federal-row">
-						<th><label for="staffunsubsidized" class="tooltip-info" tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
+						<th scope="row"><label for="staffunsubsidized" class="tooltip-info" tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
 						<td><input type="text" value="0" name="staffunsubsidized"></td>
 						<td><input type="text" value="0" name="staffunsubsidized"></td>
 						<td><input type="text" value="0" name="staffunsubsidized"></td>
@@ -247,43 +251,43 @@ var csrftok = "{{ csrf_token }}";
 						<td><h6 class="data-total" name="privatetotal">$0</h6></td>
 					</tr>
 					<tr class="private-row">
-						<th><label for="institutionalloan" class="tooltip-info" tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
+						<th scope="row"><label for="institutionalloan" class="tooltip-info" tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
 						<td><input type="text" value="0" name="institutionalloan"></td>
 						<td><input type="text" value="0" name="institutionalloan"></td>
 						<td><input type="text" value="0" name="institutionalloan"></td>
 					</tr>
 					<tr class="private-row">
-						<th><label for="privateloan" class="tooltip-info" tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
+						<th scope="row"><label for="privateloan" class="tooltip-info" tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
 						<td><input type="text" value="0" name="privateloan"></td>
 						<td><input type="text" value="0" name="privateloan"></td>
 						<td><input type="text" value="0" name="privateloan"></td>
 					</tr>
 					<tr class="contributions arrw">
-						<th><h5>Contributions</h5></th>
+						<th scope="row"><h5>Contributions</h5></th>
 						<td><h6 class="data-total" name="savingstotal">$0</h6></td>
 						<td><h6 class="data-total" name="savingstotal">$0</h6></td>
 						<td><h6 class="data-total" name="savingstotal">$0</h6></td>
 					</tr>
 					<tr class="contrib-row">
-						<th><label for="savings" class="tooltip-info" tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? ">What You Can Pay</label></th>
+						<th scope="row"><label for="savings" class="tooltip-info" tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? ">What You Can Pay</label></th>
 						<td><input type="text" value="0" name="savings"></td>
 						<td><input type="text" value="0" name="savings"></td>
 						<td><input type="text" value="0" name="savings"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th><label for="family" class="tooltip-info" tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans.">What Family &amp; Others Can Pay</label></th>
+						<th scope="row"><label for="family" class="tooltip-info" tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans.">What Family &amp; Others Can Pay</label></th>
 						<td><input type="text" value="0" name="family"></td>
 						<td><input type="text" value="0" name="family"></td>
 						<td><input type="text" value="0" name="family"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th><label for="state529plan" class="tooltip-info" tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. ">Parent Loans</label></th>
+						<th scope="row"><label for="state529plan" class="tooltip-info" tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. ">Parent Loans</label></th>
 						<td><input type="text" value="0" name="state529plan"></td>
 						<td><input type="text" value="0" name="state529plan"></td>
 						<td><input type="text" value="0" name="state529plan"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th><label for="workstudy" class="tooltip-info" tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses.">Work-Study</label></th>
+						<th scope="row"><label for="workstudy" class="tooltip-info" tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses.">Work-Study</label></th>
 						<td><input type="text" value="0" name="workstudy"></td>
 						<td><input type="text" value="0" name="workstudy"></td>
 						<td><input type="text" value="0" name="workstudy"></td>
@@ -302,13 +306,13 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>After 4 years of school</h3></th>
 					</tr>
 					<tr>
-						<th><h4 class="tooltip-info" tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
-						<td>Low</td>
+						<th scope="row"><h4 class="tooltip-info" tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
+						<td><input type="text" value="Low" name=""</td>
 						<td>Medium</td>
 						<td>High</td>
 					</tr>
 					<tr>
-						<th><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
+						<th scope="row"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
 						<td>$270</td>
 						<td>$450</td>
 						<td>$683</td>
@@ -319,19 +323,19 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>School Indicators</h3></th>
 					</tr>
 					<tr>
-						<th><h4>Graduation Rate</h4></th>
+						<th scope="row"><h4>Graduation Rate</h4></th>
 						<td>high</td>
 						<td>low</td>
 						<td>high</td>
 					</tr>
 					<tr>
-						<th><h4>Loan Default Rate</h4></th>
+						<th scope="row"><h4>Loan Default Rate</h4></th>
 						<td>3%</td>
 						<td>12%</td>
 						<td>8%</td>
 					</tr>
 					<tr>
-						<th><h4>Median Borrowing</h4></th>
+						<th scope="row"><h4>Median Borrowing</h4></th>
 						<td>$203.98</td>
 						<td>$178.28</td>
 						<td>$124.47</td>
