@@ -238,7 +238,7 @@ td {
 	border-right: none;
 }
 td:last-child {
-	border: none;
+	border-right: none;
 }
 
 thead th {
