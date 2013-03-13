@@ -141,7 +141,7 @@ function check_highest_cost() {
 		highest_cost = global.most_expensive_cost;
 		redraw = true;
 	}
-	$(".school").not("#template").each(function() {
+	$(".school").each(function() {
 		var federaltotal = money_to_num($(this).find("h6[name='federaltotal']").text());
 		var privatetotal = money_to_num($(this).find("h6[name='privatetotal']").text());
 		var borrowingtotal = federaltotal + privatetotal;
@@ -271,17 +271,6 @@ function draw_the_bars(school) {
 	// Extend the chart's internal container to keep floating items from wrapping
 	school.find(".chart_mask_internal").width(total_section_width + 100);
 
-}
-
-// center_lightbox() - Center the lightbox. Called after each fadeIn because IE8 hates hidden elements.
-function center_lightboxes() {
-	$(".lightbox").each(function(){
-		var o_height = $(this).outerHeight();
-		var o_width = $(this).outerWidth();
-		var margin_t = o_height/2;
-		var margin_l = o_width/2;
-		$(this).css({"margin-left":-margin_l,"margin-top":-margin_t});
-	});
 }
 
 // calculate_school(school_id) - Calculate the numbers for a particular school
@@ -826,7 +815,7 @@ function calculate_school(school_id) {
 
 	// Get the most expensive sticker price (for chart width histogram)
 	if (check_highest_cost() === true) {
-		$(".school").not("#template").each(function() {
+		$(".school").each(function() {
 			draw_the_bars($(this));
 		});
 	}
@@ -938,12 +927,10 @@ function retrieve_school_data(school_id) {
 $(document).ready(function() {
 	// initialize page
 	$("#military-calc-toggle").hide();
-	$("#intro-form .add-panel").append($("#school-search-template").html());
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
 		schools = restoredata;
-		$("#introduction").hide();
 		$.each(schools, function(index) {
 			// This filters out only school entries, ignoring other data.
 			if (index.substring(0,7) == "school_") {
@@ -961,22 +948,6 @@ $(document).ready(function() {
 	// set tab indexes for header
 	// NYI
 
-
-	// Hide the Save & Share button and the Start Over button initially.
-	$("#save-drawer-toggle").hide();
-	$("#start-again").hide();
-
-	$(".template").hide();
-	$("#add-a-school").hide();
-
-	center_lightboxes();
-
-	// Set tabindex for lightboxes
-	$('.lightbox').find('[tabindex]').attr("tabindex", function(i, val) {
-		return parseInt(val) + (i * 10); 
-	});
-
-	$("#template").hide();
 
 //-------- JQUERY EVENT HANDLERS --------//
 
@@ -1028,25 +999,6 @@ $(document).ready(function() {
 		addpanel.find("h2[name='cb_institutionname']").html(schoolname);
 		addpanel.find("h2[name='cb_institutionname']").attr("data-id", id)
 		return false;
-	});
-
-	// Pop up the option to add a school
-	$("#start_it_up").live("click", function() {
-		$("#lightbox-intro").fadeOut(300);
-		$("#lightbox-add").fadeIn(500);
-		center_lightboxes();
-	});
-
-	// Pop up the option to add a school
-	$("#add-a-school").live("click", function() {
-		$("#add_average_private").show();
-		$("#add_average_public").show();
-		$("#overlay").show();
-		$("#lightbox-add").show();
-		$("#template").hide();
-		center_lightboxes();
-		$(".costbuilder:visible .add-panel").html($("#school-search-template").html());
-
 	});
 
 	//---- Add a school element to the comparison ----//
@@ -1104,20 +1056,12 @@ $(document).ready(function() {
 			school.find(".school-drawer-toggle").trigger('click');
 		}
 
-		$("#overlay").fadeOut(500);
-		$("#lightbox-add").fadeOut(300);
-
 		// Clear out the form so it will be blank for the next call
 		$(".costbuilder input").val('');
 		school.find("a[name='school_target']").focus();
 	});
 
 	$('.add_average_private').live("click", function(ev) {
-		/* if (!$("#average_private").exists()) {
-			build_school_element('average_private');
-			$("#overlay").fadeOut(500);
-			$("#lightbox-add").fadeOut(300);
-		} */
 		var average_private = presets["average_private"];
 		costbuilder = $(this).parents(".costbuilder");
 		costbuilder.find("input[name='cb_institutionname']").val(average_private.institutionname);
@@ -1129,11 +1073,6 @@ $(document).ready(function() {
 	});
 
 	$('.add_average_public').live("click", function(ev) {
-		/* if (!$("#average_public").exists()) {
-			build_school_element('average_public');
-			$("#overlay").fadeOut(500);
-			$("#lightbox-add").fadeOut(300);
-		} */
 		var average_public = presets["average_public"];
 		costbuilder = $(this).parents(".costbuilder");
 		costbuilder.find("input[name='cb_institutionname']").val(average_public.institutionname);
@@ -1149,9 +1088,6 @@ $(document).ready(function() {
 		$("#school_id_to_remove").val(school_id);
 		var institutionname = $("#"+school_id).find("h2[name='institutionname']").text(); 
 		$("#school_being_removed").text(institutionname);
-		$("#overlay").fadeIn(300);
-		$("#lightbox-remove-check").fadeIn(500);
-		center_lightboxes();
 		return false;
 	});
 
@@ -1159,7 +1095,6 @@ $(document).ready(function() {
 		school_id = $("#school_id_to_remove").val();
 		$("#"+school_id).remove();
 		delete schools[school_id];
-		$("#lightbox-remove-check").fadeOut(200);
 		if ($("#school-container .school").length === 0) {
 			$("#add-a-school").trigger("click");
 		}
@@ -1170,15 +1105,10 @@ $(document).ready(function() {
 
 		// Check the costs versus highest cost, in case we removed highest cost school
 		if (check_highest_cost() === true) {
-			$(".school").not("#template").each(function() {
+			$(".school").each(function() {
 				draw_the_bars($(this));
 			});
 		}
-	});
-
-	$(".close-lightbox, .lightbox-content #cancel").live("click", function() {
-		$(this).parents(".lightbox").fadeOut(100);
-		$("#overlay").fadeOut(200);
 	});
 
 	// Perform a calculation when the user blurs inputs
@@ -1251,14 +1181,8 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$("#start-again").live("click", function() {
-		$("#overlay").fadeIn(200);
-		$("#lightbox-start-over").fadeIn(300);
-		center_lightboxes();
-	});
-
 	$("#lightbox-start-over #proceed").live("click", function() {
-		$(".school").not("#template").each(function() {
+		$(".school").each(function() {
 			school_id = $(this).attr("id");
 			$("#"+school_id).remove();
 			$("#overlay").fadeOut(200);
