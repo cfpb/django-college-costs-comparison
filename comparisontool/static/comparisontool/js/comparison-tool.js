@@ -38,11 +38,6 @@ var pixel_price = 0, // The ratio of pixels to dollars for the bar graph
 	input_bg_default = "#E6E6E6", // default bg color for inputs
 	input_bg_error = "#F6D5D5", // bg color for inputs that are above max
 	schoolcounter = 0, // an internal counter to keep school ids unique
-	thisequals =  {
-		"gas": {"name": "TANKS OF GAS", "price": 40, "menuname": "Tanks of Gas"},
-		"smartphones": {"name": "SMARTPHONES", "price": 100, "menuname": "Smartphones" },
-		"carpayments": {"name": "CAR PAYMENTS", "price": 300, "menuname": "Car Payments" }
-	},
 	highest_cost = global.most_expensive_cost; // The most expensive cost of any school
 
 
@@ -137,19 +132,6 @@ jQuery.fn.exists = function() {
 }
 
 //---- Functions used by calculate_school() ----//
-
-// calc_this_equals - Calculate and fill the "This Equals" comparison
-jQuery.fn.calc_this_equals = function(item) {
-	var defaultitem = "gas";
-	var compareitem = thisequals[item];
-	if (compareitem === undefined) {
-		compareitem = thisequals[defaultitem];
-	}
-	var loanmonthly = money_to_num($(this).find("h3[name='loanmonthly']").text());
-	$(this).find("[name='thisequalsname']").text("$" + compareitem.price + " " + compareitem.name);
-	$(this).find("moreitems").attr("href", "#" + item);
-	$(this).find("[name='thisequalscount']").text(Math.floor(loanmonthly / compareitem.price));
-}
 
 // check_highest_cost() - Boolean function, returns true if the bar graphs should be
 // redrawn due to a change in the "highest_cost" available
@@ -917,7 +899,6 @@ function build_school_element(school_id) {
 		$(".campus-toggle").hide();
 	}
 	calculate_school(school_id);
-	school.calc_this_equals(thisequals[0]);
 }
 
 function process_school_list(schools) {
@@ -980,11 +961,6 @@ $(document).ready(function() {
 	// set tab indexes for header
 	// NYI
 
-	// Fill out the "thisequals" select
-	$.each(thisequals, function(index) {
-		var html = '<li>...<a class="this_equals_select" href="#' + index + '">' + this.menuname + '</a></li>';
-		$("#template .this_equals_menu ul").append(html);
-	});
 
 	// Hide the Save & Share button and the Start Over button initially.
 	$("#save-drawer-toggle").hide();
@@ -1052,21 +1028,6 @@ $(document).ready(function() {
 		addpanel.find("h2[name='cb_institutionname']").html(schoolname);
 		addpanel.find("h2[name='cb_institutionname']").attr("data-id", id)
 		return false;
-	});
-
-	// thisequals menu
-	$("a.moreitems").live("click", function(ev) {
-		$(this).parents(".thisequals").children("div.this_equals_menu").fadeIn(200);
-		$("html").on('click', function() {
-			$("div.this_equals_menu").fadeOut(200);
-		});
-		return false;
-	});
-	$("a.this_equals_select").live("click", function(ev) {
-		var item = $(this).attr("href").substr(1);
-		var school = $(this).parents(".school");
-		school.calc_this_equals(item);
-		$(this).parents(".thisequals").children("div.this_equals_menu").fadeOut(200);
 	});
 
 	// Pop up the option to add a school
