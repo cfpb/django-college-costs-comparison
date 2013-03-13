@@ -949,7 +949,7 @@ function school_search_results(query) {
 }
 
 function retrieve_school_data(school_id) {
-	
+
 }
 
 //-------- DOCUMENT.READY --------//
