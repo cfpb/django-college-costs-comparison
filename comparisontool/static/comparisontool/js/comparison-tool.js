@@ -96,9 +96,6 @@ var delay = (function(){
 		};
 })();
 
-
-// jQuery prototypes
-
 // setbyname - set an element to the matching schooldata object property (converted to money string)
 jQuery.fn.setbyname = function(name, value, overwrite) {
 	school_id = $(this[0]).attr("id");
@@ -131,147 +128,79 @@ jQuery.fn.exists = function() {
 	return this.length > 0;
 }
 
-//---- Functions used by calculate_school() ----//
+function hide_column(col_num) {
+	var index = col_num - 1; // The input is column number; subtract 1 for index
+	$("#comparison-tables td:eq(" + index + ")").hide();
+}
 
-// check_highest_cost() - Boolean function, returns true if the bar graphs should be
-// redrawn due to a change in the "highest_cost" available
-function check_highest_cost() {
-	var redraw = false;
-	if (highest_cost != global.most_expensive_cost) {
-		highest_cost = global.most_expensive_cost;
-		redraw = true;
+function fade_header() {
+		window_scroll = $(this).scrollTop();
+		if ( window_scroll > $('table > thead > tr').height() ) {
+			$('table > thead > tr').addClass('fixed');
+		}
+		else {
+			$('table > thead > tr').removeClass('fixed');
+		}
+		var theight = $('table > thead > tr').height();
+		var coffset = $('.contributions').offset().top - 500;
+		if ( ( window_scroll > theight ) && ( window_scroll < coffset ) ) {
+			$('.breakdown').addClass('fixed');
+
+		}
+		else {
+			$('.breakdown').removeClass('fixed');
+		}
 	}
-	$(".school").each(function() {
-		var federaltotal = money_to_num($(this).find("h6[name='federaltotal']").text());
-		var privatetotal = money_to_num($(this).find("h6[name='privatetotal']").text());
-		var borrowingtotal = federaltotal + privatetotal;
-		var grantstotal = money_to_num($(this).find("h6[name='grantstotal']").text());
-		var savingstotal = money_to_num($(this).find("h6[name='savingstotal']").text());
-		var outofpockettotal = grantstotal + savingstotal;
-		var totalfunding = outofpockettotal + borrowingtotal;
-		var totalcost = money_to_num($(this).find("h2 span[name='firstyrcostattend']").text());
-		var thismax = totalcost;
-		if (totalfunding > totalcost) {
-			// We no longer care if funding is bigger than cost for sizing concerns
-			// thismax = totalfunding;
-		}
-		if (thismax > highest_cost) {
-			highest_cost = thismax;
-			redraw = true;
-		}
-	});
-	return redraw;
-}
 
-// check_max_alert - Check fields against their maximums, changes input color if above max
-jQuery.fn.check_max_alert = function() {
-	var school_id = $(this[0]).attr("id");
-	var schooldata = schools[school_id];
-	$(this).find("input").each(function() { // Check each field against its maximum
-		schooldata[$(this).attr("name")] = money_to_num($(this).val()); // get value
-		var name = $(this).attr("name");
-		var comp = schooldata[name]; 
-		var max = schooldata[name + "_max"];
-		if (max != undefined) {
-			if (comp > max) {
-				$(this).css("background-color", input_bg_error);
-			}
-			else {
-				$(this).css("background-color", input_bg_default);
-			}
-		}
-	});	
-}
+//---- CALCULATION FUNCTIONS ----//
 
-// draw_the_bars - Redraw the bar graphs for the specified .school element
-function draw_the_bars(school) {
-	var school_id = school.attr("id");
-	var schooldata = schools[school_id];
-	var pixel_price = 496 / highest_cost;
-	var cost = money_to_num(school.find("h4 span[name='firstyrcostattend']").text());
-	var chart_width = Math.round(cost * pixel_price);
-	var marginright = 0;
-	school.find(".bars").width(chart_width);
+// Build a section.school element for a school, fill in data
+// school's data must be in the schools object first
+function build_school_element(school_id) {
 
-	// Set section_width
-	var total_section_width = 0;
-	var total_borrowed_section_width = 0;
-	var total_outofpocket_section_width = 0;
-	var show_average_grants_scholarships = false;
-
-	// find each .bar element and determine its width, then animate
-	school.find(".chart_mask_internal .bar").each(function() {
-		var bar = $(this);
-		var name = bar.attr("name");
-		var value = money_to_num(school.find('input[name="' + name + '"]').val());
-		var section_width = Math.floor(value * pixel_price);
-		if (section_width < minimum_chart_section_width) {
-			section_width = 0;
-			bar.stop(true, false).animate({width: 0}, transition_time, function() {
-				bar.hide();
-			});
-		}
-		else {
-			bar.stop(true, false).animate({width: (section_width - 2)}, transition_time);
-		}
-		if (bar.hasClass("active-state") && section_width != 0) {
-			bar.show();
-			total_section_width += section_width;
-			if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
-				total_borrowed_section_width += section_width;
-			}
-			else {
-				total_outofpocket_section_width += section_width;
-			}
-		}
-		else {
-			bar.hide();
-		}
-	});
-	if ((total_outofpocket_section_width + total_borrowed_section_width) > chart_width) {
-		school.find(".error_msg").fadeIn(400);
-		// This code will resize the bar past the width of the total cost
-		// school.find(".bars-container").width(total_outofpocket_section_width + total_borrowed_section_width);
-		// marginright = (total_outofpocket_section_width + total_borrowed_section_width) - chart_width;
-		// school.find(".tick.full").css("left", chart_width - 2 );
+	if (schools[school_id] != undefined) {
+		var schooldata = schools[school_id];
 	}
 	else {
-		// school.find(".bars-container").width(chart_width);
-		school.find(".error_msg").fadeOut(400);
+		return false;
 	}
 
+	$('#school-container').append($("#template").html());
+	var school = $('#school-container .school:last');
+	school.attr("id", school_id);
 
-	if (show_average_grants_scholarships){
-    	school.find('.tick.discount, .calc.discount').show();
-    }
-    else {
-    	school.find('.tick.discount, .calc.discount').hide();
-    }
+	// Set the data within the element
+	school.find('[name="institutionname"]').text(schooldata.institutionname);
+	for (key in schooldata) {
+	    school.find('input[name="' + key + '"]').val(schooldata[key]);
+	}
 
-    // Borrowing Bar
-    school.find('.bar.borrowing').css("width", (total_borrowed_section_width - 2));
+	// Reset tabindex for schools
+	i = 0;
+	$(".school").not("#template").each(function(index) {
+		i = index + 1;
+		$(this).find('[tabindex]').attr("tabindex", function(j, val) {
+			return 1000 + (i * 100) + j; 
+		});
+	});
 
-    marginright = chart_width - total_borrowed_section_width - total_outofpocket_section_width + 2;
-    if (marginright < 1) {
-    	// uncomment this line and the "total borrowed" will not float beyond the cost bar
-    	// marginright = 0;
-    }
-    if (marginright < (-5 - total_borrowed_section_width)) {
-    	marginright = (-1 * total_borrowed_section_width) - 5;
-    } 
-    school.find('.borrowing-container').css("margin-right", marginright);
+	// Hide FA button if a default school (currently N/A)
+	if (schooldata.active == false) {
+		school.find('.school-drawer-toggle').hide();
+		school.find('.campus-toggle').hide();
+	}
 
-    if (schooldata.borrowingtotal < 1) {
-        school.find('.borrowing-container').hide(transition_time);
-    }
-    else {
-        school.find('.borrowing-container').show(transition_time);
-    }
+	school.find('#campus-off').attr('value', 'false');
+	//console.log(schooldata);
 
-	// Extend the chart's internal container to keep floating items from wrapping
-	school.find(".chart_mask_internal").width(total_section_width + 100);
-
+	// if school is user-input, hide the risk and on/off campus fields
+	if (schooldata.source === "user") {
+		$(".data-school-risk").hide();
+		$(".campus-toggle").hide();
+	}
+	calculate_school(school_id);
 }
+
 
 // calculate_school(school_id) - Calculate the numbers for a particular school
 function calculate_school(school_id) {
@@ -843,51 +772,144 @@ function calculate_school(school_id) {
 
 } // end calculate_school()
 
-// Build a section.school element for a school, fill in data
-// school's data must be in the schools object first
-function build_school_element(school_id) {
+// check_highest_cost() - Boolean function, returns true if the bar graphs should be
+// redrawn due to a change in the "highest_cost" available
+function check_highest_cost() {
+	var redraw = false;
+	if (highest_cost != global.most_expensive_cost) {
+		highest_cost = global.most_expensive_cost;
+		redraw = true;
+	}
+	$(".school").each(function() {
+		var federaltotal = money_to_num($(this).find("h6[name='federaltotal']").text());
+		var privatetotal = money_to_num($(this).find("h6[name='privatetotal']").text());
+		var borrowingtotal = federaltotal + privatetotal;
+		var grantstotal = money_to_num($(this).find("h6[name='grantstotal']").text());
+		var savingstotal = money_to_num($(this).find("h6[name='savingstotal']").text());
+		var outofpockettotal = grantstotal + savingstotal;
+		var totalfunding = outofpockettotal + borrowingtotal;
+		var totalcost = money_to_num($(this).find("h2 span[name='firstyrcostattend']").text());
+		var thismax = totalcost;
+		if (totalfunding > totalcost) {
+			// We no longer care if funding is bigger than cost for sizing concerns
+			// thismax = totalfunding;
+		}
+		if (thismax > highest_cost) {
+			highest_cost = thismax;
+			redraw = true;
+		}
+	});
+	return redraw;
+}
 
-	if (schools[school_id] != undefined) {
-		var schooldata = schools[school_id];
+// check_max_alert - Check fields against their maximums, changes input color if above max
+jQuery.fn.check_max_alert = function() {
+	var school_id = $(this[0]).attr("id");
+	var schooldata = schools[school_id];
+	$(this).find("input").each(function() { // Check each field against its maximum
+		schooldata[$(this).attr("name")] = money_to_num($(this).val()); // get value
+		var name = $(this).attr("name");
+		var comp = schooldata[name]; 
+		var max = schooldata[name + "_max"];
+		if (max != undefined) {
+			if (comp > max) {
+				$(this).css("background-color", input_bg_error);
+			}
+			else {
+				$(this).css("background-color", input_bg_default);
+			}
+		}
+	});	
+}
+
+// draw_the_bars - Redraw the bar graphs for the specified .school element
+function draw_the_bars(school) {
+	var school_id = school.attr("id");
+	var schooldata = schools[school_id];
+	var pixel_price = 496 / highest_cost;
+	var cost = money_to_num(school.find("h4 span[name='firstyrcostattend']").text());
+	var chart_width = Math.round(cost * pixel_price);
+	var marginright = 0;
+	school.find(".bars").width(chart_width);
+
+	// Set section_width
+	var total_section_width = 0;
+	var total_borrowed_section_width = 0;
+	var total_outofpocket_section_width = 0;
+	var show_average_grants_scholarships = false;
+
+	// find each .bar element and determine its width, then animate
+	school.find(".chart_mask_internal .bar").each(function() {
+		var bar = $(this);
+		var name = bar.attr("name");
+		var value = money_to_num(school.find('input[name="' + name + '"]').val());
+		var section_width = Math.floor(value * pixel_price);
+		if (section_width < minimum_chart_section_width) {
+			section_width = 0;
+			bar.stop(true, false).animate({width: 0}, transition_time, function() {
+				bar.hide();
+			});
+		}
+		else {
+			bar.stop(true, false).animate({width: (section_width - 2)}, transition_time);
+		}
+		if (bar.hasClass("active-state") && section_width != 0) {
+			bar.show();
+			total_section_width += section_width;
+			if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
+				total_borrowed_section_width += section_width;
+			}
+			else {
+				total_outofpocket_section_width += section_width;
+			}
+		}
+		else {
+			bar.hide();
+		}
+	});
+	if ((total_outofpocket_section_width + total_borrowed_section_width) > chart_width) {
+		school.find(".error_msg").fadeIn(400);
+		// This code will resize the bar past the width of the total cost
+		// school.find(".bars-container").width(total_outofpocket_section_width + total_borrowed_section_width);
+		// marginright = (total_outofpocket_section_width + total_borrowed_section_width) - chart_width;
+		// school.find(".tick.full").css("left", chart_width - 2 );
 	}
 	else {
-		return false;
+		// school.find(".bars-container").width(chart_width);
+		school.find(".error_msg").fadeOut(400);
 	}
 
-	$('#school-container').append($("#template").html());
-	var school = $('#school-container .school:last');
-	school.attr("id", school_id);
 
-	// Set the data within the element
-	school.find('[name="institutionname"]').text(schooldata.institutionname);
-	for (key in schooldata) {
-	    school.find('input[name="' + key + '"]').val(schooldata[key]);
-	}
+	if (show_average_grants_scholarships){
+    	school.find('.tick.discount, .calc.discount').show();
+    }
+    else {
+    	school.find('.tick.discount, .calc.discount').hide();
+    }
 
-	// Reset tabindex for schools
-	i = 0;
-	$(".school").not("#template").each(function(index) {
-		i = index + 1;
-		$(this).find('[tabindex]').attr("tabindex", function(j, val) {
-			return 1000 + (i * 100) + j; 
-		});
-	});
+    // Borrowing Bar
+    school.find('.bar.borrowing').css("width", (total_borrowed_section_width - 2));
 
-	// Hide FA button if a default school (currently N/A)
-	if (schooldata.active == false) {
-		school.find('.school-drawer-toggle').hide();
-		school.find('.campus-toggle').hide();
-	}
+    marginright = chart_width - total_borrowed_section_width - total_outofpocket_section_width + 2;
+    if (marginright < 1) {
+    	// uncomment this line and the "total borrowed" will not float beyond the cost bar
+    	// marginright = 0;
+    }
+    if (marginright < (-5 - total_borrowed_section_width)) {
+    	marginright = (-1 * total_borrowed_section_width) - 5;
+    } 
+    school.find('.borrowing-container').css("margin-right", marginright);
 
-	school.find('#campus-off').attr('value', 'false');
-	//console.log(schooldata);
+    if (schooldata.borrowingtotal < 1) {
+        school.find('.borrowing-container').hide(transition_time);
+    }
+    else {
+        school.find('.borrowing-container').show(transition_time);
+    }
 
-	// if school is user-input, hide the risk and on/off campus fields
-	if (schooldata.source === "user") {
-		$(".data-school-risk").hide();
-		$(".campus-toggle").hide();
-	}
-	calculate_school(school_id);
+	// Extend the chart's internal container to keep floating items from wrapping
+	school.find(".chart_mask_internal").width(total_section_width + 100);
+
 }
 
 function process_school_list(schools) {
@@ -896,7 +918,7 @@ function process_school_list(schools) {
 		op = op + i + "(" + val + ") ";
 	});
 	return op;
-}
+} // end process_school_list()
 
 function school_search_results(query) {
 	var dump = "";
@@ -916,17 +938,18 @@ function school_search_results(query) {
 		// alert("ERROR");
 	});
 	return dump;
-}
+} // end school_search_results()
 
-function retrieve_school_data(school_id) {
 
-}
 
 //-------- DOCUMENT.READY --------//
 
 $(document).ready(function() {
 	// initialize page
 	$("#military-calc-toggle").hide();
+	$("#comparison-tables").find("input").hide();
+	hide_column(2);
+	hide_column(3);
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
@@ -949,7 +972,13 @@ $(document).ready(function() {
 	// NYI
 
 
+
+
 //-------- JQUERY EVENT HANDLERS --------//
+
+	$(window).scroll(function() {
+		fade_header();
+	});
 
 	// toggle Military calculator
 	$("#military-calc-toggle").click(function(){
