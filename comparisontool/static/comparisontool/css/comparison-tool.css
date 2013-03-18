@@ -1346,3 +1346,128 @@ label.tooltip-info {
 	padding: 0;
 	margin: 0;
 }
+
+/* ----------------------------
+   New Comparison Tool Design
+------------------------------- */
+table {
+	border: none;
+	border-collapse: separate;
+	border-spacing: 0 0.5em;
+}
+
+thead th {
+	background: transparent;
+	color: #333;
+	border: none;
+	text-align: left;
+	font-size: 1.25em;
+	line-height: 1.75em;
+}
+thead h2 {
+	text-transform: none;
+	letter-spacing: 0;
+	font-weight: 700;
+}
+
+td, tbody th {
+	border: none;
+}
+
+.remove-school {
+	font-size: 0.75em;
+	font-weight: 400;
+}
+
+table h4 {
+	text-transform: none;
+	letter-spacing: 0;
+}
+table h3 {
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: 1em;
+}
+
+
+.grants th, .grants td {
+	border-top: 5px solid #7da0c3;
+}
+.federal th, .federal td {
+	border-top: 5px solid #f59d65;
+}
+.private th, .private td {
+	border-top: 5px solid #f5c455;
+}
+.contributions th, .contributions td {
+	border-top: 5px solid #d6cca3;
+}
+.totalcost th, .totalcost td {
+	background: #fcebc9;
+}
+.totalcont th, .totalcont td {
+	background: #d4e0eb;
+}
+.breakdown th, .breakdown td {
+	background: #f8e0d4;
+}
+.hide, .tr-hide {
+	display:none;
+}
+
+.arrw th:first-child {
+	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_collapse.png) no-repeat 0.25em 0.3em;
+}
+.arrw-collapse th:first-child {
+	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_expand.png) no-repeat 0.25em 0.3em;
+}
+td, td input {
+	text-align: center;
+}
+td input {
+	border: 1px solid #fff;
+}
+td input:focus {
+	border: 1px solid #989898;
+	background: #fdf3e0;
+}
+
+thead .fixed {
+	position: fixed;
+	top: 0;
+	background: #fff;
+	border: 1px solid #bfbfbf;
+	border-top: none;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+	width: 975px;
+}
+thead .fixed th:first-child, .breakdown.fixed th {
+	width: 195px;
+}
+thead .fixed h2 {
+	font-size: 0.875em;
+	line-height: 1.25em;
+}
+.breakdown, thead {
+	
+}
+.breakdown.fixed {
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+	border: 1px solid #bfbfbf;
+	border-bottom: none;
+	box-shadow: 0 -1px 2px rgba(0,0,0,0.25);
+	width: 975px;
+
+}
+.breakdown.fixed th, .breakdown.fixed td {
+	background: #fff;
+}
+.breakdown.fixed td {
+	width:227px;
+}
+
+#tooltip-container {
+	width: 16em;
+}
