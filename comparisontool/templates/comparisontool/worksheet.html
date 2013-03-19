@@ -128,15 +128,30 @@ var csrftok = "{{ csrf_token }}";
 				<thead>
 					<tr id="institution-row">
 						<td data-column="0"></td>
-						<th scope="col" data-column="1">
+						<th scope="col" data-column="1" data-default="true">
+							<div class="add-school-info">
+								<label for="school-name-search" class="school-name">What's the name of the school?</label>
+								<input type="text" name="school-name-search" class="school-search-box">
+							</div>
+							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname" id="average-public"></h2>
 							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
 						</th>
 						<th scope="col" data-column="2">
+							<div class="add-school-info">
+								<label for="school-name-search" class="school-name">What's the name of the school?</label>
+								<input type="text" name="school-name-search" class="school-search-box">
+							</div>
+							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname" id="2"></h2>
 							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
 						</th>
 						<th scope="col" data-column="3">
+							<div class="add-school-info">
+								<label for="school-name-search" class="school-name">What's the name of the school?</label>
+								<input type="text" name="school-name-search" class="school-search-box">
+							</div>
+							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname" id="3"></h2>
 							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
 						</th>
@@ -307,15 +322,15 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
-						<td data-column="1"><input type="text" value="Low" name=""</td>
-						<td data-column="2">Medium</td>
-						<td data-column="3">High</td>
+						<td data-column="1"><input type="text" value="" name="debtburden" readonly="readonly"></td>
+						<td data-column="2"><input type="text" value="" name="debtburden" readonly="readonly"></td>
+						<td data-column="3"><input type="text" value="" name="debtburden" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
-						<td data-column="1">$270</td>
-						<td data-column="2">$450</td>
-						<td data-column="3">$683</td>
+						<td data-column="1"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
+						<td data-column="2"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
+						<td data-column="3"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
 					</tr>
 				</tbody>
 				<tbody>
