@@ -131,28 +131,31 @@ var csrftok = "{{ csrf_token }}";
 						<th scope="col" data-column="1" data-default="true">
 							<div class="add-school-info">
 								<label for="school-name-search" class="school-name">What's the name of the school?</label>
-								<input type="text" name="school-name-search" class="school-search-box">
+								<input type="text" name="schoolname-search" class="school-search-box">
+								<ul class="search-results"></ul>
 							</div>
 							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname" id="average-public"></h2>
+							<h2 name="institutionname"></h2>
 							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
 						</th>
 						<th scope="col" data-column="2">
 							<div class="add-school-info">
 								<label for="school-name-search" class="school-name">What's the name of the school?</label>
-								<input type="text" name="school-name-search" class="school-search-box">
+								<input type="text" name="schoolname-search" class="school-search-box">
+								<ul class="search-results"></ul>
 							</div>
 							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname" id="2"></h2>
+							<h2 name="institutionname"></h2>
 							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
 						</th>
 						<th scope="col" data-column="3">
 							<div class="add-school-info">
 								<label for="school-name-search" class="school-name">What's the name of the school?</label>
-								<input type="text" name="school-name-search" class="school-search-box">
+								<input type="text" name="schoolname-search" class="school-search-box">
+								<ul class="search-results"></ul>
 							</div>
 							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname" id="3"></h2>
+							<h2 name="institutionname"></h2>
 							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
 						</th>
 					</tr>
@@ -172,33 +175,33 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="tuitionfees"><span class="tooltip-info" data-tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label></th>
-						<td data-column="1"><input type="text" value="0" name="tuitionfees"></td>
-						<td data-column="2"><input type="text" value="0" name="tuitionfees"></td>
-						<td data-column="3"><input type="text" value="0" name="tuitionfees"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="tuitionfees"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="tuitionfees"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="tuitionfees"></td>
 					</tr>
 					<tr>
 						<th data-column="0"><label for="roombrd"><span class="tooltip-info" data-tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label></th>
-						<td data-column="1"><input type="text" value="0" name="roombrd"></td>
-						<td data-column="2"><input type="text" value="0" name="roombrd"></td>
-						<td data-column="3"><input type="text" value="0" name="roombrd"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="roombrd"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="roombrd"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="roombrd"></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="books"><span class="tooltip-info" data-tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label></th>
-						<td data-column="1"><input type="text" value="0" name="books"></td>
-						<td data-column="2"><input type="text" value="0" name="books"></td>
-						<td data-column="3"><input type="text" value="0" name="books"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="books"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="books"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="books"></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="transportation"><span class="tooltip-info" data-tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label></th>
-						<td data-column="1"><input type="text" value="0" name="transportation"></td>
-						<td data-column="2"><input type="text" value="0" name="transportation"></td>
-						<td data-column="3"><input type="text" value="0" name="transportation"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="transportation"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="transportation"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="transportation"></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="otherexpenses"><span class="tooltip-info" data-tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label></th>
-						<td data-column="1"><input type="text" value="0" name="otherexpenses"></td>
-						<td data-column="2"><input type="text" value="0" name="otherexpenses"></td>
-						<td data-column="3"><input type="text" value="0" name="otherexpenses"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="otherexpenses"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="otherexpenses"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="otherexpenses"></td>
 					</tr>
 				</tbody>
 				<tbody>
@@ -219,21 +222,21 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="pell" class="tooltip-info" data-tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year.">Pell Grant</label></th>
-						<td data-column="1"><input type="text" value="0" name="pell"></td>
-						<td data-column="2"><input type="text" value="0" name="pell"></td>
-						<td data-column="3"><input type="text" value="0" name="pell"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="pell"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="pell"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="pell"></td>
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="scholar" class="tooltip-info" data-tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. ">Other Scholarships &amp; Grants</label></th>
-						<td data-column="1"><input type="text" value="0" name="scholar"></td>
-						<td data-column="2"><input type="text" value="0" name="scholar"></td>
-						<td data-column="3"><input type="text" value="0" name="scholar"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="scholar"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="scholar"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="scholar"></td>
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Service members (active &amp; reserve) are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.">Military Tuition Assistance</label></th>
-						<td data-column="1"><input type="text" value="0" name="tuitionassist"></td>
-						<td data-column="2"><input type="text" value="0" name="tuitionassist"></td>
-						<td data-column="3"><input type="text" value="0" name="tuitionassist"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="tuitionassist"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="tuitionassist"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="tuitionassist"></td>
 					</tr>
 					<tr class="federal arrw">
 						<th data-column="0"><h5>Federal loans</h5></th>
@@ -243,21 +246,21 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="federal-row">
 						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
-						<td data-column="1"><input type="text" value="0" name="perkins"></td>
-						<td data-column="2"><input type="text" value="0" name="perkins"></td>
-						<td data-column="3"><input type="text" value="0" name="perkins"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="perkins"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="perkins"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="perkins"></td>
 					</tr>
 					<tr class="federal-row">
 						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
-						<td data-column="1"><input type="text" value="0" name="staffsubsidized"></td>
-						<td data-column="2"><input type="text" value="0" name="staffsubsidized"></td>
-						<td data-column="3"><input type="text" value="0" name="staffsubsidized"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="staffsubsidized"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="staffsubsidized"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="staffsubsidized"></td>
 					</tr>
 					<tr class="federal-row">
 						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
-						<td data-column="1"><input type="text" value="0" name="staffunsubsidized"></td>
-						<td data-column="2"><input type="text" value="0" name="staffunsubsidized"></td>
-						<td data-column="3"><input type="text" value="0" name="staffunsubsidized"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="staffunsubsidized"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="staffunsubsidized"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="staffunsubsidized"></td>
 					</tr>
 					<tr class="private arrw">
 						<th data-column="0"><h5>Private Loans</h5></th>
@@ -267,15 +270,15 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="private-row">
 						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
-						<td data-column="1"><input type="text" value="0" name="institutionalloan"></td>
-						<td data-column="2"><input type="text" value="0" name="institutionalloan"></td>
-						<td data-column="3"><input type="text" value="0" name="institutionalloan"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="institutionalloan"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="institutionalloan"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="institutionalloan"></td>
 					</tr>
 					<tr class="private-row">
 						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
-						<td data-column="1"><input type="text" value="0" name="privateloan"></td>
-						<td data-column="2"><input type="text" value="0" name="privateloan"></td>
-						<td data-column="3"><input type="text" value="0" name="privateloan"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="privateloan"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="privateloan"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="privateloan"></td>
 					</tr>
 					<tr class="contributions arrw">
 						<th scope="row" data-column="0"><h5>Contributions</h5></th>
@@ -285,27 +288,27 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="savings" class="tooltip-info" data-tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? ">What You Can Pay</label></th>
-						<td data-column="1"><input type="text" value="0" name="savings"></td>
-						<td data-column="2"><input type="text" value="0" name="savings"></td>
-						<td data-column="3"><input type="text" value="0" name="savings"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="savings"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="savings"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="savings"></td>
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="family" class="tooltip-info" data-tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans.">What Family &amp; Others Can Pay</label></th>
-						<td data-column="1"><input type="text" value="0" name="family"></td>
-						<td data-column="2"><input type="text" value="0" name="family"></td>
-						<td data-column="3"><input type="text" value="0" name="family"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="family"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="family"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="family"></td>
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="state529plan" class="tooltip-info" data-tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. ">Parent Loans</label></th>
-						<td data-column="1"><input type="text" value="0" name="state529plan"></td>
-						<td data-column="2"><input type="text" value="0" name="state529plan"></td>
-						<td data-column="3"><input type="text" value="0" name="state529plan"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="state529plan"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="state529plan"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="state529plan"></td>
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="workstudy" class="tooltip-info" data-tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses.">Work-Study</label></th>
-						<td data-column="1"><input type="text" value="0" name="workstudy"></td>
-						<td data-column="2"><input type="text" value="0" name="workstudy"></td>
-						<td data-column="3"><input type="text" value="0" name="workstudy"></td>
+						<td data-column="1"><input type="text" class="stake" value="0" name="workstudy"></td>
+						<td data-column="2"><input type="text" class="stake" value="0" name="workstudy"></td>
+						<td data-column="3"><input type="text" class="stake" value="0" name="workstudy"></td>
 					</tr>
 				</tbody>
 				<tbody>

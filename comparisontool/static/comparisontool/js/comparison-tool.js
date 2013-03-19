@@ -9,10 +9,10 @@ var data =
 		 "tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000, "salary": 30922 },
 	"presets" : {
 		"average-public" :
-			{"institutionname":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
+			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
 			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "active": false },
 		"average-private" :
-			{"institutionname":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
+			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
 			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "active": false }
 	}
 };
@@ -174,10 +174,10 @@ function fix_widths() {
 
 //---- CALCULATION FUNCTIONS ----//
 
-// Build a section.school element for a school, fill in data
+// Fill in a column with the school's data
 // school's data must be in the schools object first
 function build_school_element(school_id) {
-	var column = $("#" + school_id).parent().attr("data-column");
+	var column = $("#" + school_id).attr("data-column");
 	var school = $("[data-column='" + column + "']");
 	school.find(".add-a-school").hide();
 	if (schools[school_id] != undefined) {
@@ -188,21 +188,18 @@ function build_school_element(school_id) {
 	}
 
 	// Set the data within the element
-	school.find('[name="institutionname"]').text(schooldata.institutionname);
+	school.find('[name="institutionname"]').text(schooldata.school);
+	school.find("input.stake").val("$0");
 	for (key in schooldata) {
 	    school.find('input[name="' + key + '"]').val(schooldata[key]);
 	}
-
-	school.find('#campus-off').attr('value', 'false');
-
-	// if school is user-input, hide the risk and on/off campus fields
 	calculate_school(school_id);
 }
 
 
 // calculate_school(school_id) - Calculate the numbers for a particular school
 function calculate_school(school_id) {
-	var column = $("#" + school_id).parent().attr("data-column");
+	var column = $("#" + school_id).attr("data-column");
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
 
@@ -948,7 +945,7 @@ $(document).ready(function() {
 	hide_column(2);
 	hide_column(3);
 	fix_widths();
-	$("[data-column='1'] [name='institutionname']").attr("id", "average-public");
+	$("[data-column='1']").attr("id", "average-public");
 	build_school_element("average-public");
 
 	$(".add-a-school, .add-school-info").each( function() {
@@ -1021,26 +1018,62 @@ $(document).ready(function() {
 		});
 	});
 
+	// Start the 'add a school' process
+	$(".add-a-school").live("click", function() {
+		var column = 0;
+		// If no school has been added, replace the 'default' in column 1
+		if ( $("#institution-row [data-column='1']").attr("data-default") === "true" ) {
+			column = 1;
+			$("#institution-row [data-column='1']").attr("data-default", "false");
+		}
+		else {
+			column = $(this).parent().attr("data-column");
+			$(this).hide();
+		}
+		$("#institution-row [data-column='" + column + "'] .add-school-info").show();
+		$(".add-school-info").css("height", "100%");
+		return false;
+	});
 
 	// Do a search when the school-search input has keyup...
 	$(".add-school-info").live('keyup', function (ev) {
-		var query = $(this).find("[name='schoolname']").val()
+		var query = $(this).find("[name='schoolname-search']").val()
 		var results = school_search_results(query);
-		$(this).find("#school-search-results ul").html(results);
+		$(this).find(".search-results").html(results);
 	});
 
 	// #school-search-results list links
-	$(".add-school-info .school-result a").live("click", function(ev) {
-		// find the .add-panel container it lives in
-		var addpanel = $(this).parents(".add-panel");
-		var id = $(this).attr("href");
-		var schoolname = $(this).html();
-		addpanel.find("#instruction").html("Please enter the costs below to begin the visual calculator.");
-		addpanel.find("#school-search").slideUp();
-		addpanel.append($("#add-school-template").html());
-		addpanel.find("h2[name='cb_institutionname']").html(schoolname);
-		addpanel.find("h2[name='cb_institutionname']").attr("data-id", id)
-		return false;
+	$(".add-school-info .search-results .school-result a").live("click", function(event) {
+		event.preventDefault();
+		var headercell = $(this).closest("[data-column]");
+		var column = headercell.attr("data-column");
+		var school_id = $(this).attr("href");
+		headercell.attr("id", school_id);
+		headercell.find(".add-school-info input").val("");
+		headercell.find(".search-results").html("");
+		headercell.find(".add-school-info").hide();
+
+		// AJAX the schooldata
+		var schooldata = new Object();
+		var surl = "/comparisontool/api/school/" + school_id + ".json";
+		var request = $.ajax({
+			async: false,
+			dataType: "json",
+			url: surl
+		});
+		request.done(function(response) {
+			$.each(response, function(i, val) {
+				i = i.toLowerCase();
+				if (schooldata[i] == undefined) {
+					schooldata[i] = val;
+				}
+			});
+		});
+		request.fail(function() {
+			// alert("ERROR");
+		});	
+		schools[school_id] = schooldata;
+		build_school_element(school_id);
 	});
 
 	//---- Add a school element to the comparison ----//
@@ -1085,21 +1118,6 @@ $(document).ready(function() {
 		var school = $("#school-container #" + school_id +".school");
 	});
 
-	$(".add-a-school").live("click", function() {
-		var column = 0;
-		// If no school has been added, replace the 'default' in column 1
-		if ( $("#institution-row [data-column='1']").attr("data-default") === "true" ) {
-			column = 1;
-			$("#institution-row [data-column='1']").attr("data-default", "false");
-		}
-		else {
-			column = $(this).parent().attr("data-column");
-		}
-		$("#institution-row [data-column='" + column + "'] .add-school-info").show();
-		$(".add-school-info").css("height", "100%");
-		return false;
-	});
-
 
 	// Perform a calculation when the user blurs inputs
 	$('.school input').live('blur', function (ev) {
@@ -1116,10 +1134,10 @@ $(document).ready(function() {
 	});
 
 	// Perform a calculation when a keyup occurs in the school fields...
-	$("#comparison-tables input").live('keyup', function (ev) {
-		var column = $(this).parent().attr("data-column");
+	$("#comparison-tables input.stake").live('keyup', function (ev) {
+		var column = $(this).closest("[data-column]").attr("data-column");
 		var school = $("[data-column='" + column + "']")
-		var school_id = school.find("[name='institutionname']").attr("id");
+		var school_id = $("#institution-row [data-column='" + column + "'").attr("id");
 		// ...immediately when the user hits enter
 		if (ev.keyCode == 13) {
 			ev.preventDefault();
