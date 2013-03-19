@@ -17,9 +17,6 @@ var data =
 	}
 };
  
-/* an object to hold schools: */
-var schools = new Object();
-
 // Determine if global data exists
 if (data.global != "undefined") {
 	global = data.global;
@@ -29,7 +26,7 @@ else {
 		some error handling. The application can still run without data, so a database failure
 		shouldn't put it out of commission -wernerc */
 }
-presets = data.presets;
+var schools = data.presets;
 
 //-------- Initialize --------//
 var pixel_price = 0, // The ratio of pixels to dollars for the bar graph
@@ -84,6 +81,7 @@ function num_to_money(n, sign, c, d, t) {
 	if (c) {
 		money += d + Math.abs(n - i).toFixed(c).slice(2);
 	}
+	money = "$" + money;
 	return money;
 }
 
@@ -106,9 +104,9 @@ function set_by_name(col_num, name, value) {
 }
 
 jQuery.fn.setbyname = function(name, value, overwrite) {
-	school_id = $(this[0]).attr("id");
-	schooldata = schools[school_id];
-	element = $(this[0]).find("[name='" + name +"']");
+	var school_id = $(this).find("[name='institutionname']").attr("id");
+	var schooldata = schools[school_id];
+	var element = $(this).find("[name='" + name +"']");
 
 	element.val(num_to_money(value, ""));
 	
@@ -171,12 +169,15 @@ function fix_widths() {
 	$(".fixed th").css("min-width", "25%");
 }
 
+
+
 //---- CALCULATION FUNCTIONS ----//
 
 // Build a section.school element for a school, fill in data
 // school's data must be in the schools object first
 function build_school_element(school_id) {
-
+	var column = $("#" + school_id).parent().attr("data-column");
+	var school = $("[data-column='" + column + "']");
 	if (schools[school_id] != undefined) {
 		var schooldata = schools[school_id];
 	}
@@ -184,47 +185,23 @@ function build_school_element(school_id) {
 		return false;
 	}
 
-	$('#school-container').append($("#template").html());
-	var school = $('#school-container .school:last');
-	school.attr("id", school_id);
-
 	// Set the data within the element
 	school.find('[name="institutionname"]').text(schooldata.institutionname);
 	for (key in schooldata) {
 	    school.find('input[name="' + key + '"]').val(schooldata[key]);
 	}
 
-	// Reset tabindex for schools
-	i = 0;
-	$(".school").not("#template").each(function(index) {
-		i = index + 1;
-		$(this).find('[tabindex]').attr("tabindex", function(j, val) {
-			return 1000 + (i * 100) + j; 
-		});
-	});
-
-	// Hide FA button if a default school (currently N/A)
-	if (schooldata.active == false) {
-		school.find('.school-drawer-toggle').hide();
-		school.find('.campus-toggle').hide();
-	}
-
 	school.find('#campus-off').attr('value', 'false');
-	//console.log(schooldata);
 
 	// if school is user-input, hide the risk and on/off campus fields
-	if (schooldata.source === "user") {
-		$(".data-school-risk").hide();
-		$(".campus-toggle").hide();
-	}
 	calculate_school(school_id);
 }
 
 
 // calculate_school(school_id) - Calculate the numbers for a particular school
 function calculate_school(school_id) {
-	var col_num = $("#" + school_id).parent().index();
-	var school = $("#" + school_id);
+	var column = $("#" + school_id).parent().attr("data-column");
+	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
 
 	// Set default terms
@@ -786,10 +763,6 @@ function calculate_school(school_id) {
 	}
 	school.check_max_alert();
 
-	var item = school.find("a.moreitems").attr("href").substr(1);
-	school.calc_this_equals(item);
-
-
 } // end calculate_school()
 
 // check_highest_cost() - Boolean function, returns true if the bar graphs should be
@@ -824,6 +797,7 @@ function check_highest_cost() {
 
 // check_max_alert - Check fields against their maximums, changes input color if above max
 jQuery.fn.check_max_alert = function() {
+	/*
 	var school_id = $(this[0]).attr("id");
 	var schooldata = schools[school_id];
 	$(this).find("input").each(function() { // Check each field against its maximum
@@ -840,10 +814,12 @@ jQuery.fn.check_max_alert = function() {
 			}
 		}
 	});	
+*/
 }
 
 // draw_the_bars - Redraw the bar graphs for the specified .school element
 function draw_the_bars(school) {
+	/*
 	var school_id = school.attr("id");
 	var schooldata = schools[school_id];
 	var pixel_price = 496 / highest_cost;
@@ -929,8 +905,8 @@ function draw_the_bars(school) {
 
 	// Extend the chart's internal container to keep floating items from wrapping
 	school.find(".chart_mask_internal").width(total_section_width + 100);
-
-}
+	*/
+} // end draw_the_bars()
 
 function process_school_list(schools) {
 	var op = "";
@@ -970,7 +946,9 @@ $(document).ready(function() {
 	hide_column(2);
 	hide_column(3);
 	fix_widths();
-
+	$("[data-column='2'").css("background-color", "purple");
+	$("[data-column='1'] [name='institutionname']").attr("id", "average-public");
+	build_school_element("average-public");
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
@@ -1111,28 +1089,6 @@ $(document).ready(function() {
 		school.find("a[name='school_target']").focus();
 	});
 
-	$('.add_average_private').live("click", function(ev) {
-		var average_private = presets["average_private"];
-		costbuilder = $(this).parents(".costbuilder");
-		costbuilder.find("input[name='cb_institutionname']").val(average_private.institutionname);
-		costbuilder.find("input[name='cb_tuitionfees']").val(average_private.tuitionfees);
-		costbuilder.find("input[name='cb_roombrd']").val(average_private.roombrd);
-		costbuilder.find("input[name='cb_books']").val(average_private.books);
-		costbuilder.find("input[name='cb_transportation']").val(average_private.transportation);
-		costbuilder.find("input[name='cb_otherexpenses']").val(average_private.otherexpenses);
-	});
-
-	$('.add_average_public').live("click", function(ev) {
-		var average_public = presets["average_public"];
-		costbuilder = $(this).parents(".costbuilder");
-		costbuilder.find("input[name='cb_institutionname']").val(average_public.institutionname);
-		costbuilder.find("input[name='cb_tuitionfees']").val(average_public.tuitionfees);
-		costbuilder.find("input[name='cb_roombrd']").val(average_public.roombrd);
-		costbuilder.find("input[name='cb_books']").val(average_public.books);
-		costbuilder.find("input[name='cb_transportation']").val(average_public.transportation);
-		costbuilder.find("input[name='cb_otherexpenses']").val(average_public.otherexpenses);
-	});
-
 	$(".remove_school_link").live("click", function(ev) {
 		var school_id = $(this).parents(".school").attr("id");
 		$("#school_id_to_remove").val(school_id);
@@ -1183,16 +1139,17 @@ $(document).ready(function() {
 	});
 
 	// Perform a calculation when a keyup occurs in the school fields...
-	$('.school input').live('keyup', function (ev) {
+	$("#comparison-tables input").live('keyup', function (ev) {
+		var column = $(this).parent().attr("data-column");
+		var school = $("[data-column='" + column + "']")
+		var school_id = school.find("[name='institutionname']").attr("id");
 		// ...immediately when the user hits enter
 		if (ev.keyCode == 13) {
 			ev.preventDefault();
-			school_id = $(this).parents(".school").attr("id");
 			calculate_school(school_id);
 			return false;
 		}
 		// .. after a delay if any other key is pressed
-		school_id = $(this).parents(".school").attr("id");
 		$(this).parents(".school").check_max_alert();
 		delay(function() {
 			calculate_school(school_id);
@@ -1247,7 +1204,7 @@ $(document).ready(function() {
 	$(".bar-info").live('mouseover', function() {
 		$(this).qtip({
 			overwrite: false, 
-			content: $(this).attr("tooltip"),
+			content: $(this).attr("data-tooltip"),
 			position: {
 				corner: {
 					target: "bottomLeft",
