@@ -97,14 +97,14 @@ thead th {
 	color: #333;
 	border: none;
 	text-align: left;
-	font-size: 1em;
+	font-size: 1m;
 	line-height: 1em;
 }
 thead h2 {
 	text-transform: none;
-	font-size: 1em;
+	font-size: 1.25em;
 	letter-spacing: 0;
-	line-height: 1.75em;
+	line-height: 1.3em;
 	font-weight: 700;
 }
 
@@ -112,9 +112,26 @@ td, tbody th {
 	border: none;
 }
 
-.remove-school {
+thead #institution-row th .remove-this-school {
 	font-size: 0.75em;
 	font-weight: 400;
+}
+
+thead #institution-row th .remove-confirm {
+	background-color: #FFF;
+	border: 1px solid black;
+	display: none;
+	font-weight: 400;
+	padding: 1em .5em;
+	position: absolute;
+	max-width: 15%;
+}
+
+thead #institution-row th .remove-confirm a {
+	display: inline-block;
+	margin: .5em auto .5em auto;
+	text-align: center;
+	width: auto;
 }
 
 table h4 {
@@ -257,7 +274,7 @@ tbody > th, tbody thead th:first-child {
 	border: 3px dashed #d24505;
 	color: #000;
 	display: block;
-	font-size: .75em;
+	font-size: 1em;
 	text-align: center;
 	padding: 1em .25em;
 	position: absolute;
@@ -280,16 +297,28 @@ tbody > th, tbody thead th:first-child {
 	background-color: #e6e6e6;
 	display: none;
 	font-size: 1em;
-	padding: .1em .25em;
+	padding: .25em .5em;
 	position: absolute;
 }
 
 #institution-row th .add-school-info label {
-	font-size: .75em;
+	font-size: 1em;
 } 
 
 #institution-row th .add-school-info input {
-	font-size: .6em;
+	font-size: .8em;
+}
+
+#institution-row th .add-school-info .results {
+	font-size: .9em;
+	list-style-type: none;
+	margin: .25em;
+	padding: .25em;
+}
+
+#institution-row th .add-school-info .results li a {
+	border: none;
+	font-weight: normal;
 }
 
 /* Column headers */
@@ -298,7 +327,7 @@ section > table > thead th {
 	color: #585858;
 	border: none;
 	vertical-align: top;
-	font-size: 1.5em;
+	font-size: 1em;
 	font-weight: 700;
 	line-height: 1.25em;
 	padding: 0.5em;
