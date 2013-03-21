@@ -155,7 +155,7 @@ function hide_column(col_num) {
 function show_column(col_num) {
 	var column = $("[data-column='" + col_num + "']");
 	column.each( function() {
-		$(this).children().not(".add-a-school, .add-school-info, .remove-confirm").show();
+		$(this).children().not(".hidden-box").show();
 	});	
 }
 
@@ -210,7 +210,7 @@ function build_school_element(school_id) {
 
 	// Set the data within the element
 	school.find('[name="institutionname"]').text(schooldata.school);
-	school.find("input.stake").val("$0");
+	school.find("input.user-value").val("$0");
 	// Currently, we're not using schooldata from the database
 	// As such, the following is only used for average schools
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
@@ -253,18 +253,24 @@ function calculate_school(school_id) {
 	schooldata.state529plan = 0;
 
 	// Determine in-state and out-of-state
-
-	if ( $(school).find("#in-state").is(":checked") ) {
+	var instate = $("[data-column='" + column + "'] [name='military-residency']").val();
+	if ( ( instate === "instate" ) || ( instate === "indistrict" ) ) {
 		schooldata.instate = true;
 	}
 	else {
 		schooldata.instate = false;
-	} 
+	}
+	// Set the instate in the military panel if it's blank
+	if ( school.find("[name='military-instate-tuition']").val() == "") {
+		school.find("[name='military-instate-tuition']").val(schooldata.tuitionunderins);
+	}
+	// Now set schooldata.tuitionunderins to the value in "in-state tuition"
+	schooldata.tuitionunderins = school.find("[name='military-instate-tuition']").val();
 
 	// Supplement/replace data with customized fields
 	school.find("input").each(function() {
 		schooldata[$(this).attr("name")] = money_to_num($(this).val());
-	});	
+	});
 
 	// For calculations, add transportation and otherexpenses into personalcosts
 
@@ -345,7 +351,7 @@ function calculate_school(school_id) {
 
 	// GI Bill 
 	// Determine if global.vet is true or false:
-	if ($("#vet-yes").is(":checked")) {
+	if ($("[data-column='1'] [name='military-status']").val() != "none") {
 		global.vet = true;
 	}
 	else {
@@ -357,7 +363,7 @@ function calculate_school(school_id) {
 		schooldata.gibilltf = 0; 
 	}
 	else {
-		 global.tier = $("#tier select").find(":selected").val();
+		 global.tier = $("[data-column='1'] .military-tier-select").find(":selected").val();
 		// Calculate veteran benefits:		
 		if ( ( schooldata.control == "Public" ) && ( schooldata.instate === true ) ) {
 			schooldata.gibilltf = ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
@@ -400,7 +406,7 @@ function calculate_school(school_id) {
 	}
 
 	// GI living allowance benefits:
-	global.serving = $('#serving input[name="serving"]:checked').val();
+	global.serving = $("[data-column='1'] .military-status-select").val();
 	if (global.vet === false) {
 		schooldata.gibillla = 0;
 	}
@@ -991,7 +997,7 @@ $(document).ready(function() {
 		$(this).width($(this).parent().width());
 		$(this).height($(this).width());
 	});
-	$(".remove-confirm").each( function() {
+	$(".remove-confirm, .gibill-panel").each( function() {
 		$(this).width($(this).parent().width());
 	});
 
@@ -1019,43 +1025,6 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		fade_header();
 	});
-
-	// toggle Military calculator
-	$("#military-calc-toggle").click(function(){
-		$("#military-calc-panel").toggleClass("hidden");
-		$("#military-calc-panel > div").show(); // Bug fix, hopefully temporary
-		$("#military-calc-toggle").toggleClass("active");
-		if ( $("#military-calc-toggle").hasClass("active") ) {
-			$("#military-calc-toggle").html("Military Benefit Calculator <span>&#9650;</span>");
-		}
-		else {
-			$("#military-calc-toggle").html("Military Benefit Calculator <span>&#9660;</span>");
-		}
-		return false;
-	});
-
-	// #vet handler - user clicks "yes" under GI benefits
-	$("#vet #vet-yes").click(function (ev) {
-		$(".military-disabler").removeClass("disabled");
-		$(".military-disabler input, .military-disabler select").attr("disabled", false);
-
-	});
-
-	// user clicks 'no' under GI benefits
-	$("#vet #vet-no").click(function (ev) {
-		$(".military-disabler").addClass("disabled");
-		$(".military-disabler input, .military-disabler select").attr("disabled", "disabled");		
-	});
-
-	// user clicks 'Update...' under GI benefits
-	$("#military-calc-button").click(function(ev) {
-		$("#military-calc-toggle").trigger("click");
-		$(".school").each( function() {
-			var id = $(this).attr("id");
-			calculate_school(id);
-		});
-	});
-
 
 	/* -----------
 		"Add a school" user interface
@@ -1143,6 +1112,55 @@ $(document).ready(function() {
 		event.preventDefault();
 		$(this).closest("[data-column]").children(".remove-confirm").hide();
 	})
+
+	/* -----------
+		"GI Bill" user interface
+	----------- */
+	// Show the GI Bill panel on click
+	$(".gibill-calculator").click( function(event) {
+		event.preventDefault();
+		var column = $(this).closest("[data-column]").attr("data-column");
+		$("[data-column='" + column + "'] .gibill-panel").toggle();
+	});
+
+	// Using the service selectors changes all selectors and activates service tier.
+	$(".military-status-select").change( function() {
+		var value = $(this).val();
+		$(".military-status-select").each( function() {
+			$(this).val(value);
+		});
+		if ( $(this).val() != "none" ) {
+			$(".military-tier-select").each( function() {
+				$(this).removeAttr("disabled");
+			});
+		}
+		else {
+			$(".military-tier-select").each( function() {
+				$(this).attr("disabled", "disabled");
+			});
+		}
+	});
+
+	// Selecting an option from tier sets all tier to that value
+	$(".military-tier-select").change( function() {
+		var value = $(this).val();
+		$(".military-tier-select").each( function() {
+			$(this).val(value);
+		});
+	});
+
+	// Clicking "Calculate" button hides GI Bill panel and performs a calculation
+	$(".military-residency-panel .military-calculate").click( function() {
+		var column = $(this).closest("[data-column]").attr("data-column");
+		$("[data-column='" + column + "'] .gibill-panel").hide();
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		calculate_school(school_id);
+	})
+
+
+	/* ----------------
+		Live calculations
+	--------------------- */
 
 	// Perform a calculation when the user blurs inputs
 	$('.school input').live('blur', function (ev) {

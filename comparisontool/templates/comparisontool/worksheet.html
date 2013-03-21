@@ -129,40 +129,40 @@ var csrftok = "{{ csrf_token }}";
 					<tr id="institution-row">
 						<td data-column="0"></td>
 						<th scope="col" data-column="1" data-default="true">
-							<div class="add-school-info">
+							<div class="add-school-info hidden-box">
 								<label for="school-name-search" class="school-name">What's the name of the school?</label>
 								<input type="text" name="schoolname-search" class="school-search-box">
 								<ul class="search-results"></ul>
 							</div>
-							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
+							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
 								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
 							</div>
-							<div class="remove-confirm">
+							<div class="remove-confirm hidden-box">
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
 							</div>
 						</th>
 						<th scope="col" data-column="2">
-							<div class="add-school-info">
+							<div class="add-school-info hidden-box">
 								<label for="school-name-search" class="school-name">What's the name of the school?</label>
 								<input type="text" name="schoolname-search" class="school-search-box">
 								<ul class="search-results"></ul>
 							</div>
-							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
+							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname"></h2>
-							<div class="remove-this-school"><a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a></div>
+							<div class="remove-this-school hidden-box"><a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a></div>
 						</th>
 						<th scope="col" data-column="3">
-							<div class="add-school-info">
+							<div class="add-school-info hidden-box">
 								<label for="school-name-search" class="school-name">What's the name of the school?</label>
 								<input type="text" name="schoolname-search" class="school-search-box">
 								<ul class="search-results"></ul>
 							</div>
-							<a class="add-a-school" href="#">Add a School <span class="huge">+</span></a>
+							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname"></h2>
-							<div class="remove-this-school"><a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a></div>
+							<div class="remove-this-school hidden-box"><a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a></div>
 						</th>
 					</tr>
 				</thead>
@@ -243,6 +243,105 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
 						<td data-column="2"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
 						<td data-column="3"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
+					</tr>
+					<tr class="grants-row">
+						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="GI Bill">GI Bill</label></th>
+						<td data-column="1">
+							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
+							<input type="text" class="user-value" value="0" name="gibill">
+							<div class="gibill-panel hidden-box">
+								<fieldset>
+									<label for="military-status">Military Status</label>
+									<select name="military-status" class="military-status-select">
+										<option value="none" selected="selected">No Military Service</option>
+										<option value="ad">Active</option>
+										<option value="ng">Guard/Reserve</option>
+										<option value="vet">Veteran</option>
+									</select>
+									<label for="tier">Cumulative Service</label>
+									<select name="military-tier" class="military-tier-select" disabled="disabled">
+									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
+									 	<option value=".9">30 months, including BASIC (90%)</option>
+									 	<option value=".8">24 months, including BASIC (80%)</option>
+									 	<option value=".7">18 months, excluding BASIC (70%)</option>
+									 	<option value=".6">12 months, excluding BASIC (60%)</option>
+									 	<option value=".5">6 months, excluding BASIC (50%)</option>
+									 	<option value=".4">90 days, excluding BASIC (40%)</option>
+									 	<option value="0">Less than 90 days, excluding BASIC (0%)</option>
+										<option value="1">Service Connected Discharge (100%)</option>
+										<option value="1">MSGT Fry Scholarship (100%)</option>
+									</select>
+									<legend>Residency</legend>
+									<div class="military-residency-panel">
+										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<label class="radio-label" id="radio-instate">In-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<label class="radio-label" id="radio-indistrict">In-District</label>
+										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<input class="military-instate" type="text" name="military-instate-tuition">
+										<button class="military-calculate">Calculate</button>
+									</div>
+								</fieldset>
+							</div>
+						</td>
+						<td data-column="2">
+							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
+							<input type="text" class="user-value" value="0" name="gibill">
+							<div class="gibill-panel hidden-box">
+								<fieldset class="military-disabler">
+									<label for="military-status">Military Status</label>
+									<select name="military-status" class="military-status-select">
+										<option value="none">No Military Service</option>
+										<option value="ad">Active</option>
+										<option value="ng">Guard/Reserve</option>
+										<option value="vet">Veteran</option>
+									</select>
+									<label for="tier">Cumulative Service</label>
+									<select name="military-tier" class="military-tier-select" disabled="disabled">
+									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
+									 	<option value=".9">30 months, including BASIC (90%)</option>
+									 	<option value=".8">24 months, including BASIC (80%)</option>
+									 	<option value=".7">18 months, excluding BASIC (70%)</option>
+									 	<option value=".6">12 months, excluding BASIC (60%)</option>
+									 	<option value=".5">6 months, excluding BASIC (50%)</option>
+									 	<option value=".4">90 days, excluding BASIC (40%)</option>
+									 	<option value="0">Less than 90 days, excluding BASIC (0%)</option>
+										<option value="1">Service Connected Discharge (100%)</option>
+										<option value="1">MSGT Fry Scholarship (100%)</option>
+									</select>
+								</fieldset>
+							</div>
+						</td>
+						<td data-column="3">
+							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
+							<input type="text" class="user-value" value="0" name="gibill">
+							<div class="gibill-panel hidden-box">
+								<fieldset class="military-disabler">
+									<label for="military-status">Military Status</label>
+									<select name="military-status" class="military-status-select">
+										<option value="none">No Military Service</option>
+										<option value="ad">Active</option>
+										<option value="ng">Guard/Reserve</option>
+										<option value="vet">Veteran</option>
+									</select>
+									<label for="tier">Cumulative Service</label>
+									<select name="military-tier" class="military-tier-select" disabled="disabled">
+									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
+									 	<option value=".9">30 months, including BASIC (90%)</option>
+									 	<option value=".8">24 months, including BASIC (80%)</option>
+									 	<option value=".7">18 months, excluding BASIC (70%)</option>
+									 	<option value=".6">12 months, excluding BASIC (60%)</option>
+									 	<option value=".5">6 months, excluding BASIC (50%)</option>
+									 	<option value=".4">90 days, excluding BASIC (40%)</option>
+									 	<option value="0">Less than 90 days, excluding BASIC (0%)</option>
+										<option value="1">Service Connected Discharge (100%)</option>
+										<option value="1">MSGT Fry Scholarship (100%)</option>
+									</select>
+								</fieldset>
+							</div>
+						</td>
 					</tr>
 					<tr class="federal arrw">
 						<th data-column="0"><h5>Federal loans</h5></th>

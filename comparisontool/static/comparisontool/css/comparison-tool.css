@@ -321,6 +321,42 @@ tbody > th, tbody thead th:first-child {
 	font-weight: normal;
 }
 
+.grants-row td .gibill-panel {
+	background-color: #d3d3d3;
+	display: none;
+	font-size: .8em;
+	padding: .5em 1em 1em 1em;
+	position: absolute;
+	text-align: left;
+}
+
+.grants-row td .gibill-panel label {
+	display: block;
+	margin: 1em 0 .25em 0;
+}
+
+.grants-row td .gibill-panel select {
+	max-width: 100%;
+	margin-bottom: 1.5em;
+}
+
+.grants-row td .gibill-panel .military-residency-panel input.radio-input {
+	display: inline;
+}
+
+.grants-row td .gibill-panel .military-residency-panel label.radio-label {
+	display: inline;
+}
+
+.grants-row td .gibill-panel .military-residency-panel label.radio-label:after {
+	content: "\A";
+	white-space: pre;
+}
+
+.grants-row td .gibill-panel .military-residency-panel .military-calculate {
+	margin: 1.5em auto;
+}
+
 /* Column headers */
 section > table > thead th {
 	background: transparent;
