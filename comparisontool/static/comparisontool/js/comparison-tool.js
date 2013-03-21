@@ -557,7 +557,10 @@ function calculate_school(school_id) {
 	// loandebt1yr -- "Estimated Total Borrowing"
 		schooldata.loandebt1yr = schooldata.perkins + schooldata.staffsubsidized + schooldata.staffunsubsidized + schooldata.gradplus + schooldata.privateloan + schooldata.institutionalloan + schooldata.parentplus + schooldata.homeequity;
 		//school.textbyname("loandebt1yr", schooldata.loandebt1yr);
-		
+
+	// set 4-year loan debt field
+	school.setbyname("debtburden", schooldata.loandebt1yr * 4);
+
 	// prgmlength - "Program Length"
 	if (schooldata.program == "ba") {
 		schooldata.prgmlength = 5 - global.yrincollege;
@@ -788,11 +791,12 @@ function calculate_school(school_id) {
 	// Get the most expensive sticker price (for chart width histogram)
 	if (check_highest_cost() === true) {
 		$(".school").each(function() {
-			draw_the_bars($(this));
+			var school_id = $(this).find("[data-column]").attr("data-column");
+			draw_the_bars(school_id);
 		});
 	}
 	else {
-		draw_the_bars(school);
+		draw_the_bars(school_id);
 	}	
 
 	left_to_pay = schooldata.gap;
@@ -864,27 +868,25 @@ jQuery.fn.check_max_alert = function() {
 }
 
 // draw_the_bars - Redraw the bar graphs for the specified .school element
-function draw_the_bars(school) {
-	/*
-	var school_id = school.attr("id");
+function draw_the_bars(school_id) {
+	var column = $("#" + school_id).attr("data-column");
+	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
-	var pixel_price = 496 / highest_cost;
-	var cost = money_to_num(school.find("h4 span[name='firstyrcostattend']").text());
-	var chart_width = Math.round(cost * pixel_price);
-	var marginright = 0;
-	school.find(".bars").width(chart_width);
+	var chart_width = $("#institution-row [data-column='1']").outerWidth(false);
+	var cost = money_to_num(school.find("[name='firstyrcostattend']").html());
+	var pixel_price = chart_width / cost;
+	var left = 0;
 
 	// Set section_width
 	var total_section_width = 0;
 	var total_borrowed_section_width = 0;
 	var total_outofpocket_section_width = 0;
-	var show_average_grants_scholarships = false;
 
 	// find each .bar element and determine its width, then animate
 	school.find(".chart_mask_internal .bar").each(function() {
 		var bar = $(this);
 		var name = bar.attr("name");
-		var value = money_to_num(school.find('input[name="' + name + '"]').val());
+		var value = schooldata[name];
 		var section_width = Math.floor(value * pixel_price);
 		if (section_width < minimum_chart_section_width) {
 			section_width = 0;
@@ -895,7 +897,7 @@ function draw_the_bars(school) {
 		else {
 			bar.stop(true, false).animate({width: (section_width - 2)}, transition_time);
 		}
-		if (bar.hasClass("active-state") && section_width != 0) {
+		if ( section_width != 0) {
 			bar.show();
 			total_section_width += section_width;
 			if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
@@ -921,37 +923,30 @@ function draw_the_bars(school) {
 		school.find(".error_msg").fadeOut(400);
 	}
 
-
-	if (show_average_grants_scholarships){
-    	school.find('.tick.discount, .calc.discount').show();
-    }
-    else {
-    	school.find('.tick.discount, .calc.discount').hide();
-    }
-
     // Borrowing Bar
-    school.find('.bar.borrowing').css("width", (total_borrowed_section_width - 2));
+    school.find('.bar.borrowing').css("width", (total_borrowed_section_width - 1));
 
-    marginright = chart_width - total_borrowed_section_width - total_outofpocket_section_width + 2;
-    if (marginright < 1) {
+    left = 0 + total_outofpocket_section_width;
+    if ( left < 1 ) {
     	// uncomment this line and the "total borrowed" will not float beyond the cost bar
-    	// marginright = 0;
+    	left = 0;
     }
-    if (marginright < (-5 - total_borrowed_section_width)) {
-    	marginright = (-1 * total_borrowed_section_width) - 5;
-    } 
-    school.find('.borrowing-container').css("margin-right", marginright);
+    school.find(".bar.borrowing").css("left", left);
+    school.find(".bar.borrowing").css("width", total_borrowed_section_width);
+    school.find(".tick-borrowing").css("left", total_borrowed_section_width + left - 2);
+    school.find(".totalborrowing").css("padding-left", left);
 
-    if (schooldata.borrowingtotal < 1) {
+    if ( total_borrowed_section_width < 1 ) {
         school.find('.borrowing-container').hide(transition_time);
     }
     else {
         school.find('.borrowing-container').show(transition_time);
     }
+    var breakdownheight = $(".meter").height();
+    school.find(".meter").closest("td").height(breakdownheight);
 
 	// Extend the chart's internal container to keep floating items from wrapping
-	school.find(".chart_mask_internal").width(total_section_width + 100);
-	*/
+	// school.find(".chart_mask_internal").width(total_section_width + 100);
 } // end draw_the_bars()
 
 function process_school_list(schools) {
@@ -1001,7 +996,7 @@ $(document).ready(function() {
 		$(this).width($(this).parent().width());
 		$(this).height($(this).width());
 	});
-	$(".remove-confirm, .gibill-panel").each( function() {
+	$(".remove-confirm, .gibill-panel, .meter").each( function() {
 		$(this).width($(this).parent().width());
 	});
 
@@ -1255,32 +1250,32 @@ $(document).ready(function() {
 
 
 	$(".bar-info").live('mouseover', function() {
-		$(this).qtip({
-			overwrite: false, 
-			content: $(this).attr("data-tooltip"),
-			position: {
-				corner: {
-					target: "bottomLeft",
-					tooltip: "topLeft"
-				},
-				adjust: {
-					x: 2,
-					y: -5,
-					screen: true,
-					scroll: true	
-				}
-			},
-			show: {
-				ready: true
-			},
-			solo: true,
-			style: {
-				tip: {
-					corner: "topLeft",
-					color: false,
-					size: {x: 10, y: 10}
-				},
-			},	
+		// position bar-info-container based on the element clicked
+		var thisoff = $(this).offset();
+		var ttc = $("#bar-info-container");
+		ttc.show();
+		ttc.css(
+			{"left": (thisoff.left + 10) + "px",
+			 "top": (thisoff.top + $(this).height() + 5) + "px"});
+		var ttcoff = ttc.offset();
+		var right = ttcoff.left + ttc.outerWidth(true);
+		if (right > $(window).width()) {
+			var left = $(window).width() - ttc.outerWidth(true) - 20;
+			ttc.offset({"left": left});
+		}
+		// check offset again, properly set tips to point to the element clicked
+		ttcoff = ttc.offset();
+		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
+		ttc.find("#innertip").css("left", (tipset + 8));
+		ttc.find("#outertip").css("left", (tipset + 5));
+		var bgcolor = $(this).css("background-color");
+		ttc.css("border-color", bgcolor);
+		ttc.find("#outertip").css("border-bottom-color", bgcolor);
+		ttc.find("p").html($(this).attr("data-tooltip"));
+		
+		$("html").on('click', function() {
+			ttc.hide();
+			$("html").off('click');
 		});
 	});
 
@@ -1303,7 +1298,7 @@ $(document).ready(function() {
 		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
 		ttc.find("#innertip").css("left", (tipset + 8));
 		ttc.find("#outertip").css("left", (tipset + 5));
-		$("#tooltip-container > p").html($(this).attr("tooltip"));
+		$("#tooltip-container > p").html($(this).attr("data-tooltip"));
 		
 		$("html").on('click', function() {
 			$("#tooltip-container").hide();
