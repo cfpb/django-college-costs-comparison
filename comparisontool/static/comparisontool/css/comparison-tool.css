@@ -195,6 +195,7 @@ thead .fixed {
 	border-top: none;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.25);
 	width: 975px;
+	z-index: 5;
 }
 thead .fixed th:first-child, .breakdown.fixed th {
 	width: 195px;
@@ -416,9 +417,6 @@ input.tooltip-info:hover, input.tooltip-info:focus {
 	border-bottom: 1px solid #AFAFB3;
 }
 
-#outertip, #innertip {
-	display: none;
-}
 
 /* Inputs */
 td input {
@@ -443,12 +441,46 @@ td h6.disabled, td h6.disabled:hover {
 	color: transparent;
 }
 
-#tooltip-container {
-	width: 17.25em;
-	opacity: 0.9;
+.tooltip-info, .tooltip-info:hover {
+	cursor: help;
+	border-bottom: 1px dotted #50a748;
 }
 
-/* These two elements, #outertip and #innertip, make the little speech-balloon styled
+label.tooltip-info {
+	display: inline;	
+}
+
+#tooltip-container {
+	background-color: #a0f798;
+	border: 2px solid #50a748;
+	display: none;
+	font-style: normal;
+	font-size: .8em;
+	padding: 10px;
+	position: absolute;
+	text-align: justify;
+	width: 20em;
+	z-index: 3000;
+}
+
+#bar-info-container {
+	background-color: #f4f4f4;
+	border: 2px solid #666;
+	display: none;
+	font-style: normal;
+	font-size: .8em;
+	padding: .25em 2em;
+	position: absolute;
+	text-align: justify;
+	z-index: 3000;
+}
+#tooltip-container > p,
+#bar-info-container > p {
+	padding: 0;
+	margin: 0;
+}
+
+/* These elements, #outertip and #innertip, make the little speech-balloon styled
 	tip appear along the top of the tooltip. */
 #tooltip-container #outertip {
 	border: 10px solid transparent;
@@ -470,8 +502,129 @@ td h6.disabled, td h6.disabled:hover {
 	top: -14px;
 	width: 0;
 }
-#tooltip-container > p {
-	padding: 0;
+
+#bar-info-container #outertip {
+	border: 10px solid transparent;
+	border-bottom-color: #000;
+	content: ' ';
+	height: 0;
+	position: absolute;
+	left: 5px;
+	top: -20px;
+	width: 0;
+}
+#bar-info-container #innertip {
+	border: 7px solid transparent;
+	border-bottom-color: #f4f4f4;
+	content: ' ';
+	height: 0;
+	position: absolute;
+	left: 8px;
+	top: -14px;
+	width: 0;
+}
+
+
+
+
+/* bar graph, aka .meter */
+
+#comparison-tables .breakdown .meter {
+	font-size: .75em;
+	padding-bottom: .5em;
+}
+
+#comparison-tables .breakdown .meter .bars .bars-container {
+
+}
+
+#comparison-tables .breakdown .meter .chart_mask_internal {
+	border-right: 2px solid #585858;
+	height: 2em;
+	padding: .75em 0 0 0;
+	text-align: left;
+}
+
+#comparison-tables .breakdown .meter .bars .full {
+	background: #585858;
+	height: 2em;
 	margin: 0;
 }
 
+#comparison-tables .breakdown .meter .bars .bar {
+	border-right: 1px solid #fff;
+	float: left;
+	height: 2em;
+	padding: 0;
+}
+
+#comparison-tables .breakdown .meter .bars .bar.discount {
+	background: #5281ab;
+}
+#comparison-tables .breakdown .meter .bars .bar.savings {
+	background: #c8bb89;
+}
+#comparison-tables .breakdown .meter .bars .bar.fedloans {
+	background: #f4793b;
+}
+#comparison-tables .breakdown .meter .bars .bar.privloans {
+	background: #f2af32;
+}
+#comparison-tables .breakdown .meter .bars .bar.overage {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+	filter: alpha(opacity=50);
+	opacity: 0.9;	
+}
+
+#comparison-tables .breakdown .meter .left-to-pay {
+	font-weight: 500;
+	padding: 0 1em 0 0;
+	text-align: right;
+}
+
+#comparison-tables .breakdown .meter .bars .borrowing-container {
+	position: relative;
+}
+
+#comparison-tables .breakdown .meter .bars .borrowing-container .bar.borrowing {
+	background: #dc0000;
+	border: none;
+	height: 5px;
+	margin-top: .25em;
+	position: relative;
+		right: 0;
+		top: 0;
+}
+
+#comparison-tables .breakdown .meter .bars .borrowing-container .totalborrowing {
+	color: #dc0000;
+	padding-top: 1.5em;
+	text-align: left;
+}
+
+#comparison-tables .breakdown .meter .bars .borrowing-container .totalborrowing b {
+	display: block;
+}
+
+#comparison-tables .breakdown .meter .bars .borrowing-container .tick-borrowing {
+	background-color: #dc0000;
+	display: block;
+	height: .75em;
+	position: relative;
+		right: 0;
+		top: .5em;
+	width: 2px;
+}
+
+#comparison-tables .breakdown .meter .error_msg {
+	clear: left;
+	display: none;
+}
+
+#comparison-tables .breakdown .meter .error_msg p {
+	color: #dc0000;
+	padding: .9em 1em 0em 1em;
+	font-size: .8em;
+	font-weight: bold;
+	text-align: right;
+}

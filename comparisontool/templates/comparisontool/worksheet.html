@@ -443,7 +443,44 @@ var csrftok = "{{ csrf_token }}";
 				<tbody>
 					<tr class="breakdown">
 						<th data-column="0"><h4>Breakdown of costs and contributions for one year of school</h4></th>
-						<td data-column="1">0</td>
+						<td data-column="1">
+							<div class="meter group">
+								<div class="bars">
+									<div class="left-to-pay">
+										<span>Left to Pay</span>
+										<h3 name="gap">$0</h3>
+									</div>
+									<div class="bars-container">
+										<div class="chart_mask_internal">
+											<div class="full">
+												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
+											</div>
+										</div>
+
+										<div class="borrowing-container">
+											<div class="bar borrowing"></div>
+											<span class="tick-borrowing"></span>
+											<div class="totalborrowing">
+												Total Borrowing
+												<span><b name="borrowingtotal">$0</b></span>
+											</div>
+										</div>
+									</div>
+								</div><!-- end .bars -->
+								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
+							</div><!-- end .meter --></td>
 						<td data-column="2">0</td>
 						<td data-column="3">0</td>
 					</tr>
@@ -489,6 +526,16 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 				</tbody>
 			</table>
+			<div id="tooltip-container">
+				<div id="outertip"> </div>
+				<div id="innertip"> </div>
+				<p>content</p>
+			</div>
+			<div id="bar-info-container">
+				<div id="outertip"> </div>
+				<div id="innertip"> </div>
+				<p>content</p>
+			</div>
 		</section><!-- end #comparison-tables -->
 
 		<div id="save-footer">
@@ -503,12 +550,6 @@ var csrftok = "{{ csrf_token }}";
 				</div>
 			</div><!-- end .container -->
 		</div><!-- end #save-footer -->
-
-		<div id="tooltip-container">
-			<div id="outertip"> </div>
-			<div id="innertip"> </div>
-			<p>content</p>
-		</div>
 
 	</div><!-- end #comparison-tool -->
 
