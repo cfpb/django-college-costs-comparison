@@ -290,10 +290,10 @@ var csrftok = "{{ csrf_token }}";
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<input type="text" class="user-value" value="0" name="gibill">
 							<div class="gibill-panel hidden-box">
-								<fieldset class="military-disabler">
+								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none">No Military Service</option>
+										<option value="none" selected="selected">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -311,6 +311,18 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
+									<legend>Residency</legend>
+									<div class="military-residency-panel">
+										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<label class="radio-label" id="radio-instate">In-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<label class="radio-label" id="radio-indistrict">In-District</label>
+										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<input class="military-instate" type="text" name="military-instate-tuition">
+										<button class="military-calculate">Calculate</button>
+									</div>
 								</fieldset>
 							</div>
 						</td>
@@ -318,10 +330,10 @@ var csrftok = "{{ csrf_token }}";
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<input type="text" class="user-value" value="0" name="gibill">
 							<div class="gibill-panel hidden-box">
-								<fieldset class="military-disabler">
+								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none">No Military Service</option>
+										<option value="none" selected="selected">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -339,6 +351,18 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
+									<legend>Residency</legend>
+									<div class="military-residency-panel">
+										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<label class="radio-label" id="radio-instate">In-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<label class="radio-label" id="radio-indistrict">In-District</label>
+										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<input class="military-instate" type="text" name="military-instate-tuition">
+										<button class="military-calculate">Calculate</button>
+									</div>
 								</fieldset>
 							</div>
 						</td>
