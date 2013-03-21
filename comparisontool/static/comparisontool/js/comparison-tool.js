@@ -625,6 +625,10 @@ function calculate_school(school_id) {
 	// borrowingtotal
 	schooldata.borrowingtotal = schooldata.privatetotal + schooldata.federaltotal;
 	school.textbyname("borrowingtotal", schooldata.borrowingtotal);
+
+	// totalcontributions
+	schooldata.totalcontributions = schooldata.savingstotal + schooldata.privatetotal + schooldata.federaltotal + schooldata.grantstotal;
+	school.textbyname("totalcontributions", schooldata.totalcontributions);
 	
 	// loanmonthly - "Monthly Payments"
 	schooldata.loanmonthly =
@@ -990,7 +994,7 @@ $(document).ready(function() {
 	hide_column(2);
 	hide_column(3);
 	fix_widths();
-	$("[data-column='1']").attr("id", "average-public");
+	$("#institution-row [data-column='1']").attr("id", "average-public");
 	build_school_element("average-public");
 
 	$(".add-a-school, .add-school-info").each( function() {
@@ -1025,6 +1029,32 @@ $(document).ready(function() {
 	$(window).scroll(function() {
 		fade_header();
 	});
+
+	/* -------------
+		Accordions (not the instrument, sadly)
+	-----------------*/
+
+	$('tr.show').click(function() {
+		$(this).closest('tbody').children(':not(.show)').toggleClass('hide');
+		$(this).closest('.arrw').toggleClass('arrw-collapse');
+	});
+	$('.grants').click(function() {
+		$('.grants-row').toggleClass('tr-hide');
+		$(this).closest('.arrw').toggleClass('arrw-collapse');
+	});
+	$('.federal').click(function() {
+		$('.federal-row').toggleClass('tr-hide');
+		$(this).closest('.arrw').toggleClass('arrw-collapse');
+	});
+	$('.private').click(function() {
+		$('.private-row').toggleClass('tr-hide');
+		$(this).closest('.arrw').toggleClass('arrw-collapse');
+	});
+	$('.contributions').click(function() {
+		$('.contrib-row').toggleClass('tr-hide');
+		$(this).closest('.arrw').toggleClass('arrw-collapse');
+	});
+
 
 	/* -----------
 		"Add a school" user interface
