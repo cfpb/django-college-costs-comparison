@@ -1591,16 +1591,18 @@ tbody > th, tbody thead th:first-child {
 	font-size: .8em;
 }
 
-#institution-row th .add-school-info .results {
+#institution-row th .add-school-info .search-results {
 	font-size: .9em;
 	list-style-type: none;
 	margin: .25em;
 	padding: .25em;
 }
 
-#institution-row th .add-school-info .results li a {
+#institution-row th .add-school-info .search-results li a {
 	border: none;
 	font-weight: normal;
+	display: block;
+	margin: 0.25em 0;
 }
 
 #institution-row th .add-school-info .add-xml {
