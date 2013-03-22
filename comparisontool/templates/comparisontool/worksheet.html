@@ -403,48 +403,7 @@ var csrftok = "{{ csrf_token }}";
 							</div>
 						</td>
 					</tr>
-					<tr class="federal arrw">
-						<th data-column="0"><h5>Federal loans</h5></th>
-						<td data-column="1"><h6 class="data-total" name="federaltotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" name="federaltotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" name="federaltotal">$0</h6></td>
-					</tr>
-					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="perkins"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="perkins"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="perkins"></td>
-					</tr>
-					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
-					</tr>
-					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
-					</tr>
-					<tr class="private arrw">
-						<th data-column="0"><h5>Private Loans</h5></th>
-						<td data-column="1"><h6 class="data-total" name="privatetotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" name="privatetotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" name="privatetotal">$0</h6></td>
-					</tr>
-					<tr class="private-row">
-						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
-					</tr>
-					<tr class="private-row">
-						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="privateloan"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="privateloan"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="privateloan"></td>
-					</tr>
+
 					<tr class="contributions arrw">
 						<th scope="row" data-column="0"><h5>Contributions</h5></th>
 						<td data-column="1"><h6 class="data-total" name="savingstotal">$0</h6></td>
@@ -474,6 +433,50 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1"><input type="text" class="user-value" value="0" name="workstudy"></td>
 						<td data-column="2"><input type="text" class="user-value" value="0" name="workstudy"></td>
 						<td data-column="3"><input type="text" class="user-value" value="0" name="workstudy"></td>
+					</tr>
+
+					<tr class="federal arrw">
+						<th data-column="0"><h5>Federal loans</h5></th>
+						<td data-column="1"><h6 class="data-total" name="federaltotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="federaltotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="federaltotal">$0</h6></td>
+					</tr>
+					<tr class="federal-row">
+						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="perkins"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="perkins"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="perkins"></td>
+					</tr>
+					<tr class="federal-row">
+						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
+					</tr>
+					<tr class="federal-row">
+						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
+					</tr>
+					
+					<tr class="private arrw">
+						<th data-column="0"><h5>Private Loans</h5></th>
+						<td data-column="1"><h6 class="data-total" name="privatetotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="privatetotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="privatetotal">$0</h6></td>
+					</tr>
+					<tr class="private-row">
+						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
+					</tr>
+					<tr class="private-row">
+						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="privateloan"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="privateloan"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="privateloan"></td>
 					</tr>
 				</tbody>
 				<tbody>
