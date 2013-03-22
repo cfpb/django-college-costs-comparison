@@ -69,7 +69,7 @@ var csrftok = "{{ csrf_token }}";
 </script>
 
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
-
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
 
 {% endblock page_js %}
 
@@ -127,18 +127,78 @@ var csrftok = "{{ csrf_token }}";
 			<table>
 				<thead>
 					<tr id="institution-row">
-						<td></td>
-						<th scope="col">
-							<h2 name="institutionname" id="average-public"></h2>
-							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
+						<td data-column="0"></td>
+						<th scope="col" data-column="1" data-default="true">
+							<div class="add-school-info hidden-box">
+								<div class="school-search">
+									<label for="school-name-search" class="school-name">What's the name of the school?</label>
+									<input type="text" name="schoolname-search" class="school-search-box">
+									<ul class="search-results"></ul>
+								</div>
+								<div class="add-xml">
+									<h2 class="institutionname"></h2>
+									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<textarea name="xmlbukkit"></textarea>
+									<button class="xml-magic-happens">Science!</button>
+								</div>
+							</div>
+							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
+							<h2 name="institutionname"></h2>
+							<div class="remove-this-school">
+								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+							</div>
+							<div class="remove-confirm hidden-box">
+								Are you sure you want to remove this school?
+								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+							</div>
 						</th>
-						<th scope="col">
-							<h2 name="institutionname" id="2"></h2>
-							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
+						<th scope="col" data-column="2">
+							<div class="add-school-info hidden-box">
+								<div class="school-search">
+									<label for="school-name-search" class="school-name">What's the name of the school?</label>
+									<input type="text" name="schoolname-search" class="school-search-box">
+									<ul class="search-results"></ul>
+								</div>
+								<div class="add-xml">
+									<h2 class="institutionname"></h2>
+									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<textarea name="xmlbukkit"></textarea>
+									<button class="xml-magic-happens">Science!</button>
+								</div>
+							</div>
+							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
+							<h2 name="institutionname"></h2>
+							<div class="remove-this-school">
+								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+							</div>
+							<div class="remove-confirm hidden-box">
+								Are you sure you want to remove this school?
+								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+							</div>
 						</th>
-						<th scope="col">
-							<h2 name="institutionname" id="3"></h2>
-							<div class="remove-school"><a name="focus_target"></a><a class="remove_school_link" href="#">Remove This School</a></div>
+						<th scope="col" data-column="3">
+							<div class="add-school-info hidden-box">
+								<div class="school-search">
+									<label for="school-name-search" class="school-name">What's the name of the school?</label>
+									<input type="text" name="schoolname-search" class="school-search-box">
+									<ul class="search-results"></ul>
+								</div>
+								<div class="add-xml">
+									<h2 class="institutionname"></h2>
+									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<textarea name="xmlbukkit"></textarea>
+									<button class="xml-magic-happens">Science!</button>
+								</div>
+							</div>
+							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
+							<h2 name="institutionname"></h2>
+							<div class="remove-this-school">
+								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+							</div>
+							<div class="remove-confirm hidden-box">
+								Are you sure you want to remove this school?
+								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+							</div>
 						</th>
 					</tr>
 				</thead>
@@ -150,40 +210,40 @@ var csrftok = "{{ csrf_token }}";
 						<th class="width-holder"></th>
 					</tr>
 					<tr class="totalcost show">
-						<th scope="row"><h4>Total cost</h4></th>
-						<td><h6 class="data-total" name="totalcost">$0</h6></td>
-						<td><h6 class="data-total" name="totalcost">$0</h6></td>
-						<td><h6 class="data-total" name="totalcost">$0</h6></td>
+						<th scope="row" data-column="0"><h4>Total cost</h4></th>
+						<td data-column="1"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="tuitionfees"><span class="tooltip-info" tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label></th>
-						<td><input type="text" value="0" name="tuitionfees"></td>
-						<td><input type="text" value="0" name="tuitionfees"></td>
-						<td><input type="text" value="0" name="tuitionfees"></td>
+						<th scope="row" data-column="0"><label for="tuitionfees"><span class="tooltip-info" data-tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="tuitionfees"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="tuitionfees"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="tuitionfees"></td>
 					</tr>
 					<tr>
-						<th><label for="roombrd"><span class="tooltip-info" tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label></th>
-						<td><input type="text" value="0" name="roombrd"></td>
-						<td><input type="text" value="0" name="roombrd"></td>
-						<td><input type="text" value="0" name="roombrd"></td>
+						<th data-column="0"><label for="roombrd"><span class="tooltip-info" data-tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="roombrd"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="roombrd"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="roombrd"></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="books"><span class="tooltip-info" tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label></th>
-						<td><input type="text" value="0" name="books"></td>
-						<td><input type="text" value="0" name="books"></td>
-						<td><input type="text" value="0" name="books"></td>
+						<th scope="row" data-column="0"><label for="books"><span class="tooltip-info" data-tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="books"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="books"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="books"></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="transportation"><span class="tooltip-info" tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label></th>
-						<td><input type="text" value="0" name="transportation"></td>
-						<td><input type="text" value="0" name="transportation"></td>
-						<td><input type="text" value="0" name="transportation"></td>
+						<th scope="row" data-column="0"><label for="transportation"><span class="tooltip-info" data-tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="transportation"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="transportation"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="transportation"></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="otherexpenses"><span class="tooltip-info" tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label></th>
-						<td><input type="text" value="0" name="otherexpenses"></td>
-						<td><input type="text" value="0" name="otherexpenses"></td>
-						<td><input type="text" value="0" name="otherexpenses"></td>
+						<th scope="row" data-column="0"><label for="otherexpenses"><span class="tooltip-info" data-tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="otherexpenses"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="otherexpenses"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="otherexpenses"></td>
 					</tr>
 				</tbody>
 				<tbody>
@@ -191,114 +251,346 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>First Year Financial Aid Offer</h3></th>
 					</tr>
 					<tr class="totalcont show">
-						<th scope="row"><h4>Total contributions</h4></th>
-						<td><h6 class="data-total" name="totalcontributions">$0</h6></td>
-						<td><h6 class="data-total" name="totalcontributions">$0</h6></td>
-						<td><h6 class="data-total" name="totalcontributions">$0</h6></td>
+						<th scope="row" data-column="0"><h4>Total contributions</h4></th>
+						<td data-column="1"><h6 class="data-total" name="totalcontributions">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="totalcontributions">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="totalcontributions">$0</h6></td>
 					</tr>
 					<tr class="grants collapse arrw">
-						<th scope="row"><h5>Scholarships & grants</h5></th>
-						<td><h6 class="data-total" name="totalcost">$0</h6></td>
-						<td><h6 class="data-total" name="totalcost">$0</h6></td>
-						<td><h6 class="data-total" name="totalcost">$0</h6></td>
+						<th scope="row" data-column="0"><h5>Scholarships &amp; grants</h5></th>
+						<td data-column="1"><h6 class="data-total" name="grantstotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="grantstotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="grantstotal">$0</h6></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row"><label for="pell" class="tooltip-info" tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year.">Pell Grant</label></th>
-						<td><input type="text" value="0" name="pell"></td>
-						<td><input type="text" value="0" name="pell"></td>
-						<td><input type="text" value="0" name="pell"></td>
+						<th scope="row" data-column="0"><label for="pell" class="tooltip-info" data-tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year.">Pell Grant</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="pell"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="pell"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="pell"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row"><label for="scholar" class="tooltip-info" tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. ">Other Scholarships &amp; Grants</label></th>
-						<td><input type="text" value="0" name="scholar"></td>
-						<td><input type="text" value="0" name="scholar"></td>
-						<td><input type="text" value="0" name="scholar"></td>
+						<th scope="row" data-column="0"><label for="scholar" class="tooltip-info" data-tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. ">Other Scholarships &amp; Grants</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="scholar"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="scholar"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="scholar"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row"><label for="tuitionassist" class="tooltip-info" tooltip="Military Tuition Assistance: Service members (active &amp; reserve) are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.">Military Tuition Assistance</label></th>
-						<td><input type="text" value="0" name="tuitionassist"></td>
-						<td><input type="text" value="0" name="tuitionassist"></td>
-						<td><input type="text" value="0" name="tuitionassist"></td>
+						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Service members (active &amp; reserve) are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.">Military Tuition Assistance</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
+					</tr>
+					<tr class="grants-row">
+						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="GI Bill">GI Bill</label></th>
+						<td data-column="1">
+							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
+							<input type="text" class="user-value" value="0" name="gibill">
+							<div class="gibill-panel hidden-box">
+								<fieldset>
+									<label for="military-status">Military Status</label>
+									<select name="military-status" class="military-status-select">
+										<option value="none" selected="selected">No Military Service</option>
+										<option value="ad">Active</option>
+										<option value="ng">Guard/Reserve</option>
+										<option value="vet">Veteran</option>
+									</select>
+									<label for="tier">Cumulative Service</label>
+									<select name="military-tier" class="military-tier-select" disabled="disabled">
+									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
+									 	<option value=".9">30 months, including BASIC (90%)</option>
+									 	<option value=".8">24 months, including BASIC (80%)</option>
+									 	<option value=".7">18 months, excluding BASIC (70%)</option>
+									 	<option value=".6">12 months, excluding BASIC (60%)</option>
+									 	<option value=".5">6 months, excluding BASIC (50%)</option>
+									 	<option value=".4">90 days, excluding BASIC (40%)</option>
+									 	<option value="0">Less than 90 days, excluding BASIC (0%)</option>
+										<option value="1">Service Connected Discharge (100%)</option>
+										<option value="1">MSGT Fry Scholarship (100%)</option>
+									</select>
+									<legend>Residency</legend>
+									<div class="military-residency-panel">
+										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<label class="radio-label" id="radio-instate">In-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<label class="radio-label" id="radio-indistrict">In-District</label>
+										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<input class="military-instate" type="text" name="military-instate-tuition">
+										<button class="military-calculate">Calculate</button>
+									</div>
+								</fieldset>
+							</div>
+						</td>
+						<td data-column="2">
+							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
+							<input type="text" class="user-value" value="0" name="gibill">
+							<div class="gibill-panel hidden-box">
+								<fieldset>
+									<label for="military-status">Military Status</label>
+									<select name="military-status" class="military-status-select">
+										<option value="none" selected="selected">No Military Service</option>
+										<option value="ad">Active</option>
+										<option value="ng">Guard/Reserve</option>
+										<option value="vet">Veteran</option>
+									</select>
+									<label for="tier">Cumulative Service</label>
+									<select name="military-tier" class="military-tier-select" disabled="disabled">
+									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
+									 	<option value=".9">30 months, including BASIC (90%)</option>
+									 	<option value=".8">24 months, including BASIC (80%)</option>
+									 	<option value=".7">18 months, excluding BASIC (70%)</option>
+									 	<option value=".6">12 months, excluding BASIC (60%)</option>
+									 	<option value=".5">6 months, excluding BASIC (50%)</option>
+									 	<option value=".4">90 days, excluding BASIC (40%)</option>
+									 	<option value="0">Less than 90 days, excluding BASIC (0%)</option>
+										<option value="1">Service Connected Discharge (100%)</option>
+										<option value="1">MSGT Fry Scholarship (100%)</option>
+									</select>
+									<legend>Residency</legend>
+									<div class="military-residency-panel">
+										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<label class="radio-label" id="radio-instate">In-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<label class="radio-label" id="radio-indistrict">In-District</label>
+										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<input class="military-instate" type="text" name="military-instate-tuition">
+										<button class="military-calculate">Calculate</button>
+									</div>
+								</fieldset>
+							</div>
+						</td>
+						<td data-column="3">
+							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
+							<input type="text" class="user-value" value="0" name="gibill">
+							<div class="gibill-panel hidden-box">
+								<fieldset>
+									<label for="military-status">Military Status</label>
+									<select name="military-status" class="military-status-select">
+										<option value="none" selected="selected">No Military Service</option>
+										<option value="ad">Active</option>
+										<option value="ng">Guard/Reserve</option>
+										<option value="vet">Veteran</option>
+									</select>
+									<label for="tier">Cumulative Service</label>
+									<select name="military-tier" class="military-tier-select" disabled="disabled">
+									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
+									 	<option value=".9">30 months, including BASIC (90%)</option>
+									 	<option value=".8">24 months, including BASIC (80%)</option>
+									 	<option value=".7">18 months, excluding BASIC (70%)</option>
+									 	<option value=".6">12 months, excluding BASIC (60%)</option>
+									 	<option value=".5">6 months, excluding BASIC (50%)</option>
+									 	<option value=".4">90 days, excluding BASIC (40%)</option>
+									 	<option value="0">Less than 90 days, excluding BASIC (0%)</option>
+										<option value="1">Service Connected Discharge (100%)</option>
+										<option value="1">MSGT Fry Scholarship (100%)</option>
+									</select>
+									<legend>Residency</legend>
+									<div class="military-residency-panel">
+										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<label class="radio-label" id="radio-instate">In-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
+										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<label class="radio-label" id="radio-indistrict">In-District</label>
+										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<input class="military-instate" type="text" name="military-instate-tuition">
+										<button class="military-calculate">Calculate</button>
+									</div>
+								</fieldset>
+							</div>
+						</td>
 					</tr>
 					<tr class="federal arrw">
-						<th><h5>Federal loans</h5></th>
-						<td><h6 class="data-total" name="federaltotal">$0</h6></td>
-						<td><h6 class="data-total" name="federaltotal">$0</h6></td>
-						<td><h6 class="data-total" name="federaltotal">$0</h6></td>
+						<th data-column="0"><h5>Federal loans</h5></th>
+						<td data-column="1"><h6 class="data-total" name="federaltotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="federaltotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="federaltotal">$0</h6></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row"><label for="perkins" class="tooltip-info" tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
-						<td><input type="text" value="0" name="perkins"></td>
-						<td><input type="text" value="0" name="perkins"></td>
-						<td><input type="text" value="0" name="perkins"></td>
+						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="perkins"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="perkins"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="perkins"></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row"><label for="staffsubsidized" class="tooltip-info" tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
-						<td><input type="text" value="0"></td>
-						<td><input type="text" value="0"></td>
-						<td><input type="text" value="0"></td>
+						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row"><label for="staffunsubsidized" class="tooltip-info" tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
-						<td><input type="text" value="0" name="staffunsubsidized"></td>
-						<td><input type="text" value="0" name="staffunsubsidized"></td>
-						<td><input type="text" value="0" name="staffunsubsidized"></td>
+						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
 					</tr>
 					<tr class="private arrw">
-						<th><h5>Private Loans</h5></th>
-						<td><h6 class="data-total" name="privatetotal">$0</h6></td>
-						<td><h6 class="data-total" name="privatetotal">$0</h6></td>
-						<td><h6 class="data-total" name="privatetotal">$0</h6></td>
+						<th data-column="0"><h5>Private Loans</h5></th>
+						<td data-column="1"><h6 class="data-total" name="privatetotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="privatetotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="privatetotal">$0</h6></td>
 					</tr>
 					<tr class="private-row">
-						<th scope="row"><label for="institutionalloan" class="tooltip-info" tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
-						<td><input type="text" value="0" name="institutionalloan"></td>
-						<td><input type="text" value="0" name="institutionalloan"></td>
-						<td><input type="text" value="0" name="institutionalloan"></td>
+						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
 					</tr>
 					<tr class="private-row">
-						<th scope="row"><label for="privateloan" class="tooltip-info" tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
-						<td><input type="text" value="0" name="privateloan"></td>
-						<td><input type="text" value="0" name="privateloan"></td>
-						<td><input type="text" value="0" name="privateloan"></td>
+						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="privateloan"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="privateloan"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="privateloan"></td>
 					</tr>
 					<tr class="contributions arrw">
-						<th scope="row"><h5>Contributions</h5></th>
-						<td><h6 class="data-total" name="savingstotal">$0</h6></td>
-						<td><h6 class="data-total" name="savingstotal">$0</h6></td>
-						<td><h6 class="data-total" name="savingstotal">$0</h6></td>
+						<th scope="row" data-column="0"><h5>Contributions</h5></th>
+						<td data-column="1"><h6 class="data-total" name="savingstotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="savingstotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="savingstotal">$0</h6></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row"><label for="savings" class="tooltip-info" tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? ">What You Can Pay</label></th>
-						<td><input type="text" value="0" name="savings"></td>
-						<td><input type="text" value="0" name="savings"></td>
-						<td><input type="text" value="0" name="savings"></td>
+						<th scope="row" data-column="0"><label for="savings" class="tooltip-info" data-tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? ">What You Can Pay</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="savings"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="savings"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="savings"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row"><label for="family" class="tooltip-info" tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans.">What Family &amp; Others Can Pay</label></th>
-						<td><input type="text" value="0" name="family"></td>
-						<td><input type="text" value="0" name="family"></td>
-						<td><input type="text" value="0" name="family"></td>
+						<th scope="row" data-column="0"><label for="family" class="tooltip-info" data-tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans.">What Family &amp; Others Can Pay</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="family"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="family"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="family"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row"><label for="state529plan" class="tooltip-info" tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. ">Parent Loans</label></th>
-						<td><input type="text" value="0" name="state529plan"></td>
-						<td><input type="text" value="0" name="state529plan"></td>
-						<td><input type="text" value="0" name="state529plan"></td>
+						<th scope="row" data-column="0"><label for="state529plan" class="tooltip-info" data-tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. ">Parent Loans</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="state529plan"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="state529plan"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="state529plan"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row"><label for="workstudy" class="tooltip-info" tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses.">Work-Study</label></th>
-						<td><input type="text" value="0" name="workstudy"></td>
-						<td><input type="text" value="0" name="workstudy"></td>
-						<td><input type="text" value="0" name="workstudy"></td>
+						<th scope="row" data-column="0"><label for="workstudy" class="tooltip-info" data-tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses.">Work-Study</label></th>
+						<td data-column="1"><input type="text" class="user-value" value="0" name="workstudy"></td>
+						<td data-column="2"><input type="text" class="user-value" value="0" name="workstudy"></td>
+						<td data-column="3"><input type="text" class="user-value" value="0" name="workstudy"></td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr class="breakdown">
-						<th><h4>Breakdown of costs and contributions for one year of school</h4></th>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
+						<th data-column="0"><h4>Breakdown of costs and contributions for one year of school</h4></th>
+						<td data-column="1">
+							<div class="meter group">
+								<div class="bars">
+									<div class="left-to-pay">
+										<span>Left to Pay</span>
+										<h3 name="gap">$0</h3>
+									</div>
+									<div class="bars-container">
+										<div class="chart_mask_internal">
+											<div class="full">
+												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
+											</div>
+										</div>
+										<div class="borrowing-container">
+											<div class="bar borrowing"></div>
+											<span class="tick-borrowing"></span>
+											<div class="totalborrowing">
+												Total Borrowing
+												<span><b name="borrowingtotal">$0</b></span>
+											</div>
+										</div>
+									</div>
+								</div><!-- end .bars -->
+								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
+							</div><!-- end .meter --></td>
+						<td data-column="2">
+							<div class="meter group">
+								<div class="bars">
+									<div class="left-to-pay">
+										<span>Left to Pay</span>
+										<h3 name="gap">$0</h3>
+									</div>
+									<div class="bars-container">
+										<div class="chart_mask_internal">
+											<div class="full">
+												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
+											</div>
+										</div>
+										<div class="borrowing-container">
+											<div class="bar borrowing"></div>
+											<span class="tick-borrowing"></span>
+											<div class="totalborrowing">
+												Total Borrowing
+												<span><b name="borrowingtotal">$0</b></span>
+											</div>
+										</div>
+									</div>
+								</div><!-- end .bars -->
+								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
+							</div><!-- end .meter --></td>
+						<td data-column="3">
+							<div class="meter group">
+								<div class="bars">
+									<div class="left-to-pay">
+										<span>Left to Pay</span>
+										<h3 name="gap">$0</h3>
+									</div>
+									<div class="bars-container">
+										<div class="chart_mask_internal">
+											<div class="full">
+												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
+											</div>
+										</div>
+										<div class="borrowing-container">
+											<div class="bar borrowing"></div>
+											<span class="tick-borrowing"></span>
+											<div class="totalborrowing">
+												Total Borrowing
+												<span><b name="borrowingtotal">$0</b></span>
+											</div>
+										</div>
+									</div>
+								</div><!-- end .bars -->
+								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
+							</div><!-- end .meter --></td>
+						</td>
 					</tr>
 				</tbody>
 				<tbody>
@@ -306,16 +598,16 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>After 4 years of school</h3></th>
 					</tr>
 					<tr>
-						<th scope="row"><h4 class="tooltip-info" tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
-						<td><input type="text" value="Low" name=""</td>
-						<td>Medium</td>
-						<td>High</td>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
+						<td data-column="1"><input type="text" value="" name="debtburden" readonly="readonly"></td>
+						<td data-column="2"><input type="text" value="" name="debtburden" readonly="readonly"></td>
+						<td data-column="3"><input type="text" value="" name="debtburden" readonly="readonly"></td>
 					</tr>
 					<tr>
-						<th scope="row"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
-						<td>$270</td>
-						<td>$450</td>
-						<td>$683</td>
+						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
+						<td data-column="1"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
+						<td data-column="2"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
+						<td data-column="3"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
 					</tr>
 				</tbody>
 				<tbody>
@@ -323,25 +615,35 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>School Indicators</h3></th>
 					</tr>
 					<tr>
-						<th scope="row"><h4>Graduation Rate</h4></th>
-						<td>high</td>
-						<td>low</td>
-						<td>high</td>
+						<th scope="row" data-column="0"><h4>Graduation Rate</h4></th>
+						<td data-column="1"></td>
+						<td data-column="2"></td>
+						<td data-column="3"></td>
 					</tr>
 					<tr>
-						<th scope="row"><h4>Loan Default Rate</h4></th>
-						<td>3%</td>
-						<td>12%</td>
-						<td>8%</td>
+						<th scope="row" data-column="0"><h4>Loan Default Rate</h4></th>
+						<td data-column="1"></td>
+						<td data-column="2"></td>
+						<td data-column="3"></td>
 					</tr>
 					<tr>
-						<th scope="row"><h4>Median Borrowing</h4></th>
-						<td>$203.98</td>
-						<td>$178.28</td>
-						<td>$124.47</td>
+						<th scope="row" data-column="0"><h4>Median Borrowing</h4></th>
+						<td data-column="1"></td>
+						<td data-column="2"></td>
+						<td data-column="3"></td>
 					</tr>
 				</tbody>
 			</table>
+			<div id="tooltip-container">
+				<div id="outertip"> </div>
+				<div id="innertip"> </div>
+				<p>content</p>
+			</div>
+			<div id="bar-info-container">
+				<div id="outertip"> </div>
+				<div id="innertip"> </div>
+				<p>content</p>
+			</div>
 		</section><!-- end #comparison-tables -->
 
 		<div id="save-footer">
@@ -356,12 +658,6 @@ var csrftok = "{{ csrf_token }}";
 				</div>
 			</div><!-- end .container -->
 		</div><!-- end #save-footer -->
-
-		<div id="tooltip-container">
-			<div id="outertip"> </div>
-			<div id="innertip"> </div>
-			<p>content</p>
-		</div>
 
 	</div><!-- end #comparison-tool -->
 
