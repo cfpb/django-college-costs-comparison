@@ -322,6 +322,10 @@ tbody > th, tbody thead th:first-child {
 	font-weight: normal;
 }
 
+#institution-row th .add-school-info .add-xml {
+	display: none;
+}
+
 .grants-row td .gibill-panel {
 	background-color: #d3d3d3;
 	display: none;

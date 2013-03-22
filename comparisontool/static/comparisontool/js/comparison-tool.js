@@ -1107,9 +1107,50 @@ $(document).ready(function() {
 			// alert("ERROR");
 		});	
 		schools[school_id] = schooldata;
-		build_school_element(school_id);
+		headercell.find(".school-search").hide();
+		headercell.find(".add-xml").show();
+
+		// build_school_element(school_id);
 	});
 
+	$(".add-school-info .add-xml .xml-magic-happens").click( function() {
+		var headercell = $(this).closest("[data-column]");
+		var column = headercell.attr("data-column");
+		var school = $("[data-column='" + column + "']");
+		var xml = $(".add-school-info .add-xml [name='xmlbukkit']").val();
+		var json = $.xml2json(xml);
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var schooldata = schools[school_id];
+
+		build_school_element(school_id);
+
+		// assign values based on json
+		schooldata.books = money_to_num(json.costs.books_and_supplies);
+		schooldata.roombrd = money_to_num(json.costs.housing_and_meals);
+		schooldata.otherexpenses = money_to_num(json.costs.other_education_costs);
+		schooldata.transportation = money_to_num(json.costs.transportation);
+		schooldata.tuitionfees = money_to_num(json.costs.tuition_and_fees);
+		
+		schooldata.pell = money_to_num(json.grants_and_scholarships.federal_pell_grant);
+		// other scholarships & grants comprises several json data
+		schooldata.scholar = money_to_num(json.grants_and_scholarships.grants);
+		schooldata.scholar += money_to_num(json.grants_and_scholarships.grants_from_state);
+		schooldata.scholar += money_to_num(json.grants_and_scholarships.other_scholarships);
+
+		schooldata.staffsubsidized = money_to_num(json.loan_options.federal_direct_subsidized_loan);
+		schooldata.staffunsubsidized = money_to_num(json.loan_options.federal_direct_unsubsidized_loan);
+		schooldata.perkins = money_to_num(json.loan_options.federal_perkins_loans);
+
+		schooldata.family = money_to_num(json.other_options.family_contribution);
+		schooldata.workstudy = money_to_num(json.work_options.work_study);
+
+		school.find("input").each(function() {
+			$(this).val(schooldata[$(this).attr("name")]);
+		});
+
+		headercell.find(".add-school-info").hide();
+		calculate_school(school_id);
+	});
 
 	/* -------
 		"Remove this school" user interface 
@@ -1223,6 +1264,8 @@ $(document).ready(function() {
 			*/
 		}, 500);
 	});
+
+
 
 	// toggle drawer
 	$(".school-drawer-toggle").live("click", function() {
