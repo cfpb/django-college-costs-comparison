@@ -1384,9 +1384,10 @@ thead #institution-row th .remove-confirm {
 	border: 1px solid black;
 	display: none;
 	font-weight: 400;
+	margin-top: 0.125em;
 	padding: 1em .5em;
 	position: absolute;
-	max-width: 15%;
+	max-width: 19%;
 }
 
 thead #institution-row th .remove-confirm a {
