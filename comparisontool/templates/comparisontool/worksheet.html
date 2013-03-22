@@ -154,23 +154,51 @@ var csrftok = "{{ csrf_token }}";
 						</th>
 						<th scope="col" data-column="2">
 							<div class="add-school-info hidden-box">
-								<label for="school-name-search" class="school-name">What's the name of the school?</label>
-								<input type="text" name="schoolname-search" class="school-search-box">
-								<ul class="search-results"></ul>
+								<div class="school-search">
+									<label for="school-name-search" class="school-name">What's the name of the school?</label>
+									<input type="text" name="schoolname-search" class="school-search-box">
+									<ul class="search-results"></ul>
+								</div>
+								<div class="add-xml">
+									<h2 class="institutionname"></h2>
+									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<textarea name="xmlbukkit"></textarea>
+									<button class="xml-magic-happens">Science!</button>
+								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname"></h2>
-							<div class="remove-this-school hidden-box"><a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a></div>
+							<div class="remove-this-school">
+								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+							</div>
+							<div class="remove-confirm hidden-box">
+								Are you sure you want to remove this school?
+								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+							</div>
 						</th>
 						<th scope="col" data-column="3">
 							<div class="add-school-info hidden-box">
-								<label for="school-name-search" class="school-name">What's the name of the school?</label>
-								<input type="text" name="schoolname-search" class="school-search-box">
-								<ul class="search-results"></ul>
+								<div class="school-search">
+									<label for="school-name-search" class="school-name">What's the name of the school?</label>
+									<input type="text" name="schoolname-search" class="school-search-box">
+									<ul class="search-results"></ul>
+								</div>
+								<div class="add-xml">
+									<h2 class="institutionname"></h2>
+									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<textarea name="xmlbukkit"></textarea>
+									<button class="xml-magic-happens">Science!</button>
+								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
 							<h2 name="institutionname"></h2>
-							<div class="remove-this-school hidden-box"><a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a></div>
+							<div class="remove-this-school">
+								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+							</div>
+							<div class="remove-confirm hidden-box">
+								Are you sure you want to remove this school?
+								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+							</div>
 						</th>
 					</tr>
 				</thead>
