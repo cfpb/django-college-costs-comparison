@@ -590,7 +590,7 @@ function calculate_school(school_id) {
 	// Private Loan Rate
 	schooldata.privateloanrate = money_to_num(school.find(".privateloanrate").val());
 	if ( schooldata.privateloanrate == 0) {
-		schooldata.privateloanrate = schooldata.privateloanratedefault;
+		schooldata.privateloanrate = global.privateloanratedefault;
 	}
 
 	// gap
@@ -612,7 +612,7 @@ function calculate_school(school_id) {
 	// Institutional Loan Rate
 	schooldata.institutionalloanrate = money_to_num(school.find(".privateloanrate").val());
 	if ( schooldata.institutionalloanrate == 0) {
-		schooldata.institutionalloanrate = schooldata.institutionalloantratedefault;
+		schooldata.institutionalloanrate = global.institutionalloantratedefault;
 	}
 
 	// Private Loan Total
@@ -622,6 +622,7 @@ function calculate_school(school_id) {
 	// Borrowing Total
 	schooldata.borrowingtotal = schooldata.privatetotal + schooldata.federaltotal;
 	school.textbyname("borrowingtotal", schooldata.borrowingtotal);
+	school.setbyname("debtburden", schooldata.borrowingtotal);
 
 	// Out of Pocket Total
 	schooldata.totaloutofpocket = schooldata.grantstotal + schooldata.savingstotal;
@@ -639,7 +640,7 @@ function calculate_school(school_id) {
 
 	// Borrowing over cost of attendance
 	schooldata.overborrowing = 0;
-	if ( schooldate.firstyrcostattend < ( schooldata.outofpockettotal + schooldata.borrowingtotal ) ) {
+	if ( schooldata.firstyrcostattend < ( schooldata.outofpockettotal + schooldata.borrowingtotal ) ) {
 		schooldata.overborrowing = schooldata.borrowingtotal + schooldata.outofpockettotal - schooldata.firstyrcostattend;
 	}
 
@@ -704,22 +705,23 @@ function calculate_school(school_id) {
 	}
 	
 	// loanmonthly - "Monthly Payments"
-	schooldata.loanmonthly = ( schooldata.perkinsgrad * ( global.perkinsrate / 12 ) / ( 1 - Math.pow((1 + global.perkinsrate / 12), ( -global.repaymenterm * 12 ) ) )
+	schooldata.loanmonthly =
+	( schooldata.perkinsgrad * ( global.perkinsrate / 12 ) / ( 1 - Math.pow((1 + global.perkinsrate / 12), ( -schooldata.repaymentterm * 12 ) ) ) )
 		+ (schooldata.staffsubsidizedgrad 
-			* (global.subsidizedrate / 12) / (1 - Math.pow((1 + global.subsidizedrate / 12), (-global.repaymenterm * 12))))
+			* (global.subsidizedrate / 12) / (1 - Math.pow((1 + global.subsidizedrate / 12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.staffunsubsidizedgrad 
-			* (global.unsubsidizedrate / 12) / (1 - Math.pow((1 + global.unsubsidizedrate / 12), (-global.repaymenterm  * 12))))
-		+ (schooldata.gradplusgrad * (global.gradplusrate / 12) / (1 - Math.pow((1 + global.gradplusrate /12), (-global.repaymenterm * 12))))
-		+ (schooldata.privateloangrad * (schooldata.privateloanrate / 12) / (1 - Math.pow((1 + schooldata.privateloanrate /12), (-global.repaymenterm * 12))))
+			* (global.unsubsidizedrate / 12) / (1 - Math.pow((1 + global.unsubsidizedrate / 12), (-schooldata.repaymentterm  * 12))))
+		+ (schooldata.gradplusgrad * (global.gradplusrate / 12) / (1 - Math.pow((1 + global.gradplusrate /12), (-schooldata.repaymentterm * 12))))
+		+ (schooldata.privateloangrad * (schooldata.privateloanrate / 12) / (1 - Math.pow((1 + schooldata.privateloanrate /12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.institutionalloangrad 
-			* (schooldata.institutionalloanrate / 12) / (1 - Math.pow((1 + schooldata.institutionalloanrate /12), (-global.repaymenterm * 12))));
+			* (schooldata.institutionalloanrate / 12) / (1 - Math.pow((1 + schooldata.institutionalloanrate /12), (-schooldata.repaymentterm * 12))));
 	school.setbyname("loanmonthly", schooldata.loanmonthly);
 	
 	// loanmonthlyparent
-	schooldata.loanmonthlyparent = (schooldata.parentplus * (global.parentplusrate / 12) / (Math.pow(1 - (1 + global.parentplusrate / 12), (-global.repaymenterm * 12)))) + (schooldata.homeequity * (global.homeequityloanrate / 12) / (Math.pow(1 - (1 + global.homeequityloanrate / 12), (-global.repaymenterm * 12))));
+	schooldata.loanmonthlyparent = (schooldata.parentplus * (global.parentplusrate / 12) / (Math.pow(1 - (1 + global.parentplusrate / 12), (-schooldata.repaymentterm * 12)))) + (schooldata.homeequity * (global.homeequityloanrate / 12) / (Math.pow(1 - (1 + global.homeequityloanrate / 12), (-schooldata.repaymentterm * 12))));
 	
 	// loanlifetime
-	schooldata.loanlifetime = schooldata.loanmonthly * global.repaymenterm  * 12;
+	schooldata.loanlifetime = schooldata.loanmonthly * schooldata.repaymentterm  * 12;
 
 	// salaryneeded
 	schooldata.salaryneeded = schooldata.loanmonthly * 12 / 0.14;
