@@ -1,0 +1,79 @@
+
+An explaination of globals in comparison-tool.js so comments don't clog the code.
+
+
+// cost of attendance
+global.transportdefault = 0; // transportation 
+global.roombrdwfamily = 0;  // housing and meals with family  
+
+// financial aid
+global.pellcap = 5550; // pell grant cap
+global.perkinscap = 5000; // perkins loan cap
+global.subsidizedcapyr1 = 3500; // direct loan subsidized cap (yr 1)
+global.subsidizedcapyr2 = 4500; // direct loan subsidized cap (yr 2)
+global.subsidizedcapyr3 = 5500; // direct loan subsidized cap (yr 3+)
+global.unsubsidizedcapyr1 = 5500; // direct loan unsub cap (yr 1)
+global.unsubsidizedcapyr2 = 6500; // direct loan unsub cap (yr 2)
+global.unsubsidizedcapyr3 = 7500; // direct loan unsub cap (yr 3+)
+global.unsubsidizedcapindepyr1 = 9500; // direct loan unsub cap indep (yr 1)
+global.unsubsidizedcapindepyr2 = 10500;  // direct loan unsub cap indep (yr 2)
+global.unsubsidizedcapindepyr3 = 12500; // direct loan unsub cap indep (yr 3+)
+global.unsubsidizedcapgrad = 20500; // direct loan unsub cap (grad)
+global.state529plan = 0; // 529 savings plans
+
+// estimated payment
+global.perkinsrate = 0.05; // perkins loan % rates
+global.subsidizedrate = 0.034; // direct loan subsidized % rate
+global.unsubsidizedrate = 0.068; // direct loan unsub % rate
+global.dloriginationfee = 1.01; // direct loan origination fee
+global.gradplusrate = 0.079; // grad plus % rate
+global.parentplusrate = 0.079; // parent plus % rate
+global.plusoriginationfee = 1.04; // plus loan origination fee
+global.privateloanratedefault = 0.079; // private loan default % rate
+global.institutionalloantratedefault =0.079; // institutional loan default % rate
+global.homeequityloanrate = 0.079; // home equity loan default % rate
+global.deferperiod = 6; // average deferment period
+
+// debt burden
+global.salary= 30922; // npsas average salary (ba)
+global.salaryaa = 785; // bls avg weekly salary (aa)
+global.salaryba = 1066; // bls avg weekly salary (ba)
+global.salarygrad = 1300; // bls avg weekly salary (grad)
+global.lowdefaultrisk= 0.08; // debt burden low threshold
+global.meddefaultrisk = 0.14; // debt burden medium threshold
+
+// school indicators constants
+global.group1gradmed = 37.3%; // graduation % (group #1 - med tier)
+global.group1gradhigh = 56.7%; // graduation % (group #1 - top tier)
+global.group2gradmed = 17.7%; // graduation % (group #2 - med tier)
+global.group2gradhigh = 32.2%; // graduation % (group #2 - top tier)
+global.group3gradmed = 24.1%; // graduation % (group #3 - med tier)
+global.group3gradhigh = 50.1%; // graduation % (group #3 - top tier)
+global.group4gradmed = 0; // graduation % (group #4 – do not report grad %)
+global.group4gradhigh = 0; // graduation % (group #4 – do not report grad %)
+global.group5gradmed = 62.5%; // graduation % (group #5 - med tier)
+global.group5gradhigh = 77.6%; // graduation % (group #5 - top tier)
+
+global.cdrhigh = 100%; // cohort default rate (highest rate)
+global.cdravg = 13.4%; // cohort default rate (national average)
+global.cdrlow = 0.0%; // cohort default rate (lowest rate)
+
+global.group1loanmed = 14000; // avg student loan (group #1 - med tier)
+global.group1loanhigh = 20000; // avg student loan (group #1 - top tier)
+global.group2loanmed = 6800; // avg student loan (group #2 - med tier)
+global.group2loanhigh = 15000; // avg student loan (group #2 - top tier)
+global.group3loanmed = 6800; // avg student loan (group #3 - med tier)
+global.group3loanhigh = 15000; // avg student loan (group #3 - top tier)
+global.group4loanmed = 14000; // avg student loan (group #4 - med tier)
+global.group4loanhigh = 20000; // avg student loan (group #4 - top tier)
+global.group5loanmed = 6800; // avg student loan (group #5 - med tier)
+global.group5loanhigh = 15000; // avg student loan (group #5 - top tier)
+
+// post 9-11 gi bill constants
+global.tfcap = 18077; // tuition & fees cap
+global.avgbah = 1368; // average bah rate
+global.bscap = 1000; // annual book stipend
+global.tuitionassistcap = 4500; // tuition assistance cap
+global.kicker = 0 // kicker bonus
+global.yrben = 0 // yellow ribbon benefits
+global.rop = 1 // rate of pursuit

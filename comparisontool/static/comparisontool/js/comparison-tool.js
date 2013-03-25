@@ -1235,9 +1235,21 @@ $(document).ready(function() {
 	});
 
 	$(".add-school-info .prgmlength-selection .continue").click( function() {
-		var column = $(this).closest("[data-column]").attr("data-column");
-		$("[data-column='" + column + "'] .prgmlength-selection").hide();
-		$("[data-column='" + column + "'] .add-xml").show();
+		var headercell = $(this).closest("[data-column]");
+		var column = headercell.attr("data-column");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var schooldata = schools[school_id];
+		if ( schooldata.kbyoss == "TRUE") {
+			$("[data-column='" + column + "'] .prgmlength-selection").hide();
+			$("[data-column='" + column + "'] .add-xml").show();
+		}
+		else {
+			build_school_element(school_id);
+			headercell.find(".add-school-info").hide();
+			headercell.find(".add-school-info .hidden-box").hide();
+			headercell.find(".add-school-info .school-search").show();
+			calculate_school(school_id);			
+		}
 	});
 
 	$(".add-school-info .add-xml .xml-magic-happens").click( function() {
