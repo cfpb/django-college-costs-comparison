@@ -157,10 +157,10 @@ table h3 {
 .contributions th, .contributions td {
 	border-top: 5px solid #d6cca3;
 }
-.totalcost th, .totalcost td {
+.totalcost {
 	background: #fcebc9;
 }
-.totalcont th, .totalcont td {
+.totalcont {
 	background: #d4e0eb;
 }
 .breakdown th, .breakdown td {
@@ -171,11 +171,17 @@ table h3 {
 }
 
 .arrw th:first-child {
-	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_collapse.png) no-repeat 0.25em 0.3em;
+	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_collapse.png) no-repeat 1.5em 0.5em;
 }
 .arrw-collapse th:first-child {
-	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_expand.png) no-repeat 0.25em 0.3em;
+	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_expand.png) no-repeat 1.5em 0.5em;
 }
+
+.totalcost.arrw th:first-child, .totalcost.arrw td:first-child, 
+.totalcont.arrw th:first-child, .totalcont.arrw td:first-child {
+	background-position: 0.5em 0.5em
+}
+
 td, td input {
 	text-align: center;
 }
@@ -322,7 +328,9 @@ tbody > th, tbody thead th:first-child {
 	font-weight: normal;
 }
 
-#institution-row th .add-school-info .add-xml {
+#institution-row th .add-school-info .add-xml,
+#institution-row th .add-school-info .program-selection,
+#institution-row th .add-school-info .prgmlength-selection {
 	display: none;
 }
 
