@@ -897,6 +897,7 @@ function calculate_school(school_id) {
 
 	if (left_to_pay < 1){
 		school.find('[name="gap"]').text( "$0" );
+		_gaq.push(["_trackEvent", "Calculations", "Reached Zero Left to Pay", school_id]);
 	}
 	else {
 		school.find('[name="gap"]').text(num_to_money(left_to_pay));

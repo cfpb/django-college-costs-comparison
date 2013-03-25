@@ -69,6 +69,7 @@ var csrftok = "{{ csrf_token }}";
 </script>
 
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-analytics.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
 
 {% endblock page_js %}
@@ -688,12 +689,20 @@ var csrftok = "{{ csrf_token }}";
 
 	</div><!-- end #comparison-tool -->
 
-	<div id="introduction" class="container costbuilder">
-        <p>If you have received <a href="http://studentaid.ed.gov/glossary#Financial_Aid_Offer" target="_blank">financial aid offers</a> from any four-year colleges, use this tool to understand how all those numbers impact your payments down the road. Just researching costs? Check out <a href="http://nces.ed.gov/collegenavigator/" target="_blank">College Navigator</a>.</p>
-        <p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="_blank">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="_blank">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we are building a tool that complements the shopping sheet and helps students make comparisons tailored to their individual circumstances.</p>
-		<p>While we're working to build new features, try out this basic version. If you have any ideas or feedback on what should be included in the fully functioning version due next spring, <a href="{% url pfc-feedback %}" target="compare_info">let us know.</a></p>	
-	</div>
-
 
 
 {% endblock content %}
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37785943-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
