@@ -328,9 +328,7 @@ tbody > th, tbody thead th:first-child {
 	font-weight: normal;
 }
 
-#institution-row th .add-school-info .add-xml,
-#institution-row th .add-school-info .program-selection,
-#institution-row th .add-school-info .prgmlength-selection {
+#institution-row th .add-school-info .hidden-box {
 	display: none;
 }
 
@@ -353,20 +351,21 @@ tbody > th, tbody thead th:first-child {
 	margin-bottom: 1.5em;
 }
 
-.grants-row td .gibill-panel .military-residency-panel input.radio-input {
+#comparison-tables input.radio-input {
 	display: inline;
 }
 
-.grants-row td .gibill-panel .military-residency-panel label.radio-label {
+#comparison-tables label.radio-label {
 	display: inline;
+	margin: 1em 0 .25em 0;
 }
 
-.grants-row td .gibill-panel .military-residency-panel label.radio-label:after {
+#comparison-tables label.radio-label:after {
 	content: "\A";
 	white-space: pre;
 }
 
-.grants-row td .gibill-panel .military-residency-panel .military-calculate {
+#comparison-tables .military-calculate {
 	margin: 1.5em auto;
 }
 
