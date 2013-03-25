@@ -7,7 +7,6 @@
 {% block title %}Compare financial aid and college cost{% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/jquery.qtip.min.css">
 <link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
 {% endblock %}
 
@@ -20,7 +19,6 @@
 {% block page_js %}
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/jquery.qtip.min.js"></script>
 
 <script>
 
@@ -69,6 +67,7 @@ var csrftok = "{{ csrf_token }}";
 </script>
 
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-analytics.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
 
 {% endblock page_js %}
@@ -135,35 +134,84 @@ var csrftok = "{{ csrf_token }}";
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program" value="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">	
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5</option>
+										<option value="4" selected="selected">4</option>
+										<option value="3">3</option>
+										<option value="2">2</option>
+										<option value="1">1</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
-								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+								<a class="remove-school-link" href="#">Remove This School</a>
 							</div>
 							<div class="remove-confirm hidden-box">
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
 							</div>
+							<h2 name="institutionname"></h2>
+							<a href="" class="navigator-link hidden-box" target="_blank">Look up school information.</a>
 						</th>
-						<th scope="col" data-column="2">
+						<th scope="col" data-column="2" >
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program" value="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5</option>
+										<option value="4" selected="selected">4</option>
+										<option value="3">3</option>
+										<option value="2">2</option>
+										<option value="1">1</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
@@ -183,11 +231,35 @@ var csrftok = "{{ csrf_token }}";
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program" value="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5</option>
+										<option value="4" selected="selected">4</option>
+										<option value="3">3</option>
+										<option value="2">2</option>
+										<option value="1">1</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
@@ -203,14 +275,14 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="show arrw">
+					<tr>
 						<th class="width-holder"><h3 id="first-year-costs">First Year Costs</h3></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 					</tr>
-					<tr class="totalcost show">
-						<th scope="row" data-column="0"><h4>Total cost</h4></th>
+					<tr class="totalcost show arrw">
+						<th scope="row" data-column="0"><h4>Cost of Attendance</h4></th>
 						<td data-column="1"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
@@ -247,11 +319,11 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 				</tbody>
 				<tbody>
-					<tr class="show arrw">
+					<tr>
 						<th><h3>First Year Financial Aid Offer</h3></th>
 					</tr>
-					<tr class="totalcont show">
-						<th scope="row" data-column="0"><h4>Total contributions</h4></th>
+					<tr class="totalcont show arrw">
+						<th scope="row" data-column="0"><h4>Money for College</h4></th>
 						<td data-column="1"><h6 class="data-total" name="totalcontributions">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="totalcontributions">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="totalcontributions">$0</h6></td>
@@ -289,7 +361,7 @@ var csrftok = "{{ csrf_token }}";
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -329,7 +401,7 @@ var csrftok = "{{ csrf_token }}";
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none" checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -369,7 +441,7 @@ var csrftok = "{{ csrf_token }}";
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none" checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -471,17 +543,17 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1">
 							<input type="text" class="school-data" value="0" name="institutionalloan">
 							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
-							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+							<a href="#" class="rate-change up">Up</a> <a href="#" class="rate-change down">Down</a>
 						</td>
 						<td data-column="2">
 							<input type="text" class="school-data" value="0" name="institutionalloan">
 							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
-							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+							<a href="#" class="rate-change up">Up</a> <a href="#" class="rate-change down">Down</a>
 						</td>
 						<td data-column="3">
 							<input type="text" class="school-data" value="0" name="institutionalloan">
 							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
-							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+							<a href="#" class="rate-change up">Up</a> <a href="#" class="rate-change down">Down</a>
 						</td>
 					</tr>
 					<tr class="private-row">
@@ -489,17 +561,17 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1">
 							<input type="text" class="school-data" value="0" name="privateloan">
 							<input type="text" class="school-data interest-rate" value="0" name="privateloanrate">
-							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+							<a href="#" class="rate-change up">Up</a> <a href="#" class="rate-change down">Down</a>
 						</td>
 						<td data-column="2">
 							<input type="text" class="school-data" value="0" name="privateloan">
 							<input type="text" class="school-data interest-rate" value="0" name="privateloanrate">
-							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+							<a href="#" class="rate-change up">Up</a> <a href="#" class="rate-change down">Down</a>
 						</td>
 						<td data-column="3">
 							<input type="text" class="school-data" value="0" name="privateloan">
 							<input type="text" class="school-data interest-rate" value="0" name="privateloanrate">
-							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+							<a href="#" class="rate-change up">Up</a> <a href="#" class="rate-change down">Down</a>
 						</td>
 					</tr>
 				</tbody>
@@ -622,42 +694,48 @@ var csrftok = "{{ csrf_token }}";
 				</tbody>
 				<tbody>
 					<tr class="stop">
-						<th class="bottom-border"><h3>After 4 years of school</h3></th>
+						<th><h3>After school</h3></th>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
-						<td data-column="1"><input type="text" value="" name="debtburden" readonly="readonly"></td>
-						<td data-column="2"><input type="text" value="" name="debtburden" readonly="readonly"></td>
-						<td data-column="3"><input type="text" value="" name="debtburden" readonly="readonly"></td>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="">Debt after graduation</h4></th>
+						<td data-column="1"><span name="loanlifetime"></span></td>
+						<td data-column="2"><span name="loanlifetime"></span></td>
+						<td data-column="3"><span name="loanlifetime"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
-						<td data-column="1"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
-						<td data-column="2"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
-						<td data-column="3"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
+						<td data-column="1"><span name="loanmonthly"></span></td>
+						<td data-column="2"><span name="loanmonthly"></span></td>
+						<td data-column="3"><span name="loanmonthly"></span></td>
+					</tr>
+					<tr>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
+						<td data-column="1"><span name="debtburden"></span></td>
+						<td data-column="2"><span name="debtburden"></span></td>
+						<td data-column="3"><span name="debtburden"></span></td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th class="bottom-border"><h3>School Indicators</h3></th>
+						<th><h3>School Indicators</h3></th>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Graduation Rate</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="gradrisk"></span></td>
+						<td data-column="2"><span name="gradrisk"></span></td>
+						<td data-column="3"><span name="gradrisk"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Loan Default Rate</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="defaultrisk"></span></td>
+						<td data-column="2"><span name="defaultrisk"></span></td>
+						<td data-column="3"><span name="defaultrisk"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Median Borrowing</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="loandebtrisk"></span></td>
+						<td data-column="2"><span name="loandebtrisk"></span></td>
+						<td data-column="3"><span name="loandebtrisk"></span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -687,12 +765,6 @@ var csrftok = "{{ csrf_token }}";
 		</div><!-- end #save-footer -->
 
 	</div><!-- end #comparison-tool -->
-
-	<div id="introduction" class="container costbuilder">
-        <p>If you have received <a href="http://studentaid.ed.gov/glossary#Financial_Aid_Offer" target="_blank">financial aid offers</a> from any four-year colleges, use this tool to understand how all those numbers impact your payments down the road. Just researching costs? Check out <a href="http://nces.ed.gov/collegenavigator/" target="_blank">College Navigator</a>.</p>
-        <p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="_blank">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="_blank">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we are building a tool that complements the shopping sheet and helps students make comparisons tailored to their individual circumstances.</p>
-		<p>While we're working to build new features, try out this basic version. If you have any ideas or feedback on what should be included in the fully functioning version due next spring, <a href="{% url pfc-feedback %}" target="compare_info">let us know.</a></p>	
-	</div>
 
 
 
