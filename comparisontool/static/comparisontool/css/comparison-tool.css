@@ -141,21 +141,24 @@ table h4 {
 table h3 {
 	text-transform: uppercase;
 	font-weight: 400;
-	font-size: 1em;
+	font-size: 0.8em;
+	text-align: left;
 }
-
-
+.left-to-pay h3 {
+	font-size: 1.4em;
+	text-align: right;
+}
 .grants th, .grants td {
-	border-top: 5px solid #7da0c3;
+	border-bottom: 5px solid #7da0c3;
 }
 .federal th, .federal td {
-	border-top: 5px solid #f59d65;
+	border-bottom: 5px solid #f59d65;
 }
 .private th, .private td {
-	border-top: 5px solid #f5c455;
+	border-bottom: 5px solid #f5c455;
 }
 .contributions th, .contributions td {
-	border-top: 5px solid #d6cca3;
+	border-bottom: 5px solid #d6cca3;
 }
 .totalcost {
 	background: #fcebc9;
@@ -203,9 +206,9 @@ thead .fixed {
 	width: 975px;
 	z-index: 5;
 }
-thead .fixed th:first-child, .breakdown.fixed th {
+/* thead .fixed th:first-child, .breakdown.fixed th {
 	width: 195px;
-}
+} */
 thead .fixed h2 {
 	font-size: 0.875em;
 	line-height: 1.25em;
@@ -221,6 +224,7 @@ thead .fixed h2 {
 }
 .breakdown.fixed th, .breakdown.fixed td {
 	background: #fff;
+	padding: 0.5em;
 }
 .breakdown.fixed td {
 	width:227px;
@@ -409,33 +413,38 @@ section > table > thead th {
 
 .private-row .interest-rate, .private-row .interest-rate:hover {
 	background-color: #fff;
-	border: 1px solid black;
+	border: 1px solid #ccc;
 	border-radius: 0em;
 	box-shadow: none;
 	font-size: 1em;
 	height: 1.6em;
 	margin: 0;
-	padding: 0;	
+	padding: 0 0 0 0.4em;	
 	position: absolute;
 		right: 1.45em;
 		top: .25em;
+	text-align: left;
 	-webkit-box-sizing: border-box;
 	width: 4em;
 }
 .private-row td .rate-change {
-	border: 1px solid black;
+	border: 0;
 	display: block;
 	font-size: .5em;
-	height: 1.3em;
+	height: 2em;
 	padding: 0;
 	position: absolute;
 		right: .5em;
 		top: .4em;
-	width: 2em;
+	width: 5.5em;
 }
 .private-row td .rate-change.down {
+	background: url(../images/arrow-down.png) 16px 0 no-repeat;
 	position: absolute;
 		top: 1.8em;
+}
+.private-row td .rate-change.up {
+	background: url(../images/arrow-up.png) 16px 2px no-repeat;
 }
 
 
@@ -670,4 +679,19 @@ label.tooltip-info {
 	font-size: .8em;
 	font-weight: bold;
 	text-align: right;
+}
+
+/* Helper Classes */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.bottom-border {
+	border-bottom: 5px solid #585858;
 }
