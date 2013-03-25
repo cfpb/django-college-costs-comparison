@@ -227,7 +227,7 @@ function build_school_element(school_id) {
 
 	// Set the data within the element
 	school.find('[name="institutionname"]').text(schooldata.school);
-	school.find("input.user-value").val("$0");
+	school.find("input").not(".interest-rate").val("$0");
 	// Currently, we're not using schooldata from the database
 	// As such, the following is only used for average schools
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
@@ -258,8 +258,11 @@ function calculate_school(school_id) {
 	var schooldata = schools[school_id];
 
 	// Supplement/replace data with customized fields
-	school.find("input").each(function() {
+	school.find("input.school-data").each(function() {
 		schooldata[$(this).attr("name")] = money_to_num($(this).val());
+		if ( $(this).hasClass("interest-rate") ) {
+			schooldata[$(this).attr("name")] = ( money_to_num( $(this).val() ) / 100 );
+		}
 	});
 
 	// For calculations, add transportation and otherexpenses into personalcosts
@@ -588,10 +591,10 @@ function calculate_school(school_id) {
 	school.setbyname("privateloan", schooldata.privateloan, true);
 
 	// Private Loan Rate
-	schooldata.privateloanrate = money_to_num(school.find(".privateloanrate").val());
 	if ( schooldata.privateloanrate == 0) {
 		schooldata.privateloanrate = global.privateloanratedefault;
 	}
+	school.find("[name='privateloanrate']").val((schooldata.privateloanrate * 100) + "%");
 
 	// gap
 	schooldata.gap = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.workstudy - schooldata.savings - schooldata.family - schooldata.state529plan - schooldata.privateloan - schooldata.institutionalloan - schooldata.parentplus - schooldata.homeequity;
@@ -610,10 +613,10 @@ function calculate_school(school_id) {
 	school.setbyname("institutionalloan", schooldata.institutionalloan, true);
 
 	// Institutional Loan Rate
-	schooldata.institutionalloanrate = money_to_num(school.find(".privateloanrate").val());
 	if ( schooldata.institutionalloanrate == 0) {
 		schooldata.institutionalloanrate = global.institutionalloantratedefault;
 	}
+	school.find("[name='institutionalloanrate']").val((schooldata.institutionalloanrate * 100) + "%");
 
 	// Private Loan Total
 	schooldata.privatetotal = schooldata.privateloan + schooldata.institutionalloan;
@@ -1314,19 +1317,39 @@ $(document).ready(function() {
 		calculate_school(school_id);
 	})
 
+	/* ----------------
+		Interest Rate change buttons
+	--------------------- */
+
+	$(".rate-change").on("click", function(event) {
+		event.preventDefault();
+		var column = $(this).closest("[data-column]").attr("data-column");
+		var rateinput = $(this).closest("td").find("input.interest-rate");
+		var loanrate = money_to_num( $(this).closest("td").find("input.interest-rate").val() );
+		if ( $(this).hasClass("up") ) {
+			loanrate += .1;
+		}
+		if ( $(this).hasClass("down") ) {
+			loanrate -= .1;
+		}
+		loanrate = Math.round( loanrate * 100 ) / 100 + "%"
+		rateinput.val( loanrate );
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		calculate_school(school_id);
+	});
 
 	/* ----------------
 		Live calculations
 	--------------------- */
 
 	// Perform a calculation when the user blurs inputs
-	$('.school input').live('blur', function (ev) {
+	$("#comparison-tables input.school-data").live('blur', function (ev) {
 		school_id = $(this).parents(".school").attr("id");
 		calculate_school(school_id);
 	});
 
 	// Disable keydown and keypress for enter key - IE8 fix
-	$('.school input').live('keypress keydown', function(event) {
+	$("#comparison-tables input.school-data").live('keypress keydown', function(event) {
 		if (event.keyCode == 13) {
 			event.preventDefault();
 			return false;
@@ -1334,7 +1357,7 @@ $(document).ready(function() {
 	});
 
 	// Perform a calculation when a keyup occurs in the school fields...
-	$("#comparison-tables input.user-value").live('keyup', function (ev) {
+	$("#comparison-tables input.school-data").on('keyup', function (ev) {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		var school = $("[data-column='" + column + "']");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
