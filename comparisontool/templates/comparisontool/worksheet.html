@@ -129,7 +129,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="0"></td>
 						<th scope="col" data-column="1" data-default="true">
 							<div class="add-school-info hidden-box">
-								<div class="school-search">
+								<div class="school-search hidden-box">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
@@ -172,14 +172,35 @@ var csrftok = "{{ csrf_token }}";
 								<a href="#" class="remove-yes button">Yes</a> <a href="#" class="remove-no button">No</a>
 							</div>
 						</th>
-						<th scope="col" data-column="2">
+						<th>
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program" value="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5</option>
+										<option value="4" selected="selected">4</option>
+										<option value="3">3</option>
+										<option value="2">2</option>
+										<option value="1">1</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
 									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
 									<textarea name="xmlbukkit"></textarea>
@@ -203,7 +224,28 @@ var csrftok = "{{ csrf_token }}";
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program" value="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5</option>
+										<option value="4" selected="selected">4</option>
+										<option value="3">3</option>
+										<option value="2">2</option>
+										<option value="1">1</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
 									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
 									<textarea name="xmlbukkit"></textarea>
@@ -230,7 +272,7 @@ var csrftok = "{{ csrf_token }}";
 						<th class="width-holder"></th>
 					</tr>
 					<tr class="totalcost show arrw">
-						<th scope="row" data-column="0"><h4>Total cost</h4></th>
+						<th scope="row" data-column="0"><h4>Cost of Attendance</h4></th>
 						<td data-column="1"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
@@ -271,7 +313,7 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>First Year Financial Aid Offer</h3></th>
 					</tr>
 					<tr class="totalcont show arrw">
-						<th scope="row" data-column="0"><h4>Total contributions</h4></th>
+						<th scope="row" data-column="0"><h4>Money for College</h4></th>
 						<td data-column="1"><h6 class="data-total" name="totalcontributions">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="totalcontributions">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="totalcontributions">$0</h6></td>
@@ -642,7 +684,7 @@ var csrftok = "{{ csrf_token }}";
 				</tbody>
 				<tbody>
 					<tr class="stop">
-						<th><h3>After <span class="number-years">4</span> years of school</h3></th>
+						<th><h3>After school</h3></th>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
