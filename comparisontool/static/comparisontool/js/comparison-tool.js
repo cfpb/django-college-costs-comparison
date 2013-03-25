@@ -216,7 +216,6 @@ function build_school_element(school_id) {
 	school.find(".add-school-info input").val("");
 	school.find(".search-results").html("");
 
-
 	show_column(column);
 	if (schools[school_id] != undefined) {
 		var schooldata = schools[school_id];
@@ -228,7 +227,8 @@ function build_school_element(school_id) {
 	// Set the data within the element
 	school.find('[name="institutionname"]').text(schooldata.school);
 	school.find("input.school-data").not(".interest-rate").val("$0");
-	school.find("input.school-data.interest-rate").val("0%");
+	school.find("input[name='institutionalloanrate']").val(global.institutionalloantratedefault * 100 + "%");
+	school.find("input[name='privateloanrate']").val(global.privateloanratedefault * 100 + "%");
 	// Currently, we're not using schooldata from the database
 	// As such, the following is only used for average schools
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
@@ -619,7 +619,7 @@ function calculate_school(school_id) {
 	if ( schooldata.privateloanrate < .01 ) {
 		schooldata.privateloanrate = .01;
 	}
-	school.find("[name='privateloanrate']").val((schooldata.privateloanrate * 100) + "%");
+	school.find("[name='privateloanrate']").val( (schooldata.privateloanrate * 100) + "%");
 
 	// gap
 	schooldata.gap = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.workstudy - schooldata.savings - schooldata.family - schooldata.state529plan - schooldata.privateloan - schooldata.institutionalloan - schooldata.parentplus - schooldata.homeequity;
@@ -1283,12 +1283,11 @@ $(document).ready(function() {
 				schooldata[key] = 0;
 			}
 		}	
-
-		school.find("input.school-data").each(function() {
-			$(this).val(schooldata[$(this).attr("name")]);
-		});
+		schools[school_id] = schooldata;
 
 		headercell.find(".add-school-info").hide();
+		headercell.find(".add-school-info .hidden-box").hide();
+		headercell.find(".add-school-info .school-search").show();
 		calculate_school(school_id);
 	});
 
