@@ -144,7 +144,7 @@ table h3 {
 	font-size: 0.8em;
 	text-align: left;
 }
-.left-to-pay table h3 {
+.left-to-pay h3 {
 	font-size: 1.4em;
 	text-align: right;
 }
@@ -160,10 +160,10 @@ table h3 {
 .contributions th, .contributions td {
 	border-bottom: 5px solid #d6cca3;
 }
-.totalcost th, .totalcost td {
+.totalcost {
 	background: #fcebc9;
 }
-.totalcont th, .totalcont td {
+.totalcont {
 	background: #d4e0eb;
 }
 .breakdown th, .breakdown td {
@@ -174,11 +174,17 @@ table h3 {
 }
 
 .arrw th:first-child {
-	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_collapse.png) no-repeat 0.25em 0.3em;
+	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_collapse.png) no-repeat 1.5em 0.5em;
 }
 .arrw-collapse th:first-child {
-	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_expand.png) no-repeat 0.25em 0.3em;
+	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_expand.png) no-repeat 1.5em 0.5em;
 }
+
+.totalcost.arrw th:first-child, .totalcost.arrw td:first-child, 
+.totalcont.arrw th:first-child, .totalcont.arrw td:first-child {
+	background-position: 0.5em 0.5em
+}
+
 td, td input {
 	text-align: center;
 }
@@ -294,10 +300,6 @@ tbody > th, tbody thead th:first-child {
 	margin: 30% 0 0 0;
 }
 
-#institution-row.fixed th .add-a-school {
-	display: none;
-}
-
 #institution-row th .add-school-info {
 	background-color: #e6e6e6;
 	display: none;
@@ -326,7 +328,7 @@ tbody > th, tbody thead th:first-child {
 	font-weight: normal;
 }
 
-#institution-row th .add-school-info .add-xml {
+#institution-row th .add-school-info .hidden-box {
 	display: none;
 }
 
@@ -349,20 +351,21 @@ tbody > th, tbody thead th:first-child {
 	margin-bottom: 1.5em;
 }
 
-.grants-row td .gibill-panel .military-residency-panel input.radio-input {
+#comparison-tables input.radio-input {
 	display: inline;
 }
 
-.grants-row td .gibill-panel .military-residency-panel label.radio-label {
+#comparison-tables label.radio-label {
 	display: inline;
+	margin: 1em 0 .25em 0;
 }
 
-.grants-row td .gibill-panel .military-residency-panel label.radio-label:after {
+#comparison-tables label.radio-label:after {
 	content: "\A";
 	white-space: pre;
 }
 
-.grants-row td .gibill-panel .military-residency-panel .military-calculate {
+#comparison-tables .military-calculate {
 	margin: 1.5em auto;
 }
 
