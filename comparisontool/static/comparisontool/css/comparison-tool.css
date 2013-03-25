@@ -417,7 +417,7 @@ section > table > thead th {
 	margin: 0;
 	padding: 0;	
 	position: absolute;
-		right: 1.2em;
+		right: 1.45em;
 		top: .25em;
 	-webkit-box-sizing: border-box;
 	width: 4em;
@@ -429,7 +429,7 @@ section > table > thead th {
 	height: 1.3em;
 	padding: 0;
 	position: absolute;
-		right: 0;
+		right: .5em;
 		top: .4em;
 	width: 2em;
 }

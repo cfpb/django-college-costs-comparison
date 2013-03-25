@@ -22,7 +22,7 @@ var data =
 		"group1loanmed": 14000, "group1loanhigh": 20000, "group2loanmed": 6800, "group2loanhigh": 15000, 
 		"group3loanmed": 6800, "group3loanhigh": 15000, "group4loanmed": 14000, "group4loanhigh": 20000, 
 		"group5loanmed": 6800, "group5loanhigh": 15000, "tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
-		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1 
+		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent"
 		},
 	"presets" : {
 		"average-public" :
@@ -237,6 +237,17 @@ function build_school_element(school_id) {
 		}		
 	}
 
+	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
+		school.find("a.navigator-link").attr("href", "#");
+		school.find("a.navigator-link").hide();
+		}
+	else {
+		var navigatorlink = "http://nces.ed.gov/collegenavigator/?id=" + school_id;
+		school.find("a.navigator-link").show();
+		school.find("a.navigator-link").attr("href", navigatorlink);
+	}
+
+
 	calculate_school(school_id);
 }
 
@@ -288,8 +299,6 @@ function calculate_school(school_id) {
 
 	schooldata.personal = schooldata.transportation + schooldata.otherexpenses;
 
-	// global.depend?
-	global.depend = false;
 
 	// Set undergrad
 	if ( ( schooldata.program == "ba" ) || ( schooldata.program == "aa" ) ) {
@@ -570,10 +579,10 @@ function calculate_school(school_id) {
 
 	// Unsubsidized Stafford Loans
 	if ( global.depend == "dependent") {
-		// schooldata.staffunsubsidized_max = schooldata.staffunsubsidizeddep_max;
+		schooldata.staffunsubsidized_max = schooldata.staffunsubsidizeddep_max;
 	}
 	else {
-		// schooldata.staffunsubsidized_max = schooldata.staffunsubsidizedindep_max;
+		schooldata.staffunsubsidized_max = schooldata.staffunsubsidizedindep_max;
 	}
 	if (schooldata.staffunsubsidized > schooldata.staffunsubsidized_max) {
 		schooldata.staffunsubsidized = schooldata.staffunsubsidized_max;
@@ -656,7 +665,6 @@ function calculate_school(school_id) {
 	// Borrowing Total
 	schooldata.borrowingtotal = schooldata.privatetotal + schooldata.federaltotal;
 	school.textbyname("borrowingtotal", schooldata.borrowingtotal);
-	school.setbyname("debtburden", schooldata.borrowingtotal);
 
 	// Out of Pocket Total
 	schooldata.totaloutofpocket = schooldata.grantstotal + schooldata.savingstotal;
@@ -738,164 +746,99 @@ function calculate_school(school_id) {
 		+ (schooldata.privateloangrad * (schooldata.privateloanrate / 12) / (1 - Math.pow((1 + schooldata.privateloanrate /12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.institutionalloangrad 
 			* (schooldata.institutionalloanrate / 12) / (1 - Math.pow((1 + schooldata.institutionalloanrate /12), (-schooldata.repaymentterm * 12))));
-	school.setbyname("loanmonthly", schooldata.loanmonthly);
+	school.textbyname("loanmonthly", schooldata.loanmonthly);
 	
 	// loanmonthlyparent
 	schooldata.loanmonthlyparent = (schooldata.parentplus * (global.parentplusrate / 12) / (Math.pow(1 - (1 + global.parentplusrate / 12), (-schooldata.repaymentterm * 12)))) + (schooldata.homeequity * (global.homeequityloanrate / 12) / (Math.pow(1 - (1 + global.homeequityloanrate / 12), (-schooldata.repaymentterm * 12))));
 	
 	// loanlifetime
 	schooldata.loanlifetime = schooldata.loanmonthly * schooldata.repaymentterm  * 12;
+	school.textbyname("loanlifetime", schooldata.loanlifetime, true);
 
 	// salaryneeded
 	schooldata.salaryneeded = schooldata.loanmonthly * 12 / 0.14;
-	
-	// salaryexpected25yrs
-	if (schooldata.program == "aa") {
+
+	// Expected Annual salary (educ lvl)
+	if ( schooldata.program == "aa" ) {
 		schooldata.salaryexpected25yrs = global.salaryaa * 52.1775;
 	}
-	else if (schooldata.program == "ba") {
-		schooldata.salaryexpected25yrs = global.salaryba * 52.1775;
+	else if ( schooldata.program == "ba" ) {
+		schooldata.SALARYEXPECTED25YRS =  global.salaryba *52.1775
 	}
 	else {
-		schooldata.salaryexpected25yrs = global.salarygrad * 52.1775;
+		schooldata.SALARYEXPECTED25YRS = global.salarygrad * 52.1775;
 	}
-	
-	// salaryexpectedoccup
-	schooldata.salaryexpectedoccup = schooldata.occupationsalary * 52;
-	
-	// riskofdefault
-	school.find('[name="riskdefault_icon"]').removeClass("high").removeClass("medium").removeClass("low").removeClass("none");
-	if (schooldata.loanmonthly == 0) {
-		schooldata.riskofdefault = "none";
+
+	// Risk of Default
+	var default_rate_readable = " (" + Math.round(schooldata.defaultrate * 100) + "%)";
+	if ( schooldata.loanmonthly == 0) {
+		schooldata.riskofdefault = "None";
 	}
-	else if ((schooldata.loanmonthly * 12) <= global.salary * global.lowdefaultrisk) {
-		schooldata.riskofdefault = "low";
+	else if ( schooldata.loanmonthly * 12 <= ( schooldata.salary * global.lowdefaultrisk ) ) {
+		schooldata.riskofdefault =  "Low";
 	}
-	else if ((schooldata.loanmonthly * 12) <= global.salary * global.meddefaultrisk) {
-		schooldata.riskofdefault = "medium";
-		school.find('[name="riskdefault_icon"]').addClass("medium");
-		school.find('[name="riskdefault_text"]').text("Medium");
+	else if ( schooldata.loanmonthly * 12 <= ( schooldata.salary * global.meddefaultrisk ) ) {
+		schooldata.riskofdefault = "Medium";
 	}
 	else {
-		schooldata.riskofdefault = "high";
-		school.find('[name="riskdefault_icon"]').addClass("high");
-		school.find('[name="riskdefault_text"]').text("High");
+		schooldata.riskofdefault = "High";
 	}
 
 	// ---- School Indicators ---- //
+	// Comparative Graduation Rate
 	if (schooldata.gradrate == "NR") {
 		schooldata.gradrisk = "Not Reported";
 	}
-	else if (schooldata.indicatorcateg == 3) {
-		schooldata.loandebtrisk = "Worse than Average";
-	}
-	else if ( (schooldata.indicatorcateg == 4) && (schooldata.loanrate <= lobal.group4loanmed) )  {
-		schooldata.loandebtrisk = "Better than Average";
-	}
-	else if ( (schooldata.indicatorcateg == 4) && (schooldata.loanrate <= global.group4loanhigh) )  {
-		schooldata.loandebtrisk = "About Average";
-	}	
-	else if ( schooldata.indicatorcateg == 4 )  {
-		schooldata.loandebtrisk = "Worse than Average";
-	}
-	else if ( (schooldata.indicatorcateg == 5) && (schooldata.loanrate <= global.group5loanmed) )  {
-		schooldata.loandebtrisk = "Better than Average";
-	}
-	else if ( (schooldata.indicatorcateg == 5) && (schooldata.loanrate <= global.group5loanhigh) )  {
-		schooldata.loandebtrisk = "About Average";
-	}
-	else if ( schooldata.indicatorcateg == 5 )  {
-		schooldata.loandebtrisk = "Worse than Average";
-	}
-
-
-
-	//--- Risk factors ---//
-	// Graduation Rate
-	var grad_rate_readable = " (" + Math.round(schooldata.gradrate * 100) + "%)";
-	
-	if (!schooldata.gradrate){
-		schooldata.gradrisk = "Unavailable";
-		school.find('[name="gradrisk"]').removeClass("high").removeClass("low").removeClass("medium").addClass("unavailable");
-		school.find('[name="gradrisk"] span').text("Unavailable");
-		school.find(".gradriskpercent").text("");
-	}
-	else {
-		school.find(".gradriskpercent").text(grad_rate_readable);
-		if (schooldata.gradrate >= .58) {
-			schooldata.gradrisk = "Low";
-			school.find('[name="gradrisk"]').removeClass("unavailable").removeClass("high").removeClass("medium").addClass("low");
-			school.find('[name="gradrisk"] span').text("Better than Average");
+	else if ( schooldata.indicatorgroup != undefined ) {
+		var i = schooldata.indicatorgroup;
+		if ( schooldata.gradrate >= global["group" + i + "gradhigh"] ) {
+			schooldata.gradrisk = "Better than Average";
 		}
-		else if (schooldata.gradrate >= .38) {
-			schooldata.gradrisk = "Medium";
-			school.find('[name="gradrisk"]').removeClass("unavailable").removeClass("low").removeClass("high").addClass("medium");
-			school.find('[name="gradrisk"] span').text("About Average");
+		else if ( schooldata.gradrate >= global["group" + i + "gradmed"] ) {
+			schooldata.gradrisk = "About Average";
 		}
 		else {
-			schooldata.gradrisk = "High";
-			school.find('[name="gradrisk"]').removeClass("unavailable").removeClass("low").removeClass("medium").addClass("high");
-			school.find('[name="gradrisk"] span').text("Worse than Average");
+			schooldata.gradrisk = "Worse than Average";
 		}
 	}
-	
-	// Retention Rate
-	var retent_rate_readable = " (" + Math.round(schooldata.retentrate * 100) + "%)";
-	if (!schooldata.retentrate){
-		schooldata.retentrisk = "Unavailable";
-		school.find('[name="retentrisk"]').removeClass("high").removeClass("low").removeClass("medium").addClass("unavailable");
-		school.find('[name="retentrisk"] span').text("Unavailable");
-		school.find(".retentriskpercent").text("");
-	}
-	else {	
-		school.find(".retentriskpercent").text(retent_rate_readable);
-		
-		if (schooldata.retentrate >= .78) {
-			schooldata.retentrisk = "Better than Average";
-			school.find('[name="retentrisk"]').removeClass("unavailable").removeClass("high").removeClass("medium").addClass("low");
-			school.find('[name="retentrisk"] span').text("Better than Average");
+	school.find("[name='gradrisk']").html(schooldata.gradrisk);
+
+
+	// Comparative Cohort Default Rate %
+	if ( schooldata.defaultrate != undefined ) {
+		if (schooldata.defaultrate == "NR") {
+			schooldata.defaultrisk = "Not Reported";
 		}
-		else if (schooldata.retentrate >= .63) {
-			schooldata.retentrisk = "About Average";
-			school.find('[name="retentrisk"]').removeClass("unavailable").removeClass("low").removeClass("high").addClass("medium");
-			school.find('[name="retentrisk"] span').text("About Average");
-		}
-		else {
-			schooldata.retentrisk = "Worse than Average";
-			school.find('[name="retentrisk"]').removeClass("unavailable").removeClass("low").removeClass("medium").addClass("high");
-			school.find('[name="retentrisk"] span').text("Worse than Average");
-		}
-	}
-	
-	// defaultrisk
-	var default_rate_readable = " (" + Math.round(schooldata.defaultrate * 100) + "%)";
-	
-	if (!schooldata.defaultrate){
-		schooldata.defaultrisk = "Unavailable";
-		school.find('[name="defaultrisk"]').removeClass("high").removeClass("low").removeClass("medium").addClass("unavailable");
-		school.find('[name="defaultrisk"] span').text("Unavailable");
-		school.find(".defaultriskpercent").text("");
-	}
-	else {
-		
-		school.find(".defaultriskpercent").text(default_rate_readable);
-		
-		if (schooldata.defaultrate <= .05) {
+		else if (schooldata.defaultrate < global.cdravg) {
 			schooldata.defaultrisk = "Better than Average";
-			school.find('[name="defaultrisk"]').removeClass("unavailable").removeClass("high").removeClass("medium").addClass("low");
-			school.find('[name="defaultrisk"] span').text("Better than Average");
-		}
-		else if (schooldata.defaultrate <= .11) {
+		} 
+		else if (schooldata.defaultrate = global.cdravg) {
 			schooldata.defaultrisk = "About Average";
-			school.find('[name="defaultrisk"]').removeClass("unavailable").removeClass("low").removeClass("high").addClass("medium");
-			school.find('[name="defaultrisk"] span').text("About Average");
-		}
+		} 
 		else {
 			schooldata.defaultrisk = "Worse than Average";
-			school.find('[name="defaultrisk"]').removeClass("unavailable").removeClass("low").removeClass("medium").addClass("high");
-			school.find('[name="defaultrisk"] span').text("Worse than Average");
+		}		
+	}
+	school.find("[name='defaultrisk']").html(schooldata.defaultrisk);
+
+	// Comparative Average Student Loan
+	if (schooldata.avgstuloandebt == "NR") {
+		schooldata.loandebtrisk = "Not Reported";
+	}
+	else if ( schooldata.indicatorgroup != undefined ) {
+		var i = schooldata.indicatorgroup;
+		if ( schooldata.borrowingtotal <= global["group" + i + "loanmed"] ) {
+			schooldata.loandebtrisk = "Better than Average";
+		}
+		else if ( schooldata.borrowingtotal <= global["group" + i + "loanhigh"] ) {
+			schooldata.loandebtrisk = "About Average";
+		}
+		else {
+			schooldata.loandebtrisk = "Worse than Average";
 		}
 	}
+	school.find("[name='loandebtrisk']").html(schooldata.loandebtrisk);
+
 
 	// Draw the visualization
 
@@ -923,9 +866,6 @@ function calculate_school(school_id) {
 		school.find('[name="gap"]').text(num_to_money(left_to_pay));
 	}
 
-	if (schooldata.firstyrcostattend < schooldata.borrowingtotal) {
-		// add error handling
-	}
 	school.check_max_alert();
 
 } // end calculate_school()
@@ -987,7 +927,7 @@ function draw_the_bars(school_id) {
 	var column = $("#" + school_id).attr("data-column");
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
-	var chart_width = $("#institution-row [data-column='1']").outerWidth(false);
+	var chart_width = $("#institution-row [data-column='1']").width();
 	var cost = money_to_num(school.find("[name='firstyrcostattend']").html());
 	var pixel_price = chart_width / cost;
 	var left = 0;
@@ -1108,11 +1048,13 @@ $(document).ready(function() {
 	build_school_element("average-public");
 
 	$(".add-a-school, .add-school-info").each( function() {
-		$(this).width($(this).parent().width());
+		var diff = $(this).outerWidth() - $(this).width();
+		$(this).width($(this).parent().width() - diff);
 		$(this).height($(this).width());
 	});
 	$(".remove-confirm, .gibill-panel, .meter").each( function() {
-		$(this).width($(this).parent().width());
+		var diff = $(this).outerWidth() - $(this).width();
+		$(this).width($(this).parent().width() - diff);
 	});
 
 	// Check to see if there is restoredata
@@ -1496,11 +1438,10 @@ $(document).ready(function() {
 		ttc.css("border-color", bgcolor);
 		ttc.find("#outertip").css("border-bottom-color", bgcolor);
 		ttc.find("p").html($(this).attr("data-tooltip"));
-		
-		$("html").on('click', function() {
-			ttc.hide();
-			$("html").off('click');
-		});
+	});
+	$(".chart_mask_internal").on("mouseleave", function() {
+		var ttc = $("#bar-info-container");
+		ttc.hide();
 	});
 
 	$(".tooltip-info").live('click', function() {

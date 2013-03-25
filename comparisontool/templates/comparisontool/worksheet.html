@@ -144,7 +144,7 @@ var csrftok = "{{ csrf_token }}";
 									<label class="radio-label">Graduate</label>
 									<button class="continue">Continue</button>
 								</div>
-								<div class="prgmlength-selection hidden-box">
+								<div class="prgmlength-selection hidden-box">	
 									<h3>Program Length</h3>
 									<select name="prgmlength">
 										<option value="5">5</option>
@@ -166,14 +166,15 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
-								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+								<a class="remove-school-link" href="#">Remove This School</a>
 							</div>
 							<div class="remove-confirm hidden-box">
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
 							</div>
+							<h2 name="institutionname"></h2>
+							<a href="" class="navigator-link hidden-box" target="_blank">Look up school information.</a>
 						</th>
 						<th scope="col" data-column="2" >
 							<div class="add-school-info hidden-box">
@@ -696,16 +697,22 @@ var csrftok = "{{ csrf_token }}";
 						<th><h3>After school</h3></th>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
-						<td data-column="1"><input type="text" value="" name="debtburden" readonly="readonly"></td>
-						<td data-column="2"><input type="text" value="" name="debtburden" readonly="readonly"></td>
-						<td data-column="3"><input type="text" value="" name="debtburden" readonly="readonly"></td>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="">Debt after graduation</h4></th>
+						<td data-column="1"><span name="loanlifetime"></span></td>
+						<td data-column="2"><span name="loanlifetime"></span></td>
+						<td data-column="3"><span name="loanlifetime"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
-						<td data-column="1"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
-						<td data-column="2"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
-						<td data-column="3"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
+						<td data-column="1"><span name="loanmonthly"></span></td>
+						<td data-column="2"><span name="loanmonthly"></span></td>
+						<td data-column="3"><span name="loanmonthly"></span></td>
+					</tr>
+					<tr>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
+						<td data-column="1"><span name="debtburden"></span></td>
+						<td data-column="2"><span name="debtburden"></span></td>
+						<td data-column="3"><span name="debtburden"></span></td>
 					</tr>
 				</tbody>
 				<tbody>
@@ -714,21 +721,21 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Graduation Rate</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="gradrisk"></span></td>
+						<td data-column="2"><span name="gradrisk"></span></td>
+						<td data-column="3"><span name="gradrisk"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Loan Default Rate</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="defaultrisk"></span></td>
+						<td data-column="2"><span name="defaultrisk"></span></td>
+						<td data-column="3"><span name="defaultrisk"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Median Borrowing</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="loandebtrisk"></span></td>
+						<td data-column="2"><span name="loandebtrisk"></span></td>
+						<td data-column="3"><span name="loandebtrisk"></span></td>
 					</tr>
 				</tbody>
 			</table>
