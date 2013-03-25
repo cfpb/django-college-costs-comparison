@@ -296,10 +296,6 @@ tbody > th, tbody thead th:first-child {
 	margin: 30% 0 0 0;
 }
 
-#institution-row.fixed th .add-a-school {
-	
-}
-
 #institution-row th .add-school-info {
 	background-color: #e6e6e6;
 	display: none;
