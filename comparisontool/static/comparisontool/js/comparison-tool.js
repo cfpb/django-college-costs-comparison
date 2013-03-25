@@ -1252,6 +1252,18 @@ $(document).ready(function() {
 		}
 	});
 
+	$(".add-school-info .add-xml .continue").click( function() {
+		var headercell = $(this).closest("[data-column]");
+		var column = headercell.attr("data-column");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var schooldata = schools[school_id];
+		build_school_element(school_id);
+		headercell.find(".add-school-info").hide();
+		headercell.find(".add-school-info .hidden-box").hide();
+		headercell.find(".add-school-info .school-search").show();
+		calculate_school(school_id);	
+	});
+
 	$(".add-school-info .add-xml .xml-magic-happens").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");

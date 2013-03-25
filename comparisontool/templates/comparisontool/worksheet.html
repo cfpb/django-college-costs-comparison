@@ -129,7 +129,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="0"></td>
 						<th scope="col" data-column="1" data-default="true">
 							<div class="add-school-info hidden-box">
-								<div class="school-search hidden-box">
+								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
@@ -157,9 +157,12 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
@@ -172,7 +175,7 @@ var csrftok = "{{ csrf_token }}";
 								<a href="#" class="remove-yes button">Yes</a> <a href="#" class="remove-no button">No</a>
 							</div>
 						</th>
-						<th>
+						<th scope="col" data-column="2" >
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
@@ -202,9 +205,12 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
@@ -247,9 +253,12 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
@@ -265,7 +274,7 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="show">
+					<tr>
 						<th class="width-holder"><h3 id="first-year-costs">First Year Costs</h3></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
@@ -309,7 +318,7 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 				</tbody>
 				<tbody>
-					<tr class="show">
+					<tr>
 						<th><h3>First Year Financial Aid Offer</h3></th>
 					</tr>
 					<tr class="totalcont show arrw">
