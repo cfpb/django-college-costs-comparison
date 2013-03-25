@@ -7,7 +7,6 @@
 {% block title %}Compare financial aid and college cost{% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/jquery.qtip.min.css">
 <link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
 {% endblock %}
 
@@ -20,7 +19,6 @@
 {% block page_js %}
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/jquery.qtip.min.js"></script>
 
 <script>
 
@@ -136,6 +134,27 @@ var csrftok = "{{ csrf_token }}";
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
 								</div>
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="programtype-radio" type="radio" name="program" value="aa">
+									<label class="programtype-label">Associate's/Certificate</label>
+									<input class="programtype-radio" type="radio" name="program" value="ba" checked="checked">
+									<label class="programtype-label">Bachelor's</label>	
+									<input class="programtype-radio" type="radio" name="program" value="grad">
+									<label class="programtype-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5</option>
+										<option value="4" selected="selected">4</option>
+										<option value="3">3</option>
+										<option value="2">2</option>
+										<option value="1">1</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
 								<div class="add-xml">
 									<h2 class="institutionname"></h2>
 									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
@@ -204,13 +223,13 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="show arrw">
+					<tr class="show">
 						<th class="width-holder"><h3 id="first-year-costs">First Year Costs</h3></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 					</tr>
-					<tr class="totalcost show">
+					<tr class="totalcost show arrw">
 						<th scope="row" data-column="0"><h4>Total cost</h4></th>
 						<td data-column="1"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
@@ -248,10 +267,10 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 				</tbody>
 				<tbody>
-					<tr class="show arrw">
+					<tr class="show">
 						<th><h3>First Year Financial Aid Offer</h3></th>
 					</tr>
-					<tr class="totalcont show">
+					<tr class="totalcont show arrw">
 						<th scope="row" data-column="0"><h4>Total contributions</h4></th>
 						<td data-column="1"><h6 class="data-total" name="totalcontributions">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="totalcontributions">$0</h6></td>
@@ -290,7 +309,7 @@ var csrftok = "{{ csrf_token }}";
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -330,7 +349,7 @@ var csrftok = "{{ csrf_token }}";
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none" checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -370,7 +389,7 @@ var csrftok = "{{ csrf_token }}";
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none" checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -623,7 +642,7 @@ var csrftok = "{{ csrf_token }}";
 				</tbody>
 				<tbody>
 					<tr class="stop">
-						<th><h3>After 4 years of school</h3></th>
+						<th><h3>After <span class="number-years">4</span> years of school</h3></th>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
@@ -692,17 +711,3 @@ var csrftok = "{{ csrf_token }}";
 
 
 {% endblock content %}
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-37785943-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>

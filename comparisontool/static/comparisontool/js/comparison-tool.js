@@ -227,7 +227,8 @@ function build_school_element(school_id) {
 
 	// Set the data within the element
 	school.find('[name="institutionname"]').text(schooldata.school);
-	school.find("input").not(".interest-rate").val("$0");
+	school.find("input.school-data").not(".interest-rate").val("$0");
+	school.find("input.school-data.interest-rate").val("0%");
 	// Currently, we're not using schooldata from the database
 	// As such, the following is only used for average schools
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
@@ -264,6 +265,24 @@ function calculate_school(school_id) {
 			schooldata[$(this).attr("name")] = ( money_to_num( $(this).val() ) / 100 );
 		}
 	});
+
+	// Get program type and length
+	schooldata.program = school.find(".program").val();
+	if ( schooldata.program == undefined ) {
+		schooldata.program = "ba";
+	}
+	schooldata.prgmlength = school.find(".prgmlength").val();
+	if ( schooldata.prgmlength == undefined ) {
+		if (schooldata.program == "ba") {
+			schooldata.prgmlength = 4
+		}
+		else if (schooldata.program == "aa") {
+			schooldata.prgmlength = 2;
+		}
+		else {
+			schooldata.prgmlength = 2;
+		}
+	}
 
 	// For calculations, add transportation and otherexpenses into personalcosts
 
@@ -594,6 +613,12 @@ function calculate_school(school_id) {
 	if ( schooldata.privateloanrate == 0) {
 		schooldata.privateloanrate = global.privateloanratedefault;
 	}
+	if ( schooldata.privateloanrate > .2 ) {
+		schooldata.privateloanrate = .2;
+	}
+	if ( schooldata.privateloanrate < .01 ) {
+		schooldata.privateloanrate = .01;
+	}
 	school.find("[name='privateloanrate']").val((schooldata.privateloanrate * 100) + "%");
 
 	// gap
@@ -615,6 +640,12 @@ function calculate_school(school_id) {
 	// Institutional Loan Rate
 	if ( schooldata.institutionalloanrate == 0) {
 		schooldata.institutionalloanrate = global.institutionalloantratedefault;
+	}
+	if ( schooldata.institutionalloanrate > .2 ) {
+		schooldata.institutionalloanrate = .2;
+	}
+	if ( schooldata.institutionalloanrate < .01 ) {
+		schooldata.institutionalloanrate = .01;
 	}
 	school.find("[name='institutionalloanrate']").val((schooldata.institutionalloanrate * 100) + "%");
 
@@ -645,17 +676,6 @@ function calculate_school(school_id) {
 	schooldata.overborrowing = 0;
 	if ( schooldata.firstyrcostattend < ( schooldata.outofpockettotal + schooldata.borrowingtotal ) ) {
 		schooldata.overborrowing = schooldata.borrowingtotal + schooldata.outofpockettotal - schooldata.firstyrcostattend;
-	}
-
-	// prgmlength - "Program Length"
-	if (schooldata.program == "ba") {
-		schooldata.prgmlength = 5 - global.yrincollege;
-	}
-	else if (schooldata.program == "aa") {
-		schooldata.prgmlength = 2;
-	}
-	else {
-		schooldata.prgmlength = global.gradprgmlength;
 	}
 
 	// Estimated Debt Calculation
@@ -1203,9 +1223,21 @@ $(document).ready(function() {
 		});	
 		schools[school_id] = schooldata;
 		headercell.find(".school-search").hide();
-		headercell.find(".add-xml").show();
+		headercell.find(".program-selection").show();
 
 		// build_school_element(school_id);
+	});
+
+	$(".add-school-info .program-selection .continue").click( function() {
+		var column = $(this).closest("[data-column]").attr("data-column");
+		$("[data-column='" + column + "'] .program-selection").hide();
+		$("[data-column='" + column + "'] .prgmlength-selection").show();
+	});
+
+	$(".add-school-info .prgmlength-selection .continue").click( function() {
+		var column = $(this).closest("[data-column]").attr("data-column");
+		$("[data-column='" + column + "'] .prgmlength-selection").hide();
+		$("[data-column='" + column + "'] .add-xml").show();
 	});
 
 	$(".add-school-info .add-xml .xml-magic-happens").click( function() {
@@ -1220,26 +1252,39 @@ $(document).ready(function() {
 		build_school_element(school_id);
 
 		// assign values based on json
-		schooldata.books = money_to_num(json.costs.books_and_supplies);
-		schooldata.roombrd = money_to_num(json.costs.housing_and_meals);
-		schooldata.otherexpenses = money_to_num(json.costs.other_education_costs);
-		schooldata.transportation = money_to_num(json.costs.transportation);
-		schooldata.tuitionfees = money_to_num(json.costs.tuition_and_fees);
-		
-		schooldata.pell = money_to_num(json.grants_and_scholarships.federal_pell_grant);
-		// other scholarships & grants comprises several json data
-		schooldata.scholar = money_to_num(json.grants_and_scholarships.grants);
-		schooldata.scholar += money_to_num(json.grants_and_scholarships.grants_from_state);
-		schooldata.scholar += money_to_num(json.grants_and_scholarships.other_scholarships);
+		if ( json.costs != undefined) {
+			schooldata.books = money_to_num(json.costs.books_and_supplies);
+			schooldata.roombrd = money_to_num(json.costs.housing_and_meals);
+			schooldata.otherexpenses = money_to_num(json.costs.other_education_costs);
+			schooldata.transportation = money_to_num(json.costs.transportation);
+			schooldata.tuitionfees = money_to_num(json.costs.tuition_and_fees);			
+		}
+		if ( json.grants_and_scholarships != undefined ) {
+			schooldata.pell = money_to_num(json.grants_and_scholarships.federal_pell_grant);
+			// other scholarships & grants comprises several json data
+			schooldata.scholar = money_to_num(json.grants_and_scholarships.grants);
+			schooldata.scholar += money_to_num(json.grants_and_scholarships.grants_from_state);
+			schooldata.scholar += money_to_num(json.grants_and_scholarships.other_scholarships);
+		}
+		if ( json.loan_options != undefined ) {
+			schooldata.staffsubsidized = money_to_num(json.loan_options.federal_direct_subsidized_loan);
+			schooldata.staffunsubsidized = money_to_num(json.loan_options.federal_direct_unsubsidized_loan);
+			schooldata.perkins = money_to_num(json.loan_options.federal_perkins_loans);
+		}
+		if ( json.other_options != undefined ) {
+			schooldata.family = money_to_num(json.other_options.family_contribution);
+		}
+		if ( json.work_options != undefined ) {
+			schooldata.workstudy = money_to_num(json.work_options.work_study);
+		}
 
-		schooldata.staffsubsidized = money_to_num(json.loan_options.federal_direct_subsidized_loan);
-		schooldata.staffunsubsidized = money_to_num(json.loan_options.federal_direct_unsubsidized_loan);
-		schooldata.perkins = money_to_num(json.loan_options.federal_perkins_loans);
+		for (key in schooldata) {
+			if ( schooldata[key] == undefined ) {
+				schooldata[key] = 0;
+			}
+		}	
 
-		schooldata.family = money_to_num(json.other_options.family_contribution);
-		schooldata.workstudy = money_to_num(json.work_options.work_study);
-
-		school.find("input").each(function() {
+		school.find("input.school-data").each(function() {
 			$(this).val(schooldata[$(this).attr("name")]);
 		});
 
@@ -1345,7 +1390,8 @@ $(document).ready(function() {
 
 	// Perform a calculation when the user blurs inputs
 	$("#comparison-tables input.school-data").live('blur', function (ev) {
-		school_id = $(this).parents(".school").attr("id");
+		var column = $(this).closest("[data-column]").attr("data-column");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
 		calculate_school(school_id);
 	});
 
@@ -1369,7 +1415,7 @@ $(document).ready(function() {
 			return false;
 		}
 		// .. after a delay if any other key is pressed
-		$(this).parents(".school").check_max_alert();
+		school.check_max_alert();
 		delay(function() {
 			calculate_school(school_id);
 			/*
