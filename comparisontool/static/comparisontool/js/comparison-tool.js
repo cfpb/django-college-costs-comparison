@@ -165,7 +165,7 @@ jQuery.fn.exists = function() {
 function hide_column(col_num) {
 	var column = $("[data-column='" + col_num + "']");
 	column.each( function() {
-		$(this).children().not(".add-a-school").hide();
+		$(this).children().not(".add-a-school, width-holder").hide();
 		$(this).children(".add-a-school").show();
 	});
 }
@@ -182,15 +182,15 @@ function show_column(col_num) {
 function fade_header() {
 	var window_scroll = $(this).scrollTop();
 	var table_top = $("#first-year-costs").offset().top;
-	var headheight = $("#comparison-tables table > thead > tr").height();
+	var headheight = $("#institution-row").height();
 	if (window_scroll < ( table_top - headheight ) ) {
-		$('#comparison-tables table > thead > tr').removeClass('fixed');
+		$('#institution-row').removeClass('fixed');
 	}
 	else {
-		$("#comparison-tables table > thead > tr").addClass('fixed');
+		$("#institution-row").addClass('fixed');
 	}
 
-	var theight = $('table > thead > tr').height();
+	var theight = $('institution-row').height();
 	var coffset = $('.contributions').offset().top - 500;
 	if ( ( window_scroll > theight ) && ( window_scroll < coffset ) ) {
 		$('.breakdown').addClass('fixed');
