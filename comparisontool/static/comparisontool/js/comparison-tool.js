@@ -58,6 +58,8 @@ var pixel_price = 0, // The ratio of pixels to dollars for the bar graph
 	schoolcounter = 0, // an internal counter to keep school ids unique
 	highest_cost = global.most_expensive_cost; // The most expensive cost of any school
 
+// Visualization
+google.load('visualization', '1', {packages: ['corechart']});
 
 /* -------- 
 	FUNCTIONS 
@@ -204,7 +206,28 @@ function fix_widths() {
 	$(".fixed th").css("min-width", "25%");
 }
 
+function drawVisualization(column, first, second) {
+	// Create and populate the data table.
+	var data = google.visualization.arrayToDataTable([
+		['Thing', 'Percent'],
+		['Loan Payment', first],
+		['Remaining Salary', second]
+	]);
 
+	// Create and draw the visualization.
+	var options = {
+		chartArea: {height: "150px", width: "150px"},
+		height: 125,
+		legend: {position: "none"},
+		pieSliceText: "none",
+		slices: { 0:{color: "Red"}, 1: {color:"Gray"} },
+		tooltip: {trigger: "none"},
+		width: 125
+	};
+
+	var pieid = "pie" + column;
+	var chart = new google.visualization.PieChart(document.getElementById(pieid)).draw(data, options);
+}
 
 // Fill in a column with the school's data
 // school's data must be in the schools object first
@@ -764,16 +787,17 @@ function calculate_school(school_id) {
 	// salaryneeded
 	schooldata.salaryneeded = schooldata.loanmonthly * 12 / 0.14;
 
-	// Expected Annual salary (educ lvl)
+	// Expected salary and Annual salary (educ lvl)
 	if ( schooldata.program == "aa" ) {
 		schooldata.salaryexpected25yrs = global.salaryaa * 52.1775;
 	}
 	else if ( schooldata.program == "ba" ) {
-		schooldata.SALARYEXPECTED25YRS =  global.salaryba * 52.1775
+		schooldata.salaryexpected25yrs =  global.salaryba * 52.1775
 	}
 	else {
-		schooldata.SALARYEXPECTED25YRS = global.salarygrad * 52.1775;
+		schooldata.salaryexpected25yrs = global.salarygrad * 52.1775;
 	}
+	schooldata.salarymonthly = schooldata.salaryexpected25yrs / 12;
 
 	// Risk of Default
 	var default_rate_readable = " (" + Math.round(schooldata.defaultrate * 100) + "%)";
@@ -1008,6 +1032,20 @@ function draw_the_bars(school_id) {
     var breakdownheight = $(".meter").height();
     school.find(".meter").closest("td").height(breakdownheight);
 
+    // Draw the pie chart
+    if ( schooldata.loanmonthly > 0 ) {
+    	$("#pie" + column).parent().show();
+	    var percentloan = Math.round( ( schooldata.loanmonthly / schooldata.salarymonthly ) * 100 );
+	    if ( percentloan > 100 ) {
+	    	percentloan = 100;
+	    }
+	    var percentremaining = 100 - percentloan;
+	    drawVisualization(1, percentloan, percentremaining);
+    	school.find(".payment-percent").html(percentloan + "%");
+    }
+    else {
+    	$("#pie" + column).parent().hide();
+    }
 	// Extend the chart's internal container to keep floating items from wrapping
 	// school.find(".chart_mask_internal").width(total_section_width + 100);
 } // end draw_the_bars()
@@ -1039,7 +1077,6 @@ function school_search_results(query) {
 	});
 	return dump;
 } // end school_search_results()
-
 
 
 /*----------------

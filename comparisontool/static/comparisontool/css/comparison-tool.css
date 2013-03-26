@@ -723,6 +723,9 @@ label.tooltip-info {
 	font-weight: bold;
 	text-align: right;
 }
+#comparison-tables .debt-pie {
+	float: left;
+}
 
 /* Helper Classes */
 .visuallyhidden {

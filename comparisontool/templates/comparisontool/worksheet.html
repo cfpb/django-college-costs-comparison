@@ -66,9 +66,10 @@ var restoredata = {{ data_js|safe }};
 var csrftok = "{{ csrf_token }}";
 </script>
 
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-analytics.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
 
 {% endblock page_js %}
 
@@ -136,22 +137,22 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
-									<input class="radio-input" type="radio" name="program" value="aa">
+									<input class="radio-input" type="radio" name="program1" valu`e="aa">
 									<label class="radio-label">Associate's/Certificate</label>
-									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<input class="radio-input" type="radio" name="program1" value="ba" checked="checked">
 									<label class="radio-label">Bachelor's</label>	
-									<input class="radio-input" type="radio" name="program" value="grad">
+									<input class="radio-input" type="radio" name="program1" value="grad">
 									<label class="radio-label">Graduate</label>
 									<button class="continue">Continue</button>
 								</div>
 								<div class="prgmlength-selection hidden-box">	
 									<h3>Program Length</h3>
 									<select name="prgmlength">
-										<option value="5">5</option>
-										<option value="4" selected="selected">4</option>
-										<option value="3">3</option>
-										<option value="2">2</option>
-										<option value="1">1</option>
+										<option value="5">5 years</option>
+										<option value="4" selected="selected">4 years</option>
+										<option value="3">3 years</option>
+										<option value="2">2 years</option>
+										<option value="1">1 year</option>
 									</select>
 									<button class="continue">Continue</button>
 								</div>
@@ -185,22 +186,22 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
-									<input class="radio-input" type="radio" name="program" value="aa">
+									<input class="radio-input" type="radio" name="program2" value="aa">
 									<label class="radio-label">Associate's/Certificate</label>
-									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<input class="radio-input" type="radio" name="program2" value="ba" checked="checked">
 									<label class="radio-label">Bachelor's</label>	
-									<input class="radio-input" type="radio" name="program" value="grad">
+									<input class="radio-input" type="radio" name="program2" value="grad">
 									<label class="radio-label">Graduate</label>
 									<button class="continue">Continue</button>
 								</div>
 								<div class="prgmlength-selection hidden-box">
 									<h3>Program Length</h3>
 									<select name="prgmlength">
-										<option value="5">5</option>
-										<option value="4" selected="selected">4</option>
-										<option value="3">3</option>
-										<option value="2">2</option>
-										<option value="1">1</option>
+										<option value="5">5 years</option>
+										<option value="4" selected="selected">4 years</option>
+										<option value="3">3 years</option>
+										<option value="2">2 years</option>
+										<option value="1">1 year</option>
 									</select>
 									<button class="continue">Continue</button>
 								</div>
@@ -233,22 +234,22 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
-									<input class="radio-input" type="radio" name="program" value="aa">
+									<input class="radio-input" type="radio" name="program3" value="aa">
 									<label class="radio-label">Associate's/Certificate</label>
-									<input class="radio-input" type="radio" name="program" value="ba" checked="checked">
+									<input class="radio-input" type="radio" name="program3" value="ba" checked="checked">
 									<label class="radio-label">Bachelor's</label>	
-									<input class="radio-input" type="radio" name="program" value="grad">
+									<input class="radio-input" type="radio" name="program3" value="grad">
 									<label class="radio-label">Graduate</label>
 									<button class="continue">Continue</button>
 								</div>
 								<div class="prgmlength-selection hidden-box">
 									<h3>Program Length</h3>
 									<select name="prgmlength">
-										<option value="5">5</option>
-										<option value="4" selected="selected">4</option>
-										<option value="3">3</option>
-										<option value="2">2</option>
-										<option value="1">1</option>
+										<option value="5">5 years</option>
+										<option value="4" selected="selected">4 years</option>
+										<option value="3">3 years</option>
+										<option value="2">2 years</option>
+										<option value="1">1 year</option>
 									</select>
 									<button class="continue">Continue</button>
 								</div>
@@ -354,11 +355,9 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="GI Bill">GI Bill</label></th>
-						<td data-column="1" class="p-rel">
-							<input type="text" class="school-data" value="0" name="gibill">
-							<a href="#" class="gibill-calculator">GI Bill<br>Calculator</a>
+						<td data-column="1">
+							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<div class="gibill-panel hidden-box">
-								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
@@ -380,13 +379,13 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<legend>Residency</legend>
+									<label for="military-residency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency1" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency1" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency1" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
 										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
@@ -394,16 +393,15 @@ var csrftok = "{{ csrf_token }}";
 									</div>
 								</fieldset>
 							</div>
+							<input type="text" class="school-data" value="0" name="gibill" readonly="readonly">
 						</td>
 						<td data-column="2">
-							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
-							<input type="text" class="school-data" value="0" name="gibill">
+<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<div class="gibill-panel hidden-box">
-								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" checked="checked">No Military Service</option>
+										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -421,13 +419,13 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<legend>Residency</legend>
+									<label for="military-residency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency2" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency2" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency2" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
 										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
@@ -435,16 +433,15 @@ var csrftok = "{{ csrf_token }}";
 									</div>
 								</fieldset>
 							</div>
+							<input type="text" class="school-data" value="0" name="gibill" readonly="readonly">
 						</td>
 						<td data-column="3">
-							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
-							<input type="text" class="school-data" value="0" name="gibill">
+<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<div class="gibill-panel hidden-box">
-								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" checked="checked">No Military Service</option>
+										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -462,13 +459,13 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<legend>Residency</legend>
+									<label for="military-residency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency3" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency3" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency3" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
 										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
@@ -476,6 +473,7 @@ var csrftok = "{{ csrf_token }}";
 									</div>
 								</fieldset>
 							</div>
+							<input type="text" class="school-data" value="0" name="gibill" readonly="readonly">
 						</td>
 					</tr>
 
@@ -707,9 +705,21 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
-						<td data-column="1"><span name="loanmonthly"></span></td>
-						<td data-column="2"><span name="loanmonthly"></span></td>
-						<td data-column="3"><span name="loanmonthly"></span></td>
+						<td data-column="1">
+							<div class="debt-pie" id="pie1"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
+						<td data-column="2">
+							<div class="debt-pie" id="pie2"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
+						<td data-column="3">
+							<div class="debt-pie" id="pie3"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
