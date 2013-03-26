@@ -144,7 +144,7 @@ table h3 {
 	font-size: 0.8em;
 	text-align: left;
 }
-.left-to-pay table h3 {
+.left-to-pay h3 {
 	font-size: 1.4em;
 	text-align: right;
 }
@@ -338,7 +338,23 @@ tbody > th, tbody thead th:first-child {
 	font-size: .8em;
 	padding: .5em 1em 1em 1em;
 	position: absolute;
+		top: 4em;
 	text-align: left;
+	z-index: 100;
+}
+
+.gibill-panel > fieldset {
+	width: 100%;
+}
+
+.gibill-calculator-tip {
+	background: url(../images/gibill-arrow-up.png) 0 0 no-repeat;
+	position: absolute;
+		top: -8px;
+		left: 50px;
+	overflow: visible;
+	height: 10px;
+	width: 10px;
 }
 
 .grants-row td .gibill-panel label {
@@ -347,7 +363,8 @@ tbody > th, tbody thead th:first-child {
 }
 
 .grants-row td .gibill-panel select {
-	max-width: 90%;
+	background-color: #f4f4f4;
+	max-width: 100%;
 	margin-bottom: 1.5em;
 }
 
@@ -366,7 +383,33 @@ tbody > th, tbody thead th:first-child {
 }
 
 #comparison-tables .military-calculate {
+	background-color: #d12124;
+	display: block;
 	margin: 1.5em auto;
+	padding: 0.5em 1 em;
+	text-transform: none;
+	width: 50%;
+}
+
+/* GI Bill Calculator Link */
+.gibill-calculator {
+	background-color: #d12124;
+	border: 0;
+	color: #fff;
+	font-size: 0.75em;
+	padding: 0.35em 0 0.35em 2em;
+	position: absolute;
+		top: -0.3em;
+		left: 1em;
+	text-align: left;
+	width: 5em;
+}
+
+.gibill-calculator:hover,
+.gibill-calculator:active,
+.gibill-calculator:focus {
+	background-color: #d96a4f;
+	text-decoration: underline;
 }
 
 /* Column headers */
@@ -694,4 +737,7 @@ label.tooltip-info {
 }
 .bottom-border {
 	border-bottom: 5px solid #585858;
+}
+.p-rel {
+	position: relative;
 }
