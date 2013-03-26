@@ -347,7 +347,7 @@ tbody > th, tbody thead th:first-child {
 }
 
 .grants-row td .gibill-panel select {
-	max-width: 100%;
+	max-width: 90%;
 	margin-bottom: 1.5em;
 }
 
