@@ -587,7 +587,7 @@ label.tooltip-info {
 }
 
 #comparison-tables .breakdown .meter .bars .bars-container {
-
+	margin: 0 auto;
 }
 
 #comparison-tables .breakdown .meter .chart_mask_internal {

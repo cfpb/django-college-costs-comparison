@@ -937,6 +937,8 @@ function draw_the_bars(school_id) {
 	var total_borrowed_section_width = 0;
 	var total_outofpocket_section_width = 0;
 
+	school.find(".bars-container").width(chart_width);
+
 	// find each .bar element and determine its width, then animate
 	school.find(".chart_mask_internal .bar").each(function() {
 		var bar = $(this);
