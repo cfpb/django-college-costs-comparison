@@ -354,10 +354,11 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="GI Bill">GI Bill</label></th>
-						<td data-column="1">
-							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
+						<td data-column="1" class="p-rel">
 							<input type="text" class="school-data" value="0" name="gibill">
+							<a href="#" class="gibill-calculator">GI Bill<br>Calculator</a>
 							<div class="gibill-panel hidden-box">
+								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
@@ -398,6 +399,7 @@ var csrftok = "{{ csrf_token }}";
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<input type="text" class="school-data" value="0" name="gibill">
 							<div class="gibill-panel hidden-box">
+								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
@@ -438,6 +440,7 @@ var csrftok = "{{ csrf_token }}";
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<input type="text" class="school-data" value="0" name="gibill">
 							<div class="gibill-panel hidden-box">
+								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
