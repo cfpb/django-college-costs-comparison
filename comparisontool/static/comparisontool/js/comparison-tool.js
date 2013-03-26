@@ -213,7 +213,7 @@ function build_school_element(school_id) {
 	var school = $("[data-column='" + column + "']");
 	school.find(".add-a-school").hide();
 	school.find(".add-school-info").hide();
-	school.find(".add-school-info input").val("");
+	school.find(".add-school-info input:text").val("");
 	school.find(".search-results").html("");
 
 	show_column(column);
@@ -278,11 +278,11 @@ function calculate_school(school_id) {
 	});
 
 	// Get program type and length
-	schooldata.program = school.find(".program").val();
+	schooldata.program = school.find("input:radio[name='program" + column + "']").val();
 	if ( schooldata.program == undefined ) {
 		schooldata.program = "ba";
 	}
-	schooldata.prgmlength = school.find(".prgmlength").val();
+	schooldata.prgmlength = school.find("[name='prgmlength']").val();
 	if ( schooldata.prgmlength == undefined ) {
 		if (schooldata.program == "ba") {
 			schooldata.prgmlength = 4
@@ -374,7 +374,7 @@ function calculate_school(school_id) {
 	// GI Bill
 
 	// Determine in-state and out-of-state
-	var instate = $("[data-column='" + column + "'] [name='military-residency']").val();
+	var instate = $("[data-column='" + column + "'] [name~='military-residency']").val();
 	if ( ( instate === "instate" ) || ( instate === "indistrict" ) ) {
 		schooldata.instate = true;
 	}
@@ -383,7 +383,8 @@ function calculate_school(school_id) {
 	}
 	// Set the instate in the military panel if it's blank
 	if ( school.find("[name='military-instate-tuition']").val() == "") {
-		school.find("[name='military-instate-tuition']").val(schooldata.tfinstate);
+		// No prepopulation in this version.
+		// school.find("[name='military-instate-tuition']").val(schooldata.tfinstate);
 	}
 	// Now set schooldata.tuitionunderins to the value in "in-state tuition"
 	schooldata.tuitionunderins = school.find("[name='military-instate-tuition']").val();
@@ -1306,7 +1307,7 @@ $(document).ready(function() {
 		"GI Bill" user interface
 	----------- */
 	// Show the GI Bill panel on click
-	$(".gibill-calculator").click( function(event) {
+	$(".gibill-calculator, input[name='gibill']").click( function(event) {
 		event.preventDefault();
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("[data-column='" + column + "'] .gibill-panel").toggle();
