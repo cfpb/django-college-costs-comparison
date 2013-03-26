@@ -66,9 +66,10 @@ var restoredata = {{ data_js|safe }};
 var csrftok = "{{ csrf_token }}";
 </script>
 
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-analytics.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
 
 {% endblock page_js %}
 
@@ -136,7 +137,7 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
-									<input class="radio-input" type="radio" name="program1" value="aa">
+									<input class="radio-input" type="radio" name="program1" valu`e="aa">
 									<label class="radio-label">Associate's/Certificate</label>
 									<input class="radio-input" type="radio" name="program1" value="ba" checked="checked">
 									<label class="radio-label">Bachelor's</label>	
@@ -704,9 +705,21 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
-						<td data-column="1"><span name="loanmonthly"></span></td>
-						<td data-column="2"><span name="loanmonthly"></span></td>
-						<td data-column="3"><span name="loanmonthly"></span></td>
+						<td data-column="1">
+							<div class="debt-pie" id="pie1"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
+						<td data-column="2">
+							<div class="debt-pie" id="pie2"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
+						<td data-column="3">
+							<div class="debt-pie" id="pie3"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
