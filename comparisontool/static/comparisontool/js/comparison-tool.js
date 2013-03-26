@@ -660,6 +660,7 @@ function calculate_school(school_id) {
 
 	// Private Loan Total
 	schooldata.privatetotal = schooldata.privateloan + schooldata.institutionalloan;
+	school.textbyname("privatetotal", schooldata.privatetotal, true);
 
 	/* --- Loan Calculation -- */
 	// Borrowing Total
@@ -668,6 +669,10 @@ function calculate_school(school_id) {
 
 	// Out of Pocket Total
 	schooldata.totaloutofpocket = schooldata.grantstotal + schooldata.savingstotal;
+
+	// Money for College Total
+	schooldata.moneyforcollege = schooldata.totaloutofpocket + schooldata.borrowingtotal;
+	school.textbyname("moneyforcollege", schooldata.moneyforcollege);
 	
 	// remainingcost -- "Left to Pay"
 	schooldata.remainingcost = schooldata.firstyrnetcost - schooldata.totaloutofpocket;
@@ -763,7 +768,7 @@ function calculate_school(school_id) {
 		schooldata.salaryexpected25yrs = global.salaryaa * 52.1775;
 	}
 	else if ( schooldata.program == "ba" ) {
-		schooldata.SALARYEXPECTED25YRS =  global.salaryba *52.1775
+		schooldata.SALARYEXPECTED25YRS =  global.salaryba * 52.1775
 	}
 	else {
 		schooldata.SALARYEXPECTED25YRS = global.salarygrad * 52.1775;
@@ -794,7 +799,7 @@ function calculate_school(school_id) {
 		if ( schooldata.gradrate >= global["group" + i + "gradhigh"] ) {
 			schooldata.gradrisk = "Better than Average";
 		}
-		else if ( schooldata.gradrate >= global["group" + i + "gradmed"] ) {
+		else if ( schooldata.gradrate >= global["group" + i + "	"] ) {
 			schooldata.gradrisk = "About Average";
 		}
 		else {
@@ -1251,6 +1256,17 @@ $(document).ready(function() {
 				schooldata[key] = 0;
 			}
 		}	
+
+		school.find("input.school-data").each(function() {
+			if ( $(this).hasClass("interest-rate") ) {
+				var interest = ( schooldata[$(this).attr("name")] * 100 ) + "%";
+				$(this).val( interest ) ;
+			}
+			else {
+				$(this).val( num_to_money( schooldata[$(this).attr("name")] ) ) ;
+			}
+		});
+
 		schools[school_id] = schooldata;
 
 		headercell.find(".add-school-info").hide();
