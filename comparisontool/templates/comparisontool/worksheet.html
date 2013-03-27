@@ -134,6 +134,8 @@ var csrftok = "{{ csrf_token }}";
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
+									<button class="add-average-public">Set values to Average Public 4-year University</button>
+									<button class="add-average-private">Set values to Average Private 4-year University</button>
 								</div>
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
@@ -183,6 +185,8 @@ var csrftok = "{{ csrf_token }}";
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
+									<button class="add-average-public">Set values to Average Public 4-year University</button>
+									<button class="add-average-private">Set values to Average Private 4-year University</button>									
 								</div>
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
@@ -216,7 +220,6 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
 								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
 							</div>
@@ -224,6 +227,7 @@ var csrftok = "{{ csrf_token }}";
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
 							</div>
+							<h2 name="institutionname"></h2>
 						</th>
 						<th scope="col" data-column="3">
 							<div class="add-school-info hidden-box">
@@ -231,6 +235,8 @@ var csrftok = "{{ csrf_token }}";
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
+									<button class="add-average-public">Set values to Average Public 4-year University</button>
+									<button class="add-average-private">Set values to Average Private 4-year University</button>
 								</div>
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
@@ -264,7 +270,6 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
 								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
 							</div>
@@ -272,6 +277,7 @@ var csrftok = "{{ csrf_token }}";
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
 							</div>
+							<h2 name="institutionname"></h2>
 						</th>
 					</tr>
 				</thead>
@@ -734,7 +740,16 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Graduation Rate</h4></th>
-						<td data-column="1"><span name="gradrisk"></span></td>
+						<td data-column="1">
+							<div class="gradrisk-container">
+								<span name="gradriskpercent" class="gradrisk-percent">42%</span>
+								<div class="gradrisk-pointer"></div>
+							</div>
+							<div class="gradrisk-bar">
+								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
+							</div>
+							<p name="gradrisk" class="gradrisk-text"></p>
+						</td>
 						<td data-column="2"><span name="gradrisk"></span></td>
 						<td data-column="3"><span name="gradrisk"></span></td>
 					</tr>
