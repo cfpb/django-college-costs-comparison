@@ -1,6 +1,22 @@
 /* comparison tool
 -------------------------------------------------------------------------------*/
 
+/* HEADER BUSINESS */
+h1.p4ch {
+    position: relative;
+    font-size: 40px;
+    font-weight: 400;
+    color: #D83D00;
+    width: 900px;
+    margin: 10px auto 4px 0;
+    line-height: 1.375;
+    font-family: "Avenir Next", Arial, sans-serif;
+    text-transform: none;
+}
+.timeline,
+.horizontal-bar {
+	 font-family: "Avenir Next", Arial, sans-serif;
+}
 
 /* TIMELINE */
 
@@ -18,14 +34,14 @@
 #process-label-attend {left:600px;}
 #process-label-graduate {left:750px;}
 
-.ico-process-applications{background:url(../images/timeline/applications.png); background-position: 0px 0;} 
+.ico-process-applications{background:url(../images/timeline/applications.png); background-position: 0 0;} 
 .ico-process-applications.selected,
 .ico-process-applications:hover {width:38px; height:40px; background-position: -37px 0; } 
-#process-icon-applications {left:100px;}
-#process-label-research {left:100px;top:75px;}
+#process-icon-applications {left:50px;}
+#process-label-research {left:50px;top:75px;}
 
 
-.ico-process-fafsa{background:url(../images/timeline/fafsa.png); background-position: 0px 0;} 
+.ico-process-fafsa{background:url(../images/timeline/fafsa.png); background-position: 0 0;} 
 .ico-process-fafsa.selected,
 .ico-process-fafsa:hover {width:38px; height:40px; background-position: -37px 0; } 
 #process-icon-fafsa {left:200px;}
@@ -67,8 +83,8 @@
     position:relative;
     font-size:10px;
     text-transform:uppercase;
-    margin-bottom:90px;
-    margin-top:20px;
+    margin-bottom:60px;
+    margin-top:10px;
 
 }
 .process-link {text-decoration:none;}
@@ -340,7 +356,7 @@ tbody > th, tbody thead th:first-child {
 	position: absolute;
 		top: 4em;
 	text-align: left;
-	z-index: 100;
+	z-index: 2;
 }
 
 .gibill-panel > fieldset {
@@ -783,6 +799,8 @@ label.tooltip-info {
 
 
 /* Helper Classes */
+
+/* Hide visually, but make available to screenreaders */
 .visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
@@ -793,9 +811,27 @@ label.tooltip-info {
     position: absolute;
     width: 1px;
 }
+
+/* Add a generic bottom border to items */
 .bottom-border {
 	border-bottom: 5px solid #585858;
 }
+
+/* Relatively position items */
 .p-rel {
 	position: relative;
 }
+
+/* Add a generic horizontal nav abstraction */
+.links {
+	list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+	.links > li,
+    	.links > li > a {
+    		display: inline-block;
+    		*display: inline;
+    		zoom: 1;
+    		padding-right: 0.25em;
+    }

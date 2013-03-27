@@ -77,8 +77,7 @@ var csrftok = "{{ csrf_token }}";
 <div id="comparison-tool" page="visualize">
 		<header id="comparison-tool-header">
 
-			<h1>Paying for College<sup>Beta</sup></h1>
-            <div class="horizontal-bar orange-bg">Compare financial aid and college cost</div>
+			<a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
 
             <div class="timeline">
                 <div class="process-label" id="process-label-apply">Apply for college</div>
@@ -95,7 +94,7 @@ var csrftok = "{{ csrf_token }}";
                 
                 <a href="http://nces.ed.gov/collegenavigator/">
                 <div class="ico-process ico-process-applications" id="process-icon-applications"></div></a>
-                <div class="process-label process-hover" id="process-label-research">Research<br>schools</div>
+                <div class="process-label process-hover" id="process-label-research">Research schools</div>
 
 
                <a href="http://fafsa.ed.gov">
@@ -110,16 +109,18 @@ var csrftok = "{{ csrf_token }}";
                 
                 <a href="/paying-for-college/compare-financial-aid-and-college-cost/">
                 <div class="ico-process ico-process-comparison selected" id="process-icon-comparison"></div></a>
-                <div class="process-label process-hover" id="process-label-comparison">Compare financial aid<br>and college cost</div>              
+                <div class="process-label process-hover" id="process-label-comparison">Compare costs</div>              
             
                 <a href="/paying-for-college/manage-your-college-money/">
                 <div class="ico-process ico-process-banking-guide" id="process-icon-banking-guide"></div></a>
-                 <div class="process-label process-hover" id="process-label-banking-guide">Manage your<br>college money</div>
+                 <div class="process-label process-hover" id="process-label-banking-guide">Manage your money</div>
             
                 <a href="/paying-for-college/repay-student-debt/">
                 <div class="ico-process ico-process-ultratool" id="process-icon-ultratool"></div></a>
                 <div class="process-label process-hover" id="process-label-ultratool">Repay student debt</div>
                 </div>
+
+                <div class="horizontal-bar orange-bg">Compare financial aid and college cost</div>
 
 		</header><!-- end #comparison-tool-header -->
 
@@ -783,11 +784,12 @@ var csrftok = "{{ csrf_token }}";
 			<div class="container">
 				<div class="save-container">
 					<input type="button" id="save-drawer-toggle" class="button" value="Save &amp; Share">
-					<div class="links clearfix">
-						<a class="start-again" href="#" id="start-again">Start Again</a>
-						<a class="feedback" href="/paying-for-college/compare-financial-aid-and-college-cost/feedback/" target="_blank">Give us Feedback</a>
-						<a class="about-worksheet" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this Worksheet</a>
-					</div>
+					<h6>About the Worksheet</h6>
+					<ul class="links clearfix">
+						<li><a class="start-again" href="#" id="start-again">Start Again</a></li>
+						<li><a class="feedback" href="/paying-for-college/compare-financial-aid-and-college-cost/feedback/" target="_blank">Give us Feedback</a></li>
+						<li><a class="about-worksheet" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this Worksheet</a><li>
+					</ul>
 				</div>
 			</div><!-- end .container -->
 		</div><!-- end #save-footer -->
