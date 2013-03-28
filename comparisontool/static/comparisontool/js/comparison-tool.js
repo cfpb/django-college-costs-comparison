@@ -37,6 +37,10 @@ var data =
 	}
 };
  
+var viz = {
+	"pieradius": 50
+}
+
 // Determine if global data exists
 if (data.global != "undefined") {
 	global = data.global;
@@ -60,7 +64,7 @@ var pixel_price = 0, // The ratio of pixels to dollars for the bar graph
 	highest_cost = global.most_expensive_cost; // The most expensive cost of any school
 
 // Visualization
-google.load('visualization', '1', {packages: ['corechart']});
+//google.load('visualization', '1', {packages: ['corechart']});
 
 /* -------- 
 	FUNCTIONS 
@@ -206,27 +210,13 @@ function fix_widths() {
 	$(".fixed th").css("min-width", "25%");
 }
 
-function drawVisualization(column, first, second) {
-	// Create and populate the data table.
-	var data = google.visualization.arrayToDataTable([
-		['Thing', 'Percent'],
-		['Loan Payment', first],
-		['Remaining Salary', second]
-	]);
-
-	// Create and draw the visualization.
-	var options = {
-		chartArea: {height: "150px", width: "150px"},
-		height: 125,
-		legend: {position: "none"},
-		pieSliceText: "none",
-		slices: { 0:{color: "Red"}, 1: {color:"Gray"} },
-		tooltip: {trigger: "none"},
-		width: 125
-	};
-
-	var pieid = "pie" + column;
-	var chart = new google.visualization.PieChart(document.getElementById(pieid)).draw(data, options);
+function draw_pie_chart(column, loanpercent) {
+	var paper = this,
+		radius = Math.PI / 180;
+		chart = this.set();
+		function pie_piece(startangle, endangle) {
+			var x1 = 10;
+		}
 }
 
 // Fill in a column with the school's data
@@ -269,10 +259,8 @@ function build_school_element(school_id) {
 		school.find("a.navigator-link").show();
 		school.find("a.navigator-link").attr("href", navigatorlink);
 	}
-	if ( $("#institution-row [data-column='1']").attr("data-default") != "true" ) {
-		global.schools_added++;
-		_gaq.push(["_trackEvent", "School Interactions", "Schools Added", global.schools_added]);
-	}
+	global.schools_added++;
+	_gaq.push(["_trackEvent", "School Interactions", "Schools Added", global.schools_added]);
 
 	calculate_school(school_id);
 }
@@ -871,9 +859,6 @@ function calculate_school(school_id) {
 	}
 	school.find("[name='loandebtrisk']").html(schooldata.loandebtrisk);
 
-
-	// Draw the visualization
-
 	// Colorize Risk of Default
     school.find('.risk-default').removeClass("risk-default").addClass("risk-color");
 
@@ -1039,13 +1024,31 @@ function draw_the_bars(school_id) {
     // Draw the pie chart
     if ( schooldata.loanmonthly > 0 ) {
     	$("#pie" + column).parent().show();
-	    var percentloan = Math.round( ( schooldata.loanmonthly / schooldata.salarymonthly ) * 100 );
+ 	    var percentloan = Math.round( ( schooldata.loanmonthly / schooldata.salarymonthly ) * 100 );
 	    if ( percentloan > 100 ) {
 	    	percentloan = 100;
 	    }
-	    var percentremaining = 100 - percentloan;
-	    drawVisualization(column, percentloan, percentremaining);
-    	school.find(".payment-percent").html(percentloan + "%");
+	    school.find(".payment-percent").html(percentloan + "%");
+	    var angle = percentloan / 100 * 2 * Math.PI;
+		var x = Math.sin(angle);
+		x = 62 + ( x * 50 );
+		var y = Math.cos(angle);
+		y = 62 - ( y * 50 );
+		var string = "M 62 62 L 62 12 ";
+		if ( angle > Math.PI/2 ) {
+			string += "A 50 50 0 0 1 112 62 ";
+		}
+		if ( angle > Math.PI ) {
+			string += "A 50 50 0 0 1 62 112 ";
+		}
+		if ( angle > Math.PI * 1.5 ) {
+			string += "A 50 50 0 0 1 12 62 ";
+		}
+		if ( angle > Math.PI * 2 ) {
+			string += "A 50 50 0 0 1 62 12 ";
+		}
+		string += "A 50 50 0 0 1 " + x + " " + y + " z";
+		loan1.attr("path", string);
     }
     else {
     	$("#pie" + column).parent().hide();
@@ -1092,6 +1095,7 @@ function school_search_results(query) {
 --------------------*/
 
 $(document).ready(function() {
+
 	// initialize page
 	$("#military-calc-toggle").hide();
 	hide_column(2);
@@ -1109,6 +1113,19 @@ $(document).ready(function() {
 		var diff = $(this).outerWidth() - $(this).width();
 		$(this).width($(this).parent().width() - diff);
 	});
+
+	// initialize visualizations
+	pie1 = new Raphael("pie1", 125, 125);
+	pie2 = new Raphael("pie2", 125, 125);
+	pie3 = new Raphael("pie3", 125, 125);
+	circle1 = pie1.circle(62, 62, viz.pieradius);
+	circle2 = pie2.circle(62, 62, viz.pieradius);
+	circle3 = pie3.circle(62, 62, viz.pieradius);
+	circle1.attr({fill: "Gray", stroke: "White", "stroke-width": 2});
+	circle2.attr({fill: "Gray", stroke: "White", "stroke-width": 2});
+	circle3.attr({fill: "Gray", stroke: "White", "stroke-width": 2});
+	loan1 = pie1.path("M 62 62");
+	loan1.attr({fill: "Red", stroke: "White", "stroke-width": 2});
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
@@ -1168,15 +1185,8 @@ $(document).ready(function() {
 	// Start the 'add a school' process
 	$(".add-a-school").click( function() {
 		var column = 0;
-		// If no school has been added, replace the 'default' in column 1
-		if ( $("#institution-row [data-column='1']").attr("data-default") === "true" ) {
-			column = 1;
-			$("#institution-row [data-column='1']").attr("data-default", "false");
-		}
-		else {
-			column = $(this).closest("[data-column]").attr("data-column");
-			$(this).hide();
-		}
+		column = $(this).closest("[data-column]").attr("data-column");
+		$(this).hide();
 		$("#institution-row [data-column='" + column + "'] .add-school-info").show();
 		$(".add-school-info").css("height", "100%");
 		return false;
@@ -1362,7 +1372,6 @@ $(document).ready(function() {
 		$(this).closest("[data-column]").children(".remove-confirm").hide();
 		var column = $(this).closest("[data-column]").attr("data-column");
 		// Set the "default" to false - the user is now engaged
-		$("#institution-row [data-default='true']").attr("data-default", "false");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
 		if ( school_id == "average-public" ) {
 			$(".add-average-public").show();
