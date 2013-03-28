@@ -67,7 +67,7 @@ var csrftok = "{{ csrf_token }}";
 </script>
 
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/raphael-min.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-analytics.js"></script>
 
@@ -128,7 +128,7 @@ var csrftok = "{{ csrf_token }}";
 				<thead>
 					<tr id="institution-row">
 						<td data-column="0"></td>
-						<th scope="col" data-column="1" data-default="true">
+						<th scope="col" data-column="1">
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
