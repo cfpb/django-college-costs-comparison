@@ -743,6 +743,61 @@ label.tooltip-info {
 	float: left;
 }
 
+#comparison-tables .gradrisk-container {
+	margin-bottom: 7px;
+	position: relative;
+		left: 0px;
+	width: 10%;
+}
+
+#comparison-tables .gradrisk-container .gradrisk-value {
+	border-bottom: 2px solid #666;
+	
+}
+
+#comparison-tables .gradrisk-pointer {
+	border: 8px solid transparent;
+	border-top-color: #666;
+	position: absolute;
+		left: 30%;
+		top: 90%;
+	width: 0;
+	z-index: 5;
+}
+
+#comparison-tables .gradrisk-bar {
+	margin: 5px auto 1em auto;
+	width: 90%;
+}
+
+#comparison-tables .gradrisk-bar div {
+	background-color: #e5e5e5;
+	border: 1px solid black;
+	border-left: none;
+	color: #FFF;
+	font-size: .75em;
+	float: left;
+	padding: .3em 0;
+	width: 32%;
+}
+
+#comparison-tables .gradrisk-bar .low {
+	background-color: #99b8c4;
+}
+
+#comparison-tables .gradrisk-bar .medium {
+	background-color: #3b778d;
+}
+
+#comparison-tables .gradrisk-bar .high {
+	background-color: #104d6e;
+}
+
+#comparison-tables .gradrisk-bar div:first-child {
+	border: 1px solid black;
+}
+
+
 /* Helper Classes */
 
 /* Hide visually, but make available to screenreaders */
