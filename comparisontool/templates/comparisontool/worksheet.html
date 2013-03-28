@@ -80,47 +80,55 @@ var csrftok = "{{ csrf_token }}";
 			<a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
 
             <div class="timeline">
-                <div class="process-label" id="process-label-apply">Apply for college</div>
-                <div class="process-label" id="process-label-financial">Find financial aid</div>
-                <div class="process-label" id="process-label-choose">Choose a school</div>
-                <div class="process-label" id="process-label-attend">Attend college</div>
-                <div class="process-label" id="process-label-graduate">Graduate</div>
+            	<nav>
+	            	<ul class="links">
+	            		<li class="research">
+	            			<div class="top-process-label" id="process-label-apply">Apply for college</div>
+	            			<a class="noStyles" href="http://nces.ed.gov/collegenavigator/">
+	            				<span class="ico-process ico-process-applications" id="process-icon-applications"></span>
+	            				<span class="bottom-process-label process-hover" id="process-label-research">Research schools</span>
+	            			</a>
+	            		</li>
+	            		<li class="finaid">
+	            			<div class="top-process-label" id="process-label-financial">Find financial aid</div>
+	            			<a class="noStyles" href="http://fafsa.ed.gov">
+	            				<span class="ico-process ico-process-fafsa" id="process-icon-fafsa"></span>
+	            				<span class="bottom-process-label process-hover" id="process-label-fafsa">Fill out a FAFSA</span>
+	            			</a>
+	            		</li>
+	            		<li class="loans">
+	            			<!-- No label for this item -->
+	            			<a class="noStyles" href="/paying-for-college/choose-a-student-loan/">
+	            				<span class="ico-process ico-process-loans-guide" id="process-icon-loans-guide"></span>
+	            				<span class="bottom-process-label process-hover" id="process-label-loans-guide">Choose a loan</span>
+	            			</a>
+	            		</li>
+	            		<li class="compare">
+	            			<div class="top-process-label" id="process-label-choose">Choose a school</div>
+	            			<a class="noStyles" href="/paying-for-college/compare-financial-aid-and-college-cost/">
+	            				<span class="ico-process ico-process-comparison selected" id="process-icon-comparison"></span>
+	            				<span class="bottom-process-label process-hover" id="process-label-comparison">Compare costs</span>
+	            			</a>
+	            		</li>
+	            		<li class="manage">
+	            			<div class="top-process-label" id="process-label-attend">Attend college</div>
+	            			<a class="noStyles" href="/paying-for-college/manage-your-college-money/">
+	            				<span class="ico-process ico-process-banking-guide" id="process-icon-banking-guide"></span>
+	            				<span class="bottom-process-label process-hover" id="process-label-banking-guide">Manage your money</span>
+	            			</a>
+	            		</li>
+	            		<li class="repay">
+	            			<div class="top-process-label" id="process-label-graduate">Graduate</div>
+	            			<a class="noStyles" href="/paying-for-college/repay-student-debt/">
+	            				<span class="ico-process ico-process-ultratool" id="process-icon-ultratool"></span>
+	            				<span class="bottom-process-label process-hover" id="process-label-ultratool">Repay student debt</span>
+	            			</a>
+	            		</li>
+	                </ul><!-- end .links -->
+                </nav>
+            </div><!-- end .timeline -->
 
-                <div class="event-dot" id="event-dot-apply"></div>
-                <div class="event-dot" id="event-dot-financial"></div>
-                <div class="event-dot" id="event-dot-choose"></div>
-                <div class="event-dot" id="event-dot-attend"></div>
-                <div class="event-dot" id="event-dot-graduate"></div>
-                
-                <a href="http://nces.ed.gov/collegenavigator/">
-                <div class="ico-process ico-process-applications" id="process-icon-applications"></div></a>
-                <div class="process-label process-hover" id="process-label-research">Research schools</div>
-
-
-               <a href="http://fafsa.ed.gov">
-                <div class="ico-process ico-process-fafsa" id="process-icon-fafsa"></div> </a>
-                <div class="process-label process-hover" id="process-label-fafsa">Fill out a FAFSA</div>
-
-            
-                <a href="/paying-for-college/choose-a-student-loan/">
-                <div class="ico-process ico-process-loans-guide" id="process-icon-loans-guide"></div> </a>
-                <div class="process-label process-hover" id="process-label-loans-guide">Choose a loan</div>                
-               
-                
-                <a href="/paying-for-college/compare-financial-aid-and-college-cost/">
-                <div class="ico-process ico-process-comparison selected" id="process-icon-comparison"></div></a>
-                <div class="process-label process-hover" id="process-label-comparison">Compare costs</div>              
-            
-                <a href="/paying-for-college/manage-your-college-money/">
-                <div class="ico-process ico-process-banking-guide" id="process-icon-banking-guide"></div></a>
-                 <div class="process-label process-hover" id="process-label-banking-guide">Manage your money</div>
-            
-                <a href="/paying-for-college/repay-student-debt/">
-                <div class="ico-process ico-process-ultratool" id="process-icon-ultratool"></div></a>
-                <div class="process-label process-hover" id="process-label-ultratool">Repay student debt</div>
-                </div>
-
-                <div class="horizontal-bar orange-bg">Compare financial aid and college cost</div>
+            <div class="horizontal-bar orange-bg">Compare financial aid and college cost</div>
 
 		</header><!-- end #comparison-tool-header -->
 
