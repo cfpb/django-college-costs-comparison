@@ -28,12 +28,12 @@ var data =
 	"presets" : {
 		"average-public" :
 			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
-			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "active": false,
-			 "school_id": "average-public" },
+			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "program": "ba",
+			 "school_id": "average-public", "prgmlength": 4 },
 		"average-private" :
 			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
-			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "active": false,
-			 "school_id": "average-private" }
+			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "program": "ba",
+			 "school_id": "average-private", "prgmlength": 4  }
 	}
 };
  
@@ -527,8 +527,8 @@ function calculate_school(school_id) {
 	if (schooldata.undergrad == false) {
 		schooldata.staffsubsidized_max = 0;
 	}
-	else {	
-		if (schooldata.program == "aa" || schooldata.yrincollege == 1) {
+	else {
+		if ((schooldata.program == "aa") || (schooldata.yrincollege == 1)) {
 			schooldata.staffsubsidized_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins;
 			if ( schooldata.staffsubsidized_max < 0 ) {
 				schooldata.staffsubsidized_max = 0;
@@ -645,12 +645,12 @@ function calculate_school(school_id) {
 		}
 		// schooldata.staffunsubsidizeddep_max = math.min((global.unsubsidizedcapyr2 - schooldata.staffsubsidized), math.max(0, (schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized))):
 	} 
-	else if (schooldata.yrincollege == 3) { 
+	else if ( schooldata.yrincollege == 3 ) { 
 		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
 			schooldata.staffunsubsidizeddep_max = 0;
 		}
-		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapyr3 - schooldata.staffsubsidized) {
+		if ( schooldata.staffunsubsidizeddep_max > (global.unsubsidizedcapyr3 - schooldata.staffsubsidized) ) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr3 - schooldata.staffsubsidized;
 		}	
 	// schooldata.staffunsubsidizeddep_max = math.min((global.unsubsidizedcapyr3 - schooldata.staffsubsidized), math.max(0, (schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized)));
@@ -658,11 +658,11 @@ function calculate_school(school_id) {
 
 
 	// Unsubsidized Stafford Loans
-	if ( global.depend == "dependent") {
-		schooldata.staffunsubsidized_max = schooldata.staffunsubsidizeddep_max;
+	if ( global.depend == "dependent" ) {
+		schooldata.staffunsubsidized_max = global.staffunsubsidizeddep_max;
 	}
 	else {
-		schooldata.staffunsubsidized_max = schooldata.staffunsubsidizedindep_max;
+		schooldata.staffunsubsidized_max = global.staffunsubsidizedindep_max;
 	}
 	if (schooldata.staffunsubsidized > schooldata.staffunsubsidized_max) {
 		schooldata.staffunsubsidized = schooldata.staffunsubsidized_max;
@@ -708,7 +708,7 @@ function calculate_school(school_id) {
 	if ( schooldata.privateloanrate < .01 ) {
 		schooldata.privateloanrate = .01;
 	}
-	loantext = ( Math.round(schooldata.institutionalloanrate * 1000) / 10 ) + "%";
+	loantext = ( Math.round(schooldata.privateloanrate * 1000) / 10 ) + "%";
 	school.find("[name='privateloanrate']").val(loantext);
 
 	// gap
@@ -802,10 +802,10 @@ function calculate_school(school_id) {
 	schooldata.parentplusgrad = schooldata.parentpluswithfee * schooldata.prgmlength;
 
     // Private Loan debt at graduation
-    schooldata.privateloangrad = (schooldata.privateloan * schooldata.privateloanrate / 12  * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.privateloan * schooldata.prgmlength);
+    schooldata.privateloangrad = (schooldata.privateloan * schooldata.privateloanrate / 12  * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.privateloan * schooldata.prgmlength));
 
     // Institutional Loan debt at graduation
-    schooldata.institutionalloangrad =  (schooldata.institutionalloan * schooldata.institutionalloanrate  / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.institutionalloan * schooldata.prgmlength);
+    schooldata.institutionalloangrad =  (schooldata.institutionalloan * schooldata.institutionalloanrate  / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.institutionalloan * schooldata.prgmlength));
 	
 	// Home Equity Loans at graduation
 	schooldata.homeequitygrad =
