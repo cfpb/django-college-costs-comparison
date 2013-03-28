@@ -100,7 +100,7 @@
 	font-weight: 500;
 	text-transform: none;
 	letter-spacing: 0;
-	border-radius: 0;
+	border-radius: 2px;
 	font-size: .875em;
 	border: 0;
 	position: relative;
@@ -109,6 +109,9 @@
 	-webkit-transition: none
 	-moz-transition: none;
 	transition: none;
+}
+#comparison-tool button + button {
+	margin-top:1em;
 }
 #comparison-tool button[disabled=disabled],
 #comparison-tool button[disabled],
@@ -276,7 +279,7 @@
 #comparison-tool td input {
 	border: 1px solid #fff;
 }
-#comparison-tool td input:focus {
+#comparison-tool td input:focus, #comparison-tool td input:hover {
 	border: 1px solid #989898;
 	background: #fdf3e0;
 }
@@ -543,11 +546,11 @@
 	width: 50%;
 }
 
-/* GI Bill Calculator Link */
-.gibill-calculator {
-	background-color: #d12124;
+ /*GI Bill Calculator Link */
+#comparison-tool .gibill-calculator {
+	/*background-color: #d12124;
 	border: 0;
-	color: #fff;
+	color: #fff;*/
 	font-size: 0.75em;
 	padding: 0.35em 0 0.35em 2em;
 	position: absolute;
@@ -606,7 +609,7 @@
 }
 
 
-.private-row .interest-rate, .private-row .interest-rate:hover {
+#comparison-tool .private-row .interest-rate, #comparison-tool .private-row .interest-rate:hover {
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 0em;
@@ -622,7 +625,7 @@
 	-webkit-box-sizing: border-box;
 	width: 4em;
 }
-.private-row td .rate-change {
+#comparison-tool .private-row td .rate-change {
 	border: 0;
 	display: block;
 	font-size: .5em;
@@ -633,12 +636,12 @@
 		top: .4em;
 	width: 5.5em;
 }
-.private-row td .rate-change.down {
+#comparison-tool .private-row td .rate-change.down {
 	background: url(../images/arrow-down.png) 16px 0 no-repeat;
 	position: absolute;
 		top: 1.8em;
 }
-.private-row td .rate-change.up {
+#comparison-tool .private-row td .rate-change.up {
 	background: url(../images/arrow-up.png) 16px 2px no-repeat;
 }
 
