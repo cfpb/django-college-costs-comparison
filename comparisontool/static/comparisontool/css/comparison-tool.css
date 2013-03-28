@@ -33,7 +33,7 @@ h1.p4ch {
 }
 
 /* Extending our .links class here. */
-.timeline .links > li {
+.timeline .nav-links > li {
 	margin-right: 10px;
 }
 
@@ -903,13 +903,13 @@ label.tooltip-info {
 }
 
 /* Add a generic horizontal nav abstraction */
-.links {
+.nav-links {
 	list-style: none;
     margin-left: 0;
     padding-left: 0;
 }
-	.links > li,
-    	.links > li > a {
+	.nav-links > li,
+    	.nav-links > li > a {
     		display: inline-block;
     		*display: inline;
     		zoom: 1;
