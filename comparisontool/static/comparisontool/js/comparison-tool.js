@@ -1056,7 +1056,7 @@ function draw_the_bars(school_id) {
 				});
 			}
 			else {
-				bar.stop(true, false).animate({width: (section_width - 2)}, transition_time);
+				bar.stop(true, false).animate({width: (section_width - 1)}, transition_time);
 			}
 			if ( section_width != 0) {
 				bar.show();
@@ -1085,7 +1085,7 @@ function draw_the_bars(school_id) {
 		}
 
 	    // Borrowing Bar
-	    school.find('.bar.borrowing').css("width", (total_borrowed_section_width - 1));
+	    school.find('.bar.borrowing').css("width", (total_borrowed_section_width));
 
 	    left = 0 + total_outofpocket_section_width;
 	    if ( left < 1 ) {
@@ -1576,6 +1576,11 @@ $(document).ready(function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		var school = $("[data-column='" + column + "']");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var value = money_to_num($(this).val());
+		if ( $(this).hasClass("interest-rate") ) {
+			value = value / 100;
+		}
+		var name = $(this).attr("name");
 		// ...immediately when the user hits enter
 		if (ev.keyCode == 13) {
 			ev.preventDefault();
@@ -1585,7 +1590,9 @@ $(document).ready(function() {
 		// .. after a delay if any other key is pressed
 		school.check_max_alert();
 		delay(function() {
-			calculate_school(school_id);
+			if ( schools[school_id][name] != value ) {
+				calculate_school(school_id);
+			}
 			/*
 			if (ev.which >= 48 && ev.which <= 105) {
 				calculate_school(school_id);
