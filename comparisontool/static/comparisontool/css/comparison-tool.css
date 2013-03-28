@@ -326,6 +326,8 @@ thead .fixed h2 {
 	width:227px;
 }
 
+
+
 table tbody {
 	padding-bottom: 1em;
 }
@@ -382,10 +384,18 @@ tbody > th, tbody thead th:first-child {
 	color: #000;
 	display: block;
 	font-size: 1em;
+	height: 200px;
+	margin: 0 auto;
 	text-align: center;
 	padding: 1em .25em;
 	position: absolute;
-	width: 25%;
+	width: 200px;
+}
+
+#institution-row.fixed .add-a-school {
+	height: 1em;
+	overflow: hidden;
+	position: static;
 }
 
 #institution-row th .add-a-school .huge {
@@ -402,6 +412,7 @@ tbody > th, tbody thead th:first-child {
 	font-size: 1em;
 	padding: .25em .5em;
 	position: absolute;
+	width: 200px;
 }
 
 #institution-row th .add-school-info label {

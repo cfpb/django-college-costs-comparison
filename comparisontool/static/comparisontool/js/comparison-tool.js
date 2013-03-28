@@ -23,7 +23,7 @@ var data =
 		"group3loanmed": 6800, "group3loanhigh": 15000, "group4loanmed": 14000, "group4loanhigh": 20000, 
 		"group5loanmed": 6800, "group5loanhigh": 15000, "tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
-		"schools_added": 0
+		"schools_added": -1
 		},
 	"presets" : {
 		"average-public" :
@@ -192,6 +192,7 @@ function fade_header() {
 	}
 	else {
 		$("#institution-row").addClass('fixed');
+		$("#institution-row .add-school-info:visible").height( $(window).height() );
 	}
 
 	var theight = $('institution-row').height();
@@ -260,7 +261,9 @@ function build_school_element(school_id) {
 		school.find("a.navigator-link").attr("href", navigatorlink);
 	}
 	global.schools_added++;
-	_gaq.push(["_trackEvent", "School Interactions", "Schools Added", global.schools_added]);
+	if ( global.schools_added > 0 ) {
+		_gaq.push(["_trackEvent", "School Interactions", "Schools Added", global.schools_added]);
+	}
 
 	calculate_school(school_id);
 }
@@ -643,7 +646,8 @@ function calculate_school(school_id) {
 	if ( schooldata.privateloanrate < .01 ) {
 		schooldata.privateloanrate = .01;
 	}
-	school.find("[name='privateloanrate']").val( (schooldata.privateloanrate * 100) + "%");
+	loantext = ( Math.round(schooldata.institutionalloanrate * 1000) / 10 ) + "%";
+	school.find("[name='privateloanrate']").val(loantext);
 
 	// gap
 	schooldata.gap = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.workstudy - schooldata.savings - schooldata.family - schooldata.state529plan - schooldata.privateloan - schooldata.institutionalloan - schooldata.parentplus - schooldata.homeequity;
@@ -671,7 +675,8 @@ function calculate_school(school_id) {
 	if ( schooldata.institutionalloanrate < .01 ) {
 		schooldata.institutionalloanrate = .01;
 	}
-	school.find("[name='institutionalloanrate']").val((schooldata.institutionalloanrate * 100) + "%");
+	loantext = ( Math.round(schooldata.institutionalloanrate * 1000) / 10 ) + "%";
+	school.find("[name='institutionalloanrate']").val(loantext);
 
 	// Private Loan Total
 	schooldata.privatetotal = schooldata.privateloan + schooldata.institutionalloan;
@@ -958,68 +963,74 @@ function draw_the_bars(school_id) {
 
 	school.find(".bars-container").width(chart_width);
 
-	// find each .bar element and determine its width, then animate
-	school.find(".chart_mask_internal .bar").each(function() {
-		var bar = $(this);
-		var name = bar.attr("name");
-		var value = schooldata[name];
-		var section_width = Math.floor(value * pixel_price);
-		if (section_width < minimum_chart_section_width) {
-			section_width = 0;
-			bar.stop(true, false).animate({width: 0}, transition_time, function() {
-				bar.hide();
-			});
-		}
-		else {
-			bar.stop(true, false).animate({width: (section_width - 2)}, transition_time);
-		}
-		if ( section_width != 0) {
-			bar.show();
-			total_section_width += section_width;
-			if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
-				total_borrowed_section_width += section_width;
-			}
-			else {
-				total_outofpocket_section_width += section_width;
-			}
-		}
-		else {
-			bar.hide();
-		}
-	});
-	if ((total_outofpocket_section_width + total_borrowed_section_width) > chart_width) {
-		school.find(".error_msg").fadeIn(400);
-		// This code will resize the bar past the width of the total cost
-		// school.find(".bars-container").width(total_outofpocket_section_width + total_borrowed_section_width);
-		// marginright = (total_outofpocket_section_width + total_borrowed_section_width) - chart_width;
-		// school.find(".tick.full").css("left", chart_width - 2 );
+	if ( cost <= 0 ) {
+		school.find(".meter").hide();
 	}
 	else {
-		// school.find(".bars-container").width(chart_width);
-		school.find(".error_msg").fadeOut(400);
+		school.find(".meter").show();
+		// find each .bar element and determine its width, then animate
+		school.find(".chart_mask_internal .bar").each(function() {
+			var bar = $(this);
+			var name = bar.attr("name");
+			var value = schooldata[name];
+			var section_width = Math.floor(value * pixel_price);
+			if (section_width < minimum_chart_section_width) {
+				section_width = 0;
+				bar.stop(true, false).animate({width: 0}, transition_time, function() {
+					bar.hide();
+				});
+			}
+			else {
+				bar.stop(true, false).animate({width: (section_width - 2)}, transition_time);
+			}
+			if ( section_width != 0) {
+				bar.show();
+				total_section_width += section_width;
+				if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
+					total_borrowed_section_width += section_width;
+				}
+				else {
+					total_outofpocket_section_width += section_width;
+				}
+			}
+			else {
+				bar.hide();
+			}
+		});
+		if ((total_outofpocket_section_width + total_borrowed_section_width) > chart_width) {
+			school.find(".error_msg").fadeIn(400);
+			// This code will resize the bar past the width of the total cost
+			// school.find(".bars-container").width(total_outofpocket_section_width + total_borrowed_section_width);
+			// marginright = (total_outofpocket_section_width + total_borrowed_section_width) - chart_width;
+			// school.find(".tick.full").css("left", chart_width - 2 );
+		}
+		else {
+			// school.find(".bars-container").width(chart_width);
+			school.find(".error_msg").fadeOut(400);
+		}
+
+	    // Borrowing Bar
+	    school.find('.bar.borrowing').css("width", (total_borrowed_section_width - 1));
+
+	    left = 0 + total_outofpocket_section_width;
+	    if ( left < 1 ) {
+	    	// uncomment this line and the "total borrowed" will not float beyond the cost bar
+	    	left = 0;
+	    }
+	    school.find(".bar.borrowing").css("left", left);
+	    school.find(".bar.borrowing").css("width", total_borrowed_section_width);
+	    school.find(".tick-borrowing").css("left", total_borrowed_section_width + left - 2);
+	    school.find(".totalborrowing").css("padding-left", left);
+
+	    if ( total_borrowed_section_width < 1 ) {
+	        school.find('.borrowing-container').hide(transition_time);
+	    }
+	    else {
+	        school.find('.borrowing-container').show(transition_time);
+	    }
+	    var breakdownheight = $(".meter").height();
+	    school.find(".meter").closest("td").height(breakdownheight);
 	}
-
-    // Borrowing Bar
-    school.find('.bar.borrowing').css("width", (total_borrowed_section_width - 1));
-
-    left = 0 + total_outofpocket_section_width;
-    if ( left < 1 ) {
-    	// uncomment this line and the "total borrowed" will not float beyond the cost bar
-    	left = 0;
-    }
-    school.find(".bar.borrowing").css("left", left);
-    school.find(".bar.borrowing").css("width", total_borrowed_section_width);
-    school.find(".tick-borrowing").css("left", total_borrowed_section_width + left - 2);
-    school.find(".totalborrowing").css("padding-left", left);
-
-    if ( total_borrowed_section_width < 1 ) {
-        school.find('.borrowing-container').hide(transition_time);
-    }
-    else {
-        school.find('.borrowing-container').show(transition_time);
-    }
-    var breakdownheight = $(".meter").height();
-    school.find(".meter").closest("td").height(breakdownheight);
 
     // Draw the pie chart
     if ( schooldata.loanmonthly > 0 ) {
@@ -1104,6 +1115,8 @@ $(document).ready(function() {
 	$("#institution-row [data-column='1']").attr("id", "average-public");
 	build_school_element("average-public");
 
+/*
+	// Fix the widths, handled by css for now
 	$(".add-a-school, .add-school-info").each( function() {
 		var diff = $(this).outerWidth() - $(this).width();
 		$(this).width($(this).parent().width() - diff);
@@ -1113,6 +1126,7 @@ $(document).ready(function() {
 		var diff = $(this).outerWidth() - $(this).width();
 		$(this).width($(this).parent().width() - diff);
 	});
+*/
 
 	// initialize visualizations
 	pie1 = new Raphael("pie1", 125, 125);
@@ -1189,6 +1203,7 @@ $(document).ready(function() {
 		$(this).hide();
 		$("#institution-row [data-column='" + column + "'] .add-school-info").show();
 		$(".add-school-info").css("height", "100%");
+		fade_header();
 		return false;
 	});
 
@@ -1340,8 +1355,9 @@ $(document).ready(function() {
 
 		school.find("input.school-data").each(function() {
 			if ( $(this).hasClass("interest-rate") ) {
-				var interest = ( schooldata[$(this).attr("name")] * 100 ) + "%";
-				$(this).val( interest ) ;
+				var interest = schooldata[$(this).attr("name")] * 100;
+				interest = Math.round( interest * 10) / 10;
+				$(this).val( interest + "%") ;
 			}
 			else {
 				$(this).val( num_to_money( schooldata[$(this).attr("name")] ) ) ;
@@ -1454,6 +1470,7 @@ $(document).ready(function() {
 		if ( $(this).hasClass("down") ) {
 			loanrate -= .1;
 		}
+		loanrate = Math.round( loanrate * 10 ) / 10; // Round to tens place
 		loanrate = Math.round( loanrate * 100 ) / 100 + "%"
 		rateinput.val( loanrate );
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
