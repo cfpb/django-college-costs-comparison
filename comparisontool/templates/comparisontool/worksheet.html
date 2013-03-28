@@ -7,7 +7,6 @@
 {% block title %}Compare financial aid and college cost{% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/jquery.qtip.min.css">
 <link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
 {% endblock %}
 
@@ -20,7 +19,6 @@
 {% block page_js %}
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/jquery.qtip.min.js"></script>
 
 <script>
 
@@ -68,8 +66,10 @@ var restoredata = {{ data_js|safe }};
 var csrftok = "{{ csrf_token }}";
 </script>
 
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-analytics.js"></script>
 
 {% endblock page_js %}
 
@@ -134,40 +134,92 @@ var csrftok = "{{ csrf_token }}";
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
+									<button class="add-average-public">Set values to Average Public 4-year University</button>
+									<button class="add-average-private">Set values to Average Private 4-year University</button>
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program1" valu`e="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program1" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program1" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">	
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5 years</option>
+										<option value="4" selected="selected">4 years</option>
+										<option value="3">3 years</option>
+										<option value="2">2 years</option>
+										<option value="1">1 year</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
-								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
+								<a class="remove-school-link" href="#">Remove This School</a>
 							</div>
 							<div class="remove-confirm hidden-box">
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes button">Yes</a> <a href="#" class="remove-no button">No</a>
 							</div>
+							<h2 name="institutionname"></h2>
+							<a href="" class="navigator-link hidden-box" target="_blank">Look up school information.</a>
 						</th>
-						<th scope="col" data-column="2">
+						<th scope="col" data-column="2" >
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
+									<button class="add-average-public">Set values to Average Public 4-year University</button>
+									<button class="add-average-private">Set values to Average Private 4-year University</button>									
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program2" value="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program2" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program2" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5 years</option>
+										<option value="4" selected="selected">4 years</option>
+										<option value="3">3 years</option>
+										<option value="2">2 years</option>
+										<option value="1">1 year</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
 								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
 							</div>
@@ -175,6 +227,7 @@ var csrftok = "{{ csrf_token }}";
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
 							</div>
+							<h2 name="institutionname"></h2>
 						</th>
 						<th scope="col" data-column="3">
 							<div class="add-school-info hidden-box">
@@ -182,16 +235,41 @@ var csrftok = "{{ csrf_token }}";
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
 									<ul class="search-results"></ul>
+									<button class="add-average-public">Set values to Average Public 4-year University</button>
+									<button class="add-average-private">Set values to Average Private 4-year University</button>
 								</div>
-								<div class="add-xml">
+								<div class="program-selection hidden-box">
+									<h3>Program Type</h3>
+									<input class="radio-input" type="radio" name="program3" value="aa">
+									<label class="radio-label">Associate's/Certificate</label>
+									<input class="radio-input" type="radio" name="program3" value="ba" checked="checked">
+									<label class="radio-label">Bachelor's</label>	
+									<input class="radio-input" type="radio" name="program3" value="grad">
+									<label class="radio-label">Graduate</label>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="prgmlength-selection hidden-box">
+									<h3>Program Length</h3>
+									<select name="prgmlength">
+										<option value="5">5 years</option>
+										<option value="4" selected="selected">4 years</option>
+										<option value="3">3 years</option>
+										<option value="2">2 years</option>
+										<option value="1">1 year</option>
+									</select>
+									<button class="continue">Continue</button>
+								</div>
+								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>Did you get XML? Well, that's fine. Paste it below and see what happens!</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
+									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
+									<p>Or you can continue and enter it manually.</p>
+									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit"></textarea>
-									<button class="xml-magic-happens">Science!</button>
+									<button class="xml-magic-happens">Use this XML</button>
 								</div>
 							</div>
 							<a class="add-a-school hidden-box" href="#">Add a School <span class="huge">+</span></a>
-							<h2 name="institutionname"></h2>
 							<div class="remove-this-school">
 								<a name="focus_target"></a><a class="remove-school-link" href="#">Remove This School</a>
 							</div>
@@ -199,62 +277,63 @@ var csrftok = "{{ csrf_token }}";
 								Are you sure you want to remove this school?
 								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
 							</div>
+							<h2 name="institutionname"></h2>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="show arrw">
+					<tr>
 						<th class="width-holder"><h3 id="first-year-costs">First Year Costs</h3></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 					</tr>
-					<tr class="totalcost show">
-						<th scope="row" data-column="0"><h4>Total cost</h4></th>
+					<tr class="totalcost show arrw">
+						<th scope="row" data-column="0"><h4>Cost of Attendance</h4></th>
 						<td data-column="1"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="tuitionfees"><span class="tooltip-info" data-tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes.">Tuition &amp; Fees</span></label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="tuitionfees"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="tuitionfees"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="tuitionfees"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="tuitionfees"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="tuitionfees"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="tuitionfees"></td>
 					</tr>
 					<tr>
 						<th data-column="0"><label for="roombrd"><span class="tooltip-info" data-tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus.">Housing &amp; Meals</span></label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="roombrd"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="roombrd"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="roombrd"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="roombrd"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="roombrd"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="roombrd"></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="books"><span class="tooltip-info" data-tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year.">Books &amp; Supplies</span></label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="books"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="books"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="books"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="books"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="books"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="books"></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="transportation"><span class="tooltip-info" data-tooltip="Transportation: Cost of gas, parking and/or public transportation expenses.">Transportation</span></label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="transportation"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="transportation"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="transportation"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="transportation"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="transportation"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="transportation"></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><label for="otherexpenses"><span class="tooltip-info" data-tooltip="Other Expenses: Cost of items such as laundry and dependent care.">Other Expenses</span></label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="otherexpenses"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="otherexpenses"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="otherexpenses"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
 					</tr>
 				</tbody>
 				<tbody>
-					<tr class="show arrw">
+					<tr>
 						<th><h3>First Year Financial Aid Offer</h3></th>
 					</tr>
-					<tr class="totalcont show">
-						<th scope="row" data-column="0"><h4>Total contributions</h4></th>
-						<td data-column="1"><h6 class="data-total" name="totalcontributions">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" name="totalcontributions">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" name="totalcontributions">$0</h6></td>
+					<tr class="totalcont show arrw">
+						<th scope="row" data-column="0"><h4>Money for College</h4></th>
+						<td data-column="1"><h6 class="data-total" name="moneyforcollege">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="moneyforcollege">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="moneyforcollege">$0</h6></td>
 					</tr>
 					<tr class="grants collapse arrw">
 						<th scope="row" data-column="0"><h5>Scholarships &amp; grants</h5></th>
@@ -264,32 +343,32 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="pell" class="tooltip-info" data-tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year.">Pell Grant</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="pell"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="pell"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="pell"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="pell"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="pell"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="pell"></td>
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="scholar" class="tooltip-info" data-tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. ">Other Scholarships &amp; Grants</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="scholar"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="scholar"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="scholar"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="scholar"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="scholar"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="scholar"></td>
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Service members (active &amp; reserve) are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.">Military Tuition Assistance</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="tuitionassist"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="GI Bill">GI Bill</label></th>
-						<td data-column="1">
+						<td data-column="1" class="p-rel">
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
-							<input type="text" class="user-value" value="0" name="gibill">
 							<div class="gibill-panel hidden-box">
+								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -307,13 +386,13 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<legend>Residency</legend>
+									<label for="military-residency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency1" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency1" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency1" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
 										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
@@ -321,15 +400,16 @@ var csrftok = "{{ csrf_token }}";
 									</div>
 								</fieldset>
 							</div>
+							<input type="text" class="school-data" value="0" name="gibill" readonly="readonly">
 						</td>
-						<td data-column="2">
+						<td data-column="2" class="p-rel">
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
-							<input type="text" class="user-value" value="0" name="gibill">
 							<div class="gibill-panel hidden-box">
+								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -347,13 +427,13 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<legend>Residency</legend>
+									<label for="military-residency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency2" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency2" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency2" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
 										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
@@ -361,15 +441,16 @@ var csrftok = "{{ csrf_token }}";
 									</div>
 								</fieldset>
 							</div>
+							<input type="text" class="school-data" value="0" name="gibill" readonly="readonly">
 						</td>
-						<td data-column="3">
+						<td data-column="3" class="p-rel">
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
-							<input type="text" class="user-value" value="0" name="gibill">
 							<div class="gibill-panel hidden-box">
+								<span class="gibill-calculator-tip"></span>
 								<fieldset>
 									<label for="military-status">Military Status</label>
 									<select name="military-status" class="military-status-select">
-										<option value="none" selected="selected">No Military Service</option>
+										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran</option>
@@ -387,13 +468,13 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<legend>Residency</legend>
+									<label for="military-residency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency3" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency3" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency3" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
 										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
@@ -401,50 +482,10 @@ var csrftok = "{{ csrf_token }}";
 									</div>
 								</fieldset>
 							</div>
+							<input type="text" class="school-data" value="0" name="gibill" readonly="readonly">
 						</td>
 					</tr>
-					<tr class="federal arrw">
-						<th data-column="0"><h5>Federal loans</h5></th>
-						<td data-column="1"><h6 class="data-total" name="federaltotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" name="federaltotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" name="federaltotal">$0</h6></td>
-					</tr>
-					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="perkins"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="perkins"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="perkins"></td>
-					</tr>
-					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="staffsubsidized"></td>
-					</tr>
-					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="staffunsubsidized"></td>
-					</tr>
-					<tr class="private arrw">
-						<th data-column="0"><h5>Private Loans</h5></th>
-						<td data-column="1"><h6 class="data-total" name="privatetotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" name="privatetotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" name="privatetotal">$0</h6></td>
-					</tr>
-					<tr class="private-row">
-						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="institutionalloan"></td>
-					</tr>
-					<tr class="private-row">
-						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="privateloan"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="privateloan"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="privateloan"></td>
-					</tr>
+
 					<tr class="contributions arrw">
 						<th scope="row" data-column="0"><h5>Contributions</h5></th>
 						<td data-column="1"><h6 class="data-total" name="savingstotal">$0</h6></td>
@@ -453,27 +494,95 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="savings" class="tooltip-info" data-tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? ">What You Can Pay</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="savings"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="savings"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="savings"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="savings"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="savings"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="savings"></td>
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="family" class="tooltip-info" data-tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans.">What Family &amp; Others Can Pay</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="family"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="family"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="family"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="family"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="family"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="family"></td>
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="state529plan" class="tooltip-info" data-tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. ">Parent Loans</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="state529plan"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="state529plan"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="state529plan"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="state529plan"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="state529plan"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="state529plan"></td>
 					</tr>
 					<tr class="contrib-row">
 						<th scope="row" data-column="0"><label for="workstudy" class="tooltip-info" data-tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses.">Work-Study</label></th>
-						<td data-column="1"><input type="text" class="user-value" value="0" name="workstudy"></td>
-						<td data-column="2"><input type="text" class="user-value" value="0" name="workstudy"></td>
-						<td data-column="3"><input type="text" class="user-value" value="0" name="workstudy"></td>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="workstudy"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="workstudy"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="workstudy"></td>
+					</tr>
+
+					<tr class="federal arrw">
+						<th data-column="0"><h5>Federal loans</h5></th>
+						<td data-column="1"><h6 class="data-total" name="federaltotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="federaltotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="federaltotal">$0</h6></td>
+					</tr>
+					<tr class="federal-row">
+						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year.">Perkins Loan</label></th>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="perkins"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="perkins"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="perkins"></td>
+					</tr>
+					<tr class="federal-row">
+						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students.">Subsidized Loan</label></th>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="staffsubsidized"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="staffsubsidized"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="staffsubsidized"></td>
+					</tr>
+					<tr class="federal-row">
+						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year.">Unsubsidized Loan</label></th>
+						<td data-column="1"><input type="text" class="school-data" value="0" name="staffunsubsidized"></td>
+						<td data-column="2"><input type="text" class="school-data" value="0" name="staffunsubsidized"></td>
+						<td data-column="3"><input type="text" class="school-data" value="0" name="staffunsubsidized"></td>
+					</tr>
+
+					<tr class="private arrw">
+						<th data-column="0"><h5>Private Loans</h5></th>
+						<td data-column="1"><h6 class="data-total" name="privatetotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" name="privatetotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" name="privatetotal">$0</h6></td>
+					</tr>
+					<tr class="private-row">
+						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Loans from Your School</label></th>
+						<td data-column="1">
+							<input type="text" class="school-data" value="0" name="institutionalloan">
+							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
+							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+						</td>
+						<td data-column="2">
+							<input type="text" class="school-data" value="0" name="institutionalloan">
+							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
+							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+						</td>
+						<td data-column="3">
+							<input type="text" class="school-data" value="0" name="institutionalloan">
+							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
+							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+						</td>
+					</tr>
+					<tr class="private-row">
+						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan.">Other Loans</label></th>
+						<td data-column="1">
+							<input type="text" class="school-data" value="0" name="privateloan">
+							<input type="text" class="school-data interest-rate" value="0" name="privateloanrate">
+							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+						</td>
+						<td data-column="2">
+							<input type="text" class="school-data" value="0" name="privateloan">
+							<input type="text" class="school-data interest-rate" value="0" name="privateloanrate">
+							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+						</td>
+						<td data-column="3">
+							<input type="text" class="school-data" value="0" name="privateloan">
+							<input type="text" class="school-data interest-rate" value="0" name="privateloanrate">
+							<a href="#" class="rate-change up"><span class="visuallyhidden">Up</span></a> <a href="#" class="rate-change down"><span class="visuallyhidden">Down</span></a>
+						</td>
 					</tr>
 				</tbody>
 				<tbody>
@@ -595,42 +704,69 @@ var csrftok = "{{ csrf_token }}";
 				</tbody>
 				<tbody>
 					<tr class="stop">
-						<th><h3>After 4 years of school</h3></th>
+						<th class="bottom-border"><h3>After school</h3></th>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
-						<td data-column="1"><input type="text" value="" name="debtburden" readonly="readonly"></td>
-						<td data-column="2"><input type="text" value="" name="debtburden" readonly="readonly"></td>
-						<td data-column="3"><input type="text" value="" name="debtburden" readonly="readonly"></td>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="">Debt after graduation</h4></th>
+						<td data-column="1"><span name="loanlifetime"></span></td>
+						<td data-column="2"><span name="loanlifetime"></span></td>
+						<td data-column="3"><span name="loanlifetime"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
-						<td data-column="1"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
-						<td data-column="2"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
-						<td data-column="3"><input type="text" value="" name="loanmonthly" readonly="readonly"></td>
+						<td data-column="1">
+							<div class="debt-pie" id="pie1"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
+						<td data-column="2">
+							<div class="debt-pie" id="pie2"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
+						<td data-column="3">
+							<div class="debt-pie" id="pie3"></div>
+							<span name="loanmonthly"></span>
+							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
+						<td data-column="1"><span name="debtburden"></span></td>
+						<td data-column="2"><span name="debtburden"></span></td>
+						<td data-column="3"><span name="debtburden"></span></td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th><h3>School Indicators</h3></th>
+						<th class="bottom-border"><h3>School Indicators</h3></th>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Graduation Rate</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1">
+							<div class="gradrisk-container">
+								<span name="gradriskpercent" class="gradrisk-percent">42%</span>
+								<div class="gradrisk-pointer"></div>
+							</div>
+							<div class="gradrisk-bar">
+								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
+							</div>
+							<p name="gradrisk" class="gradrisk-text"></p>
+						</td>
+						<td data-column="2"><span name="gradrisk"></span></td>
+						<td data-column="3"><span name="gradrisk"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Loan Default Rate</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="defaultrisk"></span></td>
+						<td data-column="2"><span name="defaultrisk"></span></td>
+						<td data-column="3"><span name="defaultrisk"></span></td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Median Borrowing</h4></th>
-						<td data-column="1"></td>
-						<td data-column="2"></td>
-						<td data-column="3"></td>
+						<td data-column="1"><span name="loandebtrisk"></span></td>
+						<td data-column="2"><span name="loandebtrisk"></span></td>
+						<td data-column="3"><span name="loandebtrisk"></span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -660,12 +796,6 @@ var csrftok = "{{ csrf_token }}";
 		</div><!-- end #save-footer -->
 
 	</div><!-- end #comparison-tool -->
-
-	<div id="introduction" class="container costbuilder">
-        <p>If you have received <a href="http://studentaid.ed.gov/glossary#Financial_Aid_Offer" target="_blank">financial aid offers</a> from any four-year colleges, use this tool to understand how all those numbers impact your payments down the road. Just researching costs? Check out <a href="http://nces.ed.gov/collegenavigator/" target="_blank">College Navigator</a>.</p>
-        <p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="_blank">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="_blank">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we are building a tool that complements the shopping sheet and helps students make comparisons tailored to their individual circumstances.</p>
-		<p>While we're working to build new features, try out this basic version. If you have any ideas or feedback on what should be included in the fully functioning version due next spring, <a href="{% url pfc-feedback %}" target="compare_info">let us know.</a></p>	
-	</div>
 
 
 
