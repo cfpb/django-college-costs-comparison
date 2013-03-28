@@ -29,11 +29,11 @@ var data =
 		"average-public" :
 			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
 			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "program": "ba",
-			 "school_id": "average-public", "prgmlength": 4 },
+			 "school_id": "average-public", "prgmlength": 4, "control": "public" },
 		"average-private" :
 			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
 			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "program": "ba",
-			 "school_id": "average-private", "prgmlength": 4  }
+			 "school_id": "average-private", "prgmlength": 4, "control": "private"  }
 	}
 };
  
@@ -294,6 +294,14 @@ function calculate_school(school_id) {
 		}
 	});
 
+	// Set undergrad
+	if ( schooldata.program == "grad" ) {
+		schooldata.undergrad = false;
+	}
+	else {
+		schooldata.undergrad = true;
+	}
+
 	// Get program type and length
 	schooldata.program = school.find("input:radio[name='program" + column + "']").val();
 	if ( schooldata.program == undefined ) {
@@ -312,18 +320,12 @@ function calculate_school(school_id) {
 		}
 	}
 
+	// schooldata.yrincollege is set to global.yrincollege, possibly just for now
+	schooldata.yrincollege = global.yrincollege;
+
 	// For calculations, add transportation and otherexpenses into personalcosts
 
 	schooldata.personal = schooldata.transportation + schooldata.otherexpenses;
-
-
-	// Set undergrad
-	if ( ( schooldata.program == "ba" ) || ( schooldata.program == "aa" ) ) {
-		schooldata.undergrad = true;
-	}
-	else {
-		school.undergrad = false;
-	}
 
 	// tf in-state rate prepopulate (schooldata.tfinsprep)
 	if ( ( schooldata.control =="public" ) && ( schooldata.program="grad" ) ) {
@@ -530,31 +532,34 @@ function calculate_school(school_id) {
 	else {
 		if ((schooldata.program == "aa") || (schooldata.yrincollege == 1)) {
 			schooldata.staffsubsidized_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins;
+			if ( schooldata.staffsubsidized_max > global.subsidizedcapyr1 ) {
+				schooldata.staffsubsidized_max = global.subsidizedcapyr1;
+			}
 			if ( schooldata.staffsubsidized_max < 0 ) {
 				schooldata.staffsubsidized_max = 0;
-			}
-			if ( schooldata.staffsubsidized_max > schooldata.subsidizedcapyr1 ) {
-				schooldata.staffsubsidized_max = schooldata.subsidizedcapyr1;
 			}
 		}
 		else if (schooldata.yrincollege == 2) {
 			schooldata.staffsubsidized_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.pell;
+			if ( schooldata.staffsubsidized_max > ( global.subsidizedcapyr2 - schooldata.staffsubsidized ) ) {
+				schooldata.staffsubsidized_max = global.subsidizedcapyr2 - schooldata.staffsubsidized ;
+			}
 			if ( schooldata.staffsubsidized_max < 0 ) {
 				schooldata.staffsubsidized_max = 0;
-			}
-			if ( schooldata.staffsubsidized_max > ( schooldata.subsidizedcapyr2 - schooldata.staffsubsidized ) ) {
-				schooldata.staffsubsidized_max = schooldata.subsidizedcapyr2 - schooldata.staffsubsidized ;
 			}
 		}
 		else if (schooldata.yrincollege == 3) {
 			schooldata.staffsubsidized_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.pell;
+			if ( schooldata.staffsubsidized_max > ( global.subsidizedcapyr3 - schooldata.staffsubsidized ) ) {
+				schooldata.staffsubsidized_max = global.subsidizedcapyr3 - schooldata.staffsubsidized ;
+			}
 			if ( schooldata.staffsubsidized_max < 0 ) {
 				schooldata.staffsubsidized_max = 0;
 			}
-			if ( schooldata.staffsubsidized_max > ( schooldata.subsidizedcapyr3 - schooldata.staffsubsidized ) ) {
-				schooldata.staffsubsidized_max = schooldata.subsidizedcapyr3 - schooldata.staffsubsidized ;
-			}
 		}
+	}
+	if (schooldata.staffsubsidized_max < 0){
+		schooldata.staffsubsidized = 0;
 	}
 	if (schooldata.staffsubsidized > schooldata.staffsubsidized_max){
 		schooldata.staffsubsidized = schooldata.staffsubsidized_max;
@@ -565,104 +570,105 @@ function calculate_school(school_id) {
 	//unsubsidized loan max for independent students
 	if ( schooldata.undergrad == "false") { 
 		schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend- schooldata.perkins- schooldata.staffsubsidized;
-		if ( schooldata.staffunsubsidizedindep_max < 0 ) {
-			schooldata.staffunsubsidizedindep_max = 0;
-		}
 		if ( schooldata.staffunsubsidizedindep_max > global.unsubsidizedcapgrad ) {
 			schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapgrad;
 		}
 		if (schooldata.staffunsubsidizedindep_max > global.unsubsidizedcapgrad - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapgrad - schooldata.staffsubsidized;
 		}
+		if ( schooldata.staffunsubsidizedindep_max < 0 ) {
+			schooldata.staffunsubsidizedindep_max = 0;
+		}
 	} 
 	else {
 		if ( ( schooldata.program == "aa" ) || ( schooldata.yrincollege == 1 ) ) { 
 			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
-			if ( schooldata.staffunsubsidizedindep_max < 0 ) {
-				schooldata.staffunsubsidizedindep_max = 0;
-			}
 			if ( schooldata.staffunsubsidizedindep_max > ( global.unsubsidizedcapindepyr1 - schooldata.staffsubsidized ) ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr1;
 			}
 			if (schooldata.staffunsubsidizedindep_max > global.unsubsidizedcapindepyr1 - schooldata.staffsubsidized) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr1 - schooldata.staffsubsidized;
 			}
-
-		}
-		else if ( schooldata.yrincollege == 2) { 
-			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
 			if ( schooldata.staffunsubsidizedindep_max < 0 ) {
 				schooldata.staffunsubsidizedindep_max = 0;
 			}
+		}
+		else if ( schooldata.yrincollege == 2) { 
+			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
 			if ( schooldata.staffunsubsidizedindep_max > ( global.unsubsidizedcapindepyr2 - schooldata.staffsubsidized ) ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr2;
 			}
 			if ( schooldata.staffunsubsidizedindep_max > global.unsubsidizedcapindepyr2 - schooldata.staffsubsidized ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr2 - schooldata.staffsubsidized;
 			}
-		}
-		else if ( schooldata.yrincollege == 3) { 
-			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
 			if ( schooldata.staffunsubsidizedindep_max < 0 ) {
 				schooldata.staffunsubsidizedindep_max = 0;
 			}
+		}
+		else if ( schooldata.yrincollege == 3) { 
+			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
 			if ( schooldata.staffunsubsidizedindep_max > ( global.unsubsidizedcapindepyr3 - schooldata.staffsubsidized ) ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr3;
 			}
 			if ( schooldata.staffunsubsidizedindep_max > global.unsubsidizedcapindepyr3 - schooldata.staffsubsidized ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr3 - schooldata.staffsubsidized;
 			}
+			if ( schooldata.staffunsubsidizedindep_max < 0 ) {
+				schooldata.staffunsubsidizedindep_max = 0;
+			}
 		}
 	}
 	//unsubsidized loan max for dependent students
 	if ( schooldata.undergrad == "false" ) {
 		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
-		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
-			schooldata.staffunsubsidizeddep_max = 0;
-		}
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapgrad - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapgrad - schooldata.staffsubsidized;
+		}
+		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
+			schooldata.staffunsubsidizeddep_max = 0;
 		}
 		// schooldata.staffunsubsidizeddep_max = math.min (( global.unsubsidizedcapgrad - schooldata.staffsubsidized) , math.max ( 0, (schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized)));
 	} 
 	else if ( schooldata.program == "aa" || schooldata.yrincollege == 1 ) {
 		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
-		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
-			schooldata.staffunsubsidizeddep_max = 0;
-		}
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapyr1 - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr1 - schooldata.staffsubsidized;
+		}
+		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
+			schooldata.staffunsubsidizeddep_max = 0;
 		}
 		// schooldata.staffunsubsidizeddep_max = math.min((global.unsubsidizedcapyr1- schooldata.staffsubsidized), math.max(0, (schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized))); 
 	}
 	else if ( schooldata.yrincollege == 2) { 
 		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
-		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
-			schooldata.staffunsubsidizeddep_max = 0;
-		}
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapyr2 - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr2 - schooldata.staffsubsidized;
+		}
+		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
+			schooldata.staffunsubsidizeddep_max = 0;
 		}
 		// schooldata.staffunsubsidizeddep_max = math.min((global.unsubsidizedcapyr2 - schooldata.staffsubsidized), math.max(0, (schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized))):
 	} 
 	else if ( schooldata.yrincollege == 3 ) { 
 		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
+		if ( schooldata.staffunsubsidizeddep_max > (global.unsubsidizedcapyr3 - schooldata.staffsubsidized) ) {
+			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr3 - schooldata.staffsubsidized;
+		}
 		if ( schooldata.staffunsubsidizeddep_max < 0 ) {
 			schooldata.staffunsubsidizeddep_max = 0;
 		}
-		if ( schooldata.staffunsubsidizeddep_max > (global.unsubsidizedcapyr3 - schooldata.staffsubsidized) ) {
-			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr3 - schooldata.staffsubsidized;
-		}	
 	// schooldata.staffunsubsidizeddep_max = math.min((global.unsubsidizedcapyr3 - schooldata.staffsubsidized), math.max(0, (schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized)));
 	}
 
-
 	// Unsubsidized Stafford Loans
 	if ( global.depend == "dependent" ) {
-		schooldata.staffunsubsidized_max = global.staffunsubsidizeddep_max;
+		schooldata.staffunsubsidized_max = schooldata.staffunsubsidizeddep_max;
 	}
 	else {
-		schooldata.staffunsubsidized_max = global.staffunsubsidizedindep_max;
+		schooldata.staffunsubsidized_max = schooldata.staffunsubsidizedindep_max;
+	}
+	if (schooldata.staffunsubsidized_max < 0) {
+		schooldata.staffunsubsidized_max = 0;
 	}
 	if (schooldata.staffunsubsidized > schooldata.staffunsubsidized_max) {
 		schooldata.staffunsubsidized = schooldata.staffunsubsidized_max;
