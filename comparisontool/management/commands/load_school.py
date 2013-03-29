@@ -24,10 +24,13 @@ class Command(BaseCommand):
                         aliases_packed = record.get('ALIAS')  # pipe delimited
                         if aliases_packed:
                             aliases = aliases.union(aliases_packed.split('|'))
-
+                        city = record.get('CITY')
+                        state = record.get('STATE')
                         school_id = int(record['SCHOOL_ID'])
                         data_json = dumps(record)
                         school = School(school_id=school_id,
+                                        city=city,
+                                        state=state,
                                         data_json=data_json)
                         school.save()
                         school.alias_set.all().delete()

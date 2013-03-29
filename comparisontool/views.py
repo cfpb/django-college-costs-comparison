@@ -185,12 +185,13 @@ def school_search_api(request):
     sqs = SearchQuerySet().models(School)
     sqs = sqs.autocomplete(autocomplete=request.GET.get('q', ''))
 
-    found_schools = [result.object for result in sqs]
-    document = [{'schoolname': school.primary_alias,
+    document = [{'schoolname': school.text,
                 'id': school.school_id,
+                'city':school.city,
+                'state':school.state,
                 'url': reverse('school-json',
                 args=[school.school_id])}
-                for school in found_schools]
+                for school in sqs]
     json_doc = json.dumps(document)
 
     return HttpResponse(json_doc, mimetype='application/json')
