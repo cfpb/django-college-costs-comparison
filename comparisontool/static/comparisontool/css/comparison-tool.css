@@ -112,6 +112,13 @@ h1.p4ch {
 	background-position: 0 0;
 }
 
+.ico-process-comparison{
+	width:38px;
+	height:40px;
+	background:url(../images/timeline/comparison.png); 
+	background-position: 0 0; top left;
+} 
+
 .ico-process-comparison.selected,
 .ico-process-comparison:hover {
 	width: 38px;
@@ -126,6 +133,13 @@ h1.p4ch {
 	background-position: 0 0;
 }
 
+
+.ico-process-banking-guide {
+	width:38px; 
+	height:40px; 
+	background:url(../images/timeline/banking-guide.png); 
+	background-position: 0 0; top left;
+}
 .ico-process-banking-guide.selected,
 .ico-process-banking-guide:hover {
 	width:38px;
@@ -182,13 +196,155 @@ h1.p4ch {
 }
 /* END TIMELINE */
 
-table {
+
+/* global */
+
+#comparison-tool {
+	font-family: "Avenir Next", Verdana, sans-serif !important;
+}
+#comparison-tool button,
+#comparison-tool .button {
+	color: #fff;
+	background-color: #D83D00;
+	font-family: "Avenir Next", Verdana, sans-serif;
+	font-weight: 500;
+	text-transform: none;
+	letter-spacing: 0;
+	border-radius: 0;
+	font-size: .875em;
+	border: 0;
+	position: relative;
+	top: 0;
+	padding: .5em 1em;
+	-webkit-transition: none
+	-moz-transition: none;
+	transition: none;
+}
+#comparison-tool button + button {
+	margin-top:1em;
+}
+#comparison-tool button[disabled=disabled],
+#comparison-tool button[disabled],
+#comparison-tool button.disabled,
+#comparison-tool .button.disabled,
+#comparison-tool .button.cancel,
+#comparison-tool .button.preset {
+	background: #808080;
+}
+#comparison-tool .button-small {
+	font-size: .75em;
+	padding: .5em 1em;
+}
+#comparison-tool input[type=checkbox],
+#comparison-tool input[type=radio] {
+	margin-right: .125em;
+}
+#comparison-tool .tip {
+	background: none;
+	color: #0081a1;
+	border-bottom: 1px solid #0081a1;
+}
+
+#comparison-tool b {
+	font-weight: 600;
+}
+
+/* grid
+-------------------------------------------------------------------------------*/
+
+#comparison-tool .container {
+	width: 900px;
+	margin: 0 auto;
+}
+#comparison-tool .wrapper {
+	margin: 0 20px;
+}
+#comparison-tool .col1,
+#comparison-tool .col2,
+#comparison-tool .col3,
+#comparison-tool .col4,
+#comparison-tool .col5,
+#comparison-tool .col6,
+#comparison-tool .col7,
+#comparison-tool .col8,
+#comparison-tool .col9,
+#comparison-tool .col10 {
+	display: inline;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#comparison-tool .col1 { width: 66px; }
+#comparison-tool .col2 { width: 152px; }
+#comparison-tool .col3 { width: 238px; }
+#comparison-tool .col4 { width: 324px; }
+#comparison-tool .col5 { width: 410px; }
+#comparison-tool .col6 { width: 496px; }
+#comparison-tool .col7 { width: 582px; }
+#comparison-tool .col8 { width: 668px; }
+#comparison-tool .col9 { width: 754px; }
+#comparison-tool .col10 { width: 840px; }
+#comparison-tool .pre1 { padding-left: 66px; }
+#comparison-tool .pre2 { padding-left: 152px; }
+#comparison-tool .pre3 { padding-left: 238px; }
+#comparison-tool .pre4 { padding-left: 324px; }
+#comparison-tool .pre5 { padding-left: 410px; }
+#comparison-tool .pre6 { padding-left: 496px; }
+#comparison-tool .pre7 { padding-left: 582px; }
+#comparison-tool .pre8 { padding-left: 668px; }
+#comparison-tool .pre9 { padding-left: 754px; }
+#comparison-tool .suf1 { padding-right: 66px; }
+#comparison-tool .suf2 { padding-right: 152px; }
+#comparison-tool .suf3 { padding-right: 238px; }
+#comparison-tool .suf4 { padding-right: 324px; }
+#comparison-tool .suf5 { padding-right: 410px; }
+#comparison-tool .suf6 { padding-right: 496px; }
+#comparison-tool .suf7 { padding-right: 582px; }
+#comparison-tool .suf8 { padding-right: 668px; }
+#comparison-tool .suf9 { padding-right: 754px; }
+
+/* header
+-------------------------------------------------------------------------------*/
+
+#comparison-tool #comparison-tool-header {
+	margin: 1em 0 3em 0;
+	position: relative;
+}
+#comparison-tool #comparison-tool-header h1 {
+	position: relative;
+	font-size: 4em;
+	font-weight: 400;
+	color: #D83D00;
+	width: 900px;
+	margin: 0 auto .25em auto;
+}
+#comparison-tool #comparison-tool-header h1 sup {
+	font-size: .25em;
+	font-weight: 700;
+	color: #808080;
+	top: -2.5em;
+	letter-spacing: .083333em;
+	text-transform: uppercase;
+}
+#comparison-tool #comparison-tool-header h4 {
+	background: #D83D00;
+	color: #fff;
+	font-size: .75em;
+	padding: .5em 38px;
+	letter-spacing: .083333em;
+}
+#comparison-tool #comparison-tool-header .header-links {
+	margin: 3em auto 0 auto;
+	width: 900px;
+}
+
+#comparison-tool table {
 	border: none;
 	border-collapse: separate;
 	border-spacing: 0 0.5em;
 }
 
-thead th {
+#comparison-tool thead th {
 	background: transparent;
 	color: #333;
 	border: none;
@@ -196,24 +352,21 @@ thead th {
 	font-size: 1em;
 	line-height: 1em;
 }
-thead h2 {
+#comparison-tool thead h2 {
 	text-transform: none;
-	font-size: 1.25em;
+	font-size: 1.5em;
 	letter-spacing: 0;
 	line-height: 1.3em;
 	font-weight: 700;
 }
 
-td, tbody th {
-	border: none;
-}
-
-thead #institution-row th .remove-this-school {
+#comparison-tool thead #institution-row th .remove-this-school {
 	font-size: 0.75em;
 	font-weight: 400;
+	margin-bottom: 0.75em;
 }
 
-thead #institution-row th .remove-confirm {
+#comparison-tool thead #institution-row th .remove-confirm {
 	background-color: #FFF;
 	border: 1px solid black;
 	display: none;
@@ -223,23 +376,111 @@ thead #institution-row th .remove-confirm {
 	max-width: 15%;
 }
 
-thead #institution-row th .remove-confirm a {
+#comparison-tool thead #institution-row th .remove-confirm a {
 	display: inline-block;
 	margin: .5em auto .5em auto;
 	text-align: center;
 	width: auto;
 }
 
-table h4 {
+#comparison-tool td, #comparison-tool td input {
+	text-align: center;
+}
+#comparison-tool td input {
+	border: 1px solid #fff;
+}
+#comparison-tool td input:focus, #comparison-tool td input:hover {
+	border: 1px solid #989898;
+	background: #fdf3e0;
+}
+
+#comparison-tool thead .fixed {
+	position: fixed;
+	top: 0;
+	background: #fff;
+	border: 1px solid #bfbfbf;
+	border-top: none;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+	width: 975px;
+	z-index: 5;
+}
+
+#comparison-tool thead .fixed h2 {
+	font-size: 0.875em;
+	line-height: 1.25em;
+}
+#comparison-tool h4 {
 	text-transform: none;
 	letter-spacing: 0;
+	font-size: 1.125em;
 }
-table h3 {
+#comparison-tool .totalcont h4, #comparison-tool .totalcost h4 {
+	font-size: 1.25em;
+}
+#comparison-tool .totalcont h6.data-total, #comparison-tool .totalcost h6.data-total {
+	font-size: 1.5em;
+}
+#comparison-tool h6 {
+	font-size: 1.125em;
+}
+#comparison-tool table h3 {
 	text-transform: uppercase;
 	font-weight: 400;
-	font-size: 0.8em;
+	font-size: 0.9em;
 	text-align: left;
 }
+#comparison-tool table tbody {
+	padding-bottom: 1em;
+}
+
+#comparison-tool table tbody th {
+	font-size: 0.875em;
+	border-right: none;
+	vertical-align: middle;
+	padding: 0.5em 1em;
+}
+
+#comparison-tool table > tbody thead th {
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0.5em 0.5em 0.5em 1em;
+}
+
+#comparison-tool table td {
+	padding: .1875em 0;
+}
+
+#comparison-tool table thead th {
+	border: none;
+	color: #585858;
+	background: transparent;
+	padding: 0.5em 0;
+}
+
+#comparison-tool th {
+	width: 25%;
+}
+
+#comparison-tool td {
+	border-right: none;
+}
+
+#comparison-tool td:last-child {
+	border-right: none;
+}
+
+#comparison-tool thead th {
+	text-align: left;
+}
+#comparison-tool tbody > th, tbody thead th:first-child {
+	text-align: right;
+	padding-right: 0.9em;
+}
+
+.nopad {
+	padding: 0;
+}
+
 .left-to-pay h3 {
 	font-size: 1.4em;
 	text-align: right;
@@ -252,6 +493,12 @@ table h3 {
 }
 .private th, .private td {
 	border-bottom: 5px solid #f5c455;
+}
+.grants h5, .federal h5, .private h5, .contributions h5 {
+	font-size: 1.125em;
+}
+.grants h6, .federal h6, .private h6, .contributions h6 {
+	font-size: 1.125em;
 }
 .contributions th, .contributions td {
 	border-bottom: 5px solid #d6cca3;
@@ -281,34 +528,7 @@ table h3 {
 	background-position: 0.5em 0.5em
 }
 
-td, td input {
-	text-align: center;
-}
-td input {
-	border: 1px solid #fff;
-}
-td input:focus {
-	border: 1px solid #989898;
-	background: #fdf3e0;
-}
 
-thead .fixed {
-	position: fixed;
-	top: 0;
-	background: #fff;
-	border: 1px solid #bfbfbf;
-	border-top: none;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.25);
-	width: 975px;
-	z-index: 5;
-}
-/* thead .fixed th:first-child, .breakdown.fixed th {
-	width: 195px;
-} */
-thead .fixed h2 {
-	font-size: 0.875em;
-	line-height: 1.25em;
-}
 .breakdown.fixed {
 	position: fixed;
 	bottom: 0;
@@ -326,66 +546,24 @@ thead .fixed h2 {
 	width:227px;
 }
 
-table tbody {
-	padding-bottom: 1em;
-}
-
-table tbody th {
-	font-size: 0.875em;
-	border-right: none;
-	vertical-align: middle;
-	padding-right: 1em;
-}
-
-table > tbody thead th {
-	text-transform: uppercase;
-	font-weight: 600;
-	padding: 0.5em 0.5em 0.5em 1em;
-}
-
-table td {
-	padding: .1875em 0;
-}
-
-table thead th {
-	border: none;
-	color: #585858;
-	background: transparent;
-	padding: 0.5em 0;
-}
-
-th {
-	width: 25%;
-}
-
-td {
-	border-right: none;
-}
-td:last-child {
-	border-right: none;
-}
-
-thead th {
-	text-align: left;
-}
-tbody > th, tbody thead th:first-child {
-	text-align: right;
-	padding-right: 0.9em;
-}
-.nopad {
-	padding: 0;
-}
-
 #institution-row th .add-a-school {
 	background-color: #FFF;
 	border: 3px dashed #d24505;
 	color: #000;
 	display: block;
 	font-size: 1em;
+	height: 200px;
+	margin: 0 auto;
 	text-align: center;
 	padding: 1em .25em;
 	position: absolute;
-	width: 25%;
+	width: 200px;
+}
+
+#institution-row.fixed .add-a-school {
+	height: 1em;
+	overflow: hidden;
+	position: static;
 }
 
 #institution-row th .add-a-school .huge {
@@ -402,6 +580,7 @@ tbody > th, tbody thead th:first-child {
 	font-size: 1em;
 	padding: .25em .5em;
 	position: absolute;
+	width: 200px;
 }
 
 #institution-row th .add-school-info label {
@@ -487,11 +666,11 @@ tbody > th, tbody thead th:first-child {
 	width: 50%;
 }
 
-/* GI Bill Calculator Link */
-.gibill-calculator {
-	background-color: #d12124;
+ /*GI Bill Calculator Link */
+#comparison-tool .gibill-calculator {
+	/*background-color: #d12124;
 	border: 0;
-	color: #fff;
+	color: #fff;*/
 	font-size: 0.75em;
 	padding: 0.35em 0 0.35em 2em;
 	position: absolute;
@@ -509,7 +688,7 @@ tbody > th, tbody thead th:first-child {
 }
 
 /* Column headers */
-section > table > thead th {
+#comparison-tool section > table > thead th {
 	background: transparent;
 	color: #585858;
 	border: none;
@@ -550,7 +729,7 @@ section > table > thead th {
 }
 
 
-.private-row .interest-rate, .private-row .interest-rate:hover {
+#comparison-tool .private-row .interest-rate, #comparison-tool .private-row .interest-rate:hover {
 	background-color: #fff;
 	border: 1px solid #ccc;
 	border-radius: 0em;
@@ -566,7 +745,7 @@ section > table > thead th {
 	-webkit-box-sizing: border-box;
 	width: 4em;
 }
-.private-row td .rate-change {
+#comparison-tool .private-row td .rate-change {
 	border: 0;
 	display: block;
 	font-size: .5em;
@@ -577,12 +756,12 @@ section > table > thead th {
 		top: .4em;
 	width: 5.5em;
 }
-.private-row td .rate-change.down {
+#comparison-tool .private-row td .rate-change.down {
 	background: url(../images/arrow-down.png) 16px 0 no-repeat;
 	position: absolute;
 		top: 1.8em;
 }
-.private-row td .rate-change.up {
+#comparison-tool .private-row td .rate-change.up {
 	background: url(../images/arrow-up.png) 16px 2px no-repeat;
 }
 
@@ -635,6 +814,10 @@ td h6.disabled, td h6.disabled:hover {
 .tooltip-info, .tooltip-info:hover {
 	cursor: help;
 	border-bottom: 1px dotted #50a748;
+}
+
+h4.tooltip-info {
+	display: inline-block;
 }
 
 label.tooltip-info {
@@ -722,7 +905,6 @@ label.tooltip-info {
 
 #comparison-tables .breakdown .meter {
 	font-size: .75em;
-	padding-bottom: .5em;
 }
 
 #comparison-tables .breakdown .meter .bars .bars-container {
@@ -892,8 +1074,7 @@ label.tooltip-info {
     width: 1px;
 }
 
-/* Add a generic bottom border to items */
-.bottom-border {
+.bottom-border th, .bottom-border td {
 	border-bottom: 5px solid #585858;
 }
 
