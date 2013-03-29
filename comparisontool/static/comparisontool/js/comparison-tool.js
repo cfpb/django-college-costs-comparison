@@ -205,7 +205,7 @@ function fade_header() {
 
 function fix_widths() {
 	var totalwidth = $("#comparison-tables").width();
-	$(".width-holder").css("min-width", "25%");
+	$(".width-holder").css("width", "25%");
 	$(".fixed th").css("min-width", "25%");
 }
 
