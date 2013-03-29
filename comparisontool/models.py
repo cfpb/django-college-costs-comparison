@@ -7,6 +7,8 @@ class School(models.Model):
     """
     school_id = models.IntegerField(primary_key=True)
     data_json = models.TextField()
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=2)
 
     def __unicode__(self):
         return self.primary_alias + u"(%s)" % self.school_id
