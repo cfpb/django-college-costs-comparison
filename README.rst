@@ -45,7 +45,7 @@ Loading the data
 ------------------------------------
 use the load_school command::
 
-    django-admin.py load_school data/schools.csv
+    django-admin.py load_school data/schools.csv 
 
 Shove it into Solr::
     
