@@ -1164,7 +1164,8 @@ function school_search_results(query) {
 	request.done(function(response) {
 		$.each(response, function(i, val) {
 			dump += '<li class="school-result">';
-			dump += '<a href="' + val.id + '">' + val.schoolname + '</a></li>';
+			dump += '<a href="' + val.id + '">' + val.schoolname + '</a>';
+			dump += '<p>' + val.city + ', ' + val.state + '</p></li>';
 		});
 	});
 	request.fail(function() {
@@ -1287,7 +1288,13 @@ $(document).ready(function() {
 	$(".add-school-info").live('keyup', function (ev) {
 		var query = $(this).find("[name='schoolname-search']").val()
 		var results = school_search_results(query);
-		$(this).find(".search-results").html(results);
+		if (results == "") {
+			$(this).find(".search-results").hide();
+		}
+		else {
+			$(this).find(".search-results").show();
+			$(this).find(".search-results").html(results);
+		}
 	});
 
 	// #school-search-results list links

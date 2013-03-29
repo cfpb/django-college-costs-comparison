@@ -249,6 +249,8 @@ h1.p4ch {
 	font-weight: 600;
 }
 
+
+
 /* grid
 -------------------------------------------------------------------------------*/
 
@@ -591,16 +593,31 @@ h1.p4ch {
 	font-size: .8em;
 }
 
-#institution-row th .add-school-info .results {
+#institution-row th .add-school-info .search-results {
+	background-color: #fff;
+	border: 1px solid black;
+	display: none;
 	font-size: .9em;
 	list-style-type: none;
-	margin: .25em;
+	margin: 0;
+		margin-bottom: 1em;
 	padding: .25em;
 }
 
-#institution-row th .add-school-info .results li a {
+#institution-row th .add-school-info .search-results li a {
 	border: none;
 	font-weight: normal;
+}
+#institution-row th .add-school-info .search-results li p {
+	margin: .1em 0 .5em .75em;
+	font-weight: 400;
+	font-size: .8em;
+	font-style: italic;
+	line-height: 1em;
+}
+
+#institution-row th .add-school-info button {
+	margin: 1em auto 0 auto;
 }
 
 #institution-row th .add-school-info .hidden-box {
