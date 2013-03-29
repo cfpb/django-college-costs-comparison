@@ -38,3 +38,13 @@ nosetests.xml
 # Miscellany
 example_project/dev.sqlite3
 *.swp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
