@@ -37,11 +37,7 @@ var data =
 	}
 };
  
-var viz = {
-	"pieradius": 50
-}
-
-// Determine if global data exists
+ // Determine if global data exists
 if (data.global != "undefined") {
 	global = data.global;
 }
@@ -62,6 +58,8 @@ var pixel_price = 0, // The ratio of pixels to dollars for the bar graph
 	input_bg_error = "#F6D5D5", // bg color for inputs that are above max
 	schoolcounter = 0, // an internal counter to keep school ids unique
 	highest_cost = global.most_expensive_cost; // The most expensive cost of any school
+
+var loans = [];
 
 // Visualization
 //google.load('visualization', '1', {packages: ['corechart']});
@@ -1134,7 +1132,7 @@ function draw_the_bars(school_id) {
 			string += "A 50 50 0 0 1 62 12 ";
 		}
 		string += "A 50 50 0 0 1 " + x + " " + y + " z";
-		loan1.attr("path", string);
+		loans[column].attr("path", string);
     }
     else {
     	$("#pie" + column).parent().hide();
@@ -1204,17 +1202,20 @@ $(document).ready(function() {
 */
 
 	// initialize visualizations
-	pie1 = new Raphael("pie1", 125, 125);
-	pie2 = new Raphael("pie2", 125, 125);
-	pie3 = new Raphael("pie3", 125, 125);
-	circle1 = pie1.circle(62, 62, viz.pieradius);
-	circle2 = pie2.circle(62, 62, viz.pieradius);
-	circle3 = pie3.circle(62, 62, viz.pieradius);
+	pie1 = Raphael($("#pie1")[0], 125, 125);
+	pie2 = Raphael($("#pie2")[0], 125, 125);
+	pie3 = Raphael($("#pie3")[0], 125, 125);
+	circle1 = pie1.circle(62, 62, 50);
+	circle2 = pie2.circle(62, 62, 50);
+	circle3 = pie3.circle(62, 62, 50);
 	circle1.attr({fill: "Gray", stroke: "White", "stroke-width": 2});
 	circle2.attr({fill: "Gray", stroke: "White", "stroke-width": 2});
 	circle3.attr({fill: "Gray", stroke: "White", "stroke-width": 2});
-	loan1 = pie1.path("M 62 62");
-	loan1.attr({fill: "Red", stroke: "White", "stroke-width": 2});
+	for (x=1; x <= 3; x++) {
+		loans[x] = pie1.path("M 62 62");
+		loans[x].attr({fill: "Red", stroke: "White", "stroke-width": 2});		
+	}
+
 
 	// Check to see if there is restoredata
 	if (restoredata != 0) {
