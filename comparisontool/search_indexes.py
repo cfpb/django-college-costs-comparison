@@ -7,6 +7,8 @@ class SchoolIndex(SearchIndex):
     text = CharField(document=True, model_attr='primary_alias')
     autocomplete = EdgeNgramField()
     school_id = IntegerField(model_attr='school_id')
+    city = CharField(model_attr='city')
+    state = CharField(model_attr='state')
 
     def index_queryset(self):
         """Used when the entire index for model is updated."""
