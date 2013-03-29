@@ -1389,10 +1389,14 @@ $(document).ready(function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
 		var school = $("[data-column='" + column + "']");
-		var xml = $(".add-school-info .add-xml [name='xmlbukkit']").val();
-		var json = $.xml2json(xml);
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
 		var schooldata = schools[school_id];
+
+		var xml = $(".add-school-info .add-xml [name='xmlbukkit']").val();
+		if ( xml != "" ) {
+			_gaq.push(["_trackEvent", "XML Interactions", "XML pasted for school", school_id]);
+		}
+		var json = $.xml2json(xml);
 
 		build_school_element(school_id);
 
