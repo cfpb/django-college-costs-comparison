@@ -138,6 +138,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="0"></td>
 						<th scope="col" data-column="1">
 							<div class="add-school-info hidden-box">
+
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
 									<input type="text" name="schoolname-search" class="school-search-box">
@@ -721,17 +722,17 @@ var csrftok = "{{ csrf_token }}";
 						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
 						<td data-column="1">
 							<div class="debt-pie" id="pie1"></div>
-							<span name="loanmonthly"></span> per month
+							<p><span name="loanmonthly"></span> per month</p>
 							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
 						</td>
 						<td data-column="2">
 							<div class="debt-pie" id="pie2"></div>
-							<span name="loanmonthly"></span> per month
+							<p><span name="loanmonthly"></span> per month</p>
 							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
 						</td>
 						<td data-column="3">
 							<div class="debt-pie" id="pie3"></div>
-							<span name="loanmonthly"></span> per month
+							<p><span name="loanmonthly"></span> per month</p>
 							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
 						</td>
 					</tr>
@@ -750,7 +751,7 @@ var csrftok = "{{ csrf_token }}";
 						<th scope="row" data-column="0"><h4>Graduation Rate</h4></th>
 						<td data-column="1">
 							<div class="gradrisk-container">
-								<span name="gradriskpercent" class="gradrisk-percent">42%</span>
+								<span name="gradriskpercent" class="gradrisk-percent"></span>
 								<div class="gradrisk-pointer"></div>
 							</div>
 							<div class="gradrisk-bar">
@@ -758,8 +759,26 @@ var csrftok = "{{ csrf_token }}";
 							</div>
 							<p name="gradrisk" class="gradrisk-text"></p>
 						</td>
-						<td data-column="2"><span name="gradrisk"></span></td>
-						<td data-column="3"><span name="gradrisk"></span></td>
+						<td data-column="2">
+							<div class="gradrisk-container">
+								<span name="gradriskpercent" class="gradrisk-percent"></span>
+								<div class="gradrisk-pointer"></div>
+							</div>
+							<div class="gradrisk-bar">
+								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
+							</div>
+							<p name="gradrisk" class="gradrisk-text"></p>
+						</td>
+						<td data-column="3">
+							<div class="gradrisk-container">
+								<span name="gradriskpercent" class="gradrisk-percent"></span>
+								<div class="gradrisk-pointer"></div>
+							</div>
+							<div class="gradrisk-bar">
+								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
+							</div>
+							<p name="gradrisk" class="gradrisk-text"></p>
+						</td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Loan Default Rate</h4></th>
