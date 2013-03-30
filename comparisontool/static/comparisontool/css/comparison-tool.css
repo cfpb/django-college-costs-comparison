@@ -1025,13 +1025,17 @@ label.tooltip-info {
 #comparison-tables .gradrisk-container {
 	margin-bottom: 7px;
 	position: relative;
-		left: 0px;
+		left: -5px;
 	width: 10%;
 }
 
 #comparison-tables .gradrisk-container .gradrisk-value {
 	border-bottom: 2px solid #666;
-	
+}
+#comparison-tables .gradrisk-container .gradrisk-percent {
+	font-size: .9em;
+	text-align: center;
+	width: 4em;
 }
 
 #comparison-tables .gradrisk-pointer {

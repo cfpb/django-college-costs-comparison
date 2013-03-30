@@ -45,15 +45,15 @@ Loading the data
 ------------------------------------
 use the load_school command::
 
-    django-admin.py load_school data/schools.csv 
+    django-admin.py load_school data/schools.csv --settings=example_project.settings
 
 Shove it into Solr::
     
-    django-admin.py rebuild_index
+    django-admin.py rebuild_index --settings=example_project.settings
 
 Load the BAH Rates::
 
-    django-admin.py load_bah data/bah-lookup.csv
+    django-admin.py load_bah data/bah-lookup.csv --settings=example_project.settings
 
 The school search API
 ------------------------------------

@@ -16,6 +16,11 @@ var data =
 		"parentplusrate": 0.079, "plusoriginationfee": 1.04, "privateloanratedefault": 0.079, 
 		"institutionalloantratedefault":0.079, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
+		"group1gradrankhigh": 308, "group1gradrankmed": 496, "group1gradrankmax": 741,
+		"group2gradrankhigh": 286, "group2gradrankmed": 428, "group2gradrankmax": 556,
+		"group3gradrankhigh": 155, "group3gradrankmed": 292, "group3gradrankmax": 401,
+		"group4gradrankhigh": 0, "group4gradrankmed": 0, "group4gradrankmax": 0,
+		"group5gradrankhigh": 191,"group5gradrankmed": 337, "group5gradrankmax": 607,
 		"group1gradmed": 37.3, "group1gradhigh": 56.7, "group2gradmed": 17.7, "group2gradhigh": 32.2,
 		"group3gradmed": 24.1, "group3gradhigh": 50.1, "group4gradmed": 0, "group4gradhigh": 0, 
 		"group5gradmed": 62.5, "group5gradhigh": 77.6, "cdrhigh": 100, "cdravg": 13.4, "cdrlow": 0.0, 
@@ -882,6 +887,7 @@ function calculate_school(school_id) {
 	else {
 		schooldata.riskofdefault = "High";
 	}
+	school.find("[name='debtburden']").html(schooldata.riskofdefault);
 
 	// ---- School Indicators ---- //
 	// Comparative Graduation Rate
@@ -1107,7 +1113,7 @@ function draw_the_bars(school_id) {
 
     // Draw the pie chart
     if ( schooldata.loanmonthly > 0 ) {
-    	$("#pie" + column).parent().show();
+    	$("#pie" + column).closest("td").children().show();
  	    var percentloan = Math.round( ( schooldata.loanmonthly / schooldata.salarymonthly ) * 100 );
 	    if ( percentloan > 100 ) {
 	    	percentloan = 100;
@@ -1135,13 +1141,45 @@ function draw_the_bars(school_id) {
 		loans[column].attr("path", string);
     }
     else {
-    	$("#pie" + column).parent().hide();
+    	$("#pie" + column).closest("td").children().hide();
     }
 
     // Draw the graduation rate chart
     school.find(".gradrisk-percent").html(schooldata.gradrate + "%");
 
-    school.find(".gradrisk-container").css("left", left);
+    // Note: ranks go from 1 to X, and X is "max"
+    var grouphigh = global["group" + schooldata.indicatorgroup + "gradhigh"];
+    var groupmed = global["group" + schooldata.indicatorgroup + "gradmed"];
+    var grhigh = global["group" + schooldata.indicatorgroup + "gradrankhigh"];
+    var grmax = global["group" + schooldata.indicatorgroup + "gradrankmax"];
+    var grmed = global["group" + schooldata.indicatorgroup + "gradrankmed"];
+    var grhigh = global["group" + schooldata.indicatorgroup + "gradrankhigh"];
+    var rankcount = 1;
+    var place = 1;
+    var gradoffset = 0;	
+    var divwidth = 68;
+    if ( schooldata.gradraterank != undefined ) {
+    	school.find(".gradrisk-container").closest("td").children().show();
+        if ( schooldata.gradrate < groupmed ) {
+        	rankcount = grmax - grmed;
+        	place = schooldata.gradraterank - grmed;
+        	gradoffset = 0 + Math.floor( ( rankcount - place ) * ( 65 / rankcount)) 	
+        }
+        else if ( schooldata.gradrate <= grouphigh ) {
+        	rankcount = grmed - grhigh;
+        	place = schooldata.gradraterank - grhigh;
+        	gradoffset = 77 + Math.floor( ( rankcount - place ) * ( 60 / rankcount)) 	
+        }
+        else {
+         	rankcount = grhigh;
+        	place =  schooldata.gradraterank;
+        	gradoffset = 148 + Math.floor( ( rankcount - place  ) * ( 64 / rankcount ) );
+        }
+        school.find(".gradrisk-container").css("left", gradoffset + "px");
+    }
+    else {
+    	 school.find(".gradrisk-container").closest("td").children().hide();
+    }
 
 } // end draw_the_bars()
 
