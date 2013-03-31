@@ -251,7 +251,13 @@ function build_school_element(school_id) {
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
 		for (key in schooldata) {
 		    school.find('input[name="' + key + '"]').val(schooldata[key]);
-		}		
+		}
+		// Average public and private do not have GI Bill information
+		school.find(".gibill-calculator").hide();
+	}
+	else {
+		// If it was previously hidden, show it.
+		school.find(".gibill-calculator").hide();
 	}
 
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
@@ -1537,11 +1543,14 @@ $(document).ready(function() {
 	$(".gibill-calculator, input[name='gibill']").click( function(event) {
 		event.preventDefault();
 		var column = $(this).closest("[data-column]").attr("data-column");
-		var panel = $("[data-column='" + column + "'] .gibill-panel")
-		if ( panel.is(":hidden") ) {
-			_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculator Opened"]);
-		}		
-		panel.toggle();
+		school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		if ( ( school_id != average-private ) && ( school_id != average-public ) ) {
+			var panel = $("[data-column='" + column + "'] .gibill-panel");
+			if ( panel.is(":hidden") ) {
+				_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculator Opened"]);
+			}		
+			panel.toggle();
+		}
 
 	});
 
