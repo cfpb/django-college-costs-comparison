@@ -758,12 +758,12 @@ h1.p4ch {
 	border-radius: 0em;
 	box-shadow: none;
 	font-size: 1em;
-	height: 1.6em;
+	height: 1.75em;
 	margin: 0;
 	padding: 0 0 0 0.4em;	
 	position: absolute;
-		right: 1.45em;
-		top: .25em;
+		right: .5em;
+		top: .2em;
 	text-align: left;
 	-webkit-box-sizing: border-box;
 	width: 4em;
@@ -775,14 +775,14 @@ h1.p4ch {
 	height: 2em;
 	padding: 0;
 	position: absolute;
-		right: .5em;
+		right: -1.2em;
 		top: .4em;
 	width: 5.5em;
 }
 #comparison-tool .private-row td .rate-change.down {
 	background: url(../images/arrow-down.png) 16px 0 no-repeat;
 	position: absolute;
-		top: 1.8em;
+		top: 1.9em;
 }
 #comparison-tool .private-row td .rate-change.up {
 	background: url(../images/arrow-up.png) 16px 2px no-repeat;
@@ -1040,7 +1040,7 @@ label.tooltip-info {
 }
 #comparison-tables .gradrisk-container .gradrisk-percent {
 	font-size: .9em;
-	text-align: center;
+	text-align: center;	
 	width: 4em;
 }
 
