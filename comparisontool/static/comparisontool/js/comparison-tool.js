@@ -1329,7 +1329,7 @@ $(document).ready(function() {
 	});
 
 	// Do a search when the school-search input has keyup...
-	$(".add-school-info").live('keyup', function (ev) {
+	$(".add-school-info").on('keyup', ".school-search-box", function (ev) {
 		var query = $(this).find("[name='schoolname-search']").val()
 		var results = school_search_results(query);
 		if (results == "") {
@@ -1342,7 +1342,7 @@ $(document).ready(function() {
 	});
 
 	// #school-search-results list links
-	$(".add-school-info .search-results .school-result a").live("click", function(event) {
+	$(".add-school-info .search-results .school-result").on("click", "a", function(event) {
 		event.preventDefault();
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
@@ -1612,18 +1612,18 @@ $(document).ready(function() {
 	});
 
 	/* ----------------
-		Live calculations
+		"Real-time" calculations
 	--------------------- */
 
 	// Perform a calculation when the user blurs inputs
-	$("#comparison-tables input.school-data").live('blur', function (ev) {
+	$("#comparison-tables").on("blur", "input.school-data", function (ev) {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
 		calculate_school(school_id);
 	});
 
 	// Disable keydown and keypress for enter key - IE8 fix
-	$("#comparison-tables input.school-data").live('keypress keydown', function(event) {
+	$("#comparison-tables").on("keypress keydown", " input.school-data", function(event) {
 		if (event.keyCode == 13) {
 			event.preventDefault();
 			return false;
@@ -1663,7 +1663,7 @@ $(document).ready(function() {
 
 
 	// toggle drawer
-	$(".school-drawer-toggle").live("click", function() {
+	$(".school-drawer-toggle").click( function() {
 		var toggle = $(this);
 		var drawer = $(this).prev(".school-drawer");
 		var school_id = $(this).parents(".school").attr("id");
@@ -1684,7 +1684,7 @@ $(document).ready(function() {
 	});
 
 
-	$(".bar-info").live('mouseover', function() {
+	$(".bar-info").on('mouseover', function() {
 		// position bar-info-container based on the element clicked
 		var thisoff = $(this).offset();
 		var ttc = $("#bar-info-container");
@@ -1713,7 +1713,7 @@ $(document).ready(function() {
 		ttc.hide();
 	});
 
-	$(".tooltip-info").live('click', function() {
+	$(".tooltip-info").click( function() {
 		// position tooltip-container based on the element clicked
 		var thisoff = $(this).offset();
 		var ttc = $("#tooltip-container");
@@ -1746,7 +1746,7 @@ $(document).ready(function() {
 	});
 
 	// Send email
-	$("#send-email").live("click", function(){
+	$("#send-email").click( function(){
 	    $.post('email/',{
 	        url: $('#unique').val(), 
 	        email: $('#email').val()
@@ -1756,7 +1756,7 @@ $(document).ready(function() {
 	});
 
 	// toggle save drawer
-	$("#save-drawer-toggle").live("click", function() {
+	$("#save-drawer-toggle").click( function() {
 		random = Math.random();
         posturl = "storage/?r=" + random;
         json_schools = JSON.stringify(schools);	
