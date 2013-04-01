@@ -838,18 +838,37 @@ var csrftok = "{{ csrf_token }}";
 		</section><!-- end #comparison-tables -->
 
 		<div id="save-footer">
-			<div class="container">
-				<div class="save-container">
-					<input type="button" id="save-drawer-toggle" class="button" value="Save &amp; Share">
-					<ul class="nav-links clearfix">
-						<h6>About the Worksheet</h6>
-						<li><a class="start-again" href="#" id="start-again">Start Again</a></li>
-						<li><a class="feedback" href="/paying-for-college/compare-financial-aid-and-college-cost/feedback/" target="_blank">Give us Feedback</a></li>
-						<li><a class="about-worksheet" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this Worksheet</a><li>
-					</ul>
-				</div>
-			</div><!-- end .container -->
-		</div><!-- end #save-footer -->
+			<div class="feedback-container">
+				<p>If you have any ideas or feedback, let us know.</p>
+				<a class="feedback button" href="/paying-for-college/compare-financial-aid-and-college-cost/feedback/" target="_blank">Give us Feedback</a>
+			</div>
+			<div class="save-container">
+				<p>You can save this comparison and come back to it later, or share the link with your parents or guidance counselor. We want you to be able to make the best decision for your educational and financial future.</p>
+				<input type="button" id="save-drawer-toggle" class="button" value="Save &amp; Share">
+			</div>
+		</div><!-- end #save-footer -->	
+
+		<div id="save-drawer" style="display: block;">
+			<h2>Save your work</h2>
+			<div class="save-container">
+				<label class="unique" for="unique">URL</label>
+				<input id="unique" type="text" value="http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef" disabled="disabled">
+			</div>
+
+			<div class="save-container">
+				<label class="email" for="email">Email</label>
+
+				<input id="email" type="text" value=""> <button id="send-email" class="button button-small">Send</button> <span id="send-email-confirm" style="display:none;">Success!</span>
+				<span class="no-save">The CFPB does not share your email address. We will only use it to send you this information.</span>
+			</div>
+			
+			<div class="save-share-tools">
+				Share this tool with your friends <a class="share-facebook" href="http://www.facebook.com/sharer.php?u=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;t=CFPB" title="Share on Facebook">Facebook</a> <a class="share-twitter" href="http://twitter.com/share?text=Check%20out%20the%20CFPB's%20tool%20for%20comparing%20college%20offers%20and%20costs!&amp;url=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;via=CFPB&amp;related=CFPB" title="Share on Twitter">Twitter</a>
+			</div>
+		</div>
+	</div><!-- end #save-drawer -->
+
+<a class="about-worksheet" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this Worksheet</a>
 
 	</div><!-- end #comparison-tool -->
 
