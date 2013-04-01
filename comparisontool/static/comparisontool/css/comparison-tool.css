@@ -1117,9 +1117,10 @@ label.tooltip-info {
 
 #comparison-tables .median-borrowing-chart {
 	background-image: url(../images/speedometer.png);
-	background-position: 30px 0;
+	background-position: 24px 21px;
 	background-repeat: no-repeat;
 	height: 100px;
+	margin: auto;
 	width: 200px;
 }
 
