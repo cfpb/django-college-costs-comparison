@@ -1284,7 +1284,7 @@ function process_school_list(schools) {
 
 function school_search_results(query) {
 	var dump = "";
-	var qurl = "/comparisontool/api/search-schools.json?q=" + query;
+	var qurl = "api/search-schools.json?q=" + query;
 	var request = $.ajax({
 		async: false,
 		dataType: "json",
@@ -1438,7 +1438,7 @@ $(document).ready(function() {
 
 		// AJAX the schooldata
 		var schooldata = new Object();
-		var surl = "/comparisontool/api/school/" + school_id + ".json";
+		var surl = "api/school/" + school_id + ".json";
 		var request = $.ajax({
 			async: false,
 			dataType: "json",
@@ -1844,7 +1844,7 @@ $(document).ready(function() {
 
 	// toggle save drawer
 	$("#save-drawer-toggle").click( function() {
-        posturl = "comparisontool/api/worksheet";
+        posturl = "api/worksheet";
         json_schools = JSON.stringify(schools);	
 /*             
         $.ajax({
