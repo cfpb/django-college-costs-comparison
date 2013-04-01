@@ -1842,10 +1842,9 @@ $(document).ready(function() {
 
 	// toggle save drawer
 	$("#save-drawer-toggle").click( function() {
-		random = Math.random();
-        posturl = "storage/?r=" + random;
+        posturl = "comparisontool/api/worksheet";
         json_schools = JSON.stringify(schools);	
-             
+/*             
         $.ajax({
             type: 'POST',
             url: posturl,
@@ -1854,7 +1853,7 @@ $(document).ready(function() {
             data: json_schools,
             success: function(save_handle) {
                 var geturl = "http://" + document.location.host
-                    + "/paying-for-college/compare-financial-aid-and-college-cost/?restore="
+                    + "/comparisontool/api/worksheet="
                     + save_handle.id;
                 $('#unique').attr('value', geturl);
                 $("#save-drawer").slideToggle(300, function() {
@@ -1873,7 +1872,7 @@ $(document).ready(function() {
             	alert("Request error: " + xhr.status + ", " + thrownError);
             }
 		});
-   
+*/
     });  
 });
 

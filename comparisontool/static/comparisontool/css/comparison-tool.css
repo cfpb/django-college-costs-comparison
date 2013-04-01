@@ -1166,3 +1166,17 @@ label.tooltip-info {
     		zoom: 1;
     		margin-right: 0.25em;
     }
+
+#save-footer div {
+	display: inline-block;
+	padding: 1em 2em;
+	width: 40%;
+}
+
+#save-footer div .button {
+	font-size: 1.25em;
+}
+
+#save-drawer {
+	display: none;
+}
