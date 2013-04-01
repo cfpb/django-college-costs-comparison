@@ -76,6 +76,8 @@ var loans = [];
 var bars = [];
 var averagebars = [];
 var defaultbars = [];
+var meters = [];
+var meterlines = [];
 
 // Visualization
 //google.load('visualization', '1', {packages: ['corechart']});
@@ -331,30 +333,36 @@ function build_school_element(school_id) {
     var grmax = global["group" + schooldata.indicatorgroup + "loanrankmax"];
     var grmed = global["group" + schooldata.indicatorgroup + "loanrankmed"];
     var grhigh = global["group" + schooldata.indicatorgroup + "loanrankhigh"];
-    var loanangle = 0;
+    var borrowangle = 0;
     var rankcount = 1;
     var place = 1;
-    if ( ( schooldata.loanraterank != undefined ) && ( schooldata.loanrate != "NR" ) ) {
-    	school.find(".loanrisk-container").closest("td").children().show();
-        if ( schooldata.loanrate < groupmed ) {
+    if ( ( schooldata.avgdebtrank != undefined ) && ( schooldata.avgstuloandebt != "NR" ) ) {
+    	school.find(".median-borrowing-chart").closest("td").children().show();
+        if ( schooldata.avgstuloandebt < groupmed ) {
         	rankcount = grmax - grmed;
-        	place = schooldata.loanraterank - grmed;
-        	loanangle = 0 + Math.floor( ( rankcount - place ) * ( 65 / rankcount)) 	
+        	place = schooldata.avgdebtrank - grmed;
+        	borrowangle = 5 + Math.floor( ( rankcount - place ) * ( 45 / rankcount)) 	
         }
-        else if ( schooldata.loanrate <= grouphigh ) {
+        else if ( schooldata.avgstuloandebt <= grouphigh ) {
         	rankcount = grmed - grhigh;
-        	place = schooldata.loanraterank - grhigh;
-        	loanangle = 52 + Math.floor( ( rankcount - place ) * ( 60 / rankcount)) 	
+        	place = schooldata.avgdebtrank - grhigh;
+        	borrowangle = 55 + Math.floor( ( rankcount - place ) * ( 60 / rankcount)) 	
         }
         else {
          	rankcount = grhigh;
-        	place =  schooldata.loanraterank;
-        	loanangle = 122 + Math.floor( ( rankcount - place  ) * ( 64 / rankcount ) );
+        	place =  schooldata.avgdebtrank;
+        	borrowangle = 125 + Math.floor( ( rankcount - place  ) * ( 50 / rankcount ) );
         }
-        school.find(".loanrisk-container").css("left", loanoffset + "px");
+        // Convert to radians
+        borrowangle = ( Math.PI * 2 * borrowangle ) / 360;
+		var x = Math.cos(borrowangle);
+		x = 100 - ( x * 40 );
+		var y = Math.sin(borrowangle);
+		y = 100 - ( y * 40 );
+		meterlines[column].attr({"path": "M 100 100 L " + x + " " + y});
     }
     else {
-    	 school.find(".loanrisk-container").closest("td").children().not(".gradrisk-text").hide();
+    	 school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
     }
 
 	global.schools_added++;
@@ -1051,7 +1059,10 @@ function calculate_school(school_id) {
 			schooldata.loandebtrisk = "Worse than Average";
 		}
 	}
-	school.find("[name='loandebtrisk']").html(schooldata.loandebtrisk);
+	if ( ( schooldata.loandebtrisk == "" ) || ( schooldata.loandebtrisk == undefined ) ) {
+		schooldata.loandebtrisk = "<em>Not Available</em>";
+	}
+	school.find(".median-borrowing-text").html(schooldata.loandebtrisk);
 
 	// Colorize Risk of Default
     school.find('.risk-default').removeClass("risk-default").addClass("risk-color");
@@ -1083,7 +1094,7 @@ function calculate_school(school_id) {
 
 } // end calculate_school()
 
-// check_highest_cost() - Boolean function, returns true if the bar graphs should be
+// check_highest_cost() - Boolean function, returns true if the bar ghs should be
 // redrawn due to a change in the "highest_cost" available
 function check_highest_cost() {
 	var redraw = false;
@@ -1308,6 +1319,16 @@ $(document).ready(function() {
 		defaultbars[x] = bars[x].rect(20, 100, 60, 0);
 		defaultbars[x].attr({"fill":"#585858", "stroke": "#585858"});
 	}
+
+	// Borrowing meter
+	for (x = 1; x <= 3; x++ ) {
+		meters[x] = Raphael($("#meter" + x)[0], 200, 100);
+		var circle = meters[x].circle(101, 100, 5);
+		circle.attr({"stroke": "#f5f5f5", "stroke-width": 1, "fill": "#f5f5f5"});
+		meterlines[x] = meters[x].path("M 100 100 L 50 100");
+		meterlines[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
+	}
+
 
 	// initialize page
 	$("#military-calc-toggle").hide();
