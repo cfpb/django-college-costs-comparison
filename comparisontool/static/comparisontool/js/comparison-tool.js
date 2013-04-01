@@ -409,16 +409,8 @@ function calculate_school(school_id) {
 		}
 	});
 
-	// Set undergrad
-	if ( schooldata.program == "grad" ) {
-		schooldata.undergrad = false;
-	}
-	else {
-		schooldata.undergrad = true;
-	}
-
 	// Get program type and length
-	schooldata.program = school.find("input:radio[name='program" + column + "']").val();
+	schooldata.program = school.find("input:radio[name='program" + column + "']:checked").val();
 	if ( schooldata.program == undefined ) {
 		schooldata.program = "ba";
 	}
@@ -434,6 +426,15 @@ function calculate_school(school_id) {
 			schooldata.prgmlength = 2;
 		}
 	}
+
+	// Set undergrad
+	if ( schooldata.program == "grad" ) {
+		schooldata.undergrad = false;
+	}
+	else {
+		schooldata.undergrad = true;
+	}
+
 
 	// schooldata.yrincollege is set to global.yrincollege, possibly just for now
 	schooldata.yrincollege = global.yrincollege;
@@ -457,7 +458,6 @@ function calculate_school(school_id) {
 	// Unused (but required) variables
 	schooldata.homeequity = 0;
 	schooldata.parentplus = 0;
-	schooldata.gradplus = 0;
 
 	// netprice
 	if (schooldata.netpricegeneral < 0) {
@@ -803,6 +803,7 @@ function calculate_school(school_id) {
 	if (schooldata.gradplus > schooldata.gradplus_max) {
 		schooldata.gradplus = schooldata.gradplus_max;
 	}
+	school.setbyname("gradplus", schooldata.gradplus, true);
 
 	// Federal Total Loan
 	schooldata.federaltotal = schooldata.perkins + schooldata.staffsubsidized + schooldata.staffunsubsidized + schooldata.gradplus;
