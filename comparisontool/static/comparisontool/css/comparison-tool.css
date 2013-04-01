@@ -554,12 +554,18 @@ h1.p4ch {
 	color: #000;
 	display: block;
 	font-size: 1em;
-	height: 200px;
+	height: 175px;
 	margin: 0 auto;
 	text-align: center;
 	padding: 1em .25em;
 	position: absolute;
 	width: 200px;
+}
+
+#institution-row th .add-a-school:hover,
+#institution-row th .add-a-school:active,
+#institution-row th .add-a-school:focus {
+	background-color: #fdebd3;
 }
 
 #institution-row.fixed .add-a-school {
@@ -684,10 +690,10 @@ h1.p4ch {
 }
 
  /*GI Bill Calculator Link */
-#comparison-tool .gibill-calculator {
-	/*background-color: #d12124;
+.gibill-calculator {
+	background-color: #d12124;
 	border: 0;
-	color: #fff;*/
+	color: #fff;
 	font-size: 0.75em;
 	padding: 0.35em 0 0.35em 2em;
 	position: absolute;
