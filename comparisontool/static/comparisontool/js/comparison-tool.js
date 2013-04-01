@@ -77,7 +77,7 @@ var bars = [];
 var averagebars = [];
 var defaultbars = [];
 var meters = [];
-var meterlines = [];
+var meterarrows = [];
 
 // Visualization
 //google.load('visualization', '1', {packages: ['corechart']});
@@ -355,11 +355,20 @@ function build_school_element(school_id) {
         }
         // Convert to radians
         borrowangle = ( Math.PI * 2 * borrowangle ) / 360;
-		var x = Math.cos(borrowangle);
-		x = 100 - ( x * 40 );
-		var y = Math.sin(borrowangle);
-		y = 100 - ( y * 40 );
-		meterlines[column].attr({"path": "M 100 100 L " + x + " " + y});
+        // Coordinates of indicating point
+		x = 100 - ( Math.cos(borrowangle) * 40 );
+		y = 100 - ( Math.sin(borrowangle) * 40 );
+		// coordinates of left base point
+		var trailingangle = borrowangle - ( Math.PI / 2 );
+		var x2 = 100 - ( Math.cos(trailingangle) * 4 );
+		var y2 = 100 - ( Math.sin(trailingangle) * 4 );
+		// coordinates of right base point
+		var leadingangle = borrowangle + ( Math.PI / 2 );
+		var x3 = 100 - ( Math.cos(leadingangle) * 4 );
+		var y3 = 100 - ( Math.sin(leadingangle) * 4 );
+		var path = "M " + x + " " + y + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " z";
+		meterarrows[column].attr({"path": path, "fill": "#f5f5f5"});
+		meterarrows[column].toBack();
     }
     else {
     	 school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
@@ -1323,10 +1332,10 @@ $(document).ready(function() {
 	// Borrowing meter
 	for (x = 1; x <= 3; x++ ) {
 		meters[x] = Raphael($("#meter" + x)[0], 200, 100);
-		var circle = meters[x].circle(101, 100, 5);
-		circle.attr({"stroke": "#f5f5f5", "stroke-width": 1, "fill": "#f5f5f5"});
-		meterlines[x] = meters[x].path("M 100 100 L 50 100");
-		meterlines[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
+		var circle = meters[x].circle(101, 100, 8);
+		circle.attr({"stroke": "#585858", "stroke-width": 1, "fill": "#585858"});
+		meterarrows[x] = meters[x].path("M 100 100 L 50 100");
+		meterarrows[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
 	}
 
 
