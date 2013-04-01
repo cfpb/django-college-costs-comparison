@@ -741,9 +741,9 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads.">Debt Burden</h4></th>
-						<td data-column="1"><span name="debtburden"></span></td>
-						<td data-column="2"><span name="debtburden"></span></td>
-						<td data-column="3"><span name="debtburden"></span></td>
+						<td data-column="1" class="debt-burden-cell"><span name="debtburden"></span></td>
+						<td data-column="2" class="debt-burden-cell"><span name="debtburden"></span></td>
+						<td data-column="3" class="debt-burden-cell"><span name="debtburden"></span></td>
 					</tr>
 				</tbody>
 				<tbody>
@@ -785,13 +785,35 @@ var csrftok = "{{ csrf_token }}";
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Loan Default Rate</h4></th>
-						<td data-column="1"><span name="defaultrisk"></span></td>
-						<td data-column="2"><span name="defaultrisk"></span></td>
-						<td data-column="3"><span name="defaultrisk"></span></td>
+						<td data-column="1">
+							<div class="default-rate-chart" id="defaultbars1">
+								<span class="default-rate-this">This school<p class="percent"></p></span>
+								<span class="default-rate-avg">National average<p class="percent"></p></span>
+							</div>
+							<span name="defaultrisk" class="defaultrisk-text"></span>
+						</td>
+						<td data-column="2">
+							<div class="default-rate-chart" id="defaultbars2">
+								<span class="default-rate-this">This school<p class="percent"></p></span>
+								<span class="default-rate-avg">National average<p class="percent"></p></span>
+							</div>
+							<span name="defaultrisk" class="defaultrisk-text"></span>
+						</td>
+						<td data-column="3">
+							<div class="default-rate-chart" id="defaultbars3">
+								<span class="default-rate-this">This school<p class="percent"></p></span>
+								<span class="default-rate-avg">National average<p class="percent"></p></span>
+							</div>
+							<span name="defaultrisk" class="defaultrisk-text"></span>
+						</td>
 					</tr>
 					<tr>
 						<th scope="row" data-column="0"><h4>Median Borrowing</h4></th>
-						<td data-column="1"><span name="loandebtrisk"></span></td>
+						<td data-column="1">
+							<div class="median-borrowing-chart" id="meter1">
+							</div>
+							<span name="loandebtrisk"></span>
+						</td>
 						<td data-column="2"><span name="loandebtrisk"></span></td>
 						<td data-column="3"><span name="loandebtrisk"></span></td>
 					</tr>
