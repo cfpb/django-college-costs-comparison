@@ -937,7 +937,8 @@ function calculate_school(school_id) {
 	//school.textbyname("loandebt1yr", schooldata.loandebt1yr);
 
 	// Total debt at graduation
-	school.textbyname("totaldebtgrad", ( schooldata.loandebt1yr * schooldata.prgmlength ), true );
+	schooldata.totaldebtgrad = schooldata.perkinsgrad + schooldata.staffsubsidizedgrad + schooldata.staffunsubsidizedgrad + schooldata.gradplusgrad + schooldata.parentplusgrad + schooldata.privateloangrad + schooldata.institutionalloangrad + schooldata.homeequitygrad;
+	school.textbyname("totaldebtgrad", schooldata.totaldebtgrad, true );
 
 	// repayment term
 	if ( schooldata.repaymentterminput == "10 years") { 
