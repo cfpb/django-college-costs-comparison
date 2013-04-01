@@ -1028,6 +1028,16 @@ label.tooltip-info {
 	float: left;
 }
 
+#comparison-tables td.debt-burden-cell {
+	background-image: url(../images/debt_burden.png);
+	background-repeat: no-repeat;
+	background-position: 25px 60px;
+}
+
+#comparison-tables td.debt-burden-cell span {
+	margin-left: 40px;
+}
+
 #comparison-tables .gradrisk-container {
 	margin-bottom: 7px;
 	position: relative;
@@ -1086,6 +1096,38 @@ label.tooltip-info {
 	border: 1px solid black;
 }
 
+#comparison-tables .default-rate-chart {
+	position: relative;
+	margin-top: 30px;
+}
+
+#comparison-tables .default-rate-chart span {
+	display: block;
+	font-size: .6em;
+	position: absolute;
+		left: 10px;
+		top: -30px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 120px;
+}
+#comparison-tables .default-rate-chart .default-rate-avg {
+	left: 110px;
+}
+
+#comparison-tables .default-rate-chart span .percent {
+	margin: 0;
+	font-size: 1.5em;
+	line-height: 1.2em;
+}
+
+#comparison-tables .median-borrowing-chart {
+	background-image: url(../images/speedometer.png);
+	background-position: 30px 0;
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 200px;
+}
 
 /* Helper Classes */
 
