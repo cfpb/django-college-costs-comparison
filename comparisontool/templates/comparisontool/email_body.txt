@@ -1,6 +1,8 @@
+{% load url from future %}
+
 Thanks for using our tools to compare financial aid and college costs! Here's your personalized college financial aid information
 
-{{ url_for worksheet }}#{{guid}} 
+http://{{ request.get_host }}{% url 'worksheet' %}#{{guid}} 
 
 Share
 Facebook: http://on.fb.me/HuP5YX
