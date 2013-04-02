@@ -137,7 +137,7 @@ class EmailLink(View):
         recipient = request.POST['email']
         subject = "Your Personalized College Financial Aid Information"
         body_template = get_template('comparisontool/email_body.txt')
-        body = body_template.render(RequestContext(dict(guid=worksheet_guid)))
+        body = body_template.render(RequestContext(request,dict(guid=worksheet_guid)))
 
         send_mail(subject, body, 'no-reply@cfpb.gov', [recipient],
                   fail_silently=False)
