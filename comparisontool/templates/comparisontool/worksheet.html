@@ -371,7 +371,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="GI Bill" data-tipname="gibill">GI Bill</label></th>
+						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="" data-tipname="gibill">GI Bill</label></th>
 						<td data-column="1" class="p-rel">
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<div class="gibill-panel hidden-box">
@@ -770,7 +770,6 @@ var csrftok = "{{ csrf_token }}";
 							<div class="gradrisk-bar">
 								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
 							</div>
-							<p name="gradrisk" class="gradrisk-text"></p>
 						</td>
 						<td data-column="2">
 							<div class="gradrisk-container">
@@ -780,7 +779,6 @@ var csrftok = "{{ csrf_token }}";
 							<div class="gradrisk-bar">
 								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
 							</div>
-							<p name="gradrisk" class="gradrisk-text"></p>
 						</td>
 						<td data-column="3">
 							<div class="gradrisk-container">
@@ -790,7 +788,6 @@ var csrftok = "{{ csrf_token }}";
 							<div class="gradrisk-bar">
 								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
 							</div>
-							<p name="gradrisk" class="gradrisk-text"></p>
 						</td>
 					</tr>
 					<tr>
@@ -800,21 +797,18 @@ var csrftok = "{{ csrf_token }}";
 								<span class="default-rate-this">This school<p class="percent"></p></span>
 								<span class="default-rate-avg">National average<p class="percent"></p></span>
 							</div>
-							<span name="defaultrisk" class="defaultrisk-text"></span>
 						</td>
 						<td data-column="2">
 							<div class="default-rate-chart" id="defaultbars2">
 								<span class="default-rate-this">This school<p class="percent"></p></span>
 								<span class="default-rate-avg">National average<p class="percent"></p></span>
 							</div>
-							<span name="defaultrisk" class="defaultrisk-text"></span>
 						</td>
 						<td data-column="3">
 							<div class="default-rate-chart" id="defaultbars3">
 								<span class="default-rate-this">This school<p class="percent"></p></span>
 								<span class="default-rate-avg">National average<p class="percent"></p></span>
 							</div>
-							<span name="defaultrisk" class="defaultrisk-text"></span>
 						</td>
 					</tr>
 					<tr>
@@ -822,17 +816,14 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1">
 							<div class="median-borrowing-chart" id="meter1">
 							</div>
-							<span name="loandebtrisk" class="median-borrowing-text"></span>
 						</td>
 						<td data-column="2">
 							<div class="median-borrowing-chart" id="meter2">
 							</div>
-							<span name="loandebtrisk" class="median-borrowing-text"></span>
 						</td>
 						<td data-column="3">
 							<div class="median-borrowing-chart" id="meter3">
 							</div>
-							<span name="loandebtrisk" class="median-borrowing-text"></span>
 						</td>
 					</tr>
 				</tbody>
