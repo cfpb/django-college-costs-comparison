@@ -404,7 +404,7 @@ h1.p4ch {
 	border-top: none;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.25);
 	width: 975px;
-	z-index: 5;
+	z-index: 15;
 }
 
 #comparison-tool thead .fixed h2 {
@@ -628,6 +628,11 @@ h1.p4ch {
 
 #institution-row th .add-school-info .hidden-box {
 	display: none;
+}
+
+#institution-row th .navigator-link {
+	font-size: .75em;
+	font-weight: 500;
 }
 
 .grants-row td .gibill-panel {
@@ -1166,3 +1171,17 @@ label.tooltip-info {
     		zoom: 1;
     		margin-right: 0.25em;
     }
+
+#save-footer div {
+	display: inline-block;
+	padding: 1em 2em;
+	width: 40%;
+}
+
+#save-footer div .button {
+	font-size: 1.25em;
+}
+
+#save-drawer {
+	display: none;
+}
