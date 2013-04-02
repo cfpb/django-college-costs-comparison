@@ -34,7 +34,7 @@ var data =
 		"group5loanrankhigh": 65, "group5loanrankmed": 573, "group5loanrankmax": 890,
 		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
-		"schools_added": -1
+		"schools_added": -1, "reached_zero": 0
 		},
 	"presets" : {
 		"average-public" :
@@ -255,7 +255,7 @@ function build_school_element(school_id) {
 	}
 	else {
 		// If it was previously hidden, show it.
-		school.find(".gibill-calculator").hide();
+		school.find(".gibill-calculator").show();
 	}
 
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
@@ -269,6 +269,7 @@ function build_school_element(school_id) {
 	}
 
 	/* ----- DRAW SCHOOL INDICATORS ----- */
+
 
     // Draw the graduation rate chart
     school.find(".gradrisk-percent").html(schooldata.gradrate + "%");
@@ -376,7 +377,8 @@ function build_school_element(school_id) {
 
 	global.schools_added++;
 	if ( global.schools_added > 0 ) {
-		_gaq.push(["_trackEvent", "School Interactions", "Schools Added", global.schools_added]);
+		var value = (global.schools_added).toString();
+		_gaq.push([ "_trackEvent", "School Interactions", "Schools Added", value ] );
 	}
 
 	calculate_school(school_id);
@@ -1093,8 +1095,9 @@ function calculate_school(school_id) {
 
 	if (left_to_pay < 1){
 		school.find('[name="gap"]').text( "$0" );
-		if ( schooldata.firstyrcostattend > 0 ) {
+		if ( ( schooldata.firstyrcostattend > 0 ) && ( global.reached_zero == 0 ) ) {
 			_gaq.push(["_trackEvent", "Calculations", "Reached Zero Left to Pay", school_id]);
+			global.reached_zero = school_id; // Prevents multiple events
 		}
 	}
 	else {
@@ -1282,14 +1285,22 @@ function process_school_list(schools) {
 	return op;
 } // end process_school_list()
 
-function school_search_results(query) {
+function school_search_results(query, column) {
 	var dump = "";
 	var qurl = "api/search-schools.json?q=" + query;
 	var request = $.ajax({
 		async: false,
+		beforeSend: function(column) {
+			if ( column != undefined ) {
+				var box = $("#institution-row [data-column='" + column + "'] .add-school-info");
+				box.find(".search-results").show();
+				box.find(".search-results").html("Loading results...");
+			}
+		},
 		dataType: "json",
 		url: qurl
 	});
+	request.start
 	request.done(function(response) {
 		$.each(response, function(i, val) {
 			dump += '<li class="school-result">';
@@ -1339,32 +1350,6 @@ $(document).ready(function() {
 		meterarrows[x] = meters[x].path("M 100 100 L 50 100");
 		meterarrows[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
 	}
-
-
-	// initialize page
-	$("#military-calc-toggle").hide();
-	hide_column(2);
-	hide_column(3);
-	$("#institution-row [data-column='1']").attr("id", "average-public");
-	build_school_element("average-public")
-
-
-	// Check to see if there is restoredata
-	if (restoredata != 0) {
-		schools = restoredata;
-		$.each(schools, function(index) {
-			// This filters out only school entries, ignoring other data.
-			if (index.substring(0,7) == "school_") {
-				build_school_element(index);
-			}
-		});
-	}
-
-	// set tab indexes for header
-	// NYI
-
-
-
 
 /*------------------
 	JQUERY EVENT HANDLERS
@@ -1417,8 +1402,9 @@ $(document).ready(function() {
 
 	// Do a search when the school-search input has keyup...
 	$(".add-school-info").on('keyup', ".school-search-box", function (ev) {
+		var column = $(this).closest("td").attr("data-column");
 		var query = $(this).val();
-		var results = school_search_results(query);
+		var results = school_search_results(query, column);
 		if (results == "") {
 			$(this).closest(".add-school-info").find(".search-results").hide();
 		}
@@ -1523,7 +1509,7 @@ $(document).ready(function() {
 		calculate_school(school_id);	
 	});
 
-	$(".add-school-info .add-xml .xml-magic-happens").click( function() {
+	$(".add-school-info .add-xml .xml-process").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
 		var school = $("[data-column='" + column + "']");
@@ -1615,6 +1601,7 @@ $(document).ready(function() {
 		}
 		$("#institution-row [data-column='" + column + "']").attr("id", "");
 		hide_column(column);
+		_gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );	
 	})
 
 	// Wait, no, I don't want to remove it!
@@ -1631,7 +1618,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var column = $(this).closest("[data-column]").attr("data-column");
 		school_id = $("#institution-row [data-column='" + column + "']").attr("id");
-		if ( ( school_id != average-private ) && ( school_id != average-public ) ) {
+		if ( ( school_id != "average-private" ) && ( school_id != "average-public" ) ) {
 			var panel = $("[data-column='" + column + "'] .gibill-panel");
 			if ( panel.is(":hidden") ) {
 				_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculator Opened"]);
@@ -1825,7 +1812,7 @@ $(document).ready(function() {
 			$("#tooltip-container").hide();
 			$("html").off('click');
 		});
-		tooltip = $(this).closest("label").attr("for");
+		tooltip = $(this).attr("data-tipname");
 		if ( tooltip == undefined ){
 			tooltip = "Name not found";
 		}
@@ -1846,6 +1833,16 @@ $(document).ready(function() {
 	$("#save-drawer-toggle").click( function() {
         posturl = "api/worksheet";
         json_schools = JSON.stringify(schools);	
+		$.ajax({
+			type: "POST",
+			url: "api/worksheet",
+			dataType: "json",
+			data: {}
+		}).done(function( msg ) {
+			alert( "Data Saved: " + msg );
+		}).fail(function( jqXHR, msg ) {
+			alert( "Fail: " + msg);
+		});
 /*             
         $.ajax({
             type: 'POST',
@@ -1855,7 +1852,7 @@ $(document).ready(function() {
             data: json_schools,
             success: function(save_handle) {
                 var geturl = "http://" + document.location.host
-                    + "/comparisontool/api/worksheet="
+                    + "api/worksheet="
                     + save_handle.id;
                 $('#unique').attr('value', geturl);
                 $("#save-drawer").slideToggle(300, function() {
@@ -1876,6 +1873,36 @@ $(document).ready(function() {
 		});
 */
     });  
+
+	// Analytics handlers
+
+	$(".navigator-link").click( function() {
+		_gaq.push([ "_trackEvent", "School Interactions", "School Information link clicked" ] );		
+	});
+
+	/* --- Start the page up! --- */
+	$("#military-calc-toggle").hide();
+	hide_column(2);
+	hide_column(3);
+	$("#institution-row [data-column='1']").attr("id", "average-public");
+	build_school_element("average-public");
+	$(".add-average-public").hide();
+
+
+	// Check to see if there is restoredata
+	if (restoredata != 0) {
+		schools = restoredata;
+		$.each(schools, function(index) {
+			// This filters out only school entries, ignoring other data.
+			if (index.substring(0,7) == "school_") {
+				build_school_element(index);
+			}
+		});
+	}
+
+	// set tab indexes for header
+	// NYI
+
 });
 
 
