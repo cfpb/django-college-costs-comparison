@@ -1183,5 +1183,87 @@ label.tooltip-info {
 }
 
 #save-drawer {
+	background: #e6e6e6;	
 	display: none;
+	padding: 1.5em;
+}
+
+#save-drawer div {
+	margin: 1em 0 1em 5em;
+}
+
+#save-drawer label {
+	clear: left;
+	color: #808184;	
+	display: inline-block;	
+	font-weight: 500;
+	padding:  0em 5px 0em 32px;
+	text-align: left;
+	width: 45px;
+}
+#save-drawer .unique-label {
+	background: url(../images/save-link.png) 0 .25em no-repeat;
+}
+#save-drawer .email-label {
+	background: url(../images/save-email.png) 0 .25em no-repeat;
+}
+#save-drawer input[type=text] {
+	background-color: #EEE;
+	border: 1px solid #808184;
+	border-radius: 0;
+	box-shadow: none;
+	color: #808184;
+	display: inline;
+	font-family: "Avenir Next", Verdana, sans-serif !important;
+	font-size: 1em;
+	height: 1.5em;
+	padding:  1px 5px;
+	margin: 0px;
+}
+#comparison-tool #save-footer .save-container {
+	margin: 1em 0;
+	padding: .25em 10px;
+}
+#save-drawer #unique {
+	font-size: .75em;
+	height: 2em;
+	width: 500px;
+}
+#save-drawer #email {
+	width: 425px;
+}
+#save-drawer #send-email {
+	display: inline-block;
+}
+#save-drawer .no-save {
+	display: block;
+	padding-top: .625em;
+	padding-bottom: 1.25em;
+	font-size: .625em;
+	color: #767676;
+	font-weight: 500;
+}
+#save-drawer .save-share-tools {
+	margin-top: 1.2em;
+	font-size: .75em;
+	color: #6d6e70;
+	font-weight: 500;
+}
+#save-drawer .save-share-tools .share-facebook {
+	display: inline-block;
+	width: 19px;
+	height: 19px;
+	text-indent: -9999px;
+	background: url(../images/share-icons.png) 0 0 no-repeat;
+	border-bottom: none;
+	margin-left: 12px;
+}
+#save-drawer .save-share-tools .share-twitter {
+	display: inline-block;
+	width: 24px;
+	height: 19px;
+	text-indent: -9999px;
+	background: url(../images/share-icons.png) -33px 0 no-repeat;
+	border-bottom: none;
+	margin-left: 12px;
 }

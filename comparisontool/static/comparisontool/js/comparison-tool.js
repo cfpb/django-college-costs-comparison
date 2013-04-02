@@ -34,7 +34,7 @@ var data =
 		"group5loanrankhigh": 65, "group5loanrankmed": 573, "group5loanrankmax": 890,
 		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
-		"schools_added": -1, "reached_zero": 0
+		"schools_added": -1, "reached_zero": 0, "worksheet_id": "none"
 		},
 	"presets" : {
 		"average-public" :
@@ -1292,25 +1292,25 @@ function process_school_list(schools) {
 function school_search_results(query, column) {
 	var dump = "";
 	var qurl = "api/search-schools.json?q=" + query;
+	var cell = $("#institution-row [data-column='" + column + "']");
 	var request = $.ajax({
-		async: false,
-		beforeSend: function(column) {
-			if ( column != undefined ) {
-				var box = $("#institution-row [data-column='" + column + "'] .add-school-info");
-				box.find(".search-results").show();
-				box.find(".search-results").html("Loading results...");
-			}
-		},
+		async: true,
 		dataType: "json",
 		url: qurl
 	});
-	request.start
 	request.done(function(response) {
 		$.each(response, function(i, val) {
 			dump += '<li class="school-result">';
 			dump += '<a href="' + val.id + '">' + val.schoolname + '</a>';
 			dump += '<p>' + val.city + ', ' + val.state + '</p></li>';
 		});
+		if (dump == "") {
+			cell.find(".search-results").hide();
+		}
+		else {
+			cell.find(".search-results").show();
+			cell.find(".search-results").html(dump);
+		}
 	});
 	request.fail(function() {
 		// alert("ERROR");
@@ -1406,16 +1406,11 @@ $(document).ready(function() {
 
 	// Do a search when the school-search input has keyup...
 	$(".add-school-info").on('keyup', ".school-search-box", function (ev) {
-		var column = $(this).closest("td").attr("data-column");
 		var query = $(this).val();
-		var results = school_search_results(query, column);
-		if (results == "") {
-			$(this).closest(".add-school-info").find(".search-results").hide();
-		}
-		else {
-			$(this).closest(".add-school-info").find(".search-results").show();
-			$(this).closest(".add-school-info").find(".search-results").html(results);
-		}
+		var column = $(this).closest("[data-column]").attr("data-column");
+		delay(function() {
+			school_search_results(query, column);
+		}, 500);
 	});
 
 	// #school-search-results list links
@@ -1825,68 +1820,54 @@ $(document).ready(function() {
 
 	// Send email
 	$("#send-email").click( function(){
-	    $.post('email/',{
-	        url: $('#unique').val(), 
-	        email: $('#email').val()
-	     }, function(){
-	         alert("Your email has been sent!");
-	     });
+		var email = $('#email').val();
+		var request = $.ajax({
+			type: "POST",
+			url: "api/email/",
+			dataType: "json",
+			data:{"id": global.worksheet_id, "email": email}
+		});
+		request.done( function( result ) {
+			alert("Email sent!");
+		});
+		request.fail( function( jqXHR, msg ) {
+			alert( "Fail: " + msg);
+		});
 	});
 
 	// toggle save drawer
 	$("#save-drawer-toggle").click( function() {
-        posturl = "api/worksheet/";
-        json_schools = JSON.stringify(schools);	
-		$.ajax({
-			type: "POST",
-			url: posturl,
-			dataType: "json",
-			data: {}
-		}).done(function( result ) {
-			var geturl = "http://" + document.location.host
-                    + "?worksheet="
-                    + result.id;
-            $('#unique').attr('value', geturl);
-            $("#save-drawer").slideToggle(300, function() {
-                if ($(this).is(":visible")) {
-                    $("#save-drawer-toggle").val("Collapse");
-                }
-                else {
-                    $("#save-drawer-toggle").val("Save & Share");
-                }
-            });
-		}).fail(function( jqXHR, msg ) {
-			alert( "Fail: " + msg);
-		});
-/*             
-        $.ajax({
-            type: 'POST',
-            url: posturl,
-            cache: false,
-            dataType: 'json',
-            data: json_schools,
-            success: function(save_handle) {
-                var geturl = "http://" + document.location.host
-                    + "api/worksheet="
-                    + save_handle.id;
-                $('#unique').attr('value', geturl);
-                $("#save-drawer").slideToggle(300, function() {
-                    if ($(this).is(":visible")) {
-                        $("#save-drawer-toggle").val("Collapse");
-                    }
-                    else {
-                        $("#save-drawer-toggle").val("Save & Share");
-                    }
-                });
-            },
-            failure: function(response) {
-            	alert("Request failure: " + xhr.status + ", " + thrownError);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-            	alert("Request error: " + xhr.status + ", " + thrownError);
-            }
-		});
-*/
+		if ( global.worksheet_id == "none") {
+	        posturl = "api/worksheet/";
+	        json_schools = JSON.stringify(schools);	
+			var request = $.ajax({
+				type: "POST",
+				url: posturl,
+				dataType: "json",
+				data: {}
+			});
+			request.done(function( result ) {
+				var geturl = $(location).attr('href')
+	                    + "?worksheet="
+	                    + result.id;
+	            $('#unique').attr('value', geturl);
+	            $("#save-drawer").slideToggle(300, function() {
+	                if ($(this).is(":visible")) {
+	                    $("#save-drawer-toggle").val("Collapse");
+	                }
+	                else {
+	                    $("#save-drawer-toggle").val("Save & Share");
+	                }
+	            });
+			});
+			request.fail(function( jqXHR, msg ) {
+				alert( "Fail: " + msg);
+			});
+			global.worksheet_id = result.id;
+		}
+		else {
+
+		}
     });  
 
 	// Analytics handlers
