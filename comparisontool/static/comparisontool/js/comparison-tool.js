@@ -929,15 +929,8 @@ function calculate_school(school_id) {
     schooldata.privateloangrad = (schooldata.privateloan * schooldata.privateloanrate / 12  * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.privateloan * schooldata.prgmlength));
 
     // Institutional Loan debt at graduation
-    var testone = schooldata.institutionalloan * schooldata.institutionalloanrate  / 12 
-    var testtwo = schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12;
-    var testthree = schooldata.prgmlength * global.deferperiod;
-    var testfour = schooldata.institutionalloan * schooldata.prgmlength;
-
     schooldata.institutionalloangrad =  (schooldata.institutionalloan * schooldata.institutionalloanrate  / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.institutionalloan * schooldata.prgmlength));
-
-    schooldata.institutionalloangrad = ( testone * (( testtwo + testthree)) + ( testfour ));
-
+	
 	// Home Equity Loans at graduation
 	schooldata.homeequitygrad =
 		(schooldata.homeequity * .079 / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12)));
