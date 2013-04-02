@@ -416,10 +416,10 @@ function calculate_school(school_id) {
 	if ( schooldata.program == undefined ) {
 		schooldata.program = "ba";
 	}
-	schooldata.prgmlength = school.find("[name='prgmlength']").val();
-	if ( schooldata.prgmlength == undefined ) {
+	schooldata.prgmlength = money_to_num(school.find("[name='prgmlength']").val());
+	if ( schooldata.prgmlength == 0 ) {
 		if (schooldata.program == "ba") {
-			schooldata.prgmlength = 4
+			schooldata.prgmlength = 4;
 		}
 		else if (schooldata.program == "aa") {
 			schooldata.prgmlength = 2;
