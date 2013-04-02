@@ -7,7 +7,7 @@ var data =
 	"global": // see GLOBALS.txt for descriptions of the parameters
 		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
-		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 5000,
+		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 5500,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -1034,7 +1034,7 @@ function calculate_school(school_id) {
 	if ( ( schooldata.gradrisk == "" ) || ( schooldata.gradrisk == undefined ) ) {
 		schooldata.gradrisk = "<em>Not Available</em>";
 	}
-	school.find(".gradrisk-text").html(schooldata.gradrisk);
+	// school.find(".gradrisk-text").html(schooldata.gradrisk);
 
 	// Comparative Cohort Default Rate %
 	if ( schooldata.defaultrate != undefined ) {
@@ -1054,7 +1054,7 @@ function calculate_school(school_id) {
 	if ( ( schooldata.defaultrisk == "" ) || ( schooldata.defaultrisk == undefined ) ) {
 		schooldata.defaultrisk = "<em>Not Available</em>";
 	}
-	school.find("[name='defaultrisk']").html(schooldata.defaultrisk);
+	// school.find("[name='defaultrisk']").html(schooldata.defaultrisk);
 
 	// Comparative Average Student Loan
 	if (schooldata.avgstuloandebt == "NR") {
@@ -1075,10 +1075,7 @@ function calculate_school(school_id) {
 	if ( ( schooldata.loandebtrisk == "" ) || ( schooldata.loandebtrisk == undefined ) ) {
 		schooldata.loandebtrisk = "<em>Not Available</em>";
 	}
-	school.find(".median-borrowing-text").html(schooldata.loandebtrisk);
-
-	// Colorize Risk of Default
-    school.find('.risk-default').removeClass("risk-default").addClass("risk-color");
+	// school.find(".median-borrowing-text").html(schooldata.loandebtrisk);
 
 	// Get the most expensive sticker price (for chart width histogram)
 	if (check_highest_cost() === true) {
@@ -1831,15 +1828,26 @@ $(document).ready(function() {
 
 	// toggle save drawer
 	$("#save-drawer-toggle").click( function() {
-        posturl = "api/worksheet";
+        posturl = "api/worksheet/";
         json_schools = JSON.stringify(schools);	
 		$.ajax({
 			type: "POST",
-			url: "api/worksheet",
+			url: posturl,
 			dataType: "json",
 			data: {}
-		}).done(function( msg ) {
-			alert( "Data Saved: " + msg );
+		}).done(function( result ) {
+			var geturl = "http://" + document.location.host
+                    + "?worksheet="
+                    + result.id;
+            $('#unique').attr('value', geturl);
+            $("#save-drawer").slideToggle(300, function() {
+                if ($(this).is(":visible")) {
+                    $("#save-drawer-toggle").val("Collapse");
+                }
+                else {
+                    $("#save-drawer-toggle").val("Save & Share");
+                }
+            });
 		}).fail(function( jqXHR, msg ) {
 			alert( "Fail: " + msg);
 		});
