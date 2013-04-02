@@ -7,7 +7,7 @@ var data =
 	"global": // see GLOBALS.txt for descriptions of the parameters
 		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
-		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 5000,
+		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 5500,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -34,7 +34,7 @@ var data =
 		"group5loanrankhigh": 65, "group5loanrankmed": 573, "group5loanrankmax": 890,
 		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
-		"schools_added": -1
+		"schools_added": -1, "reached_zero": 0
 		},
 	"presets" : {
 		"average-public" :
@@ -255,7 +255,7 @@ function build_school_element(school_id) {
 	}
 	else {
 		// If it was previously hidden, show it.
-		school.find(".gibill-calculator").hide();
+		school.find(".gibill-calculator").show();
 	}
 
 	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
@@ -269,6 +269,7 @@ function build_school_element(school_id) {
 	}
 
 	/* ----- DRAW SCHOOL INDICATORS ----- */
+
 
     // Draw the graduation rate chart
     school.find(".gradrisk-percent").html(schooldata.gradrate + "%");
@@ -376,7 +377,8 @@ function build_school_element(school_id) {
 
 	global.schools_added++;
 	if ( global.schools_added > 0 ) {
-		_gaq.push(["_trackEvent", "School Interactions", "Schools Added", global.schools_added]);
+		var value = (global.schools_added).toString();
+		_gaq.push([ "_trackEvent", "School Interactions", "Schools Added", value ] );
 	}
 
 	calculate_school(school_id);
@@ -409,16 +411,8 @@ function calculate_school(school_id) {
 		}
 	});
 
-	// Set undergrad
-	if ( schooldata.program == "grad" ) {
-		schooldata.undergrad = false;
-	}
-	else {
-		schooldata.undergrad = true;
-	}
-
 	// Get program type and length
-	schooldata.program = school.find("input:radio[name='program" + column + "']").val();
+	schooldata.program = school.find("input:radio[name='program" + column + "']:checked").val();
 	if ( schooldata.program == undefined ) {
 		schooldata.program = "ba";
 	}
@@ -434,6 +428,15 @@ function calculate_school(school_id) {
 			schooldata.prgmlength = 2;
 		}
 	}
+
+	// Set undergrad
+	if ( schooldata.program == "grad" ) {
+		schooldata.undergrad = false;
+	}
+	else {
+		schooldata.undergrad = true;
+	}
+
 
 	// schooldata.yrincollege is set to global.yrincollege, possibly just for now
 	schooldata.yrincollege = global.yrincollege;
@@ -457,7 +460,6 @@ function calculate_school(school_id) {
 	// Unused (but required) variables
 	schooldata.homeequity = 0;
 	schooldata.parentplus = 0;
-	schooldata.gradplus = 0;
 
 	// netprice
 	if (schooldata.netpricegeneral < 0) {
@@ -803,6 +805,7 @@ function calculate_school(school_id) {
 	if (schooldata.gradplus > schooldata.gradplus_max) {
 		schooldata.gradplus = schooldata.gradplus_max;
 	}
+	school.setbyname("gradplus", schooldata.gradplus, true);
 
 	// Federal Total Loan
 	schooldata.federaltotal = schooldata.perkins + schooldata.staffsubsidized + schooldata.staffunsubsidized + schooldata.gradplus;
@@ -937,7 +940,8 @@ function calculate_school(school_id) {
 	//school.textbyname("loandebt1yr", schooldata.loandebt1yr);
 
 	// Total debt at graduation
-	school.textbyname("totaldebtgrad", ( schooldata.loandebt1yr * schooldata.prgmlength ), true );
+	schooldata.totaldebtgrad = schooldata.perkinsgrad + schooldata.staffsubsidizedgrad + schooldata.staffunsubsidizedgrad + schooldata.gradplusgrad + schooldata.parentplusgrad + schooldata.privateloangrad + schooldata.institutionalloangrad + schooldata.homeequitygrad;
+	school.textbyname("totaldebtgrad", schooldata.totaldebtgrad, true );
 
 	// repayment term
 	if ( schooldata.repaymentterminput == "10 years") { 
@@ -1030,7 +1034,7 @@ function calculate_school(school_id) {
 	if ( ( schooldata.gradrisk == "" ) || ( schooldata.gradrisk == undefined ) ) {
 		schooldata.gradrisk = "<em>Not Available</em>";
 	}
-	school.find(".gradrisk-text").html(schooldata.gradrisk);
+	// school.find(".gradrisk-text").html(schooldata.gradrisk);
 
 	// Comparative Cohort Default Rate %
 	if ( schooldata.defaultrate != undefined ) {
@@ -1050,7 +1054,7 @@ function calculate_school(school_id) {
 	if ( ( schooldata.defaultrisk == "" ) || ( schooldata.defaultrisk == undefined ) ) {
 		schooldata.defaultrisk = "<em>Not Available</em>";
 	}
-	school.find("[name='defaultrisk']").html(schooldata.defaultrisk);
+	// school.find("[name='defaultrisk']").html(schooldata.defaultrisk);
 
 	// Comparative Average Student Loan
 	if (schooldata.avgstuloandebt == "NR") {
@@ -1071,10 +1075,7 @@ function calculate_school(school_id) {
 	if ( ( schooldata.loandebtrisk == "" ) || ( schooldata.loandebtrisk == undefined ) ) {
 		schooldata.loandebtrisk = "<em>Not Available</em>";
 	}
-	school.find(".median-borrowing-text").html(schooldata.loandebtrisk);
-
-	// Colorize Risk of Default
-    school.find('.risk-default').removeClass("risk-default").addClass("risk-color");
+	// school.find(".median-borrowing-text").html(schooldata.loandebtrisk);
 
 	// Get the most expensive sticker price (for chart width histogram)
 	if (check_highest_cost() === true) {
@@ -1091,8 +1092,9 @@ function calculate_school(school_id) {
 
 	if (left_to_pay < 1){
 		school.find('[name="gap"]').text( "$0" );
-		if ( schooldata.firstyrcostattend > 0 ) {
+		if ( ( schooldata.firstyrcostattend > 0 ) && ( global.reached_zero == 0 ) ) {
 			_gaq.push(["_trackEvent", "Calculations", "Reached Zero Left to Pay", school_id]);
+			global.reached_zero = school_id; // Prevents multiple events
 		}
 	}
 	else {
@@ -1280,14 +1282,22 @@ function process_school_list(schools) {
 	return op;
 } // end process_school_list()
 
-function school_search_results(query) {
+function school_search_results(query, column) {
 	var dump = "";
-	var qurl = "/comparisontool/api/search-schools.json?q=" + query;
+	var qurl = "api/search-schools.json?q=" + query;
 	var request = $.ajax({
 		async: false,
+		beforeSend: function(column) {
+			if ( column != undefined ) {
+				var box = $("#institution-row [data-column='" + column + "'] .add-school-info");
+				box.find(".search-results").show();
+				box.find(".search-results").html("Loading results...");
+			}
+		},
 		dataType: "json",
 		url: qurl
 	});
+	request.start
 	request.done(function(response) {
 		$.each(response, function(i, val) {
 			dump += '<li class="school-result">';
@@ -1337,32 +1347,6 @@ $(document).ready(function() {
 		meterarrows[x] = meters[x].path("M 100 100 L 50 100");
 		meterarrows[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
 	}
-
-
-	// initialize page
-	$("#military-calc-toggle").hide();
-	hide_column(2);
-	hide_column(3);
-	$("#institution-row [data-column='1']").attr("id", "average-public");
-	build_school_element("average-public")
-
-
-	// Check to see if there is restoredata
-	if (restoredata != 0) {
-		schools = restoredata;
-		$.each(schools, function(index) {
-			// This filters out only school entries, ignoring other data.
-			if (index.substring(0,7) == "school_") {
-				build_school_element(index);
-			}
-		});
-	}
-
-	// set tab indexes for header
-	// NYI
-
-
-
 
 /*------------------
 	JQUERY EVENT HANDLERS
@@ -1415,8 +1399,9 @@ $(document).ready(function() {
 
 	// Do a search when the school-search input has keyup...
 	$(".add-school-info").on('keyup', ".school-search-box", function (ev) {
+		var column = $(this).closest("td").attr("data-column");
 		var query = $(this).val();
-		var results = school_search_results(query);
+		var results = school_search_results(query, column);
 		if (results == "") {
 			$(this).closest(".add-school-info").find(".search-results").hide();
 		}
@@ -1436,7 +1421,7 @@ $(document).ready(function() {
 
 		// AJAX the schooldata
 		var schooldata = new Object();
-		var surl = "/comparisontool/api/school/" + school_id + ".json";
+		var surl = "api/school/" + school_id + ".json";
 		var request = $.ajax({
 			async: false,
 			dataType: "json",
@@ -1521,7 +1506,7 @@ $(document).ready(function() {
 		calculate_school(school_id);	
 	});
 
-	$(".add-school-info .add-xml .xml-magic-happens").click( function() {
+	$(".add-school-info .add-xml .xml-process").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
 		var school = $("[data-column='" + column + "']");
@@ -1613,6 +1598,7 @@ $(document).ready(function() {
 		}
 		$("#institution-row [data-column='" + column + "']").attr("id", "");
 		hide_column(column);
+		_gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );	
 	})
 
 	// Wait, no, I don't want to remove it!
@@ -1629,7 +1615,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		var column = $(this).closest("[data-column]").attr("data-column");
 		school_id = $("#institution-row [data-column='" + column + "']").attr("id");
-		if ( ( school_id != average-private ) && ( school_id != average-public ) ) {
+		if ( ( school_id != "average-private" ) && ( school_id != "average-public" ) ) {
 			var panel = $("[data-column='" + column + "'] .gibill-panel");
 			if ( panel.is(":hidden") ) {
 				_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculator Opened"]);
@@ -1823,7 +1809,7 @@ $(document).ready(function() {
 			$("#tooltip-container").hide();
 			$("html").off('click');
 		});
-		tooltip = $(this).closest("label").attr("for");
+		tooltip = $(this).attr("data-tipname");
 		if ( tooltip == undefined ){
 			tooltip = "Name not found";
 		}
@@ -1842,10 +1828,30 @@ $(document).ready(function() {
 
 	// toggle save drawer
 	$("#save-drawer-toggle").click( function() {
-		random = Math.random();
-        posturl = "storage/?r=" + random;
+        posturl = "api/worksheet/";
         json_schools = JSON.stringify(schools);	
-             
+		$.ajax({
+			type: "POST",
+			url: posturl,
+			dataType: "json",
+			data: {}
+		}).done(function( result ) {
+			var geturl = "http://" + document.location.host
+                    + "?worksheet="
+                    + result.id;
+            $('#unique').attr('value', geturl);
+            $("#save-drawer").slideToggle(300, function() {
+                if ($(this).is(":visible")) {
+                    $("#save-drawer-toggle").val("Collapse");
+                }
+                else {
+                    $("#save-drawer-toggle").val("Save & Share");
+                }
+            });
+		}).fail(function( jqXHR, msg ) {
+			alert( "Fail: " + msg);
+		});
+/*             
         $.ajax({
             type: 'POST',
             url: posturl,
@@ -1854,7 +1860,7 @@ $(document).ready(function() {
             data: json_schools,
             success: function(save_handle) {
                 var geturl = "http://" + document.location.host
-                    + "/paying-for-college/compare-financial-aid-and-college-cost/?restore="
+                    + "api/worksheet="
                     + save_handle.id;
                 $('#unique').attr('value', geturl);
                 $("#save-drawer").slideToggle(300, function() {
@@ -1873,8 +1879,38 @@ $(document).ready(function() {
             	alert("Request error: " + xhr.status + ", " + thrownError);
             }
 		});
-   
+*/
     });  
+
+	// Analytics handlers
+
+	$(".navigator-link").click( function() {
+		_gaq.push([ "_trackEvent", "School Interactions", "School Information link clicked" ] );		
+	});
+
+	/* --- Start the page up! --- */
+	$("#military-calc-toggle").hide();
+	hide_column(2);
+	hide_column(3);
+	$("#institution-row [data-column='1']").attr("id", "average-public");
+	build_school_element("average-public");
+	$(".add-average-public").hide();
+
+
+	// Check to see if there is restoredata
+	if (restoredata != 0) {
+		schools = restoredata;
+		$.each(schools, function(index) {
+			// This filters out only school entries, ignoring other data.
+			if (index.substring(0,7) == "school_") {
+				build_school_element(index);
+			}
+		});
+	}
+
+	// set tab indexes for header
+	// NYI
+
 });
 
 
