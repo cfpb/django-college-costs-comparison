@@ -626,6 +626,26 @@ h1.p4ch {
 	line-height: 1em;
 }
 
+#institution-row th .add-school-info .add-xml {
+	font-size: .8em;
+	font-weight: 600;
+}
+
+#institution-row th .add-school-info .add-xml .continue {
+	font-size: 1.2em;
+	float: right;
+	margin: 0em 0 1em 0;
+}
+
+#institution-row th .add-school-info .add-xml .xml-process {
+	margin: 0;
+}
+
+#institution-row th .add-school-info .xml-text {
+	margin: 1em auto 0 auto;
+	width: 180px;
+}
+
 #institution-row th .add-school-info button {
 	margin: 1em auto 0 auto;
 }
