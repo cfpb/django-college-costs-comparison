@@ -137,7 +137,7 @@ var csrftok = "{{ csrf_token }}";
 				<thead>
 					<tr id="institution-row">
 						<td data-column="0"></td>
-						<th scope="col" data-column="1">
+						<th scope="col" data-column="1" data-schoolid="">
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
@@ -188,7 +188,7 @@ var csrftok = "{{ csrf_token }}";
 							<h2 name="institutionname"></h2>
 							<a href="" class="navigator-link hidden-box" target="_blank">Look up school information.</a>
 						</th>
-						<th scope="col" data-column="2" >
+						<th scope="col" data-column="2" data-schoolid="">
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
@@ -239,7 +239,7 @@ var csrftok = "{{ csrf_token }}";
 							<h2 name="institutionname"></h2>
 							<a href="" class="navigator-link hidden-box" target="_blank">Look up school information.</a>
 						</th>
-						<th scope="col" data-column="3">
+						<th scope="col" data-column="3" data-schoolid="">
 							<div class="add-school-info hidden-box">
 								<div class="school-search">
 									<label for="school-name-search" class="school-name">What's the name of the school?</label>
@@ -855,7 +855,7 @@ var csrftok = "{{ csrf_token }}";
 			<h2>Save your work <span id="timestamp"></span> <button id="save-current">Save Current Worksheet</button></h2>
 			<div class="save-container">
 				<label class="unique-label" for="unique">URL</label>
-				<input id="unique" type="text" value="http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef" disabled="disabled">
+				<input id="unique" type="text" value="http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef" readonly="readonly">
 			</div>
 
 			<div class="save-container">
@@ -866,7 +866,7 @@ var csrftok = "{{ csrf_token }}";
 			</div>
 			
 			<div class="save-share-tools">
-				Share this tool with your friends <a class="share-facebook" href="http://www.facebook.com/sharer.php?u=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;t=CFPB" title="Share on Facebook">Facebook</a> <a class="share-twitter" href="http://twitter.com/share?text=Check%20out%20the%20CFPB's%20tool%20for%20comparing%20college%20offers%20and%20costs!&amp;url=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;via=CFPB&amp;related=CFPB" title="Share on Twitter">Twitter</a>
+				Share this tool with your friends <a class="share-facebook" href="http://www.facebook.com/sharer.php?u=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;t=CFPB" title="Share on Facebook" target="_blank">Facebook</a> <a class="share-twitter" href="http://twitter.com/share?text=Check%20out%20the%20CFPB's%20tool%20for%20comparing%20college%20offers%20and%20costs!&amp;url=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;via=CFPB&amp;related=CFPB" title="Share on Twitter" target="_blank">Twitter</a>
 			</div>
 		</div>
 	</div><!-- end #save-drawer -->
