@@ -1871,7 +1871,7 @@ $(document).ready(function() {
 			alert( "Save failed!");
 		});
 		var geturl = "http://" + document.location.host
-					+ "/comparisontool/"
+					+ "/paying-for-college/compare-financial-aid-and-college-cost/"
                     + "#"
                     + global.worksheet_id;
         $("#unique").val(geturl);
