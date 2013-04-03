@@ -14,13 +14,26 @@ $(function() {
     // Collapsed content click tracking
     // Let's split these out per interaction (all three types)
     $('.bubble').click(function() {
-        _gaq.push(['_trackEvent', 'Paying for College', 'Click', 'Collapsed_Tabs_Key_Questions']);
+        _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Tabs_Key_Questions']);
     });
     $('.ec').click(function() {
-        _gaq.push(['_trackEvent', 'Paying for College', 'Click', 'Collapsed_Accordion_Options']);
+        _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Accordion_Options']);
     });
     $('.bubble-top-text').click(function() {
-        _gaq.push(['_trackEvent', 'Paying for College', 'Click', 'Collapsed_Accordion_Options_Questions']);
+        _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Accordion_Options_Questions']);
+    });
+    // Link tracking for timeline
+    // Build delay on on exit links (500ms)
+    $('.timeline-exit-link').click(function() {
+        var link_text = $(this).find(".bottom-process-label").html();
+        var link_url = $(this).attr('href')
+        _gaq.push(['_trackEvent', 'Exit Link', link_text, link_url]);
+            function setTimeout() { 
+            if (_target == undefined || _target.toLowerCase() !== '_blank' || _target.toLowerCase() !== '_new') {
+                setTimeout(function() { location.href =  _href; }, 500);
+                return false;
+            }
+        }
     });
     // Link tracking project-wide
     // Build delay on on exit links (500ms)
@@ -76,8 +89,9 @@ $(function() {
     });
     // Tracks file downloads project-wide
     $('a[href$="zip"],a[href$="pdf"],a[href$="doc"],a[href$="docx"],a[href$="xls"],a[href$="xlsx"],a[href$="ppt"],a[href$="pptx"],a[href$="txt"],a[href$="csv"]').click(function() {
+        var link_text = $(this).text();
         var link_url = $(this).attr('href')
-        _gaq.push(['_trackEvent','Download', link_url, u.match(/[^.]+$/)]);
+        _gaq.push(['_trackEvent','Downloads', link_text, link_url]);
     });
 });
 
