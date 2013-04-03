@@ -141,15 +141,15 @@ var delay = (function(){
 
 // setbyname - set an element to the matching schooldata object property (converted to money string)
 
-function set_by_name(col_num, name, value) {
-	var school_id = $("#comparison-tables #institution-row th:eq(" + col_num + ") h2").attr("id");
+function set_by_name(column, name, value) {
+	var school_id = $("#comparison-tables #institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var schooldata = schools[school_id];
 	element = $("#comparison-tables td:eq(" + col_num + ") [name='" + name + "']");
 	element.val(num_to_money(value));
 }
 
 jQuery.fn.setbyname = function(name, value, overwrite) {
-	var school_id = $(this).find("[name='institutionname']").attr("id");
+	var school_id = $(this).find("[name='institutionname']").attr("data-schoolid");
 	var schooldata = schools[school_id];
 	var element = $(this).find("[name='" + name +"']");
 
@@ -169,7 +169,7 @@ jQuery.fn.setbyname = function(name, value, overwrite) {
 
 // textbyname - set the text of an element to a money string
 jQuery.fn.textbyname = function(name, value) {
-	var school_id = $(this).find("[name='institutionname']").attr("id");
+	var school_id = $(this).find("[name='institutionname']").attr("data-schoolid");
 	var schooldata = schools[school_id];
 	var element = $(this).find("[name='" + name +"']");
 	element.text(num_to_money(value));
@@ -236,8 +236,8 @@ function fade_header() {
 
 // Fill in a column with the school's data
 // school's data must be in the schools object first
-function build_school_element(school_id) {
-	var column = $("#" + school_id).attr("data-column");
+function build_school_element(column) {
+	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
 	school.find(".add-a-school").hide();
 	school.find(".add-school-info").hide();
@@ -253,7 +253,7 @@ function build_school_element(school_id) {
 	}
 
 	// Set the data within the element
-	school.find('[name="institutionname"]').text(schooldata.school);
+	school.find('[name="institutionname"]').html(schooldata.school);
 	school.find("input.school-data").not(".interest-rate").val("$0");
 	school.find("input[name='institutionalloanrate']").val(global.institutionalloantratedefault * 100 + "%");
 	school.find("input[name='privateloanrate']").val(global.privateloanratedefault * 100 + "%");
@@ -395,25 +395,19 @@ function build_school_element(school_id) {
 		_gaq.push([ "_trackEvent", "School Interactions", "School Added", school_id ] );
 	}
 
-	calculate_school(school_id);
+	calculate_school(column);
 
 } // end build_school_element()
 
-function remove_school(school_id) {
-	var column = $("#" + school_id).attr("data-column");
-	var school = $("[data-column='" + column + "']");
-	school.find(".add-a-school").show();
 
-	hide_column(column);
-}
 
 /*----------
 	CALCULATION FUNCTIONS
 -----------*/
 
-// calculate_school(school_id) - Calculate the numbers for a particular school
-function calculate_school(school_id) {
-	var column = $("#" + school_id).attr("data-column");
+// calculate_school(column) - Calculate the numbers for a particular school
+function calculate_school(column) {
+	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
 
@@ -1094,12 +1088,12 @@ function calculate_school(school_id) {
 	// Get the most expensive sticker price (for chart width histogram)
 	if (check_highest_cost() === true) {
 		$(".school").each(function() {
-			var school_id = $(this).find("[data-column]").attr("data-column");
-			draw_the_bars(school_id);
+			var column = $(this).find("[data-column]").attr("data-column");
+			draw_the_bars(column);
 		});
 	}
 	else {
-		draw_the_bars(school_id);
+		draw_the_bars(column);
 	}	
 
 	left_to_pay = schooldata.gap;
@@ -1172,8 +1166,8 @@ jQuery.fn.check_max_alert = function() {
 }
 
 // draw_the_bars - Redraw the bar graphs for the specified .school element
-function draw_the_bars(school_id) {
-	var column = $("#" + school_id).attr("data-column");
+function draw_the_bars(column) {
+	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
 	var chart_width = $("#institution-row [data-column='1']").width();
@@ -1435,7 +1429,7 @@ $(document).ready(function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
 		var school_id = $(this).attr("href");
-		headercell.attr("id", school_id);
+		headercell.attr("data-schoolid", school_id);
 
 		// AJAX the schooldata
 		var schooldata = new Object();
@@ -1465,13 +1459,13 @@ $(document).ready(function() {
 	$(".add-school-info .add-average-public").click( function (ev) {
 		schools["average-public"] = data.presets["average-public"];
 		var column = $(this).closest("[data-column]").attr("data-column");
-		$("#institution-row [data-column='" + column + "']").attr("id", "average-public");
-		build_school_element("average-public");
+		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-public");
+		build_school_element(column);
 		var headercell = $(this).closest("[data-column]");
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
-		calculate_school("average-public");
+		calculate_school(column);
 		$(".add-average-public").hide();
 	});
 
@@ -1479,13 +1473,13 @@ $(document).ready(function() {
 	$(".add-school-info .add-average-private").click( function (ev) {
 		schools["average-private"] = data.presets["average-private"];
 		var column = $(this).closest("[data-column]").attr("data-column");
-		$("#institution-row [data-column='" + column + "']").attr("id", "average-private");
-		build_school_element("average-private");
+		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-private");
+		build_school_element(column);
 		var headercell = $(this).closest("[data-column]");
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
-		calculate_school("average-private");
+		calculate_school(column);
 		$(".add-average-private").hide();
 	});
 
@@ -1499,39 +1493,39 @@ $(document).ready(function() {
 	$(".add-school-info .prgmlength-selection .continue").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var schooldata = schools[school_id];
 		if ( schooldata.kbyoss == "TRUE") {
 			$("[data-column='" + column + "'] .prgmlength-selection").hide();
 			$("[data-column='" + column + "'] .add-xml").show();
 		}
 		else {
-			build_school_element(school_id);
+			build_school_element(column);
 			headercell.find(".add-school-info").hide();
 			headercell.find(".add-school-info .hidden-box").hide();
 			headercell.find(".add-school-info .school-search").show();
-			calculate_school(school_id);			
+			calculate_school(column);			
 		}
 	});
 
 	$(".add-school-info .add-xml .continue").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var schooldata = schools[school_id];
-		build_school_element(school_id);
+		build_school_element(column);
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
 		_gaq.push(["_trackEvent", "School Interactions", "Continue Button Clicked", school_id]);
-		calculate_school(school_id);	
+		calculate_school(column);	
 	});
 
 	$(".add-school-info .add-xml .xml-process").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
 		var school = $("[data-column='" + column + "']");
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var schooldata = schools[school_id];
 
 		var xml = headercell.find(".xml-text").val();
@@ -1543,7 +1537,7 @@ $(document).ready(function() {
 		}
 		var json = $.xml2json(xml);
 
-		build_school_element(school_id);
+		build_school_element(column);
 
 		// assign values based on json
 		if ( json.costs != undefined) {
@@ -1594,7 +1588,7 @@ $(document).ready(function() {
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
-		calculate_school(school_id);
+		calculate_school(column);
 	});
 
 	/* -------
@@ -1613,14 +1607,14 @@ $(document).ready(function() {
 		$(this).closest("[data-column]").children(".remove-confirm").hide();
 		var column = $(this).closest("[data-column]").attr("data-column");
 		// Set the "default" to false - the user is now engaged
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		if ( school_id == "average-public" ) {
 			$(".add-average-public").show();
 		}
 		if ( school_id == "average-private" ) {
 			$(".add-average-private").show();
 		}
-		$("#institution-row [data-column='" + column + "']").attr("id", "");
+		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "");
 		hide_column(column);
 		_gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );
 		delete schools[school_id];
@@ -1639,7 +1633,7 @@ $(document).ready(function() {
 	$(".gibill-calculator, input[name='gibill']").click( function(event) {
 		event.preventDefault();
 		var column = $(this).closest("[data-column]").attr("data-column");
-		school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		if ( ( school_id != "average-private" ) && ( school_id != "average-public" ) ) {
 			var panel = $("[data-column='" + column + "'] .gibill-panel");
 			if ( panel.is(":hidden") ) {
@@ -1647,7 +1641,6 @@ $(document).ready(function() {
 			}		
 			panel.toggle();
 		}
-
 	});
 
 	// Using the service selectors changes all selectors and activates service tier.
@@ -1680,9 +1673,9 @@ $(document).ready(function() {
 	$(".military-residency-panel .military-calculate").click( function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("[data-column='" + column + "'] .gibill-panel").hide();
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		_gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", school_id]);
-		calculate_school(school_id);
+		calculate_school(column);
 	})
 
 	/* ----------------
@@ -1703,8 +1696,8 @@ $(document).ready(function() {
 		loanrate = Math.round( loanrate * 10 ) / 10; // Round to tens place
 		loanrate = Math.round( loanrate * 100 ) / 100 + "%"
 		rateinput.val( loanrate );
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
-		calculate_school(school_id);
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
+		calculate_school(column);
 	});
 
 	/* ----------------
@@ -1714,8 +1707,8 @@ $(document).ready(function() {
 	// Perform a calculation when the user blurs inputs
 	$("#comparison-tables").on("blur", "input.school-data", function (ev) {
 		var column = $(this).closest("[data-column]").attr("data-column");
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
-		calculate_school(school_id);
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
+		calculate_school(column);
 	});
 
 	// Disable keydown and keypress for enter key - IE8 fix
@@ -1730,7 +1723,7 @@ $(document).ready(function() {
 	$("#comparison-tables input.school-data").on('keyup', function (ev) {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		var school = $("[data-column='" + column + "']");
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var value = money_to_num($(this).val());
 		if ( $(this).hasClass("interest-rate") ) {
 			value = value / 100;
@@ -1739,44 +1732,21 @@ $(document).ready(function() {
 		// ...immediately when the user hits enter
 		if (ev.keyCode == 13) {
 			ev.preventDefault();
-			calculate_school(school_id);
+			calculate_school(column);
 			return false;
 		}
 		// .. after a delay if any other key is pressed
 		school.check_max_alert();
 		delay(function() {
 			if ( schools[school_id][name] != value ) {
-				calculate_school(school_id);
+				calculate_school(column);
 			}
 			/*
 			if (ev.which >= 48 && ev.which <= 105) {
-				calculate_school(school_id);
+				calculate_school(column);
 			}
 			*/
 		}, 500);
-	});
-
-
-
-	// toggle drawer
-	$(".school-drawer-toggle").click( function() {
-		var toggle = $(this);
-		var drawer = $(this).prev(".school-drawer");
-		var school_id = $(this).parents(".school").attr("id");
-		var schooldata = schools[school_id];
-		$(drawer).slideToggle(300, function(){
-			if ($(drawer).is(":visible")) {
-				$(toggle).html('Confirm & Collapse <span class="visual_cue">&mdash;</span>');
-			}
-			else {
-				$(toggle).html('Edit Financial Aid <span class="visual_cue">+</span>');
-			}
-		});
-		if ($("#introduction").is(":hidden")) {
-			$("html, body").animate({"scrollTop": $(drawer).parent().offset().top}, 300);
-			$(this).parents('.school').children('.school-drawer-left .data-header h3 a').focus();
-		}
-		return false;
 	});
 
 
@@ -1844,6 +1814,7 @@ $(document).ready(function() {
 
 	// Send email
 	$("#send-email").click( function(){
+		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Send email"] );
 		var email = $('#email').val();
 		var request = $.ajax({
 			type: "POST",
@@ -1860,8 +1831,10 @@ $(document).ready(function() {
 	});
 
 	// toggle save drawer
-	$("#save-and-share").click( function() {
-		_gaq.push([ "_trackEvent", "School Interactions", "Save & Share clicked"] );
+	$("#save-and-share").click( function( event, native ) {
+		if ( native == undefined) {
+			_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "toggle button"] );
+		}
 		if ( global.worksheet_id == "none") {
 			get_worksheet_id();
 		}
@@ -1899,22 +1872,35 @@ $(document).ready(function() {
 		$("#timestamp").html("Saved at " + timestamp);
     }); 
 	$("#save-current").click( function() {
-		$("#save-and-share").trigger("click");
+		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Save current worksheet"] );
+		$("#save-and-share").trigger("click", ['save-current']);
 	});
 
 	// Analytics handlers
 	$(".navigator-link").click( function() {
-		var school_id = $(this).closest("[data-column]").attr("id");
+		var school_id = $(this).closest("[data-column]").attr("data-schoolid");
 		_gaq.push([ "_trackEvent", "School Interactions", "School Information link clicked", school_id ] );		
+	});
+
+	$("#unique").click( function() {
+		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Copy URL"] );	
+	});
+
+	$("#save-drawer .share-facebook").click( function() {
+		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Facebook_saveshare"] );	
+	});
+
+	$("#save-drawer .share-twitter").click( function() {
+		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] );	
 	});
 
 	/* --- Start the page up! --- */
 	$("#military-calc-toggle").hide();
 	hide_column(2);
 	hide_column(3);
-	$("#institution-row [data-column='1']").attr("id", "average-public");
+	$("#institution-row [data-column='1']").attr("data-schoolid", "average-public");
 	schools["average-public"] = data.presets["average-public"];
-	build_school_element("average-public");
+	build_school_element(1);
 	$(".add-average-public").hide();
 
 
@@ -1931,8 +1917,8 @@ $(document).ready(function() {
 		schools = data;
 		var column = 1;
 		$.each(schools, function(i, val) {
-			$("#institution-row").find("[data-column='" + column + "']").attr("id", i);
-			build_school_element(i);
+			$("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
+			build_school_element(column);
 			column++;
 		});
 	});
