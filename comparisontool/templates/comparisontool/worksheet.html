@@ -847,12 +847,12 @@ var csrftok = "{{ csrf_token }}";
 			</div>
 			<div class="save-container">
 				<p>You can save this comparison and come back to it later, or share the link with your parents or guidance counselor. We want you to be able to make the best decision for your educational and financial future.</p>
-				<input type="button" id="save-drawer-toggle" class="button" value="Save &amp; Share">
+				<input type="button" id="save-and-share" class="button" value="Save &amp; Share">
 			</div>
 		</div><!-- end #save-footer -->	
 
 		<div id="save-drawer">
-			<h2>Save your work</h2>
+			<h2>Save your work <span id="timestamp"></span> <button id="save-current">Save Current Worksheet</button></h2>
 			<div class="save-container">
 				<label class="unique-label" for="unique">URL</label>
 				<input id="unique" type="text" value="http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef" disabled="disabled">

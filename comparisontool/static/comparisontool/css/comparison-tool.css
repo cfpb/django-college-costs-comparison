@@ -1201,6 +1201,21 @@ label.tooltip-info {
 	text-align: left;
 	width: 45px;
 }
+
+#save-drawer #timestamp {
+	font-size: .7em;
+	font-style: italic;
+	margin: 0 3em 0 3em;
+	text-transform: lowercase;
+}
+
+#save-drawer #save-current {
+	float: right;
+	font-size: .8em;
+	position: relative;
+		right: 0px;
+}
+
 #save-drawer .unique-label {
 	background: url(../images/save-link.png) 0 .25em no-repeat;
 }
