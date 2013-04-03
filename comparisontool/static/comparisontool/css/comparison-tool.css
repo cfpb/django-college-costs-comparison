@@ -2,17 +2,6 @@
 -------------------------------------------------------------------------------*/
 
 /* HEADER BUSINESS */
-h1.p4ch {
-    position: relative;
-    font-size: 2.5em;
-    font-weight: 400;
-    color: #D83D00;
-    width: 900px;
-    margin: 10px auto 4px 0;
-    line-height: 1.375;
-    font-family: "Avenir Next", Arial, sans-serif;
-    text-transform: none;
-}
 .timeline,
 .horizontal-bar {
 	 font-family: "Avenir Next", Arial, sans-serif;
@@ -312,16 +301,19 @@ h1.p4ch {
 -------------------------------------------------------------------------------*/
 
 #comparison-tool #comparison-tool-header {
-	margin: 1em 0 3em 0;
+	margin: 0 0 3em 0;
 	position: relative;
 }
 #comparison-tool #comparison-tool-header h1 {
 	position: relative;
-	font-size: 4em;
-	font-weight: 400;
-	color: #D83D00;
-	width: 900px;
-	margin: 0 auto .25em auto;
+    font-size: 2.5em;
+    font-weight: 400;
+    color: #D83D00;
+    width: 900px;
+    margin: 0 auto 0.25em 0;
+    line-height: 1.375;
+    font-family: "Avenir Next", Arial, sans-serif;
+    text-transform: none;
 }
 #comparison-tool #comparison-tool-header h1 sup {
 	font-size: .25em;
