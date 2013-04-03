@@ -1398,7 +1398,7 @@ $(document).ready(function() {
 	});
 
 	// Do a search when the school-search input has keyup...
-	$(".add-school-info").on('keyup', ".school-search-box", function (ev) {
+	$(".add-school-info").on("keyup", ".school-search-box", function (ev) {
 		var query = $(this).val();
 		var column = $(this).closest("[data-column]").attr("data-column");
 		delay(function() {
@@ -1498,6 +1498,7 @@ $(document).ready(function() {
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
+		_gaq.push(["_trackEvent", "XML Interactions", "Continue Button Clicked", school_id]);
 		calculate_school(school_id);	
 	});
 
@@ -1508,9 +1509,12 @@ $(document).ready(function() {
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
 		var schooldata = schools[school_id];
 
-		var xml = $(".add-school-info .add-xml [name='xmlbukkit']").val();
-		if ( xml != "" ) {
-			_gaq.push(["_trackEvent", "XML Interactions", "XML pasted for school", school_id]);
+		var xml = headercell.find(".xml-text").val();
+		if ( xml == "" ) {
+			_gaq.push(["_trackEvent", "XML Interactions", "Apply XML button clicked (no text detected)", school_id]);
+		}
+		else {
+			_gaq.push(["_trackEvent", "XML Interactions", "Apply XML button clicked (with text)", school_id]);			
 		}
 		var json = $.xml2json(xml);
 
@@ -1613,7 +1617,7 @@ $(document).ready(function() {
 		if ( ( school_id != "average-private" ) && ( school_id != "average-public" ) ) {
 			var panel = $("[data-column='" + column + "'] .gibill-panel");
 			if ( panel.is(":hidden") ) {
-				_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculator Opened"]);
+				_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculator Opened", school_id]);
 			}		
 			panel.toggle();
 		}
@@ -1648,10 +1652,10 @@ $(document).ready(function() {
 
 	// Clicking "Calculate" button hides GI Bill panel and performs a calculation
 	$(".military-residency-panel .military-calculate").click( function() {
-		_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculate Button Clicked"]);
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("[data-column='" + column + "'] .gibill-panel").hide();
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
+		_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculate Button Clicked", school_id]);
 		calculate_school(school_id);
 	})
 
@@ -1779,7 +1783,8 @@ $(document).ready(function() {
 		ttc.hide();
 	});
 
-	$(".tooltip-info").click( function() {
+	$(".tooltip-info").click( function(event) {
+		event.stopPropagation();
 		// position tooltip-container based on the element clicked
 		var thisoff = $(this).offset();
 		var ttc = $("#tooltip-container");
@@ -1800,7 +1805,7 @@ $(document).ready(function() {
 		ttc.find("#outertip").css("left", (tipset + 5));
 		$("#tooltip-container > p").html($(this).attr("data-tooltip"));
 		
-		$("html").on('click', function() {
+		$("html").on('click', "body", function() {
 			$("#tooltip-container").hide();
 			$("html").off('click');
 		});
@@ -1887,7 +1892,8 @@ $(document).ready(function() {
 	// Analytics handlers
 
 	$(".navigator-link").click( function() {
-		_gaq.push([ "_trackEvent", "School Interactions", "School Information link clicked" ] );		
+		var school_id = $(this).closest("[data-column]").attr("id");
+		_gaq.push([ "_trackEvent", "School Interactions", "School Information link clicked", school_id ] );		
 	});
 
 	/* --- Start the page up! --- */
