@@ -58,6 +58,7 @@ else {
 		shouldn't put it out of commission -wernerc */
 }
 var schools = new Object();
+var schools_zeroed = new Object();
 
 /* -------- 
 	Initialize
@@ -1101,8 +1102,10 @@ function calculate_school(column) {
 	if (left_to_pay < 1){
 		school.find('[name="gap"]').text( "$0" );
 		if ( ( schooldata.firstyrcostattend > 0 ) && ( global.reached_zero == 0 ) ) {
-			_gaq.push(["_trackEvent", "School Interactions", "Reached Zero Left to Pay", school_id]);
-			global.reached_zero = school_id; // Prevents multiple events
+			if ( schools_zeroed[school_id] == undefined ) {
+				_gaq.push(["_trackEvent", "School Interactions", "Reached Zero Left to Pay", school_id]);
+				schools_zeroed[school_id] = true;
+			}
 		}
 	}
 	else {
