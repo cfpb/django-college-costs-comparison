@@ -1194,11 +1194,15 @@ function draw_the_bars(school_id) {
 	else {
 		school.find(".meter").show();
 		// find each .bar element and determine its width, then animate
+		var remaining_width = 221;
 		school.find(".chart_mask_internal .bar").each(function() {
 			var bar = $(this);
 			var name = bar.attr("name");
 			var value = schooldata[name];
 			var section_width = Math.floor(value * pixel_price);
+			if ( section_width > remaining_width ) {
+				section_width = remaining_width;
+			}
 			if (section_width < minimum_chart_section_width) {
 				section_width = 0;
 				bar.stop(true, false).animate({width: 0}, transition_time, function() {
@@ -1208,6 +1212,7 @@ function draw_the_bars(school_id) {
 			else {
 				bar.stop(true, false).animate({width: (section_width - 1)}, transition_time);
 			}
+
 			if ( section_width != 0) {
 				bar.show();
 				total_section_width += section_width;
@@ -1220,6 +1225,10 @@ function draw_the_bars(school_id) {
 			}
 			else {
 				bar.hide();
+			}
+			remaining_width -= section_width;
+			if ( remaining_width < 0 ) {
+				remaining_width = 0;
 			}
 		});
 		if ((total_outofpocket_section_width + total_borrowed_section_width) > chart_width) {
