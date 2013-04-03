@@ -1824,44 +1824,65 @@ $(document).ready(function() {
 			alert("Email sent!");
 		});
 		request.fail( function( jqXHR, msg ) {
-			alert( "Fail: " + msg);
+			alert( "Email failed." );
 		});
 	});
 
 	// toggle save drawer
-	$("#save-drawer-toggle").click( function() {
+	$("#save-and-share").click( function() {
+		_gaq.push([ "_trackEvent", "Save & Share", "Save & Share clicked"] );
 		if ( global.worksheet_id == "none") {
-	        posturl = "api/worksheet/";
-	        json_schools = JSON.stringify(schools);	
+	        var posturl = "api/worksheet/";
+	        var json_schools = JSON.stringify(schools);
 			var request = $.ajax({
 				type: "POST",
 				url: posturl,
 				dataType: "json",
-				data: {}
+				data: json_schools
 			});
-			request.done(function( result ) {
-				var geturl = $(location).attr('href')
-	                    + "?worksheet="
-	                    + result.id;
+			request.done(function( data ) {
+				var geturl = "http://" + window.location.host
+						+ "/comparisontool/"
+	                    + "#"
+	                    + data.id;
 	            $('#unique').attr('value', geturl);
-	            $("#save-drawer").slideToggle(300, function() {
-	                if ($(this).is(":visible")) {
-	                    $("#save-drawer-toggle").val("Collapse");
-	                }
-	                else {
-	                    $("#save-drawer-toggle").val("Save & Share");
-	                }
-	            });
+	            $("#save-drawer").slideDown(300);
+	            global.worksheet_id = data.id;
 			});
 			request.fail(function( jqXHR, msg ) {
-				alert( "Fail: " + msg);
+				alert( "Save failed.");
 			});
-			global.worksheet_id = result.id;
 		}
 		else {
+			var posturl = "api/worksheet/" + global.worksheet_id + ".json";
+			var request = $.ajax({
+				type: "POST",
+				url: posturl,
+				dataType: "json",
+				data: json_schools
+			});
+			request.done( function( data ) {
 
+			});
+			request.fail( function( jqXHR, result ) {
+				alert("Request failed.");
+			});
 		}
-    });  
+		var t  = new Date();
+		var minutes = t.getMinutes();
+		if ( minutes < 10 ) {
+			minutes = "0" + minutes;
+		}
+		var seconds = t.getSeconds();
+		if ( seconds < 10 ) {
+			seconds = "0" + seconds;
+		}
+		var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDay() + "/" + t.getFullYear();
+		timestamp = timestamp + " at " + t.getHours() + ":" + minutes + ":" + seconds;
+		$("#timestamp").html("Saved at " + timestamp);
+    }); 
+
+
 
 	// Analytics handlers
 
@@ -1879,18 +1900,19 @@ $(document).ready(function() {
 
 
 	// Check to see if there is restoredata
-	if (restoredata != 0) {
-		schools = restoredata;
-		$.each(schools, function(index) {
-			// This filters out only school entries, ignoring other data.
-			if (index.substring(0,7) == "school_") {
-				build_school_element(index);
-			}
-		});
-	}
-
-	// set tab indexes for header
-	// NYI
+	var wid = window.location.href.substr(window.location.href.lastIndexOf("#")+1);
+    var posturl = "api/worksheet/" + wid + ".json";
+	var request = $.ajax({
+		type: "POST",
+		url: posturl,
+		data: null
+	});
+	request.done(function( data ) {
+		data = data;
+	});
+	request.fail(function( jqXHR, msg ) {
+		test = jqXHR.responseText;
+	});
 
 });
 
