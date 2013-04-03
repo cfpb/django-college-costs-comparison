@@ -1,5 +1,8 @@
 {% extends 'front/base_update.html' %}
 
+{% load url from future %}
+
+
 {% block title %}Paying for College - Compare financial aid and college cost{% endblock %}
 
 {% block page_css %}
@@ -10,13 +13,6 @@
 {% block page_js %}
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/cfpb-comparison-analytics-min.js"></script>
 
-<script type="text/javascript">
-var sessionHistory= '{% url session-history-handler %}';
-jQuery(function(){
-	$.post(sessionHistory);
-});
-
-</script>
 
 {% endblock %}
 
@@ -91,7 +87,7 @@ jQuery(function(){
 								<h2>How else can you help?</h2>
 							</div>
 							<div class="col7">
-							<p>First, let us know what you think of this <a target="_blank" href="{% url select_school %}">tool</a>.</p>
+							<p>First, let us know what you think of this <a target="_blank" href="{% url 'worksheet' %}">tool</a>.</p>
 							
 							<form method="post">
 								{% csrf_token %}
@@ -99,7 +95,7 @@ jQuery(function(){
 							<p><button>Submit your comment</button></p>
 							</form>
 
-							<p>Then, share this project on <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fconsumerfinance.gov{% url payingforcollege %}&t=Paying%2520for%2520College">Facebook</a>, <a href="http://twitter.com/share?text=Paying%2520for%2520College&url=http%3A%2F%2Fconsumerfinance.gov{% url payingforcollege %}&via=CFPB&related=CFPB">Twitter</a>, or by email.</p>
+							<p>Then, share this project on <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fconsumerfinance.gov{% url 'worksheet'  %}&t=Paying%2520for%2520College">Facebook</a>, <a href="http://twitter.com/share?text=Paying%2520for%2520College&url=http%3A%2F%2Fconsumerfinance.gov{% url 'worksheet'  %}&via=CFPB&related=CFPB">Twitter</a>, or by email.</p>
 
 							<p>Finally, join the community of those who care about student issues to stay informed on the latest developments.</p>
 							<form class="signup inlineSignup" action="https://public.govdelivery.com/service/process_ss.xml" method="GET" data-thanks="Thanks, we’ll be in touch!">
