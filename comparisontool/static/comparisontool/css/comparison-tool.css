@@ -35,6 +35,7 @@ h1.p4ch {
 /* Extending our .links class here. */
 .timeline .nav-links > li {
 	margin-right: 10px;
+	vertical-align: top;
 }
 
 /* Crazy different numbers here so we can have different distances between points on the timeline.
@@ -50,6 +51,8 @@ h1.p4ch {
 
 .loans {
 	margin-left: 10px;
+	/* Evens vertical spacing because li does not have label */
+    margin-top: 20px;
 }
 
 .compare {
@@ -586,6 +589,7 @@ h1.p4ch {
 	background-color: #e6e6e6;
 	display: none;
 	font-size: 1em;
+	overflow: scroll;
 	padding: .25em .5em;
 	position: absolute;
 	width: 200px;
