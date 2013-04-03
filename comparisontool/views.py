@@ -142,7 +142,8 @@ class EmailLink(View):
         send_mail(subject, body, 'no-reply@cfpb.gov', [recipient],
                   fail_silently=False)
 
-        return HttpResponse('ok')
+        document = {'status': 'ok'}
+        return HttpResponse(json.dumps(document), mimetype='application/javascript')
 
 
 class CreateWorksheetView(View):
