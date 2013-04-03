@@ -57,7 +57,7 @@ else {
 		some error handling. The application can still run without data, so a database failure
 		shouldn't put it out of commission -wernerc */
 }
-var schools = data.presets;
+var schools = new Object();
 
 /* -------- 
 	Initialize
@@ -179,6 +179,19 @@ jQuery.fn.textbyname = function(name, value) {
 // exists - a simple way to determine if any instance of an element matching the selector exists
 jQuery.fn.exists = function() {
 	return this.length > 0;
+}
+
+// get_worksheep_id() - gets a new worksheet id, and sets global.worksheet_id
+function get_worksheet_id() {
+	var request = $.ajax({
+		type: "POST",
+		async: false,
+		url: "api/worksheet/"
+	});
+	request.done( function( data, textStatus, jqXHR) {
+		var data = jQuery.parseJSON(jqXHR.responseText);
+		global.worksheet_id = data.id;
+	});
 }
 
 // Hide a column so that "add a school" box looks better
@@ -378,7 +391,8 @@ function build_school_element(school_id) {
 	global.schools_added++;
 	if ( global.schools_added > 0 ) {
 		var value = (global.schools_added).toString();
-		_gaq.push([ "_trackEvent", "School Interactions", "Schools Added", value ] );
+		_gaq.push([ "_trackEvent", "School Interactions", "Total Schools Added", value ] );
+		_gaq.push([ "_trackEvent", "School Interactions", "School Added", school_id ] );
 	}
 
 	calculate_school(school_id);
@@ -1093,7 +1107,7 @@ function calculate_school(school_id) {
 	if (left_to_pay < 1){
 		school.find('[name="gap"]').text( "$0" );
 		if ( ( schooldata.firstyrcostattend > 0 ) && ( global.reached_zero == 0 ) ) {
-			_gaq.push(["_trackEvent", "Calculations", "Reached Zero Left to Pay", school_id]);
+			_gaq.push(["_trackEvent", "School Interactions", "Reached Zero Left to Pay", school_id]);
 			global.reached_zero = school_id; // Prevents multiple events
 		}
 	}
@@ -1440,6 +1454,7 @@ $(document).ready(function() {
 
 	// Add average public
 	$(".add-school-info .add-average-public").click( function (ev) {
+		schools["average-public"] = data.presets["average-public"];
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("#institution-row [data-column='" + column + "']").attr("id", "average-public");
 		build_school_element("average-public");
@@ -1453,6 +1468,7 @@ $(document).ready(function() {
 
 	// Add average private
 	$(".add-school-info .add-average-private").click( function (ev) {
+		schools["average-private"] = data.presets["average-private"];
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("#institution-row [data-column='" + column + "']").attr("id", "average-private");
 		build_school_element("average-private");
@@ -1498,7 +1514,7 @@ $(document).ready(function() {
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
-		_gaq.push(["_trackEvent", "XML Interactions", "Continue Button Clicked", school_id]);
+		_gaq.push(["_trackEvent", "School Interactions", "Continue Button Clicked", school_id]);
 		calculate_school(school_id);	
 	});
 
@@ -1511,10 +1527,10 @@ $(document).ready(function() {
 
 		var xml = headercell.find(".xml-text").val();
 		if ( xml == "" ) {
-			_gaq.push(["_trackEvent", "XML Interactions", "Apply XML button clicked (no text detected)", school_id]);
+			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked (no text detected)", school_id]);
 		}
 		else {
-			_gaq.push(["_trackEvent", "XML Interactions", "Apply XML button clicked (with text)", school_id]);			
+			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked (with text)", school_id]);			
 		}
 		var json = $.xml2json(xml);
 
@@ -1551,7 +1567,7 @@ $(document).ready(function() {
 			if ( schooldata[key] == undefined ) {
 				schooldata[key] = 0;
 			}
-		}	
+		}
 
 		school.find("input.school-data").each(function() {
 			if ( $(this).hasClass("interest-rate") ) {
@@ -1597,7 +1613,8 @@ $(document).ready(function() {
 		}
 		$("#institution-row [data-column='" + column + "']").attr("id", "");
 		hide_column(column);
-		_gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );	
+		_gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );
+		delete schools[school_id];
 	})
 
 	// Wait, no, I don't want to remove it!
@@ -1617,7 +1634,7 @@ $(document).ready(function() {
 		if ( ( school_id != "average-private" ) && ( school_id != "average-public" ) ) {
 			var panel = $("[data-column='" + column + "'] .gibill-panel");
 			if ( panel.is(":hidden") ) {
-				_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculator Opened", school_id]);
+				_gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Opened", school_id]);
 			}		
 			panel.toggle();
 		}
@@ -1655,7 +1672,7 @@ $(document).ready(function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("[data-column='" + column + "'] .gibill-panel").hide();
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("id");
-		_gaq.push(["_trackEvent", "GI Bill Interactions", "GI Bill Calculate Button Clicked", school_id]);
+		_gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", school_id]);
 		calculate_school(school_id);
 	})
 
@@ -1835,44 +1852,30 @@ $(document).ready(function() {
 
 	// toggle save drawer
 	$("#save-and-share").click( function() {
-		_gaq.push([ "_trackEvent", "Save & Share", "Save & Share clicked"] );
+		_gaq.push([ "_trackEvent", "School Interactions", "Save & Share clicked"] );
 		if ( global.worksheet_id == "none") {
-	        var posturl = "api/worksheet/";
-	        var json_schools = JSON.stringify(schools);
-			var request = $.ajax({
-				type: "POST",
-				url: posturl,
-				dataType: "json",
-				data: json_schools
-			});
-			request.done(function( data ) {
-				var geturl = "http://" + window.location.host
-						+ "/comparisontool/"
-	                    + "#"
-	                    + data.id;
-	            $('#unique').attr('value', geturl);
-	            $("#save-drawer").slideDown(300);
-	            global.worksheet_id = data.id;
-			});
-			request.fail(function( jqXHR, msg ) {
-				alert( "Save failed.");
-			});
+			get_worksheet_id();
 		}
-		else {
-			var posturl = "api/worksheet/" + global.worksheet_id + ".json";
-			var request = $.ajax({
-				type: "POST",
-				url: posturl,
-				dataType: "json",
-				data: json_schools
-			});
-			request.done( function( data ) {
+		var posturl = "api/worksheet/" + global.worksheet_id + ".json";
+		var json_schools = JSON.stringify( schools );
+		var request = $.ajax({
+			type: "POST",
+			url: posturl,
+			dataType: "JSON",
+			data: json_schools
+		});
+		request.done( function ( result ) {
 
-			});
-			request.fail( function( jqXHR, result ) {
-				alert("Request failed.");
-			});
-		}
+		});
+		request.fail( function ( result ) {
+			alert( "Save failed!");
+		});
+		var geturl = "http://" + document.location.host
+					+ "/comparisontool/"
+                    + "#"
+                    + global.worksheet_id;
+        $("#unique").val(geturl);
+		$("#save-drawer").slideDown(300);
 		var t  = new Date();
 		var minutes = t.getMinutes();
 		if ( minutes < 10 ) {
@@ -1883,14 +1886,14 @@ $(document).ready(function() {
 			seconds = "0" + seconds;
 		}
 		var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDay() + "/" + t.getFullYear();
-		timestamp = timestamp + " at " + t.getHours() + ":" + minutes + ":" + seconds;
+		timestamp = timestamp + " on " + t.getHours() + ":" + minutes + ":" + seconds;
 		$("#timestamp").html("Saved at " + timestamp);
     }); 
-
-
+	$("#save-current").click( function() {
+		$("#save-and-share").trigger("click");
+	});
 
 	// Analytics handlers
-
 	$(".navigator-link").click( function() {
 		var school_id = $(this).closest("[data-column]").attr("id");
 		_gaq.push([ "_trackEvent", "School Interactions", "School Information link clicked", school_id ] );		
@@ -1901,6 +1904,7 @@ $(document).ready(function() {
 	hide_column(2);
 	hide_column(3);
 	$("#institution-row [data-column='1']").attr("id", "average-public");
+	schools["average-public"] = data.presets["average-public"];
 	build_school_element("average-public");
 	$(".add-average-public").hide();
 
@@ -1913,8 +1917,15 @@ $(document).ready(function() {
 		url: posturl,
 		data: null
 	});
-	request.done(function( data ) {
-		data = data;
+	request.done(function( data, textStatus, jqXHR ) {
+		var data = jQuery.parseJSON(jqXHR.responseText);
+		schools = data;
+		var column = 1;
+		$.each(schools, function(i, val) {
+			$("#institution-row").find("[data-column='" + column + "']").attr("id", i);
+			build_school_element(i);
+			column++;
+		});
 	});
 	request.fail(function( jqXHR, msg ) {
 		test = jqXHR.responseText;
