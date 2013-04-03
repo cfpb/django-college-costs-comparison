@@ -5,6 +5,7 @@ ROOT_URLCONF = 'example_project.urls'
 
 SITE_ID = 1
 STATIC_URL = "/static/"
+MEDIA_URL = "http://files.consumerfinance.gov/f/theme/"
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'templates')
