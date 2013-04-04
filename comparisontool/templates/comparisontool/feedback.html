@@ -12,21 +12,13 @@
 
 {% block page_js %}
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/cfpb-comparison-analytics-min.js"></script>
-
-
 {% endblock %}
 
-{% block content %}
-		
-		
-		
-		
-		<div id="comparison-tool">
-		
+{% block content %}		
+		<div id="comparison-tool">		
 			<header id="comparison-tool-header">
 				<a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
-				<div class="horizontal-bar orange-bg">Compare financial aid and college cost</div>
-				
+				<div class="horizontal-bar orange-bg">Compare financial aid and college cost</div>				
 			</header><!-- end #comparison-tool-header -->
 			
 			<section class="about-section">
@@ -41,21 +33,10 @@
 							</div>
 							<div class="clear"></div>
 						</header>
-					
-						<div class="col7">
-						
-						
-						
-						
-						
-						
-						
-						</div>
 						<div class="clear"></div>
 					</div><!-- end .wrapper -->
 				</div><!-- end .container -->
-			</section><!-- end .about-section -->
-			
+			</section><!-- end .about-section -->	
 			<section class="about-section">
 				<div class="container">
 					<div class="wrapper">
@@ -64,16 +45,11 @@
 								<h2>Why are we doing this?</h2>
 							</div>
 							<div class="col7">
-<p>The Consumer Financial Protection Bureau is a 21st century agency committed to using technology to empower consumers to take control over their economic lives.</p>
-
-<p>With your help, you can help us design a tool that makes that process a little bit less daunting —helping families make smarter choices about student debt.</p>
-							
-							
-							
+								<p>The Consumer Financial Protection Bureau is a 21st century agency committed to using technology to empower consumers to take control over their economic lives.</p>
+								<p>With your help, you can help us design a tool that makes that process a little bit less daunting —helping families make smarter choices about student debt.</p>				
 							</div>
 							<div class="clear"></div>
 						</header>
-						
 						<div class="clear"></div>
 					</div><!-- end .wrapper -->
 				</div><!-- end .container -->
@@ -87,33 +63,28 @@
 								<h2>How else can you help?</h2>
 							</div>
 							<div class="col7">
-							<p>First, let us know what you think of this <a target="_blank" href="{% url 'worksheet' %}">tool</a>.</p>
-							
-							<form method="post">
+								<p>First, let us know what you think of this <a target="_blank" href="{% url 'worksheet' %}">tool</a>.</p>
+								<form method="post">
 								{% csrf_token %}
-							<p>{{ form.message }}</p>
-							<p><button>Submit your comment</button></p>
-							</form>
-
-							<p>Then, share this project on <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fconsumerfinance.gov{% url 'worksheet'  %}&t=Paying%2520for%2520College">Facebook</a>, <a href="http://twitter.com/share?text=Paying%2520for%2520College&url=http%3A%2F%2Fconsumerfinance.gov{% url 'worksheet'  %}&via=CFPB&related=CFPB">Twitter</a>, or by email.</p>
-
-							<p>Finally, join the community of those who care about student issues to stay informed on the latest developments.</p>
-							<form class="signup inlineSignup" action="https://public.govdelivery.com/service/process_ss.xml" method="GET" data-thanks="Thanks, we’ll be in touch!">
-	<fieldset>
-		<input type="hidden" name="code" value="USCFPB_7">
-		<p><label for="email">Email address</label> <input type="email" name="email" size="33"></p>
-		<p><label for="questionid_10376">ZIP code</label> <input type="text" name="questionid_10376"></p>
-		<p><button>Send me email updates</button></p>
-	</fieldset>
-</form>
+								<p>{{ form.message }}</p>
+								<p><button>Submit your comment</button></p>
+							    </form>
+							    <p>Then, share this project on <a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fconsumerfinance.gov{% url 'worksheet'  %}&t=Paying%2520for%2520College">Facebook</a>, <a href="http://twitter.com/share?text=Paying%2520for%2520College&url=http%3A%2F%2Fconsumerfinance.gov{% url 'worksheet'  %}&via=CFPB&related=CFPB">Twitter</a>, or by email.</p>
+								<p>Finally, join the community of those who care about student issues to stay informed on the latest developments.</p>
+							    <form class="signup inlineSignup" action="https://public.govdelivery.com/service/process_ss.xml" method="GET" data-thanks="Thanks, we’ll be in touch!">
+								<fieldset>
+									<input type="hidden" name="code" value="USCFPB_7">
+									<p><label for="email">Email address</label> <input type="email" name="email" size="33"></p>
+									<p><label for="questionid_10376">ZIP code</label> <input type="text" name="questionid_10376"></p>
+									<p><button>Send me email updates</button></p>
+								</fieldset>
+							    </form>
 							</div>
 							<div class="clear"></div>
 						</header>
-
 						<div class="clear"></div>
 					</div><!-- end .wrapper -->
 				</div><!-- end .container -->
-			</section><!-- end .about-section -->
-			
+			</section><!-- end .about-section -->			
 		</div><!-- end #about-worksheet -->
 {% endblock content %}
