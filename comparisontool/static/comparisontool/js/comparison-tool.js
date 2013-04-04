@@ -40,11 +40,11 @@ var data =
 		"average-public" :
 			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
 			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "program": "ba",
-			 "school_id": "average-public", "prgmlength": 4, "control": "public" },
+			 "school_id": "average-public", "prgmlength": 4, "control": "public", "origin":"presets"},
 		"average-private" :
 			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
 			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "program": "ba",
-			 "school_id": "average-private", "prgmlength": 4, "control": "private"  }
+			 "school_id": "average-private", "prgmlength": 4, "control": "private", "origin":"presets"}
 	}
 };
  
@@ -260,11 +260,13 @@ function build_school_element(column) {
 	school.find("input[name='privateloanrate']").val(global.privateloanratedefault * 100 + "%");
 	// Currently, we're not using schooldata from the database
 	// As such, the following is only used for average schools
-	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
+	if ( ( schooldata.origin == "presets" ) || ( schooldata.origin == "saved" ) ) {
 		for (key in schooldata) {
 		    school.find('input[name="' + key + '"]').val(schooldata[key]);
 		}
 		// Average public and private do not have GI Bill information
+	}
+	if ( schooldata.origin == "presets" ) {
 		school.find(".gibill-calculator").hide();
 	}
 	else {
@@ -1932,6 +1934,7 @@ $(document).ready(function() {
 		schools = data;
 		var column = 1;
 		$.each(schools, function(i, val) {
+			schools[i]["origin"] = "saved";
 			$("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
 			build_school_element(column);
 			column++;
