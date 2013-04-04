@@ -37,15 +37,16 @@ $(function() {
     });
     // Link tracking project-wide
     // Build delay on on exit links (500ms)
-    $('.exit-link').click(function( event ) {
-        event.preventDefault();
+    $('.exit-link').click(function() {
         var link_text = $(this).text();
-        var link_url = $(this).attr('href');
-        var target = $(this).attr("target");
-        if ( (target == undefined) || (target !== "_blank") || (target.toLowerCase() !== "_new") ) {
-            _gaq.push(['_trackEvent', 'Exit Link', link_text, link_url]);
+        var link_url = $(this).attr('href')
+        _gaq.push(['_trackEvent', 'Exit Link', link_text, link_url]);
+            function setTimeout() { 
+            if (_target == undefined || _target.toLowerCase() !== '_blank' || _target.toLowerCase() !== '_new') {
+                setTimeout(function() { location.href =  _href; }, 500);
+                return false;
+            }
         }
-        setTimeout('document.location = "' + link_url + '"', 100);
     });
     $('.internal-link').click(function() {
         var link_text = $(this).text();
