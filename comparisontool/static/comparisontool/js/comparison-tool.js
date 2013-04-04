@@ -556,29 +556,27 @@ function calculate_school(column) {
 	else {
 		 global.tier = $("[data-column='1'] .military-tier-select").find(":selected").val();
 		// Calculate veteran benefits:		
-		if ( ( schooldata.control == "Public" ) && ( schooldata.instate === true ) ) {
+		if ( ( schooldata.control == "Public" ) && ( schooldata.instate == true ) ) {
 			schooldata.gibilltf = ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
 		}
 		else if ( ( schooldata.control == "Public" ) && ( schooldata.instate === false ) ) {
-			schooldata.gibilltf = schooldata.tfinstate + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist;
+			schooldata.gibilltf = ( schooldata.tfinstate + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
-			if ( schooldata.gibilltf > schooldata.tuitionfees) {
+			if ( schooldata.gibilltf > ( schooldata.tuitionfees * global.tier ) ) {
 				schooldata.gibilltf = schooldata.tuitionfees;
 			}
-			schooldata.gibilltf = schooldata.gibilltf * global.tier;
 		}
 		else { // School is not public
-			schooldata.gibilltf = global.tfcap + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist;
+			schooldata.gibilltf = ( global.tfcap + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
-			schooldata.gibilltf = schooldata.gibilltf * global.tier;
-			if ( schooldata.gibilltf > schooldata.tuitionfees ) {
+			if ( schooldata.gibilltf > ( schooldata.tuitionfees * global.tier ) ) {
 				schooldata.gibilltf = schooldata.tuitionfees
 			}
 		}
@@ -1889,11 +1887,11 @@ $(document).ready(function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Copy URL"] );	
 	});
 
-	$("#save-drawer .share-facebook").click( function() {
+	$("#save-drawer .save-share-facebook").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Facebook_saveshare"] );	
 	});
 
-	$("#save-drawer .share-twitter").click( function() {
+	$("#save-drawer .save-share-twitter").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] );	
 	});
 
