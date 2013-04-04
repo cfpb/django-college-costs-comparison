@@ -1,21 +1,21 @@
 // Event tracking for Google Analytics, using jQuery
 // For Paying for College: /paying-for-college/
-// Written by davidakennedy
+// Written by davidakennedy and Mike Morici
 $(function() {
     "use strict";
     // Main image on /paying-for-college/
-    $('#hero').click(function() {
+    $('.hero-link').click(function() {
         _gaq.push(['_trackEvent', 'Hero', 'Click', 'Image']);
     });
     // Permalink field on /paying-for-college/ Will need to add class
-    $('.pfc-short-link').focus(function() {
+    /* $('.pfc-short-link').focus(function() {
         _gaq.push(['_trackEvent', 'Form Field', 'Click', 'Permalink Box']);
-    });
+    }); */
     // Collapsed content click tracking
     // Let's split these out per interaction (all three types)
-    $('.bubble').click(function() {
+    /* $('.bubble').click(function() {
         _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Tabs_Key_Questions']);
-    });
+    }); */
     $('.ec').click(function() {
         _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Accordion_Options']);
     });
@@ -54,31 +54,75 @@ $(function() {
         _gaq.push(['_trackEvent', 'Internal Link', link_text, link_url]);
     });
     // Email address submission on /paying-for-college/
-    $('.email-button').click(function() {
+    /* $('.email-button').click(function() {
         var link_text = $(this).text();
         var link_url = $(this).attr('href')
         _gaq.push(['_trackEvent', 'Submission', link_text, link_url]);
-    });
+    }); */
     // Track social sharing and following project-wide
     // Bottom sharing box
-    $('.botshare.share-facebook').click(function() {
-        _gaq.push(['_trackEvent', 'Social', 'Share', 'Facebook_Bottom']);
+    $('.botshare > .share-facebook').click(function(e) {
+
+        // Save the href so we can change the url with js
+        var link_url = $(this).attr('href');
+
+        // Stop the link from going anywhere
+        // (it's ok we saved the href and we'll fire it later)
+        e.preventDefault();
+
+        // Use a try statement in case there are google analytics errors
+        // that could prevent the rest of this code from changing the url
+        // thus breaking the link completely instead of delaying it!
+
+        try { _gaq.push(['_trackEvent', 'Social', 'Share', 'Facebook_Bottom']); }
+        catch( error ) {}
+
+        // Give google analytics time to do its thing before changing the page url
+        // http://support.google.com/analytics/answer/1136920?hl=en
+        setTimeout(function() { document.location.href = link_url; }, 500);
+
     });
-    $('.botshare.share-twitter').click(function() {
-        _gaq.push(['_trackEvent', 'Social', 'Share', 'Twitter_Bottom']);
+    $('.botshare > .share-twitter').click(function(e) {
+        
+        // Save the href so we can change the url with js
+        var link_url = $(this).attr('href');
+
+        // Stop the link from going anywhere
+        // (it's ok we saved the href and we'll fire it later)
+        e.preventDefault();
+
+        // Use a try statement in case there are google analytics errors
+        // that could prevent the rest of this code from changing the url
+        // thus breaking the link completely instead of delaying it!
+
+        try { _gaq.push(['_trackEvent', 'Social', 'Share', 'Twitter_Bottom']); }
+        catch( error ) {}
+
+        // Give google analytics time to do its thing before changing the page url
+        // http://support.google.com/analytics/answer/1136920?hl=en
+        setTimeout(function() { document.location.href = link_url; }, 500);
+
     });
-    $('.botshare.share-email').click(function() {
-        _gaq.push(['_trackEvent', 'Social', 'Share', 'Email_Bottom']);
-    });
-    // In-page sharing box
-    $('.share.mini > .share-facebook').click(function() {
-        _gaq.push(['_trackEvent', 'Social', 'Share', 'Facebook_In_Page']);
-    });
-    $('.share.mini > share-twitter').click(function() {
-        _gaq.push(['_trackEvent', 'Social', 'Share', 'Twitter_In_Page']);
-    });
-    $('.share.mini > share-email').click(function() {
-        _gaq.push(['_trackEvent', 'Social', 'Share', 'Email_In_Page']);
+    $('.botshare > .share-email').click(function(e) {
+        
+        // Save the href so we can change the url with js
+        var link_url = $(this).attr('href');
+
+        // Stop the link from going anywhere
+        // (it's ok we saved the href and we'll fire it later)
+        e.preventDefault();
+
+        // Use a try statement in case there are google analytics errors
+        // that could prevent the rest of this code from changing the url
+        // thus breaking the link completely instead of delaying it!
+
+        try { _gaq.push(['_trackEvent', 'Social', 'Share', 'Email_Bottom']); }
+        catch( error ) {}
+
+        // Give google analytics time to do its thing before changing the page url
+        // http://support.google.com/analytics/answer/1136920?hl=en
+        setTimeout(function() { document.location.href = link_url; }, 500);
+
     });
     // Social following
     $('#follow-button').click(function() {
