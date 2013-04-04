@@ -900,9 +900,9 @@ label.tooltip-info {
 	margin: 0;
 }
 
-/* These elements, #outertip and #innertip, make the little speech-balloon styled
+/* These elements, .outertip and .innertip, make the little speech-balloon styled
 	tip appear along the top of the tooltip. */
-#tooltip-container #outertip {
+#tooltip-container .outertip {
 	border: 10px solid transparent;
 	border-bottom-color: #50a748;
 	content: ' ';
@@ -912,7 +912,7 @@ label.tooltip-info {
 	top: -20px;
 	width: 0;
 }
-#tooltip-container #innertip {
+#tooltip-container .innertip {
 	border: 7px solid transparent;
 	border-bottom-color: #a0f798;
 	content: ' ';
@@ -923,7 +923,7 @@ label.tooltip-info {
 	width: 0;
 }
 
-#bar-info-container #outertip {
+#bar-info-container .outertip {
 	border: 10px solid transparent;
 	border-bottom-color: #000;
 	content: ' ';
@@ -933,7 +933,7 @@ label.tooltip-info {
 	top: -20px;
 	width: 0;
 }
-#bar-info-container #innertip {
+#bar-info-container .innertip {
 	border: 7px solid transparent;
 	border-bottom-color: #f4f4f4;
 	content: ' ';
