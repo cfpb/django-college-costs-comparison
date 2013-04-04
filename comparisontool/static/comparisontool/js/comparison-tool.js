@@ -7,7 +7,7 @@ var data =
 	"global": // see GLOBALS.txt for descriptions of the parameters
 		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
-		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 5500,
+		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 8000,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -556,29 +556,27 @@ function calculate_school(column) {
 	else {
 		 global.tier = $("[data-column='1'] .military-tier-select").find(":selected").val();
 		// Calculate veteran benefits:		
-		if ( ( schooldata.control == "Public" ) && ( schooldata.instate === true ) ) {
+		if ( ( schooldata.control == "Public" ) && ( schooldata.instate == true ) ) {
 			schooldata.gibilltf = ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
 		}
 		else if ( ( schooldata.control == "Public" ) && ( schooldata.instate === false ) ) {
-			schooldata.gibilltf = schooldata.tfinstate + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist;
+			schooldata.gibilltf = ( schooldata.tfinstate + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
-			if ( schooldata.gibilltf > schooldata.tuitionfees) {
+			if ( schooldata.gibilltf > ( schooldata.tuitionfees * global.tier ) ) {
 				schooldata.gibilltf = schooldata.tuitionfees;
 			}
-			schooldata.gibilltf = schooldata.gibilltf * global.tier;
 		}
 		else { // School is not public
-			schooldata.gibilltf = global.tfcap + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist;
+			schooldata.gibilltf = ( global.tfcap + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
-			schooldata.gibilltf = schooldata.gibilltf * global.tier;
-			if ( schooldata.gibilltf > schooldata.tuitionfees ) {
+			if ( schooldata.gibilltf > ( schooldata.tuitionfees * global.tier ) ) {
 				schooldata.gibilltf = schooldata.tuitionfees
 			}
 		}
@@ -1520,7 +1518,7 @@ $(document).ready(function() {
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
-		_gaq.push(["_trackEvent", "School Interactions", "Continue Button Clicked", school_id]);
+		_gaq.push(["_trackEvent", "School Interactions", "XML Continue Button Clicked", school_id]);
 		calculate_school(column);	
 	});
 
@@ -1533,10 +1531,10 @@ $(document).ready(function() {
 
 		var xml = headercell.find(".xml-text").val();
 		if ( xml == "" ) {
-			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked (no text detected)", school_id]);
+			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked - no text detected", school_id]);
 		}
 		else {
-			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked (with text)", school_id]);			
+			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked - with text", school_id]);			
 		}
 		var json = $.xml2json(xml);
 
@@ -1770,11 +1768,11 @@ $(document).ready(function() {
 		// check offset again, properly set tips to point to the element clicked
 		ttcoff = ttc.offset();
 		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
-		ttc.find("#innertip").css("left", (tipset + 8));
-		ttc.find("#outertip").css("left", (tipset + 5));
+		ttc.find(".innertip").css("left", (tipset + 8));
+		ttc.find(".outertip").css("left", (tipset + 5));
 		var bgcolor = $(this).css("background-color");
 		ttc.css("border-color", bgcolor);
-		ttc.find("#outertip").css("border-bottom-color", bgcolor);
+		ttc.find(".outertip").css("border-bottom-color", bgcolor);
 		ttc.find("p").html($(this).attr("data-tooltip"));
 	});
 	$(".chart_mask_internal").on("mouseleave", function() {
@@ -1800,8 +1798,8 @@ $(document).ready(function() {
 		// check offset again, properly set tips to point to the element clicked
 		ttcoff = ttc.offset();
 		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
-		ttc.find("#innertip").css("left", (tipset + 8));
-		ttc.find("#outertip").css("left", (tipset + 5));
+		ttc.find(".innertip").css("left", (tipset + 8));
+		ttc.find(".outertip").css("left", (tipset + 5));
 		$("#tooltip-container > p").html($(this).attr("data-tooltip"));
 		
 		$("html").on('click', "body", function() {
@@ -1889,11 +1887,11 @@ $(document).ready(function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Copy URL"] );	
 	});
 
-	$("#save-drawer .share-facebook").click( function() {
+	$("#save-drawer .save-share-facebook").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Facebook_saveshare"] );	
 	});
 
-	$("#save-drawer .share-twitter").click( function() {
+	$("#save-drawer .save-share-twitter").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] );	
 	});
 
