@@ -527,7 +527,7 @@ function calculate_school(column) {
 
 	// Determine in-state and out-of-state
 	var instate = school.find("input:radio[name='military-residency" + column + "']:checked").val();
-	if ( ( instate === "instate" ) || ( instate === "indistrict" ) ) {
+	if ( ( instate === "instate" ) || ( instate == "indistrict" ) ) {
 		schooldata.instate = true;
 	}
 	else {
@@ -535,7 +535,7 @@ function calculate_school(column) {
 	}
 	// Set schooldata.tfinstate
 	if ( schooldata.instate == false ) {
-		schooldata.tfinstate = school.find("[name='militaryinstatetuition']").val();	
+		schooldata.tfinstate = schooldata.militaryinstatetuition;	
 	}
 	else {
 		schooldata.tfinstate = schooldata.tuitionfees;
@@ -550,7 +550,7 @@ function calculate_school(column) {
 	}
 
 	// Tuition & Fees benefits:
-	if (global.vet === false) {
+	if (global.vet == false) {
 		schooldata.gibilltf = 0; 
 	}
 	else {
@@ -562,7 +562,7 @@ function calculate_school(column) {
 				schooldata.gibilltf = 0;
 			}
 		}
-		else if ( ( schooldata.control == "Public" ) && ( schooldata.instate === false ) ) {
+		else if ( ( schooldata.control == "Public" ) && ( schooldata.instate == false ) ) {
 			schooldata.gibilltf = ( schooldata.tfinstate + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
@@ -616,6 +616,8 @@ function calculate_school(column) {
 	// Total GI Bill
 	schooldata.gibill = schooldata.gibilltf + schooldata.gibillla + schooldata.gibillbs;
 	school.setbyname("gibill", schooldata.gibill, true);
+	// Also, pretty-up the instate tuition while we're at it:
+	school.setbyname("militaryinstatetuition", schooldata.militaryinstatetuition, true);
 
 	// Total Grants
 	schooldata.grantstotal = schooldata.pell + schooldata.scholar + schooldata.gibill + schooldata.tuitionassist;
@@ -850,8 +852,8 @@ function calculate_school(column) {
 	
 	// Institution Loans
 	schooldata.institutionalloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.parentplus - schooldata.homeequity;
-	if ( schooldata.institutionalloan < 0 ) {
-		schooldata.institutionalloan = 0;
+	if ( schooldata.institutionalloan_max < 0 ) {
+		schooldata.institutionalloan_max = 0;
 	}
 	if (schooldata.institutionalloan > schooldata.institutionalloan_max) {
 		schooldata.institutionalloan = schooldata.institutionalloan_max;
