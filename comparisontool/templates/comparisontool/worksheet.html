@@ -743,13 +743,13 @@ var csrftok = "{{ csrf_token }}";
 					<tr class="stop bottom-border">
 						<th colspan="4"><h3>After school</h3></th>
 					</tr>
-					<tr>
+					<tr class="visualization-row">
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</h4></th>
 						<td data-column="1"><span name="totaldebtgrad"></span></td>
 						<td data-column="2"><span name="totaldebtgrad"></span></td>
 						<td data-column="3"><span name="totaldebtgrad"></span></td>
 					</tr>
-					<tr>
+					<tr class="visualization-row">
 						<th scope="row" data-column="0">
 							<h4>Monthly payments</h4>
 							<p>Per month for 10 years to cover your total borrowing</p>
@@ -757,23 +757,22 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1">
 							<div class="debt-pie" id="pie1"></div>
 							<p><span name="loanmonthly"></span> per month</p>
-							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+							<p class="percent-of-salary"><span class="payment-percent">0%</span> of your monthly salary</p>
 						</td>
 						<td data-column="2">
 							<div class="debt-pie" id="pie2"></div>
 							<p><span name="loanmonthly"></span> per month</p>
-							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+							<p class="percent-of-salary"><span class="payment-percent">0%</span> of your monthly salary</p>
 						</td>
 						<td data-column="3">
 							<div class="debt-pie" id="pie3"></div>
 							<p><span name="loanmonthly"></span> per month</p>
-							<p><span class="payment-percent">0%</span> of your monthly salary.</p>
+							<p class="percent-of-salary"><span class="payment-percent">0%</span> of your monthly salary</p>
 						</td>
 					</tr>
-					<tr>
+					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads." data-tipname="debtburden">Debt burden</h4>
-							<p>Based on your estimated debt and the average national salary for bachelors graduates. Not school specific</p>
+							<h4 class="tooltip-info" data-tooltip="Debt Burden: Based on your estimated debt and the average national salary for bachelors graduates. Not school specific." data-tipname="debtburden">Debt burden</h4>
 						</th>
 						<td data-column="1" class="debt-burden-cell"><span name="debtburden"></span></td>
 						<td data-column="2" class="debt-burden-cell"><span name="debtburden"></span></td>
@@ -786,9 +785,10 @@ var csrftok = "{{ csrf_token }}";
 							<h3>School indicators (<a href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</h3>
 						</th>
 					</tr>
-					<tr>
+					<tr class="visualization-row">
 						<th scope="row" data-column="0">
 							<h4>Graduation rate</h4>
+							<p>Percentage of full-time students who graduate within 6 years or 3 years for undergraduate and associates programs, respectively.</p>
 						</th>
 						<td data-column="1">
 							<div class="gradrisk-container">
@@ -818,8 +818,11 @@ var csrftok = "{{ csrf_token }}";
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<th scope="row" data-column="0"><h4>Loan Default Rate</h4></th>
+					<tr class="visualization-row">
+						<th scope="row" data-column="0">
+							<h4>Loan Default Rate</h4>
+							<p>Percentage of borrowers who have entered repayment and have defaulted on their loan</p>
+						</th>
 						<td data-column="1">
 							<div class="default-rate-chart" id="defaultbars1">
 								<span class="default-rate-this">This school<p class="percent"></p></span>
@@ -839,8 +842,11 @@ var csrftok = "{{ csrf_token }}";
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<th scope="row" data-column="0"><h4>Median Borrowing</h4></th>
+					<tr class="visualization-row">
+						<th scope="row" data-column="0">
+							<h4>Median Borrowing</h4>
+							<p>Families typically borrow this amount in federal loans for a student’s undergraduate study. This shows the Federal loan payment over 10 years for this amount. Your borrowing may be different.</p>
+						</th>
 						<td data-column="1">
 							<div class="median-borrowing-chart" id="meter1">
 							</div>

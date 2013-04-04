@@ -811,10 +811,18 @@
 	border-top: 5px solid #e26e40;
 }
 
+.percent-of-salary {
+	font-size: 0.7em;
+}
+
 .private-row td {
 	position: relative;
 }
 
+.breakdown th p,
+.visualization-row th p {
+	font-size: 0.9em;
+}
 
 #comparison-tool .private-row .interest-rate, #comparison-tool .private-row .interest-rate:hover {
 	background-color: #fff;
