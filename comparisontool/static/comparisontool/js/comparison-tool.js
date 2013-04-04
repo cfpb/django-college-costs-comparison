@@ -526,20 +526,20 @@ function calculate_school(column) {
 	// GI Bill
 
 	// Determine in-state and out-of-state
-	var instate = $("[data-column='" + column + "'] [name~='military-residency']").val();
+	var instate = school.find("input:radio[name='military-residency" + column + "']:checked").val();
 	if ( ( instate === "instate" ) || ( instate === "indistrict" ) ) {
 		schooldata.instate = true;
 	}
 	else {
 		schooldata.instate = false;
 	}
-	// Set the instate in the military panel if it's blank
-	if ( school.find("[name='military-instate-tuition']").val() == "") {
-		// No prepopulation in this version.
-		// school.find("[name='military-instate-tuition']").val(schooldata.tfinstate);
+	// Set schooldata.tfinstate
+	if ( schooldata.instate == false ) {
+		schooldata.tfinstate = school.find("[name='militaryinstatetuition']").val();	
 	}
-	// Now set schooldata.tuitionunderins to the value in "in-state tuition"
-	schooldata.tuitionunderins = school.find("[name='military-instate-tuition']").val();
+	else {
+		schooldata.tfinstate = schooldata.tuitionfees;
+	}
 
 	// Determine if global.vet is true or false:
 	if ($("[data-column='1'] [name='military-status']").val() != "none") {
@@ -994,7 +994,7 @@ function calculate_school(column) {
 	else {
 		schooldata.salaryexpected25yrs = global.salarygrad * 52.1775;
 	}
-	schooldata.salarymonthly = schooldata.salaryexpected25yrs / 12;
+	schooldata.salarymonthly = global.salary / 12;
 
 	// Risk of Default
 	if ( schooldata.salarymonthly != undefined ) {
@@ -1668,6 +1668,18 @@ $(document).ready(function() {
 		$(".military-tier-select").each( function() {
 			$(this).val(value);
 		});
+	});
+
+	// Selecting an option from residency modifies instate box visibility
+	$(".military-residency-panel .radio-input").change( function() {
+		var value = $(this).val();
+		if ( value == "outofstate") {
+			$(this).closest(".military-residency-panel").find(".military-instate").slideDown();
+			$(this).closest(".military-residency-panel").find("label.military-instate").css("display", "block");
+		}
+		else {
+			$(this).closest(".military-residency-panel").find(".military-instate").slideUp();
+		}
 	});
 
 	// Clicking "Calculate" button hides GI Bill panel and performs a calculation
