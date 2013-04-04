@@ -7,7 +7,7 @@ var data =
 	"global": // see GLOBALS.txt for descriptions of the parameters
 		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
-		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 5500,
+		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 8000,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -1520,7 +1520,7 @@ $(document).ready(function() {
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
-		_gaq.push(["_trackEvent", "School Interactions", "Continue Button Clicked", school_id]);
+		_gaq.push(["_trackEvent", "School Interactions", "XML Continue Button Clicked", school_id]);
 		calculate_school(column);	
 	});
 
@@ -1533,10 +1533,10 @@ $(document).ready(function() {
 
 		var xml = headercell.find(".xml-text").val();
 		if ( xml == "" ) {
-			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked (no text detected)", school_id]);
+			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked - no text detected", school_id]);
 		}
 		else {
-			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked (with text)", school_id]);			
+			_gaq.push(["_trackEvent", "School Interactions", "Apply XML button clicked - with text", school_id]);			
 		}
 		var json = $.xml2json(xml);
 
@@ -1770,11 +1770,11 @@ $(document).ready(function() {
 		// check offset again, properly set tips to point to the element clicked
 		ttcoff = ttc.offset();
 		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
-		ttc.find("#innertip").css("left", (tipset + 8));
-		ttc.find("#outertip").css("left", (tipset + 5));
+		ttc.find(".innertip").css("left", (tipset + 8));
+		ttc.find(".outertip").css("left", (tipset + 5));
 		var bgcolor = $(this).css("background-color");
 		ttc.css("border-color", bgcolor);
-		ttc.find("#outertip").css("border-bottom-color", bgcolor);
+		ttc.find(".outertip").css("border-bottom-color", bgcolor);
 		ttc.find("p").html($(this).attr("data-tooltip"));
 	});
 	$(".chart_mask_internal").on("mouseleave", function() {
@@ -1800,8 +1800,8 @@ $(document).ready(function() {
 		// check offset again, properly set tips to point to the element clicked
 		ttcoff = ttc.offset();
 		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
-		ttc.find("#innertip").css("left", (tipset + 8));
-		ttc.find("#outertip").css("left", (tipset + 5));
+		ttc.find(".innertip").css("left", (tipset + 8));
+		ttc.find(".outertip").css("left", (tipset + 5));
 		$("#tooltip-container > p").html($(this).attr("data-tooltip"));
 		
 		$("html").on('click', "body", function() {
@@ -1871,8 +1871,8 @@ $(document).ready(function() {
 			seconds = "0" + seconds;
 		}
 		var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDay() + "/" + t.getFullYear();
-		timestamp = timestamp + " on " + t.getHours() + ":" + minutes + ":" + seconds;
-		$("#timestamp").html("Saved at " + timestamp);
+		timestamp = timestamp + " at " + t.getHours() + ":" + minutes + ":" + seconds;
+		$("#timestamp").html("Saved on " + timestamp);
     }); 
 	$("#save-current").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Save current worksheet"] );
