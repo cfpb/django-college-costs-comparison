@@ -1889,11 +1889,11 @@ $(document).ready(function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Copy URL"] );	
 	});
 
-	$("#save-drawer .share-facebook").click( function() {
+	$("#save-drawer .save-share-facebook").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Facebook_saveshare"] );	
 	});
 
-	$("#save-drawer .share-twitter").click( function() {
+	$("#save-drawer .save-share-twitter").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] );	
 	});
 
