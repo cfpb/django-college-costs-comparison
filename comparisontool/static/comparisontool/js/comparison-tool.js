@@ -1871,8 +1871,8 @@ $(document).ready(function() {
 			seconds = "0" + seconds;
 		}
 		var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDay() + "/" + t.getFullYear();
-		timestamp = timestamp + " on " + t.getHours() + ":" + minutes + ":" + seconds;
-		$("#timestamp").html("Saved at " + timestamp);
+		timestamp = timestamp + " at " + t.getHours() + ":" + minutes + ":" + seconds;
+		$("#timestamp").html("Saved on " + timestamp);
     }); 
 	$("#save-current").click( function() {
 		_gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Save current worksheet"] );
