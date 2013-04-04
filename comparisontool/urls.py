@@ -1,5 +1,4 @@
 from django.conf.urls.defaults import patterns, url
-from django.views.decorators.csrf import csrf_exempt
 
 from comparisontool.views import *
 
@@ -9,7 +8,7 @@ urlpatterns = patterns(
     url(r'^api/email/$', EmailLink.as_view(), name='email'),
 
     url(r'^feedback/$',
-        csrf_exempt(FeedbackView.as_view()),
+        FeedbackView.as_view(),
         name='pfc-feedback'),
 
     url(r'^technote/$',
