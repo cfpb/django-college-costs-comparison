@@ -744,6 +744,20 @@
 	white-space: pre;
 }
 
+#comparison-tables .military-instate {
+	display: none;
+}
+
+#comparison-tables label.military-instate:visible {
+	display: block;
+}
+
+
+#comparison-tables input.military-instate {
+	background-color: #F5f5f5;
+}
+
+
 #comparison-tables .military-calculate {
 	background-color: #d12124;
 	display: block;

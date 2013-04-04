@@ -526,20 +526,20 @@ function calculate_school(column) {
 	// GI Bill
 
 	// Determine in-state and out-of-state
-	var instate = $("[data-column='" + column + "'] [name~='military-residency']").val();
-	if ( ( instate === "instate" ) || ( instate === "indistrict" ) ) {
+	var instate = school.find("input:radio[name='military-residency" + column + "']:checked").val();
+	if ( ( instate === "instate" ) || ( instate == "indistrict" ) ) {
 		schooldata.instate = true;
 	}
 	else {
 		schooldata.instate = false;
 	}
-	// Set the instate in the military panel if it's blank
-	if ( school.find("[name='military-instate-tuition']").val() == "") {
-		// No prepopulation in this version.
-		// school.find("[name='military-instate-tuition']").val(schooldata.tfinstate);
+	// Set schooldata.tfinstate
+	if ( schooldata.instate == false ) {
+		schooldata.tfinstate = schooldata.militaryinstatetuition;	
 	}
-	// Now set schooldata.tuitionunderins to the value in "in-state tuition"
-	schooldata.tuitionunderins = school.find("[name='military-instate-tuition']").val();
+	else {
+		schooldata.tfinstate = schooldata.tuitionfees;
+	}
 
 	// Determine if global.vet is true or false:
 	if ($("[data-column='1'] [name='military-status']").val() != "none") {
@@ -550,7 +550,7 @@ function calculate_school(column) {
 	}
 
 	// Tuition & Fees benefits:
-	if (global.vet === false) {
+	if (global.vet == false) {
 		schooldata.gibilltf = 0; 
 	}
 	else {
@@ -562,7 +562,7 @@ function calculate_school(column) {
 				schooldata.gibilltf = 0;
 			}
 		}
-		else if ( ( schooldata.control == "Public" ) && ( schooldata.instate === false ) ) {
+		else if ( ( schooldata.control == "Public" ) && ( schooldata.instate == false ) ) {
 			schooldata.gibilltf = ( schooldata.tfinstate + (global.yrben * 2) - schooldata.scholar - schooldata.tuitionassist ) * global.tier;
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
@@ -616,6 +616,8 @@ function calculate_school(column) {
 	// Total GI Bill
 	schooldata.gibill = schooldata.gibilltf + schooldata.gibillla + schooldata.gibillbs;
 	school.setbyname("gibill", schooldata.gibill, true);
+	// Also, pretty-up the instate tuition while we're at it:
+	school.setbyname("militaryinstatetuition", schooldata.militaryinstatetuition, true);
 
 	// Total Grants
 	schooldata.grantstotal = schooldata.pell + schooldata.scholar + schooldata.gibill + schooldata.tuitionassist;
@@ -850,8 +852,8 @@ function calculate_school(column) {
 	
 	// Institution Loans
 	schooldata.institutionalloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.parentplus - schooldata.homeequity;
-	if ( schooldata.institutionalloan < 0 ) {
-		schooldata.institutionalloan = 0;
+	if ( schooldata.institutionalloan_max < 0 ) {
+		schooldata.institutionalloan_max = 0;
 	}
 	if (schooldata.institutionalloan > schooldata.institutionalloan_max) {
 		schooldata.institutionalloan = schooldata.institutionalloan_max;
@@ -994,7 +996,7 @@ function calculate_school(column) {
 	else {
 		schooldata.salaryexpected25yrs = global.salarygrad * 52.1775;
 	}
-	schooldata.salarymonthly = schooldata.salaryexpected25yrs / 12;
+	schooldata.salarymonthly = global.salary / 12;
 
 	// Risk of Default
 	if ( schooldata.salarymonthly != undefined ) {
@@ -1668,6 +1670,18 @@ $(document).ready(function() {
 		$(".military-tier-select").each( function() {
 			$(this).val(value);
 		});
+	});
+
+	// Selecting an option from residency modifies instate box visibility
+	$(".military-residency-panel .radio-input").change( function() {
+		var value = $(this).val();
+		if ( value == "outofstate") {
+			$(this).closest(".military-residency-panel").find(".military-instate").slideDown();
+			$(this).closest(".military-residency-panel").find("label.military-instate").css("display", "block");
+		}
+		else {
+			$(this).closest(".military-residency-panel").find(".military-instate").slideUp();
+		}
 	});
 
 	// Clicking "Calculate" button hides GI Bill panel and performs a calculation
