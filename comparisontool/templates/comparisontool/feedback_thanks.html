@@ -1,5 +1,7 @@
 {% extends "front/base_update.html" %} 
 
+{% load url from future %}
+
 {% block title %}Paying for College - Compare financial aid and college cost{% endblock %}
 
 {% block content %}
@@ -7,7 +9,7 @@
 <h1>Thank you for your feedback!</h1>
 <p>We'll be sure to review your ideas and input, which will help us make the Paying for College Cost Comparison Worksheet even more useful!</p>
 
-<p>You can <a href="{% url select_school %}">return to the tool</a> or <a href="/">visit consumerfinance.gov</a>.</p>
+<p>You can <a href="{% url 'worksheet'  %}">return to the tool</a> or <a href="/">visit consumerfinance.gov</a>.</p>
 
 
 

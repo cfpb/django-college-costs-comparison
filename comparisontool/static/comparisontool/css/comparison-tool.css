@@ -191,6 +191,42 @@
 
 /* global */
 
+#introduction {
+	font-size: .9em;
+	margin: 0 0 0 3em;
+}
+#introduction .intro-text {
+	display: inline-block;
+	width: 55%;
+}
+
+#introduction .right-sidebar {
+	float: right;
+	width: 40%;
+}
+
+#introduction .right-sidebar h2 {
+	font-size: 1.1em;
+	text-transform: none;
+	paddin
+}
+
+#introduction .right-sidebar p {
+	font-size: .8em;
+	margin: .5em auto .5em auto;
+}
+
+#introduction .right-sidebar .question {
+	border: 1px solid #4b839a;
+		border-top: none;
+		border-right: none;
+	padding: .5em 0 .5em 1em ;
+}
+
+#introduction .right-sidebar .question:nth-child(2) {
+	margin-top: 1.5em;
+}
+
 #comparison-tool {
 	font-family: "Avenir Next", Verdana, sans-serif !important;
 }
@@ -239,6 +275,11 @@
 
 #comparison-tool b {
 	font-weight: 600;
+}
+
+#comparison-tables {
+	clear: both;
+	padding-top: 1em;
 }
 
 
@@ -900,9 +941,9 @@ label.tooltip-info {
 	margin: 0;
 }
 
-/* These elements, #outertip and #innertip, make the little speech-balloon styled
+/* These elements, .outertip and .innertip, make the little speech-balloon styled
 	tip appear along the top of the tooltip. */
-#tooltip-container #outertip {
+#tooltip-container .outertip {
 	border: 10px solid transparent;
 	border-bottom-color: #50a748;
 	content: ' ';
@@ -912,7 +953,7 @@ label.tooltip-info {
 	top: -20px;
 	width: 0;
 }
-#tooltip-container #innertip {
+#tooltip-container .innertip {
 	border: 7px solid transparent;
 	border-bottom-color: #a0f798;
 	content: ' ';
@@ -923,7 +964,7 @@ label.tooltip-info {
 	width: 0;
 }
 
-#bar-info-container #outertip {
+#bar-info-container .outertip {
 	border: 10px solid transparent;
 	border-bottom-color: #000;
 	content: ' ';
@@ -933,7 +974,7 @@ label.tooltip-info {
 	top: -20px;
 	width: 0;
 }
-#bar-info-container #innertip {
+#bar-info-container .innertip {
 	border: 7px solid transparent;
 	border-bottom-color: #f4f4f4;
 	content: ' ';
@@ -1151,6 +1192,94 @@ label.tooltip-info {
 	height: 100px;
 	margin: auto;
 	width: 200px;
+}
+
+/* Other Pages */
+#comparison-tool .about-section {
+	padding-top: 2em;
+	margin-top: 2em;
+	border-top: 1px solid #000;
+}
+
+#comparison-tool .about-section a {
+	color: #0081a1;
+	border: 0;
+	background: none;
+}
+
+#comparison-tool .about-section .screenshot {
+	display: block;
+	width: 900px;
+	margin: 0 auto 2em auto;
+}
+
+#comparison-tool .about-section .screenshot img {
+	display: block;
+	margin-bottom: .5em;
+}
+
+#comparison-tool .about-section .screenshot .caption {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	color: #808184;
+	font-weight: 500;
+}
+
+#comparison-tool .section-header {
+	margin-bottom: 1.5em;
+}
+
+#comparison-tool .about-section h2 {
+	font-size: 1.8em;
+	font-weight: 600;
+	line-height: 1.2;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+#comparison-tool .about-section h3 {
+	font-size: 1.5em;
+	font-weight: 700;
+	line-height: 1.5;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+#comparison-tool .about-section p {
+	font-weight: 500;
+}
+
+#comparison-tool .about-section p:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+#comparison-tool .about-section .useful-links {
+	list-style: none;
+	padding: 0.75em 0 0 0;
+	margin: 0.25em 0 0 0;
+	border-top: 1px solid #ccc;
+	font-weight: 500;
+}
+
+#comparison-tool .about-section .useful-links li {
+	padding: 0.25em 0;
+}
+
+#comparison-tool .about-section .useful-links li a {
+	color: #0081a1;
+	border-bottom: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#comparison-tool .about-section .useful-links li a:hover {
+	background: none;
+}
+
+#comparison-tool .about-section ul {
+	font-weight: 500;
 }
 
 /* Helper Classes */
