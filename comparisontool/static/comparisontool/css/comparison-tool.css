@@ -191,6 +191,42 @@
 
 /* global */
 
+#introduction {
+	font-size: .9em;
+	margin: 0 0 0 3em;
+}
+#introduction .intro-text {
+	display: inline-block;
+	width: 55%;
+}
+
+#introduction .right-sidebar {
+	float: right;
+	width: 40%;
+}
+
+#introduction .right-sidebar h2 {
+	font-size: 1.1em;
+	text-transform: none;
+	paddin
+}
+
+#introduction .right-sidebar p {
+	font-size: .8em;
+	margin: .5em auto .5em auto;
+}
+
+#introduction .right-sidebar .question {
+	border: 1px solid #4b839a;
+		border-top: none;
+		border-right: none;
+	padding: .5em 0 .5em 1em ;
+}
+
+#introduction .right-sidebar .question:nth-child(2) {
+	margin-top: 1.5em;
+}
+
 #comparison-tool {
 	font-family: "Avenir Next", Verdana, sans-serif !important;
 }
@@ -239,6 +275,11 @@
 
 #comparison-tool b {
 	font-weight: 600;
+}
+
+#comparison-tables {
+	clear: both;
+	padding-top: 1em;
 }
 
 
