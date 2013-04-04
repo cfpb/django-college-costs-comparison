@@ -1770,11 +1770,11 @@ $(document).ready(function() {
 		// check offset again, properly set tips to point to the element clicked
 		ttcoff = ttc.offset();
 		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
-		ttc.find("#innertip").css("left", (tipset + 8));
-		ttc.find("#outertip").css("left", (tipset + 5));
+		ttc.find(".innertip").css("left", (tipset + 8));
+		ttc.find(".outertip").css("left", (tipset + 5));
 		var bgcolor = $(this).css("background-color");
 		ttc.css("border-color", bgcolor);
-		ttc.find("#outertip").css("border-bottom-color", bgcolor);
+		ttc.find(".outertip").css("border-bottom-color", bgcolor);
 		ttc.find("p").html($(this).attr("data-tooltip"));
 	});
 	$(".chart_mask_internal").on("mouseleave", function() {
@@ -1800,8 +1800,8 @@ $(document).ready(function() {
 		// check offset again, properly set tips to point to the element clicked
 		ttcoff = ttc.offset();
 		var tipset = Math.max(thisoff.left - ttcoff.left, 0);
-		ttc.find("#innertip").css("left", (tipset + 8));
-		ttc.find("#outertip").css("left", (tipset + 5));
+		ttc.find(".innertip").css("left", (tipset + 8));
+		ttc.find(".outertip").css("left", (tipset + 5));
 		$("#tooltip-container > p").html($(this).attr("data-tooltip"));
 		
 		$("html").on('click', "body", function() {
