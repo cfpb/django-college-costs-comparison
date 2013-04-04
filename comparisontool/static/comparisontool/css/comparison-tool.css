@@ -1326,6 +1326,10 @@ label.tooltip-info {
     		zoom: 1;
     		margin-right: 0.25em;
     }
+#comparison-tool .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
+#comparison-tool .clearfix:before,.clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+#comparison-tool .clearfix:after { clear: both; }
+#comparison-tool .clearfix { zoom: 1; }
 
 #save-footer div {
 	display: inline-block;
