@@ -149,7 +149,7 @@ var csrftok = "{{ csrf_token }}";
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
 									<input class="radio-input" type="radio" name="program1" value="aa">
-									<label class="radio-label">Associate's/Certificate</label>
+									<label class="radio-label">Associate's or certificate</label>
 									<input class="radio-input" type="radio" name="program1" value="ba" checked="checked">
 									<label class="radio-label">Bachelor's</label>	
 									<input class="radio-input" type="radio" name="program1" value="grad">
@@ -169,9 +169,8 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
-									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
-									<p>Or you can continue and enter it manually.</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. That’s great because it will make the next step easier. </p>
+									<p>If they provided an XML file, paste the code below. If not, click to continue. </p>
 									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit" class="xml-text"></textarea>
 									<button class="xml-process">Use this XML</button>
@@ -200,7 +199,7 @@ var csrftok = "{{ csrf_token }}";
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
 									<input class="radio-input" type="radio" name="program2" value="aa">
-									<label class="radio-label">Associate's/Certificate</label>
+									<label class="radio-label">Associate's or certificate</label>
 									<input class="radio-input" type="radio" name="program2" value="ba" checked="checked">
 									<label class="radio-label">Bachelor's</label>	
 									<input class="radio-input" type="radio" name="program2" value="grad">
@@ -220,9 +219,8 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
-									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
-									<p>Or you can continue and enter it manually.</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. That’s great because it will make the next step easier. </p>
+									<p>If they provided an XML file, paste the code below. If not, click to continue. </p>
 									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit" class="xml-text"></textarea>
 									<button class="xml-process">Use this XML</button>
@@ -251,7 +249,7 @@ var csrftok = "{{ csrf_token }}";
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
 									<input class="radio-input" type="radio" name="program3" value="aa">
-									<label class="radio-label">Associate's/Certificate</label>
+									<label class="radio-label">Associate's or certificate</label>
 									<input class="radio-input" type="radio" name="program3" value="ba" checked="checked">
 									<label class="radio-label">Bachelor's</label>	
 									<input class="radio-input" type="radio" name="program3" value="grad">
@@ -271,9 +269,8 @@ var csrftok = "{{ csrf_token }}";
 								</div>
 								<div class="add-xml hidden-box">
 									<h2 class="institutionname"></h2>
-									<p>It looks like this school adopted the Financial Aid Shopping Sheet. Awesome, that will make this much easier!</p>
-									<p>If this school provided you with an XML version of your Financial Aid Shopping Sheet, you can paste it below.</p>
-									<p>Or you can continue and enter it manually.</p>
+									<p>It looks like this school adopted the Financial Aid Shopping Sheet. That’s great because it will make the next step easier.</p>
+									<p>If they provided an XML file, paste the code below. If not, click to continue.</p>
 									<button class="continue">Continue</button>
 									<textarea name="xmlbukkit" class="xml-text"></textarea>
 									<button class="xml-process">Use this XML</button>
@@ -294,31 +291,31 @@ var csrftok = "{{ csrf_token }}";
 				</thead>
 				<tbody>
 					<tr class="show">
-						<th class="width-holder"><h3 id="first-year-costs">First Year Costs</h3></th>
+						<th class="width-holder"><h3 id="first-year-costs">First year costs</h3></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 						<th class="width-holder"></th>
 					</tr>
 					<tr class="totalcost show arrw">
-						<th scope="row" data-column="0"><h4>Cost of Attendance</h4></th>
+						<th scope="row" data-column="0"><h4>Cost of college</h4></th>
 						<td data-column="1"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><label for="tuitionfees"><span class="tooltip-info" data-tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes." data-tipname="tuitionfees">Tuition &amp; Fees</span></label></th>
+						<th scope="row" data-column="0"><label for="tuitionfees"><span class="tooltip-info" data-tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes." data-tipname="tuitionfees">Tuition &amp; fees</span></label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="tuitionfees"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="tuitionfees"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="tuitionfees"></td>
 					</tr>
 					<tr>
-						<th data-column="0"><label for="roombrd"><span class="tooltip-info" data-tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus." data-tipname="roombrd">Housing &amp; Meals</span></label></th>
+						<th data-column="0"><label for="roombrd"><span class="tooltip-info" data-tooltip="Housing &amp; Meals: Cost of meals and housing. Usually based on the cost for a full time student to live and eat on campus." data-tipname="roombrd">Housing &amp; meals</span></label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="roombrd"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="roombrd"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="roombrd"></td>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><label for="books"><span class="tooltip-info" data-tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year." data-tipname="books">Books &amp; Supplies</span></label></th>
+						<th scope="row" data-column="0"><label for="books"><span class="tooltip-info" data-tooltip="Books &amp; Supplies: Cost of books and supplies for an entire academic year." data-tipname="books">Books &amp; supplies</span></label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="books"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="books"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="books"></td>
@@ -330,7 +327,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><input type="text" class="school-data" value="0" name="transportation"></td>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><label for="otherexpenses"><span class="tooltip-info" data-tooltip="Other Expenses: Cost of items such as laundry and dependent care." data-tipname="otherexpenses">Other Expenses</span></label></th>
+						<th scope="row" data-column="0"><label for="otherexpenses"><span class="tooltip-info" data-tooltip="Other Expenses: Cost of items such as laundry and dependent care." data-tipname="otherexpenses">Other educational costs</span></label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
@@ -338,10 +335,10 @@ var csrftok = "{{ csrf_token }}";
 				</tbody>
 				<tbody>
 					<tr class="show">
-						<th><h3>First Year Financial Aid Offer</h3></th>
+						<th><h3>First year financial aid offer</h3></th>
 					</tr>
 					<tr class="totalcont show arrw">
-						<th scope="row" data-column="0"><h4>Money for College</h4></th>
+						<th scope="row" data-column="0"><h4>Money for school</h4></th>
 						<td data-column="1"><h6 class="data-total" name="moneyforcollege">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="moneyforcollege">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="moneyforcollege">$0</h6></td>
@@ -353,38 +350,39 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><h6 class="data-total" name="grantstotal">$0</h6></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row" data-column="0"><label for="pell" class="tooltip-info" data-tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year." data-tipname="pell">Pell Grant</label></th>
+						<th scope="row" data-column="0"><label for="pell" class="tooltip-info" data-tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year." data-tipname="pell">Federal Pell Grant</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="pell"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="pell"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="pell"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row" data-column="0"><label for="scholar" class="tooltip-info" data-tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. " data-tipname="scholar">Other Scholarships &amp; Grants</label></th>
+						<th scope="row" data-column="0"><label for="scholar" class="tooltip-info" data-tooltip="Other Scholarships &amp; Grants: Any state, institutional and private aid you will receive that does not need to be repaid. " data-tipname="scholar">Other scholarships &amp; grants</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="scholar"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="scholar"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="scholar"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Service members (active &amp; reserve) are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid." data-tipname="tuitionassist">Military Tuition Assistance</label></th>
+						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Servicemembers (active &amp; reserve) in some branches are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.." data-tipname="tuitionassist">Military tuition assistance</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="" data-tipname="gibill">GI Bill</label></th>
+						<th scope="row" data-column="0"><label for="gibill" class="tooltip-info" data-tooltip="GI Bill benefits offer education benefits for servicemembers and veterans. This funding covers tuition and fees, a monthly living allowance, and an annual book stipend. GI Bill benefits do not need to be repaid." data-tipname="gibill">GI Bill</label></th>
 						<td data-column="1" class="p-rel">
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<div class="gibill-panel hidden-box">
+								<p>Calculate your Post-9/11 GI Bill benefits here.</p>
 								<span class="gibill-calculator-tip"></span>
 								<fieldset>
-									<label for="military-status">Military Status</label>
+									<label for="military-status" class="tooltip-info" data-tooltip="Servicemembers serving on active duty do not qualify for the Post-9/11 GI Bill living allowance." data-tipname="gibillmilitarystatus">Military status</label>
 									<select name="military-status" class="military-status-select">
 										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran/Dependent</option>
 									</select>
-									<label for="tier">Cumulative Service</label>
+									<label for="tier" class="tooltip-info" data-tooltip="Eligibility for the Post-9/11 GI Bill is based on your cumulative active duty service after 9/11/01." data-tipname="gibillcumulativeservice">Cumulative service</label>
 									<select name="military-tier" class="military-tier-select" disabled="disabled">
 									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
 									 	<option value=".9">30 months, including BASIC (90%)</option>
@@ -397,7 +395,7 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<label for="military-residency">Residency</label>
+									<label for="military-residency" class="tooltip-info" data-tooltip="Does your public school consider you an in-state or out of state student? Some schools (mainly community colleges) also have an in-district status which for GI Bill purposes is the same as an in-state student." data-tipname="gibillresidency">Residency</label>
 									<div class="military-residency-panel">
 										<input class="radio-input" type="radio" name="military-residency1" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
@@ -405,7 +403,7 @@ var csrftok = "{{ csrf_token }}";
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
 										<input class="radio-input" type="radio" name="military-residency1" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
-										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<label class="military-instate tooltip-info" for="military-instate-tuition" data-tooltip="The Post-9/11 GI Bill will pay up to the in-state rate of tuition/fees at public schools." data-tipname="gibillinstatetuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
 										<button class="military-calculate">Calculate</button>
 									</div>
@@ -416,16 +414,17 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="2" class="p-rel">
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<div class="gibill-panel hidden-box">
+								<p>Calculate your Post-9/11 GI Bill benefits here.</p>
 								<span class="gibill-calculator-tip"></span>
 								<fieldset>
-									<label for="military-status">Military Status</label>
+									<label for="military-status" class="tooltip-info" data-tooltip="Servicemembers serving on active duty do not qualify for the Post-9/11 GI Bill living allowance." data-tipname="gibillmilitarystatus">Military status</label>
 									<select name="military-status" class="military-status-select">
 										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran/Dependent</option>
 									</select>
-									<label for="tier">Cumulative Service</label>
+									<label for="tier" class="tooltip-info" data-tooltip="Eligibility for the Post-9/11 GI Bill is based on your cumulative active duty service after 9/11/01." data-tipname="gibillcumulativeservice">Cumulative service</label>
 									<select name="military-tier" class="military-tier-select" disabled="disabled">
 									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
 									 	<option value=".9">30 months, including BASIC (90%)</option>
@@ -438,15 +437,15 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<label for="military-residency">Residency</label>
+									<label for="military-residency" class="tooltip-info" data-tooltip="Does your public school consider you an in-state or out of state student? Some schools (mainly community colleges) also have an in-district status which for GI Bill purposes is the same as an in-state student." data-tipname="gibillresidency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency2" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency1" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency2" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency1" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency2" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency1" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
-										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<label class="military-instate tooltip-info" for="military-instate-tuition" data-tooltip="The Post-9/11 GI Bill will pay up to the in-state rate of tuition/fees at public schools." data-tipname="gibillinstatetuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
 										<button class="military-calculate">Calculate</button>
 									</div>
@@ -457,16 +456,17 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3" class="p-rel">
 							<a href="#" class="gibill-calculator">GI Bill Calculator</a>
 							<div class="gibill-panel hidden-box">
+								<p>Calculate your Post-9/11 GI Bill benefits here.</p>
 								<span class="gibill-calculator-tip"></span>
 								<fieldset>
-									<label for="military-status">Military Status</label>
+									<label for="military-status" class="tooltip-info" data-tooltip="Servicemembers serving on active duty do not qualify for the Post-9/11 GI Bill living allowance." data-tipname="gibillmilitarystatus">Military status</label>
 									<select name="military-status" class="military-status-select">
 										<option value="none"  checked="checked">No Military Service</option>
 										<option value="ad">Active</option>
 										<option value="ng">Guard/Reserve</option>
 										<option value="vet">Veteran/Dependent</option>
 									</select>
-									<label for="tier">Cumulative Service</label>
+									<label for="tier" class="tooltip-info" data-tooltip="Eligibility for the Post-9/11 GI Bill is based on your cumulative active duty service after 9/11/01." data-tipname="gibillcumulativeservice">Cumulative service</label>
 									<select name="military-tier" class="military-tier-select" disabled="disabled">
 									 	<option value="1" selected="selected">36+ months, including BASIC (100%)</option>
 									 	<option value=".9">30 months, including BASIC (90%)</option>
@@ -479,15 +479,15 @@ var csrftok = "{{ csrf_token }}";
 										<option value="1">Service Connected Discharge (100%)</option>
 										<option value="1">MSGT Fry Scholarship (100%)</option>
 									</select>
-									<label for="military-residency">Residency</label>
+									<label for="military-residency" class="tooltip-info" data-tooltip="Does your public school consider you an in-state or out of state student? Some schools (mainly community colleges) also have an in-district status which for GI Bill purposes is the same as an in-state student." data-tipname="gibillresidency">Residency</label>
 									<div class="military-residency-panel">
-										<input class="radio-input" type="radio" name="military-residency3" value="instate" checked="checked">
+										<input class="radio-input" type="radio" name="military-residency1" value="instate" checked="checked">
 										<label class="radio-label" id="radio-instate">In-State</label>
-										<input class="radio-input" type="radio" name="military-residency3" value="outofstate">
+										<input class="radio-input" type="radio" name="military-residency1" value="outofstate">
 										<label class="radio-label" id="radio-outofstate">Out-of-State</label>
-										<input class="radio-input" type="radio" name="military-residency3" value="indistrict">
+										<input class="radio-input" type="radio" name="military-residency1" value="indistrict">
 										<label class="radio-label" id="radio-indistrict">In-District</label>
-										<label class="military-instate" for="military-instate-tuition">In-State Tuition</label>
+										<label class="military-instate tooltip-info" for="military-instate-tuition" data-tooltip="The Post-9/11 GI Bill will pay up to the in-state rate of tuition/fees at public schools." data-tipname="gibillinstatetuition">In-State Tuition</label>
 										<input class="military-instate" type="text" name="military-instate-tuition">
 										<button class="military-calculate">Calculate</button>
 									</div>
@@ -504,25 +504,25 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><h6 class="data-total" name="savingstotal">$0</h6></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row" data-column="0"><label for="savings" class="tooltip-info" data-tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? " data-tipname="savings">What You Can Pay</label></th>
+						<th scope="row" data-column="0"><label for="savings" class="tooltip-info" data-tooltip="What You Can Pay: How much will you be contributing in savings or future income (e.g. part time job) toward your education this year? " data-tipname="savings">What you can pay</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="savings"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="savings"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="savings"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row" data-column="0"><label for="family" class="tooltip-info" data-tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans." data-tipname="family">What Family &amp; Others Can Pay</label></th>
+						<th scope="row" data-column="0"><label for="family" class="tooltip-info" data-tooltip="What Family &amp; Others Can Pay: How much is your family or others planning to contribute toward your education this year? This includes 529 college savings plans." data-tipname="family">What family &amp; others can pay</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="family"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="family"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="family"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row" data-column="0"><label for="state529plan" class="tooltip-info" data-tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. " data-tipname="state528plan">Parent Loans</label></th>
+						<th scope="row" data-column="0"><label for="state529plan" class="tooltip-info" data-tooltip="Parent Loans: Parents of dependent students may apply for a Direct PLUS Loan to help pay their child's education expenses. Some parents also consider taking out home equity loans using their homes as collateral. " data-tipname="state528plan">Parent loans</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="state529plan"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="state529plan"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="state529plan"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row" data-column="0"><label for="workstudy" class="tooltip-info" data-tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses." data-tipname="workstudy">Work-Study</label></th>
+						<th scope="row" data-column="0"><label for="workstudy" class="tooltip-info" data-tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses." data-tipname="workstudy">Work study</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="workstudy"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="workstudy"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="workstudy"></td>
@@ -541,32 +541,32 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><input type="text" class="school-data" value="0" name="perkins"></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students." data-tipname="staffsubsidized">Subsidized Loan</label></th>
+						<th scope="row" data-column="0"><label for="staffsubsidized" class="tooltip-info" data-tooltip="Subsidized Loans are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first yea&nbsp;r college students." data-tipname="staffsubsidized">Subsidized loan</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="staffsubsidized"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="staffsubsidized"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="staffsubsidized"></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year." data-tipname="staffunsubsidized">Unsubsidized Loan</label></th>
+						<th scope="row" data-column="0"><label for="staffunsubsidized" class="tooltip-info" data-tooltip="Unsubsidized Loans do not require students to demonstrate financial need; but, do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year." data-tipname="staffunsubsidized">Unsubsidized loan</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="staffunsubsidized"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="staffunsubsidized"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="staffunsubsidized"></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="gradplus" class="tooltip-info" data-tooltip="" data-tipname="gradplus">GradPlus Loan</label></th>
+						<th scope="row" data-column="0"><label for="gradplus" class="tooltip-info" data-tooltip="PLUS Loans are available to graduate and professional students, up to the program’s cost of attendance minus any other financial assistance received. Parents may also borrow PLUS loans to pay for the expenses of undergraduate dependents. Under some circumstances, independent undergraduate students may also borrow PLUS loans. Unlike other federal student loans, eligibility for PLUS loans is dependent on the borrower’s credit." data-tipname="gradplus">Grad PLUS</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="gradplus"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="gradplus"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="gradplus"></td>
 					</tr>
 
 					<tr class="private arrw">
-						<th data-column="0"><h5>Private Loans</h5></th>
+						<th data-column="0"><h5>Private loans</h5></th>
 						<td data-column="1"><h6 class="data-total" name="privatetotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="privatetotal">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="privatetotal">$0</h6></td>
 					</tr>
 					<tr class="private-row">
-						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan." data-tipname="institutionalloan">Loans from Your School</label></th>
+						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan." data-tipname="institutionalloan">Loans from your school</label></th>
 						<td data-column="1">
 							<input type="text" class="school-data" value="0" name="institutionalloan">
 							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
@@ -584,7 +584,7 @@ var csrftok = "{{ csrf_token }}";
 						</td>
 					</tr>
 					<tr class="private-row">
-						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan." data-tipname="privateloan">Other Loans</label></th>
+						<th scope="row" data-column="0"><label for="privateloan" class="tooltip-info" data-tooltip="Private Loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan." data-tipname="privateloan">Other loans</label></th>
 						<td data-column="1">
 							<input type="text" class="school-data" value="0" name="privateloan">
 							<input type="text" class="school-data interest-rate" value="0" name="privateloanrate">
@@ -604,12 +604,15 @@ var csrftok = "{{ csrf_token }}";
 				</tbody>
 				<tbody>
 					<tr class="breakdown">
-						<th data-column="0"><h4>Breakdown of costs and contributions for one year of school</h4></th>
+						<th data-column="0">
+							<h4>Cost of attendance per year</h4>
+							<p>Edit the contribution amounts above and see how it affects the breakdown</p>
+						</th>
 						<td data-column="1">
 							<div class="meter group">
 								<div class="bars">
 									<div class="left-to-pay">
-										<span>Left to Pay</span>
+										<span>Left to pay</span>
 										<h3 name="gap">$0</h3>
 									</div>
 									<div class="bars-container">
@@ -724,13 +727,16 @@ var csrftok = "{{ csrf_token }}";
 						<th colspan="4"><h3>After school</h3></th>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="" data-tipname="totaldebtgrad">Debt after graduation</h4></th>
+						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</h4></th>
 						<td data-column="1"><span name="totaldebtgrad"></span></td>
 						<td data-column="2"><span name="totaldebtgrad"></span></td>
 						<td data-column="3"><span name="totaldebtgrad"></span></td>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><h4>Monthly payments for 10 years to cover total borrowing</h4></th>
+						<th scope="row" data-column="0">
+							<h4>Monthly payments</h4>
+							<p>Per month for 10 years to cover your total borrowing</p>
+						</th>
 						<td data-column="1">
 							<div class="debt-pie" id="pie1"></div>
 							<p><span name="loanmonthly"></span> per month</p>
@@ -748,7 +754,10 @@ var csrftok = "{{ csrf_token }}";
 						</td>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads." data-tipname="debtburden">Debt Burden</h4></th>
+						<th scope="row" data-column="0">
+							<h4 class="tooltip-info" data-tooltip="Debt Burden: Measures your estimated debt after school against the national average starting salary for college grads." data-tipname="debtburden">Debt burden</h4>
+							<p>Based on your estimated debt and the average national salary for bachelors graduates. Not school specific</p>
+						</th>
 						<td data-column="1" class="debt-burden-cell"><span name="debtburden"></span></td>
 						<td data-column="2" class="debt-burden-cell"><span name="debtburden"></span></td>
 						<td data-column="3" class="debt-burden-cell"><span name="debtburden"></span></td>
@@ -757,11 +766,13 @@ var csrftok = "{{ csrf_token }}";
 				<tbody>
 					<tr class="bottom-border" id="indicators-row">
 						<th colspann="4">
-							<h3>School Indicators (<a href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</h3>
+							<h3>School indicators (<a href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</h3>
 						</th>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><h4>Graduation Rate</h4></th>
+						<th scope="row" data-column="0">
+							<h4>Graduation rate</h4>
+						</th>
 						<td data-column="1">
 							<div class="gradrisk-container">
 								<span name="gradriskpercent" class="gradrisk-percent"></span>
