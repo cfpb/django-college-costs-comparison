@@ -1151,6 +1151,94 @@ label.tooltip-info {
 	width: 200px;
 }
 
+/* Other Pages */
+#comparison-tool .about-section {
+	padding-top: 2em;
+	margin-top: 2em;
+	border-top: 1px solid #000;
+}
+
+#comparison-tool .about-section a {
+	color: #0081a1;
+	border: 0;
+	background: none;
+}
+
+#comparison-tool .about-section .screenshot {
+	display: block;
+	width: 900px;
+	margin: 0 auto 2em auto;
+}
+
+#comparison-tool .about-section .screenshot img {
+	display: block;
+	margin-bottom: .5em;
+}
+
+#comparison-tool .about-section .screenshot .caption {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	color: #808184;
+	font-weight: 500;
+}
+
+#comparison-tool .section-header {
+	margin-bottom: 1.5em;
+}
+
+#comparison-tool .about-section h2 {
+	font-size: 1.8em;
+	font-weight: 600;
+	line-height: 1.2;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+#comparison-tool .about-section h3 {
+	font-size: 1.5em;
+	font-weight: 700;
+	line-height: 1.5;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+#comparison-tool .about-section p {
+	font-weight: 500;
+}
+
+#comparison-tool .about-section p:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+
+#comparison-tool .about-section .useful-links {
+	list-style: none;
+	padding: 0.75em 0 0 0;
+	margin: 0.25em 0 0 0;
+	border-top: 1px solid #ccc;
+	font-weight: 500;
+}
+
+#comparison-tool .about-section .useful-links li {
+	padding: 0.25em 0;
+}
+
+#comparison-tool .about-section .useful-links li a {
+	color: #0081a1;
+	border-bottom: 0;
+	padding: 0;
+	margin: 0;
+}
+
+#comparison-tool .about-section .useful-links li a:hover {
+	background: none;
+}
+
+#comparison-tool .about-section ul {
+	font-weight: 500;
+}
+
 /* Helper Classes */
 
 /* Hide visually, but make available to screenreaders */
