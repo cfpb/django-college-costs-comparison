@@ -1317,10 +1317,10 @@ function school_search_results(query, column) {
 		$.each(response, function(i, val) {
 			dump += '<li class="school-result">';
 			dump += '<a href="' + val.id + '">' + val.schoolname + '</a>';
-			dump += '<p>' + val.city + ', ' + val.state + '</p></li>';
+			dump += '<p class="location">' + val.city + ', ' + val.state + '</p></li>';
 		});
 		if (dump == "") {
-			cell.find(".search-results").hide();
+			cell.find(".search-results").html("<li><p>No results found</p></li>");
 		}
 		else {
 			cell.find(".search-results").show();
@@ -1423,8 +1423,16 @@ $(document).ready(function() {
 	$(".add-school-info").on("keyup", ".school-search-box", function (ev) {
 		var query = $(this).val();
 		var column = $(this).closest("[data-column]").attr("data-column");
+		$("#institution-row [data-column='" + column + "'] .search-results").show();
+		$("#institution-row [data-column='" + column + "'] .search-results").html("<li><em>Searching...</em></li>");
 		delay(function() {
-			school_search_results(query, column);
+			if ( query.length > 2 ) {
+				school_search_results(query, column);
+			}
+			else {
+				var msg = "<li><p>Please enter at least three letters to search.</p></li>"
+				$("#institution-row [data-column='" + column + "'] .search-results").html(msg);
+			}
 		}, 500);
 	});
 
