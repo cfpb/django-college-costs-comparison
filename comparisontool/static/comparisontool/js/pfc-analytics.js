@@ -26,7 +26,7 @@ $(function() {
     // Build delay on on exit links (500ms)
     $('.timeline-exit-link').click(function() {
         var link_text = $(this).find(".bottom-process-label").html();
-        var link_url = $(this).attr('href')
+        var link_url = $(this).attr('href');
         _gaq.push(['_trackEvent', 'Exit Link', link_text, link_url]);
             function setTimeout() { 
             if (_target == undefined || _target.toLowerCase() !== '_blank' || _target.toLowerCase() !== '_new') {
