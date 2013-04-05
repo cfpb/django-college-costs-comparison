@@ -7,7 +7,8 @@ var data =
 	"global": // see GLOBALS.txt for descriptions of the parameters
 		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
-		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 8000,
+		"transportationdefault": 0, "roombrdwfamily": 0,
+		"perkinscapunder": 5000, "perkinscapgrad": 8000,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -40,11 +41,11 @@ var data =
 		"average-public" :
 			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
 			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "program": "ba",
-			 "school_id": "average-public", "prgmlength": 4, "control": "public" },
+			 "school_id": "average-public", "prgmlength": 4, "control": "public", "origin":"presets"},
 		"average-private" :
 			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
 			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "program": "ba",
-			 "school_id": "average-private", "prgmlength": 4, "control": "private"  }
+			 "school_id": "average-private", "prgmlength": 4, "control": "private", "origin":"presets"}
 	}
 };
  
@@ -260,11 +261,13 @@ function build_school_element(column) {
 	school.find("input[name='privateloanrate']").val(global.privateloanratedefault * 100 + "%");
 	// Currently, we're not using schooldata from the database
 	// As such, the following is only used for average schools
-	if ( ( schooldata.school_id == "average-public" ) || ( schooldata.school_id == "average-private" ) ) {
+	if ( ( schooldata.origin == "presets" ) || ( schooldata.origin == "saved" ) ) {
 		for (key in schooldata) {
 		    school.find('input[name="' + key + '"]').val(schooldata[key]);
 		}
 		// Average public and private do not have GI Bill information
+	}
+	if ( schooldata.origin == "presets" ) {
 		school.find(".gibill-calculator").hide();
 	}
 	else {
@@ -643,8 +646,15 @@ function calculate_school(column) {
 	if ( schooldata.perkins_max < 0 ) {
 		schooldata.perkins_max = 0;
 	}
-	if ( schooldata.perkins_max > global.perkinscap ) {
-		schooldata.perkins_max = global.perkinscap;
+	if ( schooldata.undergrad == true ) {
+		if ( schooldata.perkins_max > global.perkinscapunder ) {
+			schooldata.perkins_max = global.perkinscapunder;
+		}
+	}
+	else {
+		if ( schooldata.perkins_max > global.perkinscapgrad ) {
+			schooldata.perkins_max = global.perkinscapgrad;
+		}		
 	}
 	if (schooldata.perkins > schooldata.perkins_max) {
 		schooldata.perkins = schooldata.perkins_max;
@@ -926,7 +936,7 @@ function calculate_school(column) {
 	schooldata.gradpluswithfee = schooldata.gradplus * global.plusoriginationfee;
 
 	// Grad Plus debt at graduation
-	schooldata.gradplusgrad = (schooldata.gradplus * global.gradplusrate  / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.gradplus * schooldata.prgmlength));
+	schooldata.gradplusgrad = (schooldata.gradpluswithfee * global.gradplusrate  / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.gradpluswithfee * schooldata.prgmlength));
 	
 	// Parent Plus Loans with origination fees
 	schooldata.parentpluswithfee = schooldata.parentplus * global.plusoriginationfee;
@@ -1315,10 +1325,10 @@ function school_search_results(query, column) {
 		$.each(response, function(i, val) {
 			dump += '<li class="school-result">';
 			dump += '<a href="' + val.id + '">' + val.schoolname + '</a>';
-			dump += '<p>' + val.city + ', ' + val.state + '</p></li>';
+			dump += '<p class="location">' + val.city + ', ' + val.state + '</p></li>';
 		});
 		if (dump == "") {
-			cell.find(".search-results").hide();
+			cell.find(".search-results").html("<li><p>No results found</p></li>");
 		}
 		else {
 			cell.find(".search-results").show();
@@ -1421,8 +1431,16 @@ $(document).ready(function() {
 	$(".add-school-info").on("keyup", ".school-search-box", function (ev) {
 		var query = $(this).val();
 		var column = $(this).closest("[data-column]").attr("data-column");
+		$("#institution-row [data-column='" + column + "'] .search-results").show();
+		$("#institution-row [data-column='" + column + "'] .search-results").html("<li><em>Searching...</em></li>");
 		delay(function() {
-			school_search_results(query, column);
+			if ( query.length > 2 ) {
+				school_search_results(query, column);
+			}
+			else {
+				var msg = "<li><p>Please enter at least three letters to search.</p></li>"
+				$("#institution-row [data-column='" + column + "'] .search-results").html(msg);
+			}
 		}, 500);
 	});
 
@@ -1932,6 +1950,7 @@ $(document).ready(function() {
 		schools = data;
 		var column = 1;
 		$.each(schools, function(i, val) {
+			schools[i]["origin"] = "saved";
 			$("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
 			build_school_element(column);
 			column++;
