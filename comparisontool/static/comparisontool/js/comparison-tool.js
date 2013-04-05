@@ -7,7 +7,8 @@ var data =
 	"global": // see GLOBALS.txt for descriptions of the parameters
 		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
-		"transportationdefault": 0, "roombrdwfamily": 0, "pellcap": 5500, "perkinscap": 8000,
+		"transportationdefault": 0, "roombrdwfamily": 0,
+		"perkinscapunder": 5000, "perkinscapgrad": 8000,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -645,8 +646,15 @@ function calculate_school(column) {
 	if ( schooldata.perkins_max < 0 ) {
 		schooldata.perkins_max = 0;
 	}
-	if ( schooldata.perkins_max > global.perkinscap ) {
-		schooldata.perkins_max = global.perkinscap;
+	if ( schooldata.undergrad == true ) {
+		if ( schooldata.perkins_max > global.perkinscapunder ) {
+			schooldata.perkins_max = global.perkinscapunder;
+		}
+	}
+	else {
+		if ( schooldata.perkins_max > global.perkinscapgrad ) {
+			schooldata.perkins_max = global.perkinscapgrad;
+		}		
 	}
 	if (schooldata.perkins > schooldata.perkins_max) {
 		schooldata.perkins = schooldata.perkins_max;
@@ -928,7 +936,7 @@ function calculate_school(column) {
 	schooldata.gradpluswithfee = schooldata.gradplus * global.plusoriginationfee;
 
 	// Grad Plus debt at graduation
-	schooldata.gradplusgrad = (schooldata.gradplus * global.gradplusrate  / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.gradplus * schooldata.prgmlength));
+	schooldata.gradplusgrad = (schooldata.gradpluswithfee * global.gradplusrate  / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.gradpluswithfee * schooldata.prgmlength));
 	
 	// Parent Plus Loans with origination fees
 	schooldata.parentpluswithfee = schooldata.parentplus * global.plusoriginationfee;
