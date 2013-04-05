@@ -2,10 +2,10 @@
 
 /* A few default settings: */
 
-var data = 
-	{
-	"global": // see GLOBALS.txt for descriptions of the parameters
-		{"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
+
+ // see GLOBALS.txt for descriptions of the parameters
+var global = {
+		"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
 		"transportationdefault": 0, "roombrdwfamily": 0,
 		"perkinscapunder": 5000, "perkinscapgrad": 8000,
@@ -36,8 +36,9 @@ var data =
 		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
 		"schools_added": -1, "reached_zero": 0, "worksheet_id": "none"
-		},
-	"presets" : {
+	};
+
+var presets = {
 		"average-public" :
 			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
 			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "program": "ba",
@@ -46,18 +47,8 @@ var data =
 			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
 			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "program": "ba",
 			 "school_id": "average-private", "prgmlength": 4, "control": "private", "origin":"presets"}
-	}
-};
- 
- // Determine if global data exists
-if (data.global != "undefined") {
-	global = data.global;
-}
-else {
-	/*	If globals can't be loaded from the database, there ought to be
-		some error handling. The application can still run without data, so a database failure
-		shouldn't put it out of commission -wernerc */
-}
+	};
+
 var schools = new Object();
 var schools_zeroed = new Object();
 
@@ -390,7 +381,14 @@ function build_school_element(column) {
     }
     else {
     	 school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
+    	 school.find(".indicator-textbox").html("Not available");
     }
+
+    // Grad students don't see school risk indicators
+    if ( schooldata.undergrad == false ) {
+	    school.find(".visualization-row td").children().not(".indicator-textbox").hide();
+		school.find(".indicator-textbox").html("Not available for graduate programs");
+	}
 
 	global.schools_added++;
 	if ( global.schools_added > 0 ) {
@@ -1478,7 +1476,7 @@ $(document).ready(function() {
 
 	// Add average public
 	$(".add-school-info .add-average-public").click( function (ev) {
-		schools["average-public"] = data.presets["average-public"];
+		schools["average-public"] = presets["average-public"];
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-public");
 		build_school_element(column);
@@ -1492,7 +1490,7 @@ $(document).ready(function() {
 
 	// Add average private
 	$(".add-school-info .add-average-private").click( function (ev) {
-		schools["average-private"] = data.presets["average-private"];
+		schools["average-private"] = presets["average-private"];
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-private");
 		build_school_element(column);
@@ -1930,7 +1928,7 @@ $(document).ready(function() {
 	hide_column(2);
 	hide_column(3);
 	$("#institution-row [data-column='1']").attr("data-schoolid", "average-public");
-	schools["average-public"] = data.presets["average-public"];
+	schools["average-public"] = presets["average-public"];
 	build_school_element(1);
 	$(".add-average-public").hide();
 

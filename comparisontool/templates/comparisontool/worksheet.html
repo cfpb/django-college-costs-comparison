@@ -811,11 +811,12 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1">
 							<div class="gradrisk-container">
 								<span name="gradriskpercent" class="gradrisk-percent"></span>
-								<div class="gradrisk-pointer"></div>
+								<div class="gradrisk-pointer"></div>	
 							</div>
 							<div class="gradrisk-bar">
 								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
 							</div>
+							<p name="gradrisk" class="gradrisk-text indicator-textbox"></p>
 						</td>
 						<td data-column="2">
 							<div class="gradrisk-container">
@@ -825,6 +826,7 @@ var csrftok = "{{ csrf_token }}";
 							<div class="gradrisk-bar">
 								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
 							</div>
+							<p name="gradrisk" class="gradrisk-text indicator-textbox"></p>
 						</td>
 						<td data-column="3">
 							<div class="gradrisk-container">
@@ -832,8 +834,9 @@ var csrftok = "{{ csrf_token }}";
 								<div class="gradrisk-pointer"></div>
 							</div>
 							<div class="gradrisk-bar">
-								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
+								<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>	
 							</div>
+							<p name="gradrisk" class="gradrisk-text indicator-textbox"></p>
 						</td>
 					</tr>
 					<tr class="visualization-row">
@@ -846,18 +849,21 @@ var csrftok = "{{ csrf_token }}";
 								<span class="default-rate-this">This school<p class="percent"></p></span>
 								<span class="default-rate-avg">National average<p class="percent"></p></span>
 							</div>
+							<p name="defaultrisk" class="defaultrisk-text indicator-textbox"></p>
 						</td>
 						<td data-column="2">
 							<div class="default-rate-chart" id="defaultbars2">
 								<span class="default-rate-this">This school<p class="percent"></p></span>
 								<span class="default-rate-avg">National average<p class="percent"></p></span>
 							</div>
+							<p name="defaultrisk" class="defaultrisk-text indicator-textbox"></p>
 						</td>
 						<td data-column="3">
 							<div class="default-rate-chart" id="defaultbars3">
 								<span class="default-rate-this">This school<p class="percent"></p></span>
 								<span class="default-rate-avg">National average<p class="percent"></p></span>
 							</div>
+							<p name="defaultrisk" class="defaultrisk-text indicator-textbox"></p>
 						</td>
 					</tr>
 					<tr class="visualization-row">
@@ -868,14 +874,17 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="1">
 							<div class="median-borrowing-chart" id="meter1">
 							</div>
+							<p name="loandebtrisk" class="median-borrowing-text indicator-textbox"></p>
 						</td>
 						<td data-column="2">
 							<div class="median-borrowing-chart" id="meter2">
 							</div>
+							<p name="loandebtrisk" class="median-borrowing-text indicator-textbox"></p>
 						</td>
 						<td data-column="3">
 							<div class="median-borrowing-chart" id="meter3">
 							</div>
+							<p name="loandebtrisk" class="median-borrowing-text indicator-textbox"></p>
 						</td>
 					</tr>
 				</tbody>
