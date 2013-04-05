@@ -1516,20 +1516,16 @@ $(document).ready(function() {
 		var column = headercell.attr("data-column");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var schooldata = schools[school_id];
+		$("[data-column='" + column + "'] .prgmlength-selection").hide();
 		if ( schooldata.kbyoss == "TRUE") {
-			$("[data-column='" + column + "'] .prgmlength-selection").hide();
 			$("[data-column='" + column + "'] .add-xml").show();
 		}
 		else {
-			build_school_element(column);
-			headercell.find(".add-school-info").hide();
-			headercell.find(".add-school-info .hidden-box").hide();
-			headercell.find(".add-school-info .school-search").show();
-			calculate_school(column);			
+			$("[data-column='" + column + "'] .no-xml").show();		
 		}
 	});
 
-	$(".add-school-info .add-xml .continue").click( function() {
+	$(".add-school-info .xml-info .continue").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
@@ -1538,7 +1534,9 @@ $(document).ready(function() {
 		headercell.find(".add-school-info").hide();
 		headercell.find(".add-school-info .hidden-box").hide();
 		headercell.find(".add-school-info .school-search").show();
-		_gaq.push(["_trackEvent", "School Interactions", "XML Continue Button Clicked", school_id]);
+		if ( $(this).closest(".xml-info").hasClass("add-xml") ) {
+			_gaq.push(["_trackEvent", "School Interactions", "XML Continue Button Clicked", school_id]);
+		}
 		calculate_school(column);	
 	});
 
