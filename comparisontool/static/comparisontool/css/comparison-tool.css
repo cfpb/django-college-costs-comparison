@@ -647,11 +647,12 @@
 	padding: .25em;
 }
 
-#institution-row th .add-school-info .search-results li a {
+#institution-row th .add-school-info .search-results li a,
+#institution-row th .add-school-info .search-results li p {
 	border: none;
 	font-weight: normal;
 }
-#institution-row th .add-school-info .search-results li p {
+#institution-row th .add-school-info .search-results li p.location {
 	margin: .1em 0 .5em .75em;
 	font-weight: 400;
 	font-size: .8em;
