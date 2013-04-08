@@ -134,7 +134,7 @@ var csrftok = "{{ csrf_token }}";
 
 		<section id="introduction">
 			<div class="intro-text"><h1>Compare Financial aid and college cost</h1>
-				<p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="compare_info">Know Before You Owe project,</a> we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="compare_info">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we’ve built a tool that complements the shopping sheet to help students make comparisons tailored to their individual circumstances. If you have received <a href="http://studentaid.ed.gov/glossary#letter_f" class="exit-link" target="compare_info">financial aid offers</a>, use this tool to understand how all those numbers impact your payments down the road.</p>
+				<p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="compare_info">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="compare_info">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we’ve built a tool that complements the shopping sheet to help students make comparisons tailored to their individual circumstances. If you have received <a href="http://studentaid.ed.gov/glossary#letter_f" class="exit-link" target="compare_info">financial aid offers</a>, use this tool to understand how all those numbers impact your payments down the road.</p>
 			</div>
 			<div class="right-sidebar">
 				<div class="question">
@@ -164,9 +164,9 @@ var csrftok = "{{ csrf_token }}";
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
 									<input class="radio-input" type="radio" name="program1" value="aa">
-									<label class="radio-label">Associate's or certificate</label>
+									<label class="radio-label">Associates or certificate</label>
 									<input class="radio-input" type="radio" name="program1" value="ba" checked="checked">
-									<label class="radio-label">Bachelor's</label>	
+									<label class="radio-label">Bachelors</label>	
 									<input class="radio-input" type="radio" name="program1" value="grad">
 									<label class="radio-label">Graduate</label>
 									<button class="continue">Continue</button>
@@ -220,9 +220,9 @@ var csrftok = "{{ csrf_token }}";
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
 									<input class="radio-input" type="radio" name="program2" value="aa">
-									<label class="radio-label">Associate's or certificate</label>
+									<label class="radio-label">Associates or certificate</label>
 									<input class="radio-input" type="radio" name="program2" value="ba" checked="checked">
-									<label class="radio-label">Bachelor's</label>	
+									<label class="radio-label">Bachelors</label>	
 									<input class="radio-input" type="radio" name="program2" value="grad">
 									<label class="radio-label">Graduate</label>
 									<button class="continue">Continue</button>
@@ -276,9 +276,9 @@ var csrftok = "{{ csrf_token }}";
 								<div class="program-selection hidden-box">
 									<h3>Program Type</h3>
 									<input class="radio-input" type="radio" name="program3" value="aa">
-									<label class="radio-label">Associate's or certificate</label>
+									<label class="radio-label">Associates or certificate</label>
 									<input class="radio-input" type="radio" name="program3" value="ba" checked="checked">
-									<label class="radio-label">Bachelor's</label>	
+									<label class="radio-label">Bachelors</label>	
 									<input class="radio-input" type="radio" name="program3" value="grad">
 									<label class="radio-label">Graduate</label>
 									<button class="continue">Continue</button>
@@ -330,7 +330,7 @@ var csrftok = "{{ csrf_token }}";
 						<th class="width-holder"></th>
 					</tr>
 					<tr class="totalcost show arrw">
-						<th scope="row" data-column="0"><h4>Cost of college</h4></th>
+						<th scope="row" data-column="0"><h4>Costs of attendance</h4></th>
 						<td data-column="1"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" name="firstyrcostattend">$0</h6></td>
@@ -395,7 +395,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><input type="text" class="school-data" value="0" name="scholar"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Servicemembers (active &amp; reserve) in some branches are eligible to receive up to $4,500 per year. Military TA benefits do not need to be repaid.." data-tipname="tuitionassist">Military tuition assistance</label></th>
+						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Servicemembers (active &amp; reserve) in some branches are eligible to receive up to $4,500 per year. These benefits do not need to be repaid.." data-tipname="tuitionassist">Military tuition assistance</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
@@ -568,7 +568,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><h6 class="data-total" name="federaltotal">$0</h6></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins Loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year." data-tipname="perkins">Perkins Loan</label></th>
+						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year." data-tipname="perkins">Perkins loan</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="perkins"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="perkins"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="perkins"></td>
@@ -842,7 +842,7 @@ var csrftok = "{{ csrf_token }}";
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
 							<h4>Loan Default Rate</h4>
-							<p>Percentage of borrowers who have entered repayment and have defaulted on their loan</p>
+							<p>Percentage of borrowers who have defaulted on their loan after entering repayment. </p>
 						</th>
 						<td data-column="1">
 							<div class="default-rate-chart" id="defaultbars1">
@@ -932,7 +932,7 @@ var csrftok = "{{ csrf_token }}";
 		</div>
 	</div><!-- end #save-drawer -->
 
-<a class="about-worksheet" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this Worksheet</a>
+	<p class="about-worksheet"><a href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this tool</a></p>
 
 	</div><!-- end #comparison-tool -->
 

@@ -416,6 +416,10 @@ function build_school_element(column) {
 			var path = "M " + x + " " + y + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " z";
 			meterarrows[column].attr({"path": path, "fill": "#f5f5f5"});
 			meterarrows[column].toBack();
+			// Display borrowing amount in textbox
+			var content = "<em>" + num_to_money(schooldata.avgstuloandebt) + "</em>";
+			school.find(".median-borrowing-text").html(content);
+			school.find(".median-borrowing-text").css("font-weight", "600")
 	    }
 	    else {
 	    	school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
