@@ -838,6 +838,10 @@
 	position: relative;
 }
 
+.visualization-row td {
+	vertical-align: middle;
+}
+
 .breakdown th p,
 .visualization-row th p {
 	font-size: 0.9em;
@@ -1189,21 +1193,20 @@ label.tooltip-info {
 
 #comparison-tables .default-rate-chart {
 	position: relative;
-	margin-top: 30px;
 }
 
 #comparison-tables .default-rate-chart span {
 	display: block;
 	font-size: .6em;
 	position: absolute;
-		left: 10px;
-		top: -30px;
+		left: 13px;
+		top: 105px;
 	text-align: center;
 	text-transform: uppercase;
 	width: 120px;
 }
 #comparison-tables .default-rate-chart .default-rate-avg {
-	left: 110px;
+	left: 113px;
 }
 
 #comparison-tables .default-rate-chart span .percent {
@@ -1219,6 +1222,10 @@ label.tooltip-info {
 	height: 100px;
 	margin: auto;
 	width: 200px;
+}
+
+#comparison-tables .median-borrowing-text {
+	margin: .15em 0 1em 0;
 }
 
 /* Other Pages */
@@ -1459,4 +1466,10 @@ label.tooltip-info {
 	background: url(../images/share-icons.png) -33px 0 no-repeat;
 	border-bottom: none;
 	margin-left: 12px;
+}
+
+.about-worksheet {
+	display: block;
+	padding: 1em 10% 0 0;
+	text-align: right;
 }

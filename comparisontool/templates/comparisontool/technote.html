@@ -1,6 +1,6 @@
 {% extends 'front/base_update.html' %}
 
-{% block title %}Paying for College Cost Comparison Worksheet{% endblock %}
+{% block title %}Paying for College Cost Comparison Tool{% endblock %}
 
 {% block page_css %}
 <link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
@@ -23,7 +23,7 @@
 								<h2>Technical Notes and Assumptions</h2>
 							</div>
 							<div class="col7">
-								<h3>For users interested in learning more about how specific sections of this tool work, scroll down to the relevant section below. A warning that some of this information may be a bit technical, but we want to be open and transparent in order to generate high-quality feedback.</h3>
+								<h3>For users interested in learning more about how specific sections of this tool work, scroll down to the relevant section below. A warning that some of this information may be a bit technical, but we want to be open and transparent.</h3>
 								<p>Below is more information on how we developed this version of the tool, including the data we’ve used and assumptions we’ve made:</p>
 							</div>
 							<div class="clear"></div>
@@ -58,11 +58,11 @@
 					<div class="wrapper">
 						<header class="section-header">
 							<div class="col3">
-								<h2>Financial aid shopping sheet</h2>
+								<h2>Financial Aid Shopping Sheet</h2>
 							</div>
 							<div class="col7">
-								<p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="_blank">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="_blank">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we have rebuilt this tool to complement that shopping sheet to help students make comparisons tailored to their individual circumstances. </p>
-								<p>If your school indicated to the Department of Education that it has adopted the Financial Aid Shopping sheet, the tool gives you the option to upload an XML version of the sheet (an option some schools choose to offer). If your school did not indicate to the Department of Education that it was adopting the shopping sheet, you can still make a comparison by manually adding information from your offer letter.</p>
+								<p>As part of our <a href="http://www.consumerfinance.gov/students/knowbeforeyouowe/ " target="_blank">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="_blank">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we have rebuilt this tool to complement that shopping sheet to help students make comparisons tailored to their individual circumstances. </p>
+								<p>If your school indicated to the Department of Education that it has adopted the Financial Aid Shopping sheet, the tool gives you the option to upload an XML version of the sheet (an option some schools choose to offer). If your school did not indicate to the Department of Education that it was adopting the shopping sheet, you can still make a comparison by manually entering information from your offer letter.</p>
 							</div>
 							<div class="clear"></div>
 						</header>
@@ -79,7 +79,7 @@
 								<h2>First-year costs</h2>
 							</div>
 							<div class="col7">
-								<p>Using your financial aid offer letter, enter in your first year tuition &amp; fees, housing &amp; meals, books &amp; supplies and other expenses. If you have not yet received your offer letter you can find that information by searching Department of Education’s College Navigator by clicking on “Look up school information” right below the school name. Once you find the school you are considering, click on the “Tuition, Fees and Estimated Student Expenses” tab.</p>
+								<p>Using your financial aid offer letter, enter in your first year tuition &amp; fees, housing &amp; meals, books &amp; supplies and other expenses. If you have not yet received your offer letter you can find the cost information by clicking on “Look up school information” right below the school name and searching Department of Education’s College Navigator. Once you find the school you are considering, click on the “Tuition, Fees and Estimated Student Expenses” tab.</p>
 							</div>
 							<div class="clear"></div>
 						</header>
@@ -99,13 +99,13 @@
 								<p>After you fill out your Free Application for Federal Student Aid (FAFSA), each college that sends you an acceptance letter should also send you a financial aid offer letter. This should include the types and amounts of “financial aid” being offered to the student.</p>
 								<ul>
 									<li><a href="http://studentaid.ed.gov/types/grants-scholarships/pell" target="_blank">Pell grants</a> are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year.</li>
-									<li><strong>Military tuition assistance:</strong> Tuition Assistance provides support (up to $4,500 per year) for certain active-duty servicemembers (active &amp; reserve) who are pursuing higher education. Military TA benefits do not need to be repaid. </li>
+									<li><strong>Military tuition assistance:</strong> Tuition Assistance provides support (up to $4,500 per year) for some active-duty servicemembers (active &amp; reserve) who are pursuing higher education. Military TA benefits do not need to be repaid. </li>
 									<li><strong>GI Bill</strong> benefits offer education benefits for servicemembers and veterans. This funding covers tuition and fees, a monthly living allowance, and an annual book stipend. GI Bill benefits do not need to be repaid (see below).</li>
-									<li><a href="http://studentaid.ed.gov/types/loans/perkins" target="_blank">Perkins loans</a> are low-interest loans for students with financial need and do not accrue interest while students are enrolled in school. These loans are up to $5,500 per year for undergraduates and $8,000 per year for graduate students.</li>
+									<li><a href="http://studentaid.ed.gov/types/loans/perkins" target="_blank">Perkins loans</a> are low-interest loans for students with financial need and do not accrue interest while students are enrolled in school. These loans are available up to $5,500 per year for undergraduates and $8,000 per year for graduate students.</li>
 									<li><a href="http://studentaid.ed.gov/types/loans/subsidized-unsubsidized" target="_blank">Subsidized loans</a> are federal loans for students who demonstrate financial need and do not accrue interest while students are enrolled in school. These loans, which must be repaid, are available for up to $3,500 per year for first year college students. Graduates students are not eligible for these loans.</li>
-									<li><a href="http://studentaid.ed.gov/types/loans/subsidized-unsubsidized" target="_blank">Unsubsidized loans</a> do not require students to demonstrate financial need but they do accrue interest while students are in school. All dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year. For graduate students the limit is $20,500 per year.</li>
+									<li><a href="http://studentaid.ed.gov/types/loans/subsidized-unsubsidized" target="_blank">Unsubsidized loans</a> do not require students to demonstrate financial need but they do accrue interest while students are in school. All first year dependent, undergraduate students may borrow up to $5,500 per year in subsidized and unsubsidized loans. For independent undergraduate students, this limit rises to $9,500 per year. For graduate students the limit is $20,500 per year.</li>
 									<li><a href="http://studentaid.ed.gov/types/loans/plus" target="_blank">PLUS Loans</a> are available to graduate and professional students, up to the program’s cost of attendance minus any other financial assistance received. Parents may also borrow PLUS loans to pay for the expenses of undergraduate dependents. Under some circumstances, independent undergraduate students may also borrow PLUS loans. Unlike other federal student loans, eligibility for PLUS loans is dependent on the borrower’s credit </li>
-									<li>Loans from your school: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. The tool allows you to adjust that interest rate to match what you have been offered by your lender (see below).</li>
+									<li>Loans from your school: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options available with federal student loans. The tool allows you to adjust the interest rate to match what you have been offered by your lender (see below).</li>
 									<li>Private loans often have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan. The tool allows you to adjust that interest rate to match what you have been offered by your lender.(see below)</li>
 								</ul>
 							</div>
@@ -154,9 +154,9 @@
 									<li>Perkins: 5%</li>
 									<li>Direct Subsidized: 3.4%</li>
 									<li>Direct Unsubsidized: 6.8%</li>
-									<li>Department of Education also charges a 1% loan fee on all Direct Subsidized Loans Unsubsidized Loans and 4% loan fee on all Grad PLUS loans</li>
+									<li>Department of Education also charges a 1% loan fee on all Direct Subsidized Loans Unsubsidized Loans and 4% loan fee on all PLUS loans</li>
 								</ul>
-								<p>These rates are governed by the laws governing federal student loan programs, including the Higher Education Act.</p>
+								<p>These rates are set by the laws governing federal student loan programs, including the Higher Education Act.</p>
 								<p>For institutional and private student loans, we assume a fixed interest rate of 7.9%, which is identical to the PLUS loan rate. The tool allows you to adjust that interest rate to match what you have been offered by your lender. However, keep in mind that interest rates on institutional and private student loans may be variable and change significantly throughout the duration of the loan.</p>
 							</div>
 							<div class="clear"></div>
@@ -193,7 +193,7 @@
 								<h2>Debt at graduation</h2>
 							</div>
 							<div class="col7">
-								<p>Based on what you’ve entered, we’ve come up with a rough estimate of how much you will owe in students loans when you begin repayment. We use the same assumptions for debt at grad as we do for the estimated debt after graduation.</p>
+								<p>Based on what you’ve entered, we’ve come up with a rough estimate of how much you will owe in students loans when you begin repayment. We use the same assumptions for debt at graduation as we do for the estimated monthly payment.</p>
 							</div>
 							<div class="clear"></div>
 						</header>
