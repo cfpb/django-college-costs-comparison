@@ -690,6 +690,10 @@
 	display: none;
 }
 
+#institution-row th .add-school-info .prgmlength-selection select {
+	margin-right: 1em;
+}
+
 #institution-row th .navigator-link {
 	font-size: .75em;
 	font-weight: 500;
