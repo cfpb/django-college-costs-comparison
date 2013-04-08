@@ -8,7 +8,7 @@ var global = {
 		"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
 		"transportationdefault": 0, "roombrdwfamily": 0,
-		"perkinscapunder": 5500, "perkinscapgrad": 8000,
+		"perkinscapunder": 5500, "perkinscapgrad": 8000, "pellcap": 5550,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -1983,6 +1983,16 @@ $(document).ready(function() {
 	build_school_element(1);
 	$(".add-average-public").hide();
 
+	// Set vertical tabbing
+	for (c = 1; c <= 3; c++) {
+		var school = $("[data-column='" + c + "']");
+		var tabindex = 1;
+		school.find("input, select").each(function() {
+			var i = (c * 100) + tabindex;
+			$(this).attr("tabindex", i);
+			tabindex++;
+		});
+	}
 
 	// Check to see if there is restoredata
 	var wid = window.location.href.substr(window.location.href.lastIndexOf("#")+1);
