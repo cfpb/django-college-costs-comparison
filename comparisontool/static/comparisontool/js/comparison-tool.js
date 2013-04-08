@@ -1948,7 +1948,7 @@ $(document).ready(function() {
 		if ( seconds < 10 ) {
 			seconds = "0" + seconds;
 		}
-		var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDay() + "/" + t.getFullYear();
+		var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDate() + "/" + t.getFullYear();
 		timestamp = timestamp + " at " + t.getHours() + ":" + minutes + ":" + seconds;
 		$("#timestamp").html("Saved on " + timestamp);
     }); 
