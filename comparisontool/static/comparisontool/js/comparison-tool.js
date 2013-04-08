@@ -8,7 +8,7 @@ var global = {
 		"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
 		"transportationdefault": 0, "roombrdwfamily": 0,
-		"perkinscapunder": 5000, "perkinscapgrad": 8000,
+		"perkinscapunder": 5500, "perkinscapgrad": 8000,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
@@ -17,22 +17,22 @@ var global = {
 		"parentplusrate": 0.079, "plusoriginationfee": 1.04, "privateloanratedefault": 0.079, 
 		"institutionalloantratedefault":0.079, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
-		"group1gradrankhigh": 308, "group1gradrankmed": 496, "group1gradrankmax": 741,
-		"group2gradrankhigh": 286, "group2gradrankmed": 428, "group2gradrankmax": 556,
-		"group3gradrankhigh": 155, "group3gradrankmed": 292, "group3gradrankmax": 401,
+		"group1gradrankhigh": 620, "group1gradrankmed": 1247, "group1gradrankmax": 1873,
+		"group2gradrankhigh": 304, "group2gradrankmed": 881, "group2gradrankmax": 1318,
+		"group3gradrankhigh": 247, "group3gradrankmed": 420, "group3gradrankmax": 539,
 		"group4gradrankhigh": 0, "group4gradrankmed": 0, "group4gradrankmax": 0,
-		"group5gradrankhigh": 191,"group5gradrankmed": 337, "group5gradrankmax": 607,
+		"group5gradrankhigh": 0,"group5gradrankmed": 0, "group5gradrankmax": 0,
 		"group1gradmed": 37.3, "group1gradhigh": 56.7, "group2gradmed": 17.7, "group2gradhigh": 32.2,
 		"group3gradmed": 24.1, "group3gradhigh": 50.1, "group4gradmed": 0, "group4gradhigh": 0, 
 		"group5gradmed": 62.5, "group5gradhigh": 77.6, "cdrhigh": 100, "cdravg": 13.4, "cdrlow": 0.0, 
-		"group1loanmed": 14000, "group1loanhigh": 20000, "group2loanmed": 6800, "group2loanhigh": 15000, 
-		"group3loanmed": 6800, "group3loanhigh": 15000, "group4loanmed": 14000, "group4loanhigh": 20000, 
-		"group5loanmed": 6800, "group5loanhigh": 15000,
-		"group1loanrankhigh": 334, "group1loanrankmed": 773, "group1loanrankmax": 1032,
-		"group2loanrankhigh": 105, "group2loanrankmed": 409, "group2loanrankmax": 609,
-		"group3loanrankhigh": 33, "group3loanrankmed": 221, "group3loanrankmax": 329,
-		"group4loanrankhigh": 12, "group4loanrankmed": 15, "group4loanrankmax": 53,
-		"group5loanrankhigh": 65, "group5loanrankmed": 573, "group5loanrankmax": 890,
+		"group1loanmed": 15000, "group1loanhigh": 20000, "group2loanmed": 6887, "group2loanhigh": 12544, 
+		"group3loanmed": 6802, "group3loanhigh": 9500, "group4loanmed": 0, "group4loanhigh": 0, 
+		"group5loanmed": 0, "group5loanhigh": 0,
+		"group1loanrankhigh": 724, "group1loanrankmed": 1394, "group1loanrankmax": 2067,
+		"group2loanrankhigh": 541, "group2loanrankmed": 1009, "group2loanrankmax": 1464,
+		"group3loanrankhigh": 277, "group3loanrankmed": 459, "group3loanrankmax": 836,
+		"group4loanrankhigh": 0, "group4loanrankmed": 0, "group4loanrankmax": 0,
+		"group5loanrankhigh": 0, "group5loanrankmed": 0, "group5loanrankmax": 0,
 		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
 		"schools_added": -1, "reached_zero": 0, "worksheet_id": "none"
@@ -264,6 +264,14 @@ function build_school_element(column) {
 		}
 	}
 
+	// If private school, hide residency.
+	if (schooldata.control == "Private") {
+		school.find(".military-residency-panel").hide();
+	}
+	else {
+		school.find(".military-residency-panel").show();
+	}
+
 	// Set undergrad
 	if ( schooldata.program == "grad" ) {
 		schooldata.undergrad = false;
@@ -375,21 +383,21 @@ function build_school_element(column) {
 	    var borrowangle = 0;
 	    var rankcount = 1;
 	    var place = 1;
-	    if ( ( schooldata.avgdebtrank != undefined ) && ( schooldata.avgstuloandebt != "NR" ) ) {
+	    if ( ( schooldata.avgstuloandebtrank != undefined ) && ( schooldata.avgstuloandebt != "NR" ) ) {
 	    	school.find(".median-borrowing-chart").closest("td").children().show();
 	        if ( schooldata.avgstuloandebt < groupmed ) {
 	        	rankcount = grmax - grmed;
-	        	place = schooldata.avgdebtrank - grmed;
+	        	place = schooldata.avgstuloandebtrank - grmed;
 	        	borrowangle = 5 + Math.floor( ( rankcount - place ) * ( 45 / rankcount)) 	
 	        }
 	        else if ( schooldata.avgstuloandebt <= grouphigh ) {
 	        	rankcount = grmed - grhigh;
-	        	place = schooldata.avgdebtrank - grhigh;
+	        	place = schooldata.avgstuloandebtrank - grhigh;
 	        	borrowangle = 55 + Math.floor( ( rankcount - place ) * ( 60 / rankcount)) 	
 	        }
 	        else {
 	         	rankcount = grhigh;
-	        	place =  schooldata.avgdebtrank;
+	        	place =  schooldata.avgstuloandebtrank;
 	        	borrowangle = 125 + Math.floor( ( rankcount - place  ) * ( 50 / rankcount ) );
 	        }
 	        // Convert to radians
@@ -408,6 +416,10 @@ function build_school_element(column) {
 			var path = "M " + x + " " + y + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " z";
 			meterarrows[column].attr({"path": path, "fill": "#f5f5f5"});
 			meterarrows[column].toBack();
+			// Display borrowing amount in textbox
+			var content = "<em>" + num_to_money(schooldata.avgstuloandebt) + "</em>";
+			school.find(".median-borrowing-text").html(content);
+			school.find(".median-borrowing-text").css("font-weight", "600")
 	    }
 	    else {
 	    	school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
@@ -1488,6 +1500,7 @@ $(document).ready(function() {
 		var column = headercell.attr("data-column");
 		var school_id = $(this).attr("href");
 		headercell.attr("data-schoolid", school_id);
+		headercell.find(".search-results").hide();
 
 		// AJAX the schooldata
 		var schooldata = new Object();
@@ -1738,7 +1751,7 @@ $(document).ready(function() {
 	});
 
 	// Clicking "Calculate" button hides GI Bill panel and performs a calculation
-	$(".military-residency-panel .military-calculate").click( function() {
+	$(".gibill-panel .military-calculate").click( function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("[data-column='" + column + "'] .gibill-panel").hide();
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
@@ -1963,7 +1976,6 @@ $(document).ready(function() {
 	});
 
 	/* --- Start the page up! --- */
-	$("#military-calc-toggle").hide();
 	hide_column(2);
 	hide_column(3);
 	$("#institution-row [data-column='1']").attr("data-schoolid", "average-public");
