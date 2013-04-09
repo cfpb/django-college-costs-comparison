@@ -7,7 +7,7 @@
 var global = {
 		"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
-		"transportationdefault": 0, "roombrdwfamily": 0,
+		"transportationdefault": 0, "roombrdwfamily": 0, "gibillch1606": 356,
 		"perkinscapunder": 5500, "perkinscapgrad": 8000, "pellcap": 5550,
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
@@ -270,7 +270,7 @@ function build_school_element(column) {
 	}
 
 	// If private school, hide residency.
-	if (schooldata.control == "Private") {
+	if (schooldata.control != "Public") {
 		school.find(".military-residency-panel").hide();
 	}
 	else {
@@ -318,8 +318,8 @@ function build_school_element(column) {
 
 	/* ----- DRAW SCHOOL INDICATORS ----- */
 
-    //Grad programs don't have indicators 
-    if ( schooldata.undergrad == true ) {
+    //Grad programs don't have indicators, nor groups 4 or 5 
+    if ( schooldata.undergrad == true || schooldata.indicatorgroup == 4 || schooldata.indicatorgroup == 5 ) {
 
 	   // Draw the graduation rate chart
 	    school.find(".gradrisk-percent").html(schooldata.gradrate + "%");
@@ -428,14 +428,14 @@ function build_school_element(column) {
 	    }
 	    else {
 	    	school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
-	    	school.find(".indicator-textbox").html("Not available");
+	    	school.find(".indicator-textbox").html("not available");
 	    }
 	}
 	else {
 		school.find(".gradrisk-container").closest("td").children().not(".gradrisk-text").hide();
 		school.find(".default-rate-chart").closest("td").children().not(".defaultrisk-text").hide();
 		school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
-		school.find(".indicator-textbox").html("Not available for graduate programs");
+		school.find(".indicator-textbox").html("not available");
 	}	
 
 	global.schools_added++;
@@ -510,10 +510,6 @@ function calculate_school(column) {
 	else {
 		schooldata.tfinstate = schooldata.tuitionunderins;
 	}
-
-
-	// Settings for first release
-	schooldata.program = "ba";
 
 	// Unused (but required) variables
 	schooldata.homeequity = 0;
@@ -591,7 +587,7 @@ function calculate_school(column) {
 	}
 
 	// Determine if global.vet is true or false:
-	if ($("[data-column='1'] [name='military-status']").val() != "none") {
+	if ($("[data-column='" + column + "'] [name='military-status']").val() != "none") {
 		global.vet = true;
 	}
 	else {
@@ -616,7 +612,7 @@ function calculate_school(column) {
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
-			if ( schooldata.gibilltf > ( schooldata.tuitionfees * global.tier ) ) {
+			if ( schooldata.gibilltf > ( ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist) * global.tier ) ) {
 				schooldata.gibilltf = schooldata.tuitionfees;
 			}
 		}
@@ -625,7 +621,7 @@ function calculate_school(column) {
 			if ( schooldata.gibilltf < 0 ) {
 				schooldata.gibilltf = 0;
 			}
-			if ( schooldata.gibilltf > ( schooldata.tuitionfees * global.tier ) ) {
+			if ( schooldata.gibilltf > ( ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist) * global.tier ) ) {
 				schooldata.gibilltf = schooldata.tuitionfees
 			}
 		}
@@ -641,11 +637,11 @@ function calculate_school(column) {
 			schooldata.gibillla = 0;
 		}
 		else if ( ( global.tier == 0 ) && ( global.serving == "ng" ) ) {
-			schooldata.gibillla = 345 * 9;
+			schooldata.gibillla = global.gibillch1606 * 9;
 		}
 		else {
 			if (schooldata.online == "Yes" ) {
-				schooldata.gibillla = ( ( global.avgbah / 2 * global.tier ) + global.kicker ) * global.rop;
+				schooldata.gibillla = ( ( ( global.avgbah / 2 * global.tier ) + global.kicker ) * global.rop) * 9;
 			}
 			else {
 				schooldata.gibillla = schooldata.bah * global.tier * 9 * global.rop;
@@ -750,8 +746,8 @@ function calculate_school(column) {
 	school.setbyname("staffsubsidized", schooldata.staffsubsidized, true);
 
 	//unsubsidized loan max for independent students
-	if ( schooldata.undergrad == "false") { 
-		schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend- schooldata.perkins- schooldata.staffsubsidized;
+	if ( schooldata.undergrad == false) { 
+		schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend- schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizedindep_max > global.unsubsidizedcapgrad ) {
 			schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapgrad;
 		}
@@ -801,7 +797,7 @@ function calculate_school(column) {
 		}
 	}
 	//unsubsidized loan max for dependent students
-	if ( schooldata.undergrad == "false" ) {
+	if ( schooldata.undergrad == false ) {
 		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapgrad - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapgrad - schooldata.staffsubsidized;
@@ -873,7 +869,7 @@ function calculate_school(column) {
     // If it's an undergrad program, gradplus is readonly
     if ( schooldata.undergrad == true ) {
     	school.find("[name='gradplus']").attr("readonly", "readonly");
-    	school.find("[name='gradplus']").val("Not available for undergrad");
+    	school.find("[name='gradplus']").val("not available");
     } 
     else {
     	school.find("[name='gradplus']").removeAttr("readonly");
@@ -1733,6 +1729,9 @@ $(document).ready(function() {
 				$(this).attr("disabled", "disabled");
 			});
 		}
+		for ( c = 1; c <= 3; c++ ) {
+			calculate_school(c);
+		}
 	});
 
 	// Selecting an option from tier sets all tier to that value
@@ -1741,6 +1740,9 @@ $(document).ready(function() {
 		$(".military-tier-select").each( function() {
 			$(this).val(value);
 		});
+		for ( c = 1; c <= 3; c++ ) {
+			calculate_school(c);
+		}
 	});
 
 	// Selecting an option from residency modifies instate box visibility
