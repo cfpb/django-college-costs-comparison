@@ -17,22 +17,22 @@ var global = {
 		"parentplusrate": 0.079, "plusoriginationfee": 1.04, "privateloanratedefault": 0.079, 
 		"institutionalloantratedefault":0.079, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
-		"group1gradrankhigh": 620, "group1gradrankmed": 1247, "group1gradrankmax": 1873,
-		"group2gradrankhigh": 304, "group2gradrankmed": 881, "group2gradrankmax": 1318,
-		"group3gradrankhigh": 247, "group3gradrankmed": 420, "group3gradrankmax": 539,
-		"group4gradrankhigh": 0, "group4gradrankmed": 0, "group4gradrankmax": 0,
-		"group5gradrankhigh": 0,"group5gradrankmed": 0, "group5gradrankmax": 0,
-		"group1gradmed": 37.3, "group1gradhigh": 56.7, "group2gradmed": 17.7, "group2gradhigh": 32.2,
-		"group3gradmed": 24.1, "group3gradhigh": 50.1, "group4gradmed": 0, "group4gradhigh": 0, 
-		"group5gradmed": 62.5, "group5gradhigh": 77.6, "cdrhigh": 100, "cdravg": 13.4, "cdrlow": 0.0, 
-		"group1loanmed": 15000, "group1loanhigh": 20000, "group2loanmed": 6887, "group2loanhigh": 12544, 
-		"group3loanmed": 6802, "group3loanhigh": 9500, "group4loanmed": 0, "group4loanhigh": 0, 
+		"group1gradrankmed": 620, "group1gradrankhigh": 1247, "group1gradrankmax": 1873,
+		"group2gradrankmed": 304, "group2gradrankhigh": 881, "group2gradrankmax": 1318,
+		"group3gradrankmed": 247, "group3gradrankhigh": 420, "group3gradrankmax": 539,
+		"group4gradrankmed": 0, "group4gradrankhigh": 0, "group4gradrankmax": 0,
+		"group5gradrankmed": 0,"group5gradrankhigh": 0, "group5gradrankmax": 0,
+		"group1gradmed": 39.6, "group1gradhigh": 57.9, "group2gradmed": 19.4, "group2gradhigh": 41.9,
+		"group3gradmed": 21.4, "group3gradhigh": 41.2, "group4gradmed": 0, "group4gradhigh": 0, 
+		"group5gradmed": 0, "group5gradhigh": 0, "cdrhigh": 100, "cdravg": 13.4, "cdrlow": 0.0, 
+		"group1loanmed": 15025, "group1loanhigh": 20016, "group2loanmed": 6891, "group2loanhigh": 12584, 
+		"group3loanmed": 6836, "group3loanhigh": 9501, "group4loanmed": 0, "group4loanhigh": 0, 
 		"group5loanmed": 0, "group5loanhigh": 0,
-		"group1loanrankhigh": 724, "group1loanrankmed": 1394, "group1loanrankmax": 2067,
-		"group2loanrankhigh": 541, "group2loanrankmed": 1009, "group2loanrankmax": 1464,
-		"group3loanrankhigh": 277, "group3loanrankmed": 459, "group3loanrankmax": 836,
-		"group4loanrankhigh": 0, "group4loanrankmed": 0, "group4loanrankmax": 0,
-		"group5loanrankhigh": 0, "group5loanrankmed": 0, "group5loanrankmax": 0,
+		"group1loanrankmed": 724, "group1loanrankhigh": 1394, "group1loanrankmax": 2067,
+		"group2loanrankmed": 541, "group2loanrankhigh": 1009, "group2loanrankmax": 1464,
+		"group3loanrankmed": 277, "group3loanrankhigh": 459, "group3loanrankmax": 836,
+		"group4loanrankmed": 0, "group4loanrankhigh": 0, "group4loanrankmax": 0,
+		"group5loanrankmed": 0, "group5loanrankhigh": 0, "group5loanrankmax": 0,
 		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
 		"schools_added": -1, "reached_zero": 0, "worksheet_id": "none"
@@ -237,6 +237,8 @@ function build_school_element(column) {
 	school.find(".add-school-info input:text").val("");
 	school.find(".search-results").html("");
 	school.find(".xml-text").val("");
+	school.find(".indicator-textbox").html("");
+	school.find(".indicator-textbox").hide();
 
 	show_column(column);
 	if (schools[school_id] != undefined) {
@@ -336,7 +338,7 @@ function build_school_element(column) {
 	        	place = schooldata.gradraterank - grmed;
 	        	gradoffset = 0 + Math.floor( ( rankcount - place ) * ( 65 / rankcount)) 	
 	        }
-	        else if ( schooldata.gradrate <= grouphigh ) {
+	        else if ( schooldata.gradrate < grouphigh ) {
 	        	rankcount = grmed - grhigh;
 	        	place = schooldata.gradraterank - grhigh;
 	        	gradoffset = 77 + Math.floor( ( rankcount - place ) * ( 60 / rankcount)) 	
@@ -386,20 +388,20 @@ function build_school_element(column) {
 	    if ( ( schooldata.avgstuloandebtrank != undefined ) && ( schooldata.avgstuloandebt != "NR" ) ) {
 	    	school.find(".median-borrowing-chart").closest("td").children().show();
 	        if ( schooldata.avgstuloandebt < groupmed ) {
-	        	rankcount = grmax - grmed;
-	        	place = schooldata.avgstuloandebtrank - grmed;
-	        	borrowangle = 5 + Math.floor( ( rankcount - place ) * ( 45 / rankcount)) 	
+	        	rankcount = grmed;
+	        	place = schooldata.avgstuloandebtrank;
+	        	borrowangle = 3 + Math.floor( ( place ) * ( 45 / rankcount)) 	
 	        }
-	        else if ( schooldata.avgstuloandebt <= grouphigh ) {
-	        	rankcount = grmed - grhigh;
-	        	place = schooldata.avgstuloandebtrank - grhigh;
-	        	borrowangle = 55 + Math.floor( ( rankcount - place ) * ( 60 / rankcount)) 	
+	        else if ( schooldata.avgstuloandebt < grouphigh ) {
+	        	rankcount = grhigh - grmed;
+	        	place = schooldata.avgstuloandebtrank - grmed;
+	        	borrowangle = 55 + Math.floor( ( place ) * ( 60 / rankcount));
 	        }
 	        else {
-	         	rankcount = grhigh;
-	        	place =  schooldata.avgstuloandebtrank;
-	        	borrowangle = 125 + Math.floor( ( rankcount - place  ) * ( 50 / rankcount ) );
-	        }
+	         	rankcount = grmax - grhigh;
+	        	place =  schooldata.avgstuloandebtrank - grhigh;
+	        	borrowangle = 130 + Math.floor( ( place ) * ( 47 / rankcount ) );
+	        }  
 	        // Convert to radians
 	        borrowangle = ( Math.PI * 2 * borrowangle ) / 360;
 	        // Coordinates of indicating point
