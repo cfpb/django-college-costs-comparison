@@ -360,7 +360,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><input type="text" class="school-data" value="0" name="transportation"></td>
 					</tr>
 					<tr>
-						<th scope="row" data-column="0"><label for="otherexpenses"><span class="tooltip-info" data-tooltip="Other Expenses: Cost of items such as laundry and dependent care." data-tipname="otherexpenses">Other educational costs</span></label></th>
+						<th scope="row" data-column="0"><label for="otherexpenses"><span class="tooltip-info" data-tooltip="Other education costs: Cost of items such as laundry and dependent care." data-tipname="otherexpenses">Other education costs</span></label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="otherexpenses"></td>
@@ -395,7 +395,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><input type="text" class="school-data" value="0" name="scholar"></td>
 					</tr>
 					<tr class="grants-row">
-						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Servicemembers (active &amp; reserve) in some branches are eligible to receive up to $4,500 per year. These benefits do not need to be repaid.." data-tipname="tuitionassist">Military tuition assistance</label></th>
+						<th scope="row" data-column="0"><label for="tuitionassist" class="tooltip-info" data-tooltip="Military Tuition Assistance: Servicemembers (active &amp; reserve) in some branches are eligible to receive up to $4,500 per year. These benefits do not need to be repaid." data-tipname="tuitionassist">Military tuition assistance</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="tuitionassist"></td>
@@ -555,7 +555,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><input type="text" class="school-data" value="0" name="state529plan"></td>
 					</tr>
 					<tr class="contrib-row">
-						<th scope="row" data-column="0"><label for="workstudy" class="tooltip-info" data-tooltip="Work-Study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses." data-tipname="workstudy">Work study</label></th>
+						<th scope="row" data-column="0"><label for="workstudy" class="tooltip-info" data-tooltip="Work study: Federal Work-Study helps provide part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses." data-tipname="workstudy">Work study</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="workstudy"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="workstudy"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="workstudy"></td>
@@ -568,7 +568,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><h6 class="data-total" name="federaltotal">$0</h6></td>
 					</tr>
 					<tr class="federal-row">
-						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins loans are low-interest loan for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year." data-tipname="perkins">Perkins loan</label></th>
+						<th scope="row" data-column="0"><label for="perkins" class="tooltip-info" data-tooltip="Perkins loans are low-interest loans for students with financial need and do not accrue interest while students are enrolled in school, up to $5,500/year." data-tipname="perkins">Perkins loan</label></th>
 						<td data-column="1"><input type="text" class="school-data" value="0" name="perkins"></td>
 						<td data-column="2"><input type="text" class="school-data" value="0" name="perkins"></td>
 						<td data-column="3"><input type="text" class="school-data" value="0" name="perkins"></td>
@@ -599,7 +599,7 @@ var csrftok = "{{ csrf_token }}";
 						<td data-column="3"><h6 class="data-total" name="privatetotal">$0</h6></td>
 					</tr>
 					<tr class="private-row">
-						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lack many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan." data-tipname="institutionalloan">Loans from your school</label></th>
+						<th scope="row" data-column="0"><label for="institutionalloan" class="tooltip-info" data-tooltip="Loans from Your School: A private loan from your school may have variable interest rates, require a credit check and/or a cosigner and lacks many of the repayment options of federal student loans. Students should explore all of their federal grant and loan options before taking out a private student loan." data-tipname="institutionalloan">Loans from your school</label></th>
 						<td data-column="1">
 							<input type="text" class="school-data" value="0" name="institutionalloan">
 							<input type="text" class="school-data interest-rate" value="0" name="institutionalloanrate">
@@ -662,6 +662,7 @@ var csrftok = "{{ csrf_token }}";
 												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
 												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
 												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
 												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
 												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
@@ -700,6 +701,7 @@ var csrftok = "{{ csrf_token }}";
 												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
 												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
 												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
 												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
 												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
@@ -738,6 +740,7 @@ var csrftok = "{{ csrf_token }}";
 												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
 												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
 												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
 												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
 												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
