@@ -17,11 +17,11 @@ var global = {
 		"parentplusrate": 0.079, "plusoriginationfee": 1.04, "privateloanratedefault": 0.079, 
 		"institutionalloantratedefault":0.079, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
-		"group1gradrankmed": 620, "group1gradrankhigh": 1247, "group1gradrankmax": 1873,
-		"group2gradrankmed": 304, "group2gradrankhigh": 881, "group2gradrankmax": 1318,
-		"group3gradrankmed": 247, "group3gradrankhigh": 420, "group3gradrankmax": 539,
-		"group4gradrankmed": 0, "group4gradrankhigh": 0, "group4gradrankmax": 0,
-		"group5gradrankmed": 0,"group5gradrankhigh": 0, "group5gradrankmax": 0,
+		"group1gradrankhigh": 620, "group1gradrankmed": 1247, "group1gradrankmax": 1873,
+		"group2gradrankhigh": 304, "group2gradrankmed": 881, "group2gradrankmax": 1318,
+		"group3gradrankhigh": 247, "group3gradrankmed": 420, "group3gradrankmax": 539,
+		"group4gradrankhigh": 0, "group4gradrankmed": 0, "group4gradrankmax": 0,
+		"group5gradrankhigh": 0,"group5gradrankmed": 0, "group5gradrankmax": 0,
 		"group1gradmed": 39.6, "group1gradhigh": 57.9, "group2gradmed": 19.4, "group2gradhigh": 41.9,
 		"group3gradmed": 21.4, "group3gradhigh": 41.2, "group4gradmed": 0, "group4gradhigh": 0, 
 		"group5gradmed": 0, "group5gradhigh": 0, "cdrhigh": 100, "cdravg": 13.4, "cdrlow": 0.0, 
@@ -193,6 +193,9 @@ function hide_column(col_num) {
 	column.each( function() {
 		$(this).children().not(".add-a-school, width-holder").hide();
 		$(this).children(".add-a-school").show();
+		if ( $(this).hasClass("debt-burden-cell") ) {
+			$(this).css("background-position", "25px 100px");
+		}
 	});
 }
 
