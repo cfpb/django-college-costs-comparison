@@ -319,7 +319,7 @@ function build_school_element(column) {
 	/* ----- DRAW SCHOOL INDICATORS ----- */
 
     //Grad programs don't have indicators, nor groups 4 or 5 
-    if ( schooldata.undergrad == true || schooldata.indicatorgroup == 4 || schooldata.indicatorgroup == 5 ) {
+    if ( schooldata.undergrad == true && schooldata.indicatorgroup != "4" && schooldata.indicatorgroup != "5" ) {
 
 	   // Draw the graduation rate chart
 	    school.find(".gradrisk-percent").html(schooldata.gradrate + "%");
@@ -354,7 +354,7 @@ function build_school_element(column) {
 	        school.find(".gradrisk-container").css("left", gradoffset + "px");
 	    }
 	    else {
-	    	school.find(".gradrisk-container").closest("td").children().not(".gradrisk-text").hide();
+	    	school.find(".graduation-rate-chart").hide();
 	    }
 
 
@@ -375,7 +375,7 @@ function build_school_element(column) {
 	    	school.find(".default-rate-avg .percent").html(average);
 	    }
 	    else {
-	 		school.find(".default-rate-chart").closest("td").children().not(".defaultrisk-text").hide();   	
+	 		school.find(".default-rate-chart").hide();   	
 	    }
 
 	    // Draw the avg borrowing meter
@@ -427,14 +427,14 @@ function build_school_element(column) {
 			school.find(".median-borrowing-text").css("font-weight", "600")
 	    }
 	    else {
-	    	school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
+	    	school.find(".median-borrowing-chart").hide();
 	    	school.find(".indicator-textbox").html("not available");
 	    }
 	}
 	else {
-		school.find(".gradrisk-container").closest("td").children().not(".gradrisk-text").hide();
-		school.find(".default-rate-chart").closest("td").children().not(".defaultrisk-text").hide();
-		school.find(".median-borrowing-chart").closest("td").children().not(".median-borrowing-text").hide();
+		school.find(".graduation-rate-chart").hide();
+		school.find(".default-rate-chart").hide();
+		school.find(".median-borrowing-chart").hide();
 		school.find(".indicator-textbox").html("not available");
 	}	
 
@@ -613,7 +613,7 @@ function calculate_school(column) {
 				schooldata.gibilltf = 0;
 			}
 			if ( schooldata.gibilltf > ( ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist) * global.tier ) ) {
-				schooldata.gibilltf = schooldata.tuitionfees;
+				schooldata.gibilltf = schooldata.tuitionfees * global.tier;
 			}
 		}
 		else { // School is not public
@@ -622,7 +622,7 @@ function calculate_school(column) {
 				schooldata.gibilltf = 0;
 			}
 			if ( schooldata.gibilltf > ( ( schooldata.tuitionfees - schooldata.scholar - schooldata.tuitionassist) * global.tier ) ) {
-				schooldata.gibilltf = schooldata.tuitionfees
+				schooldata.gibilltf = schooldata.tuitionfees * global.tier;
 			}
 		}
 	}
@@ -660,6 +660,10 @@ function calculate_school(column) {
 
 	// Total GI Bill
 	schooldata.gibill = schooldata.gibilltf + schooldata.gibillla + schooldata.gibillbs;
+	if ( schooldata.school_id.substring(0,7) == "average") {
+		// average schools should have their gibill zeroed out
+		schooldata.gibill = 0;
+	}
 	school.setbyname("gibill", schooldata.gibill, true);
 	// Also, pretty-up the instate tuition while we're at it:
 	school.setbyname("militaryinstatetuition", schooldata.militaryinstatetuition, true);
@@ -747,7 +751,7 @@ function calculate_school(column) {
 
 	//unsubsidized loan max for independent students
 	if ( schooldata.undergrad == false) { 
-		schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend- schooldata.perkins - schooldata.staffsubsidized;
+		schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizedindep_max > global.unsubsidizedcapgrad ) {
 			schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapgrad;
 		}
@@ -882,36 +886,8 @@ function calculate_school(column) {
 
 
 	/*------- PRIVATE LOANS --------*/
-	schooldata.privateloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.institutionalloan;
-	if ( schooldata.privateloan_max < 0 ) {
-		schooldata.privateloan_max = 0;
-	}
-	if (schooldata.privateloan > schooldata.privateloan_max) {
-		schooldata.privateloan = schooldata.privateloan_max;
-	}
-	school.setbyname("privateloan", schooldata.privateloan, true);
-
-	// Private Loan Rate
-	if ( schooldata.privateloanrate == 0) {
-		schooldata.privateloanrate = global.privateloanratedefault;
-	}
-	if ( schooldata.privateloanrate > .2 ) {
-		schooldata.privateloanrate = .2;
-	}
-	if ( schooldata.privateloanrate < .01 ) {
-		schooldata.privateloanrate = .01;
-	}
-	loantext = ( Math.round(schooldata.privateloanrate * 1000) / 10 ) + "%";
-	school.find("[name='privateloanrate']").val(loantext);
-
-	// gap
-	schooldata.gap = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.workstudy - schooldata.savings - schooldata.family - schooldata.state529plan - schooldata.privateloan - schooldata.institutionalloan - schooldata.parentplus - schooldata.homeequity;
-	if ( schooldata.gap < 0 ) {
-		schooldata.gap = 0;
-	} 
-	
 	// Institution Loans
-	schooldata.institutionalloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.parentplus - schooldata.homeequity;
+	schooldata.institutionalloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.parentplus - schooldata.gradplus - schooldata.homeequity;
 	if ( schooldata.institutionalloan_max < 0 ) {
 		schooldata.institutionalloan_max = 0;
 	}
@@ -933,9 +909,38 @@ function calculate_school(column) {
 	loantext = ( Math.round(schooldata.institutionalloanrate * 1000) / 10 ) + "%";
 	school.find("[name='institutionalloanrate']").val(loantext);
 
+
+	schooldata.privateloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.institutionalloan - schooldata.gradplus;
+	if ( schooldata.privateloan_max < 0 ) {
+		schooldata.privateloan_max = 0;
+	}
+	if (schooldata.privateloan > schooldata.privateloan_max) {
+		schooldata.privateloan = schooldata.privateloan_max;
+	}
+	school.setbyname("privateloan", schooldata.privateloan, true);
+
+	// Private Loan Rate
+	if ( schooldata.privateloanrate == 0) {
+		schooldata.privateloanrate = global.privateloanratedefault;
+	}
+	if ( schooldata.privateloanrate > .2 ) {
+		schooldata.privateloanrate = .2;
+	}
+	if ( schooldata.privateloanrate < .01 ) {
+		schooldata.privateloanrate = .01;
+	}
+	loantext = ( Math.round(schooldata.privateloanrate * 1000) / 10 ) + "%";
+	school.find("[name='privateloanrate']").val(loantext);
+
 	// Private Loan Total
 	schooldata.privatetotal = schooldata.privateloan + schooldata.institutionalloan;
 	school.textbyname("privatetotal", schooldata.privatetotal, true);
+
+	// gap
+	schooldata.gap = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.workstudy - schooldata.savings - schooldata.family - schooldata.state529plan - schooldata.privateloan - schooldata.institutionalloan - schooldata.parentplus - schooldata.homeequity;
+	if ( schooldata.gap < 0 ) {
+		schooldata.gap = 0;
+	} 
 
 	/* --- Loan Calculation -- */
 	// Borrowing Total
