@@ -764,7 +764,7 @@ function calculate_school(column) {
 	} 
 	else {
 		if ( ( schooldata.program == "aa" ) || ( schooldata.yrincollege == 1 ) ) { 
-			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
+			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 			if ( schooldata.staffunsubsidizedindep_max > ( global.unsubsidizedcapindepyr1 - schooldata.staffsubsidized ) ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr1;
 			}
@@ -776,7 +776,7 @@ function calculate_school(column) {
 			}
 		}
 		else if ( schooldata.yrincollege == 2) { 
-			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
+			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 			if ( schooldata.staffunsubsidizedindep_max > ( global.unsubsidizedcapindepyr2 - schooldata.staffsubsidized ) ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr2;
 			}
@@ -788,7 +788,7 @@ function calculate_school(column) {
 			}
 		}
 		else if ( schooldata.yrincollege == 3) { 
-			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized;
+			schooldata.staffunsubsidizedindep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins- schooldata.staffsubsidized;
 			if ( schooldata.staffunsubsidizedindep_max > ( global.unsubsidizedcapindepyr3 - schooldata.staffsubsidized ) ) {
 				schooldata.staffunsubsidizedindep_max = global.unsubsidizedcapindepyr3;
 			}
@@ -802,7 +802,7 @@ function calculate_school(column) {
 	}
 	//unsubsidized loan max for dependent students
 	if ( schooldata.undergrad == false ) {
-		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
+		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapgrad - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapgrad - schooldata.staffsubsidized;
 		}
@@ -812,7 +812,7 @@ function calculate_school(column) {
 		// schooldata.staffunsubsidizeddep_max = math.min (( global.unsubsidizedcapgrad - schooldata.staffsubsidized) , math.max ( 0, (schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized)));
 	} 
 	else if ( schooldata.program == "aa" || schooldata.yrincollege == 1 ) {
-		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
+		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapyr1 - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr1 - schooldata.staffsubsidized;
 		}
@@ -822,7 +822,7 @@ function calculate_school(column) {
 		// schooldata.staffunsubsidizeddep_max = math.min((global.unsubsidizedcapyr1- schooldata.staffsubsidized), math.max(0, (schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized))); 
 	}
 	else if ( schooldata.yrincollege == 2) { 
-		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
+		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapyr2 - schooldata.staffsubsidized) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr2 - schooldata.staffsubsidized;
 		}
@@ -832,7 +832,7 @@ function calculate_school(column) {
 		// schooldata.staffunsubsidizeddep_max = math.min((global.unsubsidizedcapyr2 - schooldata.staffsubsidized), math.max(0, (schooldata.firstyrcostattend - schooldata.perkins- schooldata.staffsubsidized))):
 	} 
 	else if ( schooldata.yrincollege == 3 ) { 
-		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.perkins - schooldata.staffsubsidized;
+		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizeddep_max > (global.unsubsidizedcapyr3 - schooldata.staffsubsidized) ) {
 			schooldata.staffunsubsidizeddep_max = global.unsubsidizedcapyr3 - schooldata.staffsubsidized;
 		}

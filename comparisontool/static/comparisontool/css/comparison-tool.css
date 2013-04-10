@@ -554,16 +554,46 @@
 	display:none;
 }
 
-.arrw th:first-child {
-	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_collapse.png) no-repeat 1.5em 0.5em;
-}
+.arrw th:first-child,
 .arrw-collapse th:first-child {
-	background: url(http://dev.consumerfinance.gov/f/theme/_/img/showhide_expand.png) no-repeat 1.5em 0.5em;
+	background: url(../images/collapse_arrows.png) no-repeat 15px 17px;
 }
 
-.totalcost.arrw th:first-child, .totalcost.arrw td:first-child, 
-.totalcont.arrw th:first-child, .totalcont.arrw td:first-child {
-	background-position: 0.5em 0.5em
+.totalcost.arrw-collapse th:first-child,
+.totalcont.arrw-collapse th:first-child {
+	background-position: 15px -18px;
+}
+
+.grants.arrw th:first-child {
+	background-position: 15px -43px;
+}
+
+.grants.arrw-collapse th:first-child {
+	background-position: 15px -78px;
+}
+
+.contributions.arrw th:first-child {
+	background-position: 15px -103px;
+}
+
+.contributions.arrw-collapse th:first-child {
+	background-position: 15px -138px;
+}
+
+.federal.arrw th:first-child {
+	background-position: 15px -163px;
+}
+
+.federal.arrw-collapse th:first-child {
+	background-position: 15px -198px;
+}
+
+.private.arrw th:first-child {
+	background-position: 15px -223px;
+}
+
+.private.arrw-collapse th:first-child {
+	background-position: 15px -258px;
 }
 
 
