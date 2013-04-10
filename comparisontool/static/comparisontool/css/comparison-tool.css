@@ -556,44 +556,44 @@
 
 .arrw th:first-child,
 .arrw-collapse th:first-child {
-	background: url(../images/collapse_arrows.png) no-repeat 15px 17px;
+	background: url(../images/collapse_arrows.png) no-repeat 15px 5px;
 }
 
 .totalcost.arrw-collapse th:first-child,
 .totalcont.arrw-collapse th:first-child {
-	background-position: 15px -18px;
+	background-position: 15px -30px;
 }
 
 .grants.arrw th:first-child {
-	background-position: 15px -43px;
+	background-position: 15px -65px;
 }
 
 .grants.arrw-collapse th:first-child {
-	background-position: 15px -78px;
+	background-position: 15px -100px;
 }
 
 .contributions.arrw th:first-child {
-	background-position: 15px -103px;
+	background-position: 15px -135px;
 }
 
 .contributions.arrw-collapse th:first-child {
-	background-position: 15px -138px;
+	background-position: 15px -170px;
 }
 
 .federal.arrw th:first-child {
-	background-position: 15px -163px;
+	background-position: 15px -205px;
 }
 
 .federal.arrw-collapse th:first-child {
-	background-position: 15px -198px;
+	background-position: 15px -240px;
 }
 
 .private.arrw th:first-child {
-	background-position: 15px -223px;
+	background-position: 15px -275px;
 }
 
 .private.arrw-collapse th:first-child {
-	background-position: 15px -258px;
+	background-position: 15px -310px;
 }
 
 
