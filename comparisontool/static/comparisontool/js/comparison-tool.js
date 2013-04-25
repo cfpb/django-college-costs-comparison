@@ -40,12 +40,12 @@ var global = {
 
 var presets = {
 		"average-public" :
-			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
-			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "program": "ba",
+			{"school":"Average Public 4-Year University", "tuitionfees": 8655, "roombrd": 9205,
+			 "books": 1200, "transportation": 1110, "otherexpenses": 2091, "program": "ba",
 			 "school_id": "average-public", "prgmlength": 4, "control": "public", "origin":"presets"},
 		"average-private" :
-			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
-			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "program": "ba",
+			{"school":"Average Private 4-Year University", "tuitionfees": 29056, "roombrd": 10462,
+			 "books": 1244, "transportation": 957, "otherexpenses": 1570, "program": "ba",
 			 "school_id": "average-private", "prgmlength": 4, "control": "private", "origin":"presets"}
 	};
 
