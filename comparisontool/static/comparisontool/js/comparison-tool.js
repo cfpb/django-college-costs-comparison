@@ -2007,27 +2007,29 @@ $(document).ready(function() {
 	}
 
 	// Check to see if there is restoredata
-	var wid = window.location.href.substr(window.location.href.lastIndexOf("#")+1);
-    var posturl = "api/worksheet/" + wid + ".json";
-	var request = $.ajax({
-		type: "POST",
-		url: posturl,
-		data: null
-	});
-	request.done(function( data, textStatus, jqXHR ) {
-		var data = jQuery.parseJSON(jqXHR.responseText);
-		schools = data;
-		var column = 1;
-		$.each(schools, function(i, val) {
-			schools[i]["origin"] = "saved";
-			$("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
-			build_school_element(column);
-			column++;
-		});
-	});
-	request.fail(function( jqXHR, msg ) {
-		test = jqXHR.responseText;
-	});
+    if(window.location.hash){
+        var wid = window.location.href.substr(window.location.href.lastIndexOf("#")+1);
+        var posturl = "api/worksheet/" + wid + ".json";
+        var request = $.ajax({
+            type: "POST",
+            url: posturl,
+            data: null
+        });
+        request.done(function( data, textStatus, jqXHR ) {
+            var data = jQuery.parseJSON(jqXHR.responseText);
+            schools = data;
+            var column = 1;
+            $.each(schools, function(i, val) {
+                schools[i]["origin"] = "saved";
+                $("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
+                build_school_element(column);
+                column++;
+            });
+        });
+        request.fail(function( jqXHR, msg ) {
+            test = jqXHR.responseText;
+        });
+    };
 
 });
 
