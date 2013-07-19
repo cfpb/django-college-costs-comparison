@@ -18,7 +18,6 @@
 
 {% block page_js %}
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- Google Analytics, Universal analytics -->
 <script>
@@ -73,12 +72,13 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
         xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }
 });
-
+    $(function(){
+        $.post('/token-provider/', function(token_tag){ $(token_tag).appendTo('#reg-form')})
+    })
 </script>
 
 <script type="text/javascript">
 var restoredata = {{ data_js|safe }};
-var csrftok = "{{ csrf_token }}";
 </script>
 
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
