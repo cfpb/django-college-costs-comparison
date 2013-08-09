@@ -13,7 +13,7 @@ var global = {
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
 		"unsubsidizedcapgrad": 20500, "state529plan": 0, "perkinsrate": 0.05, "subsidizedrate": 0.068, 
-		"unsubsidizedrate": 0.068, "dloriginationfee": 1.01051, "gradplusrate": 0.079, 
+		"unsubsidizedrateundergrad": 0.0386, "unsubsidizedrategrad": 0.0541, "dloriginationfee": 1.01051, "gradplusrate": 0.0641, 
 		"parentplusrate": 0.079, "plusoriginationfee": 1.04204, "privateloanratedefault": 0.079, 
 		"institutionalloantratedefault":0.079, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
@@ -33,7 +33,7 @@ var global = {
 		"group3loanrankmed": 277, "group3loanrankhigh": 459, "group3loanrankmax": 836,
 		"group4loanrankmed": 0, "group4loanrankhigh": 0, "group4loanrankmax": 0,
 		"group5loanrankmed": 0, "group5loanrankhigh": 0, "group5loanrankmax": 0,
-		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
+		"tfcap": 19198.31, "avgbah": 1429, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
 		"schools_added": -1, "reached_zero": 0, "worksheet_id": "none"
 	};
@@ -460,6 +460,15 @@ function calculate_school(column) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
+
+
+	// Set unsubsidized rate (there is a difference between grad and undergrad direct loan rates)
+	if (schooldata.undergrad = true) {
+		schooldata.unsubsidizedrate = global.unsubsidizedrateundergrad;
+	}
+	else {
+		schooldata.unsubsidizedrate = global.unsubsidizedrateundergrad;
+	}
 
 	// Supplement/replace data with customized fields
 	school.find("input.school-data").each(function() {
@@ -985,7 +994,7 @@ function calculate_school(column) {
 	schooldata.staffunsubsidizedwithfee = schooldata.staffunsubsidized * global.dloriginationfee;
 
     // Unsubsidized debt at graduation
-    schooldata.staffunsubsidizedgrad = (schooldata.staffunsubsidizedwithfee  * global.unsubsidizedrate / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.staffunsubsidizedwithfee  * schooldata.prgmlength));
+    schooldata.staffunsubsidizedgrad = (schooldata.staffunsubsidizedwithfee  * schooldata.unsubsidizedrate / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.staffunsubsidizedwithfee  * schooldata.prgmlength));
 
 	// Grad Plus with origination
 	schooldata.gradpluswithfee = schooldata.gradplus * global.plusoriginationfee;
@@ -1034,7 +1043,7 @@ function calculate_school(column) {
 		+ (schooldata.staffsubsidizedgrad 
 			* (global.subsidizedrate / 12) / (1 - Math.pow((1 + global.subsidizedrate / 12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.staffunsubsidizedgrad 
-			* (global.unsubsidizedrate / 12) / (1 - Math.pow((1 + global.unsubsidizedrate / 12), (-schooldata.repaymentterm  * 12))))
+			* (schooldata.unsubsidizedrate / 12) / (1 - Math.pow((1 + schooldata.unsubsidizedrate / 12), (-schooldata.repaymentterm  * 12))))
 		+ (schooldata.gradplusgrad * (global.gradplusrate / 12) / (1 - Math.pow((1 + global.gradplusrate /12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.privateloangrad * (schooldata.privateloanrate / 12) / (1 - Math.pow((1 + schooldata.privateloanrate /12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.institutionalloangrad 
