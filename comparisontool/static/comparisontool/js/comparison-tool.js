@@ -463,7 +463,7 @@ function calculate_school(column) {
 
 
 	// Set unsubsidized rate (there is a difference between grad and undergrad direct loan rates)
-	if (schooldata.undergrad = true) {
+	if (schooldata.undergrad == true) {
 		schooldata.unsubsidizedrate = global.unsubsidizedrateundergrad;
 	}
 	else {
