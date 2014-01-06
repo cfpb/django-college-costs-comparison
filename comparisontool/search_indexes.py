@@ -2,7 +2,7 @@ from haystack import indexes
 from comparisontool.models import School
 
 
-class SchoolIndex(indexes.SearchIndex):
+class SchoolIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, model_attr='primary_alias')
     autocomplete = indexes.EdgeNgramField()
     school_id = indexes.IntegerField(model_attr='school_id')
@@ -13,7 +13,6 @@ class SchoolIndex(indexes.SearchIndex):
         return School
 
     def index_queryset(self, using=None):
-        """Used when the entire index for model is updated."""
         return self.get_model().objects.all()
 
     def prepare_autocomplete(self, obj):
