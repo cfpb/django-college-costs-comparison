@@ -18,8 +18,6 @@
 
 {% block page_js %}
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
 <script>
 
 jQuery(document).ajaxSend(function(event, xhr, settings) {
@@ -58,18 +56,20 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
         xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
     }
 });
-
+    $(function(){
+        $.post('/token-provider/', function(token_tag){ $(token_tag).appendTo('#reg-form')})
+    })
 </script>
 
 <script type="text/javascript">
 var restoredata = {{ data_js|safe }};
-var csrftok = "{{ csrf_token }}";
 </script>
 
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/raphael-min.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
+<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
+
 
 {% endblock page_js %}
 
@@ -942,16 +942,3 @@ var csrftok = "{{ csrf_token }}";
 	</div><!-- end #comparison-tool -->
 
 {% endblock content %}
-
-{% block analytics_js %}
-
-<!-- H5BP's Asynchronous Google Analytics snippet. -->
-<script>
-  var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
-</script>
-
-{% endblock %}
-

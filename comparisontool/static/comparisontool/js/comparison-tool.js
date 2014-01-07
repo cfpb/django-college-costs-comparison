@@ -12,9 +12,9 @@ var global = {
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
-		"unsubsidizedcapgrad": 20500, "state529plan": 0, "perkinsrate": 0.05, "subsidizedrate": 0.034, 
-		"unsubsidizedrate": 0.068, "dloriginationfee": 1.01, "gradplusrate": 0.079, 
-		"parentplusrate": 0.079, "plusoriginationfee": 1.04, "privateloanratedefault": 0.079, 
+		"unsubsidizedcapgrad": 20500, "state529plan": 0, "perkinsrate": 0.05, "subsidizedrate": 0.0386, 
+		"unsubsidizedrateundergrad": 0.0386, "unsubsidizedrategrad": 0.0541, "dloriginationfee": 1.01051, "gradplusrate": 0.0641, 
+		"parentplusrate": 0.079, "plusoriginationfee": 1.04204, "privateloanratedefault": 0.079, 
 		"institutionalloantratedefault":0.079, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
 		"group1gradrankhigh": 620, "group1gradrankmed": 1247, "group1gradrankmax": 1873,
@@ -33,19 +33,19 @@ var global = {
 		"group3loanrankmed": 277, "group3loanrankhigh": 459, "group3loanrankmax": 836,
 		"group4loanrankmed": 0, "group4loanrankhigh": 0, "group4loanrankmax": 0,
 		"group5loanrankmed": 0, "group5loanrankhigh": 0, "group5loanrankmax": 0,
-		"tfcap": 18077, "avgbah": 1368, "bscap": 1000, 
+		"tfcap": 19198.31, "avgbah": 1429, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
 		"schools_added": -1, "reached_zero": 0, "worksheet_id": "none"
 	};
 
 var presets = {
 		"average-public" :
-			{"school":"Average Public 4-Year University", "tuitionfees": 8244, "roombrd": 8887,
-			 "books": 1168, "transportation": 1082, "otherexpenses": 2066, "program": "ba",
+			{"school":"Average Public 4-Year University", "tuitionfees": 8655, "roombrd": 9205,
+			 "books": 1200, "transportation": 1110, "otherexpenses": 2091, "program": "ba",
 			 "school_id": "average-public", "prgmlength": 4, "control": "public", "origin":"presets"},
 		"average-private" :
-			{"school":"Average Private 4-Year University", "tuitionfees": 28500, "roombrd": 10089,
-			 "books": 1213, "transportation": 926, "otherexpenses": 1496, "program": "ba",
+			{"school":"Average Private 4-Year University", "tuitionfees": 29056, "roombrd": 10462,
+			 "books": 1244, "transportation": 957, "otherexpenses": 1570, "program": "ba",
 			 "school_id": "average-private", "prgmlength": 4, "control": "private", "origin":"presets"}
 	};
 
@@ -460,6 +460,15 @@ function calculate_school(column) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
+
+
+	// Set unsubsidized rate (there is a difference between grad and undergrad direct loan rates)
+	if (schooldata.undergrad == true) {
+		schooldata.unsubsidizedrate = global.unsubsidizedrateundergrad;
+	}
+	else {
+		schooldata.unsubsidizedrate = global.unsubsidizedrategrad;
+	}
 
 	// Supplement/replace data with customized fields
 	school.find("input.school-data").each(function() {
@@ -985,7 +994,7 @@ function calculate_school(column) {
 	schooldata.staffunsubsidizedwithfee = schooldata.staffunsubsidized * global.dloriginationfee;
 
     // Unsubsidized debt at graduation
-    schooldata.staffunsubsidizedgrad = (schooldata.staffunsubsidizedwithfee  * global.unsubsidizedrate / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.staffunsubsidizedwithfee  * schooldata.prgmlength));
+    schooldata.staffunsubsidizedgrad = (schooldata.staffunsubsidizedwithfee  * schooldata.unsubsidizedrate / 12 * ((schooldata.prgmlength * (schooldata.prgmlength + 1) / 2 * 12 + schooldata.prgmlength * global.deferperiod)) + (schooldata.staffunsubsidizedwithfee  * schooldata.prgmlength));
 
 	// Grad Plus with origination
 	schooldata.gradpluswithfee = schooldata.gradplus * global.plusoriginationfee;
@@ -1034,7 +1043,7 @@ function calculate_school(column) {
 		+ (schooldata.staffsubsidizedgrad 
 			* (global.subsidizedrate / 12) / (1 - Math.pow((1 + global.subsidizedrate / 12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.staffunsubsidizedgrad 
-			* (global.unsubsidizedrate / 12) / (1 - Math.pow((1 + global.unsubsidizedrate / 12), (-schooldata.repaymentterm  * 12))))
+			* (schooldata.unsubsidizedrate / 12) / (1 - Math.pow((1 + schooldata.unsubsidizedrate / 12), (-schooldata.repaymentterm  * 12))))
 		+ (schooldata.gradplusgrad * (global.gradplusrate / 12) / (1 - Math.pow((1 + global.gradplusrate /12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.privateloangrad * (schooldata.privateloanrate / 12) / (1 - Math.pow((1 + schooldata.privateloanrate /12), (-schooldata.repaymentterm * 12))))
 		+ (schooldata.institutionalloangrad 
@@ -2007,27 +2016,29 @@ $(document).ready(function() {
 	}
 
 	// Check to see if there is restoredata
-	var wid = window.location.href.substr(window.location.href.lastIndexOf("#")+1);
-    var posturl = "api/worksheet/" + wid + ".json";
-	var request = $.ajax({
-		type: "POST",
-		url: posturl,
-		data: null
-	});
-	request.done(function( data, textStatus, jqXHR ) {
-		var data = jQuery.parseJSON(jqXHR.responseText);
-		schools = data;
-		var column = 1;
-		$.each(schools, function(i, val) {
-			schools[i]["origin"] = "saved";
-			$("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
-			build_school_element(column);
-			column++;
-		});
-	});
-	request.fail(function( jqXHR, msg ) {
-		test = jqXHR.responseText;
-	});
+    if(window.location.hash){
+        var wid = window.location.href.substr(window.location.href.lastIndexOf("#")+1);
+        var posturl = "api/worksheet/" + wid + ".json";
+        var request = $.ajax({
+            type: "POST",
+            url: posturl,
+            data: null
+        });
+        request.done(function( data, textStatus, jqXHR ) {
+            var data = jQuery.parseJSON(jqXHR.responseText);
+            schools = data;
+            var column = 1;
+            $.each(schools, function(i, val) {
+                schools[i]["origin"] = "saved";
+                $("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
+                build_school_element(column);
+                column++;
+            });
+        });
+        request.fail(function( jqXHR, msg ) {
+            test = jqXHR.responseText;
+        });
+    };
 
 });
 
