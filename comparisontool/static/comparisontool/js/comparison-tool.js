@@ -450,7 +450,6 @@ function build_school_element(column) {
 } // end build_school_element()
 
 
-
 /*----------
 	CALCULATION FUNCTIONS
 -----------*/
@@ -1189,36 +1188,6 @@ function calculate_school(column) {
 	school.check_max_alert();
 
 } // end calculate_school()
-
-// check_highest_cost() - Boolean function, returns true if the bar ghs should be
-// redrawn due to a change in the "highest_cost" available
-function check_highest_cost() {
-	var redraw = false;
-	if (highest_cost != global.most_expensive_cost) {
-		highest_cost = global.most_expensive_cost;
-		redraw = true;
-	}
-	$(".school").each(function() {
-		var federaltotal = money_to_num($(this).find("h6[name='federaltotal']").text());
-		var privatetotal = money_to_num($(this).find("h6[name='privatetotal']").text());
-		var borrowingtotal = federaltotal + privatetotal;
-		var grantstotal = money_to_num($(this).find("h6[name='grantstotal']").text());
-		var savingstotal = money_to_num($(this).find("h6[name='savingstotal']").text());
-		var outofpockettotal = grantstotal + savingstotal;
-		var totalfunding = outofpockettotal + borrowingtotal;
-		var totalcost = money_to_num($(this).find("h2 span[name='firstyrcostattend']").text());
-		var thismax = totalcost;
-		if (totalfunding > totalcost) {
-			// We no longer care if funding is bigger than cost for sizing concerns
-			// thismax = totalfunding;
-		}
-		if (thismax > highest_cost) {
-			highest_cost = thismax;
-			redraw = true;
-		}
-	});
-	return redraw;
-}
 
 // check_max_alert - Check fields against their maximums, changes input color if above max
 jQuery.fn.check_max_alert = function() {
