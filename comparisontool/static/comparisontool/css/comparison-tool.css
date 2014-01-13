@@ -4,13 +4,18 @@
 /* NOTIFICATION BAR */
 /* This is a placeholder for now. */
 #notification-bar {
-    background-color: #ccc;
-    border: 1px solid #999;
-    color: #111;
+    background-color: #DBEDD4;
+    border: 1px solid #2CB34A;
+    color: #101820;
     display: none;
     padding: 1em 0;
     margin: 0 auto;
     text-align: center;
+}
+
+#close-bar {
+	color: #101820;
+	float: right;
 }
 
 /* Hide the notification on screens larger than 600px wide */
