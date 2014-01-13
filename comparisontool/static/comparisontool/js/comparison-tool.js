@@ -1374,6 +1374,36 @@ function school_search_results(query, column) {
 	return dump;
 } // end school_search_results()
 
+/*----------------
+    "Add a School" and related functions
+  ----------------*/
+
+// set_column_state(column, state)
+//   where 'column' is the column number ([1,2,3], taken from the data-column attribute)
+//     and 'stage' is the desired stage of the "Add a School" process
+
+function set_column_stage(column, stage) {
+	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
+	var school = $("[data-column='" + column + "']");
+	
+	if (state == 'default') {
+		// 'default' is the starting state, where no windows are active and all values are default
+		hide_column(column);
+
+	}
+}
+
+// reset_column(column) - resets a column to default state
+//    where 'column' is the column number ([1,2,3], taken from the data-column attribute)
+
+function reset_column(column) {
+	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
+	var school = $("[data-column='" + column + "']");
+	$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "");
+	hide_column(column);
+	delete schools[school_id];
+}
+
 
 /*----------------
 	DOCUMENT.READY
@@ -1538,7 +1568,7 @@ $(document).ready(function() {
 		$(".add-average-private").hide();
 	});
 
-	// If the click Continue in the XML option panel
+	// If user clicks Continue in the XML option panel
 	$(".add-school-info .program-selection .continue").click( function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("[data-column='" + column + "'] .program-selection").hide();
