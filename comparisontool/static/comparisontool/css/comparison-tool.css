@@ -688,7 +688,7 @@
 
 #institution-row th .add-school-info {
 	background-color: #e6e6e6;
-	display: none;
+	ignore-display: none;
 	font-size: 1em;
 	overflow: scroll;
 	padding: .25em .5em;
