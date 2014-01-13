@@ -14,7 +14,6 @@
 
 #close-bar {
 	color: #101820;
-	text-align: right;
 }
 
 #close-bar:hover,
@@ -26,10 +25,12 @@
 
 .notification-left {
 	float: left;
+	text-align: left;
 	width: 48%;
 }
 .notification-right {
 	float: right;
+	text-align: right;
 	width: 48%;
 }
 
