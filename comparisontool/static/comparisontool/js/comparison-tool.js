@@ -1389,6 +1389,11 @@ function set_column_stage(column, stage) {
 	if (stage == 'default') {
 		// 'default' is the starting state, where no windows are active and all values are default
 		hide_column(column);
+		school.find(".search-results").hide();
+		school.find(".school-search-box").val("");
+		school.find("[name='program" + column + "'']").val("ba");
+		school.find("[name='prgmlength']").val("4");
+		school.find("[name='xmlbukkit']").val("");
 	}
 	else {
 		show_column(column);
@@ -1401,18 +1406,6 @@ function set_column_stage(column, stage) {
 		school.find(".add-school-info").show();
 	}
 }
-
-// reset_column(column) - resets a column to default state
-//    where 'column' is the column number ([1,2,3], taken from the data-column attribute)
-
-function reset_column(column) {
-	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-	var school = $("[data-column='" + column + "']");
-	$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "");
-	hide_column(column);
-	delete schools[school_id];
-}
-
 
 /*----------------
 	DOCUMENT.READY
@@ -1669,6 +1662,13 @@ $(document).ready(function() {
 
 		set_column_stage(column, "occupied");
 		calculate_school(column);
+	});
+
+	// Cancel Add a School
+	$(".add-school-info .add-cancel").click( function(event) {
+		event.preventDefault();
+		var column = $(this).closest("[data-column]").attr("data-column");
+		set_column_stage(column, "default");
 	});
 
 	/* -------
