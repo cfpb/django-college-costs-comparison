@@ -71,12 +71,10 @@ var restoredata = {{ data_js|safe }};
 {% endblock page_js %}
 
 {% block app_notification %}
-<div class="wrapper-container">
-	<div id="notification-bar" class="pfc-notification">
-		<p>Hi there, this site is best experienced on a desktop. Give it a try!</p>
-		<p><button id="close-bar">Close</button></p>
+<div id="notification-bar" class="pfc-notification">
+	<p>Hi there, this site is best experienced on a desktop. Give it a try!</p>
+	<p><button id="close-bar">Close</button></p>
 	</div>
-</div>
 {% endblock %}
 {% block content %}
 <div id="comparison-tool" page="visualize">
