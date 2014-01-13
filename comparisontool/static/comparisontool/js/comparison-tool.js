@@ -1411,6 +1411,14 @@ function school_search_results(query, column) {
 --------------------*/
 
 $(document).ready(function() {
+	/* Notification for mobile screens */
+	$('#notification-bar').hide();
+    $('#notification-bar').delay(1500).slideDown(1000);
+
+    $('#close-bar').click(function() {
+        $('#notification-bar').slideUp(1000);
+    });
+    
 	/* --- Initialize Visualizations --- */
 	// Pie Charts
 	for (x = 1; x <= 3; x++ ) {
