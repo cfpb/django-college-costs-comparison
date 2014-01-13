@@ -1,6 +1,22 @@
 /* comparison tool
 -------------------------------------------------------------------------------*/
 
+/* NOTIFICATION BAR */
+/* This is a placeholder for now. */
+#notification-bar {
+    background-color: #ccc;
+    border: 1px solid #999;
+    color: #111;
+    display: none;
+    padding: 1em 0;
+    text-align: center;
+}
+
+/* Hide the notification on screens larger than 600px wide */
+@media only screen and (min-width: 37.5em) {
+    #notification-bar { display: none !important; }
+}
+
 /* HEADER BUSINESS */
 .timeline,
 .horizontal-bar {
