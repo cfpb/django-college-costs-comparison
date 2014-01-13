@@ -17,7 +17,6 @@
 {% endblock %}
 
 {% block page_js %}
-
 <script>
 
 jQuery(document).ajaxSend(function(event, xhr, settings) {
@@ -69,17 +68,16 @@ var restoredata = {{ data_js|safe }};
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/raphael-min.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
-
-
 {% endblock page_js %}
 
 {% block app_notification %}
-<div id="notification-bar" class="pfc-notification">
-	<p>Hi there, this site is best experienced on a desktop. Give it a try!</p>
-	<p><button id="close-bar">Close</button></p>
+<div class="wrapper-container">
+	<div id="notification-bar" class="pfc-notification">
+		<p>Hi there, this site is best experienced on a desktop. Give it a try!</p>
+		<p><button id="close-bar">Close</button></p>
+	</div>
 </div>
 {% endblock %}
-
 {% block content %}
 <div id="comparison-tool" page="visualize">
 		<div id="comparison-tool-header">
