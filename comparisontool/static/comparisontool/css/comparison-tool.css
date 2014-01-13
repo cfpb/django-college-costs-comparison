@@ -3,7 +3,7 @@
 
 /* NOTIFICATION BAR */
 /* This is a placeholder for now. */
-#notification-bar {
+.pfc-notification {
     background-color: #DBEDD4;
     border: 1px solid #2CB34A;
     color: #101820;
