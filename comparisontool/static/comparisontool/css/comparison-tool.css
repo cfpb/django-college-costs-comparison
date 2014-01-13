@@ -24,6 +24,15 @@
 	border-color: #101820;
 }
 
+.notification-left {
+	float: left;
+	width: 48%;
+}
+.notification-right {
+	float: right;
+	width: 48%;
+}
+
 /* Hide the notification on screens larger than 600px wide */
 @media only screen and (min-width: 37.5em) {
     #notification-bar { display: none !important; }
