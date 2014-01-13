@@ -235,15 +235,11 @@ function fade_header() {
 function build_school_element(column) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
-	school.find(".add-a-school").hide();
-	school.find(".add-school-info").hide();
-	school.find(".add-school-info input:text").val("");
-	school.find(".search-results").html("");
-	school.find(".xml-text").val("");
+	set_column_stage(column, "occupied");
+
 	school.find(".indicator-textbox").html("");
 	school.find(".indicator-textbox").hide();
 
-	show_column(column);
 	if (schools[school_id] != undefined) {
 		var schooldata = schools[school_id];
 	}
@@ -1160,7 +1156,7 @@ function calculate_school(column) {
 	// school.find(".median-borrowing-text").html(schooldata.loandebtrisk);
 
 	// Get the most expensive sticker price (for chart width histogram)
-	if (check_highest_cost() === true) {
+	if (false === true) {
 		$(".school").each(function() {
 			var column = $(this).find("[data-column]").attr("data-column");
 			draw_the_bars(column);
@@ -1378,18 +1374,31 @@ function school_search_results(query, column) {
     "Add a School" and related functions
   ----------------*/
 
-// set_column_state(column, state)
+// set_column_stage(column, stage)
 //   where 'column' is the column number ([1,2,3], taken from the data-column attribute)
 //     and 'stage' is the desired stage of the "Add a School" process
 
 function set_column_stage(column, stage) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
-	
-	if (state == 'default') {
+
+	// hide any '.staged' elements that do not match current stage; show others
+	school.find(".staged").hide();
+	school.find(".stage-" + stage).show();
+
+	if (stage == 'default') {
 		// 'default' is the starting state, where no windows are active and all values are default
 		hide_column(column);
-
+	}
+	else {
+		show_column(column);
+		school.find(".staged.stage-default").hide()
+	}
+	if (stage == 'default' || stage == 'occupied') {
+		school.find(".add-school-info").hide();
+	}
+	else {
+		school.find(".add-school-info").show();
 	}
 }
 
@@ -1483,8 +1492,9 @@ $(document).ready(function() {
 	$(".add-a-school").click( function() {
 		var column = 0;
 		column = $(this).closest("[data-column]").attr("data-column");
-		$(this).hide();
-		$("#institution-row [data-column='" + column + "'] .add-school-info").show();
+		// $(this).hide();
+		// $("#institution-row [data-column='" + column + "'] .add-school-info").show();
+		set_column_stage(column, "search");
 		$(".add-school-info").css("height", "100%");
 		fade_header();
 		return false;
@@ -1514,7 +1524,6 @@ $(document).ready(function() {
 		var column = headercell.attr("data-column");
 		var school_id = $(this).attr("href");
 		headercell.attr("data-schoolid", school_id);
-		headercell.find(".search-results").hide();
 
 		// AJAX the schooldata
 		var schooldata = new Object();
@@ -1536,8 +1545,7 @@ $(document).ready(function() {
 			// alert("ERROR");
 		});	
 		schools[school_id] = schooldata;
-		headercell.find(".school-search").hide();
-		headercell.find(".program-selection").show();
+		set_column_stage(column, "program");
 	});
 
 	// Add average public
@@ -1546,10 +1554,7 @@ $(document).ready(function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-public");
 		build_school_element(column);
-		var headercell = $(this).closest("[data-column]");
-		headercell.find(".add-school-info").hide();
-		headercell.find(".add-school-info .hidden-box").hide();
-		headercell.find(".add-school-info .school-search").show();
+		set_column_stage(column, "occupied");
 		calculate_school(column);
 		$(".add-average-public").hide();
 	});
@@ -1560,10 +1565,7 @@ $(document).ready(function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-private");
 		build_school_element(column);
-		var headercell = $(this).closest("[data-column]");
-		headercell.find(".add-school-info").hide();
-		headercell.find(".add-school-info .hidden-box").hide();
-		headercell.find(".add-school-info .school-search").show();
+		set_column_stage(column, "occupied");
 		calculate_school(column);
 		$(".add-average-private").hide();
 	});
@@ -1580,12 +1582,11 @@ $(document).ready(function() {
 		var column = headercell.attr("data-column");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var schooldata = schools[school_id];
-		$("[data-column='" + column + "'] .prgmlength-selection").hide();
 		if ( schooldata.kbyoss == "TRUE") {
-			$("[data-column='" + column + "'] .add-xml").show();
+			set_column_stage(column, "xml");
 		}
 		else {
-			$("[data-column='" + column + "'] .no-xml").show();		
+			set_column_stage(column, "noxml");
 		}
 	});
 
@@ -1595,9 +1596,7 @@ $(document).ready(function() {
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var schooldata = schools[school_id];
 		build_school_element(column);
-		headercell.find(".add-school-info").hide();
-		headercell.find(".add-school-info .hidden-box").hide();
-		headercell.find(".add-school-info .school-search").show();
+		set_column_stage(column, "occupied");
 		if ( $(this).closest(".xml-info").hasClass("add-xml") ) {
 			_gaq.push(["_trackEvent", "School Interactions", "XML Continue Button Clicked", school_id]);
 		}
@@ -1668,9 +1667,7 @@ $(document).ready(function() {
 
 		schools[school_id] = schooldata;
 
-		headercell.find(".add-school-info").hide();
-		headercell.find(".add-school-info .hidden-box").hide();
-		headercell.find(".add-school-info .school-search").show();
+		set_column_stage(column, "occupied");
 		calculate_school(column);
 	});
 
@@ -1996,8 +1993,9 @@ $(document).ready(function() {
 	});
 
 	/* --- Start the page up! --- */
-	hide_column(2);
-	hide_column(3);
+	set_column_stage(1, "default");
+	set_column_stage(2, "default");
+	set_column_stage(3, "default");
 	$("#institution-row [data-column='1']").attr("data-schoolid", "average-public");
 	schools["average-public"] = presets["average-public"];
 	build_school_element(1);
