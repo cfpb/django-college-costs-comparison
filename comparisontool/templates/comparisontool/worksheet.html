@@ -72,8 +72,9 @@ var restoredata = {{ data_js|safe }};
 
 {% block app_notification %}
 <div id="notification-bar" class="pfc-notification">
-	<p>Hi there, this site is best experienced on a desktop. Give it a try! <a id="close-bar" href="javascript:void(0)">Dismiss</button></p>
-	</div>
+	<p class="notification-left">Hi there, this site is best experienced on a desktop. Give it a try!</p>
+	<p class="notification-right"><a id="close-bar" href="javascript:void(0)">Dismiss</a></p>
+</div>
 {% endblock %}
 {% block content %}
 <div id="comparison-tool" page="visualize">
