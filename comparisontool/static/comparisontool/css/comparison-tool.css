@@ -3,32 +3,39 @@
 
 /* NOTIFICATION BAR */
 /* This is a placeholder for now. */
+.pfc-notification-wrapper {
+	background-color: #fff;
+	margin: 0 auto;
+	padding: 1em;
+}
+
 .pfc-notification {
     background-color: #DBEDD4;
     border: 1px solid #2CB34A;
     color: #101820;
     display: none;
+    font-family: "Avenir Next", Arial, sans-serif;
     padding: 1em;
     margin: 1em auto;
 }
 
-#close-bar {
+#pfc-close-bar {
 	color: #101820;
 }
 
-#close-bar:hover,
-#close-bar:active,
-#close-bar:focus {
+#pfc-close-bar:hover,
+#pfc-close-bar:active,
+#pfc-close-bar:focus {
 	background: transparent;
 	border-color: #101820;
 }
 
-.notification-left {
+.pfc-notification-left {
 	float: left;
 	text-align: left;
 	width: 48%;
 }
-.notification-right {
+.pfc-notification-right {
 	float: right;
 	text-align: right;
 	width: 48%;
@@ -36,7 +43,7 @@
 
 /* Hide the notification on screens larger than 600px wide */
 @media only screen and (min-width: 37.5em) {
-    #notification-bar { display: none !important; }
+    #pfc-notification-bar { display: none !important; }
 }
 
 /* HEADER BUSINESS */
