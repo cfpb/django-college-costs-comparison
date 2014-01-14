@@ -9,7 +9,7 @@
 	padding: 1em;
 }
 
-.pfc-notification {
+.pfc-notification-bar {
     background-color: #DBEDD4;
     border: 1px solid #2CB34A;
     color: #101820;
@@ -19,13 +19,13 @@
     margin: 1em auto;
 }
 
-#pfc-close-bar {
+.pfc-close-bar {
 	color: #101820;
 }
 
-#pfc-close-bar:hover,
-#pfc-close-bar:active,
-#pfc-close-bar:focus {
+.pfc-close-bar:hover,
+.pfc-close-bar:active,
+.pfc-close-bar:focus {
 	background: transparent;
 	border-color: #101820;
 }
