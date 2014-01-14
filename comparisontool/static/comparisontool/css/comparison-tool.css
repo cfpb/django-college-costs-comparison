@@ -5,6 +5,7 @@
 /* This is a placeholder for now. */
 .pfc-notification-wrapper {
 	background-color: #fff;
+	display: none;
 	margin: 0 auto;
 	padding: 1em;
 }
@@ -13,7 +14,6 @@
     background-color: #DBEDD4;
     border: 1px solid #2CB34A;
     color: #101820;
-    display: none;
     font-family: "Avenir Next", Arial, sans-serif;
     padding: 1em;
     margin: 1em auto;
@@ -43,7 +43,7 @@
 
 /* Hide the notification on screens larger than 600px wide */
 @media only screen and (min-width: 37.5em) {
-    #pfc-notification-bar { display: none !important; }
+    .pfc-notification-wrapper { display: none !important; }
 }
 
 /* HEADER BUSINESS */
