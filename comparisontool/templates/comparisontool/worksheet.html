@@ -71,10 +71,10 @@ var restoredata = {{ data_js|safe }};
 {% endblock page_js %}
 
 {% block app_notification %}
-<div class="pfc-notification-wrapper">
-	<div id="pfc-notification-bar" class="pfc-notification clearfix">
+<div id="pfc-notification-wrapper" class="pfc-notification-wrapper">
+	<div id="pfc-notification-bar" class="pfc-notification-bar clearfix">
 		<p class="pfc-notification-left"><strong>Hi there!</strong><br> This site is best experienced on a desktop. Give it a try!</p>
-		<p class="pfc-notification-right"><a id="pfc-close-bar" href="javascript:void(0)">Dismiss</a></p>
+		<p class="pfc-notification-right"><a id="pfc-close-bar" class="pfc-close-bar" href="javascript:void(0)">Dismiss</a></p>
 	</div>
 </div>
 {% endblock %}
