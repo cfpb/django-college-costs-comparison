@@ -1412,11 +1412,11 @@ function school_search_results(query, column) {
 
 $(document).ready(function() {
 	/* Notification for mobile screens */
-	$('#notification-bar').hide();
-    $('#notification-bar').delay(1500).slideDown(1000);
+	$('#pfc-notification-wrapper').hide();
+    $('#pfc-notification-wrapper').delay(1500).slideDown(1000);
 
-    $('#close-bar').click(function() {
-        $('#notification-bar').slideUp(1000);
+    $('#pfc-close-bar').click(function() {
+        $('#pfc-notification-wrapper').slideUp(1000);
     });
     
 	/* --- Initialize Visualizations --- */
