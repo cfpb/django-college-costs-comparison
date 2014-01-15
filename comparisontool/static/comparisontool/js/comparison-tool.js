@@ -1580,6 +1580,8 @@ $(document).ready(function() {
 	$(".add-school-info .prgmlength-selection .continue").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
+		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
+		var schooldata = schools[school_id];
 		if ( schooldata.kbyoss == "TRUE") {
 			set_column_stage(column, "xml");
 		}
