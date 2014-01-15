@@ -79,10 +79,12 @@ var restoredata = {{ data_js|safe }};
 {% block content %}
 <div id="comparison-tool" page="visualize">
 		
+		{% block breadcrumbs %}
+	        <li><a href="/">Home</a></li>
+	        <li><a href="/paying-for-college/">Paying for College</a></li>
+	        <li>Compare financial aid and college cost</li>
+	    {% endblock %}
 		<header id="comparison-tool-header">
-		    {% block breadcrumbs %}
-		        <li><a href="#"></a></li>
-		    {% endblock %}
 		    <div class="pfc-hero-wrapper">
 		        <a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
 		    </div><!-- end .pfc-hero-wrapper -->

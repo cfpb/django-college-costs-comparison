@@ -90,6 +90,7 @@
     width: auto;
     height: auto;
     padding: 0.5em 0.85em 0.25em 0.85em;
+    border-bottom: 0;
     color: #101820;
     text-align: left;
     background-color: #E3E4E5;
