@@ -1413,6 +1413,14 @@ function set_column_stage(column, stage) {
 --------------------*/
 
 $(document).ready(function() {
+	/* Notification for mobile screens */
+	$('#pfc-notification-wrapper').hide();
+    $('#pfc-notification-wrapper').delay(1500).slideDown(1000);
+
+    $('#pfc-close-bar').click(function() {
+        $('#pfc-notification-wrapper').slideUp(1000);
+    });
+    
 	/* --- Initialize Visualizations --- */
 	// Pie Charts
 	for (x = 1; x <= 3; x++ ) {
