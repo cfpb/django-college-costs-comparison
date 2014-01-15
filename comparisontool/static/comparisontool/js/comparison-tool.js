@@ -1389,6 +1389,7 @@ function set_column_stage(column, stage) {
 	if (stage == 'default') {
 		// 'default' is the starting state, where no windows are active and all values are default
 		hide_column(column);
+		// when the column is set to "default," we reset all form elements to their default.
 		school.find(".search-results").hide();
 		school.find(".school-search-box").val("");
 		school.find("[name='program" + column + "'']").val("ba");
@@ -1481,19 +1482,17 @@ $(document).ready(function() {
 		"Add a school" user interface
 	----------- */
 
-	// Start the 'add a school' process
+	// User clicks "Add a School"
 	$(".add-a-school").click( function() {
 		var column = 0;
 		column = $(this).closest("[data-column]").attr("data-column");
-		// $(this).hide();
-		// $("#institution-row [data-column='" + column + "'] .add-school-info").show();
 		set_column_stage(column, "search");
 		$(".add-school-info").css("height", "100%");
 		fade_header();
 		return false;
 	});
 
-	// Do a search when the school-search input has keyup...
+	// User has typed into the school-search input - perform search and display results
 	$(".add-school-info").on("keyup", ".school-search-box", function (ev) {
 		var query = $(this).val();
 		var column = $(this).closest("[data-column]").attr("data-column");
@@ -1510,7 +1509,7 @@ $(document).ready(function() {
 		}, 500);
 	});
 
-	// #school-search-results list links
+	// User clicks on a school from the search-results list
 	$(".add-school-info .search-results").on("click", ".school-result a", function(event) {
 		event.preventDefault();
 		var headercell = $(this).closest("[data-column]");
@@ -1535,13 +1534,13 @@ $(document).ready(function() {
 			});
 		});
 		request.fail(function() {
-			// alert("ERROR");
+			// Your fail message here.
 		});	
 		schools[school_id] = schooldata;
 		set_column_stage(column, "program");
 	});
 
-	// Add average public
+	// User clicks "Add average public"
 	$(".add-school-info .add-average-public").click( function (ev) {
 		schools["average-public"] = presets["average-public"];
 		var column = $(this).closest("[data-column]").attr("data-column");
@@ -1552,7 +1551,7 @@ $(document).ready(function() {
 		$(".add-average-public").hide();
 	});
 
-	// Add average private
+	// User clicks "Add average private"
 	$(".add-school-info .add-average-private").click( function (ev) {
 		schools["average-private"] = presets["average-private"];
 		var column = $(this).closest("[data-column]").attr("data-column");
@@ -1563,18 +1562,16 @@ $(document).ready(function() {
 		$(".add-average-private").hide();
 	});
 
-	// If user clicks Continue in the XML option panel
+	// User clicks Continue at the Program Selection ("program") stage
 	$(".add-school-info .program-selection .continue").click( function() {
 		var column = $(this).closest("[data-column]").attr("data-column");
-		$("[data-column='" + column + "'] .program-selection").hide();
-		$("[data-column='" + column + "'] .prgmlength-selection").show();
+		set_column_stage(column, "prgmlength");
 	});
 
+	// User clicks Continue at the Program Length ("prgmlength") stage
 	$(".add-school-info .prgmlength-selection .continue").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
-		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-		var schooldata = schools[school_id];
 		if ( schooldata.kbyoss == "TRUE") {
 			set_column_stage(column, "xml");
 		}
@@ -1583,6 +1580,7 @@ $(document).ready(function() {
 		}
 	});
 
+	// User clicks Continue at the XML ("xml") or No XML ("noxml") stage
 	$(".add-school-info .xml-info .continue").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
@@ -1596,6 +1594,7 @@ $(document).ready(function() {
 		calculate_school(column);	
 	});
 
+	// User clicks Apply XML at the XML ("xml") stage
 	$(".add-school-info .add-xml .xml-process").click( function() {
 		var headercell = $(this).closest("[data-column]");
 		var column = headercell.attr("data-column");
