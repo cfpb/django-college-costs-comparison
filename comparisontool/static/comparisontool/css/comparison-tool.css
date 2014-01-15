@@ -52,7 +52,9 @@
 }
 
 /* Padding on inner containers */
+.bread,
 #introduction,
+#comparison-tables,
 #save-footer,
 #save-drawer {
 	padding-left: 20px;
