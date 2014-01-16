@@ -7,17 +7,13 @@
 .pfc-notification-wrapper {
 	background-color: #fff;
 	display: none;
-	margin: 0 auto;
-	padding: 1em;
 }
 
 .pfc-notification-bar {
     background-color: #DBEDD4;
-    border: 1px solid #2CB34A;
     color: #101820;
     font-family: "Avenir Next", Arial, sans-serif;
     padding: 1em;
-    margin: 1em auto;
 }
 
 .pfc-close-bar {
