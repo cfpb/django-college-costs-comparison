@@ -1415,7 +1415,7 @@ $(document).ready(function() {
 	$('#pfc-notification-wrapper').hide();
     $('#pfc-notification-wrapper').delay(1500).slideDown(1000);
 
-    $('#pfc-close-bar').click(function() {
+    $('#pfc-close-bar #pfc-close-text').click(function() {
         $('#pfc-notification-wrapper').slideUp(1000);
     });
     
