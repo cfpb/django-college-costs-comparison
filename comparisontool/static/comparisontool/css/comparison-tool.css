@@ -33,13 +33,15 @@
 
 .pfc-notification-left {
 	float: left;
+	margin: 0 1% 0 0;
 	text-align: left;
-	width: 48%;
+	width: 79%;
 }
 .pfc-notification-right {
 	float: right;
+	margin: 0 0 0 1%;
 	text-align: right;
-	width: 48%;
+	width: 19%;
 }
 
 /* Hide the notification on screens larger than 600px wide */
