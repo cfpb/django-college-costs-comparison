@@ -16,13 +16,17 @@
     padding: 1em;
 }
 
-.pfc-close-bar {
+.pfc-close-bar,
+.pfc-close-text {
 	color: #101820;
 }
 
 .pfc-close-bar:hover,
 .pfc-close-bar:active,
-.pfc-close-bar:focus {
+.pfc-close-bar:focus,
+.pfc-close-text:hover,
+.pfc-close-text:active,
+.pfc-close-text:focus {
 	background: transparent;
 	border-color: #101820;
 }
