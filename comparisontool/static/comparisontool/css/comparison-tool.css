@@ -75,6 +75,7 @@
 
 /* New menu; We'll need to remember to remove old, unused CSS */
 #comparison-tool-header .pfc-nav-wrapper {
+	background-color: #F6D9D3;
     border-top: 1px solid #101820;
     margin: 1em 0 0;
 }
@@ -84,7 +85,8 @@
     list-style-type: none;
     padding: 0;
     margin: 0 auto;
-    width: 100%;
+    /* Increase this if more nav items are added */
+    width: 80%;
     display: table;
 }
 
@@ -94,7 +96,7 @@
     font-weight: 500;
     font-size: 1em;
     display: table-cell;
-    width: auto;
+    width: 25%;
     margin: 0;
 }
 
