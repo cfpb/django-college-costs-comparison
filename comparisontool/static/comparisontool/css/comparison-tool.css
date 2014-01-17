@@ -94,7 +94,7 @@
     font-weight: 500;
     font-size: 1em;
     display: table-cell;
-    width: 25%;
+    width: auto;
     margin: 0;
 }
 
@@ -115,7 +115,7 @@
     display: block;
     width: auto;
     height: auto;
-    padding: 0.5em 0 0.25em;
+    padding: 0.5em 0.25em 0.25em;
     border-bottom: 0;
     color: #101820;
     text-align: center;
