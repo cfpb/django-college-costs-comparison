@@ -72,9 +72,6 @@ var defaultbars = [];
 var meters = [];
 var meterarrows = [];
 
-// Visualization
-//google.load('visualization', '1', {packages: ['corechart']});
-
 /* -------- 
 	FUNCTIONS 
 ---------------*/
@@ -133,14 +130,6 @@ var delay = (function(){
 })();
 
 // setbyname - set an element to the matching schooldata object property (converted to money string)
-
-function set_by_name(column, name, value) {
-	var school_id = $("#comparison-tables #institution-row [data-column='" + column + "']").attr("data-schoolid");
-	var schooldata = schools[school_id];
-	element = $("#comparison-tables td:eq(" + col_num + ") [name='" + name + "']");
-	element.val(num_to_money(value));
-}
-
 jQuery.fn.setbyname = function(name, value, overwrite) {
 	var school_id = $(this).find("[name='institutionname']").attr("data-schoolid");
 	var schooldata = schools[school_id];
@@ -187,11 +176,11 @@ function get_worksheet_id() {
 	});
 }
 
-// Hide a column so that "add a school" box looks better
+// hide_column() - "Hide" a column, hiding all elements except .add-a-school and .width-holder
 function hide_column(col_num) {
 	var column = $("[data-column='" + col_num + "']");
 	column.each( function() {
-		$(this).children().not(".add-a-school, width-holder").hide();
+		$(this).children().not(".add-a-school, .width-holder").hide();
 		$(this).children(".add-a-school").show();
 		if ( $(this).hasClass("debt-burden-cell") ) {
 			$(this).css("background-position", "25px 100px");
@@ -199,7 +188,7 @@ function hide_column(col_num) {
 	});
 }
 
-// Show a column!
+// show_column() - Undoes the effects of hide_column()
 function show_column(col_num) {
 	var column = $("[data-column='" + col_num + "']");
 	column.each( function() {
@@ -207,7 +196,7 @@ function show_column(col_num) {
 	});	
 }
 
-
+// fade_header() - Sets up the fixed rows on scrolling
 function fade_header() {
 	var window_scroll = $(this).scrollTop();
 	var table_top = $("#first-year-costs").offset().top;
@@ -230,8 +219,7 @@ function fade_header() {
 	}
 }
 
-// Fill in a column with the school's data
-// school's data must be in the schools object first
+// build_school_element() - Fill in a column with the school's data (school's data must be in the 'schools' object)
 function build_school_element(column) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
