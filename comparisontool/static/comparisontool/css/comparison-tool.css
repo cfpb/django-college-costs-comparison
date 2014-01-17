@@ -133,10 +133,12 @@
 
 #comparison-tool-header .pfc-nav li a:focus {
     background-color: #D12124;
+    color: #FFF;
 }
 
 #comparison-tool-header .pfc-nav li a.active {
     background-color: #DA6750;
+    color: #FFF;
 }
 
 /* orange */
