@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
 {% endblock %}
 
+{% block body_class %}page paying-for-college{% endblock %}
+
 {% block breadcrumbs %}
     <li><a href="/">Home</a></li>
     <li><a href="/paying-for-college/">Paying for College</a></li>
@@ -78,7 +80,7 @@ var restoredata = {{ data_js|safe }};
 {% block app_notification %}
 <div id="pfc-notification-wrapper" class="pfc-notification-wrapper">
 	<div id="pfc-notification-bar" class="pfc-notification-bar clearfix">
-		<p class="pfc-notification-left"><strong>Hi there!</strong><br> This site is best experienced on a desktop. Give it a try!</p>
+		<p class="pfc-notification-left">College cost comparisons are easiest on a desktop, but you can <a id="pfc-close-text" class="pfc-close-text" href="javascript:void(0)">continue anyway</a>.</p>
 		<p class="pfc-notification-right"><a id="pfc-close-bar" class="pfc-close-bar" href="javascript:void(0)">Dismiss</a></p>
 	</div>
 </div>
@@ -89,13 +91,14 @@ var restoredata = {{ data_js|safe }};
 		    <div class="pfc-hero-wrapper">
 		        <a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
 		    </div><!-- end .pfc-hero-wrapper -->
+		    <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
 		    <div class="pfc-nav-wrapper">
 		        <nav>
 		            <ul class="pfc-nav">
-		                <li><a href="#">Overview</a></li>
-		                <li><a href="#">Resources</a></li>
-		                <li><a href="#">Comparing College Costs</a></li>
-		                <li><a href="#">Repaying educational debt</a></li>
+		                <li><a href="/paying-for-college/">Overview</a></li>
+		                <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Comparing College Costs</a></li>
+		                <li><a href="/paying-for-college/repay-student-debt/">Repaying educational debt</a></li>
+		                <li><a href="/paying-for-college/resources/">Resources</a></li>
 		            </ul><!-- end .pfc-nav -->
 		        </nav>
 		    </div><!-- end .pfc-nav-wrapper -->
