@@ -9,6 +9,10 @@
 	display: none;
 }
 
+.lt-ie9 .pfc-notification-wrapper {
+	display: none !important;
+}
+
 .pfc-notification-bar {
     background-color: #DBEDD4;
     color: #101820;
