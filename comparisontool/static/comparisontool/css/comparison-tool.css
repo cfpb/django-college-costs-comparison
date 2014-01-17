@@ -96,7 +96,7 @@
     font-weight: 500;
     font-size: 1em;
     display: table-cell;
-    width: 25%;
+    width: auto;
     margin: 0;
 }
 
