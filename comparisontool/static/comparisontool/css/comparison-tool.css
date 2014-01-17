@@ -84,7 +84,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0 auto;
-    width: 976px;
+    width: 100%;
     display: table;
 }
 
@@ -94,7 +94,7 @@
     font-weight: 500;
     font-size: 1em;
     display: table-cell;
-    width: auto;
+    width: 25%;
     margin: 0;
 }
 
@@ -115,10 +115,10 @@
     display: block;
     width: auto;
     height: auto;
-    padding: 0.5em 0.85em 0.25em 0.85em;
+    padding: 0.5em 0 0.25em;
     border-bottom: 0;
     color: #101820;
-    text-align: left;
+    text-align: center;
     background-color: #F6D9D3;
 }
 
