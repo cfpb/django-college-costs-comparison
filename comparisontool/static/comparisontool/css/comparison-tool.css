@@ -162,24 +162,24 @@
 	font-size: 1.125em;
 }
 
-#introduction .pfc-get-started {
+#introduction .pfc-start {
 	background-color: #f1f2f2;
 	padding: 1.5em;
 }
 
-#introduction .pfc-get-started .pfc-start-text {
+#introduction .pfc-start .pfc-start-text {
 	float: left;
 	margin-right: 30px;
 	width: 362px;
 }
 
-#introduction .pfc-get-started .pfc-start-button {
+#introduction .pfc-start .pfc-start-button {
 	float: left;
 	margin-right: 0;
 	width: 260px;
 }
 
-#introduction .pfc-get-started .pfc-button {
+#introduction .pfc-start .pfc-button {
 	background-color: #0072ce;
 	color: #fff;
 	font-family: "Avenir Next Medium", Verdana, sans-serif;
