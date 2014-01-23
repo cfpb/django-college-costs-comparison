@@ -549,6 +549,7 @@
 .arrw th:first-child,
 .arrw-collapse th:first-child {
 	background: url(../images/collapse_arrows.png) no-repeat 15px 5px;
+	cursor: pointer;
 }
 
 .totalcost.arrw-collapse th:first-child,
