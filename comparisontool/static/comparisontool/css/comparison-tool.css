@@ -164,20 +164,20 @@
 
 #introduction .pfc-start {
 	background-color: #f1f2f2;
-	padding: 1.5em;
+	padding: 1.5em 0;
 }
 
 #introduction .pfc-start .pfc-start-text {
 	float: left;
 	margin-right: 30px;
-	width: 572px;
+	width: 533.5px;
 }
 
 #introduction .pfc-start .pfc-start-button {
 	float: left;
 	margin-right: 0;
 	text-align: center;
-	width: 380px;
+	width: 372.5px;
 }
 
 #introduction .pfc-start .pfc-button {
