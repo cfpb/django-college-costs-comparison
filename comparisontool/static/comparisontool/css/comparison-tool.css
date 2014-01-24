@@ -41,6 +41,7 @@
 	text-align: left;
 	width: 75%;
 }
+
 .pfc-notification-right {
 	float: right;
 	margin: 0 0 0 1%;
@@ -158,6 +159,14 @@
 }
 
 /* GLOBAL */
+.pfc-container-left {
+	padding-left: 1.5em;
+}
+
+.pfc-container-right {
+	padding-right: 1.5em;
+}
+
 #introduction .pfc-intro-text {
 	font-size: 1.125em;
 }
@@ -176,6 +185,7 @@
 #introduction .pfc-start .pfc-start-button {
 	float: left;
 	margin-right: 0;
+	margin-top: 2em;
 	text-align: center;
 	width: 372.5px;
 }
