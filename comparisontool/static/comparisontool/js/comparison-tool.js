@@ -196,29 +196,6 @@ function show_column(col_num) {
 	});	
 }
 
-// fade_header() - Sets up the fixed rows on scrolling
-function fade_header() {
-	var window_scroll = $(this).scrollTop();
-	var table_top = $("#first-year-costs").offset().top;
-	var headheight = $("#institution-row").height();
-	if (window_scroll < ( table_top - headheight ) ) {
-		$('#institution-row').removeClass('fixed');
-	}
-	else {
-		$("#institution-row").addClass('fixed');
-		$("#institution-row .add-school-info:visible").height( $(window).height() );
-	}
-
-	var theight = $('institution-row').height();
-	var coffset = $('.private').offset().top - 500;
-	if ( ( window_scroll > theight ) && ( window_scroll < coffset ) ) {
-		$('.breakdown').addClass('fixed');
-	}
-	else {
-		$('.breakdown').removeClass('fixed');
-	}
-}
-
 // build_school_element() - Fill in a column with the school's data (school's data must be in the 'schools' object)
 function build_school_element(column) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
@@ -1444,10 +1421,6 @@ $(document).ready(function() {
 	JQUERY EVENT HANDLERS
 -------------------------*/
 
-	$(window).scroll(function() {
-		fade_header();
-	});
-
 	/* -------------
 		Accordions (not the instrument, sadly)
 	-----------------*/
@@ -1484,7 +1457,6 @@ $(document).ready(function() {
 		column = $(this).closest("[data-column]").attr("data-column");
 		set_column_stage(column, "search");
 		$(".add-school-info").css("height", "100%");
-		fade_header();
 		return false;
 	});
 
