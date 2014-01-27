@@ -769,7 +769,7 @@ function calculate_school(column) {
 			}
 		}
 	}
-	//unsubsidized loan max for dependent students
+	// unsubsidized loan max for dependent students
 	if ( schooldata.undergrad == false ) {
 		schooldata.staffunsubsidizeddep_max = schooldata.firstyrcostattend - schooldata.pell - schooldata.perkins - schooldata.staffsubsidized;
 		if ( schooldata.staffunsubsidizeddep_max > global.unsubsidizedcapgrad - schooldata.staffsubsidized) {
@@ -1195,54 +1195,56 @@ function draw_the_bars(column) {
 	else {
 		school.find(".meter").show();
 		// find each .bar element and determine its width, then animate
-		var remaining_width = 221;
-		school.find(".chart_mask_internal .bar").each(function() {
-			var bar = $(this);
-			var name = bar.attr("name");
-			var value = schooldata[name];
-			var section_width = Math.floor(value * pixel_price);
-			if ( section_width > remaining_width ) {
-				section_width = remaining_width;
-			}
-			if (section_width < minimum_chart_section_width) {
-				section_width = 0;
-				bar.stop(true, false).animate({width: 0}, transition_time, function() {
-					bar.hide();
-				});
-			}
-			else {
-				bar.stop(true, false).animate({width: (section_width - 1)}, transition_time);
-			}
-
-			if ( section_width != 0) {
-				bar.show();
-				total_section_width += section_width;
-				if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
-					total_borrowed_section_width += section_width;
+		school.find(".bars-container").each(function() {
+			var remaining_width = chart_width;
+			$(this).find(".chart_mask_internal .bar").each(function() {
+				var bar = $(this);
+				var name = bar.attr("name");
+				var value = schooldata[name];
+				var section_width = Math.floor(value * pixel_price);
+				if ( section_width > remaining_width ) {
+					section_width = remaining_width;
+				}
+				if (section_width < minimum_chart_section_width) {
+					section_width = 0;
+					bar.stop(true, false).animate({width: 0}, transition_time, function() {
+						bar.hide();
+					});
 				}
 				else {
-					total_outofpocket_section_width += section_width;
+					bar.stop(true, false).animate({width: (section_width)}, transition_time);
 				}
+
+				if ( section_width != 0) {
+					bar.show();
+					total_section_width += section_width;
+					if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
+						total_borrowed_section_width += section_width;
+					}
+					else {
+						total_outofpocket_section_width += section_width;
+					}
+				}
+				else {
+					bar.hide();
+				}
+				remaining_width -= section_width;
+				if ( remaining_width < 0 ) {
+					remaining_width = 0;
+				}
+			});
+			if ((total_outofpocket_section_width + total_borrowed_section_width) > chart_width) {
+				// school.find(".error_msg").fadeIn(400);
+				// This code will resize the bar past the width of the total cost
+				// school.find(".bars-container").width(total_outofpocket_section_width + total_borrowed_section_width);
+				// marginright = (total_outofpocket_section_width + total_borrowed_section_width) - chart_width;
+				// school.find(".tick.full").css("left", chart_width - 2 );
 			}
 			else {
-				bar.hide();
-			}
-			remaining_width -= section_width;
-			if ( remaining_width < 0 ) {
-				remaining_width = 0;
+				// school.find(".bars-container").width(chart_width);
+				school.find(".error_msg").fadeOut(400);
 			}
 		});
-		if ((total_outofpocket_section_width + total_borrowed_section_width) > chart_width) {
-			school.find(".error_msg").fadeIn(400);
-			// This code will resize the bar past the width of the total cost
-			// school.find(".bars-container").width(total_outofpocket_section_width + total_borrowed_section_width);
-			// marginright = (total_outofpocket_section_width + total_borrowed_section_width) - chart_width;
-			// school.find(".tick.full").css("left", chart_width - 2 );
-		}
-		else {
-			// school.find(".bars-container").width(chart_width);
-			school.find(".error_msg").fadeOut(400);
-		}
 
 	    // Borrowing Bar
 	    school.find('.bar.borrowing').css("width", (total_borrowed_section_width));
@@ -1258,10 +1260,14 @@ function draw_the_bars(column) {
 	    school.find(".totalborrowing").css("padding-left", left);
 
 	    if ( total_borrowed_section_width < 1 ) {
-	        school.find('.borrowing-container').hide(transition_time);
+	        // school.find('.borrowing-container').hide(transition_time);
+	        // Hiding borrowing section for now
+	        school.find('.borrowing-container').hide();
 	    }
 	    else {
-	        school.find('.borrowing-container').show(transition_time);
+	        // school.find('.borrowing-container').show(transition_time);
+	        // Hiding borrowing section for now
+	        school.find('.borrowing-container').hide();
 	    }
 	    var breakdownheight = $(".meter").height();
 	    school.find(".meter").closest("td").height(breakdownheight);
