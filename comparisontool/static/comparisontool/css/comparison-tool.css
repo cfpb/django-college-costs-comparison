@@ -458,7 +458,7 @@
 }
 
 #comparison-tool table td {
-	padding: .1875em 0;
+	padding: .25em .5em;
 }
 
 #comparison-tool table thead th {
@@ -491,11 +491,6 @@
 
 .nopad {
 	padding: 0;
-}
-
-.left-to-pay h3 {
-	font-size: 1.4em;
-	text-align: right;
 }
 
 .grants th, .grants td {
@@ -1046,22 +1041,50 @@ label.tooltip-info {
 }
 
 #comparison-tables .breakdown .meter .chart_mask_internal {
-	border-right: 2px solid #585858;
-	height: 2em;
-	padding: .75em 0 0 0;
+	height: 15px;
+	overflow: hidden;
+	padding: .1em 0 0 0;
 	text-align: left;
+}
+
+#comparison-tables .breakdown .meter .bars p {
+	margin: .2em 0;
+}
+
+#comparison-tables .breakdown .meter .institution-name p {
+	font-weight: 700;
+	margin: 1em 0em;
+}
+
+#comparison-tables .breakdown .meter .total-first-year-costs {
+
+}
+
+#comparison-tables .breakdown .meter .total-first-year-costs .costs-label,
+#comparison-tables .breakdown .meter .borrowing-bar-text .borrowing-label,
+#comparison-tables .breakdown .meter .borrowing-loans-text .federal-loans-label,
+#comparison-tables .breakdown .meter .borrowing-loans-text .private-loans-label  {
+	float: left;
+	margin-top: 0em;
+}
+
+#comparison-tables .breakdown .meter .total-first-year-costs .costs-value,
+#comparison-tables .breakdown .meter .borrowing-bar-text .borrowing-value,
+#comparison-tables .breakdown .meter .borrowing-loans-text .federal-loans-value,
+#comparison-tables .breakdown .meter .borrowing-loans-text .private-loans-value    {
+	text-align: right;
 }
 
 #comparison-tables .breakdown .meter .bars .full {
 	background: #585858;
-	height: 2em;
+	height: 15px;
 	margin: 0;
 }
 
 #comparison-tables .breakdown .meter .bars .bar {
-	border-right: 1px solid #fff;
+	border-right: 0px solid #fff;
 	float: left;
-	height: 2em;
+	height: 15px;
 	padding: 0;
 }
 
@@ -1087,11 +1110,22 @@ label.tooltip-info {
 	opacity: 0.9;	
 }
 
+#comparison-tables .breakdown .meter .borrowing-bar-text {
+	margin-top: 1.5em;
+}
+
+#comparison-tables .breakdown .meter .bars .borrowing-bars .bar.discount,
+#comparison-tables .breakdown .meter .bars .borrowing-bars .bar.savings {
+	background: #888;
+	border-right: 0px solid #DDD;
+}
+
 #comparison-tables .breakdown .meter .left-to-pay {
-	font-weight: 500;
-	padding: 0 1em 0 0;
+	font-weight: 100;
+	padding: 0;
 	text-align: right;
 }
+
 
 #comparison-tables .breakdown .meter .bars .borrowing-container {
 	position: relative;
