@@ -9,6 +9,10 @@
 	display: none;
 }
 
+.lt-ie9 .pfc-notification-wrapper {
+	display: none !important;
+}
+
 .pfc-notification-bar {
     background-color: #DBEDD4;
     color: #101820;
@@ -33,10 +37,11 @@
 
 .pfc-notification-left {
 	float: left;
-	margin: 0 1% 0 0;
+	margin: 0 5% 0 0;
 	text-align: left;
-	width: 79%;
+	width: 75%;
 }
+
 .pfc-notification-right {
 	float: right;
 	margin: 0 0 0 1%;
@@ -55,8 +60,13 @@
 	padding: 1em 0 2em;
 }
 
+.bread {
+	width: 96%;
+}
+
 /* Padding on inner containers */
 .bread,
+#pfc-hero-wrapper,
 #introduction,
 #comparison-tables,
 #save-footer,
@@ -75,6 +85,7 @@
 
 /* New menu; We'll need to remember to remove old, unused CSS */
 #comparison-tool-header .pfc-nav-wrapper {
+	background-color: #F6D9D3;
     border-top: 1px solid #101820;
     margin: 1em 0 0;
 }
@@ -84,7 +95,8 @@
     list-style-type: none;
     padding: 0;
     margin: 0 auto;
-    width: 976px;
+    /* Increase this if more nav items are added */
+    width: 80%;
     display: table;
 }
 
@@ -115,10 +127,10 @@
     display: block;
     width: auto;
     height: auto;
-    padding: 0.5em 0.85em 0.25em 0.85em;
+    padding: 0.5em 0.25em 0.25em;
     border-bottom: 0;
     color: #101820;
-    text-align: left;
+    text-align: center;
     background-color: #F6D9D3;
 }
 
@@ -133,10 +145,12 @@
 
 #comparison-tool-header .pfc-nav li a:focus {
     background-color: #D12124;
+    color: #FFF;
 }
 
 #comparison-tool-header .pfc-nav li a.active {
     background-color: #DA6750;
+    color: #FFF;
 }
 
 /* orange */
@@ -145,40 +159,46 @@
 }
 
 /* GLOBAL */
-#introduction {
-	font-size: .9em;
-	margin: 0 0 0 3em;
-}
-#introduction .intro-text {
-	display: inline-block;
-	width: 55%;
+.pfc-container-left {
+	padding-left: 1.5em;
 }
 
-#introduction .right-sidebar {
-	float: right;
-	width: 40%;
+.pfc-container-right {
+	padding-right: 1.5em;
 }
 
-#introduction .right-sidebar h2 {
-	font-size: 1.1em;
-	text-transform: none;
-	paddin
+#introduction .pfc-intro-text {
+	font-size: 1.125em;
 }
 
-#introduction .right-sidebar p {
-	font-size: .8em;
-	margin: .5em auto .5em auto;
+#introduction .pfc-start {
+	background-color: #f1f2f2;
+	padding: 1.5em 0;
 }
 
-#introduction .right-sidebar .question {
-	border: 1px solid #4b839a;
-		border-top: none;
-		border-right: none;
-	padding: .5em 0 .5em 1em ;
+#introduction .pfc-start .pfc-start-text {
+	float: left;
+	margin-right: 30px;
+	width: 533.5px;
 }
 
-#introduction .right-sidebar .question:nth-child(2) {
-	margin-top: 1.5em;
+#introduction .pfc-start .pfc-start-button {
+	float: left;
+	margin-right: 0;
+	margin-top: 2em;
+	text-align: center;
+	width: 372.5px;
+}
+
+#introduction .pfc-start .pfc-button {
+	background-color: #0072ce;
+	color: #fff;
+	font-family: "Avenir Next Medium", Verdana, sans-serif;
+	font-size: 1.125em;
+	font-style: normal;
+    font-weight: 500;
+    padding: 0.75em 2em;
+    text-align: center;
 }
 
 #comparison-tool {
@@ -399,22 +419,6 @@
 	background: #fdf3e0;
 }
 
-#comparison-tool thead .fixed {
-	position: fixed;
-	top: 0;
-	background: #fff;
-	border: 1px solid #bfbfbf;
-	border-top: none;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.25);
-	width: 975px;
-	z-index: 15;
-}
-
-#comparison-tool thead .fixed h2 {
-	font-size: 0.875em;
-	line-height: 1.25em;
-}
-
 #comparison-tool h4 {
 	text-transform: none;
 	letter-spacing: 0;
@@ -536,6 +540,7 @@
 .arrw th:first-child,
 .arrw-collapse th:first-child {
 	background: url(../images/collapse_arrows.png) no-repeat 15px 5px;
+	cursor: pointer;
 }
 
 .totalcost.arrw-collapse th:first-child,
@@ -575,25 +580,6 @@
 	background-position: 15px -310px;
 }
 
-.breakdown.fixed {
-	position: fixed;
-	bottom: 0;
-	background: #fff;
-	border: 1px solid #bfbfbf;
-	border-bottom: none;
-	box-shadow: 0 -1px 2px rgba(0,0,0,0.25);
-	width: 975px;
-}
-
-.breakdown.fixed th, .breakdown.fixed td {
-	background: #fff;
-	padding: 0.5em;
-}
-
-.breakdown.fixed td {
-	width:227px;
-}
-
 #institution-row th .add-a-school {
 	background-color: #FFF;
 	border: 3px dashed #d24505;
@@ -612,12 +598,6 @@
 #institution-row th .add-a-school:active,
 #institution-row th .add-a-school:focus {
 	background-color: #fdebd3;
-}
-
-#institution-row.fixed .add-a-school {
-	height: 1em;
-	overflow: hidden;
-	position: static;
 }
 
 #institution-row th .add-a-school .huge {

@@ -88,7 +88,7 @@ var restoredata = {{ data_js|safe }};
 {% block content %}
 <div id="comparison-tool" page="visualize">
 		<header id="comparison-tool-header">
-		    <div class="pfc-hero-wrapper">
+		    <div id="pfc-hero-wrapper" class="pfc-hero-wrapper">
 		        <a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
 		    </div><!-- end .pfc-hero-wrapper -->
 		    <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
@@ -96,7 +96,7 @@ var restoredata = {{ data_js|safe }};
 		        <nav>
 		            <ul class="pfc-nav">
 		                <li><a href="/paying-for-college/">Overview</a></li>
-		                <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Comparing College Costs</a></li>
+		                <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Comparing college costs</a></li>
 		                <li><a href="/paying-for-college/repay-student-debt/">Repaying educational debt</a></li>
 		                <li><a href="/paying-for-college/resources/">Resources</a></li>
 		            </ul><!-- end .pfc-nav -->
@@ -105,17 +105,20 @@ var restoredata = {{ data_js|safe }};
 		</header><!-- end #comparison-tool-header -->
 
 		<section id="introduction">
-			<div class="intro-text"><h1>Compare financial aid and college cost</h1>
-				<p>As part of our <a href="http://www.consumerfinance.gov/blog/more-than-500-colleges-agree-to-adopt-financial-aid-shopping-sheet-2/" target="compare_info">Know Before You Owe</a> project, we worked with the Department of Education to create a <a href="http://collegecost.ed.gov/shopping_sheet.pdf" target="compare_info">Financial Aid Shopping Sheet</a>. Now that hundreds of colleges are adopting this clear and comparable form, we’ve built a tool that complements the shopping sheet to help students make comparisons tailored to their individual circumstances. If you have received <a href="http://studentaid.ed.gov/glossary#letter_f" class="exit-link" target="compare_info">financial aid offers</a>, use this tool to understand how all those numbers impact your payments down the road.</p>
+			<div class="pfc-intro-text">
+				<h1>Compare financial aid and college cost</h1>
+				<p>Introduction and instructions placeholder.</p>
 			</div>
-			<div class="right-sidebar">
-				<div class="question">
-					<h2>Financial aid offer</h2>
-					<p>The total amount of grants and loans a student is offered by a college or career school. The school's financial aid staff combines various forms of aid into a “package” to help meet a student’s education costs</p>
+			<div class="pfc-start clearfix">
+				<div class="pfc-start-text">
+					<div class="pfc-container-left">
+						<p>Use this tool to compare your costs of paying to attend up to 3 schools you are considering.</p>
+					</div>
 				</div>
-				<div class="question">
-					<h2>Cost of attendance</h2>
-					<p>The total amount it will cost you to go to school per year. Cost of attendance (COA) includes tuition and fees; housing and meals; allowances for books and supplies; and other expenses such as personal expenses, transportation, and dependent care.</p>
+				<div class="pfc-start-button">
+					<div class="pfc-container-right">
+						<a class="pfc-button" href="#">Get started</a>
+					</div>
 				</div>
 			</div>
 		</section>
