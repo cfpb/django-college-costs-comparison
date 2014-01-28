@@ -649,9 +649,12 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="1">
 							<div class="meter group">
 								<div class="bars">
-									<div class="left-to-pay">
-										<span>Left to pay</span>
-										<h3 name="gap">$0</h3>
+									<div class="institution-name">
+										<p name="institutionname"></p>
+									</div>
+									<div class="total-first-year-costs">
+										<p class="costs-label">Total first year costs</p>
+										<p name="firstyrcostattend" class="costs-value"></p>
 									</div>
 									<div class="bars-container">
 										<div class="chart_mask_internal">
@@ -672,14 +675,39 @@ var restoredata = {{ data_js|safe }};
 												<div class="bar privloans bar-info" name="s-one-institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
-										<div class="borrowing-container">
-											<div class="bar borrowing"></div>
-											<span class="tick-borrowing"></span>
-											<div class="totalborrowing">
-												Total Borrowing
-												<span><b name="borrowingtotal">$0</b></span>
+									</div><!-- end .bars-container -->
+									<div class="left-to-pay">
+										<p><span name="gap">$0</span> left to pay</p>
+									</div>
+									<div class="borrowing-bar-text">
+										<p class="borrowing-label">Borrowing</p>
+										<p name="borrowingtotal" class="borrowing-value"></p>
+									</div>
+									<div class="bars-container borrowing-bars">
+										<div class="chart_mask_internal">
+											<div class="full">
+												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
+												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
+									</div><!-- end .bars-container.borrowing-bars -->
+									<div class="borrowing-loans-text">
+										<p class="federal-loans-label">Federal Loans</p>
+										<p name="federaltotal" class="federal-loans-value"></p>
+										<p class="private-loans-label">Private Loans</p>
+										<p name="privatetotal" class="private-loans-value"></p>
 									</div>
 								</div><!-- end .bars -->
 								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
@@ -688,9 +716,12 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="2">
 							<div class="meter group">
 								<div class="bars">
-									<div class="left-to-pay">
-										<span>Left to Pay</span>
-										<h3 name="gap">$0</h3>
+									<div class="institution-name">
+										<p name="institutionname"></p>
+									</div>
+									<div class="total-first-year-costs">
+										<p class="costs-label">Total first year costs</p>
+										<p name="firstyrcostattend" class="costs-value"></p>
 									</div>
 									<div class="bars-container">
 										<div class="chart_mask_internal">
@@ -711,14 +742,39 @@ var restoredata = {{ data_js|safe }};
 												<div class="bar privloans bar-info" name="s-two-institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
-										<div class="borrowing-container">
-											<div class="bar borrowing"></div>
-											<span class="tick-borrowing"></span>
-											<div class="totalborrowing">
-												Total Borrowing
-												<span><b name="borrowingtotal">$0</b></span>
+									</div><!-- end .bars-container -->
+									<div class="left-to-pay">
+										<p><span name="gap">$0</span> left to pay</p>
+									</div>
+									<div class="borrowing-bar-text">
+										<p class="borrowing-label">Borrowing</p>
+										<p name="borrowingtotal" class="borrowing-value"></p>
+									</div>
+									<div class="bars-container borrowing-bars">
+										<div class="chart_mask_internal">
+											<div class="full">
+												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
+												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
+									</div><!-- end .bars-container.borrowing-bars -->
+									<div class="borrowing-loans-text">
+										<p class="federal-loans-label">Federal Loans</p>
+										<p name="federaltotal" class="federal-loans-value"></p>
+										<p class="private-loans-label">Private Loans</p>
+										<p name="privatetotal" class="private-loans-value"></p>
 									</div>
 								</div><!-- end .bars -->
 								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
@@ -727,9 +783,12 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3">
 							<div class="meter group">
 								<div class="bars">
-									<div class="left-to-pay">
-										<span>Left to Pay</span>
-										<h3 name="gap">$0</h3>
+									<div class="institution-name">
+										<p name="institutionname"></p>
+									</div>
+									<div class="total-first-year-costs">
+										<p class="costs-label">Total first year costs</p>
+										<p name="firstyrcostattend" class="costs-value"></p>
 									</div>
 									<div class="bars-container">
 										<div class="chart_mask_internal">
@@ -750,14 +809,39 @@ var restoredata = {{ data_js|safe }};
 												<div class="bar privloans bar-info" name="s-three-institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
-										<div class="borrowing-container">
-											<div class="bar borrowing"></div>
-											<span class="tick-borrowing"></span>
-											<div class="totalborrowing">
-												Total Borrowing
-												<span><b name="borrowingtotal">$0</b></span>
+									</div><!-- end .bars-container -->
+									<div class="left-to-pay">
+										<p><span name="gap">$0</span> left to pay</p>
+									</div>
+									<div class="borrowing-bar-text">
+										<p class="borrowing-label">Borrowing</p>
+										<p name="borrowingtotal" class="borrowing-value"></p>
+									</div>
+									<div class="bars-container borrowing-bars">
+										<div class="chart_mask_internal">
+											<div class="full">
+												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
+												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
+									</div><!-- end .bars-container.borrowing-bars -->
+									<div class="borrowing-loans-text">
+										<p class="federal-loans-label">Federal Loans</p>
+										<p name="federaltotal" class="federal-loans-value"></p>
+										<p class="private-loans-label">Private Loans</p>
+										<p name="privatetotal" class="private-loans-value"></p>
 									</div>
 								</div><!-- end .bars -->
 								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
