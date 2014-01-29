@@ -375,6 +375,7 @@
 	line-height: 1em;
 }
 
+#comparison-tool .h2,
 #comparison-tool thead h2 {
 	text-transform: none;
 	font-size: 1.5em;
@@ -419,13 +420,15 @@
 	background: #fdf3e0;
 }
 
+#comparison-tool .h4,
 #comparison-tool h4 {
 	text-transform: none;
 	letter-spacing: 0;
 	font-size: 1.125em;
 }
 
-#comparison-tool .totalcont h4, #comparison-tool .totalcost h4 {
+#comparison-tool .totalcont h4,
+#comparison-tool .totalcost h4 {
 	font-size: 1.25em;
 }
 
@@ -433,10 +436,12 @@
 	font-size: 1.5em;
 }
 
+#comparison-tool .h6,
 #comparison-tool h6 {
 	font-size: 1.125em;
 }
 
+#comparison-tool .h3,
 #comparison-tool table h3 {
 	text-transform: uppercase;
 	font-weight: 400;
@@ -798,15 +803,19 @@
 #total-costs table thead th {
 	border-top: 5px solid #e26e40;
 }
+
 #scholarships thead th {
 	border-top: 5px solid #7da0c3;
 }
+
 #federal-loans thead th {
 	border-top: 5px solid #f59d65;
 }
+
 #private-loans thead th {
 	border-top: 5px solid #f5c455;
 }
+
 #contributions thead th {
 	border-top: 5px solid #d6cca3;
 }
@@ -898,7 +907,6 @@ input.tooltip-info:hover, input.tooltip-info:focus {
 	border-bottom: 1px solid #AFAFB3;
 }
 
-
 /* INPUTS
 -------------------------------------------------------------------------------*/
 td input {
@@ -959,6 +967,7 @@ label.tooltip-info {
 	text-align: justify;
 	z-index: 3000;
 }
+
 #tooltip-container > p,
 #bar-info-container > p {
 	padding: 0;
@@ -977,6 +986,7 @@ label.tooltip-info {
 	top: -20px;
 	width: 0;
 }
+
 #tooltip-container .innertip {
 	border: 7px solid transparent;
 	border-bottom-color: #a0f798;
@@ -998,6 +1008,7 @@ label.tooltip-info {
 	top: -20px;
 	width: 0;
 }
+
 #bar-info-container .innertip {
 	border: 7px solid transparent;
 	border-bottom-color: #f4f4f4;
