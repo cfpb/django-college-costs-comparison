@@ -1433,11 +1433,11 @@ $(document).ready(function() {
 
 	$('tr.show').click(function() {
 		$(this).closest('tbody').children(':not(.show)').toggleClass('hide');
-		$(this).closest('.arrw').toggleClass('arrw-collapse');
+		$(this).closest('.arrw-collapse').toggleClass('arrw');
 	});
 	$('.grants').click(function() {
 		$('.grants-row').toggleClass('tr-hide');
-		$(this).closest('.arrw').toggleClass('arrw-collapse');
+		$(this).closest('.arrw-collapse').toggleClass('arrw');
 	});
 	$('.federal').click(function() {
 		$('.federal-row').toggleClass('tr-hide');
