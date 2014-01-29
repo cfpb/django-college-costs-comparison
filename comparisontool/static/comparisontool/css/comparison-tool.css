@@ -1373,6 +1373,11 @@ label.tooltip-info {
 	border-bottom: 5px solid #585858;
 }
 
+.vert-pad {
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+}
+
 /* Relatively position items */
 .p-rel {
 	position: relative;
