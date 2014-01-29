@@ -522,7 +522,7 @@
 }
 
 .totalcost {
-	background: #fcebc9;
+	background: #d4e0eb;
 }
 
 .totalcont {
@@ -530,7 +530,7 @@
 }
 
 .breakdown th, .breakdown td {
-	background: #f8e0d4;
+	background: #fff;
 }
 
 .hide, .tr-hide {
@@ -1356,7 +1356,9 @@ label.tooltip-info {
 
 /* HELPER CLASSES
 -------------------------------------------------------------------------------*/
-.bottom-border th, .bottom-border td {
+.bottom-border,
+.bottom-border th,
+.bottom-border td {
 	border-bottom: 5px solid #585858;
 }
 
