@@ -368,15 +368,15 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="totalcont show arrw">
 						<th scope="row" data-column="0"><h4>Money for school</h4></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="moneyforcollege" name="s-one-moneyforcollege">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="moneyforcollege" name="s-two-moneyforcollege">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="moneyforcollege" name="s-three-moneyforcollege">$0</h6></td>
+						<td data-column="1"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 					</tr>
 					<tr class="grants collapse arrw">
 						<th scope="row" data-column="0"><h5>Scholarships &amp; grants</h5></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="grantstotal" name="s-one-grantstotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="grantstotal" name="s-two-grantstotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="grantstotal" name="s-three-grantstotal">$0</h6></td>
+						<td data-column="1"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
+						<td data-column="2"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
+						<td data-column="3"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
 					</tr>
 					<tr class="grants-row">
 						<th scope="row" data-column="0"><span class="tooltip-info" data-tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,550 per year." data-tipname="pell">Federal Pell Grant</span></th>
@@ -681,7 +681,7 @@ var restoredata = {{ data_js|safe }};
 									</div>
 									<div class="borrowing-bar-text">
 										<p class="borrowing-label">Borrowing</p>
-										<p name="borrowingtotal" class="borrowing-value">$0</p>
+										<p data-nickname="borrowingtotal" class="borrowing-value">$0</p>
 									</div>
 									<div class="bars-container borrowing-bars">
 										<div class="chart_mask_internal">
@@ -705,9 +705,9 @@ var restoredata = {{ data_js|safe }};
 									</div><!-- end .bars-container.borrowing-bars -->
 									<div class="borrowing-loans-text">
 										<p class="federal-loans-label">Federal Loans</p>
-										<p name="federaltotal" class="federal-loans-value">$0</p>
+										<p data-nickname="federaltotal" class="federal-loans-value">$0</p>
 										<p class="private-loans-label">Private Loans</p>
-										<p name="privatetotal" class="private-loans-value">$0</p>
+										<p data-nickname="privatetotal" class="private-loans-value">$0</p>
 									</div>
 								</div><!-- end .bars -->
 								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
@@ -748,33 +748,33 @@ var restoredata = {{ data_js|safe }};
 									</div>
 									<div class="borrowing-bar-text">
 										<p class="borrowing-label">Borrowing</p>
-										<p name="borrowingtotal" class="borrowing-value">$0</p>
+										<p data-nickname="borrowingtotal" class="borrowing-value">$0</p>
 									</div>
 									<div class="bars-container borrowing-bars">
 										<div class="chart_mask_internal">
 											<div class="full">
-												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
-												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
-												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
-												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
-												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
-												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
-												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
-												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
-												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
-												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
-												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
-												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
+												<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
+												<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
 									</div><!-- end .bars-container.borrowing-bars -->
 									<div class="borrowing-loans-text">
 										<p class="federal-loans-label">Federal Loans</p>
-										<p name="federaltotal" class="federal-loans-value">$0</p>
+										<p data-nickname="federaltotal" class="federal-loans-value">$0</p>
 										<p class="private-loans-label">Private Loans</p>
-										<p name="privatetotal" class="private-loans-value">$0</p>
+										<p data-nickname="privatetotal" class="private-loans-value">$0</p>
 									</div>
 								</div><!-- end .bars -->
 								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
@@ -793,20 +793,20 @@ var restoredata = {{ data_js|safe }};
 									<div class="bars-container">
 										<div class="chart_mask_internal">
 											<div class="full">
-												<div class="bar discount bar-info" name="s-three-pell" data-tooltip="Pell Grants"></div>
-												<div class="bar discount bar-info" name="s-three-scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
-												<div class="bar discount bar-info" name="s-three-tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
-												<div class="bar discount bar-info" name="s-three-gibill" data-tooltip="GI Bill"></div>
-												<div class="bar savings bar-info" name="s-three-savings" data-tooltip="What You Can Pay"></div>
-												<div class="bar savings bar-info" name="s-three-family" data-tooltip="What Family &amp; Others Can Pay"></div>
-												<div class="bar savings bar-info" name="s-three-state529plan" data-tooltip="Parent Loans"></div>
-												<div class="bar savings bar-info" name="s-three-workstudy" data-tooltip="Work-Study"></div>
-												<div class="bar fedloans bar-info" name="s-three-perkins" data-tooltip="Perkins Loans"></div>
-												<div class="bar fedloans bar-info" name="s-three-staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" name="s-three-gradplus" data-tooltip="Grad PLUS Loans"></div>
-												<div class="bar privloans bar-info" name="s-three-privateloan"  data-tooltip="Loans from Your School"></div>
-												<div class="bar privloans bar-info" name="s-three-institutionalloan" data-tooltip="Other Loans"></div>
+												<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
+												<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
 									</div><!-- end .bars-container -->
@@ -815,33 +815,33 @@ var restoredata = {{ data_js|safe }};
 									</div>
 									<div class="borrowing-bar-text">
 										<p class="borrowing-label">Borrowing</p>
-										<p name="borrowingtotal" class="borrowing-value">$0</p>
+										<p data-nickname="borrowingtotal" class="borrowing-value">$0</p>
 									</div>
 									<div class="bars-container borrowing-bars">
 										<div class="chart_mask_internal">
 											<div class="full">
-												<div class="bar discount bar-info" name="pell" data-tooltip="Pell Grants"></div>
-												<div class="bar discount bar-info" name="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
-												<div class="bar discount bar-info" name="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
-												<div class="bar discount bar-info" name="gibill" data-tooltip="GI Bill"></div>
-												<div class="bar savings bar-info" name="savings" data-tooltip="What You Can Pay"></div>
-												<div class="bar savings bar-info" name="family" data-tooltip="What Family &amp; Others Can Pay"></div>
-												<div class="bar savings bar-info" name="state529plan" data-tooltip="Parent Loans"></div>
-												<div class="bar savings bar-info" name="workstudy" data-tooltip="Work-Study"></div>
-												<div class="bar fedloans bar-info" name="perkins" data-tooltip="Perkins Loans"></div>
-												<div class="bar fedloans bar-info" name="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" name="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" name="gradplus" data-tooltip="Grad PLUS Loans"></div>
-												<div class="bar privloans bar-info" name="privateloan"  data-tooltip="Loans from Your School"></div>
-												<div class="bar privloans bar-info" name="institutionalloan" data-tooltip="Other Loans"></div>
+												<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
+												<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+												<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+												<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
+												<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
+												<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+												<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
+												<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
+												<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+												<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
+												<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
+												<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
 											</div>
 										</div>
 									</div><!-- end .bars-container.borrowing-bars -->
 									<div class="borrowing-loans-text">
 										<p class="federal-loans-label">Federal Loans</p>
-										<p name="federaltotal" class="federal-loans-value">$0</p>
+										<p data-nickname="federaltotal" class="federal-loans-value">$0</p>
 										<p class="private-loans-label">Private Loans</p>
-										<p name="privatetotal" class="private-loans-value">$0</p>
+										<p data-nickname="privatetotal" class="private-loans-value">$0</p>
 									</div>
 								</div><!-- end .bars -->
 								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
@@ -855,9 +855,9 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</h4></th>
-						<td data-column="1"><span name="totaldebtgrad"></span></td>
-						<td data-column="2"><span name="totaldebtgrad"></span></td>
-						<td data-column="3"><span name="totaldebtgrad"></span></td>
+						<td data-column="1"><span data-nickname="totaldebtgrad"></span></td>
+						<td data-column="2"><span data-nickname="totaldebtgrad"></span></td>
+						<td data-column="3"><span data-nickname="totaldebtgrad"></span></td>
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
@@ -866,17 +866,17 @@ var restoredata = {{ data_js|safe }};
 						</th>
 						<td data-column="1">
 							<div class="debt-pie" id="pie1"></div>
-							<p><span name="loanmonthly"></span> per month</p>
+							<p><span data-nickname="loanmonthly"></span> per month</p>
 							<p class="percent-of-salary"><span class="payment-percent">0%</span> of your monthly salary</p>
 						</td>
 						<td data-column="2">
 							<div class="debt-pie" id="pie2"></div>
-							<p><span name="loanmonthly"></span> per month</p>
+							<p><span data-nickname="loanmonthly"></span> per month</p>
 							<p class="percent-of-salary"><span class="payment-percent">0%</span> of your monthly salary</p>
 						</td>
 						<td data-column="3">
 							<div class="debt-pie" id="pie3"></div>
-							<p><span name="loanmonthly"></span> per month</p>
+							<p><span data-nickname="loanmonthly"></span> per month</p>
 							<p class="percent-of-salary"><span class="payment-percent">0%</span> of your monthly salary</p>
 						</td>
 					</tr>
@@ -903,38 +903,38 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="1">
 							<div class="graduation-rate-chart">
 								<div class="gradrisk-container">
-									<span name="gradriskpercent" class="gradrisk-percent"></span>
+									<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>
 									<div class="gradrisk-pointer"></div>	
 								</div>
 								<div class="gradrisk-bar">
 									<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
 								</div>
 							</div>
-							<p name="gradrisk" class="gradrisk-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="gradrisk" class="gradrisk-text indicator-textbox">&nbsp;</p>
 						</td>
 						<td data-column="2">
 							<div class="graduation-rate-chart">
 								<div class="gradrisk-container">
-									<span name="gradriskpercent" class="gradrisk-percent"></span>
+									<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>
 									<div class="gradrisk-pointer"></div>
 								</div>
 								<div class="gradrisk-bar">
 									<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
 								</div>
 							</div>
-							<p name="gradrisk" class="gradrisk-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="gradrisk" class="gradrisk-text indicator-textbox">&nbsp;</p>
 						</td>
 						<td data-column="3">
 							<div class="graduation-rate-chart">
 								<div class="gradrisk-container">
-									<span name="gradriskpercent" class="gradrisk-percent"></span>
+									<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>
 									<div class="gradrisk-pointer"></div>
 								</div>
 								<div class="gradrisk-bar">
 									<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>	
 								</div>
 							</div>
-							<p name="gradrisk" class="gradrisk-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="gradrisk" class="gradrisk-text indicator-textbox">&nbsp;</p>
 						</td>
 					</tr>
 					<tr class="visualization-row">
@@ -947,21 +947,21 @@ var restoredata = {{ data_js|safe }};
 								<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
 								<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
 							</div>
-							<p name="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 						</td>
 						<td data-column="2">
 							<div class="default-rate-chart" id="defaultbars2">
 								<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
 								<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
 							</div>
-							<p name="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 						</td>
 						<td data-column="3">
 							<div class="default-rate-chart" id="defaultbars3">
 								<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
 								<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
 							</div>
-							<p name="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 						</td>
 					</tr>
 					<tr class="visualization-row">
@@ -972,17 +972,17 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="1">
 							<div class="median-borrowing-chart" id="meter1">
 							</div>
-							<p name="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
 						</td>
 						<td data-column="2">
 							<div class="median-borrowing-chart" id="meter2">
 							</div>
-							<p name="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
 						</td>
 						<td data-column="3">
 							<div class="median-borrowing-chart" id="meter3">
 							</div>
-							<p name="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
+							<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
 						</td>
 					</tr>
 				</tbody>
