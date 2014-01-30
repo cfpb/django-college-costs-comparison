@@ -1073,7 +1073,7 @@ label.tooltip-info {
 }
 
 #comparison-tables .breakdown .meter .bars .bar {
-	border-right: 0px solid #fff;
+	border-right: 1px solid #fff;
 	float: left;
 	height: 15px;
 	padding: 0;
