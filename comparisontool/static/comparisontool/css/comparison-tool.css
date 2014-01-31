@@ -1073,7 +1073,7 @@ label.tooltip-info {
 }
 
 #comparison-tables .breakdown .meter .bars .bar {
-	border-right: 0px solid #fff;
+	border-right: 1px solid #fff;
 	float: left;
 	height: 15px;
 	padding: 0;
@@ -1108,7 +1108,7 @@ label.tooltip-info {
 #comparison-tables .breakdown .meter .bars .borrowing-bars .bar.discount,
 #comparison-tables .breakdown .meter .bars .borrowing-bars .bar.savings {
 	background: #888;
-	border-right: 0px solid #DDD;
+	border-right: 1px solid #DDD;
 }
 
 #comparison-tables .breakdown .meter .left-to-pay {

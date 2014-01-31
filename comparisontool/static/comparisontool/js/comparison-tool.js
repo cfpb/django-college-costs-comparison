@@ -131,9 +131,9 @@ var delay = (function(){
 
 // setbyname - set an element to the matching schooldata object property (converted to money string)
 jQuery.fn.setbyname = function(name, value, overwrite) {
-	var school_id = $(this).find("[name='institutionname']").attr("data-schoolid");
+	var school_id = $(this).find("[data-nickname='institutionname']").attr("data-schoolid");
 	var schooldata = schools[school_id];
-	var element = $(this).find("[name='" + name +"']");
+	var element = $(this).find("[data-nickname='" + name + "']");
 
 	element.val(num_to_money(value));
 	
@@ -151,9 +151,9 @@ jQuery.fn.setbyname = function(name, value, overwrite) {
 
 // textbyname - set the text of an element to a money string
 jQuery.fn.textbyname = function(name, value) {
-	var school_id = $(this).find("[name='institutionname']").attr("data-schoolid");
+	var school_id = $(this).find("[data-nickname='institutionname']").attr("data-schoolid");
 	var schooldata = schools[school_id];
-	var element = $(this).find("[name='" + name +"']");
+	var element = $(this).find("[data-nickname='" + name + "']");
 	element.text(num_to_money(value));
 	return false;
 };
@@ -213,11 +213,11 @@ function build_school_element(column) {
 	}
 
 	// Get program type and length
-	schooldata.program = school.find("input:radio[name='program" + column + "']:checked").val();
+	schooldata.program = school.find(".program-selection :radio:checked").val();
 	if ( schooldata.program == undefined ) {
 		schooldata.program = "ba";
 	}
-	schooldata.prgmlength = money_to_num(school.find("[name='prgmlength']").val());
+	schooldata.prgmlength = money_to_num(school.find(".prgmlength-selection select").val());
 	if ( schooldata.prgmlength == 0 ) {
 		if (schooldata.program == "ba") {
 			schooldata.prgmlength = 4;
@@ -247,15 +247,15 @@ function build_school_element(column) {
 	}
 
 	// Set the data within the element
-	school.find('[name="institutionname"]').html(schooldata.school);
+	school.find("[data-nickname='institutionname']").html(schooldata.school);
 	school.find("input.school-data").not(".interest-rate").val("$0");
-	school.find("input[name='institutionalloanrate']").val(global.institutionalloantratedefault * 100 + "%");
-	school.find("input[name='privateloanrate']").val(global.privateloanratedefault * 100 + "%");
+	school.find("input[data-nickname='institutionalloanrate']").val(global.institutionalloantratedefault * 100 + "%");
+	school.find("input[data-nickname='privateloanrate']").val(global.privateloanratedefault * 100 + "%");
 	// Currently, we're not using schooldata from the database
 	// As such, the following is only used for average schools
 	if ( ( schooldata.origin == "presets" ) || ( schooldata.origin == "saved" ) ) {
 		for (key in schooldata) {
-		    school.find('input[name="' + key + '"]').val(schooldata[key]);
+		    school.find("input[data-nickname='" + key + "']").val(schooldata[key]);
 		}
 		// Average public and private do not have GI Bill information
 	}
@@ -432,18 +432,18 @@ function calculate_school(column) {
 
 	// Supplement/replace data with customized fields
 	school.find("input.school-data").each(function() {
-		schooldata[$(this).attr("name")] = money_to_num($(this).val());
+		schooldata[$(this).attr("data-nickname")] = money_to_num($(this).val());
 		if ( $(this).hasClass("interest-rate") ) {
-			schooldata[$(this).attr("name")] = ( money_to_num( $(this).val() ) / 100 );
+			schooldata[$(this).attr("data-nickname")] = ( money_to_num( $(this).val() ) / 100 );
 		}
 	});
 
 	// Get program type and length
-	schooldata.program = school.find("input:radio[name='program" + column + "']:checked").val();
+	schooldata.program = school.find(".program-selection :radio:checked").val();
 	if ( schooldata.program == undefined ) {
 		schooldata.program = "ba";
 	}
-	schooldata.prgmlength = money_to_num(school.find("[name='prgmlength']").val());
+	schooldata.prgmlength = money_to_num(school.find(".prgmlength-selection select").val());
 	if ( schooldata.prgmlength == 0 ) {
 		if (schooldata.program == "ba") {
 			schooldata.prgmlength = 4;
@@ -503,7 +503,7 @@ function calculate_school(column) {
 	// Start calculations
 	// Cost of First Year (schooldata.firstyrcostattend)
 	schooldata.firstyrcostattend = schooldata.tuitionfees + schooldata.roombrd + schooldata.books + schooldata.otherexpenses + schooldata.transportation;
-	school.find('[name="firstyrcostattend"]').text( num_to_money( schooldata.firstyrcostattend ) );
+	school.find("[data-nickname='firstyrcostattend']").text( num_to_money( schooldata.firstyrcostattend ) );
 
 	/*------- SCHOLARSHIPS & GRANTS --------*/
 	// Pell Grants
@@ -540,7 +540,7 @@ function calculate_school(column) {
 	// GI Bill
 
 	// Determine in-state and out-of-state
-	var instate = school.find("input:radio[name='military-residency" + column + "']:checked").val();
+	var instate = school.find(".military-residency-panel :radio:checked").val();
 	if ( ( instate === "instate" ) || ( instate == "indistrict" ) ) {
 		schooldata.instate = true;
 	}
@@ -556,7 +556,8 @@ function calculate_school(column) {
 	}
 
 	// Determine if global.vet is true or false:
-	if ($("[data-column='" + column + "'] [name='military-status']").val() != "none") {
+	var vetselect = school.find(".military-status-select").val();
+	if (vetselect != "none") {
 		global.vet = true;
 	}
 	else {
@@ -841,11 +842,11 @@ function calculate_school(column) {
 	}
     // If it's an undergrad program, gradplus is readonly
     if ( schooldata.undergrad == true ) {
-    	school.find("[name='gradplus']").attr("readonly", "readonly");
-    	school.find("[name='gradplus']").val("not available");
+    	school.find("[data-nickname='gradplus']").attr("readonly", "readonly");
+    	school.find("[data-nickname='gradplus']").val("not available");
     } 
     else {
-    	school.find("[name='gradplus']").removeAttr("readonly");
+    	school.find("[data-nickname='gradplus']").removeAttr("readonly");
     	school.setbyname("gradplus", schooldata.gradplus, true);
     }
 
@@ -876,7 +877,7 @@ function calculate_school(column) {
 		schooldata.institutionalloanrate = .01;
 	}
 	loantext = ( Math.round(schooldata.institutionalloanrate * 1000) / 10 ) + "%";
-	school.find("[name='institutionalloanrate']").val(loantext);
+	school.find("[data-nickname='institutionalloanrate']").val(loantext);
 
 
 	schooldata.privateloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.institutionalloan - schooldata.gradplus;
@@ -899,7 +900,7 @@ function calculate_school(column) {
 		schooldata.privateloanrate = .01;
 	}
 	loantext = ( Math.round(schooldata.privateloanrate * 1000) / 10 ) + "%";
-	school.find("[name='privateloanrate']").val(loantext);
+	school.find("[data-nickname='privateloanrate']").val(loantext);
 
 	// Private Loan Total
 	schooldata.privatetotal = schooldata.privateloan + schooldata.institutionalloan;
@@ -1037,25 +1038,25 @@ function calculate_school(column) {
 		var default_rate_readable = " (" + Math.round(schooldata.defaultrate * 100) + "%)";
 		if ( schooldata.loanmonthly == 0) {
 			schooldata.riskofdefault = "None";
-			school.find("[name='debtburden']").closest("td").css("background-position", "25px 0px");
+			school.find("[data-nickname='debtburden']").closest("td").css("background-position", "25px 0px");
 		}
 		else if ( schooldata.loanmonthly <= ( schooldata.salarymonthly * global.lowdefaultrisk ) ) {
 			schooldata.riskofdefault =  "Low";
-			school.find("[name='debtburden']").closest("td").css("background-position", "25px -60px");
+			school.find("[data-nickname='debtburden']").closest("td").css("background-position", "25px -60px");
 		}
 		else if ( schooldata.loanmonthly <= ( schooldata.salarymonthly * global.meddefaultrisk ) ) {
 			schooldata.riskofdefault = "Medium";
-			school.find("[name='debtburden']").closest("td").css("background-position", "25px -120px");
+			school.find("[data-nickname='debtburden']").closest("td").css("background-position", "25px -120px");
 		}
 		else {
 			schooldata.riskofdefault = "High";
-			school.find("[name='debtburden']").closest("td").css("background-position", "25px -180px");
+			school.find("[data-nickname='debtburden']").closest("td").css("background-position", "25px -180px");
 		}
-		school.find("[name='debtburden']").html(schooldata.riskofdefault);
+		school.find("[data-nickname='debtburden']").html(schooldata.riskofdefault);
 	}
 	else {
-		school.find("[name='debtburden']").html("");
-		school.find("[name='debtburden']").closest("td").css("background-position", "30% 60px");
+		school.find("[data-nickname='debtburden']").html("");
+		school.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
 	}
 	// ---- School Indicators ---- //
 	// Comparative Graduation Rate
@@ -1097,7 +1098,6 @@ function calculate_school(column) {
 	if ( ( schooldata.defaultrisk == "" ) || ( schooldata.defaultrisk == undefined ) ) {
 		schooldata.defaultrisk = "<em>Not Available</em>";
 	}
-	// school.find("[name='defaultrisk']").html(schooldata.defaultrisk);
 
 	// Comparative Average Student Loan
 	if (schooldata.avgstuloandebt == "NR") {
@@ -1134,7 +1134,7 @@ function calculate_school(column) {
 	left_to_pay = schooldata.gap;
 
 	if (left_to_pay < 1){
-		school.find('[name="gap"]').text( "$0" );
+		school.find("[data-nickname='gap']").text( "$0" );
 		if ( ( schooldata.firstyrcostattend > 0 ) && ( global.reached_zero == 0 ) ) {
 			if ( schools_zeroed[school_id] == undefined ) {
 				_gaq.push(["_trackEvent", "School Interactions", "Reached Zero Left to Pay", school_id]);
@@ -1143,7 +1143,7 @@ function calculate_school(column) {
 		}
 	}
 	else {
-		school.find('[name="gap"]').text(num_to_money(left_to_pay));
+		school.find("[data-nickname='gap']").text(num_to_money(left_to_pay));
 	}
 
 	school.check_max_alert();
@@ -1178,7 +1178,7 @@ function draw_the_bars(column) {
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
 	var chart_width = $("#institution-row [data-column='1']").width();
-	var cost = money_to_num(school.find("[name='firstyrcostattend']").html());
+	var cost = money_to_num(school.find("[data-nickname='firstyrcostattend']").html());
 	var pixel_price = chart_width / cost;
 	var left = 0;
 
@@ -1199,7 +1199,7 @@ function draw_the_bars(column) {
 			var remaining_width = chart_width;
 			$(this).find(".chart_mask_internal .bar").each(function() {
 				var bar = $(this);
-				var name = bar.attr("name");
+				var name = bar.attr("data-nickname");
 				var value = schooldata[name];
 				var section_width = Math.floor(value * pixel_price);
 				if ( section_width > remaining_width ) {
@@ -1363,9 +1363,9 @@ function set_column_stage(column, stage) {
 		// when the column is set to "default," we reset all form elements to their default.
 		school.find(".search-results").hide();
 		school.find(".school-search-box").val("");
-		school.find("[name='program" + column + "'']").val("ba");
-		school.find("[name='prgmlength']").val("4");
-		school.find("[name='xmlbukkit']").val("");
+		school.find(".program-select :radio").val("ba");
+		school.find(".prgmlength-selection select").val("4");
+		school.find("[data-nickname='xmlbukkit']").val("");
 	}
 	else {
 		show_column(column);
@@ -1624,12 +1624,12 @@ $(document).ready(function() {
 
 		school.find("input.school-data").each(function() {
 			if ( $(this).hasClass("interest-rate") ) {
-				var interest = schooldata[$(this).attr("name")] * 100;
+				var interest = schooldata[$(this).attr("data-nickname")] * 100;
 				interest = Math.round( interest * 10) / 10;
 				$(this).val( interest + "%") ;
 			}
 			else {
-				$(this).val( num_to_money( schooldata[$(this).attr("name")] ) ) ;
+				$(this).val( num_to_money( schooldata[$(this).attr("data-nickname")] ) ) ;
 			}
 		});
 
@@ -1685,7 +1685,7 @@ $(document).ready(function() {
 		"GI Bill" user interface
 	----------- */
 	// Show the GI Bill panel on click
-	$(".gibill-calculator, input[name='gibill']").click( function(event) {
+	$(".gibill-calculator, input[data-nickname='gibill']").click( function(event) {
 		event.preventDefault();
 		var column = $(this).closest("[data-column]").attr("data-column");
 		school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
@@ -1793,7 +1793,7 @@ $(document).ready(function() {
 	});
 
 	// Perform a calculation when a keyup occurs in the school fields...
-	$("#comparison-tables input.school-data").on('keyup', function (ev) {
+	$("#comparison-tables").on("keyup", "input.school-data", function (ev) {
 		var column = $(this).closest("[data-column]").attr("data-column");
 		var school = $("[data-column='" + column + "']");
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
@@ -1801,7 +1801,7 @@ $(document).ready(function() {
 		if ( $(this).hasClass("interest-rate") ) {
 			value = value / 100;
 		}
-		var name = $(this).attr("name");
+		var name = $(this).attr("data-nickname");
 		// ...immediately when the user hits enter
 		if (ev.keyCode == 13) {
 			ev.preventDefault();
