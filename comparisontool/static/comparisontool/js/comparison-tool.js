@@ -655,6 +655,10 @@ function calculate_school(column) {
 	schooldata.savingstotal = schooldata.savings + schooldata.family + schooldata.state529plan + schooldata.workstudy;
 	school.textbyname("savingstotal", schooldata.savingstotal);
 
+	/*------- grants and savings --------*/
+	var totalgrantsandsavings = schooldata.savingstotal + schooldata.grantstotal;
+	school.textbyname("totalgrantsandsavings", totalgrantsandsavings);
+
 	/*------- FEDERAL LOANS --------*/
 	// Perkins Loan
 
