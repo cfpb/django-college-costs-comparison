@@ -695,143 +695,115 @@ var restoredata = {{ data_js|safe }};
 									</tr>
 									<tr class="left-to-pay">
 										<td>Left to pay:</td>
-										<td data-nickname="gap">$0</td>
+										<td data-nickname="gap" class="value">$0</td>
 									</tr>
 								</table><!-- end .bars -->		
 							</div><!-- end .meter -->
 						</td>
 						<td data-column="2">
 							<div class="meter group">
-								<div class="bars">
-									<div class="institution-name">
-										<p data-nickname="institutionname">&nbsp;</p>
-									</div>
-									<div class="total-first-year-costs">
-										<p class="costs-label">Total first year costs</p>
-										<p data-nickname="firstyrcostattend" class="costs-value">$0</p>
-									</div>
-									<div class="bars-container">
-										<div class="chart_mask_internal">
-											<div class="full">
-												<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
-												<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
-												<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
-												<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
-												<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
-												<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
-												<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
-												<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
-												<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
+								<table class="bars cost-of-attendance">
+									<tr>
+										<td colspan="2" class="institution-name" data-nickname="institutionname">
+											School One
+										</td>
+									</tr>
+									<tr class="total-first-year-costs">
+										<td class="costs-label">Total first year costs:</td>
+										<td data-nickname="firstyrcostattend" class="costs-value value">$0</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="bars-container">
+											<div class="chart_mask_internal">
+												<div class="full">
+													<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
+													<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+													<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+													<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
+													<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
+													<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+													<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
+													<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
+													<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
+													<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+													<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+													<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
+													<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
+													<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
+												</div>
 											</div>
-										</div>
-									</div><!-- end .bars-container -->
-									<div class="left-to-pay">
-										<p><span data-nickname="gap">$0</span> left to pay</p>
-									</div>
-									<div class="borrowing-bar-text">
-										<p class="borrowing-label">Borrowing</p>
-										<p data-nickname="borrowingtotal" class="borrowing-value">$0</p>
-									</div>
-									<div class="bars-container borrowing-bars">
-										<div class="chart_mask_internal">
-											<div class="full">
-												<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
-												<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
-												<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
-												<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
-												<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
-												<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
-												<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
-												<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
-												<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
-											</div>
-										</div>
-									</div><!-- end .bars-container.borrowing-bars -->
-									<div class="borrowing-loans-text">
-										<p class="federal-loans-label">Federal Loans</p>
-										<p data-nickname="federaltotal" class="federal-loans-value">$0</p>
-										<p class="private-loans-label">Private Loans</p>
-										<p data-nickname="privatetotal" class="private-loans-value">$0</p>
-									</div>
-								</div><!-- end .bars -->
-								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
+										</td><!-- end .bars-container -->
+									</tr>
+									<tr>
+										<td>Contributions, scholarships, and grants:</td>
+										<td data-nickname="totalgrantsandsavings" class="total-grants-savings-value value">$0</td>
+									</tr>
+									<tr class="borrowing-loans-text">
+										<td class="federal-loans-label">Federal Loans</td>
+										<td data-nickname="federaltotal" class="federal-loans-value value">$0</td>
+									</tr>
+									<tr>
+										<td class="private-loans-label">Private Loans</td>
+										<td data-nickname="privatetotal" class="private-loans-value value">$0</td>
+									</tr>
+									<tr class="left-to-pay">
+										<td>Left to pay:</td>
+										<td data-nickname="gap" class="value">$0</td>
+									</tr>
+								</table><!-- end .bars -->		
 							</div><!-- end .meter -->
 						</td>
 						<td data-column="3">
 							<div class="meter group">
-								<div class="bars">
-									<div class="institution-name">
-										<p data-nickname="institutionname">&nbsp;</p>
-									</div>
-									<div class="total-first-year-costs">
-										<p class="costs-label">Total first year costs</p>
-										<p data-nickname="firstyrcostattend" class="costs-value">$0</p>
-									</div>
-									<div class="bars-container">
-										<div class="chart_mask_internal">
-											<div class="full">
-												<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
-												<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
-												<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
-												<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
-												<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
-												<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
-												<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
-												<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
-												<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
+								<table class="bars cost-of-attendance">
+									<tr>
+										<td colspan="2" class="institution-name" data-nickname="institutionname">
+											School One
+										</td>
+									</tr>
+									<tr class="total-first-year-costs">
+										<td class="costs-label">Total first year costs:</td>
+										<td data-nickname="firstyrcostattend" class="costs-value value">$0</td>
+									</tr>
+									<tr>
+										<td colspan="2" class="bars-container">
+											<div class="chart_mask_internal">
+												<div class="full">
+													<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
+													<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
+													<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
+													<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
+													<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
+													<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
+													<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
+													<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
+													<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
+													<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
+													<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
+													<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
+													<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
+													<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
+												</div>
 											</div>
-										</div>
-									</div><!-- end .bars-container -->
-									<div class="left-to-pay">
-										<p><span data-nickname="gap">$0</span> left to pay</p>
-									</div>
-									<div class="borrowing-bar-text">
-										<p class="borrowing-label">Borrowing</p>
-										<p data-nickname="borrowingtotal" class="borrowing-value">$0</p>
-									</div>
-									<div class="bars-container borrowing-bars">
-										<div class="chart_mask_internal">
-											<div class="full">
-												<div class="bar discount bar-info" data-nickname="pell" data-tooltip="Pell Grants"></div>
-												<div class="bar discount bar-info" data-nickname="scholar" data-tooltip="Other Scholarships &amp; Grants"></div>
-												<div class="bar discount bar-info" data-nickname="tuitionassist"  data-tooltip="Military Tuition Assistance"></div>
-												<div class="bar discount bar-info" data-nickname="gibill" data-tooltip="GI Bill"></div>
-												<div class="bar savings bar-info" data-nickname="savings" data-tooltip="What You Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="family" data-tooltip="What Family &amp; Others Can Pay"></div>
-												<div class="bar savings bar-info" data-nickname="state529plan" data-tooltip="Parent Loans"></div>
-												<div class="bar savings bar-info" data-nickname="workstudy" data-tooltip="Work-Study"></div>
-												<div class="bar fedloans bar-info" data-nickname="perkins" data-tooltip="Perkins Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffsubsidized" data-tooltip="Subsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="staffunsubsidized" data-tooltip="Unsubsidized Federal Loans"></div>
-												<div class="bar fedloans bar-info" data-nickname="gradplus" data-tooltip="Grad PLUS Loans"></div>
-												<div class="bar privloans bar-info" data-nickname="privateloan"  data-tooltip="Loans from Your School"></div>
-												<div class="bar privloans bar-info" data-nickname="institutionalloan" data-tooltip="Other Loans"></div>
-											</div>
-										</div>
-									</div><!-- end .bars-container.borrowing-bars -->
-									<div class="borrowing-loans-text">
-										<p class="federal-loans-label">Federal Loans</p>
-										<p data-nickname="federaltotal" class="federal-loans-value">$0</p>
-										<p class="private-loans-label">Private Loans</p>
-										<p data-nickname="privatetotal" class="private-loans-value">$0</p>
-									</div>
-								</div><!-- end .bars -->
-								<div class="error_msg"><p>You have exceeded the cost of attendance</p></div>			
+										</td><!-- end .bars-container -->
+									</tr>
+									<tr>
+										<td>Contributions, scholarships, and grants:</td>
+										<td data-nickname="totalgrantsandsavings" class="total-grants-savings-value value">$0</td>
+									</tr>
+									<tr class="borrowing-loans-text">
+										<td class="federal-loans-label">Federal Loans</td>
+										<td data-nickname="federaltotal" class="federal-loans-value value">$0</td>
+									</tr>
+									<tr>
+										<td class="private-loans-label">Private Loans</td>
+										<td data-nickname="privatetotal" class="private-loans-value value">$0</td>
+									</tr>
+									<tr class="left-to-pay">
+										<td>Left to pay:</td>
+										<td data-nickname="gap" class="value">$0</td>
+									</tr>
+								</table><!-- end .bars -->		
 							</div><!-- end .meter -->
 						</td>
 					</tr>
