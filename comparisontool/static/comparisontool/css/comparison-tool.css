@@ -1023,8 +1023,18 @@ label.tooltip-info {
 /* BAR GRAPH, AKA .meter
 -------------------------------------------------------------------------------*/
 
+#comparison-tables .breakdown td,
+#comparison-tables .breakdown th  {
+	background: #f2f2f2;
+	vertical-align: top;
+}
+
 #comparison-tables .breakdown .meter {
 	font-size: .75em;
+}
+
+#comparison-tables .breakdown .meter .bars {
+	margin: 0;
 }
 
 #comparison-tables .breakdown .meter .bars .bars-container {
@@ -1037,14 +1047,9 @@ label.tooltip-info {
 	padding: .1em 0 0 0;
 	text-align: left;
 }
-
-#comparison-tables .breakdown .meter .bars p {
-	margin: .2em 0;
-}
-
-#comparison-tables .breakdown .meter .institution-name p {
+#comparison-tables .breakdown .meter .institution-name {
 	font-weight: 700;
-	margin: 1em 0em;
+	margin: 0em 0em 1em 0em;
 }
 
 #comparison-tables .breakdown .meter .total-first-year-costs {
@@ -1055,7 +1060,6 @@ label.tooltip-info {
 #comparison-tables .breakdown .meter .borrowing-bar-text .borrowing-label,
 #comparison-tables .breakdown .meter .borrowing-loans-text .federal-loans-label,
 #comparison-tables .breakdown .meter .borrowing-loans-text .private-loans-label  {
-	float: left;
 	margin-top: 0em;
 }
 
@@ -1099,6 +1103,31 @@ label.tooltip-info {
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
 	filter: alpha(opacity=50);
 	opacity: 0.9;	
+}
+
+#comparison-tables .breakdown .meter .cost-of-attendance td {
+	text-align: left;
+}
+
+#comparison-tables .breakdown .meter .cost-of-attendance td.value {
+	font-weight: 600;
+	text-align: right;
+}
+
+#comparison-tables .breakdown .meter .cost-of-attendance td.value.total-grants-savings-value {
+	color: #0072ce;
+}
+
+#comparison-tables .breakdown .meter .cost-of-attendance td.value.federal-loans-value {
+	color: #ff931b;
+}
+
+#comparison-tables .breakdown .meter .cost-of-attendance td.value.private-loans-value {
+	color: #d14124;
+}
+
+#comparison-tables .breakdown .meter .cost-of-attendance .left-to-pay td {
+	border-top: 1px solid #919395;
 }
 
 #comparison-tables .breakdown .meter .borrowing-bar-text {
