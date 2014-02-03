@@ -57,7 +57,7 @@ var schools_zeroed = new Object();
 ---------------- */
 var pixel_price = 0, // The ratio of pixels to dollars for the bar graph
 	transition_time = 200, // The transition time of bar graph animations
-	minimum_chart_section_width = 1, // The minimum width of a bar graph section
+	minimum_chart_section_width = 5, // The minimum width of a bar graph section
 	input_bg_default = "#E6E6E6", // default bg color for inputs
 	input_bg_error = "#F6D5D5", // bg color for inputs that are above max
 	schoolcounter = 0, // an internal counter to keep school ids unique
@@ -912,9 +912,6 @@ function calculate_school(column) {
 
 	// gap
 	schooldata.gap = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.workstudy - schooldata.savings - schooldata.family - schooldata.state529plan - schooldata.privateloan - schooldata.institutionalloan - schooldata.parentplus - schooldata.homeequity;
-	if ( schooldata.gap < 0 ) {
-		schooldata.gap = 0;
-	} 
 
 	/* --- Loan Calculation -- */
 	// Borrowing Total
@@ -1135,10 +1132,9 @@ function calculate_school(column) {
 		draw_the_bars(column);
 	}	
 
-	left_to_pay = schooldata.gap;
-
-	if (left_to_pay < 1){
-		school.find("[data-nickname='gap']").text( "$0" );
+	school.find("[data-nickname='gap']").text(num_to_money(schooldata.gap));
+	if (schooldata.gap <= 0){
+		school.find("[data-nickname='gap']").css("color", "#2cb34a");
 		if ( ( schooldata.firstyrcostattend > 0 ) && ( global.reached_zero == 0 ) ) {
 			if ( schools_zeroed[school_id] == undefined ) {
 				_gaq.push(["_trackEvent", "School Interactions", "Reached Zero Left to Pay", school_id]);
@@ -1146,8 +1142,8 @@ function calculate_school(column) {
 			}
 		}
 	}
-	else {
-		school.find("[data-nickname='gap']").text(num_to_money(left_to_pay));
+	else {	
+		school.find("[data-nickname='gap']").css("color", "#000");
 	}
 
 	school.check_max_alert();
@@ -1181,7 +1177,8 @@ function draw_the_bars(column) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
 	var schooldata = schools[school_id];
-	var chart_width = $("#institution-row [data-column='1']").width();
+	var chart_width = school.find(".chart_mask_internal .full").width();
+	var bar_border_thickness = 1;
 	var cost = money_to_num(school.find("[data-nickname='firstyrcostattend']").html());
 	var pixel_price = chart_width / cost;
 	var left = 0;
@@ -1216,7 +1213,8 @@ function draw_the_bars(column) {
 					});
 				}
 				else {
-					bar.stop(true, false).animate({width: (section_width)}, transition_time);
+					section_width = section_width;
+					bar.stop(true, false).animate({width: (section_width - bar_border_thickness)}, transition_time);
 				}
 
 				if ( section_width != 0) {
@@ -1249,9 +1247,6 @@ function draw_the_bars(column) {
 				school.find(".error_msg").fadeOut(400);
 			}
 		});
-
-	    // Borrowing Bar
-	    school.find('.bar.borrowing').css("width", (total_borrowed_section_width));
 
 	    left = 0 + total_outofpocket_section_width;
 	    if ( left < 1 ) {
