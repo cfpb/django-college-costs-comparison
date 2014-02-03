@@ -1445,15 +1445,15 @@ $(document).ready(function() {
 	});
 	$('.federal').click(function() {
 		$('.federal-row').toggleClass('tr-hide');
-		$(this).closest('.arrw').toggleClass('arrw-collapse');
+		$(this).closest('.arrw-collapse').toggleClass('arrw');
 	});
 	$('.private').click(function() {
 		$('.private-row').toggleClass('tr-hide');
-		$(this).closest('.arrw').toggleClass('arrw-collapse');
+		$(this).closest('.arrw-collapse').toggleClass('arrw');
 	});
 	$('.contributions').click(function() {
 		$('.contrib-row').toggleClass('tr-hide');
-		$(this).closest('.arrw').toggleClass('arrw-collapse');
+		$(this).closest('.arrw-collapse').toggleClass('arrw');
 	});
 
 
