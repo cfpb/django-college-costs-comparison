@@ -542,47 +542,47 @@
 	display:none;
 }
 
-.arrw th:first-child,
-.arrw-collapse th:first-child {
-	background: url(../images/collapse_arrows.png) no-repeat 15px 5px;
+.arrw-collapse th:first-child,
+.arrw th:first-child {
+	background: url(../images/collapse_arrows.png) no-repeat 15px -30px;
 	cursor: pointer;
 }
 
-.totalcost.arrw-collapse th:first-child,
-.totalcont.arrw-collapse th:first-child {
-	background-position: 15px -30px;
-}
-
-.grants.arrw th:first-child {
-	background-position: 15px -65px;
+.totalcost.arrw-collapse.arrw th:first-child,
+.totalcont.arrw-collapse.arrw th:first-child {
+	background-position: 15px 5px;
 }
 
 .grants.arrw-collapse th:first-child {
 	background-position: 15px -100px;
 }
 
-.contributions.arrw th:first-child {
-	background-position: 15px -135px;
+.grants.arrw-collapse.arrw th:first-child {
+	background-position: 15px -65px;
 }
 
 .contributions.arrw-collapse th:first-child {
 	background-position: 15px -170px;
 }
 
-.federal.arrw th:first-child {
-	background-position: 15px -205px;
+.contributions.arrw-collapse.arrw th:first-child {
+	background-position: 15px -135px;
 }
 
 .federal.arrw-collapse th:first-child {
 	background-position: 15px -240px;
 }
 
-.private.arrw th:first-child {
-	background-position: 15px -275px;
+.federal.arrw-collapse.arrw th:first-child {
+	background-position: 15px -205px;
 }
 
 .private.arrw-collapse th:first-child {
 	background-position: 15px -310px;
+}
+
+.private.arrw-collapse.arrw th:first-child {
+	background-position: 15px -275px;
 }
 
 #institution-row th .add-a-school {
