@@ -507,7 +507,7 @@
 }
 
 .federal th, .federal td {
-	border-bottom: 5px solid #f59d65;
+	border-bottom: 5px solid #ff931b;
 }
 
 .private th, .private td {
@@ -1127,6 +1127,8 @@ label.tooltip-info {
 
 #comparison-tables .breakdown .meter .cost-of-attendance .left-to-pay td {
 	border-top: 1px solid #919395;
+	color: #43484e;
+	font-weight: 600;
 }
 
 #comparison-tables .breakdown .meter .borrowing-bar-text {
@@ -1138,13 +1140,6 @@ label.tooltip-info {
 	background: #888;
 	border-right: 1px solid #DDD;
 }
-
-#comparison-tables .breakdown .meter .left-to-pay {
-	font-weight: 100;
-	padding: 0;
-	text-align: right;
-}
-
 
 #comparison-tables .breakdown .meter .bars .borrowing-container {
 	position: relative;
