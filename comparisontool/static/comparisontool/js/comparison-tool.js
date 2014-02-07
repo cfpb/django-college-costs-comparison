@@ -176,24 +176,28 @@ function get_worksheet_id() {
 	});
 }
 
-// hide_column() - "Hide" a column, hiding all elements except .add-a-school and .width-holder
-function hide_column(col_num) {
-	var column = $("[data-column='" + col_num + "']");
-	column.each( function() {
-		$(this).children().not(".add-a-school, .width-holder").hide();
-		$(this).children(".add-a-school").show();
-		if ( $(this).hasClass("debt-burden-cell") ) {
-			$(this).css("background-position", "25px 100px");
-		}
-	});
-}
+// toggle_column() - "Show" or "hide" a column, making columns active or inactive for use.
+//     This function replaces hide_column() and show_column(). Can be used without the 'new_state' parameter,
+//     in which case it attempts to determine the current state and toggle it.
 
-// show_column() - Undoes the effects of hide_column()
-function show_column(col_num) {
+function toggle_column(col_num, new_state) {
+	// list of elements to toggle
+	var selector = "input, .visualization, .data-total";
+	// If state isn't something clear, then it's as good as undefined
+	if (new_state !== "active" && new_state !== "inactive") {
+		new_state = undefined;
+	}
+	if (new_state === undefined) {
+		// Code to detect state goes here.
+	}
+	// Now we can alter the state to the new_state
 	var column = $("[data-column='" + col_num + "']");
-	column.each( function() {
-		$(this).children().not(".hidden-box").show();
-	});	
+	if (new_state === "active") {
+		column.find(selector).show();
+	}
+	if (new_state === "inactive") {
+		column.find(selector).hide();
+	}
 }
 
 // build_school_element() - Fill in a column with the school's data (school's data must be in the 'schools' object)
@@ -1358,7 +1362,7 @@ function set_column_stage(column, stage) {
 
 	if (stage == 'default') {
 		// 'default' is the starting state, where no windows are active and all values are default
-		hide_column(column);
+		toggle_column(column, "inactive");
 		// when the column is set to "default," we reset all form elements to their default.
 		school.find(".search-results").hide();
 		school.find(".school-search-box").val("");
@@ -1367,7 +1371,7 @@ function set_column_stage(column, stage) {
 		school.find("[data-nickname='xmlbukkit']").val("");
 	}
 	else {
-		show_column(column);
+		toggle_column(column, "active");
 		school.find(".staged.stage-default").hide()
 	}
 	if (stage == 'default' || stage == 'occupied') {
@@ -1394,7 +1398,7 @@ $(document).ready(function() {
 	/* --- Initialize Visualizations --- */
 	// Pie Charts
 	for (x = 1; x <= 3; x++ ) {
-		pies[x] = Raphael($("#pie" + x)[0], 125, 125);
+		pies[x] = Raphael($("[data-column='" + x + "'] .debt-pie")[0], 125, 125);
 		pies[x].circle(62, 62, 50);
 		circles[x] = pies[x].circle(62, 62, 50);
 		circles[x].attr({fill: "Gray", stroke: "White", "stroke-width": 2});
@@ -1404,7 +1408,7 @@ $(document).ready(function() {
 
 	// Default Rate Bars
 	for (x = 1; x <= 3; x++ ) {
-		bars[x] = Raphael($("#defaultbars" + x)[0], 200, 100);
+		bars[x] = Raphael($("[data-column='" + x + "'] .default-rate-chart")[0], 200, 100);
 		var bottomline = bars[x].path("M 0 100 L 200 100");
 		bottomline.attr({"stroke": "#585858", "stroke-width": 3})
 		averagebars[x] = bars[x].rect(120, 50, 60, 50);
@@ -1415,7 +1419,7 @@ $(document).ready(function() {
 
 	// Borrowing meter
 	for (x = 1; x <= 3; x++ ) {
-		meters[x] = Raphael($("#meter" + x)[0], 200, 100);
+		meters[x] = Raphael($("[data-column='" + x + "'] .median-borrowing-chart")[0], 200, 100);
 		var circle = meters[x].circle(101, 100, 8);
 		circle.attr({"stroke": "#585858", "stroke-width": 1, "fill": "#585858"});
 		meterarrows[x] = meters[x].path("M 100 100 L 50 100");
@@ -1669,7 +1673,7 @@ $(document).ready(function() {
 			$(".add-average-private").show();
 		}
 		$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "");
-		hide_column(column);
+		toggle_column(column, "inactive");
 		_gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );
 		delete schools[school_id];
 	})
