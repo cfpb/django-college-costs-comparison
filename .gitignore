@@ -48,3 +48,8 @@ example_project/dev.sqlite3
 Icon?
 ehthumbs.db
 Thumbs.db
+.grunt
+node_modules
+_SpecRunner.html
+coverage/
+junit-results/
