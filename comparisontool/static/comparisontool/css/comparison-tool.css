@@ -384,6 +384,10 @@
 	font-weight: 700;
 }
 
+#comparison-tool thead #institution-row h2.inactive {
+	color: #babbbd;
+}
+
 #comparison-tool thead #institution-row th .remove-this-school {
 	font-size: 0.75em;
 	font-weight: 400;
@@ -1126,7 +1130,7 @@ label.tooltip-info {
 }
 
 #comparison-tables .breakdown .meter .cost-of-attendance .left-to-pay td {
-	border-top: 1px solid #43484e;
+	border-top: 1px solid #43484e	;
 	color: #43484e;
 	font-weight: 600;
 }
