@@ -52,6 +52,6 @@ describe("jQuery.fn.setbyname, which sets an element to a value using the 'name'
         var school = $('#1.school');
         var schools = {"1": {"foofaa_edited": true}}
         school.setbyname('foofaa', 4000, true);
-        expect($('input[name="foofaa"]').val()).toEqual("4,000");
+        expect($('input[name="foofaa"]').val()).toEqual("$4,000");
     });
 });
