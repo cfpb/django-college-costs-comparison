@@ -594,25 +594,7 @@
 	background-position: 15px -275px;
 }
 
-#institution-row th .add-school-info {
-	background-color: #e6e6e6;
-	ignore-display: none;
-	font-size: 1em;
-	overflow: scroll;
-	padding: .25em .5em;
-	position: absolute;
-	width: 200px;
-}
-
-#institution-row th .add-school-info label {
-	font-size: 1em;
-} 
-
-#institution-row th .add-school-info input {
-	font-size: .8em;
-}
-
-#institution-row th .add-school-info .search-results {
+#add-a-school .search-results {
 	background-color: #fff;
 	border: 1px solid black;
 	display: none;
@@ -623,56 +605,17 @@
 	padding: .25em;
 }
 
-#institution-row th .add-school-info .search-results li a,
-#institution-row th .add-school-info .search-results li p {
+#add-a-school .search-results li a,
+#add-a-school .search-results li p {
 	border: none;
 	font-weight: normal;
 }
-#institution-row th .add-school-info .search-results li p.location {
+#add-a-school .search-results li p.location {
 	margin: .1em 0 .5em .75em;
 	font-weight: 400;
 	font-size: .8em;
 	font-style: italic;
 	line-height: 1em;
-}
-
-#institution-row th .add-school-info .xml-info {
-	font-size: .8em;
-	font-weight: 600;
-}
-
-#institution-row th .add-school-info .xml-info .continue {
-	font-size: 1.2em;
-	float: right;
-	margin: 0em 0 1em 0;
-}
-
-#institution-row th .add-school-info .add-xml .xml-process {
-	font-size: 1.2em;
-	float: right;
-	margin: 0;
-}
-
-#institution-row th .add-school-info .xml-text {
-	margin: 1em auto 0 auto;
-	width: 185px;
-}
-
-#institution-row th .add-school-info button {
-	margin: 1em auto 0 auto;
-}
-
-#institution-row th .add-school-info .hidden-box {
-	display: none;
-}
-
-#institution-row th .add-school-info .prgmlength-selection select {
-	margin-right: 1em;
-}
-
-#institution-row th .navigator-link {
-	font-size: .75em;
-	font-weight: 500;
 }
 
 .grants-row td .gibill-panel {
