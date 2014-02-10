@@ -1413,6 +1413,7 @@ function school_search_results(query, column) {
 $(document).ready(function() {
 	/* --- Initialize Visualizations --- */
 	// Pie Charts
+	var x;
 	for (x = 1; x <= 3; x++ ) {
 		pies[x] = Raphael($("#pie" + x)[0], 125, 125);
 		pies[x].circle(62, 62, 50);
@@ -2041,5 +2042,3 @@ $(document).ready(function() {
     };
 
 });
-
-
