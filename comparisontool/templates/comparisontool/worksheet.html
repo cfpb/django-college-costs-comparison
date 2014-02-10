@@ -109,18 +109,100 @@ var restoredata = {{ data_js|safe }};
 				<h1>Compare financial aid and college cost</h1>
 				<p>Introduction and instructions placeholder.</p>
 			</div>
-			<div class="pfc-start clearfix">
-				<div class="pfc-start-text">
+			<div class="get-started clearfix">
+				<div class="step-left">
 					<div class="pfc-container-left">
 						<p>Use this tool to compare your costs of paying to attend up to 3 schools you are considering.</p>
 					</div>
 				</div>
-				<div class="pfc-start-button">
+				<div class="step-right">
 					<div class="pfc-container-right">
 						<a class="pfc-button" href="#">Get started</a>
 					</div>
 				</div>
 			</div>
+			<fieldset>
+				<legend>Tell us more information about <span>School One</span></legend><span>Step 1 of 3</span>
+				<div id="step-one" class="get-started step-one clearfix">
+					<div class="step-left">
+						<div class="pfc-container-left">
+							<div class="school-search staged stage-search">
+								<label for="school-name-search" class="school-name">What's the name of the school?</label>
+								<input type="text" name="schoolname-search" id="school-name-search" class="school-search-box">
+								<ul class="search-results"></ul>
+							</div><!--/school-search /staged /stage-search -->
+							<div class="prgmlength-selection staged stage-prgmlength step-left">	
+								<label for="prgmlength">Program Length</label>
+								<select id="prgmlength" name="prgmlength">
+									<option value="5">5 years</option>
+									<option value="4" selected="selected">4 years</option>
+									<option value="3">3 years</option>
+									<option value="2">2 years</option>
+									<option value="1">1 year</option>
+								</select>
+							</div><!--/prgmlength-selection /staged /stage-prgmlength -->
+						</div><!-- /pfc-container-left -->
+					</div><!--/step-left -->
+					<div class="program-selection staged stage-program step-right">
+						<div class="pfc-container-right">
+							<fieldset>
+								<legend>Program Type</legend>
+								<input id="program1" class="radio-input" type="radio" name="program1" value="aa">
+								<label class="radio-label" for="program1">Associates or certificate</label>
+								<input id="program2" class="radio-input" type="radio" name="program2" value="ba" checked="checked">
+								<label class="radio-label" for="program2">Bachelors</label>	
+								<input id="program3" class="radio-input" type="radio" name="program3" value="grad">
+								<label class="radio-label" for="program3">Graduate</label>
+							</fieldset>
+							<button class="continue">Continue</button>
+							<button class="add-cancel">Cancel</button>
+						</div><!-- /pfc-container-right -->
+					</div><!--/prgmlength-selection /staged /stage-program -->
+				</div><!--/step-one -->
+			</fieldset>
+			<div id="step-two" class="get-started step-two clearfix">
+				<div class="add-xml xml-info staged stage-xml step-left">
+					<div class="pfc-container-left">
+						<h4>Got XML? (optional)</h4><span>Step 2 of 3</span>
+						<p>It looks like this school adopted the Financial Aid Shopping Sheet. That’s great because it will make the next step easier.</p>
+						<p>If they provided an XML file, paste the code below. If not, click to continue. </p>
+						<label for="xml-text">XML text</label>
+						<textarea name="xmlbukkit" id="xml-text" data-nickname="xmlbukkit" class="xml-text"></textarea>
+					</div><!-- /pfc-container-left -->
+				</div><!-- /add-xml /xml-info /staged /stage-xml /step-left -->
+				<div class="step-right">
+					<div class="pfc-container-right">
+						<button class="continue">Continue</button>
+						<button class="add-cancel">Cancel</button>
+					</div><!-- /pfc-container-right -->
+				</div><!-- /step-right -->
+				<div class="no-xml xml-info staged stage-noxml step-left">
+					<div class="pfc-container-left">
+						<p>You’ll need your financial aid offer information to complete the next section.  Use your offer letter to enter your scholarships, tuition, and other info.</p>
+					</div><!-- /pfc-container-left -->
+				</div><!-- /no-xml xml-info staged stage-noxml step-left -->
+				<div class="step-right">
+					<div class="pfc-container-right">
+						<button class="continue">Continue</button>
+						<button class="add-cancel">Cancel</button>
+					</div><!-- /pfc-container-right -->
+				</div><!-- /step-right -->
+			</div><!--/step-two -->
+			<div id="step-three" class="get-started step-three clearfix">
+				<div class="add-school staged stage-success step-left">
+					<div class="pfc-container-left">
+						<h4>Success!</h4><span>Step 3 of 3</span>
+						<p>You have added <span class="schoolname">School Name</span> into the cost comparison chart below.</p>
+						<p>Add another school, or continue to enter your financial information below.</p>
+					</div><!-- /pfc-container-left -->
+				</div><!-- /add-school /staged /stage-success /step-left -->
+				<div class="step-right">
+					<div class="pfc-container-right">
+						<button class="continue">Continue</button>
+						<button class="add-cancel">Cancel</button>
+					</div><!-- /pfc-container-right -->
+				</div><!-- /step-right -->
+			</div><!--/step-three -->
 		</section>
 		<section id="comparison-tables">
 			<h3 class="h3 vert-pad bottom-border">School cost comparison</h3>
