@@ -1,4 +1,9 @@
 module.exports = function(grunt) {
+  // Loading dependencies
+  for (var key in grunt.file.readJSON("package.json").devDependencies) {
+    if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
+  }
+
   grunt.initConfig({
     connect: {
       server: {
@@ -10,9 +15,10 @@ module.exports = function(grunt) {
     },
     watch: {},
     jasmine: {
-      src: ['js/*.js', '!js/data.js', '!js/comparison-tool-setup.js', '!js/raphael-min.js'],
+      src: ['js/*.js', '!js/data.js'],
       options: {
         specs: 'test/spec/ct-spec.js',
+        keepRunner: true,
         // order matters here, jquery.js must be loaded before jasmine-jquery!
         vendor: ['cfpb-files/jquery-1.5.1.min.js', 'cfpb-files/jasmine-jquery.js'],
         junit: {
@@ -40,11 +46,6 @@ module.exports = function(grunt) {
       }
     }
   });
-
-  // Loading dependencies
-  for (var key in grunt.file.readJSON("package.json").devDependencies) {
-    if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
-  }
 
   grunt.registerTask("dev", ["connect", "watch"]);
   grunt.registerTask("test", ["jasmine"]);
