@@ -171,26 +171,24 @@
 	font-size: 1.125em;
 }
 
-#introduction .pfc-start {
+#introduction .get-started {
 	background-color: #f1f2f2;
 	padding: 1.5em 0;
 }
 
-#introduction .pfc-start .pfc-start-text {
+#introduction .get-started .step-left {
 	float: left;
 	margin-right: 30px;
 	width: 533.5px;
 }
 
-#introduction .pfc-start .pfc-start-button {
+#introduction .get-started .step-right {
 	float: left;
 	margin-right: 0;
-	margin-top: 2em;
-	text-align: center;
 	width: 372.5px;
 }
 
-#introduction .pfc-start .pfc-button {
+#introduction .get-started .pfc-button {
 	background-color: #0072ce;
 	color: #fff;
 	font-family: "Avenir Next Medium", Verdana, sans-serif;
