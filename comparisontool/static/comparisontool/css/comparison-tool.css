@@ -171,6 +171,13 @@
 	font-size: 1.125em;
 }
 
+#introduction #step-one,
+#introduction #step-two,
+#introduction #step-three {
+	display: none;
+}
+
+
 #introduction .get-started {
 	background-color: #f1f2f2;
 	padding: 1.5em 0;
@@ -585,34 +592,6 @@
 
 .private.arrw-collapse.arrw th:first-child {
 	background-position: 15px -275px;
-}
-
-#institution-row th .add-a-school {
-	background-color: #FFF;
-	border: 3px dashed #d24505;
-	color: #000;
-	display: block;
-	font-size: 1em;
-	height: 175px;
-	margin: 0 auto;
-	text-align: center;
-	padding: 1em .25em;
-	position: absolute;
-	width: 200px;
-}
-
-#institution-row th .add-a-school:hover,
-#institution-row th .add-a-school:active,
-#institution-row th .add-a-school:focus {
-	background-color: #fdebd3;
-}
-
-#institution-row th .add-a-school .huge {
-	border: none;
-	color: #000;
-	display: block;
-	font-size: 8em;
-	margin: 30% 0 0 0;
 }
 
 #institution-row th .add-school-info {
