@@ -91,6 +91,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask("dev", ["connect", "watch"]);
   grunt.registerTask("test", ["jasmine"]);
-  grunt.registerTask("sauce", ["connect", "jasmine", "saucelabs-jasmine"]);
+  grunt.registerTask("sauce", ["connect", "saucelabs-jasmine"]);
 
 };
