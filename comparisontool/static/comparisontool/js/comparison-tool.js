@@ -5,10 +5,55 @@
 //** CFPBComparisonTool represents a namespace for comparison tool classes and functions **//
 
 var CFPBComparisonTool = (function() {
+	// A bunch of global defaults and such
+	var global = {
+		"institutionalLoanRateDefault": 0.079, "privateLoanRateDefault": 0.079,
+		"group1GradRankHigh": 620, "group1GradRankMed": 1247, "group1GradRankMax": 1873,
+		"group2GradRankHigh": 304, "group2GradRankMed": 881, "group2GradRankMax": 1318,
+		"group3GradRankHigh": 247, "group3GradRankMed": 420, "group3GradRankMax": 539,
+		"group4GradRankHigh": 0, "group4GradRankMed": 0, "group4GradRankMax": 0,
+		"group5GradRankHigh": 0,"group5GradRankMed": 0, "group5GradRankMax": 0,
+		"group1GradMed": 39.6, "group1gradhigh": 57.9, "group2GradMed": 19.4, "group2GradHigh": 41.9,
+		"group3GradMed": 21.4, "group3GradHigh": 41.2, "group4GradMed": 0, "group4GradHigh": 0, 
+		"group5GradMed": 0, "group5GradHigh": 0, "cdrhigh": 100, "cdravg": 13.4, "cdrlow": 0.0, 
+		"group1loanmed": 15025, "group1loanhigh": 20016, "group2loanmed": 6891, "group2loanhigh": 12584, 
+		"group3loanmed": 6836, "group3loanhigh": 9501, "group4loanmed": 0, "group4loanhigh": 0, 
+		"group5loanmed": 0, "group5loanhigh": 0,
+		"group1loanrankmed": 724, "group1loanrankhigh": 1394, "group1loanrankmax": 2067,
+		"group2loanrankmed": 541, "group2loanrankhigh": 1009, "group2loanrankmax": 1464,
+		"group3loanrankmed": 277, "group3loanrankhigh": 459, "group3loanrankmax": 836,
+		"group4loanrankmed": 0, "group4loanrankhigh": 0, "group4loanrankmax": 0,
+		"group5loanrankmed": 0, "group5loanrankhigh": 0, "group5loanrankmax": 0
+	};
 
 	// the School class represents the data structure of a school's data. This does NOT represent
 	// any UI or DOM elements - see Column()
-	function School(school_id) {
+	function School(schoolID) {
+		this.schoolID = schoolID;
+		this.schoolData = {};
+
+		this.getSchoolData = function() { // Get schoolData values from API
+			// AJAX the schooldata
+			var schoolData = this.schoolData;
+			var queryURL = 'api/school/' + this.schoolID + '.json';
+			var request = $.ajax({
+				async: false,
+				dataType: 'json',
+				url: queryURL
+			});
+			request.done(function(response) {
+				$.each(response, function(key, val) {
+					key = key.toLowerCase();
+					if (schoolData[key] == undefined) {
+						schoolData[key] = val;
+					}
+				});
+			});
+			request.fail(function() {
+				// Your fail message here.
+			});
+			this.schoolData = schoolData;
+		}
 
 	}
 
@@ -16,12 +61,171 @@ var CFPBComparisonTool = (function() {
 	// class manipulate the DOM, but also take data from inputs and place them into the schools[] object
 	// Column also contains code for visualizations
 
-	function Column(column) {
+	function Column(number) {
+		this.number = number; // defines which column, [1-3]
+		var columnObj = $('[data-column="' + number + '"]');
+
+		this.toggleActive = function(state) { // toggles "active" or "inactive" state of the column
+			// list of elements to toggle
+			var selector = 'input, .visualization, .data-total';
+
+			// If state isn't something clear, then it's as good as undefined
+			if (state !== 'active' && state !== 'inactive') {
+				state = undefined;
+			}
+			// Detect state if state is undefined
+			if (state === undefined) {
+				// Code to detect state goes here.
+			}
+
+			// Now we can alter the state to 'state'
+			if (state === 'active') {
+				columnObj.find(selector).show();
+			}
+
+			if (state === 'inactive') {
+				columnObj.find(selector).hide();
+			}
+
+		}
+
+		this.addSchoolData = function(schoolData) { // Adds basic schoolData to the column
+			this.toggleActive('active'); // Make the column active
+			columnObj.find('[data-nickname="institution_name"]').html(schoolData.school);
+			columnObj.find('input.school-data').not(".interest-rate").val("$0");
+			columnObj.find('input[data-nickname="institutional_loan_rate"]').val(global.institutionalLoanRateDefault * 100 + '%');
+			columnObj.find('input[data-nickname="private_loan_rate"]').val(global.privateLoanRateDefault * 100 + '%');
+			columnObj.find("a.navigator-link").attr("href", "http://nces.ed.gov/collegenavigator/?id=" + schoolData.school_id);
+		}
+
+		this.drawSchoolIndicators = function(schoolData) { // Draws the various indicators for a school
+		    //Grad programs don't have indicators, nor groups 4 or 5 
+		    if ( (schoolData.undergrad != true) || (schoolData.indicatorgroup === "4") || (schoolData.indicatorgroup === "5") ) {
+				columnObj.find(".graduation-rate-chart").hide();
+				columnObj.find(".default-rate-chart").hide();
+				columnObj.find(".median-borrowing-chart").hide();
+				columnObj.find(".indicator-textbox").html("not available");
+			}
+		    else { // Groups 1, 2, and 3 have indicators
+			    // Draw the graduation rate chart
+			    columnObj.find(".gradrisk-percent").html(schoolData.gradrate + "%");
+			    // Note: ranks go from 1 to X, and X is "max"
+			    var grouphigh = global["group" + schoolData.indicatorgroup + "GradHigh"];
+			    var groupmed = global["group" + schoolData.indicatorgroup + "GradMed"];
+			    var grhigh = global["group" + schoolData.indicatorgroup + "GradRankHigh"];
+			    var grmax = global["group" + schoolData.indicatorgroup + "GradRankMax"];
+			    var grmed = global["group" + schoolData.indicatorgroup + "GradRankMed"];
+			    var grhigh = global["group" + schoolData.indicatorgroup + "GradRankHigh"];
+			    var rankcount = 1;
+			    var place = 1;
+			    var gradoffset = 0;	
+			    var divwidth = 68;
+			    if ( ( schoolData.gradraterank != undefined ) && ( schoolData.gradrate != "NR" ) ) {
+			    	columnObj.find(".gradrisk-container").closest("td").children().show();
+			        if ( schoolData.gradrate < groupmed ) {
+			        	rankcount = grmax - grmed;
+			        	place = schoolData.gradraterank - grmed;
+			        	gradoffset = 0 + Math.floor( ( rankcount - place ) * ( 65 / rankcount)) 	
+			        }
+			        else if ( schoolData.gradrate < grouphigh ) {
+			        	rankcount = grmed - grhigh;
+			        	place = schoolData.gradraterank - grhigh;
+			        	gradoffset = 77 + Math.floor( ( rankcount - place ) * ( 60 / rankcount)) 	
+			        }
+			        else {
+			         	rankcount = grhigh;
+			        	place =  schoolData.gradraterank;
+			        	gradoffset = 148 + Math.floor( ( rankcount - place  ) * ( 64 / rankcount ) );
+			        }
+			        columnObj.find(".gradrisk-container").css("left", gradoffset + "px");
+			    }
+			    else {
+			    	columnObj.find(".graduation-rate-chart").hide();
+			    }
+
+
+			    // Draw the default rate indicator
+			    if ( ( schoolData.defaultrate != undefined ) && ( schoolData.avgstuloandebt != "NR" ) ) {
+			    	columnObj.find(".default-rate-chart").closest("td").children().show();
+			    	var height = ( schoolData.defaultrate / ( global.cdravg * 2 ) ) * 100;
+			    	var y = 100 - height;
+			    	defaultbars[column].attr({"y": y, "height": height});
+			       	if ( height > 100 ) {
+			       		var avgheight = ( global.cdravg / schoolData.defaultrate ) * 100;
+			       		var avgy = 100 - avgheight;
+			    		averagebars[column].attr({"y": avgy, "height": avgheight})
+			    	}
+			    	var percent = schoolData.defaultrate + "%";
+			    	columnObj.find(".default-rate-this .percent").html(percent);
+			    	var average = ( global.cdravg) + "%";
+			    	columnObj.find(".default-rate-avg .percent").html(average);
+			    }
+			    else {
+			 		columnObj.find(".default-rate-chart").hide();   	
+			    }
+
+			    // Draw the avg borrowing meter
+			    var grouphigh = global["group" + schoolData.indicatorgroup + "loanhigh"];
+			    var groupmed = global["group" + schoolData.indicatorgroup + "loanmed"];
+			    var grhigh = global["group" + schoolData.indicatorgroup + "loanrankhigh"];
+			    var grmax = global["group" + schoolData.indicatorgroup + "loanrankmax"];
+			    var grmed = global["group" + schoolData.indicatorgroup + "loanrankmed"];
+			    var grhigh = global["group" + schoolData.indicatorgroup + "loanrankhigh"];
+			    var borrowangle = 0;
+			    var rankcount = 1;
+			    var place = 1;
+			    if ( ( schoolData.avgstuloandebtrank != undefined ) && ( schoolData.avgstuloandebt != "NR" ) ) {
+			    	columnObj.find(".median-borrowing-chart").closest("td").children().show();
+			        if ( schoolData.avgstuloandebt < groupmed ) {
+			        	rankcount = grmed;
+			        	place = schoolData.avgstuloandebtrank;
+			        	borrowangle = 3 + Math.floor( ( place ) * ( 45 / rankcount)) 	
+			        }
+			        else if ( schoolData.avgstuloandebt < grouphigh ) {
+			        	rankcount = grhigh - grmed;
+			        	place = schoolData.avgstuloandebtrank - grmed;
+			        	borrowangle = 55 + Math.floor( ( place ) * ( 60 / rankcount));
+			        }
+			        else {
+			         	rankcount = grmax - grhigh;
+			        	place =  schoolData.avgstuloandebtrank - grhigh;
+			        	borrowangle = 130 + Math.floor( ( place ) * ( 47 / rankcount ) );
+			        }  
+			        // Convert to radians
+			        borrowangle = ( Math.PI * 2 * borrowangle ) / 360;
+			        // Coordinates of indicating point
+					x = 100 - ( Math.cos(borrowangle) * 40 );
+					y = 100 - ( Math.sin(borrowangle) * 40 );
+					// coordinates of left base point
+					var trailingangle = borrowangle - ( Math.PI / 2 );
+					var x2 = 100 - ( Math.cos(trailingangle) * 4 );
+					var y2 = 100 - ( Math.sin(trailingangle) * 4 );
+					// coordinates of right base point
+					var leadingangle = borrowangle + ( Math.PI / 2 );
+					var x3 = 100 - ( Math.cos(leadingangle) * 4 );
+					var y3 = 100 - ( Math.sin(leadingangle) * 4 );
+					var path = "M " + x + " " + y + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " z";
+					meterarrows[column].attr({"path": path, "fill": "#f5f5f5"});
+					meterarrows[column].toBack();
+					// Display borrowing amount in textbox
+					var content = "<em>" + num_to_money(schoolData.avgstuloandebt) + "</em>";
+					columnObj.find(".median-borrowing-text").html(content);
+					columnObj.find(".median-borrowing-text").css("font-weight", "600")
+			    }
+			    else {
+			    	columnObj.find(".median-borrowing-chart").hide();
+			    	columnObj.find(".indicator-textbox").html("not available");
+			    }
+		  	} 
+		}
+
+		this.updateColumn = function() { // Updates Column with new values for inputs and totals
+
+		}
 
 	}
 
-
-
+	//********** END NEW STUFF *************//
 
 	// see GLOBALS.txt for descriptions of the parameters
 	var global = {
@@ -151,7 +355,7 @@ var CFPBComparisonTool = (function() {
 
 	// setbyname - set an element to the matching schooldata object property (converted to money string)
 	jQuery.fn.setbyname = function(name, value, overwrite) {
-		var school_id = $(this).find("[data-nickname='institutionname']").attr("data-schoolid");
+		var school_id = $(this).find("[data-nickname='institution_name']").attr("data-schoolid");
 		var schooldata = schools[school_id];
 		var element = $(this).find("[data-nickname='" + name + "']");
 
@@ -171,7 +375,7 @@ var CFPBComparisonTool = (function() {
 
 	// textbyname - set the text of an element to a money string
 	jQuery.fn.textbyname = function(name, value) {
-		var school_id = $(this).find("[data-nickname='institutionname']").attr("data-schoolid");
+		var school_id = $(this).find("[data-nickname='institution_name']").attr("data-schoolid");
 		var schooldata = schools[school_id];
 		var element = $(this).find("[data-nickname='" + name + "']");
 		element.text(num_to_money(value));
@@ -237,7 +441,7 @@ var CFPBComparisonTool = (function() {
 	function build_school_element(column) {
 		var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 		var school = $("[data-column='" + column + "']");
-		toggle_column(column, "active");
+		columns[column].toggleActive("active");
 
 		school.find(".indicator-textbox").html("");
 		school.find(".indicator-textbox").hide();
@@ -284,10 +488,11 @@ var CFPBComparisonTool = (function() {
 		}
 
 		// Set the data within the element
-		school.find("[data-nickname='institutionname']").html(schooldata.school);
+		school.find("[data-nickname='institution_name']").html(schooldata.school);
 		school.find("input.school-data").not(".interest-rate").val("$0");
-		school.find("input[data-nickname='institutionalloanrate']").val(global.institutionalloantratedefault * 100 + "%");
+		school.find("input[data-nickname='institutional_loan_rate']").val(global.institutionalloantratedefault * 100 + "%");
 		school.find("input[data-nickname='privateloanrate']").val(global.privateloanratedefault * 100 + "%");
+
 		// Currently, we're not using schooldata from the database
 		// As such, the following is only used for average schools
 		if ( ( schooldata.origin == "presets" ) || ( schooldata.origin == "saved" ) ) {
@@ -318,8 +523,7 @@ var CFPBComparisonTool = (function() {
 
 	    //Grad programs don't have indicators, nor groups 4 or 5 
 	    if ( schooldata.undergrad == true && schooldata.indicatorgroup != "4" && schooldata.indicatorgroup != "5" ) {
-
-		   // Draw the graduation rate chart
+		    // Draw the graduation rate chart
 		    school.find(".gradrisk-percent").html(schooldata.gradrate + "%");
 		    // Note: ranks go from 1 to X, and X is "max"
 		    var grouphigh = global["group" + schooldata.indicatorgroup + "gradhigh"];
@@ -428,7 +632,7 @@ var CFPBComparisonTool = (function() {
 		    	school.find(".median-borrowing-chart").hide();
 		    	school.find(".indicator-textbox").html("not available");
 		    }
-		}
+	  	}
 		else {
 			school.find(".graduation-rate-chart").hide();
 			school.find(".default-rate-chart").hide();
@@ -918,7 +1122,7 @@ var CFPBComparisonTool = (function() {
 			schooldata.institutionalloanrate = .01;
 		}
 		loantext = ( Math.round(schooldata.institutionalloanrate * 1000) / 10 ) + "%";
-		school.find("[data-nickname='institutionalloanrate']").val(loantext);
+		school.find("[data-nickname='institutional_loan_rate']").val(loantext);
 
 
 		schooldata.privateloan_max = schooldata.firstyrnetcost - schooldata.perkins - schooldata.staffsubsidized - schooldata.staffunsubsidized - schooldata.institutionalloan - schooldata.gradplus;
@@ -1408,6 +1612,25 @@ var CFPBComparisonTool = (function() {
 	--------------------*/
 
 	$(document).ready(function() {
+		// Initialize columns[] with an instance of Column() for each column
+		var columns = {};
+		for (var x=1;x<=3;x++) {
+			columns[x] = new Column(x);
+		}
+
+		// Make all columns inactive
+		for (var x=1; x<=3; x++) {
+			columns[x].toggleActive("inactive");
+		}
+
+		// For testing purposes only
+		schools["211440"] = new School("211440");
+		schools["211440"].getSchoolData();
+		columns[1].addSchoolData(schools["211440"].schoolData);
+		columns[1].drawSchoolIndicators(schools["211440"].schoolData);
+
+		//** END NEW STUFF **//
+
 		if ( $("#comparison-tables").length != 0 ) { // Added for ease of testing
 			/* Notification for mobile screens */
 			$("#pfc-notification-wrapper").hide();
@@ -1970,9 +2193,7 @@ var CFPBComparisonTool = (function() {
 			});
 
 			/* --- Start the page up! --- */
-			for (var x=1; x<=3; x++) {
-				toggle_column(x, "inactive");
-			}
+
 
 			// Set vertical tabbing
 			for (c = 1; c <= 3; c++) {
