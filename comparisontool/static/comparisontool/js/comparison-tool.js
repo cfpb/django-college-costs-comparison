@@ -217,7 +217,6 @@ function get_first_empty_column() {
 function build_school_element(column) {
 	var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
 	var school = $("[data-column='" + column + "']");
-	set_column_stage(column, "occupied");
 
 	school.find(".indicator-textbox").html("");
 	school.find(".indicator-textbox").hide();
@@ -1469,7 +1468,7 @@ $(document).ready(function() {
 			set_add_stage(1);
 		});
 
-		// User has typed into the school-search input - perform search and display results
+		// [step-one] User has typed into the school-search input - perform search and display results
 		$("#step-one .school-search").on("keyup", "#school-name-search", function (ev) {
 			var query = $(this).val();
 			$("#step-one .search-results").show();
@@ -1485,13 +1484,10 @@ $(document).ready(function() {
 			}, 500);
 		});
 
-		// User clicks on a school from the search-results list
+		// [step-one] User clicks on a school from the search-results list
 		$("#step-one .search-results").on("click", ".school-result a", function(event) {
 			event.preventDefault();
-			var column = get_first_empty_column();
-			var headercell = $("#institution-row [data-column='" + column + "']");
 			var school_id = $(this).attr("href");
-			headercell.attr("data-schoolid", school_id);
 
 			// AJAX the schooldata
 			var schooldata = new Object();
@@ -1513,32 +1509,32 @@ $(document).ready(function() {
 				// Your fail message here.
 			});	
 			schools[school_id] = schooldata;
+			$("#school-name-search").attr("data-schoolid", school_id);
+			$("#school-name-search").val($(this).html());
+			$("#step-one .search-results").html("").hide();
 		});
 
-		// User clicks "Add average public"
-		$(".add-school-info .add-average-public").click( function (ev) {
-			schools["average-public"] = presets["average-public"];
-			var column = $(this).closest("[data-column]").attr("data-column");
-			$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-public");
+
+		// [step-one] User clicks Continue at step-one
+		$("#step-one .continue").click( function() {
+			set_add_stage(2);
+		});
+
+		// [step-two] User clicks Continue at step-two
+		$("#step-two .continue").click( function() {
+			set_add_stage(3);
+			var column = get_first_empty_column();
+			var school_id = $("#school-name-search").attr("data-schoolid");
+			$("#institution-row [data-column='" + column + "']").attr("data-schoolid", school_id);
 			build_school_element(column);
-			calculate_school(column);
-			$(".add-average-public").hide();
+
 		});
 
-		// User clicks "Add average private"
-		$(".add-school-info .add-average-private").click( function (ev) {
-			schools["average-private"] = presets["average-private"];
-			var column = $(this).closest("[data-column]").attr("data-column");
-			$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "average-private");
-			build_school_element(column);
-			calculate_school(column);
-			$(".add-average-private").hide();
+		// [step-three] User clicks Continue at step-three
+		$("#step-three .continue").click( function() {
+			set_add_stage(1);
 		});
 
-		// User clicks Continue at the Program Selection ("program") stage
-		$(".add-school-info .program-selection .continue").click( function() {
-			var column = $(this).closest("[data-column]").attr("data-column");
-		});
 
 		// User clicks Continue at the Program Length ("prgmlength") stage
 		$(".add-school-info .prgmlength-selection .continue").click( function() {
@@ -1661,12 +1657,6 @@ $(document).ready(function() {
 			var column = $(this).closest("[data-column]").attr("data-column");
 			// Set the "default" to false - the user is now engaged
 			var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-			if ( school_id == "average-public" ) {
-				$(".add-average-public").show();
-			}
-			if ( school_id == "average-private" ) {
-				$(".add-average-private").show();
-			}
 			$("#institution-row [data-column='" + column + "']").attr("data-schoolid", "");
 			toggle_column(column, "inactive");
 			_gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );
@@ -1687,13 +1677,6 @@ $(document).ready(function() {
 			event.preventDefault();
 			var column = $(this).closest("[data-column]").attr("data-column");
 			school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-			if ( ( school_id != "average-private" ) && ( school_id != "average-public" ) ) {
-				var panel = $("[data-column='" + column + "'] .gibill-panel");
-				if ( panel.is(":hidden") ) {
-					_gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Opened", school_id]);
-				}		
-				panel.toggle();
-			}
 		});
 
 		// Using the service selectors changes all selectors and activates service tier.
@@ -1966,13 +1949,6 @@ $(document).ready(function() {
 		});
 
 		/* --- Start the page up! --- */
-		set_column_stage(1, "default");
-		set_column_stage(2, "default");
-		set_column_stage(3, "default");
-		$("#institution-row [data-column='1']").attr("data-schoolid", "average-public");
-		schools["average-public"] = presets["average-public"];
-		build_school_element(1);
-		$(".add-average-public").hide();
 
 		// Set vertical tabbing
 		for (c = 1; c <= 3; c++) {
