@@ -4,6 +4,9 @@ module.exports = function(grunt) {
     if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
   }
 
+  console.log("Build ID: ");
+  console.log(process.env.BUILD_ID);
+
   var browsers = [
   {
     browserName: 'firefox',
@@ -79,6 +82,7 @@ module.exports = function(grunt) {
           detailedError: true,
           testname: 'Paying-for-College JS Unit Tests',
           testTimeout: 180000,
+          build: process.env.BUILD_ID, // Set by Jenkins
           tags: [
             'cf.gov',
             'paying-for-college'
