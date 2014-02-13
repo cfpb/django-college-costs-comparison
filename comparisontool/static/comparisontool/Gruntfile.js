@@ -6,6 +6,8 @@ module.exports = function(grunt) {
 
   console.log("Build ID: ");
   console.log(process.env.BUILD_ID);
+  sauce_identifier = Math.floor((new Date()).getTime() / 1000 - 1230768000).toString();
+  console.log("Sauce identifier: " + sauce_identifier);
 
   var browsers = [
   {
@@ -14,21 +16,23 @@ module.exports = function(grunt) {
     platform: 'XP'
   }, {
     browserName: 'chrome',
+    version: '26',
     platform: 'XP'
   }, {
     browserName: 'chrome',
+    version: '26',
     platform: 'linux'
   }, {
     browserName: 'internet explorer',
-    platform: 'WIN8',
+    platform: 'Windows 7',
     version: '10'
   }, {
     browserName: 'internet explorer',
-    platform: 'WIN7',
+    platform: 'Windows 7',
     version: '9'
   }, {
     browserName: 'internet explorer',
-    platform: 'VISTA',
+    platform: 'Windows 7',
     version: '9'
   }];
 
@@ -80,6 +84,7 @@ module.exports = function(grunt) {
           //username: This value is set in the environment variable SAUCE_USERNAME
           //key: This value is set in the environment variable SAUCE_ACCESS_KEY
           detailedError: true,
+          identifier: sauce_identifier,
           testname: 'Paying-for-College JS Unit Tests',
           testTimeout: 180000,
           build: process.env.BUILD_ID, // Set by Jenkins
@@ -93,6 +98,8 @@ module.exports = function(grunt) {
     }
   });
 
+  // This line is required so that Jenkins can pick up the results for display
+  console.log("{ SauceOnDemandSessionID="+sauce_identifier+" job-name=Paying-for-College JS Unit Tests }");
   grunt.registerTask("dev", ["connect", "watch"]);
   grunt.registerTask("test", ["jasmine"]);
   grunt.registerTask("sauce", ["connect", "jasmine", "saucelabs-jasmine"]);
