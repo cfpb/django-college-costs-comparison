@@ -55,38 +55,24 @@ var CFPBComparisonTool = (function() {
 	} // end money_to_num()
 
 	//-- num_to_money(): Convert from number to money string --//
-	function num_to_money(n, sign, c, d, t) { 
-		if (isNaN(c = Math.abs(c))) {
-			c = 0;
-		}
-		if (d === undefined) {
-			d = ".";
-		}
-		if (t === undefined) {
-			t = ",";
-		}
-		if (sign === undefined) {
-			sign = "$";
-		}
+	function num_to_money(n) { 
+		var t = ",";
 		if (n < 0) {
 			var s = "-";
 		}
 		else {
 			var s = "";
 		}
-		var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "";
+		var i = parseInt(n = Math.abs(+n || 0).toFixed(0)) + "";
 		var j = 0;
 		if (i.length > 3) {
 			j = ((i.length) % 3);
 		}
-		money = sign + s;
+		money = "$" + s;
 		if (j > 0) {
 			money += i.substr(0,j) + t;
 		}
 		money += i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t);
-		if (c) {
-			money += d + Math.abs(n - i).toFixed(c).slice(2);
-		}
 		return money;
 	} // end num_to_money()
 
