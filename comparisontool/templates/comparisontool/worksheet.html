@@ -106,24 +106,26 @@ var restoredata = {{ data_js|safe }};
 
 		<section id="introduction">
 			<div class="pfc-intro-text">
-				<h1>Compare financial aid and college cost</h1>
 				<p>Introduction and instructions placeholder.</p>
 			</div>
-			<fieldset id="add-a-school">
-				<legend>Tell us more information about <span>School One</span></legend>
-				<div id="step-zero" class="get-started clearfix">
-					<div class="step-left">
-						<div class="pfc-container-left">
-							<p>Use this tool to compare your costs of paying to attend up to 3 schools you are considering.</p>
-						</div>
-					</div>
-					<div class="step-right">
-						<div class="pfc-container-right">
-							<a class="pfc-button" href="#" id="get-started-button">Get started</a>
-						</div>
+			<h2 class="h3 vert-pad bottom-border">School cost comparison</h2>
+			<div id="step-zero" class="get-started clearfix">
+				<div class="step-left">
+					<div class="pfc-container-left">
+						<h2 class="h4">Lorem ipsum, how much will that school really cost?</h2>
+						<p>Lorem ipsum add your school name and program information into the following fields to compare your first year costs.</p>
+						<p>You can compare up to 3 schools at once.</p>
 					</div>
 				</div>
-				<div id="step-one" class="get-started step-one clearfix">
+				<div class="step-right">
+					<div class="pfc-container-right center">
+						<button class="pfc-button" id="get-started-button">Get started</button>
+					</div>
+				</div>
+			</div>
+			<div id="step-one" class="get-started step-one clearfix">
+				<fieldset id="add-a-school">
+					<legend>Tell us more information about <span>School One</span></legend>
 					<span>Step 1 of 3</span>
 					<div class="step-left">
 						<div class="pfc-container-left">
@@ -159,8 +161,8 @@ var restoredata = {{ data_js|safe }};
 							<button class="add-cancel">Cancel</button>
 						</div><!-- /pfc-container-right -->
 					</div><!--/prgmlength-selection /staged /stage-program -->
-				</div><!--/step-one -->
-			</fieldset>
+				</fieldset>
+			</div><!--/step-one -->
 			<div id="step-two" class="get-started step-two clearfix">
 				<div class="add-xml xml-info staged stage-xml step-left">
 					<div class="pfc-container-left">
@@ -206,7 +208,6 @@ var restoredata = {{ data_js|safe }};
 			</div><!--/step-three -->
 		</section>
 		<section id="comparison-tables">
-			<h3 class="h3 vert-pad bottom-border">School cost comparison</h3>
 			<table>
 				<thead>
 					<tr id="institution-row">
