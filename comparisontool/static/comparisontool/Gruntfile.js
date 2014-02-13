@@ -99,7 +99,7 @@ module.exports = function(grunt) {
   });
 
   // This line is required so that Jenkins can pick up the results for display
-  console.log("{ SauceOnDemandSessionID="+sauce_identifier+" job-name=Paying-for-College JS Unit Tests }");
+  console.log("SauceOnDemandSessionID="+sauce_identifier+" job-name=Paying-for-College JS Unit Tests");
   grunt.registerTask("dev", ["connect", "watch"]);
   grunt.registerTask("test", ["jasmine"]);
   grunt.registerTask("sauce", ["connect", "jasmine", "saucelabs-jasmine"]);
