@@ -374,7 +374,7 @@ This contains basic HTML elements.
 button,
 .button {
     color: #fff;
-    background-color: #D83D00;
+    background-color: #d83d00;
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 500;
     text-transform: none;
@@ -388,6 +388,11 @@ button,
     -webkit-transition: none;
     -moz-transition: none;
     transition: none;
+}
+
+button:hover,
+.button:hover {
+	background-color: #d83d00;
 }
 
 button + button {
@@ -769,11 +774,11 @@ td input {
 
 td input:focus,
 td input:hover {
-    border: 1px solid #AFAFB3;
+    border: 1px solid #afafb3;
     border-radius: 0.25em;
-    box-shadow: inset 0px 1px 3px #CCC;
+    box-shadow: inset 0px 1px 3px #ccc;
     -webkit-box-sizing: border-box;
-    background-color: white;
+    background-color: #fff;
 }
 
 td input.disabled, td input.disabled:hover,  
@@ -782,23 +787,19 @@ td h6.disabled, td h6.disabled:hover {
     color: transparent;
 }
 
-#comparison-tool td,
-#comparison-tool td input {
+td,
+td input {
     text-align: center;
 }
 
-#comparison-tool td input {
-    border: 1px solid #fff;
-}
-
-#comparison-tool td input:focus,
-#comparison-tool td input:hover {
+.comparison-tables td input:focus,
+.comparison-tables td input:hover {
     border: 1px solid #989898;
     background: #fdf3e0;
 }
 
-#comparison-tool input[type=checkbox],
-#comparison-tool input[type=radio] {
+input[type=checkbox],
+input[type=radio] {
     margin-right: .125em;
 }
 
@@ -910,6 +911,7 @@ label.tooltip-info {
 }
 
 /* BAR GRAPH, AKA .meter */
+/* TODO: Make this section less specific. */
 #comparison-tables .breakdown td,
 #comparison-tables .breakdown th  {
     background: #f2f2f2;
@@ -1188,27 +1190,27 @@ label.tooltip-info {
 }
 
 /* SAVE & SHARE */
-#save-footer div {
+.save-footer div {
     display: inline-block;
     padding: 1em 2em;
     width: 40%;
 }
 
-#save-footer div .button {
+.save-footer div .button {
     font-size: 1.25em;
 }
 
-#save-drawer {
+.save-drawer {
     background: #e6e6e6;    
     display: none;
     padding: 1.5em;
 }
 
-#save-drawer div {
+.save-drawer div {
     margin: 1em 0 1em 5em;
 }
 
-#save-drawer label {
+.save-drawer label {
     clear: left;
     color: #808184; 
     display: inline-block;  
@@ -1218,30 +1220,30 @@ label.tooltip-info {
     width: 45px;
 }
 
-#save-drawer #timestamp {
+.save-drawer #timestamp {
     font-size: .7em;
     font-style: italic;
     margin: 0 3em 0 3em;
     text-transform: lowercase;
 }
 
-#save-drawer #save-current {
+.save-drawer #save-current {
     float: right;
     font-size: .8em;
     position: relative;
         right: 0px;
 }
 
-#save-drawer .unique-label {
+.save-drawer .unique-label {
     background: url(../images/save-link.png) 0 .25em no-repeat;
 }
 
-#save-drawer .email-label {
+.save-drawer .email-label {
     background: url(../images/save-email.png) 0 .25em no-repeat;
 }
 
-#save-drawer input[type=text] {
-    background-color: #EEE;
+.save-drawer input[type=text] {
+    background-color: #eee;
     border: 1px solid #808184;
     border-radius: 0;
     box-shadow: none;
@@ -1254,26 +1256,26 @@ label.tooltip-info {
     margin: 0px;
 }
 
-#comparison-tool #save-footer .save-container {
+.save-footer .save-container {
     margin: 1em 0;
     padding: .25em 10px;
 }
 
-#save-drawer #unique {
+.save-drawer #unique {
     font-size: .75em;
     height: 2em;
     width: 500px;
 }
 
-#save-drawer #email {
+.save-drawer #email {
     width: 425px;
 }
 
-#save-drawer #send-email {
+.save-drawer #send-email {
     display: inline-block;
 }
 
-#save-drawer .no-save {
+.save-drawer .no-save {
     display: block;
     padding-top: .625em;
     padding-bottom: 1.25em;
@@ -1282,14 +1284,14 @@ label.tooltip-info {
     font-weight: 500;
 }
 
-#save-drawer .save-share-tools {
+.save-drawer .save-share-tools {
     margin-top: 1.2em;
     font-size: .75em;
     color: #6d6e70;
     font-weight: 500;
 }
 
-#save-drawer .save-share-tools .share-facebook {
+.save-drawer .save-share-tools .share-facebook {
     display: inline-block;
     width: 19px;
     height: 19px;
@@ -1299,7 +1301,7 @@ label.tooltip-info {
     margin-left: 12px;
 }
 
-#save-drawer .save-share-tools .share-twitter {
+.save-drawer .save-share-tools .share-twitter {
     display: inline-block;
     width: 24px;
     height: 19px;
