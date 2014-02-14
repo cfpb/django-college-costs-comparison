@@ -217,11 +217,11 @@ This has similar styles as the global site navigation.
 /* ADD A SCHOOL
 This is for each step in the process.
 -------------------------------------------------------------------------------*/
-#introduction .pfc-intro-text {
+.pfc-intro-text {
     font-size: 1.125em;
 }
 
-#introduction .get-started {
+.get-started {
     background-color: #f8f8f8;
     margin: 1em 0 0;
     padding: 1.5em 0;
@@ -235,29 +235,29 @@ This is for each step in the process.
 }
 
 /* The main layout components for Add a School. */
-#introduction .get-started .step-left {
+.get-started .step-left {
     float: left;
     margin-right: 30px;
     width: 533.5px;
 }
 
-#introduction .get-started .step-right {
+.get-started .step-right {
     float: left;
     margin-right: 0;
     width: 372.5px;
 }
 
 /* Containers for padding. */
-.pfc-container-left {
+.get-started .pfc-container-left {
     padding-left: 30px;
 }
 
-.pfc-container-right {
+.get-started .pfc-container-right {
     padding-right: 30px;
 }
 
 /* The button styles for Add a School. */
-#introduction .get-started .pfc-button {
+.get-started .pfc-button {
     background-color: #0072ce;
     color: #fff;
     font-family: "Avenir Next Medium", Verdana, sans-serif;
@@ -268,8 +268,8 @@ This is for each step in the process.
     text-align: center;
 }
 
-#introduction .get-started .pfc-button:hover,
-#introduction .get-started .pfc-button:focus {
+.get-started .pfc-button:hover,
+.get-started .pfc-button:focus {
     background-color: #002d72;
 }
 
@@ -278,12 +278,12 @@ This is for each step in the process.
     margin-top: 2.5em;
 }
 
-#introduction .get-started legend {
+.get-started legend {
 	padding: 0 30px;
 }
 
 /* The search results for Add a School. */
-#add-a-school .search-results {
+.search-results {
     background-color: #fff;
     border: 1px solid black;
     display: none;
@@ -294,12 +294,12 @@ This is for each step in the process.
     padding: .25em;
 }
 
-#add-a-school .search-results li a,
-#add-a-school .search-results li p {
+.search-results li a,
+.search-results li p {
     border: none;
     font-weight: normal;
 }
-#add-a-school .search-results li p.location {
+.search-results li p.location {
     margin: .1em 0 .5em .75em;
     font-weight: 400;
     font-size: .8em;
@@ -315,8 +315,8 @@ font styles, heading styles, etc. Other adjustments happen within components.
     font-family: "Avenir Next", Verdana, sans-serif !important;
 }
 
-#comparison-tool .h2,
-#comparison-tool thead h2 {
+.h2,
+thead h2 {
     color: #101820;
     font-size: 1.5em;
     font-weight: 700;
@@ -325,12 +325,12 @@ font styles, heading styles, etc. Other adjustments happen within components.
     text-transform: none;
 }
 
-#comparison-tool thead #institution-row h2.inactive {
+thead #institution-row h2.inactive {
     color: #babbbd;
 }
 
-#comparison-tool .h3,
-#comparison-tool table h3 {
+.h3,
+table h3 {
 	color: #101820;
     font-size: 0.8125em;
     font-weight: 400;
@@ -339,30 +339,30 @@ font styles, heading styles, etc. Other adjustments happen within components.
     text-transform: uppercase;
 }
 
-#comparison-tool .h4,
-#comparison-tool h4 {
+.h4,
+h4 {
 	color: #101820;
 	font-size: 1.125em;
     letter-spacing: 0;
     text-transform: none;
 }
 
-#comparison-tool .totalcont h4,
-#comparison-tool .totalcost h4 {
+.totalcont h4,
+.totalcost h4 {
 	color: #101820;
     font-size: 1.25em;
     letter-spacing: 0;
 }
 
-#comparison-tool .totalcont h6.data-total,
-#comparison-tool .totalcost h6.data-total {
+.totalcont h6.data-total,
+.totalcost h6.data-total {
 	color: #101820;
     font-size: 1.5em;
     letter-spacing: 0;
 }
 
-#comparison-tool .h6,
-#comparison-tool h6 {
+.h6,
+h6 {
 	color: #101820;
     font-size: 1.125em;
     letter-spacing: 0;
@@ -371,8 +371,8 @@ font styles, heading styles, etc. Other adjustments happen within components.
 /* BASIC ELEMENTS
 This contains basic HTML elements.
 -------------------------------------------------------------------------------*/
-#comparison-tool button,
-#comparison-tool .button {
+button,
+.button {
     color: #fff;
     background-color: #D83D00;
     font-family: "Avenir Next", Verdana, sans-serif;
@@ -390,25 +390,25 @@ This contains basic HTML elements.
     transition: none;
 }
 
-#comparison-tool button + button {
+button + button {
     margin-top:1em;
 }
 
-#comparison-tool button[disabled=disabled],
-#comparison-tool button[disabled],
-#comparison-tool button.disabled,
-#comparison-tool .button.disabled,
-#comparison-tool .button.cancel,
-#comparison-tool .button.preset {
+button[disabled=disabled],
+button[disabled],
+button.disabled,
+.button.disabled,
+.button.cancel,
+.button.preset {
     background: #808080;
 }
 
-#comparison-tool .button-small {
+.button-small {
     font-size: .75em;
     padding: .5em 1em;
 }
 
-#comparison-tool b {
+b {
     font-weight: 600;
 }
 
