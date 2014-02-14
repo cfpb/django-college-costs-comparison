@@ -4,10 +4,6 @@ module.exports = function(grunt) {
     if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
   }
 
-  console.log("Build ID: ");
-  console.log(process.env.BUILD_ID);
-  sauce_identifier = Math.floor((new Date()).getTime() / 1000 - 1230768000).toString();
-
   var browsers = [
   {
     browserName: 'firefox',
@@ -85,8 +81,7 @@ module.exports = function(grunt) {
           detailedError: true,
           testname: 'Paying-for-College JS Unit Tests',
           testTimeout: 180000,
-          //build: process.env.BUILD_ID, // Set by Jenkins
-          build: sauce_identifier,
+          build: process.env.BUILD_ID, // Set by Jenkins
           tags: [
             'cf.gov',
             'paying-for-college'
@@ -98,7 +93,7 @@ module.exports = function(grunt) {
   });
 
   // This line is required so that Jenkins can pick up the results for display
-  console.log("SauceOnDemandSessionID="+sauce_identifier+" job-name=Paying-for-College JS Unit Tests");
+  console.log("SauceOnDemandSessionID="+process.env.BUILD_ID+" job-name=Paying-for-College JS Unit Tests");
   grunt.registerTask("dev", ["connect", "watch"]);
   grunt.registerTask("test", ["jasmine"]);
   grunt.registerTask("sauce", ["connect", "jasmine", "saucelabs-jasmine"]);
