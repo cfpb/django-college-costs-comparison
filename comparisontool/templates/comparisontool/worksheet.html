@@ -87,7 +87,7 @@ var restoredata = {{ data_js|safe }};
 {% endblock %}
 {% block content %}
 <div id="comparison-tool" page="visualize">
-		<header id="comparison-tool-header">
+		<header id="comparison-tool-header" class="comparison-tool-header">
 		    <div id="pfc-hero-wrapper" class="pfc-hero-wrapper">
 		        <a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
 		    </div><!-- end .pfc-hero-wrapper -->
@@ -108,7 +108,7 @@ var restoredata = {{ data_js|safe }};
 			<div class="pfc-intro-text">
 				<p>Introduction and instructions placeholder.</p>
 			</div>
-			<h2 class="h3 vert-pad bottom-border">School cost comparison</h2>
+			<h2 class="h3 vert-pad bottom-border bold">School cost comparison</h2>
 			<div id="step-zero" class="get-started clearfix">
 				<div class="step-left">
 					<div class="pfc-container-left">
@@ -738,7 +738,7 @@ var restoredata = {{ data_js|safe }};
 				</tbody>
 				<tbody>
 					<tr class="stop bottom-border">
-						<th colspan="4"><h3>After school</h3></th>
+						<th class="nopad-horiz" colspan="4"><h3 class="bold">After school</h3></th>
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</h4></th>
@@ -784,8 +784,8 @@ var restoredata = {{ data_js|safe }};
 				</tbody>
 				<tbody>
 					<tr class="bottom-border" id="indicators-row">
-						<th colspan="4">
-							<h3>School indicators (<a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</h3>
+						<th class="nopad-horiz" colspan="4">
+							<h3 class="bold">School indicators (<a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</h3>
 						</th>
 					</tr>
 					<tr class="visualization-row">
