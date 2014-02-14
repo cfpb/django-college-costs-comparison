@@ -422,13 +422,13 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* The structural table elements */
-#comparison-tool table {
+.comparison-tool table {
     border: none;
     border-collapse: separate;
     border-spacing: 0 0.5em;
 }
 
-#comparison-tool thead th {
+.comparison-tool thead th {
     background: transparent;
     color: #333;
     border: none;
@@ -438,13 +438,13 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* Remove a school links */
-#comparison-tool thead #institution-row th .remove-this-school {
+.comparison-tool thead .institution-row th .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
     margin-bottom: 0.75em;
 }
 
-#comparison-tool thead #institution-row th .remove-confirm {
+.comparison-tool thead .institution-row th .remove-confirm {
     background-color: #FFF;
     border: 1px solid black;
     display: none;
@@ -454,59 +454,59 @@ This contains the majority of the structural styles for table-based elements.
     max-width: 15%;
 }
 
-#comparison-tool thead #institution-row th .remove-confirm a {
+.comparison-tool thead .institution-row th .remove-confirm a {
     display: inline-block;
     margin: .5em auto .5em auto;
     text-align: center;
     width: auto;
 }
 
-#comparison-tool table tbody {
+.comparison-tool table tbody {
     padding-bottom: 1em;
 }
 
-#comparison-tool table tbody th {
+.comparison-tool table tbody th {
     font-size: 0.875em;
     border-right: none;
     vertical-align: middle;
     padding: 0.5em 1em;
 }
 
-#comparison-tool table > tbody thead th {
+.comparison-tool table > tbody thead th {
     text-transform: uppercase;
     font-weight: 600;
     padding: 0.5em 0.5em 0.5em 1em;
 }
 
-#comparison-tool table td {
+.comparison-tool table td {
     width: 25%;
     padding: .25em 0;
 }
 
-#comparison-tool table thead th {
+.comparison-tool table thead th {
     border: none;
     color: #585858;
     background: transparent;
     padding: 0.5em 0;
 }
 
-#comparison-tool th {
+.comparison-tool th {
     width: 25%;
 }
 
-#comparison-tool td {
+.comparison-tool td {
     border-right: none;
 }
 
-#comparison-tool td:last-child {
+.comparison-tool td:last-child {
     border-right: none;
 }
 
-#comparison-tool thead th {
+.comparison-tool thead th {
     text-align: left;
 }
 
-#comparison-tool tbody > th, tbody thead th:first-child {
+.comparison-tool tbody > th, tbody thead th:first-child {
     text-align: right;
     padding-right: 0.9em;
 }
@@ -633,33 +633,33 @@ This contains the majority of the structural styles for table-based elements.
     margin-bottom: 1.5em;
 }
 
-#comparison-tables input.radio-input {
+.comparison-tables input.radio-input {
     display: inline;
 }
 
-#comparison-tables label.radio-label {
+.comparison-tables label.radio-label {
     display: inline;
     margin: 1em 0 .25em 0;
 }
 
-#comparison-tables label.radio-label:after {
+.comparison-tables label.radio-label:after {
     content: "\A";
     white-space: pre;
 }
 
-#comparison-tables .military-instate {
+.comparison-tables .military-instate {
     display: none;
 }
 
-#comparison-tables label.military-instate:visible {
+.comparison-tables label.military-instate:visible {
     display: block;
 }
 
-#comparison-tables input.military-instate {
+.comparison-tables input.military-instate {
     background-color: #F5f5f5;
 }
 
-#comparison-tables .military-calculate {
+.comparison-tables .military-calculate {
     background-color: #d12124;
     display: block;
     margin: 1.5em auto;
@@ -690,42 +690,13 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* The Column headers in the table. */
-#comparison-tool section > table > thead th {
+.comparison-tool section > table > thead th {
     background: transparent;
     color: #585858;
     border: none;
     vertical-align: top;
     line-height: 1.25em;
     padding: 0.5em;
-}
-
-/* Colored borders on collapsable rows */
-#total-costs table thead th {
-    border-top: 5px solid #e26e40;
-}
-
-#scholarships thead th {
-    border-top: 5px solid #7da0c3;
-}
-
-#federal-loans thead th {
-    border-top: 5px solid #f59d65;
-}
-
-#private-loans thead th {
-    border-top: 5px solid #f5c455;
-}
-
-#contributions thead th {
-    border-top: 5px solid #d6cca3;
-}
-
-#estimated-debt td {
-    padding: 0.1875em 1em;
-}
-
-#estimated-debt table thead th {
-    border-top: 5px solid #e26e40;
 }
 
 .percent-of-salary {
@@ -745,9 +716,9 @@ This contains the majority of the structural styles for table-based elements.
     font-size: 0.9em;
 }
 
-/* The change rate styles and buttons */
-#comparison-tool .private-row .interest-rate,
-#comparison-tool .private-row .interest-rate:hover {
+/* The change rate styles and buttons have IDs so they can override other form element styles. */
+#comparison-tables .private-row .interest-rate,
+#comparison-tables .private-row .interest-rate:hover {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 0em;
@@ -764,7 +735,7 @@ This contains the majority of the structural styles for table-based elements.
     width: 4em;
 }
 
-#comparison-tool .private-row td .rate-change {
+#comparison-tables .private-row td .rate-change {
     border: 0;
     display: block;
     font-size: .5em;
@@ -776,22 +747,14 @@ This contains the majority of the structural styles for table-based elements.
     width: 5.5em;
 }
 
-#comparison-tool .private-row td .rate-change.down {
+#comparison-tables .private-row td .rate-change.down {
     background: url(../images/arrow-down.png) 16px 0 no-repeat;
     position: absolute;
         top: 1.9em;
 }
 
-#comparison-tool .private-row td .rate-change.up {
+#comparison-tables .private-row td .rate-change.up {
     background: url(../images/arrow-up.png) 16px 2px no-repeat;
-}
-
-/* Highlighted column */
-table .selected,
-#total-costs table thead th.selected,
-#financial-aid table thead th.selected,
-#estimated-debt table thead th.selected {
-    background-color: #ffe;
 }
 
 /* FORM ELEMENTS
