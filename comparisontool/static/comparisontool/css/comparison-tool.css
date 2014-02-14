@@ -116,12 +116,12 @@ This just the hero for the Comparison Tool.
     height: 300px;
 }
 
-#comparison-tool #comparison-tool-header {
+.comparison-tool-header {
     margin: 0 0 3em 0;
     position: relative;
 }
 
-#comparison-tool #comparison-tool-header h1 {
+.comparison-tool-header h1 {
     position: relative;
     font-size: 2.5em;
     font-weight: 400;
@@ -133,7 +133,7 @@ This just the hero for the Comparison Tool.
     text-transform: none;
 }
 
-#comparison-tool #comparison-tool-header h1 sup {
+.comparison-tool-header h1 sup {
     font-size: .25em;
     font-weight: 700;
     color: #808080;
@@ -145,13 +145,13 @@ This just the hero for the Comparison Tool.
 /* PFC NAVIGATION
 This has similar styles as the global site navigation.
 -------------------------------------------------------------------------------*/
-#comparison-tool-header .pfc-nav-wrapper {
+.pfc-nav-wrapper {
     background-color: #F6D9D3;
     border-top: 1px solid #101820;
     margin: 1em 0 0;
 }
 
-#comparison-tool-header .pfc-nav {
+.pfc-nav {
     background-color: #F6D9D3;
     list-style-type: none;
     padding: 0;
@@ -161,7 +161,7 @@ This has similar styles as the global site navigation.
     display: table;
 }
 
-#comparison-tool-header .pfc-nav li {
+.pfc-nav li {
     background-color: #F6D9D3;
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 500;
@@ -171,17 +171,17 @@ This has similar styles as the global site navigation.
     margin: 0;
 }
 
-.lt-ie8 #comparison-tool-header .pfc-nav li {
+.lt-ie8 .pfc-nav li {
     display: inline-block;
     *display: inline;
     *zoom: 1;
 }
 
-.lt-ie9 #comparison-tool-header .pfc-nav li {
+.lt-ie9 .pfc-nav li {
     font-family: "Avenir Next Demi", Verdana, sans-serif;
 }
 
-#comparison-tool-header .pfc-nav li a {
+.pfc-nav li a {
     -webkit-transition: background-color ease 1000ms;
     -moz-transition: background-color ease 1000ms;
     transition: background-color ease 1000ms;
@@ -195,21 +195,21 @@ This has similar styles as the global site navigation.
     background-color: #F6D9D3;
 }
 
-#comparison-tool-header .pfc-nav li a:visited {
+.pfc-nav li a:visited {
     color: #101820;
 }
 
-#comparison-tool-header .pfc-nav li a:hover {
+.pfc-nav li a:hover {
     background-color: #D12124;
     color: #FFF;
 }
 
-#comparison-tool-header .pfc-nav li a:focus {
+.pfc-nav li a:focus {
     background-color: #D12124;
     color: #FFF;
 }
 
-#comparison-tool-header .pfc-nav li a.active {
+.pfc-nav li a.active {
     background-color: #DA6750;
     color: #FFF;
 }
@@ -317,11 +317,12 @@ font styles, heading styles, etc. Other adjustments happen within components.
 
 #comparison-tool .h2,
 #comparison-tool thead h2 {
-    text-transform: none;
+    color: #101820;
     font-size: 1.5em;
+    font-weight: 700;
     letter-spacing: 0;
     line-height: 1.3em;
-    font-weight: 700;
+    text-transform: none;
 }
 
 #comparison-tool thead #institution-row h2.inactive {
@@ -330,31 +331,41 @@ font styles, heading styles, etc. Other adjustments happen within components.
 
 #comparison-tool .h3,
 #comparison-tool table h3 {
-    text-transform: uppercase;
+	color: #101820;
+    font-size: 0.8125em;
     font-weight: 400;
-    font-size: 0.9em;
+    letter-spacing: 0;
     text-align: left;
+    text-transform: uppercase;
 }
 
 #comparison-tool .h4,
 #comparison-tool h4 {
-    text-transform: none;
+	color: #101820;
+	font-size: 1.125em;
     letter-spacing: 0;
-    font-size: 1.125em;
+    text-transform: none;
 }
 
 #comparison-tool .totalcont h4,
 #comparison-tool .totalcost h4 {
+	color: #101820;
     font-size: 1.25em;
+    letter-spacing: 0;
 }
 
-#comparison-tool .totalcont h6.data-total, #comparison-tool .totalcost h6.data-total {
+#comparison-tool .totalcont h6.data-total,
+#comparison-tool .totalcost h6.data-total {
+	color: #101820;
     font-size: 1.5em;
+    letter-spacing: 0;
 }
 
 #comparison-tool .h6,
 #comparison-tool h6 {
+	color: #101820;
     font-size: 1.125em;
+    letter-spacing: 0;
 }
 
 /* BASIC ELEMENTS
@@ -526,11 +537,11 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 .totalcost {
-    background: #d4e0eb;
+    background: #cce3f5;
 }
 
 .totalcont {
-    background: #d4e0eb;
+    background: #cce3f5;
 }
 
 .breakdown th, .breakdown td {
@@ -1513,6 +1524,16 @@ This contains varous elements that are standalone components within the tool.
     padding: 0;
 }
 
+.nopad-vert {
+	padding-bottom: 0;
+    padding-top: 0;
+}
+
+.nopad-horiz {
+	padding-left: 0;
+	padding-right: 0;
+}
+
 .center {
     text-align: center;
 }
@@ -1522,8 +1543,12 @@ This contains varous elements that are standalone components within the tool.
     color: #D83D00;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 .bottom-border,
 .bottom-border th,
 .bottom-border td {
-    border-bottom: 5px solid #585858;
+    border-bottom: 5px solid #101820;
 }
