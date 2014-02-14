@@ -86,7 +86,7 @@ var restoredata = {{ data_js|safe }};
 </div>
 {% endblock %}
 {% block content %}
-<div id="comparison-tool" page="visualize">
+<div id="comparison-tool" class="comparison-tool" page="visualize">
 		<header id="comparison-tool-header" class="comparison-tool-header">
 		    <div id="pfc-hero-wrapper" class="pfc-hero-wrapper">
 		        <a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
@@ -104,7 +104,7 @@ var restoredata = {{ data_js|safe }};
 		    </div><!-- end .pfc-nav-wrapper -->
 		</header><!-- end #comparison-tool-header -->
 
-		<section id="introduction">
+		<section id="introduction" class="introduction">
 			<div class="pfc-intro-text">
 				<p>Introduction and instructions placeholder.</p>
 			</div>
@@ -207,10 +207,10 @@ var restoredata = {{ data_js|safe }};
 				</div><!-- /step-right -->
 			</div><!--/step-three -->
 		</section>
-		<section id="comparison-tables">
+		<section id="comparison-tables" class="comparison-tables">
 			<table>
 				<thead>
-					<tr id="institution-row">
+					<tr id="institution-row" class="institution-row">
 						<td data-column="0"></td>
 						<th scope="col" data-column="1" data-schoolid="">
 							<div class="remove-this-school">
