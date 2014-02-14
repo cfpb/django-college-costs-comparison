@@ -5,6 +5,20 @@
 //** CFPBComparisonTool represents a namespace for comparison tool classes and functions **//
 
 var CFPBComparisonTool = (function() {
+
+    //*** Initialize values, objects, etc ***//
+    var columns = new Object(); // Object (array-ish) that holds Column objects, keyed by column number
+    var schools = new Object(); // Object (array-ish) that holds School objects, keyed by school_id
+    var schools_zeroed = new Object(); // Object for Google analytics, for schools where gap reaches 0
+    var pies = []; // Object holding monthly loan pie chart Raphael objects (the whole object)
+    var circles = []; // Object holding monthly loan pie chart Raphael objects (the outer circle part)
+    var loans = []; // Object holding monthly loan pie chart Raphael objects (the pie part)
+    var bars = []; // Object holding default rate bar Raphael objects (both bars, the whole shebang)
+    var averagebars = []; // Object holding default rate bar Raphael objects (the average bar)
+    var defaultbars = []; // Object holding default rate bar Raphael objects (the school's bar)
+    var meters = []; // Object holding average loan Raphael objects (the whole meter)
+    var meterarrows = []; // Object holding average loan Raphael objects (the needle/arrow)
+
 	// A bunch of global defaults and such - see GLOBALS.txt for descriptions of the parameters
 	var global = {
 		"institutionalloanratedefault": 0.079, "privateloanratedefault": 0.079,
@@ -13,7 +27,7 @@ var CFPBComparisonTool = (function() {
 		"group3GradRankHigh": 247, "group3GradRankMed": 420, "group3GradRankMax": 539,
 		"group4GradRankHigh": 0, "group4GradRankMed": 0, "group4GradRankMax": 0,
 		"group5GradRankHigh": 0,"group5GradRankMed": 0, "group5GradRankMax": 0,
-		"group1GradMed": 39.6, "group1gradhigh": 57.9, "group2GradMed": 19.4, "group2GradHigh": 41.9,
+		"group1GradMed": 39.6, "group1GradHigh": 57.9, "group2GradMed": 19.4, "group2GradHigh": 41.9,
 		"group3GradMed": 21.4, "group3GradHigh": 41.2, "group4GradMed": 0, "group4GradHigh": 0, 
 		"group5GradMed": 0, "group5GradHigh": 0, "cdrhigh": 100, "cdravg": 13.4, "cdrlow": 0.0, 
 		"group1loanmed": 15025, "group1loanhigh": 20016, "group2loanmed": 6891, "group2loanhigh": 12584, 
@@ -44,18 +58,23 @@ var CFPBComparisonTool = (function() {
 	};
 
 	//*** Non-Class Functions ***//
-	//-- money_to_num(): Convert from money string to number --//
-	function money_to_num(money) { 	
+	//-- exists() - a simple way to determine if any instance of an element matching the selector exists --//
+    jQuery.fn.exists = function() {
+        return this.length > 0;
+    }
+
+	//-- moneyToNum(): Convert from money string to number --//
+	function moneyToNum(money) { 	
 		if (typeof(money) !== "string") {
 			return 0;
 		} 
 		else {
 			return Number(money.replace(/[^0-9\.]+/g,""));	
 		}
-	} // end money_to_num()
+	} // end moneyToNum()
 
-	//-- num_to_money(): Convert from number to money string --//
-	function num_to_money(n) { 
+	//-- numToMoney(): Convert from number to money string --//
+	function numToMoney(n) { 
 		var t = ",";
 		if (n < 0) {
 			var s = "-";
@@ -74,7 +93,7 @@ var CFPBComparisonTool = (function() {
 		}
 		money += i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t);
 		return money;
-	} // end num_to_money()
+	} // end numToMoney()
 
 
 	//-- findEmptyColumn() - finds the first empty column, returns column number [1-3] --//
@@ -88,7 +107,7 @@ var CFPBComparisonTool = (function() {
 			}
 		}
 		return column;
-	}
+	} // end findEmptyColumn()
 
 	//-- Delay calculations after keyup --//
 	var delay = (function(){ 
@@ -108,7 +127,57 @@ var CFPBComparisonTool = (function() {
 		columns[columnNumber].drawCostBars(schoolData);
 		columns[columnNumber].drawPieChart(schoolData);
 		columns[columnNumber].drawDebtBurden(schoolData);
-	}
+	} // end calculateAndDraw()
+
+	//-- Find results from API based on query and return and format them --//
+    function getSchoolSearchResults(query) {
+        var dump = "";
+        var qurl = "api/search-schools.json?q=" + query;
+        var cell = $("#step-one");
+        var request = $.ajax({
+            async: true,
+            dataType: "json",
+            url: qurl
+        });
+        request.done(function(response) {
+            $.each(response, function(i, val) {
+                dump += '<li class="school-result">';
+                dump += '<a href="' + val.id + '">' + val.schoolname + '</a>';
+                dump += '<p class="location">' + val.city + ', ' + val.state + '</p></li>';
+            });
+            if (dump == "") {
+                cell.find(".search-results").html("<li><p>No results found</p></li>");
+            }
+            else {
+                cell.find(".search-results").show();
+                cell.find(".search-results").html(dump);
+            }
+        });
+        request.fail(function() {
+            // alert("ERROR");
+        });
+        return dump;
+    } // end getSchoolSearchResults()
+
+    //-- Set the state of the Add a School section --//
+    function setAddStage(stage) {
+        if (stage === 0) {
+            $("#introduction .get-started").not("#step-zero").hide();
+            $("#introduction #step-zero").show();
+        }
+        if (stage === 1) {
+            $("#introduction .get-started").not("#step-one").hide();
+            $("#introduction #step-one").show();
+        }
+        if (stage === 2) {
+            $("#introduction .get-started").not("#step-two").hide();
+            $("#introduction #step-two").show();
+        }
+        if (stage === 3) {
+            $("#introduction .get-started").not("#step-three").hide();
+            $("#introduction #step-three").show();
+        }
+    } // end setAddStage()
 
 	//*** Classes ***//
 
@@ -140,7 +209,7 @@ var CFPBComparisonTool = (function() {
 				// Your fail message here.
 			});
 			this.schoolData = schoolData;
-		}
+		} // end getSchoolData
 
 		//-- Retrieve entered values from Add a School inputs --//
 		this.importAddForm = function() { 
@@ -182,9 +251,9 @@ var CFPBComparisonTool = (function() {
 			this.schoolData.homeequity = 0;
 			this.schoolData.parentplus = 0;
 
-		}
+		} // end importAddForm()
 
-		// recalculate() - Recalculate the schoolData
+		//-- recalculate() - Recalculate the schoolData --//
 		this.recalculate = function(newData) {
 			// join newData with existing schoolData object to form data object
 			var data = this.schoolData
@@ -199,7 +268,7 @@ var CFPBComparisonTool = (function() {
 			data.personal = data.transportation + data.otherexpenses;
 
 			// tf in-state rate prepopulate (schoolData.tfinsprep)
-			if ( ( data.control =="public" ) && ( data.program="grad" ) ) {
+			if ( ( data.control === "public" ) && ( data.program === "grad" ) ) {
 				data.tfinstate = data.tuitiongradins;
 			}
 			else {
@@ -330,7 +399,7 @@ var CFPBComparisonTool = (function() {
 			data.savingstotal = data.savings + data.family + data.state529plan + data.workstudy;
 			
 			/*------- grants and savings --------*/
-			var totalgrantsandsavings = data.savingstotal + data.grantstotal;
+			data.totalgrantsandsavings = data.savingstotal + data.grantstotal;
 
 			/*------- FEDERAL LOANS --------*/
 			// Perkins Loan
@@ -683,7 +752,10 @@ var CFPBComparisonTool = (function() {
 		Column also contains code for visualizations **/
 	function Column(number) {
 		this.number = number; // defines which column, [1-3]
-		var columnObj = $('[data-column="' + number + '"]');
+		var columnObj = $('[data-column="' + number + '"]'); // JQuery Object holding the DOM of the column
+		var pixelPrice = 0; // The ratio of pixels to dollars for the bar graph
+		var transitionTime = 200; // The transition time of bar graph animations
+		var minimumChartSectionWidth = 5; // The minimum width of a bar graph section
 
 		//-- Adds basic schoolData to the column --//
 		this.addSchoolData = function(schoolData) { 
@@ -700,7 +772,7 @@ var CFPBComparisonTool = (function() {
 		this.drawCostBars = function(schoolData) {
 			var chartWidth = columnObj.find(".chart_mask_internal .full").width();
 			var barBorderThickness = 1;
-			var cost = money_to_num(columnObj.find("[data-nickname='firstyrcostattend']").html());
+			var cost = moneyToNum(columnObj.find("[data-nickname='firstyrcostattend']").html());
 			var pixelPrice = chartWidth / cost;
 			var left = 0;
 
@@ -864,32 +936,39 @@ var CFPBComparisonTool = (function() {
                 // Draw the graduation rate chart
                 columnObj.find(".gradrisk-percent").html(schoolData.gradrate + "%");
                 // Note: ranks go from 1 to X, and X is "max"
-                var grouphigh = global["group" + schoolData.indicatorgroup + "GradHigh"];
-                var groupmed = global["group" + schoolData.indicatorgroup + "GradMed"];
-                var grhigh = global["group" + schoolData.indicatorgroup + "GradRankHigh"];
-                var grmax = global["group" + schoolData.indicatorgroup + "GradRankMax"];
-                var grmed = global["group" + schoolData.indicatorgroup + "GradRankMed"];
-                var grhigh = global["group" + schoolData.indicatorgroup + "GradRankHigh"];
+                var barWidth = columnObj.find('.gradrisk-bar').innerWidth();
+		        var firstWidth = Math.ceil(barWidth / 3) - 5;
+		        var secondWidth = Math.ceil(barWidth / 3) - 10;
+		        var thirdWidth = Math.ceil(barWidth / 3) - 5;
+		        var firstStop = 0 + columnObj.find('.gradrisk-bar').css('margin-left');
+		        var secondStop = Math.ceil(barWidth / 3) + 5;
+ 		        var thirdStop = Math.ceil(barWidth * 2 / 3) + 5;
+                var grouphigh = parseInt(global["group" + schoolData.indicatorgroup + "GradHigh"]);
+                var groupmed = parseInt(global["group" + schoolData.indicatorgroup + "GradMed"]);
+                var grhigh = parseInt(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
+                var grmax = parseInt(global["group" + schoolData.indicatorgroup + "GradRankMax"]);
+                var grmed = parseInt(global["group" + schoolData.indicatorgroup + "GradRankMed"]);
+                var grhigh = parseInt(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
                 var rankcount = 1;
                 var place = 1;
                 var gradoffset = 0; 
-                var divwidth = 68;
+
                 if ( ( schoolData.gradraterank != undefined ) && ( schoolData.gradrate != "NR" ) ) {
                     columnObj.find(".gradrisk-container").closest("td").children().show();
                     if ( schoolData.gradrate < groupmed ) {
                         rankcount = grmax - grmed;
                         place = schoolData.gradraterank - grmed;
-                        gradoffset = 0 + Math.floor( ( rankcount - place ) * ( 65 / rankcount))     
+                        gradoffset = firstStop + Math.floor( ( rankcount - place ) * ( firstWidth / rankcount))     
                     }
                     else if ( schoolData.gradrate < grouphigh ) {
                         rankcount = grmed - grhigh;
                         place = schoolData.gradraterank - grhigh;
-                        gradoffset = 77 + Math.floor( ( rankcount - place ) * ( 60 / rankcount))    
+                        gradoffset = secondStop + Math.floor( ( rankcount - place ) * ( secondWidth / rankcount))    
                     }
                     else {
                         rankcount = grhigh;
                         place =  schoolData.gradraterank;
-                        gradoffset = 148 + Math.floor( ( rankcount - place  ) * ( 64 / rankcount ) );
+                        gradoffset = thirdStop + Math.floor( ( rankcount - place  ) * ( thirdWidth / rankcount ) );
                     }
                     columnObj.find(".gradrisk-container").css("left", gradoffset + "px");
                 }
@@ -962,7 +1041,7 @@ var CFPBComparisonTool = (function() {
                     meterarrows[this.number].attr({"path": path, "fill": "#f5f5f5"});
                     meterarrows[this.number].toBack();
                     // Display borrowing amount in textbox
-                    var content = "<em>" + num_to_money(schoolData.avgstuloandebt) + "</em>";
+                    var content = "<em>" + numToMoney(schoolData.avgstuloandebt) + "</em>";
                     columnObj.find(".median-borrowing-text").html(content);
                     columnObj.find(".median-borrowing-text").css("font-weight", "600")
                 }
@@ -977,9 +1056,9 @@ var CFPBComparisonTool = (function() {
         this.fetchFormValues = function() {
             var data = {};
             columnObj.find("input.school-data").each(function() {
-                data[$(this).attr("data-nickname")] = money_to_num($(this).val());
+                data[$(this).attr("data-nickname")] = moneyToNum($(this).val());
                 if ( $(this).hasClass("interest-rate") ) {
-                    data[$(this).attr("data-nickname")] = ( money_to_num( $(this).val() ) / 100 );
+                    data[$(this).attr("data-nickname")] = ( moneyToNum( $(this).val() ) / 100 );
                 }
             });
             return data;
@@ -994,7 +1073,7 @@ var CFPBComparisonTool = (function() {
         //-- set an element value to the matching schoolData object property (converted to money string) --//
         this.setByNickname = function(nickname, value, overwrite) {
             var element = columnObj.find("[data-nickname='" + nickname + "']");
-            element.val(num_to_money(value));
+            element.val(numToMoney(value));
             return false;
         }; // .setByNickname()
 
@@ -1025,7 +1104,7 @@ var CFPBComparisonTool = (function() {
 
         //-- Updates Column with new values for inputs and totals --//
         this.updateFormValues = function(data) { 
-            columnObj.find('.data-total, .school-data').each(function() {
+            columnObj.find('.data-total, .school-data, .value').each(function() {
                 var nickname = $(this).attr('data-nickname');
                 var value = data[nickname];
                 if ( $(this).prop('tagName') === 'INPUT') {
@@ -1033,12 +1112,12 @@ var CFPBComparisonTool = (function() {
                         value = (value * 100).toString() + "%";
                     }
                     else {
-                        value = num_to_money(value);
+                        value = numToMoney(value);
                     }
                     $(this).val(value);
                 }
                 else {
-                    $(this).html( num_to_money(value) );
+                    $(this).html( numToMoney(value) );
                 }
             });
         } // end .updateFormValues()
@@ -1046,61 +1125,6 @@ var CFPBComparisonTool = (function() {
     } // end Column() class
 
     //********** END NEW STUFF *************//
-
-    //*** Initialize values, objects, etc ***//
-    var pixelPrice = 0, // The ratio of pixels to dollars for the bar graph
-        transitionTime = 200, // The transition time of bar graph animations
-        minimumChartSectionWidth = 5, // The minimum width of a bar graph section
-        input_bg_default = "#E6E6E6", // default bg color for inputs
-        input_bg_error = "#F6D5D5", // bg color for inputs that are above max
-        schoolcounter = 0, // an internal counter to keep school ids unique
-        highest_cost = global.most_expensive_cost; // The most expensive cost of any school
-    var columns = new Object();
-    var schools = new Object();
-    var schools_zeroed = new Object();
-    var pies = [];
-    var circles = [];
-    var loans = [];
-    var bars = [];
-    var averagebars = [];
-    var defaultbars = [];
-    var meters = [];
-    var meterarrows = [];
-
-
-    // setbyname - set an element to the matching schoolData object property (converted to money string)
-    jQuery.fn.setbyname = function(name, value, overwrite) {
-        var school_id = $(this).find("[data-nickname='institution_name']").attr("data-schoolid");
-        var schoolData = schools[school_id];
-        var element = $(this).find("[data-nickname='" + name + "']");
-
-        element.val(num_to_money(value));
-        
-        // Check if this input field is focus
-        if (element.is(":focus")) {
-            // element.focus().val(element.val());
-        }
-
-        // Set the variable IF the value hasn't been user changed
-        /* if (overwrite == true || schoolData[name + "_edited"] != true) {
-            element.val(num_to_money(value, ""));
-        } */
-        return false;
-    };
-
-    // textbyname - set the text of an element to a money string
-    jQuery.fn.textbyname = function(name, value) {
-        var school_id = $(this).find("[data-nickname='institution_name']").attr("data-schoolid");
-        var schoolData = schools[school_id];
-        var element = $(this).find("[data-nickname='" + name + "']");
-        element.text(num_to_money(value));
-        return false;
-    };
-
-    // exists - a simple way to determine if any instance of an element matching the selector exists
-    jQuery.fn.exists = function() {
-        return this.length > 0;
-    }
 
     // get_worksheep_id() - gets a new worksheet id, and sets global.worksheet_id
     function get_worksheet_id() {
@@ -1115,68 +1139,6 @@ var CFPBComparisonTool = (function() {
         });
     }
 
-    function process_school_list(schools) {
-        var op = "";
-        $.each(schools, function(i, val) {
-            op = op + i + "(" + val + ") ";
-        });
-        return op;
-    } // end process_school_list()
-
-    function school_search_results(query) {
-        var dump = "";
-        var qurl = "api/search-schools.json?q=" + query;
-        var cell = $("#step-one");
-        var request = $.ajax({
-            async: true,
-            dataType: "json",
-            url: qurl
-        });
-        request.done(function(response) {
-            $.each(response, function(i, val) {
-                dump += '<li class="school-result">';
-                dump += '<a href="' + val.id + '">' + val.schoolname + '</a>';
-                dump += '<p class="location">' + val.city + ', ' + val.state + '</p></li>';
-            });
-            if (dump == "") {
-                cell.find(".search-results").html("<li><p>No results found</p></li>");
-            }
-            else {
-                cell.find(".search-results").show();
-                cell.find(".search-results").html(dump);
-            }
-        });
-        request.fail(function() {
-            // alert("ERROR");
-        });
-        return dump;
-    } // end school_search_results()
-
-    /*----------------
-        "Add a School" and related functions
-      ----------------*/
-
-    // set_add_stage(stage) - sets the "get started/add a school" section to the specified stage
-    //     and 'stage' is the desired stage of the "Add a School" process
-
-    function set_add_stage(stage) {
-        if (stage === 0) {
-            $("#introduction .get-started").not("#step-zero").hide();
-            $("#introduction #step-zero").show();
-        }
-        if (stage === 1) {
-            $("#introduction .get-started").not("#step-one").hide();
-            $("#introduction #step-one").show();
-        }
-        if (stage === 2) {
-            $("#introduction .get-started").not("#step-two").hide();
-            $("#introduction #step-two").show();
-        }
-        if (stage === 3) {
-            $("#introduction .get-started").not("#step-three").hide();
-            $("#introduction #step-three").show();
-        }
-    }
 
     /*----------------
         DOCUMENT.READY
@@ -1203,7 +1165,7 @@ var CFPBComparisonTool = (function() {
 
         //** END NEW STUFF **//
 
-        if ( $("#comparison-tables").length != 0 ) { // Added for ease of testing
+        if ( $("#comparison-tables").exists() ) { // Added for ease of testing
             /* Notification for mobile screens */
             $("#pfc-notification-wrapper").hide();
             $("#pfc-notification-wrapper").delay(1500).slideDown(1000);
@@ -1281,7 +1243,7 @@ var CFPBComparisonTool = (function() {
             // User clicks "Get Started"
             $("#get-started-button").click( function(event) {
                 event.preventDefault();
-                set_add_stage(1);
+                setAddStage(1);
             });
 
             // [step-one] User has typed into the school-search input - perform search and display results
@@ -1291,7 +1253,7 @@ var CFPBComparisonTool = (function() {
                 $("#step-one .search-results").html("<li><em>Searching...</em></li>");
                 delay(function() {
                     if ( query.length > 2 ) {
-                        school_search_results(query);
+                        getSchoolSearchResults(query);
                     }
                     else {
                         var msg = "<li><p>Please enter at least three letters to search.</p></li>"
@@ -1333,12 +1295,12 @@ var CFPBComparisonTool = (function() {
 
             // [step-one] User clicks Continue at step-one
             $("#step-one .continue").click( function() {
-                set_add_stage(2);
+                setAddStage(2);
             });
 
             // [step-two] User clicks Continue at step-two
             $("#step-two .continue").click( function() {
-                set_add_stage(3);
+                setAddStage(3);
                 var column = findEmptyColumn();
                 var school_id = $("#school-name-search").attr("data-schoolid");
                 $("#institution-row [data-column='" + column + "']").attr("data-schoolid", school_id);
@@ -1351,7 +1313,7 @@ var CFPBComparisonTool = (function() {
 
             // [step-three] User clicks Continue at step-three
             $("#step-three .continue").click( function() {
-                set_add_stage(1);
+                setAddStage(1);
             });
 
 
@@ -1404,29 +1366,29 @@ var CFPBComparisonTool = (function() {
 
                 // assign values based on json
                 if ( json.costs != undefined) {
-                    schoolData.books = money_to_num(json.costs.books_and_supplies);
-                    schoolData.roombrd = money_to_num(json.costs.housing_and_meals);
-                    schoolData.otherexpenses = money_to_num(json.costs.other_education_costs);
-                    schoolData.transportation = money_to_num(json.costs.transportation);
-                    schoolData.tuitionfees = money_to_num(json.costs.tuition_and_fees);         
+                    schoolData.books = moneyToNum(json.costs.books_and_supplies);
+                    schoolData.roombrd = moneyToNum(json.costs.housing_and_meals);
+                    schoolData.otherexpenses = moneyToNum(json.costs.other_education_costs);
+                    schoolData.transportation = moneyToNum(json.costs.transportation);
+                    schoolData.tuitionfees = moneyToNum(json.costs.tuition_and_fees);         
                 }
                 if ( json.grants_and_scholarships != undefined ) {
-                    schoolData.pell = money_to_num(json.grants_and_scholarships.federal_pell_grant);
+                    schoolData.pell = moneyToNum(json.grants_and_scholarships.federal_pell_grant);
                     // other scholarships & grants comprises several json data
-                    schoolData.scholar = money_to_num(json.grants_and_scholarships.grants);
-                    schoolData.scholar += money_to_num(json.grants_and_scholarships.grants_from_state);
-                    schoolData.scholar += money_to_num(json.grants_and_scholarships.other_scholarships);
+                    schoolData.scholar = moneyToNum(json.grants_and_scholarships.grants);
+                    schoolData.scholar += moneyToNum(json.grants_and_scholarships.grants_from_state);
+                    schoolData.scholar += moneyToNum(json.grants_and_scholarships.other_scholarships);
                 }
                 if ( json.loan_options != undefined ) {
-                    schoolData.staffsubsidized = money_to_num(json.loan_options.federal_direct_subsidized_loan);
-                    schoolData.staffunsubsidized = money_to_num(json.loan_options.federal_direct_unsubsidized_loan);
-                    schoolData.perkins = money_to_num(json.loan_options.federal_perkins_loans);
+                    schoolData.staffsubsidized = moneyToNum(json.loan_options.federal_direct_subsidized_loan);
+                    schoolData.staffunsubsidized = moneyToNum(json.loan_options.federal_direct_unsubsidized_loan);
+                    schoolData.perkins = moneyToNum(json.loan_options.federal_perkins_loans);
                 }
                 if ( json.other_options != undefined ) {
-                    schoolData.family = money_to_num(json.other_options.family_contribution);
+                    schoolData.family = moneyToNum(json.other_options.family_contribution);
                 }
                 if ( json.work_options != undefined ) {
-                    schoolData.workstudy = money_to_num(json.work_options.work_study);
+                    schoolData.workstudy = moneyToNum(json.work_options.work_study);
                 }
 
                 for (key in schoolData) {
@@ -1442,7 +1404,7 @@ var CFPBComparisonTool = (function() {
                         $(this).val( interest + "%") ;
                     }
                     else {
-                        $(this).val( num_to_money( schoolData[$(this).attr("data-nickname")] ) ) ;
+                        $(this).val( numToMoney( schoolData[$(this).attr("data-nickname")] ) ) ;
                     }
                 });
 
@@ -1559,7 +1521,7 @@ var CFPBComparisonTool = (function() {
                 event.preventDefault();
                 var column = $(this).closest("[data-column]").attr("data-column");
                 var rateinput = $(this).closest("td").find("input.interest-rate");
-                var loanrate = money_to_num( $(this).closest("td").find("input.interest-rate").val() );
+                var loanrate = moneyToNum( $(this).closest("td").find("input.interest-rate").val() );
                 if ( $(this).hasClass("up") ) {
                     loanrate += .1;
                 }
