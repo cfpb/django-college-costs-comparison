@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         specs: 'test/spec/ct-spec.js',
         keepRunner: true,
         // order matters here, jquery.js must be loaded before jasmine-jquery!
-        vendor: ['cfpb-files/jquery-1.5.1.min.js', 'cfpb-files/jasmine-jquery.js', 'cfpb-files/jasmine-jsreporter.js'],
+        vendor: ['http://code.jquery.com/jquery-1.5.1.min.js', 'cfpb-files/jasmine-jquery.js', 'cfpb-files/jasmine-jsreporter.js'],
         junit: {
           path: 'test/junit-results',
           consolidate: true
