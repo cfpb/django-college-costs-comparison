@@ -1759,4 +1759,10 @@ var CFPBComparisonTool = (function() {
 
         }
     });
+	
+	function oCFPBComparisonTool() {};
+	oCFPBComparisonTool.prototype.numToMoney = function(n) { return numToMoney(n); };
+	oCFPBComparisonTool.prototype.moneyToNum = function(money) { return moneyToNum(money); };
+	oCFPBComparisonTool.prototype.findEmptyColumn = function() { return findEmptyColumn(); };
+	return oCFPBComparisonTool;
 })(jQuery); // end cfpb_pfc_ct namespace anonymous function capsule
