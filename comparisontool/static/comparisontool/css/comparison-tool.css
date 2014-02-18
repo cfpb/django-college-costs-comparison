@@ -146,13 +146,13 @@ This just the hero for the Comparison Tool.
 This has similar styles as the global site navigation.
 -------------------------------------------------------------------------------*/
 .pfc-nav-wrapper {
-    background-color: #F6D9D3;
+    background-color: #f6D9D3;
     border-top: 1px solid #101820;
     margin: 1em 0 0;
 }
 
 .pfc-nav {
-    background-color: #F6D9D3;
+    background-color: #f6D9D3;
     list-style-type: none;
     padding: 0;
     margin: 0 auto;
@@ -162,7 +162,7 @@ This has similar styles as the global site navigation.
 }
 
 .pfc-nav li {
-    background-color: #F6D9D3;
+    background-color: #f6D9D3;
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 500;
     font-size: 1em;
@@ -192,7 +192,7 @@ This has similar styles as the global site navigation.
     border-bottom: 0;
     color: #101820;
     text-align: center;
-    background-color: #F6D9D3;
+    background-color: #f6D9D3;
 }
 
 .pfc-nav li a:visited {
@@ -200,18 +200,18 @@ This has similar styles as the global site navigation.
 }
 
 .pfc-nav li a:hover {
-    background-color: #D12124;
-    color: #FFF;
+    background-color: #d12124;
+    color: #fff;
 }
 
 .pfc-nav li a:focus {
     background-color: #D12124;
-    color: #FFF;
+    color: #fff;
 }
 
 .pfc-nav li a.active {
     background-color: #DA6750;
-    color: #FFF;
+    color: #fff;
 }
 
 /* ADD A SCHOOL
@@ -223,6 +223,7 @@ This is for each step in the process.
 
 .get-started {
     background-color: #f8f8f8;
+    border: 1px solid #e3e4e5;
     margin: 1em 0 0;
     padding: 1.5em 0;
 }
@@ -235,16 +236,60 @@ This is for each step in the process.
 }
 
 /* The main layout components for Add a School. */
-.get-started .step-left {
+#step-zero .step-left {
     float: left;
     margin-right: 30px;
-    width: 533.5px;
+    width: 532px;
 }
 
-.get-started .step-right {
+#step-zero .step-right {
     float: left;
     margin-right: 0;
-    width: 372.5px;
+    width: 372px;
+}
+
+#step-one .step-left {
+    float: left;
+    margin-right: 20px;
+    width: 359px;
+}
+
+#step-one .step-middle {
+	border-left: 1px solid #101820;
+    float: left;
+    margin-right: 30px;
+    padding-left: 20px;
+    width: 309px;
+}
+
+#step-one .step-right {
+    float: left;
+    margin-right: 0;
+    width: 195px;
+}
+
+#step-two .step-left {
+    float: left;
+    margin-right: 30px;
+    width: 532px;
+}
+
+#step-two .step-right {
+    float: left;
+    margin-right: 0;
+    width: 372px;
+}
+
+#step-three .step-left {
+    float: left;
+    margin-right: 30px;
+    width: 532px;
+}
+
+#step-three .step-right {
+    float: left;
+    margin-right: 0;
+    width: 372px;
 }
 
 /* Containers for padding. */
@@ -254,6 +299,21 @@ This is for each step in the process.
 
 .get-started .pfc-container-right {
     padding-right: 30px;
+}
+
+.pfc-container-right.button-container {
+	margin-top: 70px;
+	text-align: right;
+}
+
+.pfc-left {
+	float: left;
+	margin-right: 10px;
+}
+
+.pfc-right {
+	float: right;
+	margin-right: 0;
 }
 
 /* The button styles for Add a School. */
@@ -278,11 +338,37 @@ This is for each step in the process.
     margin-top: 2.5em;
 }
 
-.get-started legend {
+.get-started .step-legend {
 	padding: 0 30px;
+	margin: 1em 0;
+	width: 874px;
+}
+
+.get-started .add-steps {
+	font-size: 0.875em;
+	font-weight: normal;
+}
+
+.get-started label {
+	font-size: 0.875em;
+	margin: 1em 0;
+}
+
+.get-started .school-name,
+.get-started .prgmlength,
+.get-started .prgmtype,
+.get-started .xml {
+	font-weight: 600;
+}
+
+.get-started .xml-text {
+	width: 70%;
 }
 
 /* The search results for Add a School. */
+.school-search {
+	padding-bottom: 1em;
+}
 .search-results {
     background-color: #fff;
     border: 1px solid black;
@@ -311,7 +397,8 @@ This is for each step in the process.
 This overrides a lot of styles in the main stylesheet. It contains
 font styles, heading styles, etc. Other adjustments happen within components.
 -------------------------------------------------------------------------------*/
-#comparison-tool {
+.comparison-tool {
+	color: #101820;
     font-family: "Avenir Next", Verdana, sans-serif !important;
 }
 
@@ -1480,40 +1567,45 @@ This contains varous elements that are standalone components within the tool.
     position: relative;
 }
 
+/* TODO: Decrease specificity further within CSS so !important not needed. */
 .vert-pad {
-    padding-bottom: 0.5em;
-    padding-top: 0.5em;
+    padding-bottom: 0.5em !important;
+    padding-top: 0.5em !important;
 }
 
 .nopad {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .nopad-vert {
-	padding-bottom: 0;
-    padding-top: 0;
+	padding-bottom: 0 !important;
+    padding-top: 0 !important;
 }
 
 .nopad-horiz {
-	padding-left: 0;
-	padding-right: 0;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 
 .center {
-    text-align: center;
+    text-align: center !important;
 }
 
 /* Stylistic stuff */
 .orange {
-    color: #D83D00;
+    color: #D83D00 !important;
+}
+
+.demi {
+	font-weight: 600 !important;
 }
 
 .bold {
-	font-weight: bold;
+	font-weight: bold !important;
 }
 
 .bottom-border,
 .bottom-border th,
 .bottom-border td {
-    border-bottom: 5px solid #101820;
+    border-bottom: 5px solid #101820 !important;
 }

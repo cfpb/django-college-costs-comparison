@@ -125,17 +125,16 @@ var restoredata = {{ data_js|safe }};
 			</div>
 			<div id="step-one" class="get-started step-one clearfix">
 				<fieldset id="add-a-school">
-					<legend>Tell us more information about <span>School One</span></legend>
-					<span>Step 1 of 3</span>
+					<legend class="h4 demi step-legend">Tell us more information about School One</span> <span class="add-steps">Step 1 of 3</span></legend>
 					<div class="step-left">
 						<div class="pfc-container-left">
 							<div class="school-search staged stage-search">
-								<label for="school-name-search" class="school-name">What's the name of the school?</label>
-								<input type="text" name="schoolname-search" id="school-name-search" class="school-search-box">
+								<label for="school-name-search" class="school-name">School name</label>
+								<input type="text" name="schoolname-search" placeholder="Enter school name" id="school-name-search" class="school-search-box">
 								<ul class="search-results"></ul>
 							</div><!--/school-search /staged /stage-search -->
 							<div class="prgmlength-selection staged stage-prgmlength step-left">	
-								<label for="prgmlength">Program Length</label>
+								<label class="prgmlength" for="prgmlength">Program Length</label>
 								<select id="prgmlength" name="prgmlength">
 									<option value="5">5 years</option>
 									<option value="4" selected="selected">4 years</option>
@@ -146,21 +145,31 @@ var restoredata = {{ data_js|safe }};
 							</div><!--/prgmlength-selection /staged /stage-prgmlength -->
 						</div><!-- /pfc-container-left -->
 					</div><!--/step-left -->
-					<div class="program-selection staged stage-program step-right">
-						<div class="pfc-container-right">
-							<fieldset>
-								<legend>Program Type</legend>
-								<input id="program1" class="radio-input" type="radio" name="program" value="aa">
-								<label class="radio-label" for="program1">Associates or certificate</label>
-								<input id="program2" class="radio-input" type="radio" name="program" value="ba" checked="checked">
-								<label class="radio-label" for="program2">Bachelors</label>	
-								<input id="program3" class="radio-input" type="radio" name="program" value="grad">
-								<label class="radio-label" for="program3">Graduate</label>
-							</fieldset>
+					<div class="program-selection staged stage-program step-middle">
+						<fieldset>
+							<legend class="pfc-left demi">Program Type</legend>
+							<div class="pfc-left">
+								<div class="get-started-radio-group">
+									<input id="program1" class="prgmtype radio-input" type="radio" name="program" value="aa">
+									<label class="prgmtype" for="program1">Associates or certificate</label>
+								</div><!-- /get-started-radio-group -->
+								<div class="get-started-radio-group">
+									<input id="program2" class="prgmtype radio-input" type="radio" name="program" value="ba" checked="checked">
+									<label class="prgmtype" for="program2">Bachelors</label>
+								</div><!-- /get-started-radio-group -->
+								<div class="get-started-radio-group">	
+									<input id="program3" class="radio-input" type="radio" name="program" value="grad">
+									<label class="prgmtype" for="program3">Graduate</label>
+								</div><!-- /get-started-radio-group -->
+							</div>
+						</fieldset>
+					</div><!--/prgmlength-selection /staged /stage-program /step-middle -->
+					<div class="step-right">
+						<div class="pfc-container-right button-container">
 							<button class="continue">Continue</button>
 							<button class="add-cancel">Cancel</button>
-						</div><!-- /pfc-container-right -->
-					</div><!--/prgmlength-selection /staged /stage-program -->
+						</div><!--/pfc-container-right -->
+					</div><!--/step-right -->
 				</fieldset>
 			</div><!--/step-one -->
 			<div id="step-two" class="get-started step-two clearfix">
@@ -169,12 +178,12 @@ var restoredata = {{ data_js|safe }};
 						<h4>Got XML? (optional)</h4><span>Step 2 of 3</span>
 						<p>It looks like this school adopted the Financial Aid Shopping Sheet. That’s great because it will make the next step easier.</p>
 						<p>If they provided an XML file, paste the code below. If not, click to continue. </p>
-						<label for="xml-text">XML text</label>
-						<textarea name="xmlbukkit" id="xml-text" data-nickname="xmlbukkit" class="xml-text"></textarea>
+						<label for="xml-text" class="xml">XML text</label>
+						<textarea name="xmlbukkit" id="xml-text" class="xml-text" data-nickname="xmlbukkit" plsceholder="Paste XML code here. Example: xmlfile_example.xml" class="xml-text"></textarea>
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-xml /xml-info /staged /stage-xml /step-left -->
 				<div class="step-right">
-					<div class="pfc-container-right">
+					<div class="pfc-container-right button-container">
 						<button class="continue">Continue</button>
 						<button class="add-cancel">Cancel</button>
 					</div><!-- /pfc-container-right -->
@@ -185,7 +194,7 @@ var restoredata = {{ data_js|safe }};
 					</div><!-- /pfc-container-left -->
 				</div><!-- /no-xml xml-info staged stage-noxml step-left -->
 				<div class="step-right">
-					<div class="pfc-container-right">
+					<div class="pfc-container-right button-container">
 						<button class="continue">Continue</button>
 						<button class="add-cancel">Cancel</button>
 					</div><!-- /pfc-container-right -->
@@ -200,7 +209,7 @@ var restoredata = {{ data_js|safe }};
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-school /staged /stage-success /step-left -->
 				<div class="step-right">
-					<div class="pfc-container-right">
+					<div class="pfc-container-right button-container">
 						<button class="continue">Continue</button>
 						<button class="add-cancel">Cancel</button>
 					</div><!-- /pfc-container-right -->
