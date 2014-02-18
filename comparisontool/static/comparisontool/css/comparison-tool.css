@@ -414,6 +414,7 @@ thead h2 {
 
 thead #institution-row h2.inactive {
     color: #babbbd;
+    padding-bottom: 2em;
 }
 
 .h3,
@@ -530,12 +531,10 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* Remove a school links */
-
 .comparison-tool thead .institution-row th .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
     margin-bottom: 2.5em;
-    text-align: right;
 }
 
 .comparison-tool thead .institution-row th .remove-confirm {
