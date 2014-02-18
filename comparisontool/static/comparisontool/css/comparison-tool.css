@@ -405,7 +405,7 @@ font styles, heading styles, etc. Other adjustments happen within components.
 .h2,
 thead h2 {
     color: #101820;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 1.3em;
@@ -530,10 +530,12 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* Remove a school links */
+
 .comparison-tool thead .institution-row th .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
-    margin-bottom: 0.75em;
+    margin-bottom: 2.5em;
+    text-align: right;
 }
 
 .comparison-tool thead .institution-row th .remove-confirm {
@@ -581,6 +583,11 @@ This contains the majority of the structural styles for table-based elements.
     background: transparent;
     padding: 0.5em 0;
 }
+
+.comparison-tool table thead th .navigator-link {
+    font-size: .7em;
+}
+
 
 .comparison-tool th {
     width: 25%;
