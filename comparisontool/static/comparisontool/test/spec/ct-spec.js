@@ -65,7 +65,7 @@ describe("findEmptyColumn should return the first empty column, returns column n
         // assert
         expect(actual_col).toEqual(2);
     });
-    
+
     it("should return undefined if all of the columns are filled with school IDs", function() {
         // arrange 
         $("#institution-row [data-column='1']").attr("data-schoolid", "123");
@@ -79,6 +79,8 @@ describe("findEmptyColumn should return the first empty column, returns column n
         expect(actual_col).toBeUndefined();
     });
 });
+
+
 
 /*describe("jQuery.fn.setbyname, which sets an element to a value using the 'name' attribute...", function() {
     beforeEach(function() {
