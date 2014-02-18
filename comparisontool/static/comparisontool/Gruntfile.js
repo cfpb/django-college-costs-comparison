@@ -89,6 +89,33 @@ module.exports = function(grunt) {
           browsers: browsers
         }
       }
+    },
+    jshint: {
+      options: {
+        camelcase: false,
+        curly: true,
+        forin: true,
+        immed: true,
+        latedef: true,
+        newcap: true,
+        noarg: true,
+        quotmark: true,
+        sub: true,
+        boss: true,
+        strict: true,
+        evil: true,
+        eqnull: true,
+        browser: true,
+        plusplus: false,
+        globals: {
+          jQuery: true,
+          $: true,
+          _: true,
+          console: true,
+          EventEmitter: true
+        }
+      },
+      files: ['js/*.js', 'Gruntfile.js', '!js/raphael-min.js', '!js/xml2json.js']
     }
   });
 

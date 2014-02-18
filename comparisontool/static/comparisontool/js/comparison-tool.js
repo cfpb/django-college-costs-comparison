@@ -1,3 +1,4 @@
+/*jshint maxerr: 10000 */
 /*  A script to control the Comparison Tool, including adding and removing schools, loading school data,
     performing data calculations on schools and loans, and handling UI elements and events. -wernerc */
 
