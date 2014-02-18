@@ -159,6 +159,42 @@ var CFPBComparisonTool = (function() {
         return dump;
     } // end getSchoolSearchResults()
 
+    //-- process XML text into JSON, return a data object similar to schoolData --//
+
+    function processXML(xml) {
+		var json = $.xml2json(xml);
+		var schoolData = {};
+
+        // assign values based on json
+        if ( json.costs != undefined) {
+            schoolData.books = moneyToNum(json.costs.books_and_supplies);
+            schoolData.roombrd = moneyToNum(json.costs.housing_and_meals);
+            schoolData.otherexpenses = moneyToNum(json.costs.other_education_costs);
+            schoolData.transportation = moneyToNum(json.costs.transportation);
+            schoolData.tuitionfees = moneyToNum(json.costs.tuition_and_fees);         
+        }
+        if ( json.grants_and_scholarships != undefined ) {
+            schoolData.pell = moneyToNum(json.grants_and_scholarships.federal_pell_grant);
+            // other scholarships & grants comprises several json data
+            schoolData.scholar = moneyToNum(json.grants_and_scholarships.grants);
+            schoolData.scholar += moneyToNum(json.grants_and_scholarships.grants_from_state);
+            schoolData.scholar += moneyToNum(json.grants_and_scholarships.other_scholarships);
+        }
+        if ( json.loan_options != undefined ) {
+            schoolData.staffsubsidized = moneyToNum(json.loan_options.federal_direct_subsidized_loan);
+            schoolData.staffunsubsidized = moneyToNum(json.loan_options.federal_direct_unsubsidized_loan);
+            schoolData.perkins = moneyToNum(json.loan_options.federal_perkins_loans);
+        }
+        if ( json.other_options != undefined ) {
+            schoolData.family = moneyToNum(json.other_options.family_contribution);
+        }
+        if ( json.work_options != undefined ) {
+            schoolData.workstudy = moneyToNum(json.work_options.work_study);
+        }
+
+        return schoolData;
+    }
+
     //-- Set the state of the Add a School section --//
     function setAddStage(stage) {
         if (stage === 0) {
@@ -178,6 +214,15 @@ var CFPBComparisonTool = (function() {
             $("#introduction #step-three").show();
         }
     } // end setAddStage()
+
+    //-- Clear the forms and values in the Add a School section --//
+    function clearAddForms() {
+    	$('#school-name-search').val('');
+    	$('#school-name-search').attr('data-schoolid', '');
+    	$('#prgmlength').val('4');
+    	$('#step-one input:radio[name="program"]').filter('[value="ba"]').prop('checked', true);
+    	$('xml-text').val('');
+    }
 
 	//*** Classes ***//
 
@@ -1070,6 +1115,13 @@ var CFPBComparisonTool = (function() {
             return schoolID;
         } // end .fetchSchoolID()
 
+        //-- remove the school information from a column and reset it to default --//
+        this.removeSchoolInfo = function() {
+        	columnObj.find('[data-nickname="institution_name"]').html("");
+        	columnObj.find('[data-schoolid="schoolid"]').attr('data-schoolid', '');
+        	columnObj.find('.remove-confirm').hide();
+        } // end removeSchoolInfo()
+
         //-- set an element value to the matching schoolData object property (converted to money string) --//
         this.setByNickname = function(nickname, value, overwrite) {
             var element = columnObj.find("[data-nickname='" + nickname + "']");
@@ -1080,7 +1132,7 @@ var CFPBComparisonTool = (function() {
         //-- toggles "active" or "inactive" state of the column --//
         this.toggleActive = function(state) { 
             // list of elements to toggle
-            var selector = 'input, .visualization, .data-total';
+            var selector = 'input, .visualization, .data-total, .hide-inactive';
 
             // If state isn't something clear, then it's as good as undefined
             if (state !== 'active' && state !== 'inactive') {
@@ -1094,10 +1146,12 @@ var CFPBComparisonTool = (function() {
             // Now we can alter the state to 'state'
             if (state === 'active') {
                 columnObj.find(selector).show();
+                columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
             }
 
             if (state === 'inactive') {
                 columnObj.find(selector).hide();
+                columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
             }
 
         } // end .toggleActive()
@@ -1249,6 +1303,7 @@ var CFPBComparisonTool = (function() {
             // [step-one] User has typed into the school-search input - perform search and display results
             $("#step-one .school-search").on("keyup", "#school-name-search", function (ev) {
                 var query = $(this).val();
+                $("#step-one .continue").addClass("disabled");
                 $("#step-one .search-results").show();
                 $("#step-one .search-results").html("<li><em>Searching...</em></li>");
                 delay(function() {
@@ -1290,12 +1345,15 @@ var CFPBComparisonTool = (function() {
                 $("#school-name-search").attr("data-schoolid", school_id);
                 $("#school-name-search").val($(this).html());
                 $("#step-one .search-results").html("").hide();
+                $("#step-one .continue").removeClass("disabled");
             });
 
 
             // [step-one] User clicks Continue at step-one
             $("#step-one .continue").click( function() {
-                setAddStage(2);
+            	if ( $("#step-one .continue").hasClass("disabled") === false ) {
+            		setAddStage(2);
+            	}
             });
 
             // [step-two] User clicks Continue at step-two
@@ -1308,41 +1366,28 @@ var CFPBComparisonTool = (function() {
                 schools[school_id].getSchoolData();
                 schools[school_id].importAddForm();
                 columns[column].addSchoolData(schools[school_id].schoolData);
+
+                // If there's XML, process it and update
+                var xml = $('#xml-text').val();
+                if (xml != undefined & xml != "") {
+                	var data = processXML(xml);
+                	columns[column].updateFormValues(data);
+                }
                 calculateAndDraw(column);
+
+                $("#get-started-button").html("Add another school");
             });
 
             // [step-three] User clicks Continue at step-three
             $("#step-three .continue").click( function() {
+            	clearAddForms();
+                setAddStage(0);
+            });
+
+            // [step-three] User clicks Continue at step-three
+            $("#step-three .add-another-school").click( function() {
+            	clearAddForms();
                 setAddStage(1);
-            });
-
-
-            // User clicks Continue at the Program Length ("prgmlength") stage
-            $(".add-school-info .prgmlength-selection .continue").click( function() {
-                var headercell = $(this).closest("[data-column]");
-                var column = headercell.attr("data-column");
-                var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-                var schoolData = schools[school_id];
-                if ( schoolData.kbyoss == "TRUE") {
-                    set_column_stage(column, "xml");
-                }
-                else {
-                    set_column_stage(column, "noxml");
-                }
-            });
-
-            // User clicks Continue at the XML ("xml") or No XML ("noxml") stage
-            $(".add-school-info .xml-info .continue").click( function() {
-                var headercell = $(this).closest("[data-column]");
-                var column = headercell.attr("data-column");
-                var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-                var schoolData = schools[school_id];
-                build_school_element(column);
-                set_column_stage(column, "occupied");
-                if ( $(this).closest(".xml-info").hasClass("add-xml") ) {
-                    _gaq.push(["_trackEvent", "School Interactions", "XML Continue Button Clicked", school_id]);
-                }
-                calculate_school(column);   
             });
 
             // User clicks Apply XML at the XML ("xml") stage
@@ -1415,10 +1460,10 @@ var CFPBComparisonTool = (function() {
             });
 
             // Cancel Add a School
-            $(".add-school-info .add-cancel").click( function(event) {
+            $("#introduction .add-cancel").click( function(event) {
                 event.preventDefault();
-                var column = $(this).closest("[data-column]").attr("data-column");
-                set_column_stage(column, "default");
+                setAddStage(0);
+                clearAddForms();
             });
 
             /* -------
@@ -1434,14 +1479,12 @@ var CFPBComparisonTool = (function() {
             // Remove school (confirmed, so actually get rid of it)
             $(".remove-confirm a.remove-yes").click( function(event) {
                 event.preventDefault();
-                $(this).closest("[data-column]").children(".remove-confirm").hide();
-                var column = $(this).closest("[data-column]").attr("data-column");
-                // Set the "default" to false - the user is now engaged
-                var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-                $("#institution-row [data-column='" + column + "']").attr("data-schoolid", "");
-                toggle_column(column, "inactive");
+                var number = $(this).closest("[data-column]").attr("data-column");
+                var schoolID = columns[number].fetchSchoolID();
+                columns[number].removeSchoolInfo();
+                columns[number].toggleActive('inactive');
                 _gaq.push([ "_trackEvent", "School Interactions", "School Removed", school_id ] );
-                delete schools[school_id];
+                delete schools[schoolID];
             })
 
             // Wait, no, I don't want to remove it!
