@@ -113,7 +113,9 @@ module.exports = function(grunt) {
           _: true,
           console: true,
           EventEmitter: true
-        }
+        },
+        reporter: 'jslint',
+        reporterOutput: 'test/jshint-results/jshint.xml'
       },
       files: ['js/*.js', 'Gruntfile.js', '!js/raphael-min.js', '!js/xml2json.js']
     }
