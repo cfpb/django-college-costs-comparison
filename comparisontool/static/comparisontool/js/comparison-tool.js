@@ -200,10 +200,15 @@ var CFPBComparisonTool = (function() {
         if (stage === 0) {
             $("#introduction .get-started").not("#step-zero").hide();
             $("#introduction #step-zero").show();
+            for (var x=1;x<=3;x++) {
+            	// columns[x].toggleHighlight("inactive");
+            }
         }
         if (stage === 1) {
             $("#introduction .get-started").not("#step-one").hide();
             $("#introduction #step-one").show();
+            // var col = findEmptyColumn();
+            // columns[col].toggleHighlight("active");
         }
         if (stage === 2) {
             $("#introduction .get-started").not("#step-two").hide();
@@ -1115,6 +1120,15 @@ var CFPBComparisonTool = (function() {
             return schoolID;
         } // end .fetchSchoolID()
 
+        this.toggleHighlight = function(state) {
+        	if (state === "active") {
+        		columnObj.find("th, td").css("background-color", "#f8f8f8");
+        	}
+        	if (state === "inactive") {
+        		columnObj.find("th, td").css("background-color", "none");
+        	}
+        }
+
         //-- remove the school information from a column and reset it to default --//
         this.removeSchoolInfo = function() {
         	columnObj.find('[data-nickname="institution_name"]').html("");
@@ -1132,7 +1146,7 @@ var CFPBComparisonTool = (function() {
         //-- toggles "active" or "inactive" state of the column --//
         this.toggleActive = function(state) { 
             // list of elements to toggle
-            var selector = 'input, .visualization, .data-total, .hide-inactive';
+            var selector = 'input, .visualization, .data-total, .hide-on-inactive';
 
             // If state isn't something clear, then it's as good as undefined
             if (state !== 'active' && state !== 'inactive') {
