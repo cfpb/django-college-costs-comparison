@@ -1756,13 +1756,19 @@ var CFPBComparisonTool = (function() {
                     test = jqXHR.responseText;
                 });
             };
-
         }
     });
 	
+	/* This is purely for testing, allows us to gain an object from new CFPBComparisonTool()
+	 * that has access to all the public methods for testing.  This is temporary and in the 
+	 * future we should remove this.  
+	 * TODO: Remove this code
+	 */
 	function oCFPBComparisonTool() {};
 	oCFPBComparisonTool.prototype.numToMoney = function(n) { return numToMoney(n); };
 	oCFPBComparisonTool.prototype.moneyToNum = function(money) { return moneyToNum(money); };
 	oCFPBComparisonTool.prototype.findEmptyColumn = function() { return findEmptyColumn(); };
+	oCFPBComparisonTool.School = School;
+	oCFPBComparisonTool.Column = Column;
 	return oCFPBComparisonTool;
 })(jQuery); // end cfpb_pfc_ct namespace anonymous function capsule
