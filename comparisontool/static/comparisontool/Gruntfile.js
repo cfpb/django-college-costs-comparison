@@ -114,8 +114,8 @@ module.exports = function(grunt) {
           console: true,
           EventEmitter: true
         },
-        reporter: 'jslint',
-        reporterOutput: 'test/jshint-results/jshint.xml'
+        reporter: 'checkstyle',
+        reporterOutput: 'jshint.xml'
       },
       files: ['js/*.js', 'Gruntfile.js', '!js/raphael-min.js', '!js/xml2json.js']
     }
