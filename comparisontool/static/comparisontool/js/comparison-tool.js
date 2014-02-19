@@ -1356,7 +1356,7 @@ var CFPBComparisonTool = (function() {
 
             // [step-one] User clicks Continue at step-one
             $("#step-one .continue").click( function() {
-            	if ( $("#step-one .continue").hasClass("disabled") === false ) {
+            	if ( $("#step-one .continue").attr("disabled") === false ) {
             		setAddStage(2);
             	}
             });
