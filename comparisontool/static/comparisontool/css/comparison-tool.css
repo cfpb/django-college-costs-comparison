@@ -356,7 +356,7 @@ This is for each step in the process.
 
 .get-started label {
 	font-size: 0.875em;
-	margin: 1em 0;
+	margin: 1em 0.5em 1em 0;
 }
 
 .get-started .school-name,
@@ -556,6 +556,7 @@ This contains the majority of the structural styles for table-based elements.
     font-size: 0.75em;
     font-weight: 400;
     margin-bottom: 2.5em;
+    text-align: right;
 }
 
 .comparison-tool thead .institution-row th .remove-confirm {
@@ -782,7 +783,7 @@ This contains the majority of the structural styles for table-based elements.
     background-color: #d12124;
     display: block;
     margin: 1.5em auto;
-    padding: 0.5em 1 em;
+    padding: 0.5em 1em;
     text-transform: none;
     width: 50%;
 }
@@ -811,11 +812,12 @@ This contains the majority of the structural styles for table-based elements.
 /* The Column headers in the table. */
 .comparison-tool section > table > thead th {
     background: transparent;
-    color: #585858;
     border: none;
+    border-right: 1px dashed #babbbd;
+    color: #585858;
     vertical-align: top;
     line-height: 1.25em;
-    padding: 0.5em;
+    padding: 0.5em 1.875em;
 }
 
 .percent-of-salary {
@@ -882,7 +884,7 @@ This contains the form elements for manipulating data within the tool.
 td input {
     border: 1px solid #fff;
     background: transparent;
-    padding: .25em .5em;
+    padding: 0.25em 0.5em;
     /*margin: 0 0.5em;*/
 }
 
@@ -914,7 +916,7 @@ td input {
 
 input[type=checkbox],
 input[type=radio] {
-    margin-right: .125em;
+    margin-right: 0.5em;
 }
 
 /* MISC. ELEMENTS

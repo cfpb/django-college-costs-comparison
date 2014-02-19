@@ -214,24 +214,24 @@ var CFPBComparisonTool = (function() {
     function setAddStage(stage) {
         if (stage === 0) {
             $("#introduction .get-started").not("#step-zero").hide();
-            $("#introduction #step-zero").show();
+            $("#introduction #step-zero").fadeToggle( "slow", "linear" );
             for (var x=1;x<=3;x++) {
             	columns[x].toggleHighlight("inactive");
             }
         }
         if (stage === 1) {
             $("#introduction .get-started").not("#step-one").hide();
-            $("#introduction #step-one").show();
+            $("#introduction #step-one").fadeToggle( "slow", "linear" );
             var col = findEmptyColumn();
             columns[col].toggleHighlight("active");
         }
         if (stage === 2) {
             $("#introduction .get-started").not("#step-two").hide();
-            $("#introduction #step-two").show();
+            $("#introduction #step-two").fadeToggle( "slow", "linear" );
         }
         if (stage === 3) {
             $("#introduction .get-started").not("#step-three").hide();
-            $("#introduction #step-three").show();
+            $("#introduction #step-three").fadeToggle( "slow", "linear" );
         }
     } // end setAddStage()
 
