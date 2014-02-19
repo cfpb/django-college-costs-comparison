@@ -165,9 +165,9 @@ var restoredata = {{ data_js|safe }};
 						</fieldset>
 					</div><!--/prgmlength-selection /staged /stage-program /step-middle -->
 					<div class="step-right">
-						<div class="pfc-container-right button-container">
-							<button class="continue disabled">Continue</button>
-							<button class="add-cancel">Cancel</button>
+						<div class="pfc-container-right">
+							<button disabled class="continue disabled">Continue</button>
+							<button class="add-cancel button-link">Cancel</button>
 						</div><!--/pfc-container-right -->
 					</div><!--/step-right -->
 				</fieldset>
@@ -183,20 +183,9 @@ var restoredata = {{ data_js|safe }};
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-xml /xml-info /staged /stage-xml /step-left -->
 				<div class="step-right">
-					<div class="pfc-container-right button-container">
+					<div class="pfc-container-right">
 						<button class="continue">Continue</button>
-						<button class="add-cancel">Cancel</button>
-					</div><!-- /pfc-container-right -->
-				</div><!-- /step-right -->
-				<div class="no-xml xml-info staged stage-noxml step-left">
-					<div class="pfc-container-left">
-						<p>You’ll need your financial aid offer information to complete the next section.  Use your offer letter to enter your scholarships, tuition, and other info.</p>
-					</div><!-- /pfc-container-left -->
-				</div><!-- /no-xml xml-info staged stage-noxml step-left -->
-				<div class="step-right">
-					<div class="pfc-container-right button-container">
-						<button class="continue">Continue</button>
-						<button class="add-cancel">Cancel</button>
+						<button class="add-cancel button-link">Cancel</button>
 					</div><!-- /pfc-container-right -->
 				</div><!-- /step-right -->
 			</div><!--/step-two -->
@@ -209,7 +198,7 @@ var restoredata = {{ data_js|safe }};
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-school /staged /stage-success /step-left -->
 				<div class="step-right">
-					<div class="pfc-container-right button-container">
+					<div class="pfc-container-right">
 						<button class="add-another-school">Add another school</button>
 						<button class="continue">Continue</button>
 					</div><!-- /pfc-container-right -->
@@ -223,33 +212,33 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="0"></td>
 						<th scope="col" data-column="1" data-schoolid="" class="header-cell">
 							<div class="remove-this-school">
-								<a class="remove-school-link" href="#">Remove This School</a>
+								<button class="remove-school-link button-link">Remove This School</button>
 							</div>
 							<div class="remove-confirm hidden-box">
 								Are you sure you want to remove this school?
-								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+								<button class="remove-yes button-link">Yes</button> <button class="remove-no button-link">No</button>
 							</div>
 							<h2 data-nickname="institution_name">School 1</h2>
 							<a href="" class="navigator-link hidden-box hide-on-inactive" target="_blank">Look up school information.</a>
 						</th>
 						<th scope="col" data-column="2" data-schoolid="" class="header-cell">
 							<div class="remove-this-school">
-								<a class="remove-school-link" href="#">Remove This School</a>
+								<button class="remove-school-link button-link">Remove This School</button>
 							</div>
 							<div class="remove-confirm hidden-box">
 								Are you sure you want to remove this school?
-								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+								<button class="remove-yes button-link">Yes</button> <button class="remove-no button-link">No</button>
 							</div>
 							<h2 data-nickname="institution_name">School 2</h2>
 							<a href="" class="navigator-link hidden-box hide-on-inactive" target="_blank">Look up school information.</a>
 						</th>
 						<th scope="col" data-column="3" data-schoolid="" class="header-cell">
 							<div class="remove-this-school">
-								<a class="remove-school-link" href="#">Remove This School</a>
+								<button class="remove-school-link button-link">Remove This School</button>
 							</div>
 							<div class="remove-confirm hidden-box">
 								Are you sure you want to remove this school?
-								<a href="#" class="remove-yes">Yes</a> <a href="#" class="remove-no">No</a>
+								<button class="remove-yes button-link">Yes</button> <button class="remove-no button-link">No</button>
 							</div>
 							<h2 data-nickname="institution_name">School 3</h2>
 							<a href="" class="navigator-link hidden-box hide-on-inactive" target="_blank">Look up school information.</a>
