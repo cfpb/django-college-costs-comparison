@@ -111,7 +111,7 @@ This just the hero for the Comparison Tool.
 -------------------------------------------------------------------------------*/
 /* This is a placeholder for now. */
 .pfc-hero-wrapper {
-    color: #F5F5F5;
+    color: #f5f5f5;
     width: 100%;
     height: 300px;
 }
@@ -125,7 +125,7 @@ This just the hero for the Comparison Tool.
     position: relative;
     font-size: 2.5em;
     font-weight: 400;
-    color: #D83D00;
+    color: #d83d00;
     width: 900px;
     margin: 0 auto 0.25em 0;
     line-height: 1.375;
@@ -205,12 +205,12 @@ This has similar styles as the global site navigation.
 }
 
 .pfc-nav li a:focus {
-    background-color: #D12124;
+    background-color: #d12124;
     color: #fff;
 }
 
 .pfc-nav li a.active {
-    background-color: #DA6750;
+    background-color: #Da6750;
     color: #fff;
 }
 
@@ -226,6 +226,7 @@ This is for each step in the process.
     border: 1px solid #e3e4e5;
     margin: 1em 0 0;
     padding: 1.5em 0;
+    position: relative;
 }
 
 /* First step is step-zero, so these are hidden and activated via JS */
@@ -263,8 +264,11 @@ This is for each step in the process.
 }
 
 #step-one .step-right {
-    float: left;
+    position: absolute;
+    	right: 0;
+    	bottom: 24px;
     margin-right: 0;
+    text-align: right;
     width: 195px;
 }
 
@@ -275,8 +279,11 @@ This is for each step in the process.
 }
 
 #step-two .step-right {
-    float: left;
     margin-right: 0;
+    position: absolute;
+    	right: 0;
+    	bottom: 24px;
+    text-align: right;
     width: 372px;
 }
 
@@ -287,8 +294,11 @@ This is for each step in the process.
 }
 
 #step-three .step-right {
-    float: left;
     margin-right: 0;
+    position: absolute;
+    	right: 0;
+    	bottom: 24px;
+    text-align: right;
     width: 372px;
 }
 
@@ -299,11 +309,6 @@ This is for each step in the process.
 
 .get-started .pfc-container-right {
     padding-right: 30px;
-}
-
-.pfc-container-right.button-container {
-	margin-top: 70px;
-	text-align: right;
 }
 
 .pfc-left {
@@ -462,7 +467,7 @@ This contains basic HTML elements.
 button,
 .button {
     color: #fff;
-    background-color: #d83d00;
+    background-color: #0072ce;
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 500;
     text-transform: none;
@@ -480,11 +485,12 @@ button,
 
 button:hover,
 .button:hover {
-	background-color: #d83d00;
+	background-color: #002d72;
 }
 
 button + button {
-    margin-top:1em;
+    margin-top: 1em;
+    margin-left: 1em;
 }
 
 button[disabled=disabled],
@@ -501,9 +507,24 @@ button.disabled,
     padding: .5em 1em;
 }
 
+.button-link {
+	background-color: transparent;
+	border-bottom: 1px dashed #d14124;
+	color: #d14124;
+	padding: 0;
+}
+
+.button-link:hover,
+.button-link:focus {
+	background-color: transparent;
+	border-bottom: 1px solid #d14124;
+}
+
 b {
     font-weight: 600;
 }
+
+
 
 /* THE TABLE & TABLE ELEMENTS
 This contains the majority of the structural styles for table-based elements.

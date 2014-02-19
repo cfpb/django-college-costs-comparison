@@ -1351,7 +1351,7 @@ var CFPBComparisonTool = (function() {
                 $("#school-name-search").attr("data-schoolid", school_id);
                 $("#school-name-search").val($(this).html());
                 $("#step-one .search-results").html("").hide();
-                $("#step-one .continue").removeClass("disabled");
+                $("#step-one .continue").removeClass("disabled").removeAttr("disabled", "disabled");
             });
 
 
@@ -1407,8 +1407,7 @@ var CFPBComparisonTool = (function() {
             --------------- */
 
             // Remove a school (display confirmation)
-            $(".remove-this-school").click( function(event) {
-                event.preventDefault();
+            $(".remove-this-school").click( function() {
                 var columnNumber = $(this).closest("[data-column]").attr("data-column");
                 if (columns[columnNumber].fetchSchoolID() != "") {
                     $(this).closest("[data-column]").children(".remove-confirm").show();
@@ -1416,8 +1415,7 @@ var CFPBComparisonTool = (function() {
             });
 
             // Remove school (confirmed, so actually get rid of it)
-            $(".remove-confirm a.remove-yes").click( function(event) {
-                event.preventDefault();
+            $(".remove-confirm .remove-yes").click( function() {
                 var number = $(this).closest("[data-column]").attr("data-column");
                 var schoolID = columns[number].fetchSchoolID();
                 columns[number].removeSchoolInfo();
@@ -1427,8 +1425,7 @@ var CFPBComparisonTool = (function() {
             })
 
             // Wait, no, I don't want to remove it!
-            $(".remove-confirm a.remove-no").click( function(event) {
-                event.preventDefault();
+            $(".remove-confirm .remove-no").click( function() {
                 $(this).closest("[data-column]").children(".remove-confirm").hide();
             })
 
