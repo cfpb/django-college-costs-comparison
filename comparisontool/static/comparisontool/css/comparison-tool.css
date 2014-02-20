@@ -415,6 +415,7 @@ thead h2 {
     letter-spacing: 0;
     line-height: 1.3em;
     text-transform: none;
+    margin-top: 2.5em;
 }
 
 thead #institution-row h2.inactive {
@@ -539,7 +540,7 @@ This contains the majority of the structural styles for table-based elements.
 .comparison-tool table {
     border: none;
     border-collapse: separate;
-    border-spacing: 0 0.5em;
+    border-spacing: 0 0em;
 }
 
 .comparison-tool thead th {
@@ -552,14 +553,13 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* Remove a school links */
-.comparison-tool thead .institution-row th .remove-this-school {
+.comparison-tool thead .removal-row th .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
-    margin-bottom: 2.5em;
     text-align: right;
 }
 
-.comparison-tool thead .institution-row th .remove-confirm {
+.comparison-tool thead .removal-row th .remove-confirm {
     background-color: #FFF;
     border: 1px solid black;
     display: none;
@@ -569,7 +569,7 @@ This contains the majority of the structural styles for table-based elements.
     max-width: 15%;
 }
 
-.comparison-tool thead .institution-row th .remove-confirm a {
+.comparison-tool thead .removal-row th .remove-confirm a {
     display: inline-block;
     margin: .5em auto .5em auto;
     text-align: center;
