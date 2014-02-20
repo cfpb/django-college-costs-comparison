@@ -1138,10 +1138,18 @@ var CFPBComparisonTool = (function() {
 
         this.toggleHighlight = function(state) {
         	if (state === "active") {
-        		columnObj.find("th, td").css("background-color", "#f8f8f8");
+        		columnObj.each( function() {
+                    if ( $(this).parent().is(".highlighted-row") ) {
+                        $(this).css("background-color", "#f5f9fd");
+                    }
+                });
         	}
         	if (state === "inactive") {
-        		columnObj.find("th, td").css("background-color", "none");
+        		columnObj.each( function() {
+                    if ( $(this).parent().is(".highlighted-row") ) {
+                        $(this).css("background-color", "inherit");
+                    }
+                });
         	}
         }
 
@@ -1659,7 +1667,14 @@ var CFPBComparisonTool = (function() {
                     getWorksheetID();
                 }
                 var posturl = "api/worksheet/" + global.worksheet_id + ".json";
-                var json_schools = JSON.stringify( schools );
+                
+                // put schoolData into a nice JSON object
+                var json_schools = new Object;
+                $.each(schools, function(key, val) {
+                    var data = val.schoolData;
+                    json_schools[key] = data;                        
+                });
+                json_schools = JSON.stringify( json_schools );
                 var request = $.ajax({
                     type: "POST",
                     url: posturl,
@@ -1669,8 +1684,13 @@ var CFPBComparisonTool = (function() {
                 request.done( function ( result ) {
 
                 });
-                request.fail( function ( result ) {
-                    alert( "Save failed!");
+                request.fail( function ( xmlHttpRequest, textStatus ) {
+                    var foo = "";
+                    $.each(xmlHttpRequest, function(i, v) {
+                        foo += " " + i + ":" + v;
+                    });
+                    // alert( "Save failed!");
+                    $("#save-container").append( "Save failed!" + foo + " " + textStatus);
                 });
                 var geturl = "http://" + document.location.host
                             + "/paying-for-college/compare-financial-aid-and-college-cost/"
@@ -1739,13 +1759,14 @@ var CFPBComparisonTool = (function() {
                 });
                 request.done(function( data, textStatus, jqXHR ) {
                     var data = jQuery.parseJSON(jqXHR.responseText);
-                    schools = data;
-                    var column = 1;
-                    $.each(schools, function(i, val) {
-                        schools[i]["origin"] = "saved";
-                        $("#institution-row").find("[data-column='" + column + "']").attr("data-schoolid", i);
-                        build_school_element(column);
-                        column++;
+                    $.each(data, function(schoolID, schoolData) {
+                        var columnNumber = findEmptyColumn();
+                        schoolData['origin'] = 'saved';
+                        $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
+                        schools[schoolID] = new School(schoolID);
+                        schools[schoolID].schoolData = schoolData;
+                        columns[columnNumber].addSchoolInfo(schools[schoolID].schoolData);
+                        calculateAndDraw(columnNumber);
                     });
                 });
                 request.fail(function( jqXHR, msg ) {
