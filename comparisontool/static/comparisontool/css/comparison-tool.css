@@ -349,14 +349,9 @@ This is for each step in the process.
 	width: 874px;
 }
 
-.get-started .add-steps {
-	font-size: 0.875em;
-	font-weight: normal;
-}
-
 .get-started label {
 	font-size: 0.875em;
-	margin: 1em 0.5em 1em 0;
+	margin: 1em 0;
 }
 
 .get-started .school-name,
@@ -364,6 +359,16 @@ This is for each step in the process.
 .get-started .prgmtype,
 .get-started .xml {
 	font-weight: 600;
+    margin-right: 0.5em;
+}
+
+.get-started .get-started-ckbx-group {
+    clear: both;
+    padding: 1em 0;
+}
+
+.get-started .finaidoffer {
+    vertical-align: middle;
 }
 
 .get-started .xml-text {

@@ -125,7 +125,7 @@ var restoredata = {{ data_js|safe }};
 			</div>
 			<div id="step-one" class="get-started step-one clearfix">
 				<fieldset id="add-a-school">
-					<legend class="h4 demi step-legend">Tell us more information about the School</span> <span class="add-steps">Step 1 of 3</span></legend>
+					<legend class="h4 demi step-legend">Tell us more information about the School</legend>
 					<div class="step-left">
 						<div class="pfc-container-left">
 							<div class="school-search staged stage-search">
@@ -162,6 +162,9 @@ var restoredata = {{ data_js|safe }};
 									<label class="prgmtype" for="program3">Graduate</label>
 								</div><!-- /get-started-radio-group -->
 							</div>
+							<div class="get-started-ckbx-group">
+								<input id="finaidoffer" class="finaidoffer" type="checkbox" name="finaidoffer"><label>I have a financial aid offer from this school</label>
+							</div>
 						</fieldset>
 					</div><!--/prgmlength-selection /staged /stage-program /step-middle -->
 					<div class="step-right">
@@ -175,7 +178,7 @@ var restoredata = {{ data_js|safe }};
 			<div id="step-two" class="get-started step-two clearfix">
 				<div class="add-xml xml-info staged stage-xml step-left">
 					<div class="pfc-container-left">
-						<h4>Got XML? (optional)</h4><span>Step 2 of 3</span>
+						<h4>Got XML? (optional)</h4>
 						<p>It looks like this school adopted the Financial Aid Shopping Sheet. That’s great because it will make the next step easier.</p>
 						<p>If they provided an XML file, paste the code below. If not, click to continue. </p>
 						<label for="xml-text" class="xml">XML text</label>
@@ -192,7 +195,7 @@ var restoredata = {{ data_js|safe }};
 			<div id="step-three" class="get-started step-three clearfix">
 				<div class="add-school staged stage-success step-left">
 					<div class="pfc-container-left">
-						<h4>Success!</h4><span>Step 3 of 3</span>
+						<h4>Success!</h4>
 						<p>You have added <span class="schoolname">School Name</span> into the cost comparison chart below.</p>
 						<p>Add another school, or continue to enter your financial information below.</p>
 					</div><!-- /pfc-container-left -->
