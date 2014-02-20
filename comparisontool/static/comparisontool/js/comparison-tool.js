@@ -242,6 +242,7 @@ var CFPBComparisonTool = (function() {
     	$('#school-name-search').attr('data-schoolid', '');
     	$('#prgmlength').val('4');
     	$('#step-one input:radio[name="program"]').filter('[value="ba"]').prop('checked', true);
+        $('#finaidoffer').prop('checked', false);
     	$('xml-text').val('');
     }
 
@@ -1365,9 +1366,23 @@ var CFPBComparisonTool = (function() {
 
             // [step-one] User clicks Continue at step-one
             $("#step-one .continue").click( function() {
-            	if ( $("#step-one .continue").attr("disabled") === undefined ) {
+                // If the user has a financial aid offer, go to XML step.
+            	if ( $("#step-one .continue").attr("disabled") === undefined && $("#finaidoffer").is(":checked") ) {
             		setAddStage(2);
-            	}
+                // If not, add the school. 
+            	} else {
+                    setAddStage(3);
+                    var column = findEmptyColumn();
+                    var schoolID = $("#school-name-search").attr("data-schoolid");
+                    $('#institution-row [data-column="' + column + '"]').attr("data-schoolid", schoolID);
+                    schools[schoolID] = new School(schoolID);
+                    schools[schoolID].getSchoolData();
+                    schools[schoolID].importAddForm();
+                    columns[column].addSchoolInfo(schools[schoolID].schoolData);
+                    calculateAndDraw(column);
+                    $(".no-xml-success").show();
+                    $("#get-started-button").html("Add another school");
+                }
             });
 
             // [step-two] User clicks Continue at step-two
@@ -1388,6 +1403,7 @@ var CFPBComparisonTool = (function() {
                 	columns[column].updateFormValues(data);
                 }
                 calculateAndDraw(column);
+                $(".xml-success").show();
                 $("#get-started-button").html("Add another school");
             });
 
@@ -1400,12 +1416,14 @@ var CFPBComparisonTool = (function() {
             // [step-three] User clicks Continue at step-three
             $("#step-three .add-another-school").click( function() {
             	clearAddForms();
+                $(".no-xml-success, .xml-success").hide();
                 setAddStage(1);
             });
 
             // Cancel Add a School
             $("#introduction .add-cancel").click( function(event) {
                 event.preventDefault();
+                $(".no-xml-success, .xml-success").hide();
                 setAddStage(0);
                 clearAddForms();
             });
