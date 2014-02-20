@@ -1308,7 +1308,7 @@ var CFPBComparisonTool = (function() {
             // [step-one] User has typed into the school-search input - perform search and display results
             $("#step-one .school-search").on("keyup", "#school-name-search", function (ev) {
                 var query = $(this).val();
-                $("#step-one .continue").addClass("disabled");
+                $("#step-one .continue").addClass("disabled").attr("disabled", true);
                 $("#step-one .search-results").show();
                 $("#step-one .search-results").html("<li><em>Searching...</em></li>");
                 delay(function() {
@@ -1350,13 +1350,13 @@ var CFPBComparisonTool = (function() {
                 $("#school-name-search").attr("data-schoolid", school_id);
                 $("#school-name-search").val($(this).html());
                 $("#step-one .search-results").html("").hide();
-                $("#step-one .continue").removeClass("disabled").removeAttr("disabled", "disabled");
+                $("#step-one .continue").removeClass("disabled").removeAttr("disabled");
             });
 
 
             // [step-one] User clicks Continue at step-one
             $("#step-one .continue").click( function() {
-            	if ( $("#step-one .continue").hasClass("disabled") === false ) {
+            	if ( $("#step-one .continue").attr("disabled") === undefined ) {
             		setAddStage(2);
             	}
             });
@@ -1451,7 +1451,7 @@ var CFPBComparisonTool = (function() {
                 }
                 else {
                     $(".military-tier-select").each( function() {
-                        $(this).attr("disabled", "disabled");
+                        $(this).attr("disabled", true);
                     });
                 }
                 for ( c = 1; c <= 3; c++ ) {
