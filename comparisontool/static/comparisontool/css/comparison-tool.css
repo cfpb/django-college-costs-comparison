@@ -881,20 +881,54 @@ This contains the majority of the structural styles for table-based elements.
 /* FORM ELEMENTS
 This contains the form elements for manipulating data within the tool.
 -------------------------------------------------------------------------------*/
-td input {
-    border: 1px solid #fff;
-    background: transparent;
-    padding: 0.25em 0.5em;
-    /*margin: 0 0.5em;*/
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+  margin: 0;
+  padding: 0.25em;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  background: #ffffff;
+  border: 1px solid #75787b;
+  border-radius: 0;
+  vertical-align: top;
 }
 
-td input:focus,
-td input:hover {
-    border: 1px solid #afafb3;
-    border-radius: 0.25em;
-    box-shadow: inset 0px 1px 3px #ccc;
-    -webkit-box-sizing: border-box;
-    background-color: #fff;
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  border: 1px solid #0072ce;
+  border-color: #0072ce;
+  outline: 1px solid #0072ce;
+  outline-offset: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input.error[type="text"],
+input.error[type="email"],
+input.error[type="url"],
+input.error[type="password"],
+input.error[type="search"],
+textarea.error {
+  border: 1px solid #d12124;
+  outline: 1px solid #d12124;
+}
+
+input.success[type="text"],
+input.success[type="email"],
+input.success[type="url"],
+input.success[type="password"],
+input.success[type="search"],
+textarea.success {
+  border: 1px solid #2cb34a;
+  outline: 1px solid #2cb34a;
 }
 
 td input.disabled, td input.disabled:hover,  
@@ -906,12 +940,6 @@ td h6.disabled, td h6.disabled:hover {
 td,
 td input {
     text-align: center;
-}
-
-.comparison-tables td input:focus,
-.comparison-tables td input:hover {
-    border: 1px solid #989898;
-    background: #fdf3e0;
 }
 
 input[type=checkbox],
