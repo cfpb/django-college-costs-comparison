@@ -1138,14 +1138,14 @@ var CFPBComparisonTool = (function() {
         this.toggleHighlight = function(state) {
         	if (state === "active") {
         		columnObj.each( function() {
-                    if ( $(this).is("th, td") ) {
-                        $(this).css("background-color", "#f8f8f8");
+                    if ( $(this).parent().is(".highlighted-row") ) {
+                        $(this).css("background-color", "#f5f9fd");
                     }
                 });
         	}
         	if (state === "inactive") {
         		columnObj.each( function() {
-                    if ( $(this).is("th, td") ) {
+                    if ( $(this).parent().is(".highlighted-row") ) {
                         $(this).css("background-color", "inherit");
                     }
                 });
