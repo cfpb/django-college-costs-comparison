@@ -1138,6 +1138,7 @@ var CFPBComparisonTool = (function() {
         		columnObj.each( function() {
                     if ( $(this).parent().is(".highlighted-row") ) {
                         $(this).css("background-color", "#f5f9fd");
+                        $(this).filter("#institution-row th").css("border-top", "solid 5px #eaf3fb");
                     }
                 });
         	}
@@ -1145,6 +1146,7 @@ var CFPBComparisonTool = (function() {
         		columnObj.each( function() {
                     if ( $(this).parent().is(".highlighted-row") ) {
                         $(this).css("background-color", "inherit");
+                        $(this).filter("#institution-row th").css("border-top", "inherit");
                     }
                 });
         	}
