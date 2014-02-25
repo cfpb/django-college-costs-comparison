@@ -2,11 +2,11 @@
     performing data calculations on schools and loans, and handling UI elements and events. -wernerc */
 
 
-//** CFPBComparisonTool represents a namespace for comparison tool classes and functions **//
+//== CFPBComparisonTool represents a namespace for comparison tool classes and functions ==//
 
 var CFPBComparisonTool = (function() {
 
-    //*** Initialize values, objects, etc ***//
+    // Initialize values, objects, etc //
     var columns = new Object(); // Object (array-ish) that holds Column objects, keyed by column number
     var schools = new Object(); // Object (array-ish) that holds School objects, keyed by school_id
     var schools_zeroed = new Object(); // Object for Google analytics, for schools where gap reaches 0
@@ -38,9 +38,6 @@ var CFPBComparisonTool = (function() {
 		"group3loanrankmed": 277, "group3loanrankhigh": 459, "group3loanrankmax": 836,
 		"group4loanrankmed": 0, "group4loanrankhigh": 0, "group4loanrankmax": 0,
 		"group5loanrankmed": 0, "group5loanrankhigh": 0, "group5loanrankmax": 0,
-
-		//-- Values below this line have not been verified as necessary. --//
-		
 		"aaprgmlength": 2, "yrincollege": 1, "vet": false, "serving": "no", "program": "ba",
 		"tier": 100, "gradprgmlength": 2, "familyincome": 48, "most_expensive_cost": 50000,
 		"transportationdefault": 0, "roombrdwfamily": 0, "gibillch1606": 356,
@@ -57,7 +54,7 @@ var CFPBComparisonTool = (function() {
 		"schools_added": -1, "reached_zero": 0, "worksheet_id": "none"
 	};
 
-	//*** Non-Class Functions ***//
+	//== Non-Class Functions ==//
 	//-- exists() - a simple way to determine if any instance of an element matching the selector exists --//
     jQuery.fn.exists = function() {
         return this.length > 0;
@@ -208,7 +205,7 @@ var CFPBComparisonTool = (function() {
         }
 
         return schoolData;
-    }
+    } // end processXML()
 
     //-- Set the state of the Add a School section --//
     function setAddStage(stage) {
@@ -243,12 +240,12 @@ var CFPBComparisonTool = (function() {
     	$('#step-one input:radio[name="program"]').filter('[value="ba"]').prop('checked', true);
         $('#finaidoffer').prop('checked', false);
     	$('xml-text').val('');
-    }
+    } //
 
-	//*** Classes ***//
+	/////===== Classes =====/////
 
-	/**	the School class represents the data structure of a school's data. This does NOT represent
-		any UI or DOM elements - see Column() **/
+	//== the School class represents the data structure of a school's data.
+	//== This does NOT represent any UI or DOM elements - see Column()
 	function School(schoolID) {
 		this.schoolID = schoolID;
 		this.schoolData = {};
@@ -353,7 +350,7 @@ var CFPBComparisonTool = (function() {
 			// Cost of First Year (schoolData.firstyrcostattend)
 			data.firstyrcostattend = data.tuitionfees + data.roombrd + data.books + data.otherexpenses + data.transportation;
 
-			/*------- SCHOLARSHIPS & GRANTS --------*/
+			// SCHOLARSHIPS & GRANTS //
 			// Pell Grants
 			data.pell_max = 0;
 			if ( data.undergrad == true ) {
@@ -464,10 +461,10 @@ var CFPBComparisonTool = (function() {
 			// Total Contributions
 			data.savingstotal = data.savings + data.family + data.state529plan + data.workstudy;
 			
-			/*------- grants and savings --------*/
+			// grants and savings
 			data.totalgrantsandsavings = data.savingstotal + data.grantstotal;
 
-			/*------- FEDERAL LOANS --------*/
+			// FEDERAL LOANS //
 			// Perkins Loan
 
 			data.perkins_max = data.firstyrcostattend - data.pell;
@@ -648,7 +645,7 @@ var CFPBComparisonTool = (function() {
 			// Federal Total Loan
 			data.federaltotal = data.perkins + data.staffsubsidized + data.staffunsubsidized + data.gradplus;
 
-			/*------- PRIVATE LOANS --------*/
+			// PRIVATE LOANS //
 			// Institution Loans
 			data.institutionalloan_max = data.firstyrnetcost - data.perkins - data.staffsubsidized - data.staffunsubsidized - data.parentplus - data.gradplus - data.homeequity;
 			if ( data.institutionalloan_max < 0 ) {
@@ -694,7 +691,7 @@ var CFPBComparisonTool = (function() {
 			// gap
 			data.gap = data.firstyrnetcost - data.perkins - data.staffsubsidized - data.staffunsubsidized - data.workstudy - data.savings - data.family - data.state529plan - data.privateloan - data.institutionalloan - data.parentplus - data.homeequity;
 
-			/* --- Loan Calculation -- */
+			// ===Loan Calculation===
 			// Borrowing Total
 			data.borrowingtotal = data.privatetotal + data.federaltotal;
 
@@ -813,9 +810,9 @@ var CFPBComparisonTool = (function() {
 
 	} // end School() class
 
-	/**	the Column class represents the DOM elements of a "school," including the inputs. Methods of this
-		class manipulate the DOM, but also take data from inputs and place them into the schools[] object
-		Column also contains code for visualizations **/
+	//== the Column class represents the DOM elements of a "school," including the inputs. Methods of this
+	//== class manipulate the DOM, but also take data from inputs and place them into a schoolData object.
+	//== Column also contains code for visualizations.
 	function Column(number) {
 		this.columnNumber = number; // defines which column, [1-3]
 		var columnObj = $('[data-column="' + number + '"]'); // JQuery Object holding the DOM of the column
@@ -1216,11 +1213,11 @@ var CFPBComparisonTool = (function() {
             });
         } // end .updateFormValues()
 
-    } // end Column() class
+    } // end Column() class   
 
-    /*----------------
-        DOCUMENT.READY
-    --------------------*/
+    //-----------------------//
+    //    DOCUMENT.READY     //
+    //-----------------------//
 
     $(document).ready(function() {
         if ( $("#comparison-tables").exists() ) { // Added for ease of testing
@@ -1234,7 +1231,7 @@ var CFPBComparisonTool = (function() {
 	            columns[x].toggleActive("inactive");
 	        }
 
-            /* Notification for mobile screens */
+            // Notification for mobile screens //
             $("#pfc-notification-wrapper").hide();
             $("#pfc-notification-wrapper").delay(1500).slideDown(1000);
 
@@ -1242,7 +1239,7 @@ var CFPBComparisonTool = (function() {
                 $("#pfc-notification-wrapper").slideUp(1000);
             });
             
-            /* --- Initialize Visualizations --- */
+            // --- Initialize Visualizations --- //
             // Pie Charts
             var x;
             for (x = 1; x <= 3; x++ ) {
@@ -1274,14 +1271,11 @@ var CFPBComparisonTool = (function() {
                 meterarrows[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
             }
 
-        /*------------------
-            JQUERY EVENT HANDLERS
-        -------------------------*/
+        //---------------------------//
+        //    JQUERY EVENT HANDLERS
+        //---------------------------//
 
-            /* -------------
-                Accordions (not the instrument, sadly)
-            -----------------*/
-
+            // Accordions (not the instrument, sadly)
             $('tr.show').click(function() {
                 $(this).closest('tbody').children(':not(.show, .tr-hide)').toggleClass('hide');
                 $(this).closest('.arrw-collapse').toggleClass('arrw');
@@ -1304,9 +1298,7 @@ var CFPBComparisonTool = (function() {
             });
 
 
-            /* -----------
-                "Add a school" user interface
-            ----------- */
+            // "Add a school" user interface
 
             // User clicks "Get Started"
             $("#get-started-button").click( function(event) {
@@ -1427,9 +1419,7 @@ var CFPBComparisonTool = (function() {
                 clearAddForms();
             });
 
-            /* -------
-                "Remove this school" user interface 
-            --------------- */
+            // ---"Remove this school" user interface--- //
 
             // Remove a school (display confirmation)
             $(".remove-this-school").click( function() {
@@ -1454,9 +1444,9 @@ var CFPBComparisonTool = (function() {
                 $(this).closest("[data-column]").children(".remove-confirm").hide();
             })
 
-            /* -----------
-                "GI Bill" user interface
-            ----------- */
+            // -----------
+            // "GI Bill" user interface
+            // ------------
             // Show the GI Bill panel on click
             $(".gibill-calculator, input[data-nickname='gibill']").click( function(event) {
                 event.preventDefault();
@@ -1517,10 +1507,7 @@ var CFPBComparisonTool = (function() {
                 calculate_school(column);
             })
 
-            /* ----------------
-                Interest Rate change buttons
-            --------------------- */
-
+            // Interest Rate change buttons
             $(".rate-change").on("click", function(event) {
                 event.preventDefault();
                 var column = $(this).closest("[data-column]").attr("data-column");
@@ -1540,9 +1527,9 @@ var CFPBComparisonTool = (function() {
 
             });
 
-            /* ----------------
-                "Real-time" calculations
-            --------------------- */
+            // --------------------------------
+            //    "Real-time" calculations
+            // --------------------------------
 
             // Perform a calculation when the user blurs inputs
             $("#comparison-tables").on("blur", "input.school-data", function (ev) {
@@ -1734,8 +1721,7 @@ var CFPBComparisonTool = (function() {
                 _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] ); 
             });
 
-            /* --- Start the page up! --- */
-
+            // --- Start the page up! --- //
 
             // Set vertical tabbing
             for (c = 1; c <= 3; c++) {
@@ -1776,4 +1762,17 @@ var CFPBComparisonTool = (function() {
 
         }
     });
+    // return functions and classes for testing
+    return {
+        moneyToNum: moneyToNum,
+        numToMoney: numToMoney,
+        findEmptyColumn: findEmptyColumn,
+        calculateAndDraw: calculateAndDraw,
+        getSchoolSearchResults: getSchoolSearchResults,
+        getWorksheetID: getWorksheetID,
+        processXML: processXML,
+        setAddStage: setAddStage,
+        clearAddForms: clearAddForms,
+
+    }
 })(jQuery); // end cfpb_pfc_ct namespace anonymous function capsule
