@@ -534,8 +534,6 @@ b {
     font-weight: 600;
 }
 
-
-
 /* THE TABLE & TABLE ELEMENTS
 This contains the majority of the structural styles for table-based elements.
 -------------------------------------------------------------------------------*/
@@ -548,17 +546,16 @@ This contains the majority of the structural styles for table-based elements.
 /* The structural table elements */
 .comparison-tool table {
     border: none;
-    border-collapse: separate;
-    border-spacing: 0 0em;
+    border-collapse: collapse;
 }
 
 .comparison-tool thead th {
     background: transparent;
-    color: #333;
     border: none;
     text-align: left;
     font-size: 1em;
     line-height: 1em;
+    white-space: normal;
 }
 
 /* Remove a school links */
@@ -585,33 +582,31 @@ This contains the majority of the structural styles for table-based elements.
     width: auto;
 }
 
-.comparison-tool table tbody {
-    padding-bottom: 1em;
-}
-
 .comparison-tool table tbody th {
     font-size: 0.875em;
     border-right: none;
     vertical-align: middle;
-    padding: 0.5em 1em;
+    padding: 0.75em 1em;
 }
 
 .comparison-tool table > tbody thead th {
     text-transform: uppercase;
     font-weight: 600;
-    padding: 0.5em 0.5em 0.5em 1em;
+    padding: 0.75em 0.5em 0.75em 1em;
+    white-space: normal;
 }
 
 .comparison-tool table td {
     width: 25%;
-    padding: .25em 0;
+    padding: 0.5em 0;
 }
 
 .comparison-tool table thead th {
     border: none;
     color: #585858;
     background: transparent;
-    padding: 0.5em 0;
+    padding: 0.75em 0;
+    white-space: normal;
 }
 
 .comparison-tool table thead th .navigator-link {
@@ -621,6 +616,7 @@ This contains the majority of the structural styles for table-based elements.
 
 .comparison-tool th {
     width: 25%;
+    white-space: normal;
 }
 
 .comparison-tool td {
@@ -673,56 +669,58 @@ This contains the majority of the structural styles for table-based elements.
     background: #cce3f5;
 }
 
-.breakdown th, .breakdown td {
+.breakdown th,
+.breakdown td {
     background: #fff;
 }
 
 /* The styles for accodion arrows. See the JS file. All are collapsed by default. */
-.hide, .tr-hide {
+.hide,
+.tr-hide {
     display: none;
 }
 
 .arrw-collapse th:first-child,
 .arrw th:first-child {
-    background: url(../images/collapse_arrows.png) no-repeat 15px -30px;
+    background: url(../images/collapse_arrows.png) no-repeat 15px -26px;
     cursor: pointer;
 }
 
 .totalcost.arrw-collapse.arrw th:first-child,
 .totalcont.arrw-collapse.arrw th:first-child {
-    background-position: 15px 5px;
+    background-position: 15px 13px;
 }
 
 .grants.arrw-collapse th:first-child {
-    background-position: 15px -100px;
+    background-position: 15px -96px;
 }
 
 .grants.arrw-collapse.arrw th:first-child {
-    background-position: 15px -65px;
+    background-position: 15px -61px;
 }
 
 .contributions.arrw-collapse th:first-child {
-    background-position: 15px -170px;
+    background-position: 15px -166px;
 }
 
 .contributions.arrw-collapse.arrw th:first-child {
-    background-position: 15px -135px;
+    background-position: 15px -131px;
 }
 
 .federal.arrw-collapse th:first-child {
-    background-position: 15px -240px;
+    background-position: 15px -236px;
 }
 
 .federal.arrw-collapse.arrw th:first-child {
-    background-position: 15px -205px;
+    background-position: 15px -201px;
 }
 
 .private.arrw-collapse th:first-child {
-    background-position: 15px -310px;
+    background-position: 15px -306px;
 }
 
 .private.arrw-collapse.arrw th:first-child {
-    background-position: 15px -275px;
+    background-position: 15px -271px;
 }
 
 /* The GI Bill section. */
@@ -822,11 +820,16 @@ This contains the majority of the structural styles for table-based elements.
 .comparison-tool section > table > thead th {
     background: transparent;
     border: none;
+    border-left: 1px dashed #babbbd;
     border-right: 1px dashed #babbbd;
     color: #585858;
     vertical-align: top;
     line-height: 1.25em;
     padding: 0.5em 1.875em;
+}
+
+.comparison-tool section > table > thead .removal-row th {
+    border: none;
 }
 
 .percent-of-salary {
@@ -1067,7 +1070,6 @@ label.tooltip-info {
 /* TODO: Make this section less specific. */
 #comparison-tables .breakdown td,
 #comparison-tables .breakdown th  {
-    background: #f2f2f2;
     vertical-align: top;
 }
 
