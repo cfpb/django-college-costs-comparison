@@ -1158,10 +1158,27 @@ var CFPBComparisonTool = (function() {
 
         } // end removeSchoolInfo()
 
-        //-- set an element value to the matching schoolData object property (converted to money string) --//
-        this.setByNickname = function(nickname, value, overwrite) {
+        //-- set an element value to the matching schoolData object property --//
+        // Note: type can be 'c' for currency, or 'p' for percentage
+        this.setByNickname = function(nickname, value, type) {
             var element = columnObj.find("[data-nickname='" + nickname + "']");
-            element.val(numToMoney(value));
+            if (type === "p") { // percentage type
+                value = (value * 100).toString() + "%";
+            }
+            else if (type === "c" || type === undefined) {
+                value = numToMoney(value);
+            }
+            else {
+                // If the type is something weird, for now, we assume it meant currency
+                value = numToMoney(value);
+            }
+            // Use val() or html() based on tagName
+            if ( element.prop('tagName') === 'INPUT' ) {
+                element.val(value);
+            }
+            else {
+                element.html(value);
+            }
             return false;
         }; // .setByNickname()
 
@@ -1198,17 +1215,11 @@ var CFPBComparisonTool = (function() {
             columnObj.find('.data-total, .school-data, .value').each(function() {
                 var nickname = $(this).attr('data-nickname');
                 var value = data[nickname];
-                if ( $(this).prop('tagName') === 'INPUT') {
-                    if ( $(this).hasClass('interest-rate') ) {
-                        value = (value * 100).toString() + "%";
-                    }
-                    else {
-                        value = numToMoney(value);
-                    }
-                    $(this).val(value);
+                if ( $(this).hasClass('interest-rate') ) {
+                    this.setByNickname(nickname, value, "p");
                 }
                 else {
-                    $(this).html( numToMoney(value) );
+                    this.setByNickname(nickname, value, "c")
                 }
             });
         } // end .updateFormValues()
@@ -1756,7 +1767,7 @@ var CFPBComparisonTool = (function() {
                     });
                 });
                 request.fail(function( jqXHR, msg ) {
-                    test = jqXHR.responseText;
+                    var responseText = jqXHR.responseText;
                 });
             };
 
@@ -1773,6 +1784,7 @@ var CFPBComparisonTool = (function() {
         processXML: processXML,
         setAddStage: setAddStage,
         clearAddForms: clearAddForms,
-
+        Column: Column,
+        School: School
     }
 })(jQuery); // end cfpb_pfc_ct namespace anonymous function capsule
