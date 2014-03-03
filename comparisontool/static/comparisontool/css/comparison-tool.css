@@ -366,6 +366,10 @@ This is for the Get Started button only. */
     margin-right: 0.5em;
 }
 
+.success-school-name {
+    font-weight: 600;
+}
+
 .get-started .get-started-ckbx-group {
     clear: both;
     padding: 1em 0;
