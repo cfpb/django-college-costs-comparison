@@ -824,6 +824,7 @@ var CFPBComparisonTool = (function() {
 		this.addSchoolInfo = function(schoolData) { 
 			this.toggleActive('active'); // Make the column active
 			columnObj.find('[data-nickname="institution_name"]').html(schoolData.school);
+            $('.xml-success, .no-xml-success').find('span.success-school-name').html(schoolData.school);
 			columnObj.find('.header-cell').attr("data-schoolid", schoolData.school_id);
 			columnObj.find('input.school-data').not(".interest-rate").val("$0");
 			columnObj.find('input[data-nickname="institutional_loan_rate"]').val(global.institutionalloanratedefault * 100 + '%');
