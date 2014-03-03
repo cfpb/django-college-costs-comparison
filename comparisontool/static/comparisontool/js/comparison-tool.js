@@ -95,7 +95,7 @@ var CFPBComparisonTool = (function() {
 
 	//-- findEmptyColumn() - finds the first empty column, returns column number [1-3] --//
 	function findEmptyColumn() {
-		var column;
+		var column = false;
 		for (var x = 1; x <= 3; x++) {
 			var school_id = $("#institution-row [data-column='" + x + "']").attr("data-schoolid");
 			if ( school_id === "" ) {
@@ -1453,7 +1453,7 @@ var CFPBComparisonTool = (function() {
                 columns[number].toggleActive('inactive');
                 _gaq.push([ "_trackEvent", "School Interactions", "School Removed", schoolID ] );
                 delete schools[schoolID];
-                if ( findEmptyColumn === undefined ) {
+                if ( Object.keys(schools).length === 0 ) {
                     $("#get-started-button").html("Get started");
                 }
             })
