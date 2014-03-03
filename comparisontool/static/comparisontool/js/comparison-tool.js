@@ -1214,14 +1214,15 @@ var CFPBComparisonTool = (function() {
 
         //-- Updates Column with new values for inputs and totals --//
         this.updateFormValues = function(data) { 
+            var column = this;
             columnObj.find('.data-total, .school-data, .value').each(function() {
                 var nickname = $(this).attr('data-nickname');
                 var value = data[nickname];
                 if ( $(this).hasClass('interest-rate') ) {
-                    this.setByNickname(nickname, value, "p");
+                    column.setByNickname(nickname, value, "p");
                 }
                 else {
-                    this.setByNickname(nickname, value, "c")
+                    column.setByNickname(nickname, value, "c")
                 }
             });
         } // end .updateFormValues()
@@ -1375,20 +1376,20 @@ var CFPBComparisonTool = (function() {
                     if ( $("#finaidoffer").is(":checked") ) {
                         setAddStage(2);    
                     }
-                }
-                else {
-                    // If not, add the school. 
-                    setAddStage(3);
-                    var column = findEmptyColumn();
-                    var schoolID = $("#school-name-search").attr("data-schoolid");
-                    $('#institution-row [data-column="' + column + '"]').attr("data-schoolid", schoolID);
-                    schools[schoolID] = new School(schoolID);
-                    schools[schoolID].getSchoolData();
-                    schools[schoolID].importAddForm();
-                    columns[column].addSchoolInfo(schools[schoolID].schoolData);
-                    calculateAndDraw(column);
-                    $(".no-xml-success").show();
-                    $("#get-started-button").html("Add another school");
+                    else {
+                        // If not, add the school. 
+                        setAddStage(3);
+                        var column = findEmptyColumn();
+                        var schoolID = $("#school-name-search").attr("data-schoolid");
+                        $('#institution-row [data-column="' + column + '"]').attr("data-schoolid", schoolID);
+                        schools[schoolID] = new School(schoolID);
+                        schools[schoolID].getSchoolData();
+                        schools[schoolID].importAddForm();
+                        columns[column].addSchoolInfo(schools[schoolID].schoolData);
+                        calculateAndDraw(column);
+                        $(".no-xml-success").show();
+                        $("#get-started-button").html("Add another school");
+                    }
                 }
             });
 
