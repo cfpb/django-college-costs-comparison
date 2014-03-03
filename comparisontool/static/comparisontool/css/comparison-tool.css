@@ -623,6 +623,12 @@ This contains the majority of the structural styles for table-based elements.
     border-right: none;
 }
 
+/* Full width styles in the table for descriptions */
+.comparison-tool td.full {
+    padding: 0.5em 1em;
+    text-align: left;
+}
+
 .comparison-tool td:last-child {
     border-right: none;
 }
