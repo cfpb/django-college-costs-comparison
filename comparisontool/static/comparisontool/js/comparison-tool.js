@@ -1371,10 +1371,13 @@ var CFPBComparisonTool = (function() {
             // [step-one] User clicks Continue at step-one
             $("#step-one .continue").click( function() {
                 // If the user has a financial aid offer, go to XML step.
-            	if ( $("#step-one .continue").attr("disabled") === undefined && $("#finaidoffer").is(":checked") ) {
-            		setAddStage(2);
-                // If not, add the school. 
-            	} else {
+            	if ( $("#step-one .continue").attr("disabled") === undefined ) {
+                    if ( $("#finaidoffer").is(":checked") ) {
+                        setAddStage(2);    
+                    }
+                }
+                else {
+                    // If not, add the school. 
                     setAddStage(3);
                     var column = findEmptyColumn();
                     var schoolID = $("#school-name-search").attr("data-schoolid");
@@ -1450,6 +1453,9 @@ var CFPBComparisonTool = (function() {
                 columns[number].toggleActive('inactive');
                 _gaq.push([ "_trackEvent", "School Interactions", "School Removed", schoolID ] );
                 delete schools[schoolID];
+                if ( findEmptyColumn === undefined ) {
+                    $("#get-started-button").html("Get started");
+                }
             })
 
             // Wait, no, I don't want to remove it!
