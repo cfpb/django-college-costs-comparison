@@ -324,6 +324,10 @@ This is for each step in the process.
     width: 195px;
 }
 
+#step-one .max-schools {
+    display: none;
+}
+
 #step-two .step-left {
     float: left;
     margin-right: 30px;

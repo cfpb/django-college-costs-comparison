@@ -232,6 +232,21 @@ var CFPBComparisonTool = (function() {
         }
     } // end setAddStage()
 
+    //-- Activate/Deactivate Add Form (for when 3 schools are already there) --//
+    function maxSchools(boolean) {
+        // show/hide warning message, (de)activate both add buttons
+        if ( boolean === true ) {
+            $('#step-one .max-schools').show();
+            $('#get-started-button').attr('disabled', true).addClass('disabled');
+            $('button.add-another-school').attr('disabled', true).addClass('disabled');
+        }
+        else {
+            $('#step-one .max-schools').hide();
+            $('#get-started-button').removeAttr('disabled').removeClass('disabled');
+            $('button.add-another-school').removeAttr('disabled').removeClass('disabled');
+        }
+    } // end activateAddForm()
+
     //-- Clear the forms and values in the Add a School section --//
     function clearAddForms() {
     	$('#school-name-search').val('');
@@ -1392,6 +1407,9 @@ var CFPBComparisonTool = (function() {
                         schools[schoolID].getSchoolData();
                         schools[schoolID].importAddForm();
                         columns[column].addSchoolInfo(schools[schoolID].schoolData);
+                        if ( findEmptyColumn() === false ) {
+                            maxSchools(true);
+                        }
                         calculateAndDraw(column);
                         $(".no-xml-success").show();
                         $("#get-started-button").html("Add another school");
@@ -1409,7 +1427,9 @@ var CFPBComparisonTool = (function() {
                 schools[schoolID].getSchoolData();
                 schools[schoolID].importAddForm();
                 columns[column].addSchoolInfo(schools[schoolID].schoolData);
-
+                if ( findEmptyColumn() === false ) {
+                    maxSchools(true);
+                }
                 // If there's XML, process it and update
                 var xml = $('#xml-text').val();
                 if (xml != undefined & xml != "") {
@@ -1463,6 +1483,7 @@ var CFPBComparisonTool = (function() {
                 if ( Object.keys(schools).length === 0 ) {
                     $("#get-started-button").html("Get started");
                 }
+                maxSchools(false);
             })
 
             // Wait, no, I don't want to remove it!
@@ -1780,6 +1801,9 @@ var CFPBComparisonTool = (function() {
                         columns[columnNumber].addSchoolInfo(schools[schoolID].schoolData);
                         calculateAndDraw(columnNumber);
                     });
+                    if ( findEmptyColumn() === false ) {
+                        maxSchools(true);
+                    }
                 });
                 request.fail(function( jqXHR, msg ) {
                     var responseText = jqXHR.responseText;
