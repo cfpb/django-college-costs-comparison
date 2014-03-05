@@ -1078,12 +1078,12 @@ input.tooltip-info {
 }
 
 input.tooltip-info:hover, input.tooltip-info:focus {
-    border-bottom: 1px solid #AFAFB3;
+    border-bottom: 1px solid #FFF;
 }
 
 .tooltip-info, .tooltip-info:hover {
     cursor: help;
-    border-bottom: 1px dotted #50a748;
+    border-bottom: 1px dotted #000;
 }
 
 h4.tooltip-info {
@@ -1095,8 +1095,8 @@ label.tooltip-info {
 }
 
 #tooltip-container {
-    background-color: #a0f798;
-    border: 2px solid #50a748;
+    background-color: #fff;
+    border: 2px solid #000;
     display: none;
     font-style: normal;
     font-size: .8em;
@@ -1108,7 +1108,7 @@ label.tooltip-info {
 }
 
 #bar-info-container {
-    background-color: #f4f4f4;
+    background-color: #fff;
     border: 2px solid #666;
     display: none;
     font-style: normal;
@@ -1129,7 +1129,7 @@ label.tooltip-info {
    tip appear along the top of the tooltip. */
 #tooltip-container .outertip {
     border: 10px solid transparent;
-    border-bottom-color: #50a748;
+    border-bottom-color: #000;
     content: ' ';
     height: 0;
     position: absolute;
@@ -1140,7 +1140,7 @@ label.tooltip-info {
 
 #tooltip-container .innertip {
     border: 7px solid transparent;
-    border-bottom-color: #a0f798;
+    border-bottom-color: #fff;
     content: ' ';
     height: 0;
     position: absolute;
@@ -1162,7 +1162,7 @@ label.tooltip-info {
 
 #bar-info-container .innertip {
     border: 7px solid transparent;
-    border-bottom-color: #f4f4f4;
+    border-bottom-color: #fff;
     content: ' ';
     height: 0;
     position: absolute;

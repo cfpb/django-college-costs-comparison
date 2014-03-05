@@ -1497,8 +1497,7 @@ var CFPBComparisonTool = (function() {
             // Show the GI Bill panel on click
             $(".gibill-calculator, input[data-nickname='gibill']").click( function(event) {
                 event.preventDefault();
-                var column = $(this).closest("[data-column]").attr("data-column");
-                school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
+                $(this).parents('[data-column]').find('.gibill-panel').show();
             });
 
             // Using the service selectors changes all selectors and activates service tier.
