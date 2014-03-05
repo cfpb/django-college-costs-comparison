@@ -260,7 +260,7 @@ This has similar styles as the global site navigation.
     color: #000;
 }
 
-.pfc-nav-wrapper ul li a.active {
+.pfc-nav-wrapper ul li a.is-active {
     background-color: #ccdfdf;
     color: #000;
 }
