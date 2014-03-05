@@ -88,16 +88,17 @@ This is for full width page background colors. It adjust some styles
 from the main site stylesheet.
 -------------------------------------------------------------------------------*/
 .paying-for-college #maincontent {
-    padding: 1em 0 2em;
+    padding: 0 0 2em;
 }
 
+/* No breadcrumbs in PFC. Current Django templates output an empty UL when
+breadcrumbs do not exist unfortunately. :( Bug reported; to be fixed in future. */
 .bread {
-    width: 96%;
+    display: none;
 }
 
 /* Padding on inner containers */
 .bread,
-#pfc-hero-wrapper,
 #introduction,
 #comparison-tables,
 #save-footer,
@@ -111,9 +112,52 @@ This just the hero for the Comparison Tool.
 -------------------------------------------------------------------------------*/
 /* This is a placeholder for now. */
 .pfc-hero-wrapper {
-    color: #f5f5f5;
-    width: 100%;
-    height: 300px;
+    background-color: #2cb34a;
+    display: table;
+    padding: 2.375em 3.125em;
+}
+
+.pfc-hero-wrapper a {
+    background-color: transparent;
+    border-bottom: 1px dashed #101820;
+    color: #101820;
+}
+
+.pfc-hero-wrapper a:hover,
+.pfc-hero-wrapper a:active,
+.pfc-hero-wrapper a:focus {
+    border-bottom-style: solid;
+}
+
+/* IE7 calculates padding with decimals differently. This makes sure the Hero is full width. */
+.lt-ie8 .pfc-hero-wrapper {
+    width: 89.75%;
+}
+
+.pfc-hero-content {
+    /* Not an official color, but a mix of green and white. */
+    background-color: #d3efdb;
+    float: left;
+    padding: 1em;
+    width: 35%;
+}
+
+.pfc-hero-image {
+    float: left;
+    position: relative;
+    width: 61%;
+}
+
+.pfc-hero-image img {
+    float: right;
+}
+
+/* Use this class on Hero images to make it stick to bottom of container. */
+.pfc-hero-image img.alignbottom {
+    float: none;
+    position: absolute;
+        top: 50px;
+        right: 0;
 }
 
 .comparison-tool-header {
@@ -122,37 +166,30 @@ This just the hero for the Comparison Tool.
 }
 
 .comparison-tool-header h1 {
-    position: relative;
-    font-size: 2.5em;
-    font-weight: 400;
-    color: #d83d00;
-    width: 900px;
-    margin: 0 auto 0.25em 0;
-    line-height: 1.375;
+    font-size: 2.125em;
+    font-weight: 600;
+    margin-bottom: 0.25em;
     font-family: "Avenir Next", Arial, sans-serif;
     text-transform: none;
 }
 
-.comparison-tool-header h1 sup {
-    font-size: .25em;
-    font-weight: 700;
-    color: #808080;
-    top: -2.5em;
-    letter-spacing: .083333em;
-    text-transform: uppercase;
+/* Sub-pages have a different sized H1 */
+.comparison-tool-header h1.sub-page {
+    font-size: 1.625em;
+    font-weight: 400;
 }
 
 /* PFC NAVIGATION
 This has similar styles as the global site navigation.
 -------------------------------------------------------------------------------*/
 .pfc-nav-wrapper {
-    background-color: #f6D9D3;
+    background-color: #337e7d;
+    border-bottom: 1px solid #101820;
     border-top: 1px solid #101820;
-    margin: 1em 0 0;
 }
 
-.pfc-nav {
-    background-color: #f6D9D3;
+.pfc-nav-wrapper ul {
+    background-color: #337e7d;
     list-style-type: none;
     padding: 0;
     margin: 0 auto;
@@ -161,27 +198,34 @@ This has similar styles as the global site navigation.
     display: table;
 }
 
-.pfc-nav li {
-    background-color: #f6D9D3;
+.pfc-nav-wrapper ul li {
+    background-color: #337e7d;
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 500;
     font-size: 1em;
+    position: relative;
     display: table-cell;
     width: auto;
     margin: 0;
 }
 
-.lt-ie8 .pfc-nav li {
+.lt-ie8 .pfc-nav-wrapper ul li {
     display: inline-block;
     *display: inline;
     *zoom: 1;
 }
 
-.lt-ie9 .pfc-nav li {
+.lt-ie9 .pfc-nav-wrapper ul li {
     font-family: "Avenir Next Demi", Verdana, sans-serif;
 }
 
-.pfc-nav li a {
+/* This class acts like a link because we don't want to use an empty <a> tag. */
+.fake-link {
+    cursor: pointer;
+}
+
+.pfc-nav-wrapper ul li a,
+.fake-link {
     -webkit-transition: background-color ease 1000ms;
     -moz-transition: background-color ease 1000ms;
     transition: background-color ease 1000ms;
@@ -190,28 +234,75 @@ This has similar styles as the global site navigation.
     height: auto;
     padding: 0.5em 0.25em 0.25em;
     border-bottom: 0;
-    color: #101820;
+    color: #fff;
     text-align: center;
-    background-color: #f6D9D3;
+    background-color: #337e7d;
 }
 
-.pfc-nav li a:visited {
-    color: #101820;
+/* Because LIs are display: inline; in IE7, we add some padding to As to make the menu look better. */
+.lt-ie8 .pfc-nav-wrapper ul li a {
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
-.pfc-nav li a:hover {
-    background-color: #d12124;
+.pfc-nav-wrapper ul li a:visited {
     color: #fff;
 }
 
-.pfc-nav li a:focus {
-    background-color: #d12124;
-    color: #fff;
+.pfc-nav-wrapper ul li a:hover,
+.fake-link:hover {
+    background-color: #ccdfdf;
+    color: #000;
 }
 
-.pfc-nav li a.active {
-    background-color: #Da6750;
-    color: #fff;
+.pfc-nav-wrapper ul li a:focus {
+    background-color: #ccdfdf;
+    color: #000;
+}
+
+.pfc-nav-wrapper ul li a.active {
+    background-color: #ccdfdf;
+    color: #000;
+}
+
+/* Dropdown */
+.pfc-nav-wrapper ul ul {
+    background-color: #ccdfdf;
+    list-style: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    left: -9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+    text-align: left;
+    top: 100%;
+    width: 12.5em;
+    z-index: 9999;
+}
+
+.pfc-nav-wrapper ul ul li {
+    background-color: #ccdfdf;
+    border-bottom: 1px solid #000;
+    display: block;
+    width: 100%;
+}
+
+.pfc-nav-wrapper ul ul a {
+    background-color: #ccdfdf;
+    color: #000;
+    display: block;
+    padding: 1em 0.5em 0.75em 1.5em;
+    text-align: left;
+}
+
+.pfc-nav-wrapper li:hover > ul,
+.pfc-nav-wrapper li.focus > ul { /* Display the dropdown on hover */
+    left: 0; /* Bring back on-screen when needed */
+}
+
+.pfc-nav-wrapper ul ul li:hover > ul,
+.pfc-nav-wrapper ul ul li.focus > ul { /* Display the dropdown on hover */
+    left: 100%; /* Bring back on-screen when needed */
+    top: 0;
 }
 
 /* ADD A SCHOOL
@@ -1690,4 +1781,49 @@ This contains varous elements that are standalone components within the tool.
 .bottom-border th,
 .bottom-border td {
     border-bottom: 5px solid #101820 !important;
+}
+
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 }
