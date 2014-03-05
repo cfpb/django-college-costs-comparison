@@ -88,16 +88,17 @@ This is for full width page background colors. It adjust some styles
 from the main site stylesheet.
 -------------------------------------------------------------------------------*/
 .paying-for-college #maincontent {
-    padding: 1em 0 2em;
+    padding: 0 0 2em;
 }
 
+/* No breadcrumbs in PFC. Current Django templates output an empty UL when
+breadcrumbs do not exist unfortunately. :( Bug reported; to be fixed in future. */
 .bread {
-    width: 96%;
+    display: none;
 }
 
 /* Padding on inner containers */
 .bread,
-#pfc-hero-wrapper,
 #introduction,
 #comparison-tables,
 #save-footer,
@@ -111,9 +112,52 @@ This just the hero for the Comparison Tool.
 -------------------------------------------------------------------------------*/
 /* This is a placeholder for now. */
 .pfc-hero-wrapper {
-    color: #f5f5f5;
-    width: 100%;
-    height: 300px;
+    background-color: #2cb34a;
+    display: table;
+    padding: 2.375em 3.125em;
+}
+
+.pfc-hero-wrapper a {
+    background-color: transparent;
+    border-bottom: 1px dashed #101820;
+    color: #101820;
+}
+
+.pfc-hero-wrapper a:hover,
+.pfc-hero-wrapper a:active,
+.pfc-hero-wrapper a:focus {
+    border-bottom-style: solid;
+}
+
+/* IE7 calculates padding with decimals differently. This makes sure the Hero is full width. */
+.lt-ie8 .pfc-hero-wrapper {
+    width: 89.75%;
+}
+
+.pfc-hero-content {
+    /* Not an official color, but a mix of green and white. */
+    background-color: #d3efdb;
+    float: left;
+    padding: 1em;
+    width: 35%;
+}
+
+.pfc-hero-image {
+    float: left;
+    position: relative;
+    width: 61%;
+}
+
+.pfc-hero-image img {
+    float: right;
+}
+
+/* Use this class on Hero images to make it stick to bottom of container. */
+.pfc-hero-image img.alignbottom {
+    float: none;
+    position: absolute;
+        top: 50px;
+        right: 0;
 }
 
 .comparison-tool-header {
@@ -122,24 +166,17 @@ This just the hero for the Comparison Tool.
 }
 
 .comparison-tool-header h1 {
-    position: relative;
-    font-size: 2.5em;
-    font-weight: 400;
-    color: #d83d00;
-    width: 900px;
-    margin: 0 auto 0.25em 0;
-    line-height: 1.375;
+    font-size: 2.125em;
+    font-weight: 600;
+    margin-bottom: 0.25em;
     font-family: "Avenir Next", Arial, sans-serif;
     text-transform: none;
 }
 
-.comparison-tool-header h1 sup {
-    font-size: .25em;
-    font-weight: 700;
-    color: #808080;
-    top: -2.5em;
-    letter-spacing: .083333em;
-    text-transform: uppercase;
+/* Sub-pages have a different sized H1 */
+.comparison-tool-header h1.sub-page {
+    font-size: 1.625em;
+    font-weight: 400;
 }
 
 /* PFC NAVIGATION
@@ -149,7 +186,6 @@ This has similar styles as the global site navigation.
     background-color: #337e7d;
     border-bottom: 1px solid #101820;
     border-top: 1px solid #101820;
-    margin: 1em 0 0;
 }
 
 .pfc-nav-wrapper ul {
@@ -201,6 +237,12 @@ This has similar styles as the global site navigation.
     color: #fff;
     text-align: center;
     background-color: #337e7d;
+}
+
+/* Because LIs are display: inline; in IE7, we add some padding to As to make the menu look better. */
+.lt-ie8 .pfc-nav-wrapper ul li a {
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 .pfc-nav-wrapper ul li a:visited {
@@ -1739,4 +1781,49 @@ This contains varous elements that are standalone components within the tool.
 .bottom-border th,
 .bottom-border td {
     border-bottom: 5px solid #101820 !important;
+}
+
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 }
