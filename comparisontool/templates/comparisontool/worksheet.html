@@ -16,12 +16,6 @@
 
 {% block body_class %}page paying-for-college{% endblock %}
 
-{% block breadcrumbs %}
-    <li><a href="/">Home</a></li>
-    <li><a href="/paying-for-college/">Paying for College</a></li>
-    <li>Compare financial aid and college cost</li>
-{% endblock %}
-
 {% block page_js %}
 
 <script>
@@ -88,8 +82,14 @@ var restoredata = {{ data_js|safe }};
 {% block content %}
 <div id="comparison-tool" class="comparison-tool" page="visualize">
 		<header id="comparison-tool-header" class="comparison-tool-header">
-		    <div id="pfc-hero-wrapper" class="pfc-hero-wrapper">
-		        <a class="noStyles" href="/paying-for-college/"><h1 class='p4ch'>Paying for College</h1></a>
+		    <div id="pfc-hero-wrapper" class="pfc-hero-wrapper clearfix">
+		    	<div class="pfc-hero-content">
+		    		<h1 class="sub-page">Compare financial aid</h1>
+		    		<p>Compare college costs and financial aid offers to see how they might impact you down the road. Just researching schools? Check out <a href="#">College Scorecard</a>.</p>
+		    	</div>
+		    	<div class="pfc-hero-image">
+		    		<img alt="" src="{{ STATIC_PREFIX }}comparisontool/images/hero_compare.png">
+		    	</div>
 		    </div><!-- end .pfc-hero-wrapper -->
 		    <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
 		    <div class="pfc-nav-wrapper">
