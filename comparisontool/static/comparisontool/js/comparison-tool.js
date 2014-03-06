@@ -1313,25 +1313,28 @@ var CFPBComparisonTool = (function() {
             // Accordions (not the instrument, sadly)
             $('tr.show').click(function() {
                 $(this).closest('tbody').children(':not(.show, .tr-hide)').toggleClass('hide');
-                $(this).closest('.arrw-collapse').toggleClass('arrw');
+                $(this).closest('.arrw-collapse').toggleClass('arrw'); 
+            });
+            // Show the instructions on expand the first time and let it be
+            $('tr.totalcont').click(function() {
+                $('tr.instructions').removeClass('tr-hide');
             });
             $('.grants').click(function() {
-                $('.grants-row').toggleClass('tr-hide');
+                $('.grants-row:not(.instructions)').toggleClass('tr-hide');
                 $(this).closest('.arrw-collapse').toggleClass('arrw');
             });
             $('.federal').click(function() {
-                $('.federal-row').toggleClass('tr-hide');
+                $('.federal-row:not(.instructions)').toggleClass('tr-hide');
                 $(this).closest('.arrw-collapse').toggleClass('arrw');
             });
             $('.private').click(function() {
-                $('.private-row').toggleClass('tr-hide');
+                $('.private-row:not(.instructions)').toggleClass('tr-hide');
                 $(this).closest('.arrw-collapse').toggleClass('arrw');
             });
             $('.contributions').click(function() {
-                $('.contrib-row').toggleClass('tr-hide');
+                $('.contrib-row:not(.instructions)').toggleClass('tr-hide');
                 $(this).closest('.arrw-collapse').toggleClass('arrw');
             });
-
 
             // "Add a school" user interface
 

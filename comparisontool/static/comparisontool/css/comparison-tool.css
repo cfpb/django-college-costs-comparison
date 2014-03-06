@@ -286,7 +286,8 @@ This has similar styles as the global site navigation.
     width: 100%;
 }
 
-.pfc-nav-wrapper ul ul a {
+.pfc-nav-wrapper ul ul a,
+.pfc-nav-wrapper ul ul a:visited {
     background-color: #ccdfdf;
     color: #000;
     display: block;
