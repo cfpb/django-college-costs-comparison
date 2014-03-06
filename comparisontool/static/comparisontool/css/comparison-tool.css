@@ -1584,60 +1584,54 @@ This contains styles for
 - http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/feedback/
 - http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/technote/
 -------------------------------------------------------------------------------*/
-/* A grid only used for /technote/ */
-#comparison-tool .container {
-    width: 900px;
-    margin: 0 auto;
-}
-
-#comparison-tool .wrapper {
-    margin: 0 20px;
-}
-
-#comparison-tool .col1,
-#comparison-tool .col2,
-#comparison-tool .col3,
-#comparison-tool .col4,
-#comparison-tool .col5,
-#comparison-tool .col6,
-#comparison-tool .col7,
-#comparison-tool .col8,
-#comparison-tool .col9,
-#comparison-tool .col10 {
+/* A grid only used for /paying-for-college/ and /technote/ */
+/* Clear these with .clearfix */
+#comparison-tool .col {
     display: inline;
     float: left;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 30px;
 }
 
-#comparison-tool .col1 { width: 66px; }
-#comparison-tool .col2 { width: 152px; }
-#comparison-tool .col3 { width: 238px; }
-#comparison-tool .col4 { width: 324px; }
-#comparison-tool .col5 { width: 410px; }
-#comparison-tool .col6 { width: 496px; }
-#comparison-tool .col7 { width: 582px; }
-#comparison-tool .col8 { width: 668px; }
-#comparison-tool .col9 { width: 754px; }
-#comparison-tool .col10 { width: 840px; }
-#comparison-tool .pre1 { padding-left: 66px; }
-#comparison-tool .pre2 { padding-left: 152px; }
-#comparison-tool .pre3 { padding-left: 238px; }
-#comparison-tool .pre4 { padding-left: 324px; }
-#comparison-tool .pre5 { padding-left: 410px; }
-#comparison-tool .pre6 { padding-left: 496px; }
-#comparison-tool .pre7 { padding-left: 582px; }
-#comparison-tool .pre8 { padding-left: 668px; }
-#comparison-tool .pre9 { padding-left: 754px; }
-#comparison-tool .suf1 { padding-right: 66px; }
-#comparison-tool .suf2 { padding-right: 152px; }
-#comparison-tool .suf3 { padding-right: 238px; }
-#comparison-tool .suf4 { padding-right: 324px; }
-#comparison-tool .suf5 { padding-right: 410px; }
-#comparison-tool .suf6 { padding-right: 496px; }
-#comparison-tool .suf7 { padding-right: 582px; }
-#comparison-tool .suf8 { padding-right: 668px; }
-#comparison-tool .suf9 { padding-right: 754px; }
+#comparison-tool .col.last,
+#comparison-tool .col.col12 {
+    margin-right: 0;
+}
+
+/* Column widths */
+#comparison-tool .col1 { width: 50.5px; }
+#comparison-tool .col2 { width: 131px; }
+#comparison-tool .col3 { width: 211.5px; }
+#comparison-tool .col4 { width: 292px; }
+#comparison-tool .col5 { width: 372.5px; }
+#comparison-tool .col6 { width: 453px; }
+#comparison-tool .col7 { width: 538.5px; }
+#comparison-tool .col8 { width: 614px; }
+#comparison-tool .col9 { width: 694.5px; }
+#comparison-tool .col10 { width: 775px; }
+#comparison-tool .col11 { width: 855.5px; }
+#comparison-tool .col12 { width: 936px; }
+#comparison-tool .pre1 { padding-left: 50.5px; }
+#comparison-tool .pre2 { padding-left: 131px; }
+#comparison-tool .pre3 { padding-left: 211.5px; }
+#comparison-tool .pre4 { padding-left: 292px; }
+#comparison-tool .pre5 { padding-left: 372.5px; }
+#comparison-tool .pre6 { padding-left: 453px; }
+#comparison-tool .pre7 { padding-left: 538.5px; }
+#comparison-tool .pre8 { padding-left: 614px; }
+#comparison-tool .pre9 { padding-left: 694.5px; }
+#comparison-tool .pre10 { padding-left: 775px; }
+#comparison-tool .pre11 { padding-left: 855.5px; }
+#comparison-tool .suf1 { padding-right: 50.5px; }
+#comparison-tool .suf2 { padding-right: 131px; }
+#comparison-tool .suf3 { padding-right: 211.5px; }
+#comparison-tool .suf4 { padding-right: 292px; }
+#comparison-tool .suf5 { padding-right: 372.5px; }
+#comparison-tool .suf6 { padding-right: 453px; }
+#comparison-tool .suf7 { padding-right: 538.5px; }
+#comparison-tool .suf8 { padding-right: 614px; }
+#comparison-tool .suf9 { padding-right: 694.5px; }
+#comparison-tool .suf10 { padding-right: 775px; }
+#comparison-tool .suf11 { padding-right: 855.5px; }
 
 #comparison-tool .about-section {
     padding-top: 2em;
@@ -1668,10 +1662,6 @@ This contains styles for
     font-size: 1em;
     color: #808184;
     font-weight: 500;
-}
-
-#comparison-tool .section-header {
-    margin-bottom: 1.5em;
 }
 
 #comparison-tool .about-section h2 {
@@ -1731,7 +1721,6 @@ This contains varous elements that are standalone components within the tool.
 -------------------------------------------------------------------------------*/
 /* Structural stuff */
 /* Clear floats */
-#comparison-tool .clear { clear: both; display: block; overflow: hidden; visibility: hidden; width: 0; height: 0; }
 #comparison-tool .clearfix:before,.clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
 #comparison-tool .clearfix:after { clear: both; }
 #comparison-tool .clearfix { zoom: 1; }
