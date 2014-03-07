@@ -438,6 +438,12 @@ This is for the Get Started button only. */
     background-color: #002d72;
 }
 
+.get-started .pfc-button[disabled=disabled],
+.get-started .pfc-button[disabled],
+.get-started .pfc-button.disabled {
+    background-color: #808080;
+}
+
 /* The Get Started button has unique positioning. */
 #get-started-button {
     margin-top: 2.5em;
@@ -609,7 +615,7 @@ button.disabled,
 .button.disabled,
 .button.cancel,
 .button.preset {
-    background: #808080;
+    background-color: #808080;
 }
 
 .button-small {
