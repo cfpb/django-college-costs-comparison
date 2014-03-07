@@ -15,10 +15,6 @@ urlpatterns = patterns(
         TemplateView.as_view(template_name="comparisontool/technote.html"),
         name='pfc-technote'),
 
-    url(r'^learnmore/$',
-        TemplateView.as_view(template_name="comparisontool/learn_more.html"),
-        name='pfc-learnmore'),
-
     url(r'^api/search-schools.json', school_search_api),
     url(r'^api/bah-lookup.json', bah_lookup_api),
 
