@@ -909,23 +909,21 @@ This contains the majority of the structural styles for table-based elements.
 
 /* GI Bill calculator link */
 .gibill-calculator {
-    background-color: #d12124;
-    border: 0;
-    color: #fff;
     font-size: 0.75em;
-    padding: 0.35em 0 0.35em 2em;
     position: absolute;
-        top: -0.3em;
-        left: 1em;
-    text-align: left;
-    width: 5em;
+        top: 10%;
+        left: 11%;
+    width: 6.5em;
 }
 
-.gibill-calculator:hover,
-.gibill-calculator:active,
-.gibill-calculator:focus {
-    background-color: #d96a4f;
-    text-decoration: underline;
+/* The fields right next to the GI Bill calculator button:
+Make them smaller and push them right to make it all look presentable. */
+#s-one-gibill,
+#s-two-gibill,
+#s-three-gibill {
+    position: absolute;
+        right: 11%;
+    width: 35%;
 }
 
 /* The Column headers in the table. */
