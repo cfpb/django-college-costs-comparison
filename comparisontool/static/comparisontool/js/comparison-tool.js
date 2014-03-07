@@ -1190,6 +1190,9 @@ var CFPBComparisonTool = (function() {
             }
             // Use val() or html() based on tagName
             if ( element.prop('tagName') === 'INPUT' ) {
+                if (value === '$0') {
+                    value = "$";
+                }
                 element.val(value);
             }
             else {
