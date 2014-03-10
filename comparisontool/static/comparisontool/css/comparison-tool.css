@@ -113,8 +113,8 @@ This just the hero for the Comparison Tool.
 /* This is a placeholder for now. */
 .pfc-hero-wrapper {
     background-color: #2cb34a;
-    display: table;
     padding: 2.375em 3.125em;
+    position: relative;
 }
 
 .pfc-hero-wrapper a {
@@ -143,21 +143,13 @@ This just the hero for the Comparison Tool.
 }
 
 .pfc-hero-image {
-    float: left;
-    position: relative;
-    width: 61%;
-}
-
-.pfc-hero-image img {
-    float: right;
+    position: absolute;
+        right: 30px;
 }
 
 /* Use this class on Hero images to make it stick to bottom of container. */
-.pfc-hero-image img.alignbottom {
-    float: none;
-    position: absolute;
-        top: 50px;
-        right: 0;
+.pfc-hero-image.alignbottom {
+    bottom: 0;
 }
 
 .pfc-header {
