@@ -157,6 +157,7 @@ This just the hero for the Comparison Tool.
     bottom: 0;
 }
 
+/* Use this class on Hero images to make it stick to bottom right of container. */
 .pfc-hero-image.alignbottomright {
     bottom: 0;
     right: 0;
