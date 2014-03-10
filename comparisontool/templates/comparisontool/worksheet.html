@@ -71,6 +71,8 @@ var restoredata = {{ data_js|safe }};
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
 {% endblock page_js %}
 
+{% block body_class %}page paying-for-college{% endblock %}
+
 {% block app_notification %}
 <div id="pfc-notification-wrapper" class="pfc-notification-wrapper">
 	<div id="pfc-notification-bar" class="pfc-notification-bar clearfix">
