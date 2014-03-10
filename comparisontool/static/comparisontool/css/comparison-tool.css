@@ -144,12 +144,22 @@ This just the hero for the Comparison Tool.
 
 .pfc-hero-image {
     position: absolute;
+        bottom: 38px;
         right: 30px;
+}
+
+.pfc-hero-image img {
+    vertical-align: bottom;
 }
 
 /* Use this class on Hero images to make it stick to bottom of container. */
 .pfc-hero-image.alignbottom {
     bottom: 0;
+}
+
+.pfc-hero-image.alignbottomright {
+    bottom: 0;
+    right: 0;
 }
 
 .pfc-header {
