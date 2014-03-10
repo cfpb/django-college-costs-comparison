@@ -263,7 +263,8 @@ This has similar styles as the global site navigation.
     color: #000;
 }
 
-.pfc-nav-wrapper ul li a.is-active {
+.pfc-nav-wrapper ul li a.is-active,
+.pfc-nav-wrapper ul li .fake-link.is-active {
     background-color: #ccdfdf;
     color: #000;
 }
