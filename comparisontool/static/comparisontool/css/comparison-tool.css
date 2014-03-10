@@ -1602,40 +1602,40 @@ This contains styles for
 }
 
 /* Column widths */
-#comparison-tool .col1 { width: 50.5px; }
-#comparison-tool .col2 { width: 131px; }
-#comparison-tool .col3 { width: 211.5px; }
-#comparison-tool .col4 { width: 292px; }
-#comparison-tool .col5 { width: 372.5px; }
-#comparison-tool .col6 { width: 453px; }
-#comparison-tool .col7 { width: 538.5px; }
-#comparison-tool .col8 { width: 614px; }
-#comparison-tool .col9 { width: 694.5px; }
-#comparison-tool .col10 { width: 775px; }
-#comparison-tool .col11 { width: 855.5px; }
+#comparison-tool .col1 { width: 53.5px; }
+#comparison-tool .col2 { width: 137px; }
+#comparison-tool .col3 { width: 220.5px; }
+#comparison-tool .col4 { width: 304px; }
+#comparison-tool .col5 { width: 387.5px; }
+#comparison-tool .col6 { width: 471px; }
+#comparison-tool .col7 { width: 559.5px; }
+#comparison-tool .col8 { width: 638px; }
+#comparison-tool .col9 { width: 721.5px; }
+#comparison-tool .col10 { width: 805px; }
+#comparison-tool .col11 { width: 888.5px; }
 #comparison-tool .col12 { width: 936px; }
-#comparison-tool .pre1 { padding-left: 50.5px; }
-#comparison-tool .pre2 { padding-left: 131px; }
-#comparison-tool .pre3 { padding-left: 211.5px; }
-#comparison-tool .pre4 { padding-left: 292px; }
-#comparison-tool .pre5 { padding-left: 372.5px; }
-#comparison-tool .pre6 { padding-left: 453px; }
-#comparison-tool .pre7 { padding-left: 538.5px; }
-#comparison-tool .pre8 { padding-left: 614px; }
-#comparison-tool .pre9 { padding-left: 694.5px; }
-#comparison-tool .pre10 { padding-left: 775px; }
-#comparison-tool .pre11 { padding-left: 855.5px; }
-#comparison-tool .suf1 { padding-right: 50.5px; }
-#comparison-tool .suf2 { padding-right: 131px; }
-#comparison-tool .suf3 { padding-right: 211.5px; }
-#comparison-tool .suf4 { padding-right: 292px; }
-#comparison-tool .suf5 { padding-right: 372.5px; }
-#comparison-tool .suf6 { padding-right: 453px; }
-#comparison-tool .suf7 { padding-right: 538.5px; }
-#comparison-tool .suf8 { padding-right: 614px; }
-#comparison-tool .suf9 { padding-right: 694.5px; }
-#comparison-tool .suf10 { padding-right: 775px; }
-#comparison-tool .suf11 { padding-right: 855.5px; }
+#comparison-tool .pre1 { padding-left: 53.5px; }
+#comparison-tool .pre2 { padding-left: 137px; }
+#comparison-tool .pre3 { padding-left: 220.5px; }
+#comparison-tool .pre4 { padding-left: 304px; }
+#comparison-tool .pre5 { padding-left: 387.5px; }
+#comparison-tool .pre6 { padding-left: 471px; }
+#comparison-tool .pre7 { padding-left: 559.5px; }
+#comparison-tool .pre8 { padding-left: 638px; }
+#comparison-tool .pre9 { padding-left: 721.5px; }
+#comparison-tool .pre10 { padding-left: 805px; }
+#comparison-tool .pre11 { padding-left: 888.5px; }
+#comparison-tool .suf1 { padding-right: 53.5px; }
+#comparison-tool .suf2 { padding-right: 137px; }
+#comparison-tool .suf3 { padding-right: 220.5px; }
+#comparison-tool .suf4 { padding-right: 304px; }
+#comparison-tool .suf5 { padding-right: 387.5px; }
+#comparison-tool .suf6 { padding-right: 471px; }
+#comparison-tool .suf7 { padding-right: 559.5px; }
+#comparison-tool .suf8 { padding-right: 638px; }
+#comparison-tool .suf9 { padding-right: 721.5px; }
+#comparison-tool .suf10 { padding-right: 805px; }
+#comparison-tool .suf11 { padding-right: 888.5px; }
 
 #comparison-tool .about-section {
     padding-top: 2em;
