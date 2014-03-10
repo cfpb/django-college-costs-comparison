@@ -160,12 +160,12 @@ This just the hero for the Comparison Tool.
         right: 0;
 }
 
-.comparison-tool-header {
+.pfc-header {
     margin: 0 0 3em 0;
     position: relative;
 }
 
-.comparison-tool-header h1 {
+.pfc-header h1 {
     font-size: 2.125em;
     font-weight: 600;
     margin-bottom: 0.25em;
@@ -174,7 +174,7 @@ This just the hero for the Comparison Tool.
 }
 
 /* Sub-pages have a different sized H1 */
-.comparison-tool-header h1.sub-page {
+.pfc-header h1.sub-page {
     font-size: 1.625em;
     font-weight: 400;
 }
