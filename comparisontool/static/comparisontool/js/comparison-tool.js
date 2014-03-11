@@ -18,6 +18,7 @@ var CFPBComparisonTool = (function() {
     var defaultbars = []; // Object holding default rate bar Raphael objects (the school's bar)
     var meters = []; // Object holding average loan Raphael objects (the whole meter)
     var meterarrows = []; // Object holding average loan Raphael objects (the needle/arrow)
+    var previousXML = ""; // This holds the xml data last submitted for comparison in XML processing
 
 	// A bunch of global defaults and such - see GLOBALS.txt for descriptions of the parameters
 	var global = {
@@ -72,6 +73,10 @@ var CFPBComparisonTool = (function() {
 
 	//-- numToMoney(): Convert from number to money string --//
 	function numToMoney(n) { 
+        // When n is a string, we should, ironically, strip it numbers first.
+        if (typeof n === 'string') {
+            n =  Number(n.replace(/[^0-9\.]+/g,""));
+        }
 		var t = ",";
 		if (n < 0) {
 			var s = "-";
@@ -176,35 +181,44 @@ var CFPBComparisonTool = (function() {
     function processXML(xml) {
 		var json = $.xml2json(xml);
 		var schoolData = {};
+        var body = json.body;
+        var parsererror;
+        if ( body !== undefined ) {
+            parsererror = body.parsererror;
+        }
+        if ( parsererror !== undefined ) {
+            return false;
+        }
+        else {
+            // assign values based on json
+            if ( json.costs != undefined) {
+                schoolData.books = moneyToNum(json.costs.books_and_supplies);
+                schoolData.roombrd = moneyToNum(json.costs.housing_and_meals);
+                schoolData.otherexpenses = moneyToNum(json.costs.other_education_costs);
+                schoolData.transportation = moneyToNum(json.costs.transportation);
+                schoolData.tuitionfees = moneyToNum(json.costs.tuition_and_fees);       
+            }
+            if ( json.grants_and_scholarships != undefined ) {
+                schoolData.pell = moneyToNum(json.grants_and_scholarships.federal_pell_grant);
+                // other scholarships & grants comprises several json data
+                schoolData.scholar = moneyToNum(json.grants_and_scholarships.grants);
+                schoolData.scholar += moneyToNum(json.grants_and_scholarships.grants_from_state);
+                schoolData.scholar += moneyToNum(json.grants_and_scholarships.other_scholarships);
+            }
+            if ( json.loan_options != undefined ) {
+                schoolData.staffsubsidized = moneyToNum(json.loan_options.federal_direct_subsidized_loan);
+                schoolData.staffunsubsidized = moneyToNum(json.loan_options.federal_direct_unsubsidized_loan);
+                schoolData.perkins = moneyToNum(json.loan_options.federal_perkins_loans);
+            }
+            if ( json.other_options != undefined ) {
+                schoolData.family = moneyToNum(json.other_options.family_contribution);
+            }
+            if ( json.work_options != undefined ) {
+                schoolData.workstudy = moneyToNum(json.work_options.work_study);
+            }
+            return schoolData;
+        }
 
-        // assign values based on json
-        if ( json.costs != undefined) {
-            schoolData.books = moneyToNum(json.costs.books_and_supplies);
-            schoolData.roombrd = moneyToNum(json.costs.housing_and_meals);
-            schoolData.otherexpenses = moneyToNum(json.costs.other_education_costs);
-            schoolData.transportation = moneyToNum(json.costs.transportation);
-            schoolData.tuitionfees = moneyToNum(json.costs.tuition_and_fees);         
-        }
-        if ( json.grants_and_scholarships != undefined ) {
-            schoolData.pell = moneyToNum(json.grants_and_scholarships.federal_pell_grant);
-            // other scholarships & grants comprises several json data
-            schoolData.scholar = moneyToNum(json.grants_and_scholarships.grants);
-            schoolData.scholar += moneyToNum(json.grants_and_scholarships.grants_from_state);
-            schoolData.scholar += moneyToNum(json.grants_and_scholarships.other_scholarships);
-        }
-        if ( json.loan_options != undefined ) {
-            schoolData.staffsubsidized = moneyToNum(json.loan_options.federal_direct_subsidized_loan);
-            schoolData.staffunsubsidized = moneyToNum(json.loan_options.federal_direct_unsubsidized_loan);
-            schoolData.perkins = moneyToNum(json.loan_options.federal_perkins_loans);
-        }
-        if ( json.other_options != undefined ) {
-            schoolData.family = moneyToNum(json.other_options.family_contribution);
-        }
-        if ( json.work_options != undefined ) {
-            schoolData.workstudy = moneyToNum(json.work_options.work_study);
-        }
-
-        return schoolData;
     } // end processXML()
 
     //-- Set the state of the Add a School section --//
@@ -264,6 +278,7 @@ var CFPBComparisonTool = (function() {
 	function School(schoolID) {
 		this.schoolID = schoolID;
 		this.schoolData = {};
+        this.xml = "";
 
 		//-- Get schoolData values from API --//
 		this.getSchoolData = function() { 
@@ -286,6 +301,11 @@ var CFPBComparisonTool = (function() {
 			request.fail(function() {
 				// Your fail message here.
 			});
+            // Set the Costs of Attendance
+            schoolData.otherexpenses = schoolData.otheroncampus;
+            schoolData.tuitionfees = schoolData.tuitionundeross;
+            schoolData.roombrd = schoolData.roombrdoncampus;
+
 			this.schoolData = schoolData;
 		} // end getSchoolData
 
@@ -1179,6 +1199,7 @@ var CFPBComparisonTool = (function() {
         this.setByNickname = function(nickname, value, type) {
             var element = columnObj.find("[data-nickname='" + nickname + "']");
             if (type === "p") { // percentage type
+                value = moneyToNum(value);
                 value = (value * 100).toString() + "%";
             }
             else if (type === "c" || type === undefined) {
@@ -1189,8 +1210,9 @@ var CFPBComparisonTool = (function() {
                 value = numToMoney(value);
             }
             // Use val() or html() based on tagName
+            var yuyu = element.prop('tagName');
             if ( element.prop('tagName') === 'INPUT' ) {
-                if (value === '$0') {
+                if (moneyToNum(value) === 0) {
                     value = "$";
                 }
                 element.val(value);
@@ -1198,7 +1220,6 @@ var CFPBComparisonTool = (function() {
             else {
                 element.html(value);
             }
-            return false;
         }; // .setByNickname()
 
         //-- toggles "active" or "inactive" state of the column --//
@@ -1411,6 +1432,8 @@ var CFPBComparisonTool = (function() {
                         schools[schoolID].getSchoolData();
                         schools[schoolID].importAddForm();
                         columns[column].addSchoolInfo(schools[schoolID].schoolData);
+                        columns[column].updateFormValues(schools[schoolID].schoolData);
+
                         if ( findEmptyColumn() === false ) {
                             maxSchools(true);
                         }
@@ -1423,26 +1446,41 @@ var CFPBComparisonTool = (function() {
 
             // [step-two] User clicks Continue at step-two
             $("#step-two .continue").click( function() {
-                setAddStage(3);
-                var column = findEmptyColumn();
-                var schoolID = $("#school-name-search").attr("data-schoolid");
-                $('#institution-row [data-column="' + column + '"]').attr("data-schoolid", schoolID);
-                schools[schoolID] = new School(schoolID);
-                schools[schoolID].getSchoolData();
-                schools[schoolID].importAddForm();
-                columns[column].addSchoolInfo(schools[schoolID].schoolData);
-                if ( findEmptyColumn() === false ) {
-                    maxSchools(true);
-                }
-                // If there's XML, process it and update
                 var xml = $('#xml-text').val();
-                if (xml != undefined & xml != "") {
-                	var data = processXML(xml);
-                	columns[column].updateFormValues(data);
+                if (xml !== undefined & xml !== "") {
+                    var data = processXML(xml);
                 }
-                calculateAndDraw(column);
-                $(".xml-success").show();
-                $("#get-started-button").html("Add another school");
+                // xml was not valid
+                if (data === false) {
+                    if ( xml === previousXML ) {
+                        data = "invalid XML, continue hit twice";
+                    }
+                    else {
+                        previousXML = xml;
+                        $('.xml-error').show();
+                        var html = 'Your XML seems to have an error, and is being returned as invalid. ';
+                        html += 'Please edit the XML entered, or press Continue to skip XML entry.';
+                        $('.xml-error').html(html)
+                    }
+                }
+                if (data !== false) {
+                    setAddStage(3);
+                    var columnNumber = findEmptyColumn();
+                    var schoolID = $("#school-name-search").attr("data-schoolid");
+                    $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
+                    schools[schoolID] = new School(schoolID);
+                    schools[schoolID].getSchoolData();
+                    schools[schoolID].importAddForm();
+                    columns[columnNumber].addSchoolInfo(schools[schoolID].schoolData);
+                    columns[columnNumber].updateFormValues(data);
+                    if ( findEmptyColumn() === false ) {
+                        maxSchools(true);
+                    }
+                    // If there's XML, process it and update
+                    calculateAndDraw(columnNumber);
+                    $(".xml-success").show();
+                    $("#get-started-button").html("Add another school");
+                }
             });
 
             // [step-three] User clicks Continue at step-three

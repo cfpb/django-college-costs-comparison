@@ -335,6 +335,12 @@ This is for each step in the process.
     display: none;
 }
 
+.xml-error {
+    color: #D12124;
+    display: none;
+}
+
+
 /* The main layout components for Add a School. */
 #step-zero .step-left {
     float: left;
