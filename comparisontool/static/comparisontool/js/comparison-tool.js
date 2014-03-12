@@ -1459,8 +1459,8 @@ var CFPBComparisonTool = (function() {
                     else {
                         previousXML = xml;
                         $('.xml-error').show();
-                        var html = 'Your XML seems to have an error, and is being returned as invalid. ';
-                        html += 'Please edit the XML entered, or press Continue to skip XML entry.';
+                        var html = 'Looks like that XML didn’t work. ';
+                        html += 'Try adding new XML, or click continue to skip this step.';
                         $('.xml-error').html(html)
                     }
                 }
