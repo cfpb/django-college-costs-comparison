@@ -523,6 +523,11 @@ This is for the Get Started button only. */
     line-height: 1em;
 }
 
+/* The message that displays when a user has added three schools. Shown with JS. */
+.max-schools{
+    display: none;
+}
+
 /* TYPOGRAPHY
 This overrides a lot of styles in the main stylesheet. It contains
 font styles, heading styles, etc. Other adjustments happen within components.
