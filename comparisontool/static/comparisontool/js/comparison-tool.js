@@ -1201,7 +1201,6 @@ var CFPBComparisonTool = (function() {
         this.setByNickname = function(nickname, value, type) {
             var element = columnObj.find("[data-nickname='" + nickname + "']");
             if (type === "p") { // percentage type
-                value = moneyToNum(value);
                 value = (value * 100).toString() + "%";
             }
             else if (type === "c" || type === undefined) {
@@ -1460,8 +1459,8 @@ var CFPBComparisonTool = (function() {
                     else {
                         previousXML = xml;
                         $('.xml-error').show();
-                        var html = 'Your XML seems to have an error, and is being returned as invalid. ';
-                        html += 'Please edit the XML entered, or press Continue to skip XML entry.';
+                        var html = 'Looks like that XML didn’t work. ';
+                        html += 'Try adding new XML, or click continue to skip this step.';
                         $('.xml-error').html(html)
                     }
                 }
@@ -1639,10 +1638,6 @@ var CFPBComparisonTool = (function() {
             $("#comparison-tables").on("keyup", "input.school-data", function (ev) {
                 var column = $(this).closest("[data-column]").attr("data-column");
                 var school_id = columns[column].fetchSchoolID();
-                if ( $(this).hasClass("interest-rate") ) {
-                    value = value / 100;
-                }
-                var name = $(this).attr("data-nickname");
                 // ...immediately when the user hits enter
                 if (ev.keyCode == 13) {
                     ev.preventDefault();
