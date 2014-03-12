@@ -610,7 +610,11 @@ button,
 }
 
 button:hover,
-.button:hover {
+.button:hover,
+button:active,
+.button:active,
+button:focus,
+.button:focus {
 	background-color: #002d72;
 }
 
@@ -954,10 +958,6 @@ Make them smaller and push them right to make it all look presentable. */
 
 .percent-of-salary {
     font-size: 0.7em;
-}
-
-.private-row td {
-    position: relative;
 }
 
 .visualization-row td {
