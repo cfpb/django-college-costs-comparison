@@ -250,12 +250,11 @@ var CFPBComparisonTool = (function() {
     function maxSchools(boolean) {
         // show/hide warning message, (de)activate both add buttons
         if ( boolean === true ) {
-            $('#step-one .max-schools').show();
+            $('#step-zero .max-schools').show();
             $('#get-started-button').attr('disabled', true).addClass('disabled');
             $('button.add-another-school').attr('disabled', true).addClass('disabled');
         }
         else {
-            $('#step-one .max-schools').hide();
             $('#get-started-button').removeAttr('disabled').removeClass('disabled');
             $('button.add-another-school').removeAttr('disabled').removeClass('disabled');
         }
