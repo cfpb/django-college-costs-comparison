@@ -1,3 +1,4 @@
+/*jshint maxerr: 10000 */
 // Event tracking for Google Analytics, using jQuery
 // For Paying for College: /paying-for-college/
 // Written by davidakennedy and Mike Morici

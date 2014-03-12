@@ -1,4 +1,4 @@
-
+/*jshint maxerr: 10000 */
 $(function() {
 	var total_schools_added = 0;
 
