@@ -117,10 +117,11 @@ var restoredata = {{ data_js|safe }};
 			<div id="step-zero" class="get-started clearfix">
 				<div class="step-left">
 					<div class="pfc-container-left">
-						<h2 class="h4">Lorem ipsum, how much will that school really cost?</h2>
-						<p>Lorem ipsum add your school name and program information into the following fields to compare your first year costs.</p>
-						<p>You can compare up to 3 schools at once.</p>
-						<p class="max-schools">You've added the max number of schools. Please remove a school in order to add another school</p>
+						<h2 class="h4">Compare college costs and financial aid offers.</h2>
+						<p>Add some information about the schools you’re considering to see the financial impact down the road. If you don’t have a financial aid offer, we’ll use other info from that school to help compare costs.</p>
+						<p>You can compare up to 3 schools.</p>
+						<p><em>hint: you can save your progress at the bottom of this page and come back later.</em></p>
+						<p class="max-schools">Your worksheet is full. Remove a school below to add a new one.</p>
 					</div>
 				</div>
 				<div class="step-right">
@@ -131,12 +132,12 @@ var restoredata = {{ data_js|safe }};
 			</div>
 			<div id="step-one" class="get-started step-one clearfix">
 				<fieldset id="add-a-school">
-					<legend class="h4 demi step-legend">Tell us more information about the School</legend>
+					<legend class="h4 demi step-legend">Tell us more information about the school</legend>
 					<div class="step-left">
 						<div class="pfc-container-left">
 							<div class="school-search staged stage-search">
 								<label for="school-name-search" class="school-name">School name</label>
-								<input type="text" name="schoolname-search" placeholder="Enter school name" id="school-name-search" class="school-search-box">
+								<input type="text" name="schoolname-search" placeholder="search school name" id="school-name-search" class="school-search-box">
 								<ul class="search-results"></ul>
 							</div><!--/school-search /staged /stage-search -->
 							<div class="prgmlength-selection staged stage-prgmlength step-left">	
@@ -202,13 +203,15 @@ var restoredata = {{ data_js|safe }};
 				<div class="add-school staged stage-success xml-success step-left">
 					<div class="pfc-container-left">
 						<h4>Success!</h4>
-						<p>You have added <span class="success-school-name"></span>to the highlighted column below. You may now add another school or continue setting up your comparison. Gave XML!</p>
+						<p>You have added <span class="success-school-name"></span> to the cost comparison chart below.</p>
+						<p>Add another school, or continue to enter cost and financial aid information below.</p>
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-school /staged /stage-success /xml-success /step-left -->
 				<div class="add-school staged stage-success no-xml-success step-left">
 					<div class="pfc-container-left">
 						<h4>Success!</h4>
-						<p>You have added <span class="success-school-name"></span> to the highlighted column below. You may now add another school or continue setting up your comparison. Did not give XML!</p>
+						<p>You have added <span class="success-school-name"></span> to the cost comparison chart below.</p>
+						<p>Since you don’t have a financial aid offer yet, we went ahead and added this school’s cost of attendance info from last year’s data. If you’d like more information about how much this school costs, go to <a href="http://www.collegenavigator.gov/" target="_blank">www.collegenavigator.gov.</a></p>
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-school /staged /stage-success /no-xml-success /step-left -->
 				<div class="step-right">
