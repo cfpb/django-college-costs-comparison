@@ -610,7 +610,11 @@ button,
 }
 
 button:hover,
-.button:hover {
+.button:hover,
+button:active,
+.button:active,
+button:focus,
+.button:focus {
 	background-color: #002d72;
 }
 
@@ -760,7 +764,7 @@ This contains the majority of the structural styles for table-based elements.
 
 /* Accordion elements, not the instrument, sadly */
 .grants th, .grants td {
-    border-bottom: 5px solid #7da0c3;
+    border-bottom: 5px solid #0072ce;
 }
 
 .federal th, .federal td {
@@ -768,7 +772,7 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 .private th, .private td {
-    border-bottom: 5px solid #f5c455;
+    border-bottom: 5px solid #d14124;
 }
 
 .grants h5, .federal h5, .private h5, .contributions h5 {
@@ -780,7 +784,7 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 .contributions th, .contributions td {
-    border-bottom: 5px solid #d6cca3;
+    border-bottom: 5px solid #0072ce;
 }
 
 .totalcost {
@@ -956,10 +960,6 @@ Make them smaller and push them right to make it all look presentable. */
     font-size: 0.7em;
 }
 
-.private-row td {
-    position: relative;
-}
-
 .visualization-row td {
     vertical-align: middle;
 }
@@ -969,56 +969,71 @@ Make them smaller and push them right to make it all look presentable. */
     font-size: 0.9em;
 }
 
+#s-one-institutionalloan,
+#s-two-institutionalloan,
+#s-three-institutionalloan,
+#s-one-privateloan,
+#s-two-privateloan,
+#s-three-privateloan {
+    position: absolute;
+        left: 10%;
+    width: 40%;
+}
+
+#s-one-institutionalloanrate,
+#s-two-institutionalloanrate,
+#s-three-institutionalloanrate {
+    position: absolute;
+        top: 20%;
+        right: 15%;
+}
+
 /* The change rate styles and buttons have IDs so they can override other form element styles. */
 #comparison-tables .private-row .interest-rate,
 #comparison-tables .private-row .interest-rate:hover {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 0em;
+    border-radius: 0;
     box-shadow: none;
     font-size: 1em;
     height: 1.75em;
     margin: 0;
     padding: 0 0 0 0.4em;   
     position: absolute;
-        right: .5em;
-        top: .2em;
+        right: 11%;
+        top: 20%;
     text-align: left;
     -webkit-box-sizing: border-box;
-    width: 4em;
+    width: 30%;
 }
 
-#comparison-tables .private-row td .rate-change {
-    border: 0;
-    display: block;
-    font-size: .5em;
-    height: 2em;
-    padding: 0;
+#comparison-tables .private-row td button.rate-change.down {
+    background: url(../images/arrow-down.png) 50% 50% no-repeat;
+    border: none;
     position: absolute;
-        right: -1.2em;
-        top: .4em;
-    width: 5.5em;
+        right: 9%;
+        top: 15%;
+    height: 10px;
+    width: 10px;
 }
 
-#comparison-tables .private-row td .rate-change.down {
-    background: url(../images/arrow-down.png) 16px 0 no-repeat;
+#comparison-tables .private-row td button.rate-change.up {
+    background: url(../images/arrow-up.png) 50% 50% no-repeat;
+    border: none;
     position: absolute;
-        top: 1.9em;
-}
-
-#comparison-tables .private-row td .rate-change.up {
-    background: url(../images/arrow-up.png) 16px 2px no-repeat;
+        right: 9%;
+        top: 25%;
+    height: 10px;
+    width: 10px;
 }
 
 /* FORM ELEMENTS
 This contains the form elements for manipulating data within the tool.
 -------------------------------------------------------------------------------*/
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-textarea {
+.comparison-tool input[type="text"],
+.comparison-tool input[type="email"],
+.comparison-tool input[type="url"],
+.comparison-tool input[type="password"],
+.comparison-tool input[type="search"],
+.comparison-tool textarea {
   margin: 0;
   padding: 0.25em;
   font-family: Arial, sans-serif;
@@ -1029,12 +1044,12 @@ textarea {
   vertical-align: top;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-textarea:focus {
+.comparison-tool input[type="text"]:focus,
+.comparison-tool input[type="email"]:focus,
+.comparison-tool input[type="url"]:focus,
+.comparison-tool input[type="password"]:focus,
+.comparison-tool input[type="search"]:focus,
+.comparison-tool textarea:focus {
   border: 1px solid #0072ce;
   border-color: #0072ce;
   outline: 1px solid #0072ce;
@@ -1043,39 +1058,39 @@ textarea:focus {
   box-shadow: none;
 }
 
-input.error[type="text"],
-input.error[type="email"],
-input.error[type="url"],
-input.error[type="password"],
-input.error[type="search"],
-textarea.error {
+.comparison-tool input.error[type="text"],
+.comparison-tool input.error[type="email"],
+.comparison-tool input.error[type="url"],
+.comparison-tool input.error[type="password"],
+.comparison-tool input.error[type="search"],
+.comparison-tool textarea.error {
   border: 1px solid #d12124;
   outline: 1px solid #d12124;
 }
 
-input.success[type="text"],
-input.success[type="email"],
-input.success[type="url"],
-input.success[type="password"],
-input.success[type="search"],
-textarea.success {
+.comparison-tool input.success[type="text"],
+.comparison-tool input.success[type="email"],
+.comparison-tool input.success[type="url"],
+.comparison-tool input.success[type="password"],
+.comparison-tool input.success[type="search"],
+.comparison-tool textarea.success {
   border: 1px solid #2cb34a;
   outline: 1px solid #2cb34a;
 }
 
-td input.disabled, td input.disabled:hover,  
-td h6.disabled, td h6.disabled:hover {
+.comparison-tool td input.disabled, td input.disabled:hover,  
+.comparison-tool td h6.disabled, td h6.disabled:hover {
     border: none;
     color: transparent;
 }
 
-td,
-td input {
+.comparison-tool td,
+.comparison-tool td input {
     text-align: center;
 }
 
-input[type=checkbox],
-input[type=radio] {
+.comparison-tool input[type=checkbox],
+.comparison-tool input[type=radio] {
     margin-right: 0.5em;
 }
 
