@@ -4,7 +4,12 @@ from comparisontool.views import *
 
 urlpatterns = patterns(
     'comparisontool.views',
-    url(r'^$', BuildComparisonView.as_view(), name='worksheet'),
+    url(r'^$', TemplateView.as_view(template_name='comparisontool/landing.html'), name='pfc-landing'),
+    url(r'^choose-a-student-loan/$', TemplateView.as_view(template_name='comparisontool/choose_a_loan.html'), name='pfc-choose'),
+    url(r'^manage-your-college-money/$', TemplateView.as_view(template_name='comparisontool/manage_your_money.html'), name='pfc-manage'),
+    url(r'^repay-student-debt/$', TemplateView.as_view(template_name='comparisontool/repay_student_debt.html'), name='pfc-repay'),
+
+    url(r'^compare-financial-aid-and-college-cost/$', BuildComparisonView.as_view(), name='worksheet'),
     url(r'^api/email/$', EmailLink.as_view(), name='email'),
 
     url(r'^feedback/$',
