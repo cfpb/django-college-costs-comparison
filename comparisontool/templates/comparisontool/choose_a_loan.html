@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta property="og:title" content="Choose a student loan &gt; Consumer Financial Protection Bureau"/>
 <meta property="og:type" content="government"/>
+{% comment %}It looks like this isn't working{% endcomment %}
 <meta property="og:url" content="{{ URL }}"/>
 
 {% endblock %}
@@ -11,9 +12,7 @@
 {% block title %}Choose a student loan{% endblock %}
 
 {% block page_css %}
-    <script src="{{ STATIC_PREFIX }}pb/payingforcollege/_base.js"></script>
-    <link href="{{ STATIC_PREFIX }}pb/payingforcollege/_base.css" rel="stylesheet" media="screen">
-    
+    <script src="{{ STATIC_PREFIX }}pb/payingforcollege/_base.js"></script>    
     <link href="{{ STATIC_PREFIX }}pb/payingforcollege/print.css" rel="stylesheet" media="print">
 {% endblock %}
 
@@ -56,7 +55,7 @@
 	<h5 class='guide-sect-header orange vspace2 tb'>Why Is it important?</h5>
 	<div class='row'>
 		<div class='span9'>
-			<p>If you\u2019re considering student loans to help you pay for school, you\u2019re not alone \u2013 many students need loans to cover their full cost of attendance. In 2010, 67% of bachelor's degree recipients used loans to pay for their education. But the more money you borrow now, the higher your monthly loan payments will be after you graduate.</p><p>If you have to take out student loans, comparing your options can help you find the student loan best suited for your needs.<br><br></p><h5 class="guide-sect-header orange">Key Questions</h5>
+			<p>If you're considering student loans to help you pay for school, you're not alone - many students need loans to cover their full cost of attendance. In 2010, 67% of bachelor's degree recipients used loans to pay for their education. But the more money you borrow now, the higher your monthly loan payments will be after you graduate.</p><p>If you have to take out student loans, comparing your options can help you find the student loan best suited for your needs.<br><br></p><h5 class="guide-sect-header orange">Key Questions</h5>
 <div class="bubbles">
     <div class="bubble" _id='o1' id='_o1' rel="answer1">
         <div class="bubble-text key-clock">
@@ -66,7 +65,7 @@
 	</div>
 	<div class="bubble" _id='o2' id='_o2' rel="answer2">
 		<div class="bubble-text key-dollar">
-			What if my grants and federal loans don\u2019t cover the cost of attendance? 
+			What if my grants and federal loans don't cover the cost of attendance? 
 		</div>
         <img src="{{ STATIC_PREFIX }}pb/payingforcollege/key_questions/negbubble.png">
 	</div>
@@ -83,11 +82,11 @@
 		<div class='answer-entry' id="answer1">
 			<p>If you have to take out student loans, you essentially have two choices: federal student loans and private loans.
 </p>
-<p>For most borrowers, federal student loans are the best option. When you start to pay back your federal loans, the interest rate will be fixed, which will help you predict your payments after graduation. And in some cases, the federal government will pay the interest on your loans while you are in school \u2013 these loans are called subsidized loans.
+<p>For most borrowers, federal student loans are the best option. When you start to pay back your federal loans, the interest rate will be fixed, which will help you predict your payments after graduation. And in some cases, the federal government will pay the interest on your loans while you are in school - these loans are called subsidized loans.
 </p>
-<p>Other student loans are generally private student loans. The most common private student loans are offered by banks. Their interest rates are often variable, which means your interest rates and payments could go up over time. Private loans can also be more expensive \u2013 rates have been as high as 16% over the past couple of years. And when it is time to repay, private loans don\u2019t offer as many options to reduce or postpone payments.
+<p>Other student loans are generally private student loans. The most common private student loans are offered by banks. Their interest rates are often variable, which means your interest rates and payments could go up over time. Private loans can also be more expensive - rates have been as high as 16% over the past couple of years. And when it is time to repay, private loans don't offer as many options to reduce or postpone payments.
 </p>
-<p>For most people, federal student loans are a better deal than private student loans, so you\u2019ll want to take advantage of federal options first.</p>
+<p>For most people, federal student loans are a better deal than private student loans, so you'll want to take advantage of federal options first.</p>
 		</div>
 
 		<div class='answer-entry' id="answer2">
@@ -99,7 +98,7 @@
 
 <li> See what your family can contribute. Your parents may be able to get tax credits for their contributions. Parents can also explore the federal Direct PLUS Loan program.</li>
 
-<li>Shop around for a private loan. Remember that these loans generally have higher interest rates and less repayment flexibility compared to federal student loans. You generally should turn to private loans only after you have explored all other grant, scholarship, and federal loan options. If you can show you have a very high credit rating, you may find an affordable private student loan, though you will likely need a co-signer, who will be legally obligated to repay the loan if you can\u2019t or don\u2019t. Look for the one with the lowest interest rate and flexible repayment options.</li>
+<li>Shop around for a private loan. Remember that these loans generally have higher interest rates and less repayment flexibility compared to federal student loans. You generally should turn to private loans only after you have explored all other grant, scholarship, and federal loan options. If you can show you have a very high credit rating, you may find an affordable private student loan, though you will likely need a co-signer, who will be legally obligated to repay the loan if you can't or don't. Look for the one with the lowest interest rate and flexible repayment options.</li>
 		</div>			
 		
 		<div class='answer-entry' id="answer3">
@@ -107,12 +106,12 @@
 
 <p>Here are some factors to consider: </p>
 
-<li>Talk to your school\u2019s financial aid office to get a form certifying that you need additional aid to cover the cost of attendance \u2013 most lenders require it.</li>
+<li>Talk to your school's financial aid office to get a form certifying that you need additional aid to cover the cost of attendance - most lenders require it.</li>
 
 <li>Shop for lower interest rates and loans that offer flexibility if you have trouble making payments. </li>
 
 <li>Some private lenders may advertise very low interest rates - remember that only borrowers with the best credit will qualify for these rates.  Your rate could be much higher. </li>
-<li>In 2011, over 90% of private student loans required a co-signer, so make sure you have someone like a parent or another relative lined up. Your co-signer will be legally obligated to repay the loan if you can\u2019t or don\u2019t. You may want to consider loans that offer \u201cco-signer release\u201d after a number of on-time payments. </li>
+<li>In 2011, over 90% of private student loans required a co-signer, so make sure you have someone like a parent or another relative lined up. Your co-signer will be legally obligated to repay the loan if you can't or don't. You may want to consider loans that offer "co-signer release" after a number of on-time payments. </li>
 		</div>
 	</div>
 </div>
@@ -122,12 +121,12 @@
     <h2 class="font-xxl nc">I have to borrow money for school. What are my options?</h2>
     <p><p>If you have to take out student loans, you essentially have two choices: federal student loans and private loans.
 </p>
-<p>For most borrowers, federal student loans are the best option. When you start to pay back your federal loans, the interest rate will be fixed, which will help you predict your payments after graduation. And in some cases, the federal government will pay the interest on your loans while you are in school \u2013 these loans are called subsidized loans.
+<p>For most borrowers, federal student loans are the best option. When you start to pay back your federal loans, the interest rate will be fixed, which will help you predict your payments after graduation. And in some cases, the federal government will pay the interest on your loans while you are in school - these loans are called subsidized loans.
 </p>
-<p>Other student loans are generally private student loans. The most common private student loans are offered by banks. Their interest rates are often variable, which means your interest rates and payments could go up over time. Private loans can also be more expensive \u2013 rates have been as high as 16% over the past couple of years. And when it is time to repay, private loans don\u2019t offer as many options to reduce or postpone payments.
+<p>Other student loans are generally private student loans. The most common private student loans are offered by banks. Their interest rates are often variable, which means your interest rates and payments could go up over time. Private loans can also be more expensive - rates have been as high as 16% over the past couple of years. And when it is time to repay, private loans don't offer as many options to reduce or postpone payments.
 </p>
-<p>For most people, federal student loans are a better deal than private student loans, so you\u2019ll want to take advantage of federal options first.</p></p><br>
-	<h2 class="font-xxl nc">What if my grants and federal loans don\u2019t cover the cost of attendance? </h2>
+<p>For most people, federal student loans are a better deal than private student loans, so you'll want to take advantage of federal options first.</p></p><br>
+	<h2 class="font-xxl nc">What if my grants and federal loans don't cover the cost of attendance? </h2>
     <p><p>If your grants and federal loans are not enough to cover the cost of your education, you should consider the following options:</p>
 
 <li>Search for scholarships. Look for <a class="exit-link" href="http://wdcrobcolp01.ed.gov/Programs/EROD/org_list.cfm?category_cd=SGT" target="_blank">state and local grants</a> and <a class="exit-link" href="http://www.careerinfonet.org/scholarshipsearch/ScholarshipCategory.asp?searchtype=category&amp;nodeid=22" target="_blank">scholarships</a> using one of the many free scholarship search options available. Servicemembers, veterans, and their families may be eligible for <a class="exit-link" href="http://gibill.va.gov/" target="_blank">GI Bill benefits</a> and/or military tuition assistance.</li>
@@ -136,18 +135,18 @@
 
 <li> See what your family can contribute. Your parents may be able to get tax credits for their contributions. Parents can also explore the federal Direct PLUS Loan program.</li>
 
-<li>Shop around for a private loan. Remember that these loans generally have higher interest rates and less repayment flexibility compared to federal student loans. You generally should turn to private loans only after you have explored all other grant, scholarship, and federal loan options. If you can show you have a very high credit rating, you may find an affordable private student loan, though you will likely need a co-signer, who will be legally obligated to repay the loan if you can\u2019t or don\u2019t. Look for the one with the lowest interest rate and flexible repayment options.</li></p><br>
+<li>Shop around for a private loan. Remember that these loans generally have higher interest rates and less repayment flexibility compared to federal student loans. You generally should turn to private loans only after you have explored all other grant, scholarship, and federal loan options. If you can show you have a very high credit rating, you may find an affordable private student loan, though you will likely need a co-signer, who will be legally obligated to repay the loan if you can't or don't. Look for the one with the lowest interest rate and flexible repayment options.</li></p><br>
 	<h2 class="font-xxl nc">What should I consider when shopping for a private loan?</h2>
     <p><p>First, make sure you need a private student loan. These loans generally are not as affordable as federal student loans and offer little repayment flexibility. </p>
 
 <p>Here are some factors to consider: </p>
 
-<li>Talk to your school\u2019s financial aid office to get a form certifying that you need additional aid to cover the cost of attendance \u2013 most lenders require it.</li>
+<li>Talk to your school's financial aid office to get a form certifying that you need additional aid to cover the cost of attendance - most lenders require it.</li>
 
 <li>Shop for lower interest rates and loans that offer flexibility if you have trouble making payments. </li>
 
 <li>Some private lenders may advertise very low interest rates - remember that only borrowers with the best credit will qualify for these rates.  Your rate could be much higher. </li>
-<li>In 2011, over 90% of private student loans required a co-signer, so make sure you have someone like a parent or another relative lined up. Your co-signer will be legally obligated to repay the loan if you can\u2019t or don\u2019t. You may want to consider loans that offer \u201cco-signer release\u201d after a number of on-time payments. </li></p><br>
+<li>In 2011, over 90% of private student loans required a co-signer, so make sure you have someone like a parent or another relative lined up. Your co-signer will be legally obligated to repay the loan if you can't or don't. You may want to consider loans that offer "201cco-signer release" after a number of on-time payments. </li></p><br>
 </div>
 		</div>
 		<div class='span3'>
@@ -269,14 +268,14 @@
             <td class="line"> 
                 <p>Rates are fixed</p>
 
-<p>The Subsidized Direct and Perkins Loans have no interest while you\u2019re in school</p>
+<p>The Subsidized Direct and Perkins Loans have no interest while you're in school</p>
 
 <p>Interest rates range from 3.86% to 6.41%, depending on the loan program</p>
 
 <p>There is a 4% loan fee on PLUS loans and 1% fee for other Direct Loans.</p>
             </td>
             <td class="line">
-                <p>Rates are often variable \u2013 they can change over time</p>
+                <p>Rates are often variable - they can change over time</p>
 
 <p>You are charged interest while you are in school</p>
 
@@ -378,7 +377,7 @@ May charge various fees, like an origination fee.
 
 <p>Borrowing beyond your federal loans could mean high levels of debt. Make sure you have explored all other options including applying for additional scholarships, cutting costs, or getting a part-time job before taking out a private loan. If you are still deciding where to go to school, consider all your options, including finding a low-cost school.</p>
 
-<p>However if you need a private student loan, you should know that there are some unexpected places to look for deals. It\u2019s important to shop around and compare different loan offers.</p></div>
+<p>However if you need a private student loan, you should know that there are some unexpected places to look for deals. It's important to shop around and compare different loan offers.</p></div>
 
         <table style='margin:0 0 0 -18px;'>
             <tr>
@@ -395,7 +394,7 @@ May charge various fees, like an origination fee.
                 <td class='td2'>
                     <h2 class="nc vspace1">School Loans</h2>
                     <p><p>Some schools have their own loan program for students, which tend to have fixed rates</p>
-<p>Ask your school\u2019s financial aid office for more information</p></p>
+<p>Ask your school's financial aid office for more information</p></p>
                 </td>
             </tr>
             <tr style='display:none;'>
@@ -448,7 +447,7 @@ May charge various fees, like an origination fee.
 
 <p>Borrowing beyond your federal loans could mean high levels of debt. Make sure you have explored all other options including applying for additional scholarships, cutting costs, or getting a part-time job before taking out a private loan. If you are still deciding where to go to school, consider all your options, including finding a low-cost school.</p>
 
-<p>However if you need a private student loan, you should know that there are some unexpected places to look for deals. It\u2019s important to shop around and compare different loan offers.</p></p>
+<p>However if you need a private student loan, you should know that there are some unexpected places to look for deals. It's important to shop around and compare different loan offers.</p></p>
     
     <h4>State Agency Loans</h4>
     <p>
@@ -467,7 +466,7 @@ May charge various fees, like an origination fee.
     <h4>School Loans</h4>
     <p>
         <p>Some schools have their own loan program for students, which tend to have fixed rates</p>
-<p>Ask your school\u2019s financial aid office for more information</p>
+<p>Ask your school's financial aid office for more information</p>
         <!--<a href='{"hidden":true,"alt_view":"hidden"}'>More info</a>-->
     </p>
 
@@ -480,7 +479,7 @@ May charge various fees, like an origination fee.
 			
 <div class='bubble-space'>
     <div class="bubble-transparent font-m vspace1">
-        <div class='bubble-top-text'>What\u2019s the difference between subsidized and unsubsidized student loans?</div>
+        <div class='bubble-top-text'>What's the difference between subsidized and unsubsidized student loans?</div>
     </div>
     <div class="bubble-transparent-answer font-s">
         <span class="btn-close">&times;</span>
@@ -504,7 +503,7 @@ May charge various fees, like an origination fee.
         <span class="btn-close">&times;</span>
         <p>Congress has the authority to change federal student loan rates, but once you agree to a federal student loan, your interest rate remains the same until you have paid it off.</p>
 
-<p>Interest rates on private student loans are set by the lender that makes the loan and depend on the lender\u2019s evaluation of your creditworthiness. Some private loans have variable interest rates, which mean your payment amount could change over time.</p>
+<p>Interest rates on private student loans are set by the lender that makes the loan and depend on the lender's evaluation of your creditworthiness. Some private loans have variable interest rates, which mean your payment amount could change over time.</p>
     </div>
 </div>
 <div class='bubble-space'>
@@ -513,16 +512,16 @@ May charge various fees, like an origination fee.
     </div>
     <div class="bubble-transparent-answer font-s">
         <span class="btn-close">&times;</span>
-        <p>Don\u2019t replace student loan debt with credit card debt \u2013 it can be a much more expensive way to finance your education. Credit cards do not provide the flexible repayment terms or borrower protections offered by federal student loans.</p>
+        <p>Don't replace student loan debt with credit card debt - it can be a much more expensive way to finance your education. Credit cards do not provide the flexible repayment terms or borrower protections offered by federal student loans.</p>
     </div>
 </div>
 <div class='bubble-space'>
     <div class="bubble-transparent font-m vspace1">
-        <div class='bubble-top-text'>What if I can\u2019t repay my private student loan?</div>
+        <div class='bubble-top-text'>What if I can't repay my private student loan?</div>
     </div>
     <div class="bubble-transparent-answer font-s">
         <span class="btn-close">&times;</span>
-        <p>Contact the company that services your student loan immediately. You might be able to temporarily suspend your payments or work out a temporarily reduced payment. Ask your servicer if it has a program for \u201cforbearance\u201d or \u201cdeferment.\u201d <a href="/paying-for-college/repay-student-debt">Learn more about your options to repay your student debt.</a></p>
+        <p>Contact the company that services your student loan immediately. You might be able to temporarily suspend your payments or work out a temporarily reduced payment. Ask your servicer if it has a program for "forbearance" or "deferment." <a href="/paying-for-college/repay-student-debt">Learn more about your options to repay your student debt.</a></p>
     </div>
 </div>
 		</div>
@@ -538,18 +537,18 @@ May charge various fees, like an origination fee.
 		<p class="font-xl">Fill out the <a class="exit-link" href="http://www.fafsa.ed.gov/" target="_blank">FAFSA</a></p>
 		<div class="font-s">You must complete this form to be eligible for any federal
 student loans or grants. Submit the FAFSA as early as possible. <a class="exit-link" href="http://www.fafsa.ed.gov/deadlines.htm" target="_blank">Find your FAFSA deadlines online.</a><div><br> 
-Even if you are not sure you\u2019ll be eligible for any federal aid, you still need the FAFSA \u2013 schools often award scholarships and other grant aid using FAFSA information.&nbsp;</div><div><br>
+Even if you are not sure you'll be eligible for any federal aid, you still need the FAFSA - schools often award scholarships and other grant aid using FAFSA information.&nbsp;</div><div><br>
 If you are having trouble filling out the form, <a class="exit-link" href="http://www.fafsa.ed.gov/help.htm" target="_blank">contact the Department of Education.</a></div></div>
 	</div>
 	<div class="span3">
 		<div class="bullet green-bg vspace1">2</div>
 		<p class="font-xl">Explore all your federal loan options first</p>
-		<div class="font-s">If you need to borrow to pay for school, federal student loans almost always cost less than private student loans and have more protections when it\u2019s time for repayment. <a href="/paying-for-college/compare-financial-aid-and-college-cost" target="_blank">If you are choosing between schools, compare each school\u2019s aid offer.</a></div>
+		<div class="font-s">If you need to borrow to pay for school, federal student loans almost always cost less than private student loans and have more protections when it's time for repayment. <a href="/paying-for-college/compare-financial-aid-and-college-cost" target="_blank">If you are choosing between schools, compare each school's aid offer.</a></div>
 	</div>
 	<div class="span3">
 		<div class="bullet green-bg vspace1">3</div>
 		<p class="font-xl">Shop around if your aid package doesn't cover the full cost of college</p>
-		<div class="font-s"> Talk to your school\u2019s financial aid office about alternative scholarships or loan options. You may want to ask your parent to consider taking out a PLUS loan. And if you decide a private student loan is your best option, make sure you understand the terms and costs.</div>
+		<div class="font-s"> Talk to your school's financial aid office about alternative scholarships or loan options. You may want to ask your parent to consider taking out a PLUS loan. And if you decide a private student loan is your best option, make sure you understand the terms and costs.</div>
 	</div>
 </div>
 		</div>
