@@ -279,6 +279,7 @@ var CFPBComparisonTool = (function() {
 	function School(schoolID) {
 		this.schoolID = schoolID;
 		this.schoolData = {};
+        this.touchedFields = ["test"]; // Tracks which fields have been edited.
         this.xml = "";
 
 		//-- Get schoolData values from API --//
@@ -1199,7 +1200,8 @@ var CFPBComparisonTool = (function() {
         //-- set an element value to the matching schoolData object property --//
         // Note: type can be 'c' for currency, or 'p' for percentage
         this.setByNickname = function(nickname, value, type) {
-            var element = columnObj.find("[data-nickname='" + nickname + "']");
+            var element = columnObj.find('[data-nickname="' + nickname + '"]');
+            var school_id = this.fetchSchoolID();
             if (type === "p") { // percentage type
                 value = (value * 100).toString() + "%";
             }
@@ -1211,10 +1213,14 @@ var CFPBComparisonTool = (function() {
                 value = numToMoney(value);
             }
             // Use val() or html() based on tagName
-            var yuyu = element.prop('tagName');
             if ( element.prop('tagName') === 'INPUT' ) {
-                if (moneyToNum(value) === 0) {
-                    value = "$";
+                if ( moneyToNum(value) === 0 ) {
+                    if ( $.inArray(nickname, schools[school_id].touchedFields) === -1) {
+                        value = "$";
+                    }
+                    else {
+                        value = "$0";
+                    }
                 }
                 element.val(value);
             }
@@ -1638,13 +1644,20 @@ var CFPBComparisonTool = (function() {
             $("#comparison-tables").on("keyup", "input.school-data", function (ev) {
                 var column = $(this).closest("[data-column]").attr("data-column");
                 var school_id = columns[column].fetchSchoolID();
+                var nickname = $(this).attr('data-nickname');
+                var value = $(this).val();
                 // ...immediately when the user hits enter
                 if (ev.keyCode == 13) {
                     ev.preventDefault();
-                    return false;
+                    // Touch the input field
+                    schools[school_id].touchedFields.push(nickname);
+                    calculateAndDraw(column);
                 }
                 // .. after a delay if any other key is pressed
                 delay(function() {
+                    if (value !== "$") {
+                        schools[school_id].touchedFields.push(nickname);
+                    }
                     calculateAndDraw(column);
                     }, 500);
             });
