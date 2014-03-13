@@ -941,10 +941,9 @@ This contains the majority of the structural styles for table-based elements.
 /* GI Bill calculator link */
 .gibill-calculator {
     font-size: 0.75em;
-    margin-top: -0.375em;
     position: absolute;
-        top: 10%;
-        left: 11%;
+        top: -0.25em;
+        left: 2em;
     width: 6.5em;
 }
 
@@ -954,7 +953,7 @@ Make them smaller and push them right to make it all look presentable. */
 #s-two-gibill,
 #s-three-gibill {
     position: absolute;
-        right: 11%;
+        right: 1.5em;
     width: 35%;
 }
 
@@ -994,16 +993,8 @@ Make them smaller and push them right to make it all look presentable. */
 #s-two-privateloan,
 #s-three-privateloan {
     position: absolute;
-        left: 10%;
+        left: 1.5em;
     width: 40%;
-}
-
-#s-one-institutionalloanrate,
-#s-two-institutionalloanrate,
-#s-three-institutionalloanrate {
-    position: absolute;
-        top: 20%;
-        right: 15%;
 }
 
 /* The change rate styles and buttons have IDs so they can override other form element styles. */
@@ -1016,8 +1007,7 @@ Make them smaller and push them right to make it all look presentable. */
     margin: 0;
     padding: 0 0 0 0.4em;   
     position: absolute;
-        right: 11%;
-        top: 20%;
+        right: 1.5em;
     text-align: left;
     -webkit-box-sizing: border-box;
     width: 30%;
@@ -1026,10 +1016,9 @@ Make them smaller and push them right to make it all look presentable. */
 #comparison-tables .private-row td button.rate-change.down {
     background: url(../images/arrow-down.png) 50% 50% no-repeat;
     border: none;
-    margin-top: 0.9375em;
     position: absolute;
-        right: 9%;
-        top: 15%;
+        right: 1.55em;
+        top: 1em;
     height: 10px;
     width: 10px;
 }
@@ -1038,8 +1027,8 @@ Make them smaller and push them right to make it all look presentable. */
     background: url(../images/arrow-up.png) 50% 50% no-repeat;
     border: none;
     position: absolute;
-        right: 9%;
-        top: 25%;
+        right: 1.55em;
+        top: 0;
     height: 10px;
     width: 10px;
 }
