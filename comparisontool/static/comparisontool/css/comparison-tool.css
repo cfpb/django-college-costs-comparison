@@ -102,7 +102,8 @@ breadcrumbs do not exist unfortunately. :( Bug reported; to be fixed in future. 
 #introduction,
 #comparison-tables,
 #save-footer,
-#save-drawer {
+#save-drawer,
+.sub-page-wrapper {
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -733,11 +734,6 @@ This contains the majority of the structural styles for table-based elements.
     padding: 0.75em 0;
     white-space: normal;
 }
-
-.comparison-tool table thead th .navigator-link {
-    font-size: .7em;
-}
-
 
 .comparison-tool th {
     width: 25%;
