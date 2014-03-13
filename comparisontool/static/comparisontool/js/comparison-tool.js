@@ -312,7 +312,7 @@ var CFPBComparisonTool = (function() {
 
 		//-- Retrieve entered values from Add a School inputs --//
 		this.importAddForm = function() { 
-			this.schoolData['program'] = $('#step-one input:radio[name="program"]').val();
+			this.schoolData['program'] = $('#step-one input:radio[name="program"]:checked').val();
 			this.schoolData['prgmlength'] = $('#step-one select[name="prgmlength"]').val();
 
 			// Set undergrad
@@ -865,6 +865,12 @@ var CFPBComparisonTool = (function() {
 			columnObj.find('input.school-data').not(".interest-rate").val("$0");
 			columnObj.find('input[data-nickname="institutional_loan_rate"]').val(global.institutionalloanratedefault * 100 + '%');
 			columnObj.find('input[data-nickname="private_loan_rate"]').val(global.privateloanratedefault * 100 + '%');
+            if (schoolData.program !== "grad") {
+                columnObj.find("[data-nickname='gradplus']").attr("disabled", true).css('background-color', '#E3E4E5');
+            }
+            else {
+                columnObj.find("[data-nickname='gradplus']").attr("disabled", false).css('background-color', '');
+            }
 			this.drawSchoolIndicators(schoolData);
 		} // end .addSchoolInfo()
 
@@ -1266,6 +1272,11 @@ var CFPBComparisonTool = (function() {
                 else {
                     column.setByNickname(nickname, value, "c")
                 }
+                // set grad field to 'not available' if not grad program
+                if (data.program !== "grad") {
+                    columnObj.find('[data-nickname="gradplus"]').val("Not available");
+                }
+
             });
         } // end .updateFormValues()
 
