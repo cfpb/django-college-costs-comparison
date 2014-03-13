@@ -865,7 +865,6 @@ var CFPBComparisonTool = (function() {
 			columnObj.find('input.school-data').not(".interest-rate").val("$0");
 			columnObj.find('input[data-nickname="institutional_loan_rate"]').val(global.institutionalloanratedefault * 100 + '%');
 			columnObj.find('input[data-nickname="private_loan_rate"]').val(global.privateloanratedefault * 100 + '%');
-			columnObj.find("a.navigator-link").attr("href", "http://nces.ed.gov/collegenavigator/?id=" + schoolData.school_id);
 			this.drawSchoolIndicators(schoolData);
 		} // end .addSchoolInfo()
 
@@ -1790,11 +1789,6 @@ var CFPBComparisonTool = (function() {
             });
 
             // Analytics handlers
-            $(".navigator-link").click( function() {
-                var school_id = $(this).closest("[data-column]").attr("data-schoolid");
-                _gaq.push([ "_trackEvent", "School Interactions", "School Information link clicked", school_id ] );     
-            });
-
             $("#unique").click( function() {
                 _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Copy URL"] );  
             });
