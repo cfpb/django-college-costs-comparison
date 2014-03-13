@@ -624,18 +624,31 @@ button:focus,
 	background-color: #002d72;
 }
 
-button + button {
-    margin-top: 1em;
-    margin-left: 1em;
-}
-
 button[disabled=disabled],
 button[disabled],
 button.disabled,
+button.cancel,
+button.preset,
 .button.disabled,
 .button.cancel,
 .button.preset {
-    background-color: #808080;
+    background-color: #8e9193;
+}
+
+button.destructive {
+    background-color: #d14124;
+    color: #fff;
+}
+
+button.destructive:hover,
+button.destructive:active,
+button.destructive:focus,
+.button.destructive:hover,
+.button.destructive:active,
+.button.destructive:focus
+ {
+    background-color: #da6750;
+    color: #fff;
 }
 
 .button-small {
@@ -692,20 +705,19 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 .comparison-tool thead .removal-row th .remove-confirm {
-    background-color: #FFF;
-    border: 1px solid black;
+    background-color: #f6d9d3;
+    border: 1px solid #d14124;
     display: none;
     font-weight: 400;
+    margin-left: -1.75em;
     padding: 1em .5em;
     position: absolute;
-    max-width: 15%;
+    width: 15%;
 }
 
-.comparison-tool thead .removal-row th .remove-confirm a {
-    display: inline-block;
-    margin: .5em auto .5em auto;
-    text-align: center;
-    width: auto;
+.comparison-tool thead .removal-row th .remove-confirm .button-group {
+    float: right;
+    margin-top: 0;
 }
 
 .comparison-tool table tbody th {
@@ -925,6 +937,7 @@ This contains the majority of the structural styles for table-based elements.
 /* GI Bill calculator link */
 .gibill-calculator {
     font-size: 0.75em;
+    margin-top: -0.375em;
     position: absolute;
         top: 10%;
         left: 11%;
@@ -1009,6 +1022,7 @@ Make them smaller and push them right to make it all look presentable. */
 #comparison-tables .private-row td button.rate-change.down {
     background: url(../images/arrow-down.png) 50% 50% no-repeat;
     border: none;
+    margin-top: 0.9375em;
     position: absolute;
         right: 9%;
         top: 15%;
