@@ -256,6 +256,7 @@ var CFPBComparisonTool = (function() {
             $('button.add-another-school').attr('disabled', true).addClass('disabled');
         }
         else {
+            $('#step-zero .max-schools').hide();
             $('#get-started-button').removeAttr('disabled').removeClass('disabled');
             $('button.add-another-school').removeAttr('disabled').removeClass('disabled');
         }
