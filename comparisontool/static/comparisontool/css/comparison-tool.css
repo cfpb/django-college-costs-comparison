@@ -763,6 +763,10 @@ This contains the majority of the structural styles for table-based elements.
     padding-right: 0.9em;
 }
 
+.comparison-tool tr.school-name-row .institution-name {
+    font-weight: 700;
+}
+
 /* Accordion elements, not the instrument, sadly */
 .grants th, .grants td {
     border-bottom: 5px solid #0072ce;
