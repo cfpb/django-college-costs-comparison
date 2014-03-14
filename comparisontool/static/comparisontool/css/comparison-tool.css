@@ -554,6 +554,10 @@ thead #institution-row h2.inactive {
     padding-bottom: 2em;
 }
 
+th span.institution-name.inactive {
+    color: #babbbd;
+}
+
 .h3,
 table h3 {
 	color: #101820;
@@ -776,6 +780,7 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 .comparison-tool tr.school-name-row .institution-name {
+    font-size: 0.875em;
     font-weight: 700;
 }
 
