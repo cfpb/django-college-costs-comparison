@@ -121,6 +121,7 @@ var CFPBComparisonTool = (function() {
 			};
 	})(); // end delay()
 
+    //-- Perform all the functions necessary to (re)calculate and (re)draw the column --//
 	function calculateAndDraw(columnNumber) {
 		var schoolID = columns[columnNumber].fetchSchoolID();
 		var newData = columns[columnNumber].fetchFormValues();
@@ -131,6 +132,13 @@ var CFPBComparisonTool = (function() {
 		columns[columnNumber].drawPieChart(schoolData);
 		columns[columnNumber].drawDebtBurden(schoolData);
 	} // end calculateAndDraw()
+
+    //-- clear all highlighted columns --//
+    function clearHighlights() {
+        for (var x=1;x<=3;x++) {
+            columns[x].toggleHighlight("inactive");
+        }        
+    } // end clearHighlights()
 
 	//-- Find results from API based on query and return and format them --//
     function getSchoolSearchResults(query) {
@@ -227,14 +235,12 @@ var CFPBComparisonTool = (function() {
         if (stage === 0) {
             $("#introduction .get-started").not("#step-zero").hide();
             $("#introduction #step-zero").fadeToggle( "slow", "linear" );
-            for (var x=1;x<=3;x++) {
-            	columns[x].toggleHighlight("inactive");
-            }
         }
         if (stage === 1) {
             $("#introduction .get-started").not("#step-one").hide();
             $("#introduction #step-one").fadeToggle( "slow", "linear" );
             var col = findEmptyColumn();
+            clearHighlights();
             columns[col].toggleHighlight("active");
         }
         if (stage === 2) {
@@ -1238,7 +1244,8 @@ var CFPBComparisonTool = (function() {
         //-- toggles "active" or "inactive" state of the column --//
         this.toggleActive = function(state) { 
             // list of elements to toggle
-            var selector = 'input, .visualization, .data-total, .hide-on-inactive';
+            var grays = 'input, .visualization, .data-total, h6';
+            var ninjas = '.visualization, .hide-on-inactive';
 
             // If state isn't something clear, then it's as good as undefined
             if (state !== 'active' && state !== 'inactive') {
@@ -1251,16 +1258,20 @@ var CFPBComparisonTool = (function() {
 
             // Now we can alter the state to 'state'
             if (state === 'active') {
-                columnObj.find(selector).show();
+                columnObj.find(ninjas).show();
+                columnObj.find(grays).removeClass('inactive');
                 columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
+                columnObj.find('input').removeAttr('disabled');
             }
 
             if (state === 'inactive') {
-                columnObj.find(selector).hide();
+                columnObj.find(ninjas).hide();
+                columnObj.find(grays).addClass('inactive');
                 columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
+                columnObj.find('input').val('$').attr('disabled', true);
             }
 
         } // end .toggleActive()
