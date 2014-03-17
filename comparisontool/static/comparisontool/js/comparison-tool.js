@@ -1262,6 +1262,7 @@ var CFPBComparisonTool = (function() {
                 columnObj.find(grays).removeClass('inactive');
                 columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
+                columnObj.find('input').removeAttr('disabled');
             }
 
             if (state === 'inactive') {
@@ -1270,7 +1271,7 @@ var CFPBComparisonTool = (function() {
                 columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
-                columnObj.find('input').val('$');
+                columnObj.find('input').val('$').attr('disabled', true);
             }
 
         } // end .toggleActive()
