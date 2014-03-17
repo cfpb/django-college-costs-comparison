@@ -554,8 +554,15 @@ thead #institution-row h2.inactive {
     padding-bottom: 2em;
 }
 
-th span.institution-name.inactive {
+.comparison-tool th span.institution-name.inactive,
+.comparison-tool td h6.inactive,
+.comparison-tool td h6.inactive.data-total {
     color: #babbbd;
+}
+
+.comparison-tool td input.inactive {
+    background-color: #E3E4E5;
+    color: #BABBBD;
 }
 
 .h3,
