@@ -1244,7 +1244,8 @@ var CFPBComparisonTool = (function() {
         //-- toggles "active" or "inactive" state of the column --//
         this.toggleActive = function(state) { 
             // list of elements to toggle
-            var selector = 'input, .visualization, .data-total, .hide-on-inactive';
+            var grays = 'input, .visualization, .data-total, h6';
+            var ninjas = '.visualization, .hide-on-inactive';
 
             // If state isn't something clear, then it's as good as undefined
             if (state !== 'active' && state !== 'inactive') {
@@ -1257,16 +1258,19 @@ var CFPBComparisonTool = (function() {
 
             // Now we can alter the state to 'state'
             if (state === 'active') {
-                columnObj.find(selector).show();
+                columnObj.find(ninjas).show();
+                columnObj.find(grays).removeClass('inactive');
                 columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
             }
 
             if (state === 'inactive') {
-                columnObj.find(selector).hide();
+                columnObj.find(ninjas).hide();
+                columnObj.find(grays).addClass('inactive');
                 columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
+                columnObj.find('input').val('$');
             }
 
         } // end .toggleActive()
