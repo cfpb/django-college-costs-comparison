@@ -121,6 +121,7 @@ var CFPBComparisonTool = (function() {
 			};
 	})(); // end delay()
 
+    //-- Perform all the functions necessary to (re)calculate and (re)draw the column --//
 	function calculateAndDraw(columnNumber) {
 		var schoolID = columns[columnNumber].fetchSchoolID();
 		var newData = columns[columnNumber].fetchFormValues();
@@ -131,6 +132,13 @@ var CFPBComparisonTool = (function() {
 		columns[columnNumber].drawPieChart(schoolData);
 		columns[columnNumber].drawDebtBurden(schoolData);
 	} // end calculateAndDraw()
+
+    //-- clear all highlighted columns --//
+    function clearHighlights() {
+        for (var x=1;x<=3;x++) {
+            columns[x].toggleHighlight("inactive");
+        }        
+    } // end clearHighlights()
 
 	//-- Find results from API based on query and return and format them --//
     function getSchoolSearchResults(query) {
@@ -227,14 +235,12 @@ var CFPBComparisonTool = (function() {
         if (stage === 0) {
             $("#introduction .get-started").not("#step-zero").hide();
             $("#introduction #step-zero").fadeToggle( "slow", "linear" );
-            for (var x=1;x<=3;x++) {
-            	columns[x].toggleHighlight("inactive");
-            }
         }
         if (stage === 1) {
             $("#introduction .get-started").not("#step-one").hide();
             $("#introduction #step-one").fadeToggle( "slow", "linear" );
             var col = findEmptyColumn();
+            clearHighlights();
             columns[col].toggleHighlight("active");
         }
         if (stage === 2) {
