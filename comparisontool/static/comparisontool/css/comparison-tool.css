@@ -559,8 +559,15 @@ thead #institution-row h2.inactive {
     padding-bottom: 2em;
 }
 
-th span.institution-name.inactive {
+.comparison-tool th span.institution-name.inactive,
+.comparison-tool td h6.inactive,
+.comparison-tool td h6.inactive.data-total {
     color: #babbbd;
+}
+
+.comparison-tool td input.inactive {
+    background-color: #E3E4E5;
+    color: #BABBBD;
 }
 
 .h3,
@@ -1281,19 +1288,19 @@ label.tooltip-info {
 }
 
 #comparison-tables .breakdown .meter .bars .bar.discount {
-    background: #5281ab;
+    background: #0072ce;
 }
 
 #comparison-tables .breakdown .meter .bars .bar.savings {
-    background: #c8bb89;
+    background: #0072ce;
 }
 
 #comparison-tables .breakdown .meter .bars .bar.fedloans {
-    background: #f4793b;
+    background: #ff931b;
 }
 
 #comparison-tables .breakdown .meter .bars .bar.privloans {
-    background: #f2af32;
+    background: #d14124;
 }
 
 #comparison-tables .breakdown .meter .bars .bar.overage {
