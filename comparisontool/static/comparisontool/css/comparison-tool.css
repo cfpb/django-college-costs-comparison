@@ -128,6 +128,7 @@ This just the hero for the Comparison Tool.
 .pfc-hero-wrapper a:hover,
 .pfc-hero-wrapper a:active,
 .pfc-hero-wrapper a:focus {
+    background-color: transparent;
     border-bottom-style: solid;
 }
 
