@@ -367,6 +367,12 @@ The typographical hierarchy on this page differs from others.
     padding-top: 0.25em;
 }
 
+/* Make the intro a little different */
+#intro p {
+    font-family: "Avenir Next", Verdana, sans-serif;
+    font-size: 1.125em;
+}
+
 /* BUTTONS
 The buttons differ from others on the site.
 -------------------------------------------------------------------------------*/
@@ -422,8 +428,32 @@ The sharing module differs from others on the site.
 }
 
 .share-links a {
+    background-color: transparent;
     border: none;
     padding: 0 0.125em;
-    background:none;
 
+}
+
+.share-links a:hover {
+    border: none;
+    color: #7eb8dd;
+    text-decoration: none;
+}
+
+.share-links a:focus {
+    border: none;
+    color: #0072ce;
+    outline: thin dotted;
+    text-decoration: none;
+}
+
+.share-links a:active {
+    border: none;
+    color: #002d72;
+    text-decoration: none;
+}
+
+/* Tweak external link icon to match existing link color. */
+.icon-external-link {
+    color: #4d819a;
 }
