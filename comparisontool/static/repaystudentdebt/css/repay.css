@@ -3,19 +3,108 @@ In general, organization flows from the top of the page to the bottom.
 PFC = Paying for College
 
 Styles are for:
-- http://www.consumerfinance.gov/paying-for-college/
+- http://www.consumerfinance.gov/paying-for-college/repay-student-debt/
 
 Table of Contents
 -----------------
+- REPAY STYLES
+- TOOLTIPS
 - ADJUST MAIN CONTENT CONTAINER
 - HEROS
 - PFC NAVIGATION
 - PFC CONTENT GRID
-- TYPOGRAPHY
 - BUTTONS
-- SHARE MODULE
 
 -------------------------------------------------------------------------------*/
+
+/* REPAY STYLES
+The main styles for the unique elements on this page.
+-------------------------------------------------------------------------------*/
+.tip, .act {
+    padding: 4px 4px 4px 38px;
+    border-radius: 4px;
+}
+
+.tip {
+    background: #eee url(tip-orange.png) no-repeat 10px 10px;
+}
+
+.act {
+    background: #eee url(take-action.png) no-repeat 10px 10px;
+}
+
+button {
+    margin-right: 5px !important;
+}
+
+.illus {
+    min-height: 100px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: 10px 0;
+    padding-left: 123px;
+}
+
+.alert { background-image: url('/static/repaystudentdebt/images/alert-icon.png'); }
+.budget { background-image: url('/static/repaystudentdebt/images/budget-icon.png'); }
+.paperwork { background-image: url('/static/repaystudentdebt/images/paperwork-icon.png'); }
+.extra { background-image: url('/static/repaystudentdebt/images/extra-icon.png'); }
+.defer { background-image: url('/static/repaystudentdebt/images/defer-icon.png'); }
+.mil { background-image: url('/static/repaystudentdebt/images/mil-icon.png'); }
+
+/* TOOLTIPS
+The styles for the tooltip interactions on this page.
+-------------------------------------------------------------------------------*/
+.tooltip-info, .tooltip-info:hover {
+    cursor: help;
+    border-bottom: 1px dotted #50a748;
+}
+
+p.tooltip-info {
+    display: inline;    
+}
+
+#tooltip-container {
+    background-color: #a0f798;
+    border: 2px solid #50a748;
+    display: none;
+    font-style: normal;
+    font-size: .8em;
+    padding: 10px;
+    position: absolute;
+    text-align: justify;
+    width: 20em;
+    z-index: 3000;
+}
+
+/* These two elements, #outertip and #innertip, make the little speech-balloon styled
+    tip appear along the top of the tooltip. */
+#tooltip-container #outertip {
+    border: 10px solid transparent;
+    border-bottom-color: #50a748;
+    content: ' ';
+    height: 0;
+    position: absolute;
+    left: 5px;
+    top: -20px;
+    width: 0;
+}
+
+#tooltip-container #innertip {
+    border: 7px solid transparent;
+    border-bottom-color: #a0f798;
+    content: ' ';
+    height: 0;
+    position: absolute;
+    left: 8px;
+    top: -14px;
+    width: 0;
+}
+
+#tooltip-container > p {
+    padding: 0;
+    margin: 0;
+}
 
 /* ADJUST MAIN CONTENT CONTAINER
 This is for full width page background colors. It adjust some styles
@@ -312,61 +401,6 @@ This has similar styles as the global site navigation.
 .paying-for-college .suf10 { padding-right: 805px; }
 .paying-for-college .suf11 { padding-right: 888.5px; }
 
-/* TYPOGRAPHY
-The typographical hierarchy on this page differs from others.
--------------------------------------------------------------------------------*/
-.paying-for-college #wrapper h1,
-.paying-for-college #wrapper .h1 {
-    font-size: 2.125em;
-    font-weight: 500;
-}
-
-.paying-for-college #wrapper h2,
-.paying-for-college #wrapper .h2 {
-    font-size: 1.625em;
-    font-weight: 500;
-    text-transform: none;
-    letter-spacing: 0;
-}
-
-.paying-for-college #wrapper h3,
-.paying-for-college #wrapper .h3 {
-    font-size: 1.125em;
-    font-weight: 500;
-}
-
-.paying-for-college #wrapper h4,
-.paying-for-college #wrapper .h4 {
-    font-size: 1em;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.paying-for-college #wrapper h5,
-.paying-for-college #wrapper .h5 {
-    font-size: 1em;
-}
-
-.paying-for-college #wrapper h6,
-.paying-for-college #wrapper .h6 {
-    font-size: 1em;
-}
-
-/* Apply to header element at top of .section to achieve boder overlay */
-.border-overlay-spacing {
-    margin-top: -2px;
-}
-
-/* Apply to heading at top of .section to achieve boder overlay */
-.border-overlay {
-    border-top: 4px solid #30b14a;
-    display: inline-block;
-    zoom: 1;
-        *display: inline;
-    padding-top: 0.25em;
-}
-
 /* BUTTONS
 The buttons differ from others on the site.
 -------------------------------------------------------------------------------*/
@@ -406,24 +440,4 @@ The buttons differ from others on the site.
 .paying-for-college #wrapper .button.active {
     /* Class included for static state examples */
     background-color: #33578e; /* Navy/80 */
-}
-
-/* SHARE MODULE
-The sharing module differs from others on the site.
--------------------------------------------------------------------------------*/
-.share-pfc {
-    margin: 4em auto;
-    text-align: center;
-}
-
-.share-links {
-    font-size: 2em;
-    padding-top: 0.5fem;
-}
-
-.share-links a {
-    border: none;
-    padding: 0 0.125em;
-    background:none;
-
 }
