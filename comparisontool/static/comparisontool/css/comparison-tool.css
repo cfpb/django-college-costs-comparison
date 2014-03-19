@@ -985,10 +985,6 @@ Make them smaller and push them right to make it all look presentable. */
     border: none;
 }
 
-.percent-of-salary {
-    font-size: 0.7em;
-}
-
 .visualization-row td {
     vertical-align: middle;
 }
@@ -996,6 +992,27 @@ Make them smaller and push them right to make it all look presentable. */
 .breakdown th p,
 .visualization-row th p {
     font-size: 0.9em;
+}
+
+.visualization-row .total-debt {
+    font-weight: 500;
+}
+
+
+#after-school-section .visualization-row p.monthly-payment {
+    text-align: left;
+    margin: 0em 1em .25em 0em;
+    padding-top: 1em;
+}
+
+#after-school-section .visualization-row p.monthly-payment .payment-amount {
+    display: block;
+    margin: 0em;
+}
+
+#after-school-section .visualization-row p.percent-of-salary {
+    font-size: 0.7em;
+    margin-top: 0em;
 }
 
 #s-one-institutionalloan,
@@ -1230,6 +1247,7 @@ label.tooltip-info {
 
 #comparison-tables .breakdown .meter {
     font-size: .75em;
+    margin: .25em 1em;
 }
 
 #comparison-tables .breakdown .meter .bars {
@@ -1277,6 +1295,7 @@ label.tooltip-info {
 
 #comparison-tables .breakdown .meter .bars .bar {
     border-right: 1px solid #fff;
+    display: none;
     float: left;
     height: 15px;
     padding: 0;
@@ -1304,6 +1323,10 @@ label.tooltip-info {
     opacity: 0.9;   
 }
 
+#comparison-tables .breakdown .meter .cost-of-attendance th {
+    padding: .75em 0em;
+}
+
 #comparison-tables .breakdown .meter .cost-of-attendance td {
     text-align: left;
 }
@@ -1326,7 +1349,7 @@ label.tooltip-info {
 }
 
 #comparison-tables .breakdown .meter .cost-of-attendance .left-to-pay td {
-    border-top: 1px solid #43484e   ;
+    border-top: 1px solid #43484e;
     color: #43484e;
     font-weight: 600;
 }
@@ -1498,6 +1521,22 @@ label.tooltip-info {
 #comparison-tables .median-borrowing-text {
     margin: .15em 0 1em 0;
 }
+
+/* STYLES FOR 'INACTIVE' elements */
+#comparison-tables .breakdown td .meter.inactive .cost-of-attendance,
+#comparison-tables .breakdown td .meter.inactive .cost-of-attendance td.value,
+#comparison-tables .breakdown td .meter.inactive .cost-of-attendance .left-to-pay td  {
+    color: #babbbd;
+}
+
+#comparison-tables .breakdown td .meter.inactive .cost-of-attendance div.full {
+    background-color: #babbbd;
+}
+
+#comparison-tables .visualization-row td .inactive {
+    color: #babbbd;
+}
+
 
 /* SAVE & SHARE */
 .save-footer div {
