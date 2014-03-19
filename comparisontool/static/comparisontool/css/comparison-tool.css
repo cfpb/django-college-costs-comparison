@@ -141,6 +141,7 @@ This just the hero for the Comparison Tool.
     /* Not an official color, but a mix of green and white. */
     background-color: #d3efdb;
     float: left;
+    min-height: 155px;
     padding: 1em;
     width: 35%;
 }
@@ -321,6 +322,7 @@ This has similar styles as the global site navigation.
 This is for each step in the process.
 -------------------------------------------------------------------------------*/
 .pfc-intro-text {
+    display: none; /* Hiding for now, but leaving in source in case content folks need it. */
     font-size: 1.125em;
 }
 

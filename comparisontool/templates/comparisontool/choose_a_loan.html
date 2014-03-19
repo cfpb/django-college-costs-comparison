@@ -12,8 +12,8 @@
 {% block title %}Choose a student loan{% endblock %}
 
 {% block page_css %}
-    <script src="{{ STATIC_PREFIX }}pb/payingforcollege/_base.js"></script>    
-    <link href="{{ STATIC_PREFIX }}pb/payingforcollege/print.css" rel="stylesheet" media="print">
+    <link href="{{ STATIC_PREFIX }}choosealoan/css/guides.css" rel="stylesheet">
+    <link href="{{ STATIC_PREFIX }}choosealoan/css/print.css" rel="stylesheet" media="print">
 {% endblock %}
 
 {% block body_class %}page paying-for-college{% endblock %}
@@ -22,11 +22,11 @@
     <header id="guide-debt-header" class="pfc-header">
     <div id="pfc-hero-wrapper" class="pfc-hero-wrapper clearfix">
         <div class="pfc-hero-content">
-            <h1 class="sub-page">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</h1>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</p>
+            <h1 class="sub-page">Choosing a loan</h1>
+            <p>Three steps that can help you get the right loan for you.</p>
         </div>
         <div class="pfc-hero-image alignbottomright">
-            <img alt="" src="{{ STATIC_PREFIX }}pb/payingforcollege/loans_hero_and_menu/2_hero_explore.png">
+            <img alt="" src="{{ STATIC_PREFIX }}choosealoan/images/2_hero_explore.png">
         </div>
     </div><!-- end .pfc-hero-wrapper -->
     <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
@@ -34,10 +34,10 @@
         <nav>
             <ul class="pfc-nav">
                 <li><a href="/paying-for-college/">Get started</a></li>
-                <li><span class="fake-link is-active" tabindex="0" class="fake-link">Explore options</span>
+                <li><span class="fake-link is-active" tabindex="0" class="fake-link">Student financial guides</span>
                     <ul>
-                        <li><a href="/paying-for-college/choose-a-student-loan/">Choosing a loan that's right for you</a></li>
-                        <li><a href="/paying-for-college/manage-your-college-money/">Managing your college money</a></li>
+                        <li><a href="/paying-for-college/choose-a-student-loan/">Student loans</a></li>
+                        <li><a href="/paying-for-college/manage-your-college-money/">Student banking</a></li>
                     </ul>
                 </li>
                 <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Compare financial aid offers</a></li>
@@ -561,4 +561,8 @@ If you are having trouble filling out the form, <a class="exit-link" href="http:
 </section>
     </div>
 
+{% endblock %}
+
+{% block page_js %}
+    <script src="{{ STATIC_PREFIX }}choosealoan/js/guides.js"></script>
 {% endblock %}
