@@ -89,6 +89,7 @@ from the main site stylesheet.
 -------------------------------------------------------------------------------*/
 .paying-for-college #maincontent {
     padding: 0 0 2em;
+    width: 1016px;
 }
 
 /* No breadcrumbs in PFC. Current Django templates output an empty UL when
@@ -127,6 +128,7 @@ This just the hero for the Comparison Tool.
 .pfc-hero-wrapper a:hover,
 .pfc-hero-wrapper a:active,
 .pfc-hero-wrapper a:focus {
+    background-color: transparent;
     border-bottom-style: solid;
 }
 
@@ -139,6 +141,7 @@ This just the hero for the Comparison Tool.
     /* Not an official color, but a mix of green and white. */
     background-color: #d3efdb;
     float: left;
+    min-height: 155px;
     padding: 1em;
     width: 35%;
 }
@@ -167,6 +170,10 @@ This just the hero for the Comparison Tool.
 .pfc-header {
     margin: 0 0 3em 0;
     position: relative;
+}
+
+.pfc-header.sub-page {
+    padding-top: 1em;
 }
 
 .pfc-header h1 {
@@ -315,6 +322,7 @@ This has similar styles as the global site navigation.
 This is for each step in the process.
 -------------------------------------------------------------------------------*/
 .pfc-intro-text {
+    display: none; /* Hiding for now, but leaving in source in case content folks need it. */
     font-size: 1.125em;
 }
 
@@ -346,19 +354,19 @@ This is for each step in the process.
 #step-zero .step-left {
     float: left;
     margin-right: 30px;
-    width: 532px;
+    width: 554.5px;
 }
 
 #step-zero .step-right {
     float: left;
     margin-right: 0;
-    width: 372px;
+    width: 387.5px;
 }
 
 #step-one .step-left {
     float: left;
     margin-right: 20px;
-    width: 359px;
+    width: 362px;
 }
 
 #step-one .step-middle {
@@ -385,7 +393,7 @@ This is for each step in the process.
 #step-two .step-left {
     float: left;
     margin-right: 30px;
-    width: 532px;
+    width: 533px;
 }
 
 #step-two .step-right {
@@ -394,13 +402,13 @@ This is for each step in the process.
     	right: 0;
     	bottom: 24px;
     text-align: right;
-    width: 372px;
+    width: 373px;
 }
 
 #step-three .step-left {
     float: left;
     margin-right: 30px;
-    width: 532px;
+    width: 533px;
 }
 
 #step-three .step-right {
@@ -409,7 +417,7 @@ This is for each step in the process.
     	right: 0;
     	bottom: 24px;
     text-align: right;
-    width: 372px;
+    width: 373px;
 }
 
 /* Containers for padding. */
@@ -955,7 +963,7 @@ This contains the majority of the structural styles for table-based elements.
     font-size: 0.75em;
     position: absolute;
         top: -0.25em;
-        left: 2em;
+        left: 2.5em;
     width: 6.5em;
 }
 
@@ -965,7 +973,7 @@ Make them smaller and push them right to make it all look presentable. */
 #s-two-gibill,
 #s-three-gibill {
     position: absolute;
-        right: 1.5em;
+        right: 1.8125em;
     width: 35%;
 }
 
@@ -1022,7 +1030,7 @@ Make them smaller and push them right to make it all look presentable. */
 #s-two-privateloan,
 #s-three-privateloan {
     position: absolute;
-        left: 1.5em;
+        left: 1.825em;
     width: 40%;
 }
 
@@ -1036,7 +1044,7 @@ Make them smaller and push them right to make it all look presentable. */
     margin: 0;
     padding: 0 0 0 0.4em;   
     position: absolute;
-        right: 1.5em;
+        right: 1.825em;
     text-align: left;
     -webkit-box-sizing: border-box;
     width: 30%;
@@ -1046,7 +1054,7 @@ Make them smaller and push them right to make it all look presentable. */
     background: url(../images/arrow-down.png) 50% 50% no-repeat;
     border: none;
     position: absolute;
-        right: 1.55em;
+        right: 1.65em;
         top: 1em;
     height: 10px;
     width: 10px;
@@ -1056,7 +1064,7 @@ Make them smaller and push them right to make it all look presentable. */
     background: url(../images/arrow-up.png) 50% 50% no-repeat;
     border: none;
     position: absolute;
-        right: 1.55em;
+        right: 1.65em;
         top: 0;
     height: 10px;
     width: 10px;
@@ -1674,52 +1682,52 @@ This contains styles for
 -------------------------------------------------------------------------------*/
 /* A grid only used for /paying-for-college/ and /technote/ */
 /* Clear these with .clearfix */
-#comparison-tool .col {
+.paying-for-college .col {
     display: inline;
     float: left;
     margin-right: 30px;
 }
 
-#comparison-tool .col.last,
-#comparison-tool .col.col12 {
+.paying-for-college .col.last,
+.paying-for-college .col.col12 {
     margin-right: 0;
 }
 
 /* Column widths */
-#comparison-tool .col1 { width: 53.5px; }
-#comparison-tool .col2 { width: 137px; }
-#comparison-tool .col3 { width: 220.5px; }
-#comparison-tool .col4 { width: 304px; }
-#comparison-tool .col5 { width: 387.5px; }
-#comparison-tool .col6 { width: 471px; }
-#comparison-tool .col7 { width: 559.5px; }
-#comparison-tool .col8 { width: 638px; }
-#comparison-tool .col9 { width: 721.5px; }
-#comparison-tool .col10 { width: 805px; }
-#comparison-tool .col11 { width: 888.5px; }
-#comparison-tool .col12 { width: 936px; }
-#comparison-tool .pre1 { padding-left: 53.5px; }
-#comparison-tool .pre2 { padding-left: 137px; }
-#comparison-tool .pre3 { padding-left: 220.5px; }
-#comparison-tool .pre4 { padding-left: 304px; }
-#comparison-tool .pre5 { padding-left: 387.5px; }
-#comparison-tool .pre6 { padding-left: 471px; }
-#comparison-tool .pre7 { padding-left: 559.5px; }
-#comparison-tool .pre8 { padding-left: 638px; }
-#comparison-tool .pre9 { padding-left: 721.5px; }
-#comparison-tool .pre10 { padding-left: 805px; }
-#comparison-tool .pre11 { padding-left: 888.5px; }
-#comparison-tool .suf1 { padding-right: 53.5px; }
-#comparison-tool .suf2 { padding-right: 137px; }
-#comparison-tool .suf3 { padding-right: 220.5px; }
-#comparison-tool .suf4 { padding-right: 304px; }
-#comparison-tool .suf5 { padding-right: 387.5px; }
-#comparison-tool .suf6 { padding-right: 471px; }
-#comparison-tool .suf7 { padding-right: 559.5px; }
-#comparison-tool .suf8 { padding-right: 638px; }
-#comparison-tool .suf9 { padding-right: 721.5px; }
-#comparison-tool .suf10 { padding-right: 805px; }
-#comparison-tool .suf11 { padding-right: 888.5px; }
+.paying-for-college .col1 { width: 53.5px; }
+.paying-for-college .col2 { width: 137px; }
+.paying-for-college .col3 { width: 220.5px; }
+.paying-for-college .col4 { width: 304px; }
+.paying-for-college .col5 { width: 387.5px; }
+.paying-for-college .col6 { width: 471px; }
+.paying-for-college .col7 { width: 554.5px; }
+.paying-for-college .col8 { width: 638px; }
+.paying-for-college .col9 { width: 721.5px; }
+.paying-for-college .col10 { width: 805px; }
+.paying-for-college .col11 { width: 888.5px; }
+.paying-for-college .col12 { width: 936px; }
+.paying-for-college .pre1 { padding-left: 53.5px; }
+.paying-for-college .pre2 { padding-left: 137px; }
+.paying-for-college .pre3 { padding-left: 220.5px; }
+.paying-for-college .pre4 { padding-left: 304px; }
+.paying-for-college .pre5 { padding-left: 387.5px; }
+.paying-for-college .pre6 { padding-left: 471px; }
+.paying-for-college .pre7 { padding-left: 554.5px; }
+.paying-for-college .pre8 { padding-left: 638px; }
+.paying-for-college .pre9 { padding-left: 721.5px; }
+.paying-for-college .pre10 { padding-left: 805px; }
+.paying-for-college .pre11 { padding-left: 888.5px; }
+.paying-for-college .suf1 { padding-right: 53.5px; }
+.paying-for-college .suf2 { padding-right: 137px; }
+.paying-for-college .suf3 { padding-right: 220.5px; }
+.paying-for-college .suf4 { padding-right: 304px; }
+.paying-for-college .suf5 { padding-right: 387.5px; }
+.paying-for-college .suf6 { padding-right: 471px; }
+.paying-for-college .suf7 { padding-right: 554.5px; }
+.paying-for-college .suf8 { padding-right: 638px; }
+.paying-for-college .suf9 { padding-right: 721.5px; }
+.paying-for-college .suf10 { padding-right: 805px; }
+.paying-for-college .suf11 { padding-right: 888.5px; }
 
 #comparison-tool .about-section {
     padding-top: 2em;

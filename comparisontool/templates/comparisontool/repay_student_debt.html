@@ -7,8 +7,7 @@
 <meta property="og:url" content="{{ URL }}"/>
 
 <!-- <script src="{{ STATIC_PREFIX }}pb/p4c-ultra/_base.js"></script> -->
-<link href="{{ STATIC_PREFIX }}pb/p4c-ultra/_base.css" rel="stylesheet">
-<link href="{{ STATIC_PREFIX }}pb/p4c-ultra/tooltip-css.css" rel="stylesheet">
+<link href="{{ STATIC_PREFIX }}repaystudentdebt/css/repay.css" rel="stylesheet">
 
 {% endblock %}
 
@@ -27,32 +26,32 @@
 {% block content %}
 
 <header id="repay-debt-header" class="pfc-header">
-        <div id="pfc-hero-wrapper" class="pfc-hero-wrapper clearfix">
-            <div class="pfc-hero-content">
-                <h1 class="sub-page">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</h1>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</p>
-            </div>
-            <div class="pfc-hero-image alignbottom">
-                <img alt="" src="{{ STATIC_PREFIX }}pb/p4c-ultra/ultra_tool_page/3_hero_repaying_debt.png">
-            </div>
-        </div><!-- end .pfc-hero-wrapper -->
-        <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
-        <div class="pfc-nav-wrapper">
-            <nav>
-                <ul class="pfc-nav">
-                    <li><a href="/paying-for-college/">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</a></li>
-                    <li><span tabindex="0" class="fake-link">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</span>
-                        <ul>
-                            <li><a href="/paying-for-college/choose-a-student-loan/">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</a></li>
-                            <li><a href="/paying-for-college/manage-your-college-money/">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</a></li>
-                    <li><a class="is-active" href="/paying-for-college/repay-student-debt/">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</a></li>
-                </ul><!-- end .pfc-nav -->
-            </nav>
-        </div><!-- end .pfc-nav-wrapper -->
-    </header><!-- end #repay-debt-header -->
+    <div id="pfc-hero-wrapper" class="pfc-hero-wrapper clearfix">
+        <div class="pfc-hero-content">
+            <h1 class="sub-page">Repay student debt</h1>
+            <p>Paying off student debt can be confusing. Walk through your options and optimize how to pay off your loans. <a href="http://www.nslds.ed.gov/nslds_SA/">How much do you owe in federal student loans</a>?</p>
+        </div>
+        <div class="pfc-hero-image alignbottomright">
+            <img alt="" src="{{ STATIC_PREFIX }}repaystudentdebt/images/3_hero_repaying_debt.png">
+        </div>
+    </div><!-- end .pfc-hero-wrapper -->
+    <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
+    <div class="pfc-nav-wrapper">
+        <nav>
+            <ul class="pfc-nav">
+                <li><a href="/paying-for-college/">Get started</a></li>
+                <li><span tabindex="0" class="fake-link">Student financial guides</span>
+                    <ul>
+                        <li><a href="/paying-for-college/choose-a-student-loan/">Student loans</a></li>
+                        <li><a href="/paying-for-college/manage-your-college-money/">Student banking</a></li>
+                    </ul>
+                </li>
+                <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Compare financial aid offers</a></li>
+                <li><a class="is-active" href="/paying-for-college/repay-student-debt/">Repay student debt</a></li>
+            </ul><!-- end .pfc-nav -->
+        </nav>
+    </div><!-- end .pfc-nav-wrapper -->
+</header><!-- end #repay-debt-header -->
     
     <div class="sub-page-wrapper">
     
@@ -667,5 +666,5 @@ Thank you for your cooperation.
 {% endblock %}
 
 {% block page_js %}
-    <script src="{{ STATIC_PREFIX }}pb/p4c-ultra/functions.js"></script>
+    <script src="{{ STATIC_PREFIX }}repaystudentdebt/js/repay.js"></script>
 {% endblock %}'

@@ -2,163 +2,133 @@
 
 {% block page_meta %}
 <meta charset="UTF-8" />
-<meta property="og:title" content="Paying for College - Education Guides &gt; Consumer Financial Protection Bureau"/>
+<meta property="og:title" content="Paying for College &gt; Consumer Financial Protection Bureau"/>
 <meta property="og:type" content="government"/>
 <meta property="og:url" content="{{ URL }}"/>
-
 {% endblock %}
 
-{% block title %}Paying for College - Education Guides{% endblock %}
-
-{% block page_css %}
-    <script src="{{ STATIC_PREFIX }}pb/payingforcollege/_base.js"></script>
-    <link href="{{ STATIC_PREFIX }}pb/payingforcollege/_base.css" rel="stylesheet" media="screen">
-    
-    <link href="{{ STATIC_PREFIX }}pb/payingforcollege/print.css" rel="stylesheet" media="print">
-{% endblock %}
+{% block title %}Paying for College{% endblock %}
 
 {% block body_class %}page paying-for-college{% endblock %}
 
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block page_css %}
+
+    <link rel="stylesheet" href="{{ STATIC_PREFIX }}landing/css/landing.css">
+    <link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
+    <!--[if IE 7]>
+    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="http://www.consumerfinance.gov/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
+    <![endif]-->
+
+{% endblock %}
+
 {% block content %}
-    
-    <div class="cfpb-logo" alt="Consumer Financial Protection Bureau"></div>
-    
-    <div class='guide-content'>
-        <div class="guide-hero">
-    <h1>Understanding college finance</h1>
-    <div class="font-xl slate">Explore your options. Make a plan. Navigate the noise.<br>These topic-focused guides can help you cut through the complexity <br> of paying for college to make the most informed decisions.</div>
-</div><div class="timeline">
-            
-    <nav>
-        <ul class="nav-links">
-            <li class="research">
-                <div class="top-process-label" id="process-label-apply">Apply for college</div>
-                <a class="noStyles timeline-exit-link" href="http://nces.ed.gov/collegenavigator/" target="_blank">
-                    <span class="ico-process ico-process-applications" id="process-icon-applications"></span>
-                    <span class="bottom-process-label process-hover" id="process-label-research">Submit your applications</span>
-                </a>
-            </li>
-            <li class="finaid">
-                <div class="top-process-label" id="process-label-financial">Find financial aid</div>
-                <a class="noStyles timeline-exit-link" href="http://fafsa.ed.gov" target="_blank">
-                    <span class="ico-process ico-process-fafsa" id="process-icon-fafsa"></span>
-                    <span class="bottom-process-label process-hover" id="process-label-fafsa">Fill out the FAFSA</span>
-                </a>
-            </li>
-            <li class="loans">
-                <!-- No label for this item -->
-                <a class="noStyles" href="/paying-for-college/choose-a-student-loan/">
-                    <span class="ico-process ico-process-loans-guide" id="process-icon-loans-guide"></span>
-                    <span class="bottom-process-label process-hover" id="process-label-loans-guide">Student Loans</span>
-                </a>
-            </li>
-            <li class="compare">
-                <div class="top-process-label" id="process-label-choose">Choose a school</div>
-                <a class="noStyles" href="/paying-for-college/compare-financial-aid-and-college-cost/">
-                    <span class="ico-process ico-process-comparison" id="process-icon-comparison"></span>
-                    <span class="bottom-process-label process-hover" id="process-label-comparison">Compare costs</span>
-                </a>
-            </li>
-            <li class="manage">
-                <div class="top-process-label" id="process-label-attend">Attend college</div>
-                <a class="noStyles" href="/paying-for-college/manage-your-college-money/">
-                    <span class="ico-process ico-process-banking-guide" id="process-icon-banking-guide"></span>
-                    <span class="bottom-process-label process-hover" id="process-label-banking-guide">Manage your money</span>
-                </a>
-            </li>
-            <li class="repay">
-                <div class="top-process-label" id="process-label-graduate">Graduate</div>
-                <a class="noStyles" href="/paying-for-college/repay-student-debt/">
-                    <span class="ico-process ico-process-ultratool" id="process-icon-ultratool"></span>
-                    <span class="bottom-process-label process-hover" id="process-label-ultratool">Repay student debt</span>
-                </a>
-            </li>
-        </ul><!-- end .nav-links -->
-    </nav>
-        
-</div>
-<div class='intro-row'>
-	<div class='span6'>
-		<div class="sky-lightest-bg intro-block">
-			<div class='loans-icon intro-icon'></div>
-			<div class="slate-blue intro-header tb"><img src="{{ STATIC_PREFIX }}pb/payingforcollege/intro_blocks/loans.png" alt="loans" width="81" height="80" class="well-icon">Student Loans</div>
-			<h3 class='intro-h3'>Choosing a loan that's right for you</h3>
-			<p class='no-btm font-m lead' id='intro-blocks-p'>We're here to help you navigate the noise<br><br></p>
-			<div class="row">
-				<a href="/paying-for-college/choose-a-student-loan/#loans-table"><div class="slate-blue-bg intro-half-block-1" id='intro-blocks-p'>Federal loans</div></a>
-				<a href="/paying-for-college/choose-a-student-loan/#loans-table"><div class="slate-blue-bg intro-half-block-1 last-child" id='intro-blocks-p'>Private loans</div></a>
-			</div>
-			<div class='blurb'id='intro-blocks-p'>
+<div id="pfc-landing-page" class="pfc-landing-page">
+    <header id="pfc-landing-page-header" class="pfc-landing-header">
+        <div id="pfc-hero-wrapper" class="pfc-hero-wrapper clearfix">
+            <div class="pfc-hero-content">
+                <h1>Paying for College</h1>
+                <p>Get help to make informed financial decisions about how to pay for college. Start by <a href="/paying-for-college/compare-financial-aid-and-college-cost/">comparing financial aid offers</a> or <a href="/paying-for-college/repay-student-debt/">understanding student loan repayment options</a>.</p>
+            </div>
+            <div class="pfc-hero-image alignbottomright">
+                <img alt="" src="{{ STATIC_PREFIX }}landing/images/3_hero_homepage.png">
+            </div>
+        </div><!-- end .pfc-hero-wrapper -->
+        <a class="cfpb_visually_hide focusable" href="#sub-page-content">Skip to main content</a>
+        <div class="pfc-nav-wrapper">
+            <nav>
+                <ul class="pfc-nav">
+                    <li><a class="is-active" href="/paying-for-college/">Get started</a></li>
+                    <li><span tabindex="0" class="fake-link">Student financial guides</span>
+                        <ul>
+                            <li><a href="/paying-for-college/choose-a-student-loan/">Student loans</a></li>
+                            <li><a href="/paying-for-college/manage-your-college-money/">Student banking</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Compare financial aid offers</a></li>
+                    <li><a href="/paying-for-college/repay-student-debt/">Repay student debt</a></li>
+                </ul><!-- end .pfc-nav -->
+            </nav>
+        </div><!-- end .pfc-nav-wrapper -->
+    </header><!-- end #comparison-tool-header -->
 
+    <div id="sub-page-content" class="sub-page-wrapper">
 
+        <section id="intro" class="section clearfix">
+            <div class="col col8">
+                <header>
+                    <h2>Welcome!</h2>
+                </header>
+                <p>It’s more important than ever for students and former students to make smart decisions about financing their college education. Whether you’re attending college soon, are a current student, or already have student loans, we’ve put together some tools and resources to help you make the best decisions for you.</p>
+            </div>
+            <div class="col last col4">
+                <div class="share-pfc">
+                    <h3 class="h4">Share this page</h3>
+                    <div class="share-links">
+                        <a href="http://www.facebook.com/sharer.php?u={% firstof share_uri request.build_absolute_uri|urlencode %}&t={{ pagetitle|default:"CFPB" }}" class="icon-facebook-alt" ><span class="cfpb_visually_hide">Share on Facebook</span></a>
+                        <a href="http://twitter.com/share?text={% firstof tweet_text pagetitle "CFPB" %}&url={% firstof share_uri request.build_absolute_uri|urlencode %}&via=CFPB&related=CFPB" class="icon-twitter-alt"><span class="cfpb_visually_hide">Share on Twitter</span></a>
+                        <a class="addthis_button_email icon-email-social-alt" href="http://api.addthis.com/oexchange/0.8/forward/email/offer?url={% firstof share_uri request.build_absolute_uri|urlencode %}&title={% firstof email_title "CFPB" %}&pubid=ra-4da354ee346886d2"><span class="cfpb_visually_hide">Share via Email</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section id="options" class="section clearfix">
+            <header class="border-overlay-spacing">
+                <h2 class="h4 border-overlay">College finance guides</h2>
+            </header>
+            <div class="col col12">
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+            </div>
+            <div class="clearfix">
+                <div class="col col6">
+                    <h3>Student loans</h3>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 
+                    <p><a class="button" href="/paying-for-college/choose-a-student-loan/">More about student loans</a></p>
+                    <p>Still Need to complete the FAFSA? <br><a href="https://fafsa.gov/" target="_blank">Visit fafsa.gov&nbsp;<span class="icon-external-link"></span></a> 
+                </p>
+                </div>
+                <div class="col last col6">
+                    <h3>Student banking</h3>
+                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
 
+                    <p><a class="button" href="/paying-for-college/manage-your-college-money/">More about managing your money</a></p>
+                </div>
+            </div>
+        </section>
 
+        <section id="offers" class="section clearfix">
+            <header class="border-overlay-spacing">
+                <h2 class="h4 border-overlay">Compare financial aid offers</h2>
+            </header>
+            <div class="col last col8">
+                <p>As part of our Know Before You Owe project, we worked with the Department of Education to create a Financial Aid Shopping Sheet. Now that thousands of colleges are adopting this clear and comparable form, we’ve built a tool that complements the shopping sheet to help students make comparisons tailored to their individual circumstances.</p>
+                <p><a class="button" href="/paying-for-college/compare-financial-aid-and-college-cost/">Compare costs</a></p>
+                <p>Still researching schools? <br><a href="http://nces.ed.gov/collegenavigator/" target="_blank">Check out the NCES College Navigator&nbsp;<span class="icon-external-link"></span></a> 
+                </p>
+            </div>
+        </section>
 
-<p class="p1">If you're considering student loans to help you pay for school, you're not alone - many students need loans to cover their full cost of attendance. But the more money you borrow now, the higher your loan payments will be after you graduate.</p><p class="p1">If you have to take out student loans, you have options, and comparing them can help you find the right loan - the loan you can pay back.</p>
+        <section id="repay" class="section clearfix">
+            <header class="border-overlay-spacing">
+                <h2 class="h4 border-overlay">Repay student debt</h2>
+            </header>
+            <div class="col last col8">
+                <p>Paying off student debt can be confusing. We'll walk you through how to optimize paying off your student loans, even if you're behind.</p>
+                <p><a class="button" href="/paying-for-college/repay-student-debt/">Get started</a></p>
+            </div>
+        </section>
 
-
-
-
-
-
-
-</div>
-			<button onclick="document.location='/paying-for-college/choose-a-student-loan/';" id="button">Read Guide</button>
-		</div>
-	</div>
-	<div class='span6'>
-		<div class="sky-lightest-bg intro-block">
-			<div class='banks-icon intro-icon'></div>
-            <img src="{{ STATIC_PREFIX }}pb/payingforcollege/intro_blocks/banking.png" alt="loans" width="81" height="80" class="well-icon">
-			<div class="slate-blue intro-header tb">Student Banking</div>
-			<h3 class='intro-h3'>Managing your money</h3>
-			<p class='no-btm font-m lead' id='intro-blocks-p'>We're here to help you get your first major financial relationship off to a solid start</p>
-			<div class="row">
-				<a href="/paying-for-college/manage-your-college-money/"><div class="slate-blue-bg intro-half-block-2" id='intro-blocks-p'>Choosing a bank account</div></a>
-				<a href="/paying-for-college/manage-your-college-money/"><div class="slate-blue-bg intro-half-block-2" id='intro-blocks-p'>Receiving financial aid disbursement</div></a>
-			</div>
-			<div class='blurb' id='intro-blocks-p'>
-
-
-
-
-
-
-
-<p class="p1">For some of you, college is your first chance to establish your financial footing. And if you've used any form of financial aid - loans, grants, scholarships, on-campus employment - to support your education, you probably have some money coming. You will need a way to keep track of and manage those funds.<br><br></p><p class="p1"><br></p></div>
-			<button onclick="document.location='/paying-for-college/manage-your-college-money/';" id="button">Read Guide</button>
-		</div>
-	</div>
-</div>
-<div>
-    <div class="related-resources-col">
-		Related resources
-	</div>
-	<div class="related-resources-col">
-		<a href="http://www.consumerfinance.gov/" target="_blank"><div class="green ico ico-ask">Ask</div></a>
-		<h6><a href="/askcfpb/" target="_blank">Ask CFPB</a></h6>
-		<p>Financial products and services can be hard to understand. Tough questions deserve clear answers, and <a href="/askcfpb">Ask CFPB</a> can help you find them. </p>
-	</div>
-	<div class="related-resources-col">
-		<a href="http://www.consumerfinance.gov/" target="_blank"><div class="green ico ico-watch">Watch</div></a>
-		<h6><a href="http://www.youtube.com/watch?v=XRQK1TFxWRs" target="_blank">Student debt is a rising problem</a></h6>
-		<p>The data and experts agree - rising student debt is troubling, but investing in education can still be a good deal.</p>
-	</div>
-	<div class="related-resources-col">			
-		<a href="http://www.consumerfinance.gov/" target="_blank"><div class="green ico ico-repay">Repay</div></a>
-		<h6><a href="/paying-for-college/repay-student-debt/" target="_blank">Repay student debt</a></h6>
-		<p>What's your best option to repay your student loans? We can help point you in the right direction.</p>
-	</div>
-	<div class="related-resources-col">
-		<a href="http://www.consumerfinance.gov/" target="_blank"><div class="green ico ico-compare">Compare</div></a>
-		<h6><a href="/paying-for-college/compare-financial-aid-and-college-cost/" target="_blank">Compare financial aid and college cost</a></h6>
-		<p>Your financial aid information goes in, a college cost comparison comes out!</p>
-	</div>
-
-	<div style='clear:both;'></div>
-</div>
+        {% block share_box %}
+        {% endblock %}
     </div>
+</div>
 
-{% endblock %}'
+{% endblock %}
+
+{% block page_js %}
+    <script src="{{ STATIC_PREFIX }}landing/js/landing.js"></script>
+{% endblock %}
