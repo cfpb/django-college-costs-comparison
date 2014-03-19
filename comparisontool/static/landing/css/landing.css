@@ -75,6 +75,7 @@ This just the hero for the Comparison Tool.
     /* Not an official color, but a mix of green and white. */
     background-color: #d3efdb;
     float: left;
+    min-height: 155px;
     padding: 1em;
     width: 35%;
 }

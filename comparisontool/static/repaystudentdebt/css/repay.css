@@ -45,12 +45,12 @@ button {
     padding-left: 123px;
 }
 
-.alert { background-image: url('/static/repaystudentdebt/images/alert-icon.png'); }
-.budget { background-image: url('/static/repaystudentdebt/images/budget-icon.png'); }
-.paperwork { background-image: url('/static/repaystudentdebt/images/paperwork-icon.png'); }
-.extra { background-image: url('/static/repaystudentdebt/images/extra-icon.png'); }
-.defer { background-image: url('/static/repaystudentdebt/images/defer-icon.png'); }
-.mil { background-image: url('/static/repaystudentdebt/images/mil-icon.png'); }
+.alert { background-image: url("/static/repaystudentdebt/images/alert-icon.png"); }
+.budget { background-image: url("/static/repaystudentdebt/images/budget-icon.png"); }
+.paperwork { background-image: url("/static/repaystudentdebt/images/paperwork-icon.png"); }
+.extra { background-image: url("/static/repaystudentdebt/images/extra-icon.png"); }
+.defer { background-image: url("/static/repaystudentdebt/images/defer-icon.png"); }
+.mil { background-image: url("/static/repaystudentdebt/images/mil-icon.png"); }
 
 /* TOOLTIPS
 The styles for the tooltip interactions on this page.
@@ -164,6 +164,7 @@ This just the hero for the Comparison Tool.
     /* Not an official color, but a mix of green and white. */
     background-color: #d3efdb;
     float: left;
+    min-height: 155px;
     padding: 1em;
     width: 35%;
 }
