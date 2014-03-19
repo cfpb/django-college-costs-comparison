@@ -422,6 +422,7 @@ from the main site stylesheet.
 -------------------------------------------------------------------------------*/
 .paying-for-college #maincontent {
     padding: 0 0 2em;
+    width: 1016px;
 }
 
 /* No breadcrumbs in PFC. Current Django templates output an empty UL when
