@@ -47,7 +47,7 @@ var CFPBComparisonTool = (function() {
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
 		"unsubsidizedcapgrad": 20500, "state529plan": 0, "perkinsrate": 0.05, "subsidizedrate": 0.0386, 
-		"unsubsidizedrateundergrad": 0.0386, "unsubsidizedrategrad": 0.0541, "dloriginationfee": 1.072, "gradplusrate": 0.0641, 
+		"unsubsidizedrateundergrad": 0.0386, "unsubsidizedrategrad": 0.0541, "dloriginationfee": 1.01072, "gradplusrate": 0.0641, 
 		"parentplusrate": 0.0641, "plusoriginationfee": 1.04288, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
 		"tfcap": 19198.31, "avgbah": 1429, "bscap": 1000, 
@@ -1532,11 +1532,18 @@ var CFPBComparisonTool = (function() {
             // ---"Remove this school" user interface--- //
 
             // Remove a school (display confirmation)
-            $(".remove-this-school").click( function() {
+            $(".remove-this-school").on('click', '.remove-school-link', function(ev) {
+                $('.remove-confirm').hide();
                 var columnNumber = $(this).closest("[data-column]").attr("data-column");
                 if (columns[columnNumber].fetchSchoolID() != "") {
-                    $(this).closest("[data-column]").children(".remove-confirm").show();
-                }            
+                    var removeWindow = $(this).closest("[data-column]").children(".remove-confirm");
+                    removeWindow.show();
+                    ev.stopPropagation();
+                    $('html').on('click', 'body', function() {
+                        removeWindow.hide();
+                        $('html').off('click');
+                    });
+                }
             });
 
             // Remove school (confirmed, so actually get rid of it)
