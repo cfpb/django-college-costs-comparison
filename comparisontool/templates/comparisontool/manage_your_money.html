@@ -11,10 +11,8 @@
 {% block title %}Manage college money{% endblock %}
 
 {% block page_css %}
-    <script src="{{ STATIC_PREFIX }}pb/payingforcollege/_base.js"></script>
-    <link href="{{ STATIC_PREFIX }}pb/payingforcollege/_base.css" rel="stylesheet" media="screen">
-    
-    <link href="{{ STATIC_PREFIX }}pb/payingforcollege/print.css" rel="stylesheet" media="print">
+    <link href="{{ STATIC_PREFIX }}manageyourmoney/css/guides.css" rel="stylesheet">
+    <link href="{{ STATIC_PREFIX }}manageyourmoney/css/print.css" rel="stylesheet" media="print">
 {% endblock %}
 
 {% block body_class %}page paying-for-college{% endblock %}
@@ -23,11 +21,11 @@
     <header id="guide-debt-header" class="pfc-header">
     <div id="pfc-hero-wrapper" class="pfc-hero-wrapper clearfix">
         <div class="pfc-hero-content">
-            <h1 class="sub-page">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</h1>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget</p>
+            <h1 class="sub-page">Managing college money</h1>
+            <p>Practical advice on how to make sure you’re getting the best deal.</p>
         </div>
         <div class="pfc-hero-image alignbottomright">
-            <img alt="" src="{{ STATIC_PREFIX }}pb/payingforcollege/banking_hero_and_menu/2_hero_explore.png">
+            <img alt="" src="{{ STATIC_PREFIX }}manageyourmoney/images/2_hero_explore.png">
         </div>
     </div><!-- end .pfc-hero-wrapper -->
     <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
@@ -35,10 +33,10 @@
         <nav>
             <ul class="pfc-nav">
                 <li><a href="/paying-for-college/">Get started</a></li>
-                <li><span class="fake-link is-active" tabindex="0" class="fake-link">Explore options</span>
+                <li><span class="fake-link is-active" tabindex="0" class="fake-link">Student financial guides</span>
                     <ul>
-                        <li><a href="/paying-for-college/choose-a-student-loan/">Choosing a loan that's right for you</a></li>
-                        <li><a href="/paying-for-college/manage-your-college-money/">Managing your college money</a></li>
+                        <li><a href="/paying-for-college/choose-a-student-loan/">Student loans</a></li>
+                        <li><a href="/paying-for-college/manage-your-college-money/">Student banking</a></li>
                     </ul>
                 </li>
                 <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Compare financial aid offers</a></li>
@@ -271,7 +269,7 @@ May include online banking and bill-pay</p>
 	</div>
 	<div class="accordion-item">
 		<div class="accordion-body sky-lightest-bg" style='padding-top:0px;'>
-			<div><p>We encourage you to choose your disbursement option wisely. They all have benefits and risks, so the most important thing is that you understand your needs and what potential fees you will be charged to use each option.</p></div>
+			<div>We encourage you to choose your disbursement option wisely. They all have benefits and risks, so the most important thing is that you understand your needs and what potential fees you will be charged to use each option.</div>
 		</div>
 		<table class="pacific-lightest-bg stretch loans-table lbtable compare-table">
 			<thead class="">  
@@ -413,4 +411,8 @@ What is a financial aid disbursement? </div>
 </section>
     </div>
 
-{% endblock %}'
+{% endblock %}
+
+{% block page_js %}
+    <script src="{{ STATIC_PREFIX }}manageyourmoney/js/guides.js"></script>
+{% endblock %}
