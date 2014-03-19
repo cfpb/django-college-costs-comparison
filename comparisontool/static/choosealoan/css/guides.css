@@ -473,6 +473,11 @@ This just the hero for the Comparison Tool.
     width: 35%;
 }
 
+.pfc-hero-content p {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .pfc-hero-image {
     position: absolute;
         right: 30px;
