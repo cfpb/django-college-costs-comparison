@@ -1244,17 +1244,8 @@ var CFPBComparisonTool = (function() {
         //-- toggles "active" or "inactive" state of the column --//
         this.toggleActive = function(state) { 
             // list of elements to toggle
-            var grays = 'input, .visualization, .data-total, h6';
-            var ninjas = '.visualization, .hide-on-inactive';
-
-            // If state isn't something clear, then it's as good as undefined
-            if (state !== 'active' && state !== 'inactive') {
-                state = undefined;
-            }
-            // Detect state if state is undefined
-            if (state === undefined) {
-                // Code to detect state goes here.
-            }
+            var grays = 'input, .visualization, .data-total, h6, .visualization';
+            var ninjas = '.hide-on-inactive';
 
             // Now we can alter the state to 'state'
             if (state === 'active') {
@@ -1263,6 +1254,7 @@ var CFPBComparisonTool = (function() {
                 columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
                 columnObj.find('input').removeAttr('disabled');
+                circles[this.columnNumber].attr({fill: "Gray"});
             }
 
             if (state === 'inactive') {
@@ -1272,6 +1264,8 @@ var CFPBComparisonTool = (function() {
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
                 columnObj.find('input').val('$').attr('disabled', true);
+                columnObj.find('.data-total').html('$0');
+                circles[this.columnNumber].attr({fill: "#babbbd"});
             }
 
         } // end .toggleActive()
@@ -1304,29 +1298,7 @@ var CFPBComparisonTool = (function() {
 
     $(document).ready(function() {
         if ( $("#comparison-tables").exists() ) { // Added for ease of testing
-	        // Initialize columns[] with an instance of Column() for each column
-	        for (var x=1;x<=3;x++) {
-	            columns[x] = new Column(x);
-	        }
 
-	        // Make all columns inactive
-	        for (var x=1; x<=3; x++) {
-	            columns[x].toggleActive("inactive");
-	        }
-
-            // Notification for mobile screens //
-            $("#pfc-notification-wrapper").hide();
-            $("#pfc-notification-wrapper").delay(1500).slideDown(1000);
-
-            $("#pfc-close-bar, #pfc-close-text").click(function() {
-                $("#pfc-notification-wrapper").slideUp(1000);
-            });
-
-            // Make the drop down menus accessible on focus //
-            $(".pfc-nav-wrapper").find( "a, .fake-link" ).on( "focus blur", function() {
-                $(this).parents().toggleClass( "focus" );
-            } );
-            
             // --- Initialize Visualizations --- //
             // Pie Charts
             var x;
@@ -1358,6 +1330,31 @@ var CFPBComparisonTool = (function() {
                 meterarrows[x] = meters[x].path("M 100 100 L 50 100");
                 meterarrows[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
             }
+
+	        // Initialize columns[] with an instance of Column() for each column
+	        for (var x=1;x<=3;x++) {
+	            columns[x] = new Column(x);
+	        }
+
+	        // Make all columns inactive
+	        for (var x=1; x<=3; x++) {
+	            columns[x].toggleActive("inactive");
+	        }
+
+            // Notification for mobile screens //
+            $("#pfc-notification-wrapper").hide();
+            $("#pfc-notification-wrapper").delay(1500).slideDown(1000);
+
+            $("#pfc-close-bar, #pfc-close-text").click(function() {
+                $("#pfc-notification-wrapper").slideUp(1000);
+            });
+
+            // Make the drop down menus accessible on focus //
+            $(".pfc-nav-wrapper").find( "a, .fake-link" ).on( "focus blur", function() {
+                $(this).parents().toggleClass( "focus" );
+            } );
+            
+            
 
         //---------------------------//
         //    JQUERY EVENT HANDLERS
@@ -1765,6 +1762,13 @@ var CFPBComparisonTool = (function() {
                 request.fail( function( jqXHR, msg ) {
                     alert( "Email failed." );
                 });
+            });
+
+            // highlight on input click
+            $('td').on('click', 'input.school-data', function() {
+                var columnNumber = $(this).closest("[data-column]").attr("data-column");
+                clearHighlights();
+                columns[columnNumber].toggleHighlight('active');
             });
 
             // toggle save drawer
