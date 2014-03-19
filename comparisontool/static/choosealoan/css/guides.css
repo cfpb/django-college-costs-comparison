@@ -120,6 +120,10 @@ td, .smlr-text{font-family: Georgia;font-size: 14px;line-height: 20px;font-weigh
 
 /* COLORS!
 -------------------------------------------------------------------------------*/
+/* black */
+.black {color:#101820;}
+.black-bg {background-color:#101820; border-color:#101820; color:#FFFFFF;}
+
 /* orange */
 .orange {color:#D83D00;}
 .orange-bg {background-color:#D83D00; border-color:#D83D00; color:#FFFFFF;}
@@ -196,7 +200,7 @@ section,header {border-color:#3B7187;}
 
 /* ------- */
 
-.green-bg{background:#2EB135;}
+.green-bg{background:#101820;}
 .bullet{
     color:white;
     height: 25px;
@@ -233,17 +237,17 @@ section,header {border-color:#3B7187;}
     border: 0;
     width: 218px;
     text-decoration: none;
-    background-color: #2EB135;
+    background-color: #0072ce;
     color: white;
 }
 
 /* BIG BUBBLES */
 .bubbles{clear:both;}
-.bubble{width:208px;float:left;background:#D2E1EF;margin:0 5px 10px 5px;cursor:pointer;height:270px;}
-.bubble.bubble-active{background:#DD6344;}
+.bubble{width:208px;float:left;background:#E3E4E5;margin:0 5px 10px 5px;cursor:pointer;height:270px;}
+.bubble.bubble-active{background:#ADDC91;}
 .bubble-text{min-height:150px;background-repeat:no-repeat;background-position:20px 20px;
     padding:80px 20px 0 20px;color:black;font-size:18px;line-height:26px;}
-.bubble.bubble-active .bubble-text{color:white;}
+.bubble.bubble-active .bubble-text{color:#101820;}
 .bubble-text.key-options {background-image:url("/static/choosealoan/images/key_options.png");}
 .bubble-text.key-dollar {background-image:url("/static/choosealoan/images/key_dollar.png");}
 .bubble-text.key-check {background-image:url("/static/choosealoan/images/key_check.png");}
@@ -251,7 +255,7 @@ section,header {border-color:#3B7187;}
 .bubble-text.key-compass {background-image:url("/static/choosealoan/images/key_compass.png");}
 .bubble-text.key-bank {background-image:url("/static/choosealoan/images/key_bank.png");}
 .bubble-text.key-checklist {background-image:url("/static/choosealoan/images/key_checklist.png");}
-.answer-box{border:1px solid #5281AB;padding:14px;}
+.answer-box{border:1px solid #5281AB;margin-bottom:45px;padding:14px;}
 .answer-box .answer-entry{display:none;}
 .answer-box .answer-entry.bubble-active{display:block;}
 .answer-box .answer-entry.bubble-active b{/*text-transform:uppercase;*/font-weight:600;font-family: "Avenir Next", Arial, sans-serif;}
@@ -318,9 +322,7 @@ p {line-height:1.4em;}
 .ico-repay{ background-position: 0 -77px; width: 23px; height: 13px; } 
 .ico-compare{ background-position: 0 -110px; width: 19px; height: 19px; }
 .hero, .sub-hero{font-family:"Avenir Next", Arial, sans-serif;font-weight:500;}
-.hero{font-size:36px;line-height:58px;}
-/* Adding top margin for new design. If we add sub-heads back in, should be removed. */
-.hero h1 {margin-left:0; margin-top:45px;}
+.hero{font-size:36px;line-height:58px; margin-bottom:45px;}
 .sub-hero{font-size:28px; line-height:30px;margin-top:0; margin-left:0;}
 span.ec{cursor:pointer;}
 
@@ -345,7 +347,6 @@ thead th {padding:1px;}
 #print-accordion {display:none;}
 .td2{width:150px;}
 .no-marg-top-childs p{margin-top:0px;}
-p{margin-top:0px;margin-left:0px;}
 h2{text-transform:none;margin-left:0px;letter-spacing:0px;}
 .td2 h2{font-weight:500; padding-bottom:.4em; border-bottom:1px solid #212121;}
 #ask-cfpb-print{display:none;}
@@ -390,9 +391,10 @@ ol.action-steps .li-3 {background-image:url("/static/choosealoan/images/bullet-3
 
 .no-btm{margin-bottom:0px;}
 .well-icon{display:none;}
-.major-sect{border-top:6px solid #D83D00;margin-top:45px;padding-top:5px;}
+.major-sect{border-top: 1px solid #babbbd;}
 .guide-sect-header h5{color: #D83D00;}
 p{font-family:Georgia, serif; margin:10px 12px 10px 12px;}
+p{margin-top:0px;margin-left:0px;}
 #take-action .font-s p{font-family: "Avenir Next", Arial, sans-serif;}
 .loans-table {}
 .loans-table td {width:242px;}
@@ -644,4 +646,18 @@ This has similar styles as the global site navigation.
 .pfc-nav-wrapper ul ul li.focus > ul { /* Display the dropdown on hover */
     left: 100%; /* Bring back on-screen when needed */
     top: 0;
+}
+
+/* Apply to container element at top of .section to achieve boder overlay */
+.border-overlay-spacing {
+    margin-top: -2px;
+}
+
+/* Apply to heading at top of .section to achieve boder overlay */
+.border-overlay {
+    border-top: 4px solid #30b14a;
+    display: inline-block;
+    zoom: 1;
+        *display: inline;
+    padding-top: 0.25em;
 }
