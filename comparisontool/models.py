@@ -15,7 +15,10 @@ class School(models.Model):
 
     @property
     def primary_alias(self):
-        return self.alias_set.get(is_primary=True).alias
+        if len(self.alias_set.values()) != 0:
+            return self.alias_set.get(is_primary=True).alias
+        else:
+            return 'Not Available'
 
 
 class Alias(models.Model):
