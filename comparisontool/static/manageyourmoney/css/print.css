@@ -1,40 +1,19 @@
 .letterhead {float:left; width:75%;}
-.cfpb-logo {background-image: url(cfpb-logo.png); width:150px; height:31.5px; top left no-repeat; float:right;}
-.comparison-h2 {font-size:1.5em; font-weight:500; margin-bottom:.4em; margin-top: 1.4em; text-transform:none;}
-
-body {font-family: "Avenir Next";}
+.cfpb-logo {background-image: url("/static/manageyourmoney/images/cfpb-logo.png"); width:150px; height:31.5px; top left no-repeat; float:right;}
+body {font-family: "Avenir Next"; color: #000 !important;}
+.wrapper-banner {display:none;}
 .header {display:none;}
 #header {display:none;}
 .bread {display:none;}
+.pfc-header {display:none;}
 .share {display:none;}
 #footer {display:none;}
 #subnav {display: none;}
 #button {display:none;}
+.icon {display:none;}
 
-.well-icon {float:left; height: 40px; width: 40px; margin: 10px; margin-left:-50px;}
-
-.intro-header{text-transform:uppercase; margin-top:10px; font-weight:500; margin-left:0px; line-height:26px;}
-.intro-h3{margin-top:0px;text-transform:none; font-weight:400;}
-br {display:none;}
-.intro-half-block-1 {margin-bottom:5px;}
-
-
-
-body {font-family: "Avenir Next";}
-#college-process-timeline {display:none;}
-
-.intro-icon {float:left; height: 40px; width: 40px; margin: 10px;}
-.tline-h4 {display:none;}
-
-
-.horizontal-bar {display:none;}
-#timeline-label {display:none;}
-
-
-
-h1 {font-size:20px; margin-bottom:0px; line-height:24px; font-weight:500;}
-
-font-xs,.font-s,.font-m,.font-l,.font-xl,.font-xxl {font-family:"Avenir Next";}
+.guide-content {margin-top:0;}
+.font-xs,.font-s,.font-m,.font-l,.font-xl,.font-xxl {font-family:"Avenir Next";}
 .font-m {font-size:14px;}
 .font-xs {font-size:10px;}
 .font-s {font-size:12px; line-height:17px; margin-left: 30px;}
@@ -49,19 +28,8 @@ font-xs,.font-s,.font-m,.font-l,.font-xl,.font-xxl {font-family:"Avenir Next";}
 .guide-hero h1 {font-size:32px; line-height:36px; font-weight:500; letter-spacing: .5px; margin-bottom:8px; padding-top:.67em;}
 .guide-hero h2 {font-size:32px; line-height:36px;}
 
-.hero h1 {font-weight:600; font-size: 2em; line-height:1em; letter-spacing: .5px; font-family:"Avenir Next";}
-.sub-hero{font-size:24px; line-height:1.67em; margin-top:0px; margin-left:0px; margin-bottom: .67em; font-weight:500;}
-
-.horizontal-bar {font-size:14px; line-height: 20px; font-weight:500; text-transform:uppercase; width:auto; padding:px 0px 0px 0px; }
-.timeline {display:none;}
-
-.vspace1 {margin-top:6px; margin-bottom: 6px;text-transform:uppercase; }
-.vspace2 {margin-bottom:10px; margin-top:10px;}
-.guide-sect-header{font-size:1em; color: #d83d00; font-weight:500; padding-top: .1em; text-transform:uppercase; margin-top: 1.5em;}
-
-.vspace3 {margin-bottom:30px;}
-.vspace4 {margin-bottom:30px;}
-.vspace5 {margin-bottom:50px;}
+.hero h1 {font-weight:600; line-height:1em; letter-spacing: .5px; font-family:"Avenir Next"; margin-bottom: 45px;}
+.sub-hero {font-size:24px; line-height:1.67em; margin-top:0px; margin-left:0px; margin-bottom: .67em; font-weight:500;}
 
 .label {font-size: 14px; line-height: 20px; font-weight: 400; }
 .lead {margin-bottom: 6px;}
@@ -81,14 +49,8 @@ font-xs,.font-s,.font-m,.font-l,.font-xl,.font-xxl {font-family:"Avenir Next";}
 .tb {}
 .related-resources p {margin: 0px; font-size: 14px; line-height: 20px;}
 
-.ico-explore {font-size: 14px; color:#212121; text-transform: none;display:none;}
-.ico-watch {font-size: 14px; color:#212121; text-transform: none;display:none; }
-.ico-compare {font-size: 14px; color:#212121; text-transform: none; display:none; }
-.ico-ask {font-size: 14px; color:#212121; text-transform: none; display:none; }
-.ico-repay {font-size: 14px; color:#212121; text-transform: none; display:none; }
-
 #its-important { }
-#print-questions {text-transform: none; font-size: 18px; font-weight: 400; color:#212121;} 
+#print-questions {display:block; text-transform: none; font-size: 18px; font-weight: 400; color:#212121;} 
 #print-questions ul, li {font-family:"Georgia"; font-size: 12px;}
 #print-questions h2 {}
 
@@ -98,19 +60,14 @@ font-xs,.font-s,.font-m,.font-l,.font-xl,.font-xxl {font-family:"Avenir Next";}
 
 a, .lnk {border-bottom:1px dotted #004D6B; text-decoration:none; color: #3A7188; font-weight:500;}
 
-a.ec,a.ec-blk {    
-     font-weight:500;
-     text-decoration:none;
-     padding-left:0px;   
-     background-repeat:no-repeat; 
-     background-position-x:0px;
-     background-position-y:0px;
-     
-     
+a.ec,a.ec-blk {
+    font-weight:500;
+    text-decoration:none;
+    padding-left:0px;   
+    background-repeat:no-repeat; 
+    background-position-x:0px;
+    background-position-y:0px;
 }
-
-.process {display: none;}
-
 
 ul.m,ol.m {line-height:18px;}
 a.collapse {background-position-y:-14px;color:#212121;}
@@ -119,15 +76,13 @@ a.fix2bottom {position:absolute;bottom:18px;}
 
 ul.m,ol.m {line-height:18px;}
 
-h1, h2, h3, h4, h5, h6 {margin:0; font-weight:normal;}
+h1, h2, h3, h4, h5, h6 {margin:0; font-weight:normal; color: #000 !important;}
 h2 {text-transform:uppercase;}
 h1 {font-size:28px; font-weight:400; padding-top: .67em;}
 h2 {font-size:14px; font-weight:500; margin-bottom: 0px; line-height:18px;}
 h3 {font-size:1.5em; font-weight:500; margin-bottom: .4em; margin-top: 1.4em; text-transform:none; border-bottom: 3px solid #212121;}
 h4 {font-size:1em; text-transform:none; font-weight:500; margin-bottom: -.5em; margin-top: 1em;}
-h5 {border-top:3px solid #d83d00;}
-
-.well-solid-xl h1 {font-size:22px;}
+#takeaction h1 {text-transform: none;}
 
 p,p.body {font-size:12px; font-family: Georgia; margin-bottom:10px; }
 
@@ -141,29 +96,25 @@ td {font-family:georgia;font-size:14px;line-height:20px;text-align:center;font-w
 .preheading-l {font-size:20px;}
 .preheading-xl {font-size:22px;}
 
-
 .lc {text-transform:lowercase;}
 .nc {text-transform:none; font-weight:500; letter-spacing:0px; margin-bottom: -.3em; }
 
 .s  {font-family:Georgia; font-weight:normal!important; font-style:italic;}
 .ss {font-family:"Avenir Next";}
 
-
-#takeaction h1 {text-transform: none;}
-
-table {border-collapse:separate; border-spacing:18px 0px;padding-bottom:20px;}
+    table {border-collapse:separate; border-spacing:18px 0px;padding-bottom:20px;}
 td,th { vertical-align:top;padding:10px 0px 10px;text-align:left;}
 td.line {border-top:1px solid #000;}
 td.thick-line {border-top: 3px solid #000; font-size:12px;}
 .rh {text-align:left;}
 .rh .icon {top:9px;}
-ol,ul {padding:0; list-style: none; font-family:}
+ol,ul {padding:0; list-style: none;}
 ol li {margin-bottom:10px;padding-left:30px;background-position-y:2px;}
 ol .li-1 {background-image:url(../images/bullet-1.png);background-repeat: no-repeat;}
 ol .li-2 {background-image:url(../images/bullet-2.png);background-repeat: no-repeat;}
 ol .li-3 {background-image:url(../images/bullet-3.png);background-repeat: no-repeat;}
 
-.loans-table {margin-bottom: 10px;}
+.loans-table {background-color: #fff;margin-bottom: 10px;}
 .loans-table td {width:242px;}
 .loans-table td.rh {width:80px;}
 .loans-table .rh {
@@ -196,60 +147,6 @@ table td{border:0px;}
 td{padding: 10px 0px 10px;}
 td, .smlr-text{font-family: georgia;font-size: 12px;line-height: 20px;font-weight: 500;}
 
-
-
-/* Timeline */
-
-.timeline {display:none;}
-.tl-step {position:relative;float:left;margin-left:5px;height:20px;z-index:2;padding:8px;}
-.tl-marker {
-     position:absolute;
-     top:36px;left:10px;
-     padding:23px 14px 0px 14px !important;
-     margin:0px!important;
-     z-index:1;
-     min-height:30px;
-     background-image:url(../images/timeline-marker.png); 
-     background-repeat: no-repeat;
-     width:110px!important;
-     color:#000;
-
-}
-.tl-marker-invert {background-position-x:130px;text-align:right;}
-
-.tl-arrow-right:after {left: 100%;border:solid transparent;content: " ";height: 0;width: 0;position: absolute;}
-.tl-arrow-right:after {border-left-color: inherit;border-width: 18px;top: 0px;}
-
-.tl-arrow-left {margin-left:18px;}
-.tl-arrow-left:before {right: 100%;border:solid transparent;content: " ";height: 0;width: 0;position: absolute;}
-.tl-arrow-left:before {border-right-color: inherit;border-width: 18px;top: 0px;}
-
-/* Header Process */
-
-.process {
-     height:62px;
-     background-image:url(../images/header-timeline.png);
-     background-repeat:no-repeat;
-     background-position:100px 45px;
-     position:relative;
-     font-size:10px;
-     text-transform:uppercase;
-}
-.process-link {text-decoration:none;}
-.process-label {position:absolute;top:20px;}
-.ico-process {position:absolute; top:32px;}
-.process-hover {display:none;}
-#process-label-apply {left:140px;} /*276   -136*/
-#process-label-accepted {left:270px;}
-#process-label-choose {left:453px;}
-#process-label-attend {left:579px;}
-#process-label-start {left:789px;}
-#process-label-process {top:43px;}
-#process-icon-banking {left:710px;}
-#process-icon-loans {left:348px;}
-#process-label-loans {left:348px;top:75px;}
-#process-label-banking {left:710px;top:75px;}
-
 /* Modals */
 .modal {display:none;}
 
@@ -265,8 +162,6 @@ td, .smlr-text{font-family: georgia;font-size: 12px;line-height: 20px;font-weigh
 .bubbles {display: none;}
 #print-check {margin-right:5px; height: 10px; width: 10px;}
 
-
-
 #intro-blocks-p {margin-left: 60px;}
 #print-ask-cfpb li {font-size:14px;line-height:20px;font-family: Georgia; margin:0 0 10px;}
 .bullet {float:left; display:inline-block;height:25px;width:25px;text-align:center;line-height:26px;font-size:1.5em;border-radius:100%;-moz-border-radius:100%;-webkit-border-radius:100%; margin-right:5px;font-weight:600; margin-top:-6px;}
@@ -275,3 +170,25 @@ td, .smlr-text{font-family: georgia;font-size: 12px;line-height: 20px;font-weigh
 .print-hide{display:none;}
 .accordion-item{display:block !important;}
 
+.ico-criteria_repayment{ background-position: -235px 0; width: 20px; height: 19px; } 
+.print-hide{display:none;}
+
+@page {
+margin: 0.5cm;
+}
+
+.major-sect{border-top: 1px solid #babbbd;}
+
+/* Apply to container element at top of .section to achieve boder overlay */
+.border-overlay-spacing {
+    margin-top: -2px;
+}
+
+/* Apply to heading at top of .section to achieve boder overlay */
+.border-overlay {
+    border-top: 4px solid #30b14a;
+    display: inline-block;
+    zoom: 1;
+        *display: inline;
+    padding-top: 0.25em;
+}
