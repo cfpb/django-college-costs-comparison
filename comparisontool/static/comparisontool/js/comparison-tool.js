@@ -319,7 +319,7 @@ var CFPBComparisonTool = (function() {
 		//-- Retrieve entered values from Add a School inputs --//
 		this.importAddForm = function() { 
 			this.schoolData['program'] = $('#step-one input:radio[name="program"]:checked').val();
-			this.schoolData['prgmlength'] = $('#step-one select[name="prgmlength"]').val();
+			this.schoolData['prgmlength'] = parseInt($('#step-one select[name="prgmlength"]').val());
 
 			// Set undergrad
 			if ( this.schoolData.program == "grad" ) {
@@ -1210,9 +1210,19 @@ var CFPBComparisonTool = (function() {
         // Note: type can be 'c' for currency, or 'p' for percentage
         this.setByNickname = function(nickname, value, type) {
             var element = columnObj.find('[data-nickname="' + nickname + '"]');
+            if (value === undefined) {
+                value = 0;
+            }
             var school_id = this.fetchSchoolID();
             if (type === "p") { // percentage type
-                value = (value * 100).toString() + "%";
+                value = (value * 100).toString()
+                var parts = value.split('.');
+                if ( parts[1] === undefined ) {
+                    value = parts[0] + '.0%';
+                }
+                else {
+                    value = parts[0] + '.' + parts[1].substr(0,1) + '%';
+                }
             }
             else if (type === "c" || type === undefined) {
                 value = numToMoney(value);
@@ -1632,7 +1642,8 @@ var CFPBComparisonTool = (function() {
                 event.preventDefault();
                 var column = $(this).closest("[data-column]").attr("data-column");
                 var rateinput = $(this).closest("td").find("input.interest-rate");
-                var loanrate = moneyToNum( $(this).closest("td").find("input.interest-rate").val() );
+                var loanrate = moneyToNum( rateinput.val() );
+                var nickname = rateinput.attr('data-nickname');
                 if ( $(this).hasClass("up") ) {
                     loanrate += .1;
                 }
@@ -1640,11 +1651,10 @@ var CFPBComparisonTool = (function() {
                     loanrate -= .1;
                 }
                 loanrate = Math.round( loanrate * 10 ) / 10; // Round to tens place
-                loanrate = Math.round( loanrate * 100 ) / 100 + "%"
-                rateinput.val( loanrate );
-                var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
-                updateTables();
+                loanrate = loanrate / 100;
 
+                columns[column].setByNickname(nickname, loanrate, 'p');
+                calculateAndDraw(column);
             });
 
             // --------------------------------
