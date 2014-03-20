@@ -204,20 +204,18 @@ This has similar styles as the global site navigation.
     list-style-type: none;
     padding: 0;
     margin: 0 auto;
-    /* Increase this if more nav items are added */
-    width: 80%;
-    display: table;
+    text-align: center;
 }
 
 .pfc-nav-wrapper ul li {
     background-color: #337e7d;
+    display: inline-block;
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 500;
     font-size: 1em;
-    position: relative;
-    display: table-cell;
-    width: auto;
     margin: 0;
+    position: relative;
+    width: auto;
 }
 
 .lt-ie8 .pfc-nav-wrapper ul li {
@@ -243,17 +241,11 @@ This has similar styles as the global site navigation.
     display: block;
     width: auto;
     height: auto;
-    padding: 0.5em 0.25em 0.25em;
+    padding: 0.5em 1.75em 0.25em;
     border-bottom: 0;
     color: #fff;
     text-align: center;
     background-color: #337e7d;
-}
-
-/* Because LIs are display: inline; in IE7, we add some padding to As to make the menu look better. */
-.lt-ie8 .pfc-nav-wrapper ul li a {
-    padding-left: 2em;
-    padding-right: 2em;
 }
 
 .pfc-nav-wrapper ul li a:visited {
