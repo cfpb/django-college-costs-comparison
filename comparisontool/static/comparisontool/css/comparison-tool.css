@@ -915,11 +915,11 @@ This contains the majority of the structural styles for table-based elements.
     margin-bottom: 1.5em;
 }
 
-.comparison-tables input.radio-input {
+.comparison-tables .military-residency-panel input.radio-input {
     display: inline;
 }
 
-.comparison-tables label.radio-label {
+.comparison-tables .military-residency-panel label.radio-label {
     display: inline;
     margin: 1em 0 .25em 0;
 }
