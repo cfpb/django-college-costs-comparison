@@ -1585,17 +1585,17 @@ var CFPBComparisonTool = (function() {
             // ------------
             // Show the GI Bill panel on click
             $(".gibill-calculator, input[data-nickname='gibill']").click( function(event) {
-                event.preventDefault();
+                event.stopPropagation();
                 var giBillDataColumn = $(this).parents('[data-column]').find('.gibill-panel');
                 giBillDataColumn.toggle();
+                if ( $(this).parents('[data-column]').find('.gibill-panel').is(":visible")) {
+                    $("html").on("click", "body", function() {
+                        giBillDataColumn.hide();
+                        $("html").off("click");
+                    });
+                }
             });
 
-            if ( $(this).parents('[data-column]').find('.gibill-panel').is(":visible")) {
-                    $("html").on("click", "body", function() {
-                    giBillDataColumn.hide();
-                    $("html").off("click");
-                });
-            }
 
             // Using the service selectors changes all selectors and activates service tier.
             $(".military-status-select").change( function() {
