@@ -322,7 +322,7 @@ var CFPBComparisonTool = (function() {
 			this.schoolData['prgmlength'] = parseInt($('#step-one select[name="prgmlength"]').val());
 
 			// Set undergrad
-			if ( this.schoolData.program == "grad" ) {
+			if ( this.schoolData.program === "grad" ) {
 				this.schoolData.undergrad = false;
 			}
 			else {
@@ -330,14 +330,14 @@ var CFPBComparisonTool = (function() {
 			}
 
 			// Set unsubsidized rate (there is a difference between grad and undergrad direct loan rates)
-			if (this.schoolData.undergrad == true) {
+			if (this.schoolData.undergrad === true) {
 				this.schoolData.unsubsidizedrate = global.unsubsidizedrateundergrad;
 			}
 			else {
 				this.schoolData.unsubsidizedrate = global.unsubsidizedrategrad;
 			}
 
-			if ( this.schoolData.program == undefined ) {
+			if ( this.schoolData.program === undefined ) {
 				this.schoolData.program = "ba";
 			}
 			if ( this.schoolData.prgmlength == 0 ) {
@@ -873,9 +873,11 @@ var CFPBComparisonTool = (function() {
 			columnObj.find('input[data-nickname="private_loan_rate"]').val(global.privateloanratedefault * 100 + '%');
             if (schoolData.program !== "grad") {
                 columnObj.find("[data-nickname='gradplus']").attr("disabled", true).css('background-color', '#E3E4E5');
+                columnObj.find("[data-nickname='staffsubsidized']").removeAttr("disabled").css('background-color', '');
             }
             else {
-                columnObj.find("[data-nickname='gradplus']").attr("disabled", false).css('background-color', '');
+                columnObj.find("[data-nickname='gradplus']").removeAttr("disabled").css('background-color', '');
+                columnObj.find("[data-nickname='staffsubsidized']").attr("disabled", true).css('background-color', '#E3E4E5');
             }
 			this.drawSchoolIndicators(schoolData);
 		} // end .addSchoolInfo()
@@ -1292,6 +1294,9 @@ var CFPBComparisonTool = (function() {
                 // set grad field to 'not available' if not grad program
                 if (data.program !== "grad") {
                     columnObj.find('[data-nickname="gradplus"]').val("Not available");
+                }
+                else if (data.program === "grad") {
+                    columnObj.find('[data-nickname="staffsubsidized"]').val("Not available");
                 }
 
             });
