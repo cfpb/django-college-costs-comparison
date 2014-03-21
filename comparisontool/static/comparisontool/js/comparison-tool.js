@@ -1558,6 +1558,9 @@ var CFPBComparisonTool = (function() {
                         removeWindow.hide();
                         $('html').off('click');
                     });
+                    $('.remove-confirm').on('click', function(event) {
+                        event.stopPropagation();
+                    });
                 }
             });
 
@@ -1591,7 +1594,11 @@ var CFPBComparisonTool = (function() {
                 if ( $(this).parents('[data-column]').find('.gibill-panel').is(":visible")) {
                     $("html").on("click", "body", function() {
                         giBillDataColumn.hide();
-                        $("html").off("click");
+                        $('html').off('click');
+                    });
+                    $('.gibill-panel, #tooltip-container').on('click', function(event) {
+                        event.stopPropagation();
+                        $('#tooltip-container').hide();
                     });
                 }
             });
@@ -1762,7 +1769,7 @@ var CFPBComparisonTool = (function() {
                 ttc.find(".outertip").css("left", (tipset + 5));
                 $("#tooltip-container > p").html($(this).attr("data-tooltip"));
                 
-                $("html").on('click', "body", function() {
+                $("html").on('click', "body :not(#tooltip-container, .gibill-calculator)", function() {
                     $("#tooltip-container").hide();
                     $("html").off('click');
                 });
