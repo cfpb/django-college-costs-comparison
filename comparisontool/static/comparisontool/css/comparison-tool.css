@@ -946,7 +946,7 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* GI Bill calculator link */
-.gibill-calculator {
+.paying-for-college #wrapper .gibill-calculator {
     font-size: 0.75em;
     position: absolute;
         top: -0.25em;
@@ -1040,6 +1040,9 @@ Make them smaller and push them right to make it all look presentable. */
 #comparison-tables .private-row td button.rate-change.down {
     background: url(../images/arrow-down.png) 50% 50% no-repeat;
     border: none;
+    font-size: 0.875em;
+    margin: 0;
+    padding: .5em 1em;
     position: absolute;
         right: 1.65em;
         top: 1em;
@@ -1050,6 +1053,9 @@ Make them smaller and push them right to make it all look presentable. */
 #comparison-tables .private-row td button.rate-change.up {
     background: url(../images/arrow-up.png) 50% 50% no-repeat;
     border: none;
+    font-size: 0.875em;
+    margin: 0;
+    padding: .5em 1em;
     position: absolute;
         right: 1.65em;
         top: 0;
