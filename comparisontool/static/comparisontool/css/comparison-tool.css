@@ -41,7 +41,7 @@ appears on smaller screens.
 }
 
 .pfc-notification-bar {
-    background-color: #DBEDD4;
+    background-color: #dbedd4;
     color: #101820;
     font-family: "Avenir Next", Arial, sans-serif;
     padding: 1em;
@@ -890,7 +890,8 @@ This contains the majority of the structural styles for table-based elements.
     z-index: 2;
 }
 
-.gibill-panel > fieldset {
+.gibill-panel fieldset,
+.gibill-panel legend {
     width: 100%;
 }
 

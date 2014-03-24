@@ -1561,9 +1561,6 @@ var CFPBComparisonTool = (function() {
                         removeWindow.hide();
                         $('html').off('click');
                     });
-                    $('.remove-confirm').on('click', function(event) {
-                        event.stopPropagation();
-                    });
                 }
             });
 
@@ -1605,7 +1602,6 @@ var CFPBComparisonTool = (function() {
                     });
                 }
             });
-
 
             // Using the service selectors changes all selectors and activates service tier.
             $(".military-status-select").change( function() {
@@ -1772,7 +1768,7 @@ var CFPBComparisonTool = (function() {
                 ttc.find(".outertip").css("left", (tipset + 5));
                 $("#tooltip-container > p").html($(this).attr("data-tooltip"));
                 
-                $("html").on('click', "body :not(#tooltip-container, .gibill-calculator)", function() {
+                $("html").on('click', "body", function() {
                     $("#tooltip-container").hide();
                     $("html").off('click');
                 });
