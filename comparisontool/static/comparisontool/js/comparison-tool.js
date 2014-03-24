@@ -1039,14 +1039,14 @@ var CFPBComparisonTool = (function() {
 
         //-- Draws the various indicators for a school --//
         this.drawSchoolIndicators = function(schoolData) { 
-            //Grad programs don't have indicators, nor groups 4 or 5
-            if ( (schoolData.undergrad != true) || (schoolData.indicatorgroup === "4") || (schoolData.indicatorgroup === "5") ) {
+            //Grad programs don't have indicators, nor group
+            if ( (schoolData.undergrad != true) || (schoolData.indicatorgroup === "4") ) {
                 columnObj.find(".graduation-rate-chart").hide();
                 columnObj.find(".default-rate-chart").hide();
                 columnObj.find(".median-borrowing-chart").hide();
                 columnObj.find(".indicator-textbox").html("not available");
             }
-            else { // Groups 1, 2, and 3 have indicators
+            else { // Groups 1, 2, 3, and 5 have indicators
                 // Draw the graduation rate chart
                 columnObj.find(".gradrisk-percent").html(schoolData.gradrate + "%");
                 // Note: ranks go from 1 to X, and X is "max"
@@ -1088,6 +1088,7 @@ var CFPBComparisonTool = (function() {
                 }
                 else {
                     columnObj.find(".graduation-rate-chart").hide();
+                    columnObj.find(".gradrisk-text").html("not available"); 
                 }
 
 
@@ -1108,7 +1109,8 @@ var CFPBComparisonTool = (function() {
                     columnObj.find(".default-rate-avg .percent").html(average);
                 }
                 else {
-                    columnObj.find(".default-rate-chart").hide();       
+                    columnObj.find(".default-rate-chart").hide();
+                    columnObj.find(".defaultrisk-text ").html("not available");       
                 }
 
                 // Draw the avg borrowing meter
@@ -1161,7 +1163,7 @@ var CFPBComparisonTool = (function() {
                 }
                 else {
                     columnObj.find(".median-borrowing-chart").hide();
-                    columnObj.find(".indicator-textbox").html("not available");
+                    columnObj.find(".median-borrowing-text").html("not available");
                 }
             } 
         } // end .drawSchoolIndicators()
