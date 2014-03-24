@@ -337,10 +337,9 @@ This is for each step in the process.
 }
 
 .xml-error {
-    color: #D12124;
+    color: #d12124;
     display: none;
 }
-
 
 /* The main layout components for Add a School. */
 #step-zero .step-left {
@@ -358,7 +357,6 @@ This is for each step in the process.
 #step-one .step-left {
     float: left;
     margin-right: 20px;
-    width: 362px;
 }
 
 #step-one .step-middle {
@@ -366,7 +364,6 @@ This is for each step in the process.
     float: left;
     margin-right: 30px;
     padding-left: 20px;
-    width: 309px;
 }
 
 #step-one .step-right {
@@ -375,7 +372,6 @@ This is for each step in the process.
     	bottom: 24px;
     margin-right: 0;
     text-align: right;
-    width: 195px;
 }
 
 #step-one .max-schools {
@@ -385,7 +381,7 @@ This is for each step in the process.
 #step-two .step-left {
     float: left;
     margin-right: 30px;
-    width: 533px;
+    width: 554.5px;
 }
 
 #step-two .step-right {
@@ -394,13 +390,13 @@ This is for each step in the process.
     	right: 0;
     	bottom: 24px;
     text-align: right;
-    width: 373px;
+    width: 387.5px;
 }
 
 #step-three .step-left {
     float: left;
     margin-right: 30px;
-    width: 533px;
+    width: 554.5px;
 }
 
 #step-three .step-right {
@@ -409,7 +405,7 @@ This is for each step in the process.
     	right: 0;
     	bottom: 24px;
     text-align: right;
-    width: 373px;
+    width: 387.5px;
 }
 
 /* Containers for padding. */
@@ -433,31 +429,10 @@ This is for each step in the process.
 
 /* The button styles for Add a School.
 This is for the Get Started button only. */
-.get-started .pfc-button {
-    background-color: #0072ce;
-    color: #fff;
-    font-family: "Avenir Next Medium", Verdana, sans-serif;
+.paying-for-college #wrapper .get-started #get-started-button {
     font-size: 1.125em;
-    font-style: normal;
-    font-weight: 500;
-    padding: 0.75em 2em;
-    text-align: center;
-}
-
-.get-started .pfc-button:hover,
-.get-started .pfc-button:focus {
-    background-color: #002d72;
-}
-
-.get-started .pfc-button[disabled=disabled],
-.get-started .pfc-button[disabled],
-.get-started .pfc-button.disabled {
-    background-color: #808080;
-}
-
-/* The Get Started button has unique positioning. */
-#get-started-button {
     margin-top: 2.5em;
+    padding: 0.75em 2em;
 }
 
 .get-started .step-legend {
@@ -607,81 +582,100 @@ h6 {
 /* BASIC ELEMENTS
 This contains basic HTML elements.
 -------------------------------------------------------------------------------*/
-button,
-.button {
-    color: #fff;
-    background-color: #0072ce;
-    font-family: "Avenir Next", Verdana, sans-serif;
-    font-weight: 500;
-    text-transform: none;
+/* Buttons
+The buttons differ from others on the site. */
+
+/* Override current styles */
+.paying-for-college #wrapper button {
     letter-spacing: 0;
-    border-radius: 0;
-    font-size: .875em;
-    border: 0;
-    position: relative;
-    top: 0;
-    padding: .5em 1em;
-    -webkit-transition: none;
-    -moz-transition: none;
-    transition: none;
+    text-transform: none;
 }
 
-button:hover,
-.button:hover,
-button:active,
-.button:active,
-button:focus,
-.button:focus {
-	background-color: #002d72;
+.paying-for-college #wrapper button,
+.paying-for-college #wrapper .button {
+    box-sizing: border-box;
+    display: inline-block;
+    
+    padding: 0.71428571428571em 1em; /* 10/14 14/14 */
+    
+    border: none;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+
+    margin-right: 1em;
+    
+    background-color: #0072ce; /* Pacific */
+    
+    color: #fff;
+    font-size: 1em;
+    line-height: 1;
+    font-family: "Avenir Next Medium", Arial, sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+
+    -webkit-transition: .1s;
+       -moz-transition: .1s;
+            transition: .1s;
 }
 
-button[disabled=disabled],
-button[disabled],
-button.disabled,
-button.cancel,
-button.preset,
-.button.disabled,
-.button.cancel,
-.button.preset {
+.paying-for-college #wrapper button:hover,
+.paying-for-college #wrapper button:focus,
+.paying-for-college #wrapper .button:hover,
+.paying-for-college #wrapper .button:focus {
+    /* Class included for static state examples */
+    background-color: #328ed8; /* Pacific/80 */
+}
+
+.paying-for-college #wrapper button:active,
+.paying-for-college #wrapper .button:active {
+    /* Class included for static state examples */
+    background-color: #33578e; /* Navy/80 */
+}
+
+.paying-for-college #wrapper button[disabled=disabled],
+.paying-for-college #wrapper button[disabled],
+.paying-for-college #wrapper button.disabled,
+.paying-for-college #wrapper button.cancel,
+.paying-for-college #wrapper button.preset,
+.paying-for-college #wrapper .button.disabled,
+.paying-for-college #wrapper .button.cancel,
+.paying-for-college #wrapper .button.preset {
     background-color: #8e9193;
 }
 
-button.destructive {
+.paying-for-college #wrapper button.destructive {
     background-color: #d14124;
     color: #fff;
 }
 
-button.destructive:hover,
-button.destructive:active,
-button.destructive:focus,
-.button.destructive:hover,
-.button.destructive:active,
-.button.destructive:focus
+.paying-for-college #wrapper button.destructive:hover,
+.paying-for-college #wrapper button.destructive:active,
+.paying-for-college #wrapper button.destructive:focus,
+.paying-for-college #wrapper .button.destructive:hover,
+.paying-for-college #wrapper .button.destructive:active,
+.paying-for-college #wrapper .button.destructive:focus
  {
     background-color: #da6750;
     color: #fff;
 }
 
-.button-small {
+.paying-for-college #wrapper .button-small {
     font-size: .75em;
     padding: .5em 1em;
 }
 
-.button-link {
+.paying-for-college #wrapper .button-link {
 	background-color: transparent;
 	border-bottom: 1px dashed #d14124;
 	color: #d14124;
 	padding: 0;
 }
 
-.button-link:hover,
-.button-link:focus {
+.paying-for-college #wrapper .button-link:hover,
+.paying-for-college #wrapper .button-link:focus {
 	background-color: transparent;
 	border-bottom: 1px solid #d14124;
-}
-
-b {
-    font-weight: 600;
 }
 
 /* THE TABLE & TABLE ELEMENTS

@@ -397,6 +397,13 @@ This has similar styles as the global site navigation.
 /* BUTTONS
 The buttons differ from others on the site.
 -------------------------------------------------------------------------------*/
+/* Override current styles */
+.paying-for-college #wrapper button {
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.paying-for-college #wrapper button,
 .paying-for-college #wrapper .button {
     box-sizing: border-box;
     display: inline-block;
@@ -423,14 +430,17 @@ The buttons differ from others on the site.
        -moz-transition: .1s;
             transition: .1s;
 }
+
+.paying-for-college #wrapper button:hover,
+.paying-for-college #wrapper button:focus,
 .paying-for-college #wrapper .button:hover,
-.paying-for-college #wrapper .button.hover,
 .paying-for-college #wrapper .button:focus {
     /* Class included for static state examples */
     background-color: #328ed8; /* Pacific/80 */
 }
-.paying-for-college #wrapper .button:active,
-.paying-for-college #wrapper .button.active {
+
+.paying-for-college #wrapper button:active,
+.paying-for-college #wrapper .button:active {
     /* Class included for static state examples */
     background-color: #33578e; /* Navy/80 */
 }
