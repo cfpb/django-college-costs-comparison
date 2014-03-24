@@ -1258,7 +1258,7 @@ var CFPBComparisonTool = (function() {
         //-- toggles "active" or "inactive" state of the column --//
         this.toggleActive = function(state) { 
             // list of elements to toggle
-            var grays = 'input, .visualization, .data-total, h6, .visualization';
+            var grays = '.school-data, .visualization, .data-total, h6, .visualization';
             var ninjas = '.hide-on-inactive';
 
             // Now we can alter the state to 'state'
@@ -1277,7 +1277,7 @@ var CFPBComparisonTool = (function() {
                 columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
-                columnObj.find('input').val('$').attr('disabled', true);
+                columnObj.find('input.school-data').val('$').attr('disabled', true);
                 columnObj.find('.data-total').html('$0');
                 circles[this.columnNumber].attr({fill: "#babbbd"});
             }
