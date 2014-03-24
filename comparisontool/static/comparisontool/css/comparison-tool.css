@@ -1018,7 +1018,7 @@ Make them smaller and push them right to make it all look presentable. */
 #s-three-privateloan {
     position: absolute;
         left: 1.825em;
-    width: 40%;
+    width: 35%;
 }
 
 /* The change rate styles and buttons have IDs so they can override other form element styles. */
