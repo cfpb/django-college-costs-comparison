@@ -1532,9 +1532,10 @@ var CFPBComparisonTool = (function() {
             $("#step-three .continue").click( function() {
             	clearAddForms();
                 setAddStage(0);
+                $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
             });
 
-            // [step-three] User clicks Continue at step-three
+            // [step-three] User clicks Add Another School at step-three
             $("#step-three .add-another-school").click( function() {
             	clearAddForms();
                 $(".no-xml-success, .xml-success").hide();
