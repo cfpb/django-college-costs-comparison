@@ -16,7 +16,7 @@ from django.http import HttpResponse
 from haystack.query import SearchQuerySet
 
 from models import School, Worksheet, Feedback, BAHRate
-from forms import FeedbackForm
+from forms import FeedbackForm, EmailForm
 
 
 class FeedbackView(TemplateView):
@@ -133,14 +133,18 @@ class SchoolRepresentation(View):
 
 class EmailLink(View):
     def post(self, request):
-        worksheet_guid = request.POST['id']
-        recipient = request.POST['email']
-        subject = "Your Personalized College Financial Aid Information"
-        body_template = get_template('comparisontool/email_body.txt')
-        body = body_template.render(RequestContext(request,dict(guid=worksheet_guid)))
+        form = EmailForm(request.POST)
+        if form.is_valid():
+    
+            worksheet_guid = form.cleaned_data['id']
+            worksheet = Worksheet.objects.get(guid=worksheet_guid)
+            recipient = form.cleaned_data['email']
+            subject = "Your Personalized College Financial Aid Information"
+            body_template = get_template('comparisontool/email_body.txt')
+            body = body_template.render(RequestContext(request,dict(guid=worksheet.guid)))
 
-        send_mail(subject, body, 'no-reply@cfpb.gov', [recipient],
-                  fail_silently=False)
+            send_mail(subject, body, 'no-reply@cfpb.gov', [recipient],
+                      fail_silently=False)
 
         document = {'status': 'ok'}
         return HttpResponse(json.dumps(document), mimetype='application/javascript')
