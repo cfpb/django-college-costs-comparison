@@ -504,6 +504,10 @@ This is for the Get Started button only. */
     display: none;
 }
 
+.navigator-link {
+    display: none;
+}
+
 /* TYPOGRAPHY
 This overrides a lot of styles in the main stylesheet. It contains
 font styles, heading styles, etc. Other adjustments happen within components.
