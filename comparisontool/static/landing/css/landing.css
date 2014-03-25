@@ -416,3 +416,47 @@ The buttons differ from others on the site.
     /* Class included for static state examples */
     background-color: #33578e; /* Navy/80 */
 }
+
+/* SHARE MODULE
+The sharing module differs from others on the site.
+-------------------------------------------------------------------------------*/
+.share-pfc {
+    margin: 4em auto;
+    text-align: center;
+}
+
+.share-links {
+    font-size: 2em;
+    padding-top: 0.5fem;
+}
+
+.share-links a {
+    background-color: transparent;
+    border: none;
+    padding: 0 0.125em;
+
+}
+
+.share-links a:hover {
+    border: none;
+    color: #7eb8dd;
+    text-decoration: none;
+}
+
+.share-links a:focus {
+    border: none;
+    color: #0072ce;
+    outline: thin dotted;
+    text-decoration: none;
+}
+
+.share-links a:active {
+    border: none;
+    color: #002d72;
+    text-decoration: none;
+}
+
+/* Tweak external link icon to match existing link color. */
+.icon-external-link {
+    color: #4d819a;
+}
