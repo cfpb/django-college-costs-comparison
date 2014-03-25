@@ -863,10 +863,12 @@ var CFPBComparisonTool = (function() {
 		var minimumChartSectionWidth = 5; // The minimum width of a bar graph section
 
 		//-- Adds basic schoolData to the column --//
-		this.addSchoolInfo = function(schoolData) { 
+		this.addSchoolInfo = function(schoolData) {
+            var navigatorlink = "http://nces.ed.gov/collegenavigator/?id=" + schoolData.school_id; 
 			this.toggleActive('active'); // Make the column active
 			columnObj.find('[data-nickname="institution_name"]').html(schoolData.school);
             $('.xml-success, .no-xml-success').find('span.success-school-name').html(schoolData.school);
+            $(".xml-success, .no-xml-success").find("a.navigator-link").show().attr("href", navigatorlink);
 			columnObj.find('.header-cell').attr("data-schoolid", schoolData.school_id);
 			columnObj.find('input.school-data').not(".interest-rate").val("$0");
 			columnObj.find('input[data-nickname="institutional_loan_rate"]').val(global.institutionalloanratedefault * 100 + '%');
