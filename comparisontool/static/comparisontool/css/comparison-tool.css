@@ -899,9 +899,25 @@ This contains the majority of the structural styles for table-based elements.
     width: 10px;
 }
 
-.grants-row td .gibill-panel label {
+/*.grants-row td .gibill-panel label {
     display: block;
     margin: 1em 0 .25em 0;
+}*/
+
+.gibill-panel .gibill-title {
+    font-weight: 600;
+}
+
+.gibill-panel .military-status,
+.gibill-panel .military-status-select,
+.gibill-panel .military-service,
+.gibill-panel .military-tier-select {
+    display: block;
+    margin: 0.5em 0 .25em 0;
+}
+
+.military-residency-panel legend {
+    margin: 0.5em 0;
 }
 
 .grants-row td .gibill-panel select {
@@ -916,7 +932,7 @@ This contains the majority of the structural styles for table-based elements.
 
 .comparison-tables .military-residency-panel label.radio-label {
     display: inline;
-    margin: 1em 0 .25em 0;
+    margin: 0.5em 0 .25em 0;
 }
 
 .comparison-tables label.radio-label:after {
@@ -926,10 +942,7 @@ This contains the majority of the structural styles for table-based elements.
 
 .comparison-tables .military-instate {
     display: none;
-}
-
-.comparison-tables label.military-instate:visible {
-    display: block;
+    margin: 0.5em 0 .25em 0;
 }
 
 .comparison-tables input.military-instate {
