@@ -1039,7 +1039,17 @@ var CFPBComparisonTool = (function() {
 
         //-- Draws the various indicators for a school --//
         this.drawSchoolIndicators = function(schoolData) { 
-            //Grad programs don't have indicators, nor group
+            // Clean up possible data gaps
+            if ( schoolData.defaultrate == "" || schoolData.defaultrate == " ") {
+                schoolData.defaultrate = "NR";
+            }
+            if ( schoolData.gradrate == "" || schoolData.gradrate == " ") {
+                schoolData.gradrate = "NR";
+            }            
+            if ( schoolData.avgstuloandebt == "" || schoolData.avgstuloandebt == " ") {
+                schoolData.avgstuloandebt = "NR";
+            }
+            // Grad programs don't have indicators, nor group
             if ( (schoolData.undergrad != true) || (schoolData.indicatorgroup === "4") ) {
                 columnObj.find(".graduation-rate-chart").hide();
                 columnObj.find(".default-rate-chart").hide();
@@ -1093,7 +1103,7 @@ var CFPBComparisonTool = (function() {
 
 
                 // Draw the default rate indicator
-                if ( ( schoolData.defaultrate != undefined ) && ( schoolData.avgstuloandebt != "NR" ) ) {
+                if ( schoolData.defaultrate != "NR" ) {
                     columnObj.find(".default-rate-chart").closest("td").children().show();
                     var height = ( schoolData.defaultrate / ( global.cdravg * 2 ) ) * 100;
                     var y = 100 - height;
