@@ -33,8 +33,8 @@ var CFPBComparisonTool = (function() {
 		"group3GradMed": 35, "group3GradHigh": 63.9, "group4GradMed": 0, "group4GradHigh": 0, 
 		"group5GradMed": 62.4, "group5GradHigh": 77, "cdrhigh": 100, "cdravg": 14.7, "cdrlow": 0.0, 
 		"group1loanmed": 16081, "group1loanhigh": 21216, "group2loanmed": 7184, "group2loanhigh": 13834, 
-		"group3loanmed": 8034, "group3loanhigh": 9500, "group4loanmed": 5000, "group4loanhigh": 12167, 
-		"group5loanmed": 7321, "group5loanhigh": 9500,
+		"group3loanmed": 8034, "group3loanhigh": 9501, "group4loanmed": 5000, "group4loanhigh": 12167, 
+		"group5loanmed": 7321, "group5loanhigh": 9501,
 		"group1loanrankmed": 667, "group1loanrankhigh": 1333, "group1loanrankmax": 2000,
 		"group2loanrankmed": 470, "group2loanrankhigh": 939, "group2loanrankmax": 1409,
 		"group3loanrankmed": 242, "group3loanrankhigh": 485, "group3loanrankmax": 727,
@@ -1051,7 +1051,9 @@ var CFPBComparisonTool = (function() {
             if ( schoolData.avgstuloandebt == "" || schoolData.avgstuloandebt == " ") {
                 schoolData.avgstuloandebt = "NR";
             }
-            schoolData.gradrate = parseFloat(schoolData.gradrate);
+            if (schoolData.gradrate !== "NR") {
+                schoolData.gradrate = parseFloat(schoolData.gradrate);
+            }
             // Grad programs don't have indicators, nor group 4
             if ( (schoolData.undergrad != true) || (schoolData.indicatorgroup === "4") ) {
                 columnObj.find(".graduation-rate-chart").hide();
