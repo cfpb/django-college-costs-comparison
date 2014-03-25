@@ -1539,6 +1539,7 @@ var CFPBComparisonTool = (function() {
             $("#step-three .continue").click( function() {
             	clearAddForms();
                 setAddStage(0);
+                $("#open").trigger("click");
                 $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
             });
 
