@@ -1429,7 +1429,7 @@ label.tooltip-info {
 #comparison-tables .gradrisk-container {
     margin-bottom: 7px;
     position: relative;
-        left: -5px;
+        left: 0px;
     width: 10%;
 }
 
@@ -1440,6 +1440,7 @@ label.tooltip-info {
 #comparison-tables .gradrisk-container .gradrisk-percent {
     font-size: .9em;
     text-align: center; 
+    position: relative;
     width: 4em;
 }
 
@@ -1447,7 +1448,7 @@ label.tooltip-info {
     border: 8px solid transparent;
     border-top-color: #666;
     position: absolute;
-        left: 30%;
+        left: 20%;
         top: 90%;
     width: 0;
     z-index: 5;

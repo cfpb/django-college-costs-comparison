@@ -1048,7 +1048,8 @@ var CFPBComparisonTool = (function() {
             if ( schoolData.avgstuloandebt == "" || schoolData.avgstuloandebt == " ") {
                 schoolData.avgstuloandebt = "NR";
             }
-            // Grad programs don't have indicators, nor group
+            schoolData.gradrate = parseFloat(schoolData.gradrate);
+            // Grad programs don't have indicators, nor group 4
             if ( (schoolData.undergrad != true) || (schoolData.indicatorgroup === "4") ) {
                 columnObj.find(".graduation-rate-chart").hide();
                 columnObj.find(".default-rate-chart").hide();
@@ -1059,19 +1060,25 @@ var CFPBComparisonTool = (function() {
                 // Draw the graduation rate chart
                 columnObj.find(".gradrisk-percent").html(schoolData.gradrate + "%");
                 // Note: ranks go from 1 to X, and X is "max"
-                var barWidth = columnObj.find('.gradrisk-bar').innerWidth();
+                var barWidth = columnObj.find('.gradrisk-bar .low').outerWidth();
+                barWidth += columnObj.find('.gradrisk-bar .medium').outerWidth();
+                barWidth += columnObj.find('.gradrisk-bar .high').outerWidth();
+                var offLeft = Math.floor( columnObj.find('.gradrisk-bar').innerWidth() - barWidth ) / 2;
+                columnObj.find('.gradrisk-pointer').css('left', offLeft + 'px');
+                columnObj.find('.gradrisk-percent').css('left', '-' + (offLeft * 2) + 'px');
+
 		        var firstWidth = Math.ceil(barWidth / 3) - 5;
 		        var secondWidth = Math.ceil(barWidth / 3) - 10;
 		        var thirdWidth = Math.ceil(barWidth / 3) - 5;
-		        var firstStop = 0 + columnObj.find('.gradrisk-bar').css('margin-left');
+		        var firstStop = 0;
 		        var secondStop = Math.ceil(barWidth / 3) + 5;
  		        var thirdStop = Math.ceil(barWidth * 2 / 3) + 5;
-                var grouphigh = parseInt(global["group" + schoolData.indicatorgroup + "GradHigh"]);
-                var groupmed = parseInt(global["group" + schoolData.indicatorgroup + "GradMed"]);
-                var grhigh = parseInt(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
-                var grmax = parseInt(global["group" + schoolData.indicatorgroup + "GradRankMax"]);
-                var grmed = parseInt(global["group" + schoolData.indicatorgroup + "GradRankMed"]);
-                var grhigh = parseInt(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
+                var grouphigh = parseFloat(global["group" + schoolData.indicatorgroup + "GradHigh"]);
+                var groupmed = parseFloat(global["group" + schoolData.indicatorgroup + "GradMed"]);
+                var grhigh = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
+                var grmax = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankMax"]);
+                var grmed = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankMed"]);
+                var grhigh = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
                 var rankcount = 1;
                 var place = 1;
                 var gradoffset = 0; 
