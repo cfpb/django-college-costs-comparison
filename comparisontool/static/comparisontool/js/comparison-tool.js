@@ -1483,6 +1483,7 @@ var CFPBComparisonTool = (function() {
                             maxSchools(true);
                         }
                         calculateAndDraw(column);
+                        $(".xml-success").hide();
                         $(".no-xml-success").show();
                         $("#get-started-button").html("Add another school");
                     }
@@ -1523,6 +1524,7 @@ var CFPBComparisonTool = (function() {
                     }
                     // If there's XML, process it and update
                     calculateAndDraw(columnNumber);
+                    $(".no-xml-success").hide();
                     $(".xml-success").show();
                     $("#get-started-button").html("Add another school");
                 }
@@ -1624,7 +1626,7 @@ var CFPBComparisonTool = (function() {
                     });
                 }
                 for ( c = 1; c <= 3; c++ ) {
-                    calculate_school(c);
+                    calculateAndDraw(columnNumber);
                 }
             });
 
@@ -1635,7 +1637,7 @@ var CFPBComparisonTool = (function() {
                     $(this).val(value);
                 });
                 for ( c = 1; c <= 3; c++ ) {
-                    calculate_school(c);
+                    calculateAndDraw(columnNumber);
                 }
             });
 
@@ -1644,7 +1646,7 @@ var CFPBComparisonTool = (function() {
                 var value = $(this).val();
                 if ( value == "outofstate") {
                     $(this).closest(".military-residency-panel").find(".military-instate").slideDown();
-                    $(this).closest(".military-residency-panel").find("label.military-instate").css("display", "block");
+                    $(this).closest(".military-residency-panel").find(".military-instate").css("display", "block");
                 }
                 else {
                     $(this).closest(".military-residency-panel").find(".military-instate").slideUp();
@@ -1657,7 +1659,7 @@ var CFPBComparisonTool = (function() {
                 $("[data-column='" + column + "'] .gibill-panel").hide();
                 var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
                 _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", school_id]);
-                calculate_school(column);
+                calculateAndDraw(columnNumber);
             })
 
             // Interest Rate change buttons
@@ -1751,6 +1753,7 @@ var CFPBComparisonTool = (function() {
             });
 
             $(".tooltip-info").click( function(event) {
+                event.preventDefault();
                 event.stopPropagation();
                 // position tooltip-container based on the element clicked
                 var thisoff = $(this).offset();
