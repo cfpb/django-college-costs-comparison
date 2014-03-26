@@ -1,5 +1,5 @@
 .letterhead {float:left; width:75%;}
-.cfpb-logo {background-image: url("/static/choosealoan/images/cfpb-logo.png"); width:150px; height:31.5px; top left no-repeat; float:right;}
+.cfpb-logo {background: url("/static/choosealoan/images/cfpb-logo.png") top left no-repeat; width:150px; height:31.5px; float:right;}
 body {font-family: "Avenir Next"; color: #000 !important;}
 .wrapper-banner {display:none;}
 .header {display:none;}
