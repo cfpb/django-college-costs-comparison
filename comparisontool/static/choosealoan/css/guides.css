@@ -488,6 +488,8 @@ This just the hero for the Comparison Tool.
 .breadcrumbs > p {
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 600;
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .pfc-hero-content {
