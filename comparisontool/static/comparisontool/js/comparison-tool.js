@@ -123,8 +123,9 @@ var CFPBComparisonTool = (function() {
     //-- Perform all the functions necessary to (re)calculate and (re)draw the column --//
 	function calculateAndDraw(columnNumber) {
 		var schoolID = columns[columnNumber].fetchSchoolID();
-        if (schoolID != undefined) {
-            var newData = columns[columnNumber].fetchFormValues();
+        var newData = columns[columnNumber].fetchFormValues();
+
+        if (schools[schoolID] != undefined) {
             schools[schoolID].recalculate(newData);
             var schoolData = schools[schoolID].schoolData;
             columns[columnNumber].updateFormValues(schoolData);
@@ -1196,6 +1197,26 @@ var CFPBComparisonTool = (function() {
                     data[$(this).attr("data-nickname")] = ( moneyToNum( $(this).val() ) / 100 );
                 }
             });
+            // Get GI Bill Information
+            var vetselect = columnObj.find(".military-status-select").val();
+            if (vetselect != "none") {
+                global.vet = true;
+            }
+            else {
+                global.vet = false;
+            }
+
+            global.tier = $("[data-column='1'] .military-tier-select").find(":selected").val();
+
+            var instate = columnObj.find(".military-residency-panel :radio:checked").val();
+            // Determine in-state and out-of-state
+            if ( ( instate === "instate" ) || ( instate == "indistrict" ) ) {
+                data.instate = true;
+            }
+            else {
+                data.instate = false;
+            }
+
             return data;
         } // end .fetchFormValues()
 
@@ -1322,6 +1343,7 @@ var CFPBComparisonTool = (function() {
                 }
 
             });
+
         } // end .updateFormValues()
 
     } // end Column() class   
