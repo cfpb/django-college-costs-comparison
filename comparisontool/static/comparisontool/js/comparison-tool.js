@@ -124,13 +124,15 @@ var CFPBComparisonTool = (function() {
     //-- Perform all the functions necessary to (re)calculate and (re)draw the column --//
 	function calculateAndDraw(columnNumber) {
 		var schoolID = columns[columnNumber].fetchSchoolID();
-		var newData = columns[columnNumber].fetchFormValues();
-		schools[schoolID].recalculate(newData);
-		var schoolData = schools[schoolID].schoolData;
-		columns[columnNumber].updateFormValues(schoolData);
-		columns[columnNumber].drawCostBars(schoolData);
-		columns[columnNumber].drawPieChart(schoolData);
-		columns[columnNumber].drawDebtBurden(schoolData);
+        if (schoolID != undefined) {
+            var newData = columns[columnNumber].fetchFormValues();
+            schools[schoolID].recalculate(newData);
+            var schoolData = schools[schoolID].schoolData;
+            columns[columnNumber].updateFormValues(schoolData);
+            columns[columnNumber].drawCostBars(schoolData);
+            columns[columnNumber].drawPieChart(schoolData);
+            columns[columnNumber].drawDebtBurden(schoolData);
+        }
 	} // end calculateAndDraw()
 
     //-- clear all highlighted columns --//
@@ -276,6 +278,7 @@ var CFPBComparisonTool = (function() {
     	$('#step-one input:radio[name="program"]').filter('[value="ba"]').prop('checked', true);
         $('#finaidoffer').prop('checked', false);
     	$('#xml-text').val('');
+        $('#step-one .continue').attr('disabled', true);
     } //
 
 	/////===== Classes =====/////
