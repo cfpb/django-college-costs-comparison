@@ -886,6 +886,13 @@ var CFPBComparisonTool = (function() {
                 columnObj.find("[data-nickname='gradplus']").removeAttr("disabled").css('background-color', '');
                 columnObj.find("[data-nickname='staffsubsidized']").attr("disabled", true).css('background-color', '#E3E4E5');
             }
+            // Set GI BIll residency visibility
+            if (schoolData.control != "Public") {
+                columnObj.find(".military-residency-panel").hide();
+            }
+            else {
+                columnObj.find(".military-residency-panel").show();
+            }
 			this.drawSchoolIndicators(schoolData);
 		} // end .addSchoolInfo()
 
