@@ -900,89 +900,85 @@ var CFPBComparisonTool = (function() {
 			var totalPocketSectionWidth = 0; // Out of Pocket Section
 
 			columnObj.find(".bars-container").width(chartWidth);
-
-			if ( cost <= 0 ) {
-				columnObj.find(".meter").hide();
-			}
-			else {
-				columnObj.find(".meter").show();
-				// find each .bar element and determine its width, then animate
-				columnObj.find(".bars-container").each(function() {
-					var remainingWidth = chartWidth;
-					$(this).find(".chart_mask_internal .bar").each(function() {
-						var bar = $(this);
-						var name = bar.attr("data-nickname");
-						var value = schoolData[name];
-						var sectionWidth = Math.floor(value * pixelPrice);
-						if ( sectionWidth > remainingWidth ) {
-							sectionWidth = remainingWidth;
-						}
-						if (sectionWidth < minimumChartSectionWidth) {
-							sectionWidth = 0;
-							bar.stop(true, false).animate({width: 0}, transitionTime, function() {
-								bar.hide();
-							});
-						}
-						else {
-							sectionWidth = sectionWidth;
-							bar.stop(true, false).animate({width: (sectionWidth - barBorderThickness)}, transitionTime);
-						}
-
-						if ( sectionWidth != 0) {
-							bar.show();
-							totalSectionWidth += sectionWidth;
-							if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
-								totalBorrowedSectionWidth += sectionWidth;
-							}
-							else {
-								totalBorrowedSectionWidth += sectionWidth;
-							}
-						}
-						else {
+            
+			columnObj.find(".meter").show();
+			// find each .bar element and determine its width, then animate
+			columnObj.find(".bars-container").each(function() {
+				var remainingWidth = chartWidth;
+				$(this).find(".chart_mask_internal .bar").each(function() {
+					var bar = $(this);
+					var name = bar.attr("data-nickname");
+					var value = schoolData[name];
+					var sectionWidth = Math.floor(value * pixelPrice);
+					if ( sectionWidth > remainingWidth ) {
+						sectionWidth = remainingWidth;
+					}
+					if (sectionWidth < minimumChartSectionWidth) {
+						sectionWidth = 0;
+						bar.stop(true, false).animate({width: 0}, transitionTime, function() {
 							bar.hide();
-						}
-						remainingWidth -= sectionWidth;
-						if ( remainingWidth < 0 ) {
-							remainingWidth = 0;
-						}
-					});
-					if ((totalBorrowedSectionWidth + totalBorrowedSectionWidth) > chartWidth) {
-						// columnObj.find(".error_msg").fadeIn(400);
-						// This code will resize the bar past the width of the total cost
-						// columnObj.find(".bars-container").width(totalBorrowedSectionWidth + totalBorrowedSectionWidth);
-						// marginright = (totalBorrowedSectionWidth + totalBorrowedSectionWidth) - chartWidth;
-						// columnObj.find(".tick.full").css("left", chartWidth - 2 );
+						});
 					}
 					else {
-						// columnObj.find(".bars-container").width(chartWidth);
-						columnObj.find(".error_msg").fadeOut(400);
+						sectionWidth = sectionWidth;
+						bar.stop(true, false).animate({width: (sectionWidth - barBorderThickness)}, transitionTime);
+					}
+
+					if ( sectionWidth != 0) {
+						bar.show();
+						totalSectionWidth += sectionWidth;
+						if ( $(this).hasClass("fedloans") || $(this).hasClass("privloans") ){					
+							totalBorrowedSectionWidth += sectionWidth;
+						}
+						else {
+							totalBorrowedSectionWidth += sectionWidth;
+						}
+					}
+					else {
+						bar.hide();
+					}
+					remainingWidth -= sectionWidth;
+					if ( remainingWidth < 0 ) {
+						remainingWidth = 0;
 					}
 				});
+				if ((totalBorrowedSectionWidth + totalBorrowedSectionWidth) > chartWidth) {
+					// columnObj.find(".error_msg").fadeIn(400);
+					// This code will resize the bar past the width of the total cost
+					// columnObj.find(".bars-container").width(totalBorrowedSectionWidth + totalBorrowedSectionWidth);
+					// marginright = (totalBorrowedSectionWidth + totalBorrowedSectionWidth) - chartWidth;
+					// columnObj.find(".tick.full").css("left", chartWidth - 2 );
+				}
+				else {
+					// columnObj.find(".bars-container").width(chartWidth);
+					columnObj.find(".error_msg").fadeOut(400);
+				}
+			});
 
-			    left = 0 + totalBorrowedSectionWidth;
-			    if ( left < 1 ) {
-			    	// uncomment this line and the "total borrowed" will not float beyond the cost bar
-			    	left = 0;
-			    }
-			    columnObj.find(".bar.borrowing").css("left", left);
-			    columnObj.find(".bar.borrowing").css("width", totalBorrowedSectionWidth);
-			    columnObj.find(".tick-borrowing").css("left", totalBorrowedSectionWidth + left - 2);
-			    columnObj.find(".totalborrowing").css("padding-left", left);
+		    left = 0 + totalBorrowedSectionWidth;
+		    if ( left < 1 ) {
+		    	// uncomment this line and the "total borrowed" will not float beyond the cost bar
+		    	left = 0;
+		    }
+		    columnObj.find(".bar.borrowing").css("left", left);
+		    columnObj.find(".bar.borrowing").css("width", totalBorrowedSectionWidth);
+		    columnObj.find(".tick-borrowing").css("left", totalBorrowedSectionWidth + left - 2);
+		    columnObj.find(".totalborrowing").css("padding-left", left);
 
-			    if ( totalBorrowedSectionWidth < 1 ) {
-			        // columnObj.find('.borrowing-container').hide(transitionTime);
-			        // Hiding borrowing section for now
-			        columnObj.find('.borrowing-container').hide();
-			    }
-			    else {
-			        // columnObj.find('.borrowing-container').show(transitionTime);
-			        // Hiding borrowing section for now
-			        columnObj.find('.borrowing-container').hide();
-			    }
-			    var breakdownheight = $(".meter").height();
-			    columnObj.find(".meter").closest("td").height(breakdownheight);
-			}
+		    if ( totalBorrowedSectionWidth < 1 ) {
+		        // columnObj.find('.borrowing-container').hide(transitionTime);
+		        // Hiding borrowing section for now
+		        columnObj.find('.borrowing-container').hide();
+		    }
+		    else {
+		        // columnObj.find('.borrowing-container').show(transitionTime);
+		        // Hiding borrowing section for now
+		        columnObj.find('.borrowing-container').hide();
+		    }
+	 	    var breakdownheight = $(".meter").height();
+		    columnObj.find(".meter").closest("td").height(breakdownheight);
 		}
+
 
 	    //-- Draw the pie chart --//
 		this.drawPieChart = function(schoolData) {
@@ -1279,7 +1275,7 @@ var CFPBComparisonTool = (function() {
         //-- toggles "active" or "inactive" state of the column --//
         this.toggleActive = function(state) { 
             // list of elements to toggle
-            var grays = '.school-data, .visualization, .data-total, h6, .visualization';
+            var grays = '.school-data, .visualization, .data-total, h6';
             var ninjas = '.hide-on-inactive';
 
             // Now we can alter the state to 'state'
