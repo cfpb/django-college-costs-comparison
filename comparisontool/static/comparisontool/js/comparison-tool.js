@@ -427,7 +427,7 @@ var CFPBComparisonTool = (function() {
 			// GI Bill
 			// Set schoolData.tfinstate
 			if ( data.instate == false ) {
-				data.tfinstate = data.militaryinstatetuition;	
+				data.tfinstate = data.gibillinstatetuition;	
 			}
 			else {
 				data.tfinstate = data.tuitionfees;
