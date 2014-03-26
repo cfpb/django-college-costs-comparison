@@ -33,7 +33,7 @@ h4 {font-size:14px;font-weight:500;}
 .span2{width:130px;}
 .span6{width:440px;}
 .skyblue-bg{background-color:#DBF3F9;color:#231F20;border-color:#DBF3F9;}
-.guide-sect-header{font-family:"Avenir Next", Arial, sans-serif;font-weight:500;color:#5281AB;text-transform:uppercase;font-size:1em;letter-spacing:1;}
+.guide-sect-header{font-family:"Avenir Next", Arial, sans-serif;font-weight:500;color:#5281AB;text-transform:uppercase;font-size:1em;letter-spacing:1px;}
 .accordion-heading {border-color:#CEE0F2;}
 .vspace1 {margin-bottom:10px;}
 .vspace2 {margin-bottom:20px;}
@@ -309,7 +309,7 @@ p {line-height:1.4em;}
 
 .btn-close{float:right;cursor:pointer;font-size:1.4em;margin:0 0 5px 5px;}
 .bubble-transparent {cursor:pointer;}
-.related-resources-col {float:left;margin:20px 0 0 18px;width:155px;border-top-radius:3px;border-top:3px solid #50B748;padding-top:20px;}
+.related-resources-col {float:left;margin:20px 0 0 18px;width:155px;border-top-left-radius:3px;border-top-right-radius:3px;border-top:3px solid #50B748;padding-top:20px;}
 .related-resources-col:first-child {width:190px;border:0;padding-top:0;font-weight:400;font-size:1.1em;}
 .related-resources-col h6{font-weight:400; font-size:1.2em;line-height:1.3em;}
 .related-resources-col p{font-size:.8em;}
