@@ -277,6 +277,7 @@ var CFPBComparisonTool = (function() {
     	$('#step-one input:radio[name="program"]').filter('[value="ba"]').prop('checked', true);
         $('#finaidoffer').prop('checked', false);
     	$('#xml-text').val('');
+        $('#step-one .continue').attr('disabled', true);
     } //
 
 	/////===== Classes =====/////
