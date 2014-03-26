@@ -1646,7 +1646,7 @@ var CFPBComparisonTool = (function() {
                     });
                 }
                 for ( c = 1; c <= 3; c++ ) {
-                    calculateAndDraw(columnNumber);
+                    calculateAndDraw(c);
                 }
             });
 
@@ -1657,7 +1657,7 @@ var CFPBComparisonTool = (function() {
                     $(this).val(value);
                 });
                 for ( c = 1; c <= 3; c++ ) {
-                    calculateAndDraw(columnNumber);
+                    calculateAndDraw(c);
                 }
             });
 
@@ -1675,9 +1675,9 @@ var CFPBComparisonTool = (function() {
 
             // Clicking "Calculate" button hides GI Bill panel and performs a calculation
             $(".gibill-panel .military-calculate").click( function() {
-                var column = $(this).closest("[data-column]").attr("data-column");
-                $("[data-column='" + column + "'] .gibill-panel").hide();
-                var school_id = $("#institution-row [data-column='" + column + "']").attr("data-schoolid");
+                var columnNumber = $(this).closest("[data-column]").attr("data-column");
+                $("[data-column='" + columnNumber + "'] .gibill-panel").hide();
+                var school_id = $("#institution-row [data-column='" + columnNumber + "']").attr("data-schoolid");
                 _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", school_id]);
                 calculateAndDraw(columnNumber);
             })
