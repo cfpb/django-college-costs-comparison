@@ -363,8 +363,7 @@ This is for each step in the process.
 #introduction #step-two,
 #introduction #step-three,
 /* We're hiding these portions of steps, and will display them with JS, based on user input. */
-.xml-success,
-.no-xml-success {
+#step-three .stage-success {
     display: none;
 }
 
