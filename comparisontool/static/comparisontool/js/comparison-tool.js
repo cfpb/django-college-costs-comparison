@@ -1,3 +1,4 @@
+/*jshint maxerr: 10000 */
 /*  A script to control the Comparison Tool, including adding and removing schools, loading school data,
     performing data calculations on schools and loans, and handling UI elements and events. -wernerc */
 
@@ -1238,6 +1239,7 @@ var CFPBComparisonTool = (function() {
         		columnObj.each( function() {
                     if ( $(this).parent().is(".highlighted-row") ) {
                         $(this).css("background-color", "#f5f9fd");
+                        $(this).filter("#institution-row th").css("border-top", "solid 5px #eaf3fb");
                     }
                 });
         	}
@@ -1245,6 +1247,7 @@ var CFPBComparisonTool = (function() {
         		columnObj.each( function() {
                     if ( $(this).parent().is(".highlighted-row") ) {
                         $(this).css("background-color", "inherit");
+                        $(this).filter("#institution-row th").css("border-top", "none");
                     }
                 });
         	}
@@ -1511,13 +1514,7 @@ var CFPBComparisonTool = (function() {
                 // If the user has a financial aid offer, go to XML step.
             	if ( $("#step-one .continue").attr("disabled") === undefined ) {
                     if ( $("#finaidoffer").is(":checked") ) {
-                        if (kyoss === false) {
-                            setAddStage(3);
-                            // Manipulate element show/hide    
-                        }
-                        else {
-                            setAddStage(2);    
-                        }
+                        setAddStage(2);    
                     }
                     else {
                         // If not, add the school. 
@@ -1980,9 +1977,9 @@ var CFPBComparisonTool = (function() {
                     var responseText = jqXHR.responseText;
                 });
             };
-
         }
     });
+
     // return functions and classes for testing
     return {
         moneyToNum: moneyToNum,
