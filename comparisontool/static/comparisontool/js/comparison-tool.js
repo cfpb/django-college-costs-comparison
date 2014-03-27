@@ -427,7 +427,7 @@ var CFPBComparisonTool = (function() {
 			// GI Bill
 			// Set schoolData.tfinstate
 			if ( data.instate == false ) {
-				data.tfinstate = data.militaryinstatetuition;	
+				data.tfinstate = data.gibillinstatetuition;	
 			}
 			else {
 				data.tfinstate = data.tuitionfees;
@@ -885,6 +885,13 @@ var CFPBComparisonTool = (function() {
             else {
                 columnObj.find("[data-nickname='gradplus']").removeAttr("disabled").css('background-color', '');
                 columnObj.find("[data-nickname='staffsubsidized']").attr("disabled", true).css('background-color', '#E3E4E5');
+            }
+            // Set GI BIll residency visibility
+            if (schoolData.control != "Public") {
+                columnObj.find(".military-residency-panel").hide();
+            }
+            else {
+                columnObj.find(".military-residency-panel").show();
             }
 			this.drawSchoolIndicators(schoolData);
 		} // end .addSchoolInfo()
