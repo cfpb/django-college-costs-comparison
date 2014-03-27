@@ -1583,8 +1583,13 @@ var CFPBComparisonTool = (function() {
             $("#step-three .continue").click( function() {
             	clearAddForms();
                 setAddStage(0);
-                $("#open").trigger("click");
-                $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
+                if ( $("#open").hasClass("arrw") ) {
+                    $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
+                }
+                else {
+                    $("#open").trigger("click");
+                    $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
+                }
             });
 
             // [step-three] User clicks Add Another School at step-three
