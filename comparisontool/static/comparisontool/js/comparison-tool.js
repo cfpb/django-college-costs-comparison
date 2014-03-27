@@ -280,6 +280,7 @@ var CFPBComparisonTool = (function() {
         $('#finaidoffer').prop('checked', false);
     	$('#xml-text').val('');
         $('#step-one .continue').attr('disabled', true);
+        $(".stage-success").hide();
     } //
 
 	/////===== Classes =====/////
@@ -313,10 +314,12 @@ var CFPBComparisonTool = (function() {
 			request.fail(function() {
 				// Your fail message here.
 			});
-            // Set the Costs of Attendance
-            schoolData.otherexpenses = schoolData.otheroncampus;
-            schoolData.tuitionfees = schoolData.tuitionundeross;
-            schoolData.roombrd = schoolData.roombrdoncampus;
+            // Set the Costs of Attendance to 0 for now
+            schoolData.otherexpenses = 0;
+            schoolData.tuitionfees = 0;
+            schoolData.roombrd = 0;
+            schoolData.books = 0;
+            schoolData.transportation = 0;
 
 			this.schoolData = schoolData;
 		} // end getSchoolData
@@ -872,8 +875,8 @@ var CFPBComparisonTool = (function() {
             var navigatorlink = "http://nces.ed.gov/collegenavigator/?id=" + schoolData.school_id; 
 			this.toggleActive('active'); // Make the column active
 			columnObj.find('[data-nickname="institution_name"]').html(schoolData.school);
-            $('.xml-success, .no-xml-success').find('span.success-school-name').html(schoolData.school);
-            $(".xml-success, .no-xml-success").find("a.navigator-link").show().attr("href", navigatorlink);
+            $('.stage-success').find('span.success-school-name').html(schoolData.school);
+            $(".stage-success").find("a.navigator-link").show().attr("href", navigatorlink);
 			columnObj.find('.header-cell').attr("data-schoolid", schoolData.school_id);
 			columnObj.find('input.school-data').not(".interest-rate").val("$0");
 			columnObj.find('input[data-nickname="institutional_loan_rate"]').val(global.institutionalloanratedefault * 100 + '%');
@@ -1503,6 +1506,7 @@ var CFPBComparisonTool = (function() {
                 }); 
                 schools[school_id] = schoolData;
                 $("#school-name-search").attr("data-schoolid", school_id);
+                $("#school-name-search").attr("data-kbyoss", schoolData.kbyoss);
                 $("#school-name-search").val($(this).html());
                 $("#step-one .search-results").html("").hide();
                 $("#step-one .continue").removeClass("disabled").removeAttr("disabled");
@@ -1511,14 +1515,21 @@ var CFPBComparisonTool = (function() {
 
             // [step-one] User clicks Continue at step-one
             $("#step-one .continue").click( function() {
-                // If the user has a financial aid offer, go to XML step.
+                
             	if ( $("#step-one .continue").attr("disabled") === undefined ) {
-                    if ( $("#finaidoffer").is(":checked") ) {
+                    // If the user has a financial aid offer and school participates in Shopping Sheet, go to XML step.
+                    if ( $("#finaidoffer").is(":checked") && $("#school-name-search").attr("data-kbyoss") === "Yes") { 
                         setAddStage(2);    
                     }
+                    // Else add the school
                     else {
-                        // If not, add the school. 
                         setAddStage(3);
+                        if ($("#finaidoffer").is(":checked")) {
+                            $('#step-three .no-cost-data').show();
+                        }
+                        else {
+                            $('#step-three .no-offer').show();
+                        }
                         var column = findEmptyColumn();
                         var schoolID = $("#school-name-search").attr("data-schoolid");
                         $('#institution-row [data-column="' + column + '"]').attr("data-schoolid", schoolID);
@@ -1532,8 +1543,6 @@ var CFPBComparisonTool = (function() {
                             maxSchools(true);
                         }
                         calculateAndDraw(column);
-                        $(".xml-success").hide();
-                        $(".no-xml-success").show();
                         $("#get-started-button").html("Add another school");
                     }
                 }
@@ -1548,7 +1557,7 @@ var CFPBComparisonTool = (function() {
                 // xml was not valid
                 if (data === false) {
                     if ( xml === previousXML ) {
-                        data = "invalid XML, continue hit twice";
+                        data = "invalid"; // Invalid XML entered twice, so ignore XML
                     }
                     else {
                         previousXML = xml;
@@ -1560,6 +1569,12 @@ var CFPBComparisonTool = (function() {
                 }
                 if (data !== false) {
                     setAddStage(3);
+                    if (data == "invalid") {
+                        $('#step-three .no-cost-data').show();
+                    }
+                    else {
+                        $('#step-three .valid-xml').show();
+                    }
                     var columnNumber = findEmptyColumn();
                     var schoolID = $("#school-name-search").attr("data-schoolid");
                     $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
@@ -1573,9 +1588,6 @@ var CFPBComparisonTool = (function() {
                     }
                     // If there's XML, process it and update
                     calculateAndDraw(columnNumber);
-                    $(".no-xml-success").hide();
-                    $(".xml-success").show();
-                    $("#get-started-button").html("Add another school");
                 }
             });
 
@@ -1596,14 +1608,12 @@ var CFPBComparisonTool = (function() {
             // [step-three] User clicks Add Another School at step-three
             $("#step-three .add-another-school").click( function() {
             	clearAddForms();
-                $(".no-xml-success, .xml-success").hide();
                 setAddStage(1);
             });
 
             // Cancel Add a School
             $("#introduction .add-cancel").click( function(event) {
                 event.preventDefault();
-                $(".no-xml-success, .xml-success").hide();
                 setAddStage(0);
                 clearAddForms();
             });
