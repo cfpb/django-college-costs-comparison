@@ -1511,7 +1511,13 @@ var CFPBComparisonTool = (function() {
                 // If the user has a financial aid offer, go to XML step.
             	if ( $("#step-one .continue").attr("disabled") === undefined ) {
                     if ( $("#finaidoffer").is(":checked") ) {
-                        setAddStage(2);    
+                        if (kyoss === false) {
+                            setAddStage(3);
+                            // Manipulate element show/hide    
+                        }
+                        else {
+                            setAddStage(2);    
+                        }
                     }
                     else {
                         // If not, add the school. 
