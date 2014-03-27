@@ -1218,6 +1218,8 @@ var CFPBComparisonTool = (function() {
                 global.vet = false;
             }
 
+            global.serving = $('[data-column="1"] .military-status-select :selected').val();
+
             global.tier = $("[data-column='1'] .military-tier-select").find(":selected").val();
 
             var instate = columnObj.find(".military-residency-panel :radio:checked").val();
