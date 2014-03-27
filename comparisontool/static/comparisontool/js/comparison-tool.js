@@ -280,7 +280,8 @@ var CFPBComparisonTool = (function() {
         $('#finaidoffer').prop('checked', false);
     	$('#xml-text').val('');
         $('#step-one .continue').attr('disabled', true);
-        $(".stage-success").hide();
+        $("#step-three .stage-success").hide();
+        $('#step-two .xml-error').hide();
     } //
 
 	/////===== Classes =====/////
@@ -1562,9 +1563,6 @@ var CFPBComparisonTool = (function() {
                     else {
                         previousXML = xml;
                         $('.xml-error').show();
-                        var html = 'Looks like that XML didn’t work. ';
-                        html += 'Try adding new XML, or click continue to skip this step.';
-                        $('.xml-error').html(html)
                     }
                 }
                 if (data !== false) {
