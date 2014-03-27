@@ -1595,6 +1595,7 @@ var CFPBComparisonTool = (function() {
             $("#step-three .continue").click( function() {
             	clearAddForms();
                 setAddStage(0);
+                // Open Cost of attendance, if necessary
                 if ( $("#open").hasClass("arrw") ) {
                     $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
                 }

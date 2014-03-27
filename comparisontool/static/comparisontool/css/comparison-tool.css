@@ -48,19 +48,28 @@ appears on smaller screens.
 }
 
 /* Close links */
-.pfc-close-bar,
+/* A link in the HTML */
 .pfc-close-text {
     color: #101820;
 }
 
-.pfc-close-bar:hover,
-.pfc-close-bar:active,
-.pfc-close-bar:focus,
 .pfc-close-text:hover,
 .pfc-close-text:active,
 .pfc-close-text:focus {
     background: transparent;
     border-color: #101820;
+}
+
+/* A button in the HTML */
+.pfc-close-bar {
+    background-color: transparent;
+    border: none;
+    color: #101820;
+    padding: 0.5em;
+}
+
+.pfc-close-bar .icon-delete {
+    color: #101820;
 }
 
 /* Layout */
@@ -741,9 +750,10 @@ This contains the majority of the structural styles for table-based elements.
     display: none;
     font-weight: 400;
     margin-left: -1.75em;
+    margin-top: 0.625em;
     padding: 1em .5em;
     position: absolute;
-    width: 15%;
+    width: 223px;
 }
 
 .comparison-tool thead .removal-row th .remove-confirm .button-group {
