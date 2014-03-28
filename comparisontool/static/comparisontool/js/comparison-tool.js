@@ -258,16 +258,14 @@ var CFPBComparisonTool = (function() {
 
     //-- Activate/Deactivate Add Form (for when 3 schools are already there) --//
     function maxSchools(boolean) {
-        // show/hide warning message, (de)activate both add buttons
+        // show/hide warning message, (de)activate #step-one add button
         if ( boolean === true ) {
             $('#step-zero .max-schools').show();
             $('#get-started-button').attr('disabled', true).addClass('disabled');
-            $('button.add-another-school').attr('disabled', true).addClass('disabled');
         }
         else {
             $('#step-zero .max-schools').hide();
             $('#get-started-button').removeAttr('disabled').removeClass('disabled');
-            $('button.add-another-school').removeAttr('disabled').removeClass('disabled');
         }
     } // end activateAddForm()
 
@@ -1611,7 +1609,12 @@ var CFPBComparisonTool = (function() {
             // [step-three] User clicks Add Another School at step-three
             $("#step-three .add-another-school").click( function() {
             	clearAddForms();
-                setAddStage(1);
+                if (findEmptyColumn() === false) {
+                    setAddStage(0);
+                }
+                else {
+                    setAddStage(1);
+                }
             });
 
             // Cancel Add a School
