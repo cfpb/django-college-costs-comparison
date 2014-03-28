@@ -385,6 +385,11 @@ This is for each step in the process.
     width: 387.5px;
 }
 
+#step-zero .max-schools {
+    display: none;
+    color: #d12124;   
+}
+
 #step-one .step-left {
     float: left;
     margin-right: 20px;
@@ -403,10 +408,6 @@ This is for each step in the process.
     	bottom: 24px;
     margin-right: 0;
     text-align: right;
-}
-
-#step-one .max-schools {
-    display: none;
 }
 
 #step-two .step-left {
@@ -528,11 +529,6 @@ This is for the Get Started button only. */
     font-size: .8em;
     font-style: italic;
     line-height: 1em;
-}
-
-/* The message that displays when a user has added three schools. Shown with JS. */
-.max-schools{
-    display: none;
 }
 
 .navigator-link {
