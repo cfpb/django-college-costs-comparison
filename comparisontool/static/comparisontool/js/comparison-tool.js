@@ -1557,6 +1557,9 @@ var CFPBComparisonTool = (function() {
                 if (xml !== undefined & xml !== "") {
                     var data = processXML(xml);
                 }
+                if (xml == "") {
+                    data = false;
+                }
                 // xml was not valid
                 if (data === false) {
                     if ( xml === previousXML ) {
