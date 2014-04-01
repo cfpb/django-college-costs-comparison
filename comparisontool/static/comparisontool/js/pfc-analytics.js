@@ -12,6 +12,19 @@ var PFCAnalytics = (function() {
             };
     })(); // end delay()
 
+    //-- findEmptyColumn() - finds the first empty column, returns column number [1-3] --//
+    function findEmptyColumn() {
+        var column = false;
+        for (var x = 1; x <= 3; x++) {
+            var school_id = $("#institution-row [data-column='" + x + "']").attr("data-schoolid");
+            if ( school_id === "" ) {
+                column = x;
+                break;
+            }
+        }
+        return column;
+    } // end findEmptyColumn()
+
     var global = {
         'schoolsAdded':0
     }
@@ -79,6 +92,44 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] ); 
     });
 
+    // Fire an event when Get Started is clicked
+    $('#get-started-button').click(function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "Get Started Button"] ); 
+    });
+
+    // Fire an event when Add a School is cancelled
+    $('#introduction .add-cancel').click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "Cancel Button", "clicked"] ); 
+    });
+
+    // Fire an event when adding a school.
+    function newSchoolEvent() {
+        var schoolID = $("#school-name-search").attr("data-schoolid");
+        var program = $('#step-one input:radio[name="program"]:checked').val();
+        var prgmlength = String($('#step-one select[name="prgmlength"]').val());
+        var offer = "No";
+        global.schoolsAdded++;
+        var schoolCount = String(global.schoolsAdded);
+        if ( $("#finaidoffer").is(":checked")) {
+            offer = "Yes";
+        }
+        _gaq.push([ "_trackEvent", "School Interactions", "Total Schools Added", schoolCount ] );
+        _gaq.push([ "_trackEvent", "School Interactions", "School Added", schoolID ] );
+        _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
+        _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
+        _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked", offer ] );
+
+    }
+    $('#step-one .continue, #step-two .continue').click( function() {
+        var empty = findEmptyColumn();
+        delay(function() {
+            var newEmpty = findEmptyColumn();
+            if (newEmpty != empty) {
+                newSchoolEvent();
+            }
+        }, 1000);
+
+    });
 
     //## OLDER CODE BELOW ##//
 
