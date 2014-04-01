@@ -1,9 +1,87 @@
 /*jshint maxerr: 10000 */
-// Event tracking for Google Analytics, using jQuery
-// For Paying for College: /paying-for-college/
-// Written by davidakennedy and Mike Morici
-$(function() {
-    "use strict";
+
+// Paying for College custom analytics file
+
+var PFCAnalytics = (function() {
+    //-- Delay calculations after keyup --//
+    var delay = (function(){ 
+            var t = 0;
+            return function(callback, delay) {
+                clearTimeout(t);
+                t = setTimeout(callback, delay);
+            };
+    })(); // end delay()
+
+    var global = {
+        'schoolsAdded':0
+    }
+    var schoolsZeroed = ['example'];
+
+    // Fire an event when a school is removed.
+    $('.remove-confirm .remove-yes').click( function() {
+        var columnNumber = $(this).parents('[data-column]').attr('data-column');
+        var schoolID = $('#institution-row [data-column="' + columnNumber + '"]').attr('data-schoolid');
+        _gaq.push([ "_trackEvent", "School Interactions", "School Removed", ] );
+    });
+
+    // Fire an event when Left to Pay = $0 and Costs > $0
+    $('#comparison-tables').on('keyup', 'input.school-data', function (ev) {
+        var columnNumber = $(this).parents('[data-column]').attr('data-column');
+        delay(function(){
+            var totalCosts = $('.breakdown [data-column="' + columnNumber + '"] .costs-value').html();
+            var leftToPay = $('.breakdown [data-column="' + columnNumber + '"] [data-nickname="gap"]').html();
+            var schoolID = $('#institution-row [data-column="' + columnNumber + '"]').attr('data-schoolid');
+            if (leftToPay === "$0" && totalCosts !== "$0") {
+                _gaq.push(["_trackEvent", "School Interactions", "Reached Zero Left to Pay", schoolID]);            
+            }
+        }, 1000);
+    });
+
+    // Fire an event when a tooltip is clicked
+    $(".tooltip-info").click( function(event) {
+        var tooltip = $(this).attr("data-tipname");
+        _gaq.push(["_trackEvent", "Page Interactions", "Tooltip Clicked", tooltip]);
+    });
+
+    // Fire an event when clicking "Calculate" button 
+    $(".gibill-panel .military-calculate").click( function() {
+        var columnNumber = $(this).closest("[data-column]").attr("data-column");
+        var school_id = $("#institution-row [data-column='" + columnNumber + "']").attr("data-schoolid");
+        _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", school_id]);        
+    });
+
+    // Fire an event when Send Email is clicked
+    $("#send-email").click( function(){
+        _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Send email"] );
+    });
+
+    // Fire an event when save draw is opened
+    $("#save-and-share").click( function( event, native ) {
+        if ( native == undefined) {
+            _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "toggle button"] );
+        }        
+    });
+
+    // Fire an event when save current is clicked
+    $("#save-current").click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Save current worksheet"] );
+    });
+
+    $("#unique").click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Copy URL"] );  
+    });
+
+    $("#save-drawer .save-share-facebook").click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Facebook_saveshare"] );    
+    });
+
+    $("#save-drawer .save-share-twitter").click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] ); 
+    });
+
+
+    //## OLDER CODE BELOW ##//
+
     // Main image on /paying-for-college/
     $('.hero-link').click(function() {
         _gaq.push(['_trackEvent', 'Hero', 'Click', 'Image']);
@@ -138,7 +216,7 @@ $(function() {
         var link_url = $(this).attr('href')
         _gaq.push(['_trackEvent','Downloads', link_text, link_url]);
     });
-});
+})(jQuery);
 
 // Tracks video embed interactions on page (must use iFrames)
 /*
@@ -218,6 +296,8 @@ var playerArray = [],
         trackYouTube();
     });
 })(jQuery);
+
+
 
 // when the YouTube iframe API has loaded
 function onYouTubeIframeAPIReady() {
