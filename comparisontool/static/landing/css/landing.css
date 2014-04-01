@@ -71,10 +71,6 @@ This just the hero for the Comparison Tool.
     width: 89.75%;
 }
 
-.breadcrumbs {
-    padding-bottom: 0.25em;
-}
-
 .breadcrumbs a {
     background-color: transparent;
     border-bottom: none;
@@ -92,6 +88,8 @@ This just the hero for the Comparison Tool.
 .breadcrumbs > p {
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 600;
+    margin-bottom: 0.625em;
+    margin-top: 0.25em;
 }
 
 .pfc-hero-content {
@@ -141,6 +139,8 @@ This just the hero for the Comparison Tool.
 .pfc-header h1.sub-page {
     font-size: 1.625em;
     font-weight: 400;
+    line-height: 1;
+    margin-bottom: 1em;
 }
 
 /* PFC NAVIGATION
