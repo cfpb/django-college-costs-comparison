@@ -95,10 +95,15 @@ This just the hero for the Comparison Tool.
 .pfc-hero-content {
     /* Not an official color, but a mix of green and white. */
     background-color: #d3efdb;
+    font-family: "Avenir Next", Verdana, sans-serif;
     float: left;
     min-height: 155px;
     padding: 1em;
     width: 35%;
+}
+
+.pfc-hero-content p {
+    font-family: "Avenir Next", Verdana, sans-serif;
 }
 
 .pfc-hero-image {

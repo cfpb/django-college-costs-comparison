@@ -190,6 +190,10 @@ This just the hero for the Comparison Tool.
     width: 35%;
 }
 
+.pfc-hero-content p {
+    font-family: "Avenir Next", Verdana, sans-serif;
+}
+
 .pfc-hero-image {
     position: absolute;
         bottom: 38px;
