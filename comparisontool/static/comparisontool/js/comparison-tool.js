@@ -1647,13 +1647,12 @@ var CFPBComparisonTool = (function() {
                 var schoolID = columns[number].fetchSchoolID();
                 columns[number].removeSchoolInfo();
                 columns[number].toggleActive('inactive');
-                _gaq.push([ "_trackEvent", "School Interactions", "School Removed", schoolID ] );
                 delete schools[schoolID];
                 if ( Object.keys(schools).length === 0 ) {
                     $("#get-started-button").html("Get started");
                 }
                 maxSchools(false);
-            })
+            });
 
             // Wait, no, I don't want to remove it!
             $(".remove-confirm .remove-no").click( function() {
@@ -1728,8 +1727,6 @@ var CFPBComparisonTool = (function() {
             $(".gibill-panel .military-calculate").click( function() {
                 var columnNumber = $(this).closest("[data-column]").attr("data-column");
                 $("[data-column='" + columnNumber + "'] .gibill-panel").hide();
-                var school_id = $("#institution-row [data-column='" + columnNumber + "']").attr("data-schoolid");
-                _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", school_id]);
                 calculateAndDraw(columnNumber);
             })
 
@@ -1850,16 +1847,14 @@ var CFPBComparisonTool = (function() {
                     $("#tooltip-container").hide();
                     $("html").off('click');
                 });
-                tooltip = $(this).attr("data-tipname");
+                var tooltip = $(this).attr("data-tipname");
                 if ( tooltip == undefined ){
                     tooltip = "Name not found";
                 }
-                _gaq.push(["_trackEvent", "Page Interactions", "Tooltip Clicked", tooltip]);
             });
 
             // Send email
             $("#send-email").click( function(){
-                _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Send email"] );
                 var email = $('#email').val();
                 var request = $.ajax({
                     type: "POST",
@@ -1884,9 +1879,6 @@ var CFPBComparisonTool = (function() {
 
             // toggle save drawer
             $("#save-and-share").click( function( event, native ) {
-                if ( native == undefined) {
-                    _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "toggle button"] );
-                }
                 if ( global.worksheet_id == "none") {
                     getWorksheetID();
                 }
@@ -1936,22 +1928,9 @@ var CFPBComparisonTool = (function() {
                 $("#timestamp").html("Saved on " + timestamp);
             }); 
             $("#save-current").click( function() {
-                _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Save current worksheet"] );
                 $("#save-and-share").trigger("click", ['save-current']);
             });
 
-            // Analytics handlers
-            $("#unique").click( function() {
-                _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Copy URL"] );  
-            });
-
-            $("#save-drawer .save-share-facebook").click( function() {
-                _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Facebook_saveshare"] );    
-            });
-
-            $("#save-drawer .save-share-twitter").click( function() {
-                _gaq.push([ "_trackEvent", "School Interactions", "Save and Share", "Twitter_saveshare"] ); 
-            });
 
             // --- Start the page up! --- //
 
