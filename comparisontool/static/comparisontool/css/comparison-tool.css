@@ -851,11 +851,11 @@ This contains the majority of the structural styles for table-based elements.
     background: #cce3f5;
 }
 
-.comparison-tool table .breakdown th {
+.comparison-tool table .breakdown th.bg-spacing {
     padding: 2em 0.5em 1em;
 }
 
-.comparison-tool table .breakdown td {
+.comparison-tool table .breakdown td.bg-spacing {
     padding: 1.5em 0;
 }
 
