@@ -851,9 +851,12 @@ This contains the majority of the structural styles for table-based elements.
     background: #cce3f5;
 }
 
-.breakdown th,
-.breakdown td {
-    background: #fff;
+.comparison-tool table .breakdown th {
+    padding: 2em 0.5em 1em;
+}
+
+.comparison-tool table .breakdown td {
+    padding: 1.5em 0;
 }
 
 /* The styles for accodion arrows. See the JS file. All are collapsed by default. */
@@ -1283,6 +1286,10 @@ label.tooltip-info {
     left: 8px;
     top: -14px;
     width: 0;
+}
+
+#comparison-tables .bg-spacer {
+    background: url("/static/comparisontool/images/bg-spacer.png") #f8f8f8 repeat-x;
 }
 
 /* BAR GRAPH, AKA .meter */
