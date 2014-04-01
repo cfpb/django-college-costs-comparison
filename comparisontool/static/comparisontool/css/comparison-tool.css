@@ -501,7 +501,7 @@ This is for the Get Started button only. */
 }
 
 .get-started .xml-text {
-	width: 70%;
+	width: 60%;
 }
 
 /* The search results for Add a School. */
@@ -1288,6 +1288,8 @@ label.tooltip-info {
     width: 0;
 }
 
+/* Adds white space between sections that can't be done otherwise because
+   of border-collapse: collapse; */
 #comparison-tables .bg-spacer {
     background: url("/static/comparisontool/images/bg-spacer.png") #f8f8f8 repeat-x;
 }

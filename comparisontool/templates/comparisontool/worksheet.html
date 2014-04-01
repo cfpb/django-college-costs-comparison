@@ -192,11 +192,10 @@ var restoredata = {{ data_js|safe }};
 			<div id="step-two" class="get-started step-two clearfix">
 				<div class="add-xml xml-info staged stage-xml step-left">
 					<div class="pfc-container-left">
-						<h4>Got XML? (optional)</h4>
-						<p><span class="demi">This school pledged to use the Financial Aid Shopping Sheet!</span><p>
+						<h4>This school pledged to use the Financial Aid Shopping Sheet!</h4>
 						<p>This will make things easier. If they provided an XML file with your financial aid offer, copy and paste the code below. If not, just click continue.</p>
 						<p class="xml-error">Looks like that XML didn’t work. Try adding new XML, or click continue to skip this step.</p>
-						<label for="xml-text" class="xml">School XML data</label>
+						<label for="xml-text" class="xml">School XML data (optional)</label>
 						<textarea name="xmlbukkit" id="xml-text" class="xml-text" data-nickname="xmlbukkit" placeholder="Paste XML code here. Example: xmlfile_example.xml"></textarea>
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-xml /xml-info /staged /stage-xml /step-left -->
@@ -297,7 +296,7 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
 					</tr>
 					<tr class="hide highlighted-row">
-						<td class="full" colspan="4">If you have a financial aid offer for this school, use it to enter your information here. If not, you can go to <a href="http://www.collegenavigator.gov" target="_blank">www.collegenavigator.gov</a> to look up this school’s cost of attendance info, add it to the fields below, then add more schools to see how they compare.</td>
+						<td class="full" colspan="4">If you have a financial aid offer from this school, use it to enter your information here. If not, you can go to <a href="http://www.collegenavigator.gov/" target="_blank">www.collegenavigator.gov</a> to look up this school’s cost of attendance info, add it to the fields below, then add more schools to see how they compare.</td>
 					</tr>
 					<tr class="hide highlighted-row">
 						<th scope="row" data-column="0"><span class="tooltip-info" data-tooltip="Tuition &amp; Fees: Tuition and fees are what the school charges the student to participate in classes." data-tipname="tuitionfees">Tuition &amp; fees</span></th>
@@ -344,13 +343,13 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 					</tr>
 					<tr class="grants hide arrw-collapse highlighted-row">
-						<th scope="row" data-column="0"><h5>Scholarships &amp; grants</h5></th>
+						<th scope="row" data-column="0"><h5>Grants &amp; scholarships</h5></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
 					</tr>
 					<tr class="grants-row instructions tr-hide highlighted-row">
-						<td class="full" colspan="4">Scholarships, grants, military tuition assitance, including the GI Bill.</td>
+						<td class="full" colspan="4">Grants, scholarships, military tuition assistance, including the GI Bill.</td>
 					</tr>
 					<tr class="grants-row tr-hide highlighted-row">
 						<th scope="row" data-column="0"><span class="tooltip-info" data-tooltip="Pell Grants are federal grants that do not have to be repaid and are awarded based on your financial need, up to $5,730 per year." data-tipname="pell">Federal Pell Grant</span></th>
