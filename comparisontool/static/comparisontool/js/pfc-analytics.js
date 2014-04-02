@@ -135,7 +135,12 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "School Added", schoolID ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
-        _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked", offer ] );
+        if (offer === "Yes") {
+            _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked"] );
+        }
+        if ( $('#xml-text').val() === "" ) {
+            _gaq.push([ "_trackEvent", "School Interactions", "School Added without XML"] );
+        }
     }
 
     // Check for a new school added when .continue and .add-another-school are clicked
