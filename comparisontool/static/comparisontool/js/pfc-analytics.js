@@ -26,7 +26,7 @@ var PFCAnalytics = (function() {
     } // end findEmptyColumn()
 
     var global = {
-        'schoolsAdded':0
+        'schoolsAdded': 0, 'emptyColumn': 1
     }
     var schoolsZeroed = ['example'];
 
@@ -35,6 +35,8 @@ var PFCAnalytics = (function() {
         var columnNumber = $(this).parents('[data-column]').attr('data-column');
         var schoolID = $('#institution-row [data-column="' + columnNumber + '"]').attr('data-schoolid');
         _gaq.push([ "_trackEvent", "School Interactions", "School Removed", ] );
+        // Important to add a School tracking - reset the global.emptyColumn var
+        global.emptyColumn = findEmptyColumn();
     });
 
     // Fire an event when Left to Pay = $0 and Costs > $0
@@ -99,7 +101,17 @@ var PFCAnalytics = (function() {
 
     // Fire an event when Add a School is cancelled
     $('#introduction .add-cancel').click( function() {
-        _gaq.push([ "_trackEvent", "School Interactions", "Cancel Button", "clicked"] ); 
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "Cancel Button"] ); 
+    });
+
+    // Fire an event when Continue is clicked
+    $('#introduction .continue').click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "Continue Button"] ); 
+    });
+
+    // Fire an event when Add another school is clicked
+    $('#introduction .add-another-school').click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "Add another school Button"] ); 
     });
 
     // Fire an event when adding a school.
@@ -118,18 +130,27 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked", offer ] );
-
     }
-    $('#step-one .continue, #step-two .continue').click( function() {
-        var empty = findEmptyColumn();
+
+    // Check for a new school added when .continue and .add-another-school are clicked
+    $('#introduction .continue, #introduction .add-another-school').click( function() {
         delay(function() {
             var newEmpty = findEmptyColumn();
-            if (newEmpty != empty) {
+            console.log("===> Column Compare: " + newEmpty);
+            if (newEmpty != global.emptyColumn) {
                 newSchoolEvent();
+                global.emptyColumn = newEmpty;
             }
-        }, 1000);
+        }, 500);
 
     });
+
+    // Fire event when user clicks the arrows to open sections
+    $('.arrw-collapse').click(function() {
+        var arrwName = $(this).attr('data-arrwname');
+        _gaq.push([ "_trackEvent", "School Interactions", arrwName, "Drop Down" ] );
+    });
+
 
     //## OLDER CODE BELOW ##//
     // PFC menu tracking
