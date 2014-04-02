@@ -6,6 +6,19 @@
 <link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
 {% endblock %}
 
+{% block analytics_js %}
+    <!-- this is where we put our custom analytics -->
+    <script src="/wp-content/themes/cfpb_nemo/_/js/analytics-global.js{{ STATIC_VERSION }}"></script>
+
+    <!-- H5BP's Asynchronous Google Analytics snippet. -->
+    <script>
+      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>    
+{% endblock %}
+
 {% block body_class %}page paying-for-college{% endblock %}
 
 {% block content %}
@@ -171,3 +184,7 @@
 </div><!-- end #comparison-tool -->
 						
 {% endblock content %}
+
+{% block page_js %}
+    <script src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
+{% endblock %}
