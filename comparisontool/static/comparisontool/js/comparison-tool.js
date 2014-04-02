@@ -1208,15 +1208,13 @@ var CFPBComparisonTool = (function() {
                 }
             });
             // Get GI Bill Information
-            var vetselect = columnObj.find(".military-status-select").val();
-            if (vetselect != "none") {
+            global.serving = $('[data-column="1"] .military-status-select :selected').val();
+            if (global.serving != "none") {
                 global.vet = true;
             }
             else {
                 global.vet = false;
             }
-
-            global.serving = $('[data-column="1"] .military-status-select :selected').val();
 
             global.tier = $("[data-column='1'] .military-tier-select").find(":selected").val();
 
