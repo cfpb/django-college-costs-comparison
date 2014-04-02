@@ -467,10 +467,6 @@ This just the hero for the Comparison Tool.
     width: 89.75%;
 }
 
-.breadcrumbs {
-    padding-bottom: 0.25em;
-}
-
 .breadcrumbs a {
     background-color: transparent;
     border-bottom: none;
@@ -488,13 +484,14 @@ This just the hero for the Comparison Tool.
 .breadcrumbs > p {
     font-family: "Avenir Next", Verdana, sans-serif;
     font-weight: 600;
-    margin-bottom: 1em;
-    margin-top: 1em;
+    margin-bottom: 0.625em;
+    margin-top: 0.25em;
 }
 
 .pfc-hero-content {
     /* Not an official color, but a mix of green and white. */
     background-color: #d3efdb;
+    font-family: "Avenir Next", Verdana, sans-serif;
     float: left;
     min-height: 155px;
     padding: 1em;
@@ -502,6 +499,7 @@ This just the hero for the Comparison Tool.
 }
 
 .pfc-hero-content p {
+    font-family: "Avenir Next", Verdana, sans-serif;
     margin-left: 0;
     margin-right: 0;
 }
@@ -543,6 +541,8 @@ This just the hero for the Comparison Tool.
 .pfc-header h1.sub-page {
     font-size: 1.625em;
     font-weight: 400;
+    line-height: 1;
+    margin-bottom: 1em;
 }
 
 /* PFC NAVIGATION
