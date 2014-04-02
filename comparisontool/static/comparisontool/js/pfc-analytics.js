@@ -26,7 +26,7 @@ var PFCAnalytics = (function() {
     } // end findEmptyColumn()
 
     var global = {
-        'schoolsAdded':0
+        'schoolsAdded': 0, 'emptyColumn': 1
     }
     var schoolsZeroed = ['example'];
 
@@ -35,6 +35,8 @@ var PFCAnalytics = (function() {
         var columnNumber = $(this).parents('[data-column]').attr('data-column');
         var schoolID = $('#institution-row [data-column="' + columnNumber + '"]').attr('data-schoolid');
         _gaq.push([ "_trackEvent", "School Interactions", "School Removed", ] );
+        // Important to add a School tracking - reset the global.emptyColumn var
+        global.emptyColumn = findEmptyColumn();
     });
 
     // Fire an event when Left to Pay = $0 and Costs > $0
@@ -118,16 +120,18 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked", offer ] );
-
+        console.log("FOO: ADDED " + schoolID)
     }
-    $('#step-one .continue, #step-two .continue').click( function() {
-        var empty = findEmptyColumn();
+    $('.continue, .add-another-school').click( function() {
+        console.log("===> Column Compare: " + global.emptyColumn);
         delay(function() {
             var newEmpty = findEmptyColumn();
-            if (newEmpty != empty) {
+            console.log("===> Column Compare: " + newEmpty);
+            if (newEmpty != global.emptyColumn) {
                 newSchoolEvent();
+                global.emptyColumn = newEmpty;
             }
-        }, 1000);
+        }, 500);
 
     });
 
