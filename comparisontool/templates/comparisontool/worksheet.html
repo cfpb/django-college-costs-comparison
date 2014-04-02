@@ -18,8 +18,20 @@
     <![endif]-->
 {% endblock %}
 
-{% block page_js %}
+{% block analytics_js %}
+    <!-- this is where we put our custom analytics -->
+    <script src="/wp-content/themes/cfpb_nemo/_/js/analytics-global.js{{ STATIC_VERSION }}"></script>
 
+    <!-- H5BP's Asynchronous Google Analytics snippet. -->
+    <script>
+      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>    
+{% endblock %}
+
+{% block page_js %}
 <script>
 
 jQuery(document).ajaxSend(function(event, xhr, settings) {
@@ -67,10 +79,10 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
 var restoredata = {{ data_js|safe }};
 </script>
 
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/raphael-min.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
+<script src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
+<script src="{{ STATIC_PREFIX }}comparisontool/js/raphael-min.js"></script>
+<script src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
+<script src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
 {% endblock page_js %}
 
 {% block body_class %}page paying-for-college{% endblock %}
