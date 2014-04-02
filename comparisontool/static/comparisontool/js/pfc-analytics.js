@@ -139,7 +139,10 @@ var PFCAnalytics = (function() {
             _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked"] );
         }
         if ( $('#xml-text').val() === "" ) {
-            _gaq.push([ "_trackEvent", "School Interactions", "School Added without XML"] );
+            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "Blank"] );
+        }
+        else {
+            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "XML text"] );
         }
     }
 
