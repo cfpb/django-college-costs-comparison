@@ -53,3 +53,5 @@ node_modules
 _SpecRunner.html
 coverage/
 junit-results/
+sauce_connect.log
+jshint-results/
