@@ -1,0 +1,691 @@
+{% extends "front/base_update.html" %}
+
+{% block page_meta %}
+<meta charset="UTF-8" />
+<meta property="og:title" content="Jobs &gt; Consumer Financial Protection Bureau"/>
+<meta property="og:type" content="government"/>
+<meta property="og:url" content="{{ URL }}"/>
+
+<!-- <script src="{{ STATIC_PREFIX }}pb/p4c-ultra/_base.js"></script> -->
+<link href="{{ STATIC_PREFIX }}repaystudentdebt/css/repay.css" rel="stylesheet">
+
+{% endblock %}
+
+{% block title %}Repay Student Debt{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+
+{% block page_css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_PREFIX }}jobmanager/css/jobs.css" />
+    <link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
+    <!--[if IE 7]>
+    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
+    <![endif]-->
+{% endblock %}
+
+{% block analytics_js %}
+    <!-- this is where we put our custom analytics -->
+    <script src="/wp-content/themes/cfpb_nemo/_/js/analytics-global.js{{ STATIC_VERSION }}"></script>
+
+    <!-- H5BP's Asynchronous Google Analytics snippet. -->
+    <script>
+      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>    
+{% endblock %}
+
+{% block body_class %}page paying-for-college{% endblock %}
+
+{% block content %}
+
+<header id="repay-debt-header" class="pfc-header">
+    <div id="pfc-hero-wrapper" class="pfc-hero-wrapper clearfix">
+        <div class="pfc-hero-content">
+            <div class="breadcrumbs">
+                <p><i class="icon-left"></i><a href="/paying-for-college/">Paying for College</a></p>
+            </div>
+            <h1 class="sub-page">Repay student debt</h1>
+            <p>Paying off student debt can be confusing. Walk through your options and optimize how to pay off your loans.</p>
+        </div>
+        <div class="pfc-hero-image alignbottomright">
+            <img alt="" src="{{ STATIC_PREFIX }}repaystudentdebt/images/3_hero_repaying_debt.png">
+        </div>
+    </div><!-- end .pfc-hero-wrapper -->
+    <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
+    <div class="pfc-nav-wrapper">
+        <nav>
+            <ul class="pfc-nav">
+                <li><a href="/paying-for-college/">Get started</a></li>
+                <li><span tabindex="0" class="fake-link">Student financial guides</span>
+                    <ul>
+                        <li><a href="/paying-for-college/choose-a-student-loan/">Student loans</a></li>
+                        <li><a href="/paying-for-college/manage-your-college-money/">Student banking</a></li>
+                    </ul>
+                </li>
+                <li><a href="/paying-for-college/compare-financial-aid-and-college-cost/">Compare financial aid offers</a></li>
+                <li><a class="is-active" href="/paying-for-college/repay-student-debt/">Repay student debt</a></li>
+            </ul><!-- end .pfc-nav -->
+        </nav>
+    </div><!-- end .pfc-nav-wrapper -->
+</header><!-- end #repay-debt-header -->
+    
+    <div class="sub-page-wrapper">
+    
+        
+
+<!-- Wizard Document Root -->
+<div id='wizroot'></div>
+
+
+<!-- Wizard's JavaScript including data -->
+<script>
+eval('$.fn.wizify=function(e){function i(t){function n(e){var r;if(e.slug==t)return e;if(e.childs){var i=e.childs;for(var s=0,o=i.length;s<o;s++){r=n(i[s]);if(r)return r}}}return n(e)}function s(t){function n(e){var r;if(e.id==t)return e;if(e.childs){var i=e.childs;for(var s=0,o=i.length;s<o;s++){r=n(i[s]);if(r)return r}}}return n(e)}function o(e){if(t==e)return;var u=i(e);if(r(u)=="goto")return t=u.slug,o(s(u.target_id).slug);if(n.children().length){var a=n.children()[0];n.children().slideUp(),setTimeout(function(){$(a).remove()},1e3)}var f=$("#page_"+u.target_id).clone();f.hide(),n.append(f),f.slideDown(),$("html, body").animate({scrollTop:n.position().top},"slow"),_gaq.push(["_trackPageview","/student-wiz/"+e]),$(".wiz_btns").empty(),u.childs AND $(u.childs).each(function(e,t){var n=$("<button />").html(t.option);n.click(function(){o(t.slug)}),$(".wiz_btns").append(n)}),document.location.hash!="#"+e AND (document.location.hash="#"+e),t=e,n[0].focus()}var t=null,n=this,r=function(e){return e.command?e.command:"show"};$(window).bind("hashchange",function(e){o(document.location.hash.replace("#",""))}),document.location.hash?o(document.location.hash.replace("#","")):o(e.slug)}'.replace(new RegExp('AND', 'g'), (String.fromCharCode(38)+String.fromCharCode(38))));
+
+$(function(){$('#wizroot').wizify({"childs": [{"childs": [{"childs": [{"childs": [{"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 3522505, "command": "goto", "slug": "__Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 4: Default back to school consolidation ", "target_id": 1281, "id": 5449988, "command": "show", "slug": "Module-4:-Default-back-to-school-consolidation-", "name": "[Optional Note]"}, {"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 8739474, "command": "goto", "slug": "___Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 5: Default rehabilitation ", "target_id": 1283, "id": 9071477, "command": "show", "slug": "Module-5:-Default-rehabilitation-", "name": "[Optional Note]"}, {"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 1112442, "command": "goto", "slug": "_____Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 6: Default repayment ", "target_id": 1285, "id": 6395462, "command": "show", "slug": "Module-6:-Default-repayment-", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 7542916, "command": "goto", "slug": "______Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 7: Federal default options", "target_id": 1287, "id": 8656074, "command": "show", "slug": "Module-7:-Federal-default-options", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 7", "target_id": 1269, "id": 3270055, "command": "show", "slug": "Question-7", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 6", "target_id": 1267, "id": 3504335, "command": "show", "slug": "_Question-6", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Question 5", "target_id": 1265, "id": 3672065, "command": "show", "slug": "Question-5", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 7531525, "command": "goto", "slug": "_______Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 8: Default IBR consolidation", "target_id": 1289, "id": 247365, "command": "show", "slug": "_Module-8:-Default-IBR-consolidation", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Question 4", "target_id": 1263, "id": 612577, "command": "show", "slug": "Question-4", "name": "[Optional Note]"}, {"childs": [], "option": "No", "target_caption": "<i class=\"arr\"></i>Question 8", "target_id": 5081712, "id": 1498946, "command": "goto", "slug": "_____Question-8", "name": "[Optional Note]"}, {"childs": [], "option": "Not Sure", "target_caption": "<i class=\"arr\"></i><i class=\"arr\"></i>Question 8", "target_id": 1498946, "id": 9546307, "command": "goto", "slug": "____Question-8", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Question 3", "target_id": 1261, "id": 3735005, "command": "show", "slug": "_Question-3", "name": "[Optional Note]"}, {"childs": [{"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 4555300, "command": "goto", "slug": "_______________Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 2: SCRA/IBR/Deferment", "target_id": 1277, "id": 9216998, "command": "show", "slug": "Module-2:-SCRA/IBR/Deferment", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 6019494, "command": "goto", "slug": "________________Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 1: Fed Consolidation/Direct Debit/Extra Payment", "target_id": 1275, "id": 3154204, "command": "show", "slug": "Module-1:-Fed-Consolidation/Direct-Debit/Extra-Payment", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Question 9", "target_id": 1273, "id": 8790974, "command": "show", "slug": "_____Question-9", "name": "[Optional Note]"}, {"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 7400893, "command": "goto", "slug": "_________________Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 2: SCRA/IBR/Deferment", "target_id": 1277, "id": 5299184, "command": "show", "slug": "_Module-2:-SCRA/IBR/Deferment", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 4852850, "command": "goto", "slug": "__________________Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 3: IBR", "target_id": 1279, "id": 7462426, "command": "show", "slug": "Module-3:-IBR", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 9", "target_id": 1273, "id": 6429726, "command": "show", "slug": "______Question-9", "name": "[Optional Note]"}, {"childs": [], "option": "Not Sure", "target_caption": "<i class=\"arr\"></i>Question 9", "target_id": 6429726, "id": 578694, "command": "goto", "slug": "_______Question-9", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 8", "target_id": 1271, "id": 5081712, "command": "show", "slug": "__Question-8", "name": "[Optional Note]"}], "option": " Federal", "target_caption": "Question 2", "target_id": 1259, "id": 3538434, "command": "show", "slug": "_Question-2", "name": "[Optional Note]"}, {"childs": [{"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 1050637, "command": "goto", "slug": "_______________________Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 12: Private student loan default", "target_id": 1297, "id": 2769084, "command": "show", "slug": "Module-12:-Private-student-loan-default", "name": "[Optional Note]"}, {"childs": [{"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 9614422, "command": "goto", "slug": "_Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 10: SCRA/Private loan deferment ", "target_id": 1293, "id": 6951838, "command": "show", "slug": "Module-10:-SCRA/Private-loan-deferment-", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 1284039, "command": "goto", "slug": "________________________Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 9: Private consolidation/direct debit/extra payment", "target_id": 1291, "id": 4419425, "command": "show", "slug": "Module-9:-Private-consolidation/direct-debit/extra-payment", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Question 9", "target_id": 1273, "id": 2640203, "command": "show", "slug": "Question-9", "name": "[Optional Note]"}, {"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 1713322, "command": "goto", "slug": "___________Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 13: Call your servicer/SCRA/deferment", "target_id": 1299, "id": 2821642, "command": "show", "slug": "___Module-13:-Call-your-servicer/SCRA/deferment", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 5032057, "command": "goto", "slug": "____________Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 11: Call your servicer", "target_id": 1295, "id": 5300557, "command": "show", "slug": "Module-11:-Call-your-servicer", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 9", "target_id": 1273, "id": 8217903, "command": "show", "slug": "_Question-9", "name": "[Optional Note]"}, {"childs": [], "option": "Not Sure", "target_caption": "<i class=\"arr\"></i>Question 9", "target_id": 8217903, "id": 5215993, "command": "goto", "slug": "__Question-9", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 8", "target_id": 1271, "id": 9635001, "command": "show", "slug": "Question-8", "name": "[Optional Note]"}, {"childs": [], "option": "Not Sure", "target_caption": "<i class=\"arr\"></i>Question 8", "target_id": 9635001, "id": 7532263, "command": "goto", "slug": "_Question-8", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Question 3", "target_id": 1261, "id": 352059, "command": "show", "slug": "Question-3", "name": "[Optional Note]"}, {"childs": [{"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 2783354, "command": "goto", "slug": "______________________________Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 10: SCRA/Private loan deferment ", "target_id": 1293, "id": 44333, "command": "show", "slug": "__Module-10:-SCRA/Private-loan-deferment-", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 1357205, "command": "goto", "slug": "_______________________________Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 9: Private consolidation/direct debit/extra payment", "target_id": 1291, "id": 7728502, "command": "show", "slug": "__Module-9:-Private-consolidation/direct-debit/extra-payment", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Question 9", "target_id": 1273, "id": 4682810, "command": "show", "slug": "________Question-9", "name": "[Optional Note]"}, {"childs": [{"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 5187511, "command": "goto", "slug": "________________________________Question-1", "name": "[Optional Note]"}], "option": "Yes", "target_caption": "Module 10: SCRA/Private loan deferment ", "target_id": 1293, "id": 9823485, "command": "show", "slug": "___Module-10:-SCRA/Private-loan-deferment-", "name": "[Optional Note]"}, {"childs": [{"option": "Restart", "target_caption": "<i class=\"arr\"></i>Question 1", "target_id": 11111, "id": 8061980, "command": "goto", "slug": "_________________________________Question-1", "name": "[Optional Note]"}], "option": "No", "target_caption": "Module 11: Call your servicer", "target_id": 1295, "id": 8904310, "command": "show", "slug": "___Module-11:-Call-your-servicer", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 9", "target_id": 1273, "id": 4749626, "command": "show", "slug": "_________Question-9", "name": "[Optional Note]"}, {"childs": [], "option": "Not Sure", "target_caption": "<i class=\"arr\"></i>Question 9", "target_id": 4749626, "id": 6912096, "command": "goto", "slug": "__________Question-9", "name": "[Optional Note]"}], "option": "No", "target_caption": "Question 8", "target_id": 1271, "id": 1405066, "command": "show", "slug": "___Question-8", "name": "[Optional Note]"}], "option": " Non-Federal", "target_caption": "Question 2", "target_id": 1259, "id": 6114132, "command": "show", "slug": "Question-2", "name": "[Optional Note]"}, {"childs": [{"option": "Next", "target_caption": "<i class=\"arr\"></i>Question 2", "target_id": 3538434, "id": 332564, "command": "goto", "slug": "__Question-2", "name": "[Optional Note]"}], "option": " Both", "target_caption": "Federal and Non-Federal Loans", "target_id": 1301, "id": 676579, "command": "show", "slug": "Federal-and-Non-Federal-Loans", "name": "[Optional Note]"}], "name": "root", "target_caption": "Question 1", "target_id": 1257, "id": 11111, "slug": "Question-1"});});
+</script>
+<noscript>For full functionality of this application, it is necessary to enable JavaScript.
+ Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+ instructions how to enable JavaScript in your web browser</a>.</noscript>
+
+<!-- Slide Templates -->
+<div id='wiz_templates' style='display:none;'>
+    
+    <div id='page_1257'>
+        <h2>KNOW YOUR OPTIONS</h2>
+
+<p>Before you start, it will be helpful to have a list of your loans, as well as the required monthly payment amounts.  If you don’t have this information, don’t worry.</p>
+<p>While we can’t give you advice for your exact situation, we hope it can point you in the right direction and help you learn about some of your options.</p>
+
+<h2>Federal, Private (non-federal), or both?</h2>
+<p>Are your student loans federal or private (non-federal), or a mixture of both?</p>
+
+<p class='illus alert'>If you aren’t sure what kind of loans you have, visit the <a href='http://www.nslds.ed.gov/nslds_SA/'>National Student  Loan Database System</a> for Students and select “Financial Aid Review” for a list of all federal loans made to you.  Click each individual loan to see who the servicer is for that loan (this is the company that collects payments from you).  It’s very important to know your servicer. This might be a different company from the original lender.  Remember, that system shows only your federal student loans, not your private student loans.</p>
+
+
+    <h3>Federal loans</h3>
+    <ul>
+        <li>Typically have names such as Stafford, Grad PLUS, Direct, or Perkins</li>
+    </ul>
+
+    <h3>Private (non-federal) loans</h3>
+    <ul>
+        <li>Are often issued by a bank, a credit union, your school, or another lending institution;</li>  
+        <li>They might use names like “private” or “alternative”; and</li>
+        <li>Can be issued by a non-profit or state agency.</li>
+    </ul>
+
+<p>If you’re not sure whether you have non-federal loans, contact your school’s financial aid office since they may have this information on file.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1259'>
+        <h2>Have you missed one or more payments on your student loans?</h2>
+
+<p class='illus budget'>Missing payments on your federal or private student loans can hurt your credit rating and your financial future.  Missing a single payment on a student loan can result in late fees, additional interest charges, and can increase the cost of repayment over the lifetime of your loan.</p>
+
+<p>Missing multiple payments can significantly increase the fees and charges and may cause you to default on your <a href='http://www.consumerfinance.gov/askcfpb/663/what-happens-if-i-default-federal-student-loan.html'>federal</a> or <a href='http://www.consumerfinance.gov/askcfpb/665/what-does-it-mean-default-my-private-student-loans.html'>private</a> student loan.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1261'>
+        <h2>Are you currently in default?</h2>
+
+<p>If you have missed any student loan payments, immediately contact your servicer and find out what steps you can take to avoid default. Your servicer is required to work with you to help you repay your student loan.  Ask your servicer about alternative payment arrangements, including Income-Based Repayment (IBR) for federal loans, which may lower your monthly payment substantially.</p>
+
+<p>If you have gone more than 9 months (270 days) without making a payment on your federal student loans, <a href='http://www.consumerfinance.gov/askcfpb/649/what-does-it-mean-default-my-federal-student-loans.html'>you may be in default</a>.  You may have received a notice or a phone call from the U.S. Department of Education, a <a href='http://studentaid.ed.gov/glossary#Guaranty_Agency'>guaranty agency</a> or a third-party <a href='http://studentaid.ed.gov/glossary#Collection_Agency'>debt collector</a>, notifying you that you have defaulted on your federal student loan.</p>
+
+<p class='budget illus'>Unlike federal student loans, many private student loans go into default as soon as you are 120 days late. In some cases, a borrower may default by missing just one or two payments.  You can also default on a private student loan if you declare bankruptcy or default on another loan.  Review your private loan contracts carefully to better understand what rights you have if you are worried about going into default.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1263'>
+        <h2>Are you able to make any payments on your defaulted federal loan?</h2>
+
+<p class='illus extra'>When speaking with your servicer or a debt collector, be sure that you have written documentation about what federal student debt you owe. If you are concerned that you never borrowed certain loans, check the <a href="http://www.nslds.ed.gov/nslds_SA/">National Student Loan Data System</a>. If the loan does not appear there, contact the collector and inform the collector of the problem.  Remember, that system shows only your federal student loans, not your private student loans.</p>
+
+<p>Remember that <a href="http://www.ftc.gov/bcp/edu/pubs/consumer/credit/cre18.shtm">you have rights when dealing with debt collectors</a>, and it is against the law for a collector to threaten, harass or make false statements to you.</p>  
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1265'>
+        <h2>Do you need to go back to school in the fall?</h2>
+
+<p class='illus mil'>When you default on a federal student loan, you lose eligibility to receive additional federal student aid.  For many students, this makes going back to school impossible.  Fortunately, there may be a way for you to quickly get out of default and restore your eligibility for federal student loans.</p>
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1267'>
+        <h2>Do you want to get out of default so you can get credit?</h2>
+
+<p class='illus budget'>Your student loan amounts and payment history will go on your credit report. If you make your payments on time, it will help your credit.  In contrast, failure to make on-time payments will hurt your credit.  Defaulting on your federal student loan makes it more difficult and more expensive to take out a mortgage, to finance a new car, or to qualify for a credit card.</p>
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1269'>
+        <h2>Can you pay off your defaulted federal student loans?</h2>
+
+<p class='illus extra'>If you can afford to pay off your defaulted federal student loan, this is the fastest way to settle your debt.  Borrowers should also be aware that repaying your defaulted student debt will not undo the negative effect on your credit report caused by your default.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1271'>
+        <h2>Are you confident you can make the full payment?</h2>
+
+<p>When you consider your current income and loan payments, are you confident that you can make your monthly payments?</p>
+
+<div class='illus extra'>
+    <p>Be sure to consider all loan payments and other living expenses (like rent, food, and transportation), and not just your student loan payment.</p>
+
+    <p>If you’re not sure what your monthly payments are, contact your servicers (or log on to their websites) to view your account.  More information about how to find your loan servicers is available <a href="http://www.consumerfinance.gov/askcfpb/583/what-servicer.html">here</a>.</p>
+</div>
+  
+<p>If you don’t think you can make your monthly payments or if you’re not sure, don’t worry. Answer this question to continue, and we’ll give you information to help keep you on the road of repayment.</p>
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1273'>
+        <h2>Are you an active duty servicemember?</h2>
+
+<p class='illus mil'>Are you serving in the military on active duty?  There are special benefits for active duty servicemembers, including lower interest rates for private and federal student loans.</p>
+
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1275'>
+        <h2>DIRECT DEBIT AND EXTRA PAYMENTS</h2>
+
+<p>You’re well on your way as long as you keep up with your loan payments.</p>
+
+<h4>Helpful advice</h4>
+
+<ul>
+    <li>Consider contacting your loan servicer to set up direct debit.  Your servicer will automatically withdraw money from your bank account so you’re less likely to miss a payment. Many lenders offer an interest rate reduction for those who set up direct debit, which could save you hundreds or thousands of dollars over the life of the loan!</li>
+
+    <li>Even if you set up direct debit, check your account periodically to make sure everything is being processed correctly.  Be sure you have enough funds in your account or you might face fees from your bank and your student loan servicer.</li>  
+
+    <li>If your budget allows for it, and you have already set aside some funds for emergencies, then you could consider making a payment for more than what is required.  You’ll pay off your loan faster and pay less in interest. For most federal loans and private (non-federal) loans, you can make additional payments at any time without a penalty.</li>
+    <li>If you do pay more than the minimum payment, be sure to apply these payments to your loan with the highest interest rate first.  Generally speaking, this will be the best way to make a big dent in your debt.</li>
+</ul>
+
+
+<p class='tip'>Remember, you might also have other options.  The best way to learn about all of them is to contact your servicer.</p>
+<br />
+<h2>FEDERAL STUDENT LOAN CONSOLIDATION</h2>
+<p>Consolidation may be a good option if you’re looking to simplify your repayment process.  A <b>Federal Direct Consolidation Loan</b> can replace multiple federal student loans with one new loan featuring a single monthly payment.  However, it won’t lower your interest rate or your monthly payments.</p>
+  
+<h4>Helpful advice</h4>
+<ul>
+    <li>For federal student loan borrowers with multiple, older student loans from different lenders, consolidation offers added benefits, including eligibility for <a href="http://studentaid.ed.gov/repay-loans/forgiveness-cancellation/charts/public-service">Public Service Loan Forgiveness</a>.</li> 
+    <li>If you have a lot of student debt, you may be able to extend your payments over a longer period of time.  For borrowers with extremely high debt, this can be as long as 30 years.  Although this will lower your monthly payments, it will cost you thousands of extra dollars over the lifetime of your loan.  For most borrowers, <a href="http://www.consumerfinance.gov/askcfpb/633/what-income-based-repayment-ibr.html">Income-Based Repayment (IBR)</a> is a cheaper alternative.</li> 
+    <li>If you took out a federal student loan before 2006 and have a variable interest rate, consolidating your loans will “lock in” your current interest rate—a great opportunity for borrowers to take advantage of today’s low rates.</li>
+    <li>Be aware, your interest rate will be recalculated as the weighted average of your current federal loans and rounded up to the nearest .125%.  This means that your interest rate will not decrease and actually may rise slightly.</li>
+</ul>
+
+<p class='tip'><b>WARNING FOR SERVICEMEMBERS:</b> Taking out a new Federal Direct Consolidation Loan will impact your eligibility for an interest rate reduction under the <a href='http://www.consumerfinance.gov/askcfpb/675/i-am-member-military-active-duty-or-about-go-active-duty-what-options-exist-help-me-deal-my-student-loans.html'>Servicemembers Civil Relief Act</a>.</p>
+
+<p>To get started on consolidation, contact the Department of Education (1-800-557-7392) to find out if consolidation is right for you. To begin the application process, check out the consolidation <a href="http://loanconsolidation.ed.gov/">website</a>. You can also use the Department’s <a href='http://studentaid.ed.gov/repay-loans/understand/plans/standard/comparison-calculator'>calculator</a> to determine your payments if you choose to extend your loan term and lower monthly payments.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1277'>
+        <h2>Lower your interest rate</h2>
+
+<p>If you are currently serving on active-duty you are eligible to have the interest rate lowered to 6% on all student loans taken out prior to your military service. This benefit applies to both your federal and private (non-federal) student loans and is available for all active-duty servicemembers, regardless of where you serve.  Most borrowers on active-duty will qualify for this benefit, so it makes sense to start here.</p>
+
+<p class='act'>To obtain an interest rate reduction under the <a href='http://www.consumerfinance.gov/askcfpb/675/i-am-member-military-active-duty-or-about-go-active-duty-what-options-exist-help-me-deal-my-student-loans.html'>Servicemembers Civil Relief Act (SCRA)</a>, contact your servicer and ask about this option directly. You will be required to provide your servicer with proof of your active-duty status in the form of orders from your commanding officer.</p>
+
+<p><a href="http://www.studentaid.ed.gov/types/grants-scholarships/military#limited-interest-rates-suspended-accrual-of-interest-and-deferment-of-student-loans">Learn more about the Servicemembers Civil Relief Act</a> and other benefits for servicemembers with student loans from the U.S. Department of Education.</p>
+
+<p>You may also be eligible for other benefits available to servicemembers, such as military deferment and Income-Based Repayment.</p>
+  
+<h2>Income-based repayment (IBR) and public service loan forgiveness (PSLF)</h2>
+
+<p>This is one of the best options to stay on the road to repayment for federal student loan borrowers. <a href='http://www.consumerfinance.gov/askcfpb/633/what-income-based-repayment-ibr.html'>IBR</a> ties your payment to your income and family size. (The chart below gives you an idea of your approximate payment.)</p>
+
+<p class='illus paperwork'>For borrowers who will make a career out of military service, IBR provides another major benefit— you may be eligible for <a href="http://studentaid.ed.gov/repay-loans/forgiveness-cancellation/charts/public-service">loan forgiveness</a>
+after 10 years of reduced monthly payments. If you think you will spend a decade or more in the military, it is important to enter into IBR as soon as possible; each qualifying monthly payment gets you closer to <a href="http://studentaid.ed.gov/repay-loans/forgiveness-cancellation/charts/public-service">Public Service Loan Forgiveness (PSLF)</a>.</p>
+   
+<p>If you leave the military but plan to pursue another qualifying public service profession, like teaching or serving in government, you may still be eligible for PSLF.</p>
+
+<p class='act'>To get started on IBR, contact your servicer. Check your servicer’s website to learn how to enroll. Just a heads up, your servicer will probably ask for proof of your income to determine your payment. You should have a tax return or a pay stub you can provide.</p>
+
+<p class='tip'>For federal loans, consider IBR before options that postpone payment like forbearance or deferment. While completely postponing payment is an attractive option, if you enroll in IBR you can keep your payments low and, if you continue to make payments and continue your service for 10 years, your loan will be forgiven.</p>
+
+<p>Use this chart to see what your approximate <b>monthly payment</b> would be given your income and family size. Check out the Department of Education’s <a href="http://studentaid.ed.gov/PORTALSWebApp/students/english/IBRCalc.jsp">IBR calculator</a> and <a href="http://studentaid.ed.gov/PORTALSWebApp/students/english/IBRPlan.jsp">IBR fact sheet</a> for precise amounts and more information.</p>
+
+<table summary="Estimated monthly loan payments on income-based repayment plans">
+    <caption>Income-Based Repayment guidelines</caption>
+    <thead>
+    <tr><th rowspan="2" abbr="Income" scope="col">Annual income</th>
+    <th colspan="7" scope="col">Family size</th>
+    </tr>
+    <tr><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><th scope="row">$10,000</th><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr class="alt">
+    <th scope="row">$15,000</th><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr><th scope="row">$20,000</th><td>$46</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr class="alt">
+    <th scope="row">$25,000</th><td>$108</td><td>$37</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr><th scope="row">$30,000</th><td>$171</td><td>$99</td><td>$28</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr class="alt">
+    <th scope="row">$35,000</th><td>$233</td><td>$162</td><td>$90</td><td>$18</td><td>$0</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr><th scope="row">$40,000</th><td>$296</td><td>$224</td><td>$153</td><td>$81</td><td>$9</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr class="alt">
+    <th scope="row">$45,000</th><td>$358</td><td>$287</td><td>$215</td><td>$143</td><td>$72</td><td>$0</td><td>$0</td>
+    </tr>
+    <tr><th scope="row">$50,000</th><td>$421</td><td>$349</td><td>$278</td><td>$206</td><td>$134</td><td>$63</td><td>$0</td>
+    </tr>
+    <tr class="alt">
+    <th scope="row">$55,000</th><td>$483</td><td>$412</td><td>$340</td><td>$268</td><td>$197</td><td>$125</td><td>$54</td>
+    </tr>
+    <tr><th scope="row">$60,000</th><td>$546</td><td>$474</td><td>$403</td><td>$331</td><td>$259</td><td>$188</td><td>$116</td>
+    </tr>
+    <tr class="alt">
+    <th scope="row">$65,000</th><td>$608</td><td>$537</td><td>$465</td><td>$393</td><td>$322</td><td>$250</td><td>$179</td>
+    </tr>
+    <tr><th scope="row">$70,000</th><td>$671</td><td>$599</td><td>$528</td><td>$456</td><td>$384</td><td>$313</td><td>$241</td>
+    </tr>
+</tbody>
+</table>
+
+<h2>Military Deferment</h2>
+
+<p>You are eligible to have federal loans deferred for a certain period of time if you are an active-duty member of the military serving in a military operation or national emergency.</p>
+
+<div class='illus defer'>
+    <p><a href="http://studentaid.ed.gov/repay-loans/deferment-forbearance">Learn more about deferment</a> for students, servicemembers, and other special situations from the Department of Education.</p>
+    <p>Remember, military deferment doesn’t make your loans go away—and can mean that you will owe a lot more once you reenter repayment.</p>
+</div>
+
+<p class='act'>To get a deferment, contact your servicer and ask about this option directly. Once you’re in deferment, you can still make a payment if you get some extra cash.</p>
+
+<p>Remember, you might also have other options. The best way to learn about all of them is to contact your servicer.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1279'>
+        <h2>INCOME-BASED REPAYMENT (IBR)</h2>
+
+<p class='illus paperwork'>This is one of the best options to staying on the road of repayment for federal loan borrowers.  IBR ties your payment to your income and family size. (The chart below gives you an idea of your approximate payment).</p>
+
+<p>For most borrowers, IBR provides the security of knowing that you can afford your payments.</p>
+
+<ul>
+
+<li>You can always pay more if you can and want to;</li>
+
+<li>If you have a lot of debt and you work in a field with moderate salaries, IBR has another added benefit: if you are enrolled in IBR for 25 years, any remaining balance will be erased; and</li>
+
+<li>If you work or plan to work in public service for 10 years, you may be eligible for <a href="http://studentaid.ed.gov/PORTALSWebApp/students/english/PSF.jsp">loan forgiveness</a> programs when enrolled in IBR.</li>
+
+</ul>
+
+Borrowers with newer loans may be eligible for <a href="http://www.consumerfinance.gov/askcfpb/1555/what-pay-you-earn-paye-how-do-i-know-if-i-qualify.html">Pay As You Earn (PAYE)</a>, a repayment plan that offers an even lower monthly payment.
+
+<p class='act'><b>To get started, <a href="http://www.studentloans.gov">enroll online</a> or contact your servicer.</b> Check your servicer’s website to learn how to enroll. Just a heads up, your servicer will probably ask for proof of your income to determine your payment. You should have a tax return or a pay stub you can provide.</p>
+
+<p>Use this chart to see what your approximate <b>monthly payment</b> would be given your income and family size. Check out the Department of Education's <a href="http://studentaid.ed.gov/PORTALSWebApp/students/english/IBRCalc.jsp">IBR calculator</a> and <a href="http://studentaid.ed.gov/PORTALSWebApp/students/english/IBRPlan.jsp">IBR fact sheet</a> for precise amounts and more information.</p>
+
+<table summary="Estimated monthly loan payments on income-based repayment plans">
+<caption>Income-based repayment guidelines</caption>
+<thead>
+<tr>
+<th rowspan="2" abbr="Income" scope="col">Annual income</th>
+<th colspan="7" scope="col">Family size</th>
+</tr>
+<tr>
+<th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th><th scope="col">5</th><th scope="col">6</th><th scope="col">7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">$10,000</th><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+</tr>
+<tr class="alt">
+<th scope="row">$15,000</th><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+</tr>
+<tr>
+<th scope="row">$20,000</th><td>$46</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+</tr>
+<tr class="alt">
+<th scope="row">$25,000</th><td>$108</td><td>$37</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+</tr>
+<tr>
+<th scope="row">$30,000</th><td>$171</td><td>$99</td><td>$28</td><td>$0</td><td>$0</td><td>$0</td><td>$0</td>
+</tr>
+<tr class="alt">
+<th scope="row">$35,000</th><td>$233</td><td>$162</td><td>$90</td><td>$18</td><td>$0</td><td>$0</td><td>$0</td>
+</tr>
+<tr>
+<th scope="row">$40,000</th><td>$296</td><td>$224</td><td>$153</td><td>$81</td><td>$9</td><td>$0</td><td>$0</td>
+</tr>
+<tr class="alt">
+<th scope="row">$45,000</th><td>$358</td><td>$287</td><td>$215</td><td>$143</td><td>$72</td><td>$0</td><td>$0</td>
+</tr>
+<tr>
+<th scope="row">$50,000</th><td>$421</td><td>$349</td><td>$278</td><td>$206</td><td>$134</td><td>$63</td><td>$0</td>
+</tr>
+<tr class="alt">
+<th scope="row">$55,000</th><td>$483</td><td>$412</td><td>$340</td><td>$268</td><td>$197</td><td>$125</td><td>$54</td>
+</tr>
+<tr>
+<th scope="row">$60,000</th><td>$546</td><td>$474</td><td>$403</td><td>$331</td><td>$259</td><td>$188</td><td>$116</td>
+</tr>
+<tr class="alt">
+<th scope="row">$65,000</th><td>$608</td><td>$537</td><td>$465</td><td>$393</td><td>$322</td><td>$250</td><td>$179</td>
+</tr>
+<tr>
+<th scope="row">$70,000</th><td>$671</td><td>$599</td><td>$528</td><td>$456</td><td>$384</td><td>$313</td><td>$241</td>
+</tr>
+</tbody>
+</table>
+
+<p>If you’re not eligible for IBR, or if your payment is already lower than this chart says it would be, check out this <a href="http://studentaid.ed.gov/PORTALSWebApp/students/english/OtherFormsOfRepay.jsp">Department of Education fact sheet on repayment plans</a> for federal loans. You may be able to find a plan that reduces your payment.</p>
+ 
+<p>Remember, you might also have other options, <a href='http://studentaid.ed.gov/PORTALSWebApp/students/english/difficulty.jsp'> like deferment and forbearance</a>.  The best way to learn about all of them is to contact your servicer.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1281'>
+        <h2>Federal direct consolidation loans</h2>
+
+<p>If you are currently in default on a federal student loan and plan to go back to school, you may benefit from a direct consolidation loan.  If you cannot afford to pay off your loan in full, this is the fastest way to get out of default and restore your eligibility for federal student aid.</p>
+  
+<p>Through consolidation, your defaulted loans are paid off by a new loan with new repayment terms. If you do not make any payments on your defaulted loan(s) prior to consolidating them, you will be <span class="tooltip-info" tooltip="You can consolidate your loans without immediately signing up for an alternative repayment program, but you must first make three on-time monthly payments to the collector.  If you enroll in ICR or IBR, you skip the monthly payment requirement.">required to sign-up immediately for one of the alternative payment plans available to all federal student loan borrowers</span>.</p>
+  
+<p class='tip'>Ask your debt collector for specific information about fees. The costs associated with bringing your loan out of default may vary substantially depending on your individual circumstances.</p>
+ 
+<p>Before you consolidate, make sure you understand the terms of this new payment arrangement and the terms of your new loan.  If you default again, your only option to get out of default is to agree to a repayment plan with your debt collector.</p>
+
+<p class='tip'><a href="http://www.consumerfinance.gov/askcfpb/657/what-are-main-advantages-rehabilitation-option-when-dealing-collection-agency.html">Loan rehabilitation</a> may be a better option for some borrowers; however, rehabilitation can take up to 10 months to complete.  Like consolidation, loan rehabilitation restores your federal student aid eligibility but will also remove the default notation from your credit history. And in some cases, it can be cheaper than consolidation.</p>
+
+<p class='act'>Under most circumstances, you have the right to pursue these options. Request information on both of these options from your debt collector or you may <a href="http://loanconsolidation.ed.gov/">apply for a new direct consolidation loan</a> with the U.S. Department of Education.</p>
+    
+<p>Contact your servicer or debt collection agency immediately to learn more about your options and to make arrangements to bring your loan out of default.  If a debt collector refuses to offer you an option for which you believe you qualify, ask to speak with the debt collector’s Special Assistance Unit. If your issue has not been resolved through the servicer's Special Assistance Unit, you may wish to review your options through the <a href='https://studentaid.ed.gov/repay-loans/disputes/prepare'>Federal Student Aid Ombudsman Group</a> at the U.S. Department of Education.</p>
+
+<p class='tip'>When speaking with your servicer or a debt collector, be sure that you have written documentation about what federal student debt you owe. If you are concerned that you never borrowed certain loans, check the <a href="http://www.nslds.ed.gov/">National Student Loan Data System</a>. If the loan does not appear there, contact the collector and inform the collector of the problem.  Remember, that system shows only your federal student loans, not your private student loans.</p>
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1283'>
+        <h2>REHABILITATION</h2>
+
+<p>If you are currently in default on a federal student loan and you are interested in pursuing an option with the greatest benefit to your credit, you may benefit from <b>rehabilitation</b>.  Rehabilitation means that your loan will be taken out of default status after you make a series of consecutive (generally, nine) on-time, monthly payments.</p>
+  
+<p>This won’t repair your credit completely—your previous missed payments may still show up on your credit report—but any default notation will be removed.  These payments must be “reasonable and affordable” to you—this means that they should be based on your individual financial situation.  Your servicer or debt collector may ask you to provide documentation to demonstrate that you need a lower payment than they are suggesting.  When negotiating with your debt collector, the law does not require a specific “minimum payment” amount; however, once you agree to a payment plan, you are required to make your monthly “reasonable and affordable” payment in order to rehabilitate your defaulted loan.</p>
+
+<p class='act'>Contact your servicer or debt collector immediately to learn more about your options and to make arrangements to bring your loan out of default.</p>
+   
+<p class='tip'>Ask the debt collector for specific information about fees. The costs associated with bringing your loan out of default may vary substantially depending on your individual circumstances.</p>
+
+<p>If a debt collector refuses to offer you an option for which you believe you qualify, ask to speak with the debt collector’s Special Assistance Unit.   If your issue has not been resolved through the servicer's Special Assistance Unit, you may wish to review your options through the <a href='https://studentaid.ed.gov/repay-loans/disputes/prepare'>Federal Student Aid Ombudsman Group</a> at the U.S. Department of Education.</p>
+
+<p class='tip'>When speaking with your servicer or a debt collector, be sure that you have written documentation about what federal student debt you owe. If you are concerned that you never borrowed certain loans, check the <a href="http://www.nslds.ed.gov/nslds_SA/">National Student Loan Data System</a>. If the loan does not appear there, contact the collector and inform the collector of the problem.  Remember, that system shows only your federal student loans, not your private student loans.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1285'>
+        <h2>REPAY YOUR LOAN</h2>
+
+<p class='act'>Contact your debt collector to learn more about your options and to determine your pay-off balance.  For some borrowers, this can be the cheapest way to bring a federal student loan out of default.</p>
+
+<p>Your defaulted debt will be gone afterward, but it will continue to appear on your credit report as a defaulted loan that was repaid.  By repaying your defaulted federal loan, you will restore your eligibility for federal student aid, if you chose to go back to school.</p>
+
+<p class='tip'>Ask the debt collector for specific information about fees. The costs associated with bringing your loan out of default may vary substantially depending on your individual circumstances.</p>
+ 
+<p>If a debt collector refuses to offer you an option for which you believe you qualify, ask to speak with the debt collector’s Special Assistance Unit. If your issue has not been resolved through the servicer's Special Assistance Unit, you may wish to review your options through the <a href='https://studentaid.ed.gov/repay-loans/disputes/prepare'>Federal Student Aid Ombudsman Group</a> at the U.S. Department of Education.</p>
+
+<p class='tip'>When speaking with your servicer or a debt collector, be sure that you have written documentation about what federal student debt you owe. If you are concerned that you never borrowed certain loans, check the <a href="http://www.nslds.ed.gov/nslds_SA/">National Student Loan Data System</a>. If the loan does not appear there, contact the collector and inform the collector of the problem.  Remember, that system shows only your federal student loans, not your private student loans.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1287'>
+        <h2>KNOW YOUR OPTIONS</h2>
+
+<p>Generally speaking, you have three options when dealing with the collector on a federal student loan:</p>
+
+<ol>
+    <li><b><a href='#Module-5:-Default-rehabilitation-'>Rehabilitation</a></b>: Rehabilitation means that your loan will be taken out of default status after you make a series of consecutive (generally, nine) on-time “reasonable and affordable” payments. You can typically only rehabilitate a loan once.  This is the only way to remove the default notation from your credit history.  If you chose to go back to school, you will also restore your eligibility for federal student aid after you make the sixth of nine monthly payments.</li>
+    <li><b><a href='#Module-4:-Default-back-to-school-consolidation-'>Consolidation</a></b>: Through consolidation, your defaulted loans are paid off by a new loan with new repayment terms.  If you cannot afford to repay your loan in full, this is the fastest way to get out of default and enroll in one of the U.S. Department of Education’s alternative payment plans.  If you cannot afford to pay off your loan in full, it is also the fastest way to get out of default and restore your eligibility for federal student aid. Borrowers should also be aware that consolidation will not undo the negative effect on your credit report caused by your default.</li>
+    <li><b><a href='#Module-6:-Default-repayment-'>Repayment</a></b>: If you can afford to pay off your defaulted federal loan, this is the fastest way to settle your debt.  Under certain circumstances, your debt collector may be authorized to waive some of your outstanding fees and other collection costs.  For some borrowers, this can be the cheapest way to bring a federal student loan out of default.  Your defaulted debt will be gone afterward, but it will continue to appear on your credit report as a defaulted loan that was repaid.  You will also restore your eligibility for federal student aid, if you chose to go back to school.</li>
+</ol>
+
+<p class='act'>Contact your servicer or debt collector immediately to learn more about your options and to make arrangements to bring your loan out of default.</p>  
+
+<p class='tip'>Ask the debt collector for specific information about fees. The costs associated with bringing your loan out of default may vary substantially depending on your individual circumstances.</p>
+
+<p>If a debt collector refuses to offer you an option for which you believe you qualify, ask to speak with the debt collector’s Special Assistance Unit.   If your issue has not been resolved through the servicer's Special Assistance Unit, you may wish to review your options through the <a href='https://studentaid.ed.gov/repay-loans/disputes/prepare'>Federal Student Aid Ombudsman Group</a> at the U.S. Department of Education.</p>
+
+<p class='tip'>When speaking with your servicer or a debt collector, be sure that you have written documentation about what federal student debt you owe. If you are concerned that you never borrowed certain loans, check the <a href='http://www.nslds.ed.gov/nslds_SA/'>National Student Loan Data System</a>. If the loan does not appear there, contact the collector and inform the collector of the problem.  Remember, that system shows only your federal student loans, not your private student loans.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1289'>
+        <h2>Federal direct consolidation loans</h2>
+
+<p>If you are currently in default on a federal student loan and cannot afford to make any payments toward your loan, you may benefit from a direct consolidation loan.  If you cannot afford to pay off your loan in full, this is the fastest way to get out of default.</p>
+  
+<p>Under most circumstances, you have the right to pursue this option. You can either request a consolidation application from your debt collector or you may <a href="http://loanconsolidation.ed.gov/">apply for a new direct consolidation loan</a> with the U.S. Department of Education.</p>
+
+<p class='tip'>Remember to ask your debt collector for specific information about fees. The costs associated with bringing your loan out of default may vary substantially depending on your individual circumstance.</p>
+
+<p>Through consolidation, your defaulted loans are paid off by a new loan with new repayment terms. If you do not make any payments on your defaulted loan(s) prior to consolidating them, you will be required to immediately sign-up for one of the alternative payment plans available to all federal student loan borrowers.  You will also restore your eligibility for federal student aid, if you choose to go back to school. 
+Before you consolidate, make sure you understand the terms of this new payment arrangement and the terms of your new loan.  If you default again, your only option to get out of default is to agree to a repayment plan with your debt collector.</p>
+ 
+<p class='tip'><a href="http://www.consumerfinance.gov/askcfpb/657/what-are-main-advantages-rehabilitation-option-when-dealing-collection-agency.html">Loan rehabilitation</a> may be a better option for some borrowers; however, rehabilitation can take up to 10 months to complete.  Like consolidation, loan rehabilitation restores your federal student aid eligibility but will also remove the default notation from your credit history.  And in some cases, it can be cheaper than consolidation.</p>
+    
+<p class='act'>Contact your servicer or debt collection agency immediately to learn more about your options and to make arrangements to bring your loan out of default.</p>
+
+<p>If a debt collector refuses to offer you an option for which you believe you qualify, ask to speak with the debt collector’s Special Assistance Unit. If your issue has not been resolved through the servicer's Special Assistance Unit, you may wish to review your options through the <a href='https://studentaid.ed.gov/repay-loans/disputes/prepare'>Federal Student Aid Ombudsman Group</a> at the U.S. Department of Education.</p>
+
+<p class='tip'>When speaking with your servicer or a debt collector, be sure that you have written documentation about what federal student debt you owe. If you are concerned that you never borrowed certain loans, check the <a href="http://www.nslds.ed.gov/nslds_SA/">National Student Loan Data System</a>. If the loan does not appear there, contact the collector and inform the collector of the problem.  Remember, that system shows only your federal student loans, not your private student loans.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1291'>
+        <h2>DIRECT DEBIT AND EXTRA PAYMENTS</h2>
+
+<p>You’re well on your way as long as you keep up with your loan payments.</p>
+
+<h4>Helpful advice</h4>
+<ul>
+    <li><b>Consider contacting your loan servicer to set up auto-debit.</b>  Your servicer will automatically withdraw money from your bank account so you’re less likely to miss a payment. Many lenders offer an interest rate reduction for those who set up auto-debit, which could save you hundreds or thousands of dollars over the life of the loan!</li>
+    <li><b>Pay down your most expensive debt more quickly.</b> If your budget allows for it and you have already set aside some funds for emergencies, then you could consider making a payment for more than what is required. You’ll pay off your loan faster and pay lest interest.  </li>
+    <li><b>When paying more than you owe, provide instructions.</b> If you direct any extra money to your highest interest rate loan first, you may save hundreds of dollars or more in extra interest payments and you may be able to get out of debt faster. If you don’t provide instructions, your servicer will apply extra payments as they see fit and this could make repaying your debt more expensive than it needs to be.</li>
+    <li><b>Consider using these sample instructions.</b> You can download <a href='http://www.consumerfinance.gov/f/201310_cfpb_consumer_sample_student_loan_payment_letter.doc'>a sample letter</a> to mail to your servicer, or you can use the text below to provide instructions using the “Send a Message” or “Contact Us” feature when you log into your account on the servicer’s website:</li>
+</ul>
+
+<p class='act'>I am writing to provide you instructions on how to apply payments when I send an amount greater than the minimum amount due. Please apply payments as follows:</br></br>
+After applying the minimum amount due for each loan, any additional amount should be applied to the loan that is accruing the highest interest rate. If there are multiple loans with the same interest rate, please apply the additional amount to the loan with the lowest outstanding principal balance. If any additional amount above the minimum amount due ends up paying off an individual loan, please then apply any remaining part of my payment to the loan with the next highest interest rate. It is possible that I may find an option to refinance my loans to a lower rate with another lender. If this lender or any third party makes payments to my account on my behalf, you should use the instructions outlined above.
+</br></br>
+Retain these instructions. Please apply these instructions to all future overpayments. Please confirm that these payments will be processed as specified or please provide an explanation as to why you are unable to follow these instructions.
+</br></br>
+Thank you for your cooperation.
+</p>
+
+<p>Helpful servicers will generally accommodate your request. You’ll want to be sure your servicer responds to your request so you know if you need to send additional instructions</p>
+
+
+
+****
+<h2>PRIVATE STUDENT LOAN CONSOLIDATION AND REFINANCING</h2>
+
+<p>Borrowers repaying their private student loans may have much better credit than they did when they first borrowed for college.  Unlike federal student loans, you may be able to <a href='http://www.consumerfinance.gov/askcfpb/1689/should-i-refinance-my-private-student-loan-one-lower-rate.html'>consolidate (or refinance) your private student loans</a> at a lower interest rate.  Although consolidation and refinance opportunities for private student loans have declined since 2008, a growing number of commercial lenders offer private student loan consolidation or refinance for creditworthy borrowers. </p>
+
+<p class='act'>Contact your servicer to ask about these options.  You may also want to check with your bank or credit union to see if they offer similar products.</p>
+
+<p>Remember, you might also have other options.  The best way to learn about all of them is to contact your servicer.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1293'>
+        <h2>LOWER YOUR INTEREST RATE</h2>
+
+<p>If you are currently serving on active duty, you are eligible to have the interest rate lowered to 6% on all student loans taken out prior to your military service. This benefit applies to both your federal and private (non-federal) student loans and is available for all active-duty servicemembers, regardless of where you serve.  Most borrowers on active duty will qualify for this benefit, so it makes sense to start here.</p>
+
+<p class='act'>To obtain an interest rate reduction under the <a href='http://www.consumerfinance.gov/askcfpb/675/i-am-member-military-active-duty-or-about-go-active-duty-what-options-exist-help-me-deal-my-student-loans.html'>Servicemembers Civil Relief Act (SCRA)</a>, contact your servicer and ask about this option directly. You will be required to provide your servicer with proof of your active duty status in the form of orders from your commanding officer.</p>
+
+<p><a href="http://www.studentaid.ed.gov/types/grants-scholarships/military#limited-interest-rates-suspended-accrual-of-interest-and-deferment-of-student-loans">Learn more about the Servicemembers Civil Relief Act</a> and other benefits for servicemembers with student loans from the U.S. Department of Education.</p>
+
+<p>You may also be eligible for other benefits available to servicemembers, such as military deferment and <a href="http://www.consumerfinance.gov/askcfpb/633/what-income-based-repayment-ibr.htmlhttp://www.consumerfinance.gov/askcfpb/633/what-income-based-repayment-ibr.html">Income-Based Repayment (IBR) for federal student loans</a>.</p>
+  
+<h2>MILITARY DEFERMENT/FORBEARANCE</h2>
+
+<p>Some private student loan servicers offer deferment or forbearance for servicemembers on active duty.  This may provide temporary relief, but it does not eliminate your obligation to repay your loans.</p>  
+
+<p class='illus defer'>Unlike some federal student loans, for most private student loans, interest will still accrue during periods of deferment and forbearance.  If you do work with your servicer to temporarily suspend your monthly payments, your total debt will continue to grow and your monthly payments may be much higher when you begin to repay.</p>  
+
+<p class='act'>To get a military deferment or forbearance, contact your servicer and ask about this option directly. Once you’re in deferment, you can still make a payment if you get some extra cash.  If you can afford it, making interest-only payments is a good idea.  It will stop your student debt from growing.</p>
+  
+<p>Remember, you might also have other options. The best way to learn about all of them is to contact your servicer.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1295'>
+        <h2>CONTACT YOUR SERVICER</h2>
+
+<p class='act'>Call your private (non-federal) loan servicer and ask what options are available to you. Most of the big lenders say that they have alternate payment programs for borrowers who might not be able to make a full payment.  You can often find out about these options on your servicer’s website.</p>
+
+<h4>Helpful advice</h4>
+
+<div class='illus alert'>
+    <p>If you can afford to make partial payments, you may want to ask about <b>graduated repayment</b> or <b>extended repayment</b>.  Not all private (non-federal) loan servicers offer these programs, but some do.</p>
+
+    <ul>
+        <li><b>Graduated repayment</b> has low payments in the early years that increase over time.  This option can be good for those who are comfortable with their payments changing over time.</li>
+        <li><b>Extended repayment</b> increases the time you will take to pay off the loan, so each individual payment is smaller.</li>
+    </ul>
+</div>
+
+<p>Remember, both of these programs increase the total amount you pay in interest over the life of the loan, often substantially.</p>
+ 
+<p>If you can’t afford to pay at all, some of the most popular programs for temporarily stopping your payments are <b>deferment</b> and <b>forbearance</b>.  Unlike federal loans, your private (non-federal) loans don’t have a common set of consumer protections when it comes to <b>deferment</b> and <b>forbearance</b>.</p>
+
+<ul>
+    <li>Generally speaking, you may be able to get a deferment if you’re heading back to school.  This will freeze payments on your loans (though interest might still be adding up).</li>
+    <li>Forbearance will also pause your payments.  Again, interest might still add up. <b>Watch out for fees when enrolling in forbearance programs</b>.</li>
+</ul>
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1297'>
+        <h2>Get out of default</h2>
+
+<p>If you are in default on a <b>private (non-federal) student loan</b>, you may receive a notice that your entire student loan must be paid off immediately and in full.  You may have other options.  If you are in default, it is important that you know your rights and responsibilities.</p>
+ 
+<p>If you fail to repay a private student loan in default, it can severely damage your credit rating, making it difficult to take out a mortgage, buy a car or even get a credit card.  You may be <span class="tooltip-info" tooltip="Generally, a debt collector is someone who regularly collects debts owed to others.  This includes collection agencies or lawyers who collect debts on a regular basis and companies that buy delinquent debts and then try and collect on them.">subject to collection efforts</span> by a <a href="http://www.consumerfinance.gov/askcfpb/665/what-does-it-mean-default-my-private-student-loans.html">debt collector</a> or a law firm. This can include repeated phone calls and letters sent to your home and work.  You might even be sued by a debt collector seeking a court order to garnish your wages—this means that money will be taken directly from your paycheck in order to satisfy your debt.  And, unlike most other types of consumer debt, student loans cannot be discharged through bankruptcy, absent extraordinary circumstances (called “undue hardship”).</p>
+
+<p class='tip'>Within five (5) days of initial contact, every debt collector must send a written “validation notice” indicating how much money you owe, the name of the creditor you owe, and what to do if you think you do not owe this debt. Keep this notice and use it as a reference when speaking with a debt collector.</p>
+
+<p>Unlike federal student loans, there are no standard options for dealing with a creditor or a collection agency on a defaulted private student loan, other than paying what is owed. However, you may be able to negotiate or set up a payment plan. You may also have the opportunity to settle your debt for less than you currently owe.</p>
+  
+<p class='tip'>Remember that <a href="http://www.ftc.gov/bcp/edu/pubs/consumer/credit/cre18.shtm">you have rights when dealing with debt collectors</a>, and it is against the law for a collector to abuse, harass, or make false statements to you.</p>
+  
+<p>Dealing with a debt collector can be stressful.  For borrowers in default, it is important to remember that there are major differences between federal and private student loans.  The federal government has extraordinary tools to collect on defaulted federal student loans; however, none of these tools are available to debt collectors seeking to collect on your defaulted private student loan.  A debt collector trying to collect payments on a private student loan can <b>never</b>:</p>
+
+<ul>
+    <li>Garnish your wages without a court order;</li>
+    <li>Seize your federal or state tax refund;</li> 
+    <li>Garnish your Social Security or Social Security disability check; or</li>
+    <li>Prevent you from receiving federal student aid to go back to school in the future.</li>
+</ul>
+
+<p class='tip'>A debt collector seeking to recover a <b>private student loan</b> does not work for, represent, or collect on behalf of the U.S. Department of Education or any other branch of the federal government.</p>
+  
+<p>You also have the right to stop a debt collector from attempting to contact you.  You must notify the debt collector in writing to stop.  You should make a copy of your letter.  Send the original by certified mail and pay for a “return receipt” to document what the debt collector received.  Once the debt collector receives your letter, the debt collector may not contact you again, with two exceptions: the debt collector may inform you that efforts to collect the debt are being terminated; and may advise you that the debt collector or the creditor intend to take a specific action, like filing a lawsuit.  <b>This does not eliminate your debt, prevent a negative credit report, or stop the debt collector from filing a law suit against you</b>, but it should end the phone calls.</p> 
+
+<p class='tip'>Unlike federal student loans, there is a statute of limitations on the collection of private student debt.  <a href="http://www.naag.org/current-attorneys-general.php">Contact your state Attorney General</a> to learn more out about your options and your rights.</p>
+
+<p class='act'>If you think that a debt collector has lied to you or broken the law, contact the Consumer Financial Protection Bureau and <a href="http://www.consumerfinance.gov/complaint">file a complaint</a>.  Remember, it is illegal for a private student loan debt collector to pretend to be from the U.S. Department of Education or to threaten to use any of the tools available to collect on federal student loans (like offsetting your tax refund or garnishing your wages without a court order).</p>
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1299'>
+        <h2>LOWER YOUR INTEREST RATE</h2>
+
+<p>If you are currently serving on active duty you are eligible to have the interest rate lowered to 6% on all student loans taken out prior to your military service. This benefit applies to both your federal and private (non-federal) student loans and is available for all active-duty servicemembers, regardless of where you serve.  Most borrowers on active duty will qualify for this benefit, so it makes sense to start here.</p>
+
+<p class='act'>To obtain an interest rate reduction under the <a href='http://www.consumerfinance.gov/askcfpb/675/i-am-member-military-active-duty-or-about-go-active-duty-what-options-exist-help-me-deal-my-student-loans.html'>Servicemembers Civil Relief Act (SCRA)</a>, contact your servicer and ask about this option directly. You will be required to provide your servicer with proof of your active duty status in the form of orders from your commanding officer.</p>
+ 
+<p><a href="http://www.studentaid.ed.gov/types/grants-scholarships/military#limited-interest-rates-suspended-accrual-of-interest-and-deferment-of-student-loans">Learn more about the Servicemembers Civil Relief Act</a> and other benefits for servicemembers with student loans from the U.S. Department of Education.</p>
+
+<p>You may also be eligible for other benefits available to servicemembers, such as military deferment and <a href="http://www.consumerfinance.gov/askcfpb/633/what-income-based-repayment-ibr.html">Income-Based Repayment (IBR) for federal student loans</a>.</p>
+  
+<h2>CONTACT YOUR SERVICER</h2>
+
+<p class='act'>Call your private (non-federal) loan servicer and ask what options are available to you. Most of the big lenders say that they have alternate payment programs for borrowers who might not be able to make a full payment.  You can often find out about these options on your servicer’s website.</p>
+
+<h4>Helpful advice</h4>
+
+
+<p>If you can afford to make partial payments, you may want to ask about <b>graduated repayment</b> or <b>extended repayment</b>.  Not all private (non-federal) loan servicers offer these programs, but some do.</p>
+
+<ul>
+    <li><b>Graduated repayment</b> has low payments in the early years that increase over time.  This option can be good for those who are comfortable with their payments changing over time.</li>
+    <li><b>Extended repayment</b> increases the time you will take to pay off the loan, so each individual payment is smaller.</li>
+</ul>
+
+<p>Remember, both of these programs increase the total amount you pay in interest over the life of the loan, often substantially.</p>
+
+<p>If you can’t afford to pay at all, some of the most popular programs for temporarily stopping your payments are <b>deferment</b> and <b>forbearance</b>.  Unlike federal student loans, your private (non-federal) loans don’t have a common set of consumer protections when it comes to <b>deferment</b> and <b>forbearance</b>.</p>
+
+<ul>
+    <li>Generally speaking, you may be able to get a <b>deferment</b> if you’re heading back to school.  This will freeze payments on your loans (though interest might still be adding up).</li>
+    <li><b>Forbearance</b> will also pause your payments.  Again, interest might still add up.  <b>Watch out for fees when enrolling in forbearance programs.</b></li>
+</ul>
+
+<h2>MILITARY DEFERMENT/FORBEARANCE</h2>
+
+<p>Some private student loan servicers offer deferment or forbearance for servicemembers on active duty.  This may provide temporary relief, but it does not eliminate your obligation to repay your loans.</p>
+  
+<p>Unlike some federal student loans, for most private student loans, interest will still accrue during periods of deferment and forbearance.  If you do work with your servicer to temporarily suspend your monthly payments, your total debt will continue to grow and your monthly payments may be much higher when you begin to repay.</p>
+
+<p class='act'>To get a military deferment or forbearance, contact your servicer and ask about this option directly. Once you’re in deferment, you can still make a payment if you get some extra cash.  If you can afford it, making interest-only payments is a good idea.  It will stop your student debt from growing.</p>
+  
+<p>Remember, you might also have other options. The best way to learn about all of them is to contact your servicer.</p>
+
+        <div class='wiz_btns'></div>
+    </div>
+    
+    <div id='page_1301'>
+        <p>Many student loan borrowers have both private and federal student loans.  This tool can help you understand your repayment options for both types of student loans.  Let’s start with your federal student loans.  To learn more about your options when repaying your private student loans, just restart this tool and select “Private (Non-Federal) Loans” in step one.</p>
+        <div class='wiz_btns'></div>
+    </div>
+    
+</div>
+
+{% endblock %}
+
+{% block page_js %}
+    <script src="{{ STATIC_PREFIX }}repaystudentdebt/js/repay.js"></script>
+    <script src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
+{% endblock %}
