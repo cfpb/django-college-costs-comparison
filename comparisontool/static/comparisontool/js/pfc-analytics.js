@@ -190,10 +190,6 @@ var PFCAnalytics = (function() {
     });
 
     // Collapsed content click tracking
-    // Let's split these out per interaction (all three types)
-    /* $('.bubble').click(function() {
-        _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Tabs_Key_Questions']);
-    }); */
     $('.ec').click(function() {
         _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Accordion_Options']);
     });
