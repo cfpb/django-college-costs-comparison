@@ -15,13 +15,24 @@
 {% endblock %}
 
 {% block page_css %}
-
     <link rel="stylesheet" href="{{ STATIC_PREFIX }}landing/css/landing.css">
     <link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
     <!--[if IE 7]>
     <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
     <![endif]-->
+{% endblock %}
 
+{% block analytics_js %}
+    <!-- this is where we put our custom analytics -->
+    <script src="/wp-content/themes/cfpb_nemo/_/js/analytics-global.js{{ STATIC_VERSION }}"></script>
+
+    <!-- H5BP's Asynchronous Google Analytics snippet. -->
+    <script>
+      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>    
 {% endblock %}
 
 {% block content %}
@@ -67,9 +78,9 @@
                 <div class="share-pfc">
                     <h3 class="h4">Share this page</h3>
                     <div class="share-links">
-                        <a href="http://www.facebook.com/sharer.php?u={% firstof share_uri request.build_absolute_uri|urlencode %}&t={{ pagetitle|default:"CFPB" }}" class="icon-facebook-alt" ><span class="cfpb_visually_hide">Share on Facebook</span></a>
-                        <a href="http://twitter.com/share?text={% firstof tweet_text pagetitle "CFPB" %}&url={% firstof share_uri request.build_absolute_uri|urlencode %}&via=CFPB&related=CFPB" class="icon-twitter-alt"><span class="cfpb_visually_hide">Share on Twitter</span></a>
-                        <a class="addthis_button_email icon-email-social-alt" href="http://api.addthis.com/oexchange/0.8/forward/email/offer?url={% firstof share_uri request.build_absolute_uri|urlencode %}&title={% firstof email_title "CFPB" %}&pubid=ra-4da354ee346886d2"><span class="cfpb_visually_hide">Share via Email</span></a>
+                        <a href="http://www.facebook.com/sharer.php?u={% firstof share_uri request.build_absolute_uri|urlencode %}&t={{ pagetitle|default:"CFPB" }}" class="share-facebook icon-facebook-alt" ><span class="cfpb_visually_hide">Share on Facebook</span></a>
+                        <a href="http://twitter.com/share?text={% firstof tweet_text pagetitle "CFPB" %}&url={% firstof share_uri request.build_absolute_uri|urlencode %}&via=CFPB&related=CFPB" class="share-twitter icon-twitter-alt"><span class="cfpb_visually_hide">Share on Twitter</span></a>
+                        <a class="share-email addthis_button_email icon-email-social-alt" href="http://api.addthis.com/oexchange/0.8/forward/email/offer?url={% firstof share_uri request.build_absolute_uri|urlencode %}&title={% firstof email_title "CFPB" %}&pubid=ra-4da354ee346886d2"><span class="cfpb_visually_hide">Share via Email</span></a>
                     </div>
                 </div>
             </div>
@@ -102,9 +113,9 @@
                 <h2 class="h4 border-overlay">Compare financial aid offers</h2>
             </header>
             <div class="col last col8">
-                <p>As part of our Know Before You Owe project, we worked with the Department of Education to create a Financial Aid Shopping Sheet. Now that thousands of colleges are adopting this clear and comparable form, we’ve built a tool that complements the shopping sheet to help students make comparisons tailored to their individual circumstances.</p>
+                <p>As part of our <a href="http://www.consumerfinance.gov/students/knowbeforeyouowe/">Know Before You Owe project</a>, we worked with the Department of Education to create a <a class="pdf exit-link" href="http://collegecost.ed.gov/shopping_sheet.pdf">Financial Aid Shopping Sheet</a>. Now that thousands of colleges are adopting this clear and comparable form, we’ve built a tool that complements the shopping sheet to help students make comparisons tailored to their individual circumstances.</p>
                 <p><a class="button" href="/paying-for-college/compare-financial-aid-and-college-cost/">Compare costs</a></p>
-                <p>Still researching schools? <br><a href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Check out College Scorecard&nbsp;<i class="icon-external-link"></i></a> 
+                <p>Still researching schools? <br><a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Check out College Scorecard&nbsp;<i class="icon-external-link"></i></a> 
                 </p>
             </div>
         </section>
@@ -128,4 +139,5 @@
 
 {% block page_js %}
     <script src="{{ STATIC_PREFIX }}landing/js/landing.js"></script>
+    <script src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
 {% endblock %}
