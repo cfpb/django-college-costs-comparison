@@ -101,7 +101,17 @@ var PFCAnalytics = (function() {
 
     // Fire an event when Add a School is cancelled
     $('#introduction .add-cancel').click( function() {
-        _gaq.push([ "_trackEvent", "School Interactions", "Cancel Button", "clicked"] ); 
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "Cancel Button"] ); 
+    });
+
+    // Fire an event when Continue is clicked
+    $('#introduction .continue').click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "Continue Button"] ); 
+    });
+
+    // Fire an event when Add another school is clicked
+    $('#introduction .add-another-school').click( function() {
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "Add another school Button"] ); 
     });
 
     // Fire an event when adding a school.
@@ -120,10 +130,10 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked", offer ] );
-        console.log("FOO: ADDED " + schoolID)
     }
-    $('.continue, .add-another-school').click( function() {
-        console.log("===> Column Compare: " + global.emptyColumn);
+
+    // Check for a new school added when .continue and .add-another-school are clicked
+    $('#introduction .continue, #introduction .add-another-school').click( function() {
         delay(function() {
             var newEmpty = findEmptyColumn();
             console.log("===> Column Compare: " + newEmpty);
@@ -134,6 +144,13 @@ var PFCAnalytics = (function() {
         }, 500);
 
     });
+
+    // Fire event when user clicks the arrows to open sections
+    $('.arrw-collapse').click(function() {
+        var arrwName = $(this).attr('data-arrwname');
+        _gaq.push([ "_trackEvent", "School Interactions", arrwName, "Drop Down" ] );
+    });
+
 
     //## OLDER CODE BELOW ##//
 

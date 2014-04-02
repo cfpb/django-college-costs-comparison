@@ -290,7 +290,7 @@ var restoredata = {{ data_js|safe }};
 						<th class="width-holder" data-column="2"></th>
 						<th class="width-holder" data-column="3"></th>
 					</tr>
-					<tr id="open" class="totalcost show arrw-collapse">
+					<tr id="open" class="totalcost show arrw-collapse" data-arrwname="Cost of Attendance">
 						<th scope="row" data-column="0"><h4>Cost of attendance</h4></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
@@ -337,13 +337,13 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="2"></td>
 						<td data-column="3"></td>
 					</tr>
-					<tr class="totalcont show arrw-collapse">
+					<tr class="totalcont show arrw-collapse" data-arrwname="Money for school">
 						<th scope="row" data-column="0"><h4>Money for school</h4></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 					</tr>
-					<tr class="grants hide arrw-collapse highlighted-row">
+					<tr class="grants hide arrw-collapse highlighted-row" data-arrwname="Scholarships and Grants">
 						<th scope="row" data-column="0"><h5>Scholarships &amp; grants</h5></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
@@ -515,7 +515,7 @@ var restoredata = {{ data_js|safe }};
 						</td>
 					</tr>
 
-					<tr class="contributions hide arrw-collapse highlighted-row">
+					<tr class="contributions hide arrw-collapse highlighted-row" data-arrwname="Contributions">
 						<th scope="row" data-column="0"><h5>Contributions</h5></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
@@ -549,7 +549,7 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3"><label class="cfpb_visually_hide" for="s-three-workstudy">Work study for school three</label><input type="text" id="s-three-workstudy" class="school-data" data-nickname="workstudy" value="0" name="s-three-workstudy"></td>
 					</tr>
 
-					<tr class="federal hide arrw-collapse highlighted-row">
+					<tr class="federal hide arrw-collapse highlighted-row" data-arrwname="Federal loans">
 						<th data-column="0"><h5>Federal loans</h5></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
@@ -583,7 +583,7 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3"><label class="cfpb_visually_hide" for="s-three-gradplus">Grad PLUS for school three</label><input type="text" id="s-three-gradplus" class="school-data" data-nickname="gradplus" value="0" name="s-three-gradplus"></td>
 					</tr>
 
-					<tr class="private arrw-collapse hide highlighted-row">
+					<tr class="private arrw-collapse hide highlighted-row" data-arrwname="Private loans">
 						<th data-column="0"><h5>Private loans</h5></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
