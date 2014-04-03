@@ -164,12 +164,12 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", arrwName, "Drop Down" ] );
     });
 
-
     //## OLDER CODE BELOW ##//
     // PFC menu tracking
     $('.pfc-nav a').click(function(e) {
         
         // Save the href so we can change the url with js
+        var link_text = $(this).text();
         var link_url = $(this).attr('href');
 
         // Stop the link from going anywhere
@@ -180,7 +180,7 @@ var PFCAnalytics = (function() {
         // that could prevent the rest of this code from changing the url
         // thus breaking the link completely instead of delaying it!
 
-        try { _gaq.push(['_trackEvent', 'Page Interactions', 'Menu Click', 'PFC_Menu']); }
+        try { _gaq.push(['_trackEvent', 'Page Interactions', 'Menu Click', link_text]); }
         catch( error ) {}
 
         // Give google analytics time to do its thing before changing the page url
