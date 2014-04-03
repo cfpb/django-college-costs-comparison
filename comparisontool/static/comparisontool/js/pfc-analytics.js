@@ -28,6 +28,7 @@ var PFCAnalytics = (function() {
     var global = {
         'schoolsAdded': 0, 'emptyColumn': 1
     }
+    var rateChangeClicks = [];
     var schoolsZeroed = ['example'];
 
     // Fire an event when a school is removed.
@@ -57,6 +58,28 @@ var PFCAnalytics = (function() {
         var tooltip = $(this).attr("data-tipname");
         _gaq.push(["_trackEvent", "Page Interactions", "Tooltip Clicked", tooltip]);
     });
+
+    // Fire an event when GI Bill panel opens
+    $(".gibill-calculator, input[data-nickname='gibill']").click(function() {
+        var columnNumber = $(this).parents('[data-column]').attr('data-column');
+        var schoolID = $("#institution-row [data-column='" + columnNumber + "']").attr("data-schoolid");
+        delay(function() {
+            var GIPanel = $('[data-column="' + columnNumber + '"] .gibill-panel');
+            if (GIPanel.is(':visible')) {
+                _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Opened", schoolID]);    
+            }
+        }, 500);
+    });
+
+    // Fire various events for rate-change clicks
+    $('.rate-change').click(function() {
+        var buttonID = $(this).attr('data-buttonid');
+        if (jQuery.inArray(buttonID, rateChangeClicks) === -1) {
+            rateChangeClicks.push(buttonID);
+            _gaq.push(["_trackEvent", "School Interactions", "Percent Arrow Clicked", buttonID]);
+        }
+        
+    })
 
     // Fire an event when clicking "Calculate" button 
     $(".gibill-panel .military-calculate").click( function() {
