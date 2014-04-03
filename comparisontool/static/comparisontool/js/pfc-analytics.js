@@ -34,7 +34,7 @@ var PFCAnalytics = (function() {
     $('.remove-confirm .remove-yes').click( function() {
         var columnNumber = $(this).parents('[data-column]').attr('data-column');
         var schoolID = $('#institution-row [data-column="' + columnNumber + '"]').attr('data-schoolid');
-        _gaq.push([ "_trackEvent", "School Interactions", "School Removed", ] );
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "School Removed" ] );
         // Important to add a School tracking - reset the global.emptyColumn var
         global.emptyColumn = findEmptyColumn();
     });
