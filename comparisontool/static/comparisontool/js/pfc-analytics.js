@@ -61,8 +61,14 @@ var PFCAnalytics = (function() {
     // Fire an event when clicking "Calculate" button 
     $(".gibill-panel .military-calculate").click( function() {
         var columnNumber = $(this).closest("[data-column]").attr("data-column");
-        var school_id = $("#institution-row [data-column='" + columnNumber + "']").attr("data-schoolid");
-        _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", school_id]);        
+        var schoolID = $("#institution-row [data-column='" + columnNumber + "']").attr("data-schoolid");
+        var serving = $('[data-column="1"] .military-status-select :selected').html();
+        var tier = $("[data-column='1'] .military-tier-select").find(":selected").html();
+        var residency = $("[data-column='1'] .military-residency-panel :radio:checked").val();
+        _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", schoolID]); 
+        _gaq.push(["_trackEvent", "School Interactions", "Military Status", serving]); 
+        _gaq.push(["_trackEvent", "School Interactions", "Cumulative service", tier]); 
+        _gaq.push(["_trackEvent", "School Interactions", "GI Residency", residency]);        
     });
 
     // Fire an event when Send Email is clicked
@@ -129,14 +135,21 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "School Added", schoolID ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
-        _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked", offer ] );
+        if (offer === "Yes") {
+            _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked"] );
+        }
+        if ( $('#xml-text').val() === "" ) {
+            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "Blank"] );
+        }
+        else {
+            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "XML text"] );
+        }
     }
 
     // Check for a new school added when .continue and .add-another-school are clicked
     $('#introduction .continue, #introduction .add-another-school').click( function() {
         delay(function() {
             var newEmpty = findEmptyColumn();
-            console.log("===> Column Compare: " + newEmpty);
             if (newEmpty != global.emptyColumn) {
                 newSchoolEvent();
                 global.emptyColumn = newEmpty;
@@ -177,10 +190,6 @@ var PFCAnalytics = (function() {
     });
 
     // Collapsed content click tracking
-    // Let's split these out per interaction (all three types)
-    /* $('.bubble').click(function() {
-        _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Tabs_Key_Questions']);
-    }); */
     $('.ec').click(function() {
         _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Accordion_Options']);
     });
