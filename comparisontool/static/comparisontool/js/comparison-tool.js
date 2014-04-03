@@ -1646,9 +1646,9 @@ var CFPBComparisonTool = (function() {
                 var schoolID = columns[columnNumber].fetchSchoolID();
                 $('[data-column="' + columnNumber + '"]').find('.school-data').val('$0');
                 calculateAndDraw(columnNumber);
-            /*    columns[columnNumber].removeSchoolInfo();
+                columns[columnNumber].removeSchoolInfo();
                 columns[columnNumber].toggleActive('inactive');
-                delete schools[schoolID];*/
+                delete schools[schoolID];
                 if ( Object.keys(schools).length === 0 ) {
                     $("#get-started-button").html("Get started");
                 }
