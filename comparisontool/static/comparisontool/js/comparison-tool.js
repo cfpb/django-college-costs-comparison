@@ -125,7 +125,6 @@ var CFPBComparisonTool = (function() {
 	function calculateAndDraw(columnNumber) {
 		var schoolID = columns[columnNumber].fetchSchoolID();
         var newData = columns[columnNumber].fetchFormValues();
-
         if (schools[schoolID] != undefined) {
             schools[schoolID].recalculate(newData);
             var schoolData = schools[schoolID].schoolData;
@@ -902,6 +901,9 @@ var CFPBComparisonTool = (function() {
 			var chartWidth = columnObj.find(".chart_mask_internal .full").width();
 			var barBorderThickness = 1;
 			var cost = moneyToNum(columnObj.find("[data-nickname='firstyrcostattend']").html());
+            if (cost <= 0) {
+                cost = 1;
+            }
 			var pixelPrice = chartWidth / cost;
 			var left = 0;
 
@@ -1260,7 +1262,6 @@ var CFPBComparisonTool = (function() {
         	columnObj.find('[data-nickname="institution_name"]').html("School " + this.columnNumber);
         	columnObj.find('.remove-confirm').hide();
         	$('#institution-row [data-column="' + this.columnNumber + '"].header-cell').attr('data-schoolid', '');
-
         } // end removeSchoolInfo()
 
         //-- set an element value to the matching schoolData object property --//
@@ -1641,15 +1642,17 @@ var CFPBComparisonTool = (function() {
 
             // Remove school (confirmed, so actually get rid of it)
             $(".remove-confirm .remove-yes").click( function() {
-                var number = $(this).closest("[data-column]").attr("data-column");
-                var schoolID = columns[number].fetchSchoolID();
-                columns[number].removeSchoolInfo();
-                columns[number].toggleActive('inactive');
-                delete schools[schoolID];
+                var columnNumber = $(this).closest("[data-column]").attr("data-column");
+                var schoolID = columns[columnNumber].fetchSchoolID();
+                $('[data-column="' + columnNumber + '"]').find('.school-data').val('$0');
+                calculateAndDraw(columnNumber);
+            /*    columns[columnNumber].removeSchoolInfo();
+                columns[columnNumber].toggleActive('inactive');
+                delete schools[schoolID];*/
                 if ( Object.keys(schools).length === 0 ) {
                     $("#get-started-button").html("Get started");
                 }
-                maxSchools(false);
+                maxSchools(false); 
             });
 
             // Wait, no, I don't want to remove it!
