@@ -34,7 +34,7 @@ var PFCAnalytics = (function() {
     $('.remove-confirm .remove-yes').click( function() {
         var columnNumber = $(this).parents('[data-column]').attr('data-column');
         var schoolID = $('#institution-row [data-column="' + columnNumber + '"]').attr('data-schoolid');
-        _gaq.push([ "_trackEvent", "School Interactions", "School Removed", ] );
+        _gaq.push([ "_trackEvent", "School Interactions", "School Cost Comparison", "School Removed" ] );
         // Important to add a School tracking - reset the global.emptyColumn var
         global.emptyColumn = findEmptyColumn();
     });
@@ -164,12 +164,12 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", arrwName, "Drop Down" ] );
     });
 
-
     //## OLDER CODE BELOW ##//
     // PFC menu tracking
     $('.pfc-nav a').click(function(e) {
         
         // Save the href so we can change the url with js
+        var link_text = $(this).text();
         var link_url = $(this).attr('href');
 
         // Stop the link from going anywhere
@@ -180,7 +180,7 @@ var PFCAnalytics = (function() {
         // that could prevent the rest of this code from changing the url
         // thus breaking the link completely instead of delaying it!
 
-        try { _gaq.push(['_trackEvent', 'Page Interactions', 'Menu Click', 'PFC_Menu']); }
+        try { _gaq.push(['_trackEvent', 'Page Interactions', 'Menu Click', link_text]); }
         catch( error ) {}
 
         // Give google analytics time to do its thing before changing the page url
@@ -210,10 +210,47 @@ var PFCAnalytics = (function() {
             }
         }
     });
-    $('.internal-link').click(function() {
+    $('.internal-link').click(function(e) {
+
+        // Save useful variables
         var link_text = $(this).text();
-        var link_url = $(this).attr('href')
-        _gaq.push(['_trackEvent', 'Internal Link', link_text, link_url]);
+        var link_url = $(this).attr('href');
+
+        // Stop the link from going anywhere
+        // (it's ok we saved the href and we'll fire it later)
+        e.preventDefault();
+
+        // Use a try statement in case there are google analytics errors
+        // that could prevent the rest of this code from changing the url
+        // thus breaking the link completely instead of delaying it!
+
+        try { _gaq.push(['_trackEvent', 'Internal Link', link_text, link_url]); }
+        catch( error ) {}
+
+        // Give google analytics time to do its thing before changing the page url
+        // http://support.google.com/analytics/answer/1136920?hl=en
+        setTimeout(function() { document.location.href = link_url; }, 500);
+    });
+    $('.school-link').click(function(e) {
+
+        // Save useful variables
+        var link_text = $(this).text();
+        var link_url = $(this).attr('href');
+
+        // Stop the link from going anywhere
+        // (it's ok we saved the href and we'll fire it later)
+        e.preventDefault();
+
+        // Use a try statement in case there are google analytics errors
+        // that could prevent the rest of this code from changing the url
+        // thus breaking the link completely instead of delaying it!
+
+        try { _gaq.push(['_trackEvent', 'School Interactions', link_text]); }
+        catch( error ) {}
+
+        // Give google analytics time to do its thing before changing the page url
+        // http://support.google.com/analytics/answer/1136920?hl=en
+        setTimeout(function() { document.location.href = link_url; }, 500);
     });
     // Email address submission on /paying-for-college/
     /* $('.email-button').click(function() {
