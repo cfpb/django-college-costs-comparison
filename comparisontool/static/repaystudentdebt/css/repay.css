@@ -26,11 +26,11 @@ The main styles for the unique elements on this page.
 }
 
 .tip {
-    background: #eee url(tip-orange.png) no-repeat 10px 10px;
+    background: #eee url("/static/repaystudentdebt/images/tip-orange.png") no-repeat 10px 10px;
 }
 
 .act {
-    background: #eee url(take-action.png) no-repeat 10px 10px;
+    background: #eee url("/static/repaystudentdebt/images/take-action.png") no-repeat 10px 10px;
 }
 
 button {
