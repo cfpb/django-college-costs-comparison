@@ -190,43 +190,39 @@ var CFPBComparisonTool = (function() {
     //-- process XML text into JSON, return a data object similar to schoolData --//
 
     function processXML(xml) {
-		var json = $.xml2json(xml);
-		var schoolData = {};
-        var body = json.body;
-        var parsererror;
-        if ( body !== undefined ) {
-            parsererror = body.parsererror;
+        var parsererror = false;
+        try {
+            var xmlDoc = $.parseXML( xml );
+            var $xmlObj = $( xmlDoc );         
         }
-        if ( parsererror !== undefined ) {
+        catch (err) {
+            parsererror = "Invalid XML Format";
+        }
+
+        if ( parsererror !== false ) {
             return false;
         }
         else {
-            // assign values based on json
-            if ( json.costs != undefined) {
-                schoolData.books = moneyToNum(json.costs.books_and_supplies);
-                schoolData.roombrd = moneyToNum(json.costs.housing_and_meals);
-                schoolData.otherexpenses = moneyToNum(json.costs.other_education_costs);
-                schoolData.transportation = moneyToNum(json.costs.transportation);
-                schoolData.tuitionfees = moneyToNum(json.costs.tuition_and_fees);       
-            }
-            if ( json.grants_and_scholarships != undefined ) {
-                schoolData.pell = moneyToNum(json.grants_and_scholarships.federal_pell_grant);
-                // other scholarships & grants comprises several json data
-                schoolData.scholar = moneyToNum(json.grants_and_scholarships.grants);
-                schoolData.scholar += moneyToNum(json.grants_and_scholarships.grants_from_state);
-                schoolData.scholar += moneyToNum(json.grants_and_scholarships.other_scholarships);
-            }
-            if ( json.loan_options != undefined ) {
-                schoolData.staffsubsidized = moneyToNum(json.loan_options.federal_direct_subsidized_loan);
-                schoolData.staffunsubsidized = moneyToNum(json.loan_options.federal_direct_unsubsidized_loan);
-                schoolData.perkins = moneyToNum(json.loan_options.federal_perkins_loans);
-            }
-            if ( json.other_options != undefined ) {
-                schoolData.family = moneyToNum(json.other_options.family_contribution);
-            }
-            if ( json.work_options != undefined ) {
-                schoolData.workstudy = moneyToNum(json.work_options.work_study);
-            }
+            var schoolData = {};
+            schoolData.books = moneyToNum( $xmlObj.find('books_and_supplies').text() );
+            schoolData.roombrd = moneyToNum( $xmlObj.find('housing_and_meals').text() );
+            schoolData.otherexpenses = moneyToNum( $xmlObj.find('other_education_costs').text() );
+            schoolData.transportation = moneyToNum( $xmlObj.find('transportation').text() );
+            schoolData.tuitionfees = moneyToNum( $xmlObj.find('tuition_and_fees').text() );
+
+            schoolData.pell = moneyToNum( $xmlObj.find('federal_pell_grant').text() );
+            schoolData.scholar = moneyToNum( $xmlObj.find('grants').text() );
+            schoolData.scholar += moneyToNum( $xmlObj.find('grants_from_state').text() );
+            schoolData.scholar += moneyToNum( $xmlObj.find('other_scholarships').text() );
+
+            schoolData.staffsubsidized = moneyToNum( $xmlObj.find('federal_direct_subsidized_loan').text() );
+            schoolData.staffunsubsidized = moneyToNum( $xmlObj.find('federal_direct_unsubsidized_loan').text() );
+            schoolData.perkins = moneyToNum( $xmlObj.find('federal_perkins_loans').text() );
+
+            schoolData.family = moneyToNum( $xmlObj.find('family_contribution').text() );
+
+            schoolData.workstudy = moneyToNum( $xmlObj.find('work_study').text() );
+
             return schoolData;
         }
 
@@ -966,7 +962,7 @@ var CFPBComparisonTool = (function() {
 					// columnObj.find(".bars-container").width(chartWidth);
 					columnObj.find(".error_msg").fadeOut(400);
 				}
-			});
+			}); 
 
 		    left = 0 + totalBorrowedSectionWidth;
 		    if ( left < 1 ) {
@@ -990,7 +986,7 @@ var CFPBComparisonTool = (function() {
 		    }
 	 	    var breakdownheight = $(".meter").height();
 		    columnObj.find(".meter").closest("td").height(breakdownheight);
-		}
+		} // End drawCostBars
 
 
 	    //-- Draw the pie chart --//
@@ -1514,8 +1510,8 @@ var CFPBComparisonTool = (function() {
 
 
             // [step-one] User clicks Continue at step-one
-            $("#step-one .continue").click( function() {
-                
+            $("#step-one .continue").click( function(ev) {
+                ev.preventDefault();
             	if ( $("#step-one .continue").attr("disabled") === undefined ) {
                     // If the user has a financial aid offer and school participates in Shopping Sheet, go to XML step.
                     if ( $("#finaidoffer").is(":checked") && $("#school-name-search").attr("data-kbyoss") === "Yes") { 
@@ -1549,7 +1545,8 @@ var CFPBComparisonTool = (function() {
             });
 
             // [step-two] User clicks Continue at step-two
-            $("#step-two .continue").click( function() {
+            $("#step-two .continue").click( function(ev) {
+                ev.preventDefault();
                 var xml = $('#xml-text').val();
                 if (xml !== undefined & xml !== "") {
                     var data = processXML(xml);
@@ -1592,7 +1589,8 @@ var CFPBComparisonTool = (function() {
             });
 
             // [step-three] User clicks Continue at step-three
-            $("#step-three .continue").click( function() {
+            $("#step-three .continue").click( function(ev) {
+                ev.preventDefault();
             	clearAddForms();
                 setAddStage(0);
                 // Open Cost of attendance, if necessary
