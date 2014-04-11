@@ -9,7 +9,7 @@ var CFPBComparisonTool = (function() {
 
     // Initialize values, objects, etc //
     var columns = new Object(); // Object (array-ish) that holds Column objects, keyed by column number
-    var schools = new Object(); // Object (array-ish) that holds School objects, keyed by school_id
+    var schools = new Object(); // Object (array-ish) that holds School objects, keyed by column number
     var schools_zeroed = new Object(); // Object for Google analytics, for schools where gap reaches 0
     var pies = []; // Object holding monthly loan pie chart Raphael objects (the whole object)
     var circles = []; // Object holding monthly loan pie chart Raphael objects (the outer circle part)
@@ -47,9 +47,9 @@ var CFPBComparisonTool = (function() {
 		"subsidizedcapyr1": 3500, "subsidizedcapyr2": 4500, "subsidizedcapyr3": 5500, 
 		"unsubsidizedcapyr1": 5500, "unsubsidizedcapyr2": 6500, "unsubsidizedcapyr3": 7500,
 		"unsubsidizedcapindepyr1": 9500, "unsubsidizedcapindepyr2": 10500, "unsubsidizedcapindepyr3": 12500, 
-		"unsubsidizedcapgrad": 20500, "state529plan": 0, "perkinsrate": 0.05, "subsidizedrate": 0.0386, 
-		"unsubsidizedrateundergrad": 0.0386, "unsubsidizedrategrad": 0.0541, "dloriginationfee": 1.01072, "gradplusrate": 0.0641, 
-		"parentplusrate": 0.0641, "plusoriginationfee": 1.04288, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
+		"unsubsidizedcapgrad": 20500, "state529plan": 0, "perkinsrate": 0.05, "subsidizedrate": 0.051, 
+		"unsubsidizedrateundergrad": 0.051, "unsubsidizedrategrad": 0.0665, "dloriginationfee": 1.01072, "gradplusrate": 0.0765, 
+		"parentplusrate": 0.0765, "plusoriginationfee": 1.04288, "homeequityloanrate": 0.079, "deferperiod": 6, "salary": 30922, 
 		"salaryaa": 785, "salaryba": 1066, "salarygrad": 1300, "lowdefaultrisk": 0.08, "meddefaultrisk": 0.14, 
 		"tfcap": 19198.31, "avgbah": 1429, "bscap": 1000, 
 		"tuitionassistcap": 4500, "kicker": 0, "yrben": 0, "rop": 1, "depend": "independent",
@@ -123,11 +123,10 @@ var CFPBComparisonTool = (function() {
 
     //-- Perform all the functions necessary to (re)calculate and (re)draw the column --//
 	function calculateAndDraw(columnNumber) {
-		var schoolID = columns[columnNumber].fetchSchoolID();
         var newData = columns[columnNumber].fetchFormValues();
-        if (schools[schoolID] != undefined) {
-            schools[schoolID].recalculate(newData);
-            var schoolData = schools[schoolID].schoolData;
+        if (schools[columnNumber] != undefined) {
+            schools[columnNumber].recalculate(newData);
+            var schoolData = schools[columnNumber].schoolData;
             columns[columnNumber].updateFormValues(schoolData);
             columns[columnNumber].drawCostBars(schoolData);
             columns[columnNumber].drawPieChart(schoolData);
@@ -1287,8 +1286,9 @@ var CFPBComparisonTool = (function() {
             }
             // Use val() or html() based on tagName
             if ( element.prop('tagName') === 'INPUT' ) {
+                var columnNumber = this.columnNumber;
                 if ( moneyToNum(value) === 0 ) {
-                    if ( $.inArray(nickname, schools[school_id].touchedFields) === -1) {
+                    if ( $.inArray(nickname, schools[columnNumber].touchedFields) === -1) {
                         value = "$";
                     }
                     else {
@@ -1500,7 +1500,6 @@ var CFPBComparisonTool = (function() {
                 request.fail(function() {
                     // Your fail message here.
                 }); 
-                schools[school_id] = schoolData;
                 $("#school-name-search").attr("data-schoolid", school_id);
                 $("#school-name-search").attr("data-kbyoss", schoolData.kbyoss);
                 $("#school-name-search").val($(this).html());
@@ -1526,19 +1525,19 @@ var CFPBComparisonTool = (function() {
                         else {
                             $('#step-three .no-offer').show();
                         }
-                        var column = findEmptyColumn();
+                        var columnNumber = findEmptyColumn();
                         var schoolID = $("#school-name-search").attr("data-schoolid");
-                        $('#institution-row [data-column="' + column + '"]').attr("data-schoolid", schoolID);
-                        schools[schoolID] = new School(schoolID);
-                        schools[schoolID].getSchoolData();
-                        schools[schoolID].importAddForm();
-                        columns[column].addSchoolInfo(schools[schoolID].schoolData);
-                        columns[column].updateFormValues(schools[schoolID].schoolData);
+                        $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
+                        schools[columnNumber] = new School(schoolID);
+                        schools[columnNumber].getSchoolData();
+                        schools[columnNumber].importAddForm();
+                        columns[columnNumber].addSchoolInfo(schools[columnNumber].schoolData);
+                        columns[columnNumber].updateFormValues(schools[columnNumber].schoolData);
 
                         if ( findEmptyColumn() === false ) {
                             maxSchools(true);
                         }
-                        calculateAndDraw(column);
+                        calculateAndDraw(columnNumber);
                         $("#get-started-button").html("Add another school");
                     }
                 }
@@ -1575,10 +1574,10 @@ var CFPBComparisonTool = (function() {
                     var columnNumber = findEmptyColumn();
                     var schoolID = $("#school-name-search").attr("data-schoolid");
                     $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
-                    schools[schoolID] = new School(schoolID);
-                    schools[schoolID].getSchoolData();
-                    schools[schoolID].importAddForm();
-                    columns[columnNumber].addSchoolInfo(schools[schoolID].schoolData);
+                    schools[columnNumber] = new School(schoolID);
+                    schools[columnNumber].getSchoolData();
+                    schools[columnNumber].importAddForm();
+                    columns[columnNumber].addSchoolInfo(schools[columnNumber].schoolData);
                     columns[columnNumber].updateFormValues(data);
                     if ( findEmptyColumn() === false ) {
                         maxSchools(true);
@@ -1595,11 +1594,11 @@ var CFPBComparisonTool = (function() {
                 setAddStage(0);
                 // Open Cost of attendance, if necessary
                 if ( $("#open").hasClass("arrw") ) {
-                    $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
+                    $(document.body).animate({'scrollTop': $("#comparison-tables").offset().top }, 750);
                 }
                 else {
                     $("#open").trigger("click");
-                    $(document.body).animate({'scrollTop':   $("#comparison-tables").offset().top }, 750);
+                    $(document.body).animate({'scrollTop': $("#comparison-tables").offset().top }, 750);
                 }
             });
 
@@ -1646,7 +1645,7 @@ var CFPBComparisonTool = (function() {
                 calculateAndDraw(columnNumber);
                 columns[columnNumber].removeSchoolInfo();
                 columns[columnNumber].toggleActive('inactive');
-                delete schools[schoolID];
+                delete schools[columnNumber];
                 if ( Object.keys(schools).length === 0 ) {
                     $("#get-started-button").html("Get started");
                 }
@@ -1769,23 +1768,23 @@ var CFPBComparisonTool = (function() {
 
             // Perform a calculation when a keyup occurs in the school fields...
             $("#comparison-tables").on("keyup", "input.school-data", function (ev) {
-                var column = $(this).closest("[data-column]").attr("data-column");
-                var school_id = columns[column].fetchSchoolID();
+                var columnNumber = $(this).closest("[data-column]").attr("data-column");
+                var school_id = columns[columnNumber].fetchSchoolID();
                 var nickname = $(this).attr('data-nickname');
                 var value = $(this).val();
                 // ...immediately when the user hits enter
                 if (ev.keyCode == 13) {
                     ev.preventDefault();
                     // Touch the input field
-                    schools[school_id].touchedFields.push(nickname);
-                    calculateAndDraw(column);
+                    schools[columnNumber].touchedFields.push(nickname);
+                    calculateAndDraw(columnNumber);
                 }
                 // .. after a delay if any other key is pressed
                 delay(function() {
                     if (value !== "$") {
-                        schools[school_id].touchedFields.push(nickname);
+                        schools[columnNumber].touchedFields.push(nickname);
                     }
-                    calculateAndDraw(column);
+                    calculateAndDraw(columnNumber);
                     }, 500);
             });
 
@@ -1959,9 +1958,9 @@ var CFPBComparisonTool = (function() {
                         var columnNumber = findEmptyColumn();
                         schoolData['origin'] = 'saved';
                         $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
-                        schools[schoolID] = new School(schoolID);
-                        schools[schoolID].schoolData = schoolData;
-                        columns[columnNumber].addSchoolInfo(schools[schoolID].schoolData);
+                        schools[columnNumber] = new School(schoolID);
+                        schools[columnNumber].schoolData = schoolData;
+                        columns[columnNumber].addSchoolInfo(schools[columnNumber].schoolData);
                         calculateAndDraw(columnNumber);
                     });
                     if ( findEmptyColumn() === false ) {
