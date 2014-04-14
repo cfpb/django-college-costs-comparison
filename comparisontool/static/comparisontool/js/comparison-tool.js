@@ -245,8 +245,8 @@ var CFPBComparisonTool = (function() {
             $("#introduction #step-two").fadeToggle( "slow", "linear" );
         }
         if (stage === 3) {
-            $("#introduction .get-started").not("#step-three").hide();
-            $("#introduction #step-three").fadeToggle( "slow", "linear" );
+            $("#introduction .get-started").not("#step-success").hide();
+            $("#introduction #step-success").fadeToggle( "slow", "linear" );
         }
     } // end setAddStage()
 
@@ -272,7 +272,7 @@ var CFPBComparisonTool = (function() {
         $('#finaidoffer').prop('checked', false);
     	$('#xml-text').val('');
         $('#step-one .continue').attr('disabled', true);
-        $("#step-three .stage-success").hide();
+        $("#step-success .stage-success").hide();
         $('#step-two .xml-error').hide();
     } //
 
@@ -1520,10 +1520,10 @@ var CFPBComparisonTool = (function() {
                     else {
                         setAddStage(3);
                         if ($("#finaidoffer").is(":checked")) {
-                            $('#step-three .no-cost-data').show();
+                            $('#step-success .no-cost-data').show();
                         }
                         else {
-                            $('#step-three .no-offer').show();
+                            $('#step-success .no-offer').show();
                         }
                         var columnNumber = findEmptyColumn();
                         var schoolID = $("#school-name-search").attr("data-schoolid");
@@ -1566,10 +1566,10 @@ var CFPBComparisonTool = (function() {
                 if (data !== false) {
                     setAddStage(3);
                     if (data == "invalid") {
-                        $('#step-three .no-cost-data').show();
+                        $('#step-success .no-cost-data').show();
                     }
                     else {
-                        $('#step-three .valid-xml').show();
+                        $('#step-success .valid-xml').show();
                     }
                     var columnNumber = findEmptyColumn();
                     var schoolID = $("#school-name-search").attr("data-schoolid");
@@ -1587,8 +1587,8 @@ var CFPBComparisonTool = (function() {
                 }
             });
 
-            // [step-three] User clicks Continue at step-three
-            $("#step-three .continue").click( function(ev) {
+            // [step-success] User clicks Continue at step-success
+            $("#step-success .continue").click( function(ev) {
                 ev.preventDefault();
             	clearAddForms();
                 setAddStage(0);
@@ -1602,8 +1602,8 @@ var CFPBComparisonTool = (function() {
                 }
             });
 
-            // [step-three] User clicks Add Another School at step-three
-            $("#step-three .add-another-school").click( function() {
+            // [step-success] User clicks Add Another School at step-success
+            $("#step-success .add-another-school").click( function() {
             	clearAddForms();
                 if (findEmptyColumn() === false) {
                     setAddStage(0);
