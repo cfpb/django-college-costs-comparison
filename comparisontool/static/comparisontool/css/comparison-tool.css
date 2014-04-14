@@ -362,9 +362,9 @@ This is for each step in the process.
 /* First step is step-zero, so these are hidden and activated via JS */
 #introduction #step-one,
 #introduction #step-two,
-#introduction #step-three,
+#introduction #step-success,
 /* We're hiding these portions of steps, and will display them with JS, based on user input. */
-#step-three .stage-success {
+#step-success .stage-success {
     display: none;
 }
 
@@ -426,13 +426,13 @@ This is for each step in the process.
     width: 387.5px;
 }
 
-#step-three .step-left {
+#step-success .step-left {
     float: left;
     margin-right: 30px;
     width: 554.5px;
 }
 
-#step-three .step-right {
+#step-success .step-right {
     margin-right: 0;
     position: absolute;
     	right: 0;
