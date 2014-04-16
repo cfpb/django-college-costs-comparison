@@ -155,19 +155,23 @@ var restoredata = {{ data_js|safe }};
 					<div class="step-left">
 						<div class="pfc-container-left">
 							<div class="school-search staged stage-search">
-								<label for="school-name-search" class="school-name">School name</label>
-								<input type="text" name="schoolname-search" placeholder="Search school name" id="school-name-search" class="school-search-box">
+								<label for="school-name-search" class="school-name">
+									School name <span class="cfpb_visually_hide">(required)</span>
+									<input type="text" name="schoolname-search" placeholder="Search school name" required="required" aria-required="true" id="school-name-search" class="school-search-box">
+								</label>
 								<ul class="search-results"></ul>
 							</div><!--/school-search /staged /stage-search -->
-							<div class="prgmlength-selection staged stage-prgmlength step-left">	
-								<label class="prgmlength" for="prgmlength">Program Length</label>
-								<select id="prgmlength" name="prgmlength">
-									<option value="5">5 years</option>
-									<option value="4" selected="selected">4 years</option>
-									<option value="3">3 years</option>
-									<option value="2">2 years</option>
-									<option value="1">1 year</option>
-								</select>
+							<div class="prgmlength-selection staged stage-prgmlength step-left">
+								<label class="prgmlength" for="prgmlength">
+									Program Length
+									<select id="prgmlength" name="prgmlength">
+										<option value="5">5 years</option>
+										<option value="4" selected="selected">4 years</option>
+										<option value="3">3 years</option>
+										<option value="2">2 years</option>
+										<option value="1">1 year</option>
+									</select>
+								</label>
 							</div><!--/prgmlength-selection /staged /stage-prgmlength -->
 						</div><!-- /pfc-container-left -->
 					</div><!--/step-left -->
@@ -176,16 +180,22 @@ var restoredata = {{ data_js|safe }};
 							<legend class="pfc-left demi">Program Type</legend>
 							<div class="pfc-left">
 								<div class="get-started-radio-group">
-									<input id="program1" class="prgmtype radio-input" type="radio" name="program" value="aa">
-									<label class="prgmtype" for="program1">Associates or certificate</label>
+									<label class="prgmtype" for="program1">
+										<input id="program1" class="prgmtype radio-input" type="radio" name="program" value="aa">
+										Associates or certificate
+									</label>
 								</div><!-- /get-started-radio-group -->
 								<div class="get-started-radio-group">
-									<input id="program2" class="prgmtype radio-input" type="radio" name="program" value="ba" checked="checked">
-									<label class="prgmtype" for="program2">Bachelors</label>
+									<label class="prgmtype" for="program2">
+										<input id="program2" class="prgmtype radio-input" type="radio" name="program" value="ba" checked="checked">
+										Bachelors
+									</label>
 								</div><!-- /get-started-radio-group -->
 								<div class="get-started-radio-group">	
-									<input id="program3" class="radio-input" type="radio" name="program" value="grad">
-									<label class="prgmtype" for="program3">Graduate</label>
+									<label class="prgmtype" for="program3">
+										<input id="program3" class="radio-input" type="radio" name="program" value="grad">
+										Graduate
+									</label>
 								</div><!-- /get-started-radio-group -->
 							</div>
 							<div class="get-started-ckbx-group">
