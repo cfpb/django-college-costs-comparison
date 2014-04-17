@@ -359,6 +359,11 @@ This is for each step in the process.
     position: relative;
 }
 
+.get-started hr {
+    margin-left: 28%;
+    width: 55%;
+}
+
 /* First step is step-zero, so these are hidden and activated via JS */
 #introduction #step-one,
 #introduction #step-two,
@@ -394,13 +399,7 @@ This is for each step in the process.
 #step-one .step-left {
     float: left;
     margin-right: 20px;
-}
-
-#step-one .step-middle {
-	border-left: 1px solid #101820;
-    float: left;
-    margin-right: 30px;
-    padding-left: 20px;
+    width: 554.5px;
 }
 
 #step-one .step-right {
@@ -409,6 +408,7 @@ This is for each step in the process.
     	bottom: 24px;
     margin-right: 0;
     text-align: right;
+    width: 387.5px;
 }
 
 #step-two .step-left {
@@ -450,6 +450,7 @@ This is for each step in the process.
     padding-right: 30px;
 }
 
+/* Basic structure */
 .pfc-left {
 	float: left;
 	margin-right: 10px;
@@ -460,8 +461,7 @@ This is for each step in the process.
 	margin-right: 0;
 }
 
-/* The button styles for Add a School.
-This is for the Get Started button only. */
+/* This is for the Get Started button only. */
 .paying-for-college #wrapper .get-started #get-started-button {
     font-size: 1.125em;
     margin-top: 2.5em;
@@ -474,30 +474,49 @@ This is for the Get Started button only. */
 	width: 874px;
 }
 
+/* General label styling in Get Started */
 .get-started label {
 	font-size: 0.875em;
-	margin: 1em 0;
 }
 
 .get-started .school-name,
+.get-started .success-school-name,
 .get-started .prgmlength,
-.get-started .prgmtype,
 .get-started .xml {
-	font-weight: 600;
-    margin-right: 0.5em;
+    font-weight: 600;
 }
 
-.success-school-name {
-    font-weight: 600;
+/* Make columns for Step One */
+.get-started .school-name,
+.get-started .prgmlength {
+    float: left;
+    display: block;
+    margin-right: 1.25em;
+    text-align: right;
+    width: 24%; 
+}
+
+.school-search-box {
+    float: left;
+    width: 54%;
 }
 
 .get-started .get-started-ckbx-group {
     clear: both;
-    padding: 1em 0;
+    padding: 1em 0 0 28%;
 }
 
-.get-started .finaidoffer {
-    vertical-align: middle;
+.program-selection legend {
+    float: left;
+    font-size: 0.875em;
+    display: block;
+    margin-right: 1.25em;
+    text-align: right;
+    width: 24%; 
+}
+
+.get-started-radios {
+    float: left;
 }
 
 .get-started .xml-text {
@@ -505,9 +524,6 @@ This is for the Get Started button only. */
 }
 
 /* The search results for Add a School. */
-.school-search {
-	padding-bottom: 1em;
-}
 .search-results {
     background-color: #fff;
     border: 1px solid black;
@@ -530,6 +546,10 @@ This is for the Get Started button only. */
     font-size: .8em;
     font-style: italic;
     line-height: 1em;
+}
+
+.get-started .finaidoffer {
+    vertical-align: middle;
 }
 
 .navigator-link {
@@ -1121,14 +1141,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input[type="password"],
 .comparison-tool input[type="search"],
 .comparison-tool textarea {
-  margin: 0;
-  padding: 0.25em;
-  font-family: Arial, sans-serif;
-  font-size: 1em;
-  background: #ffffff;
-  border: 1px solid #75787b;
-  border-radius: 0;
-  vertical-align: top;
+    background: #ffffff;
+    border: 1px solid #75787b;
+    border-radius: 0;
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    padding: 0.25em;
+    vertical-align: top;
 }
 
 .comparison-tool input[type="text"]:focus,
@@ -1137,12 +1156,12 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input[type="password"]:focus,
 .comparison-tool input[type="search"]:focus,
 .comparison-tool textarea:focus {
-  border: 1px solid #0072ce;
-  border-color: #0072ce;
-  outline: 1px solid #0072ce;
-  outline-offset: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none;
+      border: 1px solid #0072ce;
+      border-color: #0072ce;
+      outline: 1px solid #0072ce;
+      outline-offset: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
 }
 
 .comparison-tool input.error[type="text"],
@@ -1151,8 +1170,8 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input.error[type="password"],
 .comparison-tool input.error[type="search"],
 .comparison-tool textarea.error {
-  border: 1px solid #d12124;
-  outline: 1px solid #d12124;
+      border: 1px solid #d12124;
+      outline: 1px solid #d12124;
 }
 
 .comparison-tool input.success[type="text"],
@@ -1161,8 +1180,8 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input.success[type="password"],
 .comparison-tool input.success[type="search"],
 .comparison-tool textarea.success {
-  border: 1px solid #2cb34a;
-  outline: 1px solid #2cb34a;
+      border: 1px solid #2cb34a;
+      outline: 1px solid #2cb34a;
 }
 
 .comparison-tool td input.disabled, td input.disabled:hover,  
