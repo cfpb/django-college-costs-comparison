@@ -430,6 +430,11 @@ The buttons differ from others on the site.
     text-transform: none;
 }
 
+.paying-for-college #wrapper .wiz_btns a {
+    cursor: pointer;
+}
+
+.paying-for-college #wrapper .wiz_btns a,
 .paying-for-college #wrapper button,
 .paying-for-college #wrapper .button {
     box-sizing: border-box;
@@ -458,6 +463,8 @@ The buttons differ from others on the site.
             transition: .1s;
 }
 
+.paying-for-college #wrapper .wiz_btns a:hover,
+.paying-for-college #wrapper .wiz_btns a:focus,
 .paying-for-college #wrapper button:hover,
 .paying-for-college #wrapper button:focus,
 .paying-for-college #wrapper .button:hover,
@@ -466,6 +473,7 @@ The buttons differ from others on the site.
     background-color: #328ed8; /* Pacific/80 */
 }
 
+.paying-for-college #wrapper .wiz_btns a:active,
 .paying-for-college #wrapper button:active,
 .paying-for-college #wrapper .button:active {
     /* Class included for static state examples */
