@@ -359,11 +359,6 @@ This is for each step in the process.
     position: relative;
 }
 
-.get-started hr {
-    margin-left: 28%;
-    width: 55%;
-}
-
 /* First step is step-zero, so these are hidden and activated via JS */
 #introduction #step-one,
 #introduction #step-two,
@@ -496,9 +491,39 @@ This is for each step in the process.
     width: 24%; 
 }
 
+.school-search {
+    padding-bottom: 1em;
+}
+
 .school-search-box {
     float: left;
     width: 54%;
+}
+
+/* The search results for Add a School. */
+.search-results {
+    background-color: #fff;
+    border: 1px solid black;
+    clear: both;
+    display: none;
+    font-size: .9em;
+    list-style-type: none;
+    margin: 0 0 1em 8%;
+    padding: .25em;
+    width: 385px;
+}
+
+.search-results li a,
+.search-results li p {
+    border: none;
+    font-weight: normal;
+}
+.search-results li p.location {
+    margin: .1em 0 .5em .75em;
+    font-weight: 400;
+    font-size: .8em;
+    font-style: italic;
+    line-height: 1em;
 }
 
 .get-started .get-started-ckbx-group {
@@ -516,36 +541,19 @@ This is for each step in the process.
 }
 
 .get-started-radios {
+    border-bottom: 1px solid #babbbd;
+    border-top: 1px solid #babbbd;
     float: left;
+    padding: 1em 0;
+    width: 56%
+}
+
+.prgmlength-selection {
+    padding-top: 1em;
 }
 
 .get-started .xml-text {
 	width: 60%;
-}
-
-/* The search results for Add a School. */
-.search-results {
-    background-color: #fff;
-    border: 1px solid black;
-    display: none;
-    font-size: .9em;
-    list-style-type: none;
-    margin: 0;
-        margin-bottom: 1em;
-    padding: .25em;
-}
-
-.search-results li a,
-.search-results li p {
-    border: none;
-    font-weight: normal;
-}
-.search-results li p.location {
-    margin: .1em 0 .5em .75em;
-    font-weight: 400;
-    font-size: .8em;
-    font-style: italic;
-    line-height: 1em;
 }
 
 .get-started .finaidoffer {
