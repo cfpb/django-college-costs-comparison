@@ -359,12 +359,13 @@ This is for each step in the process.
     position: relative;
 }
 
-/* First step is step-zero, so these are hidden and activated via JS */
-#introduction #step-one,
+/* First step is step-one, so these are hidden and activated via JS */
 #introduction #step-two,
 #introduction #step-three,
+#introduction #step-four,
 /* We're hiding these portions of steps, and will display them with JS, based on user input. */
-#step-three .stage-success {
+#step-three .stage-success,
+#step-four .stage-success {
     display: none;
 }
 
@@ -374,49 +375,34 @@ This is for each step in the process.
 }
 
 /* The main layout components for Add a School. */
-#step-zero .step-left {
+#step-one .step-left {
     float: left;
     margin-right: 30px;
     width: 554.5px;
 }
 
-#step-zero .step-right {
+#step-one .step-right {
     float: left;
     margin-right: 0;
     width: 387.5px;
 }
 
-#step-zero .max-schools {
+#step-one .max-schools {
     display: none;
     color: #d12124;   
 }
 
-#step-one .step-left {
+#step-two .step-left {
     float: left;
     margin-right: 20px;
     width: 554.5px;
 }
 
-#step-one .step-right {
-    position: absolute;
-    	right: 0;
-    	bottom: 24px;
-    margin-right: 0;
-    text-align: right;
-    width: 387.5px;
-}
-
-#step-two .step-left {
-    float: left;
-    margin-right: 30px;
-    width: 554.5px;
-}
-
 #step-two .step-right {
-    margin-right: 0;
     position: absolute;
     	right: 0;
     	bottom: 24px;
+    margin-right: 0;
     text-align: right;
     width: 387.5px;
 }
@@ -428,6 +414,21 @@ This is for each step in the process.
 }
 
 #step-three .step-right {
+    margin-right: 0;
+    position: absolute;
+    	right: 0;
+    	bottom: 24px;
+    text-align: right;
+    width: 387.5px;
+}
+
+#step-four .step-left {
+    float: left;
+    margin-right: 30px;
+    width: 554.5px;
+}
+
+#step-four .step-right {
     margin-right: 0;
     position: absolute;
     	right: 0;
