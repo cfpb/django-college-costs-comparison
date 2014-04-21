@@ -212,14 +212,8 @@ var restoredata = {{ data_js|safe }};
 					</div><!--/step-right -->
 				</fieldset>
 			</div><!--/step-two -->
+
 			<div id="step-three" class="get-started step-three clearfix">
-			    <div id="step-3a" class="add-school staged stage-success step-3a no-offer step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Success!</h4>
-			        	<p>You have added <span class="success-school-name"></span> to the chart below. We don’t have all the cost info for this school, but you can look up this information on <a href="" class="navigator-link hidden-box" target="_blank">College Navigator</a>.</p>
-			        	<p>Add another school, or continue to enter your financial aid offer below.</p>			            
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /staged /stage-success /step-3a /no-offer /step-left -->
 			    <div class="add-xml xml-info staged step-3b stage-xml step-left">
 			        <div class="pfc-container-left">
 			        	<h4>This school pledged to use the Financial Aid Shopping Sheet!</h4>
@@ -229,174 +223,48 @@ var restoredata = {{ data_js|safe }};
 						<textarea name="xmlbukkit" id="xml-text" class="xml-text" data-nickname="xmlbukkit" placeholder="Paste XML code here. Example: xmlfile_example.xml"></textarea>
 			        </div><!-- /pfc-container-left -->
 			    </div><!-- /add-xml /xml-info /staged /step-3b /stage-xml /step-left -->
-			    <div id="step-3c1" class="add-school staged stage-housing step-3c1 housing step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Hosing situation</h4>
-			        	<fieldset>
-			        		<legend class="demi">Where do you plan to live?</legend>
-			        		<div class="get-started-radio-group">
-								<input id="housing1" class="housingtype radio-input" type="radio" name="housing1" value="oc">
-								<label class="houstype" for="housing1">
-									On campus
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing2" class="housingtype radio-input" type="radio" name="housing2" value="ofc">
-								<label class="houstype" for="housing2">
-									Off campus (in an apartment or similar)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing3" class="housingtype radio-input" type="radio" name="housing3" value="wfam">
-								<label class="houstype" for="housing3">
-									With family (little or no cost to you)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>			            
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /add-school /staged /stage-housing /step-3c1 /housing /step-left -->
-			    <div id="step-3c2" class="add-school staged stage-housing step-3c2 housing step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Hosing situation</h4>
-			        	<fieldset>
-			        		<legend class="demi">Where do you plan to live?</legend>
-							<div class="get-started-radio-group">
-								<input id="housing4" class="housingtype radio-input" type="radio" name="housing4" value="ofc">
-								<label class="houstype" for="housing4">
-									Off campus (in an apartment or similar)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing5" class="housingtype radio-input" type="radio" name="housing5" value="wfam">
-								<label class="houstype" for="housing5">
-									With family (little or no cost to you)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>			            
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /add-school /staged /stage-housing /step-3c2 /housing /step-left -->
-			    <div id="step-3d1" class="add-school staged stage-res-hse step-3d1 res-hse step-left">
+			    <div class="add-school staged stage-res-hse step-3d3 res-hse step-left">
 			        <div class="pfc-container-left">
 			        	<h4>Residency</h4>
 			        	<fieldset>
 			        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
-							<div class="get-started-radio-group">
-								<input id="res1" class="restype radio-input" type="radio" name="res1" value="instate">
-								<label class="restype" for="res1">
-									I am a resident in the same state as this school (in-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="res2" class="restype radio-input" type="radio" name="res2" value="outstate">
-								<label class="restype" for="res2">
-									I live in a different state (out-of-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>
-			        	<hr>
-			        	<h4>Hosing situation</h4>
-			        	<fieldset>
-			        		<legend class="demi">Where do you plan to live?</legend>
-			        		<div class="get-started-radio-group">
-								<input id="housing6" class="housingtype radio-input" type="radio" name="housing6" value="oc">
-								<label class="houstype" for="housing6">
-									On campus
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing7" class="housingtype radio-input" type="radio" name="housing7" value="ofc">
-								<label class="houstype" for="housing7">
-									Off campus (in an apartment or similar)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing8" class="housingtype radio-input" type="radio" name="housing8" value="wfam">
-								<label class="houstype" for="housing8">
-									With family (little or no cost to you)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>			            
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /add-school /staged /stage-res-hse /step-3d1 /res-hse /step-left -->
-			    <div id="step-3d2" class="add-school staged stage-res-hse step-3d2 res-hse step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Residency</h4>
-			        	<fieldset>
-			        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
-							<div class="get-started-radio-group">
-								<input id="res3" class="restype radio-input" type="radio" name="res3" value="instate">
-								<label class="restype" for="res3">
-									I am a resident in the same state as this school (in-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="res4" class="restype radio-input" type="radio" name="res4" value="outstate">
-								<label class="restype" for="res4">
-									I live in a different state (out-of-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>
-			        	<hr>
-			        	<h4>Hosing situation</h4>
-			        	<fieldset>
-			        		<legend class="demi">Where do you plan to live?</legend>
-							<div class="get-started-radio-group">
-								<input id="housing9" class="housingtype radio-input" type="radio" name="housing9" value="ofc">
-								<label class="houstype" for="housing9">
-									Off campus (in an apartment or similar)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing10" class="housingtype radio-input" type="radio" name="housing10" value="wfam">
-								<label class="houstype" for="housing10">
-									With family (little or no cost to you)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>			            
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /add-school /staged /stage-res-hse /step-3d2 /res-hse /step-left -->
-			    <div id="step-3d3" class="add-school staged stage-res-hse step-3d3 res-hse step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Residency</h4>
-			        	<fieldset>
-			        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
-							<div class="get-started-radio-group">
-								<input id="indis1" class="restype radio-input" type="radio" name="indis1" value="indis">
-								<label class="restype" for="indis1">
+							<div id="residency-in-district" class="get-started-radio-group radio-indistrict">
+								<input id="residency-radio-1" class="restype radio-input" type="radio" name="step-three-residency" value="indis">
+								<label class="restype" for="residency-radio-1">
 									I am an “in-district” resident for this school (what’s this?)
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="res5" class="restype radio-input" type="radio" name="res5" value="instate">
-								<label class="restype" for="res5">
+								<input id="residency-radio-2" class="restype radio-input" type="radio" name="step-three-residency" value="instate">
+								<label class="restype" for="residency-radio-2">
 									I am a resident in the same state as this school (in-state)
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="res6" class="restype radio-input" type="radio" name="res6" value="outstate">
-								<label class="restype" for="res6">
+								<input id="residency-radio-3" class="restype radio-input" type="radio" name="step-three-residency" value="outstate">
+								<label class="restype" for="residency-radio-3">
 									I live in a different state (out-of-state)
 								</label>
 							</div><!-- /get-started-radio-group -->
 			        	</fieldset>
 			        	<hr>
-			        	<h4>Hosing situation</h4>
+			        	<h4>Housing situation</h4>
 			        	<fieldset>
 			        		<legend class="demi">Where do you plan to live?</legend>
-			        		<div class="get-started-radio-group">
-								<input id="housing11" class="housingtype radio-input" type="radio" name="housing11" value="oc">
+			        		<div id="housing-on-campus" class="get-started-radio-group">
+								<input id="housing11" class="housingtype radio-input" type="radio" name="step-three-housing" value="oc">
 								<label class="houstype" for="housing11">
 									On campus
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="housing12" class="housingtype radio-input" type="radio" name="housing12" value="ofc">
+								<input id="housing12" class="housingtype radio-input" type="radio" name="step-three-housing" value="ofc">
 								<label class="houstype" for="housing12">
 									Off campus (in an apartment or similar)
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="housing13" class="housingtype radio-input" type="radio" name="housing13" value="wfam">
+								<input id="housing13" class="housingtype radio-input" type="radio" name="step-three-housing" value="wfam">
 								<label class="houstype" for="housing13">
 									With family (little or no cost to you)
 								</label>
@@ -404,55 +272,6 @@ var restoredata = {{ data_js|safe }};
 			        	</fieldset>			            
 			        </div><!-- /pfc-container-left -->
 			    </div><!-- /add-school /staged /stage-res-hse /step-3d3 /res-hse /step-left -->
-			    <div id="step-3d4" class="add-school staged stage-res-hse step-3d4 res-hse step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Residency</h4>
-			        	<fieldset>
-			        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
-							<div class="get-started-radio-group">
-								<input id="indis2" class="restype radio-input" type="radio" name="indis2" value="indis">
-								<label class="restype" for="indis2">
-									I am an “in-district” resident for this school (what’s this?)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="res7" class="restype radio-input" type="radio" name="res7" value="instate">
-								<label class="restype" for="res7">
-									I am a resident in the same state as this school (in-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="res8" class="restype radio-input" type="radio" name="res8" value="outstate">
-								<label class="restype" for="res8">
-									I live in a different state (out-of-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>
-			        	<hr>
-			        	<h4>Hosing situation</h4>
-			        	<fieldset>
-			        		<legend class="demi">Where do you plan to live?</legend>
-			        		<div class="get-started-radio-group">
-								<input id="housing14" class="housingtype radio-input" type="radio" name="housing14" value="oc">
-								<label class="houstype" for="housing14">
-									On campus
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing15" class="housingtype radio-input" type="radio" name="housing15" value="ofc">
-								<label class="houstype" for="housing15">
-									Off campus (in an apartment or similar)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="housing16" class="housingtype radio-input" type="radio" name="housing16" value="wfam">
-								<label class="houstype" for="housing16">
-									With family (little or no cost to you)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>			            
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /add-school /staged /stage-res-hse /step-3d4 /res-hse /step-left -->
 			    <div class="step-right">
 			        <div class="pfc-container-right">
 			            <button class="continue">Continue</button>
@@ -460,34 +279,36 @@ var restoredata = {{ data_js|safe }};
 			        </div><!-- /pfc-container-right -->
 			    </div><!-- /step-right -->
 			</div><!--/step-three -->
+
 			<div id="step-four" class="get-started step-four clearfix">
-			    <div id="step-4b" class="add-school staged stage-success step-4b xml-success step-left">
+			    <div class="add-school staged stage-success step-4b xml-success step-left">
 			        <div class="pfc-container-left">
 			        	<h4>Success!</h4>
-			        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below.</p>
-			        	<p>Add another school, or continue to review this info.</p>
+			        	<div id="success-no-data" class="success-message">
+			        		<p>You have added <span class="success-school-name"></span> to the chart below. We don’t have all the cost info for this school, but you can look up this information on <a href="" class="navigator-link hidden-box" target="_blank">College Navigator</a>.</p>
+			        		<p>Add another school, or continue to enter your financial aid offer below.</p>
+			       	 	</div>
+			        	<div id="success-offer-xml" class="success-message">
+				        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below.</p>
+				        	<p>Add another school, or continue to review this info.</p>
+				        </div>
+				        <div id="success-offer-no-data" class="success-message">
+				        	<p>You have added <span class="success-school-name"></span> to the chart below, but you still need to enter your financial aid offer.</p>
+				        	<p>Add another school, or continue to enter your financial aid offer below.</p>
+				        </div>
+				        <div id="success-prepop" class="success-message">
+				        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below. We’ve added this school’s cost info from last year based on what they reported to the Department of Education.</p>
+				        	<p>Add another school, or compare costs/add Money for School below.</p>
+				        </div>
 			        </div><!-- /pfc-container-left -->
 			    </div><!-- /add-school /staged /stage-success /step-4b /xml-success /step-left -->
-			    <div id="step-4b1" class="add-school staged stage-success step-4b1 offer-no-data-success step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Success!</h4>
-			        	<p>You have added <span class="success-school-name"></span> to the chart below, but you still need to enter your financial aid offer.</p>
-			        	<p>Add another school, or continue to enter your financial aid offer below.</p>
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /add-school /staged /stage-success /step-4b1 /offer-no-data-success /step-left -->
-			    <div id="step-4c" class="add-school staged stage-success step-4c offer-no-data-success step-left">
-			        <div class="pfc-container-left">
-			        	<h4>Success!</h4>
-			        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below. We’ve added this school’s cost info from last year based on what they reported to the Department of Education.</p>
-			        	<p>Add another school, or compare costs/add Money for School below.</p>
-			        </div><!-- /pfc-container-left -->
-			    </div><!-- /add-school /staged /stage-success /step-4c /offer-no-data-success /step-left -->
-			        <div class="step-right">
+			    <div class="step-right">
 			        <div class="pfc-container-right">
 			            <button class="add-another-school">Add another school</button>
 			            <button class="continue">Continue</button>
 			        </div><!-- /pfc-container-right -->
 			    </div><!-- /step-right -->
+			</div>
 		</section>
 		<section id="comparison-tables" class="comparison-tables">
 			<table>
