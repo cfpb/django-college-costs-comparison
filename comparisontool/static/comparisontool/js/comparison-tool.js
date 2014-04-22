@@ -1377,7 +1377,7 @@ var CFPBComparisonTool = (function() {
             if (state === 'active') {
                 columnObj.find(ninjas).show();
                 columnObj.find(grays).removeClass('inactive');
-                columnObj.find('div[data-nickname="institution_name"]').removeClass('inactive');
+                columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
                 columnObj.find('input').removeAttr('disabled');
                 circles[this.columnNumber].attr({fill: "Gray"});
@@ -1386,7 +1386,7 @@ var CFPBComparisonTool = (function() {
             if (state === 'inactive') {
                 columnObj.find(ninjas).hide();
                 columnObj.find(grays).addClass('inactive');
-                columnObj.find('div[data-nickname="institution_name"]').addClass('inactive');
+                columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
                 columnObj.find('input.school-data').val('$').attr('disabled', true);
@@ -1612,6 +1612,15 @@ var CFPBComparisonTool = (function() {
                     if (xml == "") {
                         data = false;
                     }
+                }
+                if (data !== false) {
+                    setAddStage(3);
+                    if (data == "invalid") {
+                        $('#step-success .no-cost-data').show();
+                    }
+                    else {
+                        $('#step-success .valid-xml').show();
+                    }
                     // xml was not valid
                     if (data === false) {
                         if ( xml === previousXML ) {
@@ -1633,10 +1642,8 @@ var CFPBComparisonTool = (function() {
                         }
                     }
                 }
-                else {
-
-                }
             });
+
 
             // [step-four] User clicks Continue at step-four
             $("#step-four .continue").click( function(ev) {
