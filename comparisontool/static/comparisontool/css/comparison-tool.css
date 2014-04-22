@@ -743,6 +743,7 @@ This contains the majority of the structural styles for table-based elements.
 /* The main table container. */
 #comparison-tables {
     clear: both;
+    margin-top: 3em;
     padding-top: 1em;
 }
 
@@ -762,25 +763,27 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* Remove a school links */
-.comparison-tool thead .removal-row th .remove-this-school {
+.comparison-tool .removal-row .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
+    padding: 0.5em 1.875em;
+    position: absolute;
+        top: -98px;
     text-align: right;
 }
 
-.comparison-tool thead .removal-row th .remove-confirm {
+.comparison-tool .removal-row .remove-confirm {
     background-color: #f6d9d3;
     border: 1px solid #d14124;
     display: none;
     font-weight: 400;
-    margin-left: -1.75em;
-    margin-top: 0.625em;
+    margin: 0.625em 0 auto;
     padding: 1em .5em;
     position: absolute;
-    width: 223px;
+        top: -74px;
 }
 
-.comparison-tool thead .removal-row th .remove-confirm .button-group {
+.comparison-tool .removal-row .remove-confirm .button-group {
     float: right;
     margin-top: 0;
 }
