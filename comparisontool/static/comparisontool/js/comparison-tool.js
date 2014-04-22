@@ -291,10 +291,17 @@ var CFPBComparisonTool = (function() {
             schools[columnNumber] = new School(schoolID);
             schools[columnNumber].getSchoolData();
             schools[columnNumber].importAddForm();
-
             var schoolData = schools[columnNumber].schoolData;
             columns[columnNumber].addSchoolInfo(schoolData);
-            columns[columnNumber].updateFormValues(schoolData);
+
+            if (flag == "success-offer-xml") {
+                var xml = $('#xml-text').val();
+                var data = processXML(xml);
+                columns[columnNumber].updateFormValues(data);
+            }
+            else {
+                columns[columnNumber].updateFormValues(schoolData);
+            }
 
             $('#' + flag + ' .success-school-name').html(schoolData.school);
             var navigatorLink = "http://nces.ed.gov/collegenavigator/?id=" + schoolData.school_id;
@@ -1616,26 +1623,14 @@ var CFPBComparisonTool = (function() {
                         }
                     }
                     if (data !== false) {
-                        setAddStage(4, "success-offer-xml");
                         if (data == "invalid") {
                             $('#step-four .no-cost-data').show();
+                            setAddStage(4, "success-offer-no-data");
                         }
                         else {
                             $('#step-four .valid-xml').show();
+                            setAddStage(4, "success-offer-xml");
                         }
-                        var columnNumber = findEmptyColumn();
-                        var schoolID = $("#school-name-search").attr("data-schoolid");
-                        $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
-                        schools[columnNumber] = new School(schoolID);
-                        schools[columnNumber].getSchoolData();
-                        schools[columnNumber].importAddForm();
-                        columns[columnNumber].addSchoolInfo(schools[columnNumber].schoolData);
-                        columns[columnNumber].updateFormValues(data);
-                        if ( findEmptyColumn() === false ) {
-                            maxSchools(true);
-                        }
-                        // If there's XML, process it and update
-                        calculateAndDraw(columnNumber);
                     }
                 }
                 else {
