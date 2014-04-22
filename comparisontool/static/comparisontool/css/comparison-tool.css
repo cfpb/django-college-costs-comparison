@@ -622,10 +622,11 @@ h4 {
     letter-spacing: 0;
 }
 
-.totalcont h6.data-total,
-.totalcost h6.data-total {
+.totalcont .h6.data-total,
+.totalcost .h6.data-total {
 	color: #101820;
     font-size: 1.5em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
@@ -633,6 +634,7 @@ h4 {
 h6 {
 	color: #101820;
     font-size: 1.125em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
