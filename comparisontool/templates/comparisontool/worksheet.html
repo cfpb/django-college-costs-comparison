@@ -225,47 +225,49 @@ var restoredata = {{ data_js|safe }};
 			    </div><!-- /add-xml /xml-info /staged /step-3b /stage-xml /step-left -->
 			    <div class="add-school staged stage-res-hse step-3d3 res-hse step-left">
 			        <div class="pfc-container-left">
-			        	<h4>Residency</h4>
-			        	<fieldset>
-			        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
-							<div id="residency-in-district" class="get-started-radio-group radio-indistrict">
-								<input id="residency-radio-1" class="restype radio-input" type="radio" name="step-three-residency" value="indis">
-								<label class="restype" for="residency-radio-1">
-									I am an “in-district” resident for this school (what’s this?)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="residency-radio-2" class="restype radio-input" type="radio" name="step-three-residency" value="instate">
-								<label class="restype" for="residency-radio-2">
-									I am a resident in the same state as this school (in-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="residency-radio-3" class="restype radio-input" type="radio" name="step-three-residency" value="outstate">
-								<label class="restype" for="residency-radio-3">
-									I live in a different state (out-of-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>
-			        	<hr>
+			        	<div id="add-school-residency">
+				        	<h4>Residency</h4>
+				        	<fieldset>
+				        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
+								<div id="residency-in-district" class="get-started-radio-group radio-indistrict">
+									<input id="residency-radio-1" class="restype radio-input" type="radio" name="step-three-residency" value="indis">
+									<label class="restype" for="residency-radio-1">
+										I am an “in-district” resident for this school (what’s this?)
+									</label>
+								</div><!-- /get-started-radio-group -->
+								<div class="get-started-radio-group">
+									<input id="residency-radio-2" class="restype radio-input" type="radio" name="step-three-residency" value="instate">
+									<label class="restype" for="residency-radio-2">
+										I am a resident in the same state as this school (in-state)
+									</label>
+								</div><!-- /get-started-radio-group -->
+								<div class="get-started-radio-group">
+									<input id="residency-radio-3" class="restype radio-input" type="radio" name="step-three-residency" value="outstate">
+									<label class="restype" for="residency-radio-3">
+										I live in a different state (out-of-state)
+									</label>
+								</div><!-- /get-started-radio-group -->
+				        	</fieldset>
+				        	<hr>
+			       		</div>
 			        	<h4>Housing situation</h4>
 			        	<fieldset>
 			        		<legend class="demi">Where do you plan to live?</legend>
 			        		<div id="housing-on-campus" class="get-started-radio-group">
-								<input id="housing11" class="housingtype radio-input" type="radio" name="step-three-housing" value="oc">
-								<label class="houstype" for="housing11">
+								<input id="housing-radio-1" class="housingtype radio-input" type="radio" name="step-three-housing" value="oc">
+								<label class="houstype" for="housing-radio-1">
 									On campus
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="housing12" class="housingtype radio-input" type="radio" name="step-three-housing" value="ofc">
-								<label class="houstype" for="housing12">
+								<input id="housing-radio-2" class="housingtype radio-input" type="radio" name="step-three-housing" value="ofc">
+								<label class="houstype" for="housing-radio-2">
 									Off campus (in an apartment or similar)
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="housing13" class="housingtype radio-input" type="radio" name="step-three-housing" value="wfam">
-								<label class="houstype" for="housing13">
+								<input id="housing-radio-3" class="housingtype radio-input" type="radio" name="step-three-housing" value="wfam">
+								<label class="houstype" for="housing-radio-3">
 									With family (little or no cost to you)
 								</label>
 							</div><!-- /get-started-radio-group -->
