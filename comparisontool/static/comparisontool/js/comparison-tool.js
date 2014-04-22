@@ -1620,6 +1620,7 @@ var CFPBComparisonTool = (function() {
                     }
                     else {
                         $('#step-success .valid-xml').show();
+                    }
                     // xml was not valid
                     if (data === false) {
                         if ( xml === previousXML ) {
@@ -1640,9 +1641,6 @@ var CFPBComparisonTool = (function() {
                             setAddStage(4, "success-offer-xml");
                         }
                     }
-                }
-                else {
-
                 }
             });
 
