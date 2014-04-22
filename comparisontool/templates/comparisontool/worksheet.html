@@ -525,25 +525,25 @@ var restoredata = {{ data_js|safe }};
 					<tr id="institution-row" class="institution-row highlighted-row">
 						<td data-column="0"></td>
 						<th scope="col" data-column="1" data-schoolid="" class="header-cell">
-							<h2 data-nickname="institution_name">School 1</h2>
+							<div class="h2" data-nickname="institution_name">School 1</div>
 						</th>
 						<th scope="col" data-column="2" data-schoolid="" class="header-cell">
-							<h2 data-nickname="institution_name">School 2</h2>
+							<div class="h2" data-nickname="institution_name">School 2</div>
 						</th>
 						<th scope="col" data-column="3" data-schoolid="" class="header-cell">
-							<h2 data-nickname="institution_name">School 3</h2>
+							<div class="h2" data-nickname="institution_name">School 3</div>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="show highlighted-row">
-						<th class="width-holder" data-column="0"><h3 id="first-year-costs">First year costs</h3></th>
+						<th class="width-holder" data-column="0"><div id="first-year-costs" class="h3">First year costs</div></th>
 						<th class="width-holder" data-column="1"></th>
 						<th class="width-holder" data-column="2"></th>
 						<th class="width-holder" data-column="3"></th>
 					</tr>
 					<tr id="open" class="totalcost show arrw-collapse" data-arrwname="Cost of Attendance">
-						<th scope="row" data-column="0"><h4>Cost of attendance</h4></th>
+						<th scope="row" data-column="0"><div class="h4">Cost of attendance</div></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
@@ -584,19 +584,19 @@ var restoredata = {{ data_js|safe }};
 				</tbody>
 				<tbody>
 					<tr class="show highlighted-row">
-						<th data-column="0"><h3>First year financial aid offer</h3></th>
+						<th data-column="0"><div class="h3">First year financial aid offer</div></th>
 						<td data-column="1"></td>
 						<td data-column="2"></td>
 						<td data-column="3"></td>
 					</tr>
 					<tr class="totalcont show arrw-collapse" data-arrwname="Money for school">
-						<th scope="row" data-column="0"><h4>Money for school</h4></th>
+						<th scope="row" data-column="0"><div class="h4">Money for school</div></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
 					</tr>
 					<tr class="grants hide arrw-collapse highlighted-row" data-arrwname="Scholarships and Grants">
-						<th scope="row" data-column="0"><h5>Grants &amp; scholarships</h5></th>
+						<th scope="row" data-column="0"><div class="h5">Grants &amp; scholarships</div></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
@@ -768,7 +768,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="contributions hide arrw-collapse highlighted-row" data-arrwname="Contributions">
-						<th scope="row" data-column="0"><h5>Contributions</h5></th>
+						<th scope="row" data-column="0"><div class="h5">Contributions</div></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
@@ -802,7 +802,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="federal hide arrw-collapse highlighted-row" data-arrwname="Federal loans">
-						<th data-column="0"><h5>Federal loans</h5></th>
+						<th data-column="0"><div class="h5">Federal loans</div></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
@@ -836,7 +836,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="private arrw-collapse hide highlighted-row" data-arrwname="Private loans">
-						<th data-column="0"><h5>Private loans</h5></th>
+						<th data-column="0"><div class="h5">Private loans</div></th>
 						<td data-column="1"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
 						<td data-column="2"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
 						<td data-column="3"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
@@ -896,7 +896,7 @@ var restoredata = {{ data_js|safe }};
 				<tbody class="bg-spacer">
 					<tr class="breakdown">
 						<th class="bg-spacing" data-column="0">
-							<h4>Compare first year costs</h4>
+							<div class="h4">Compare first year costs</div>
 							<p>Edit the contribution amounts above and see how it affects the breakdown</p>
 						</th>
 						<td class="bg-spacing" data-column="1">
@@ -1062,7 +1062,7 @@ var restoredata = {{ data_js|safe }};
 				</tbody>
 				<tbody id="after-school-section">
 					<tr class="stop bottom-border">
-						<th class="nopad-horiz" colspan="4"><h3 class="bold">After school</h3></th>
+						<th class="nopad-horiz" colspan="4"><div class="h3 bold">After school</div></th>
 					</tr>
 					<tr class="school-name-row">
 						<td data-column="0">&nbsp;</td>
@@ -1077,14 +1077,14 @@ var restoredata = {{ data_js|safe }};
 						</th>
 					</tr>
 					<tr class="visualization-row">
-						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</h4></th>
+						<th scope="row" data-column="0"><div class="h4 tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</div></th>
 						<td data-column="1"><span data-nickname="totaldebtgrad" class="visualization school-data total-debt">$0</span></td>
 						<td data-column="2"><span data-nickname="totaldebtgrad" class="visualization school-data total-debt">$0</span></td>
 						<td data-column="3"><span data-nickname="totaldebtgrad" class="visualization school-data total-debt">$0</span></td>
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Monthly payments</h4>
+							<div class="h4">Monthly payments</div>
 							<p>Per month for 10 years to cover your total borrowing</p>
 						</th>
 						<td data-column="1">
@@ -1111,7 +1111,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4 class="tooltip-info" data-tooltip="Debt Burden: Based on your estimated debt and the average national salary for bachelors graduates. Not school specific." data-tipname="debtburden">Debt burden</h4>
+							<div class="h4 tooltip-info" data-tooltip="Debt Burden: Based on your estimated debt and the average national salary for bachelors graduates. Not school specific." data-tipname="debtburden">Debt burden</div>
 						</th>
 						<td data-column="1" class="debt-burden-cell"><span data-nickname="debtburden" class="visualization">None</span></td>
 						<td data-column="2" class="debt-burden-cell"><span data-nickname="debtburden" class="visualization">None</span></td>
@@ -1121,7 +1121,7 @@ var restoredata = {{ data_js|safe }};
 				<tbody>
 					<tr class="bottom-border" id="indicators-row">
 						<th class="nopad-horiz" colspan="4">
-							<h3 class="bold">School indicators (<a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</h3>
+							<div class="h3 bold">School indicators (<a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</div>
 						</th>
 					</tr>
 					<tr class="school-name-row">
@@ -1138,7 +1138,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Graduation rate</h4>
+							<div class="h4">Graduation rate</div>
 							<p>Percentage of full-time students who graduate within 6 years or 3 years for undergraduate and associates programs, respectively.</p>
 						</th>
 						<td data-column="1">
@@ -1186,14 +1186,14 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Loan Default Rate</h4>
+							<div class="h4">Loan Default Rate</div>
 							<p>Percentage of borrowers who have defaulted on their loan after entering repayment. </p>
 						</th>
 						<td data-column="1">
 							<div class="hide-on-inactive">
 								<div class="default-rate-chart">
-									<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
-									<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
+									<p class="default-rate-this">This school<span class="percent">&nbsp;</span></p>
+									<p class="default-rate-avg">National average<span class="percent">&nbsp;</span></p>
 								</div>
 								<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 							</div>
@@ -1201,8 +1201,8 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="2">
 							<div class="hide-on-inactive">
 								<div class="default-rate-chart">
-									<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
-									<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
+									<p class="default-rate-this">This school<span class="percent">&nbsp;</span></p>
+									<p class="default-rate-avg">National average<span class="percent">&nbsp;</span></p>
 								</div>
 								<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 							</div>
@@ -1210,8 +1210,8 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3">
 							<div class="hide-on-inactive">
 								<div class="default-rate-chart">
-									<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
-									<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
+									<p class="default-rate-this">This school<span class="percent">&nbsp;</span></p>
+									<p class="default-rate-avg">National average<span class="percent">&nbsp;</span></p>
 								</div>
 								<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 							</div>
@@ -1219,7 +1219,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Median Borrowing</h4>
+							<div class="h4">Median Borrowing</div>
 							<p>Families typically borrow this amount in federal loans for a student’s undergraduate study. This shows the Federal loan payment over 10 years for this amount. Your borrowing may be different.</p>
 						</th>
 						<td data-column="1">
