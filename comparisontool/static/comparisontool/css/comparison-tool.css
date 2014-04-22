@@ -421,21 +421,14 @@ This is for each step in the process.
     width: 387.5px;
 }
 
-<<<<<<< HEAD
-#step-success .step-left {
-=======
+
 #step-four .step-left {
->>>>>>> master
     float: left;
     margin-right: 30px;
     width: 554.5px;
 }
 
-<<<<<<< HEAD
-#step-success .step-right {
-=======
 #step-four .step-right {
->>>>>>> master
     margin-right: 0;
     position: absolute;
     	right: 0;
