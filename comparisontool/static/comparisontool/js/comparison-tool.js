@@ -261,6 +261,9 @@ var CFPBComparisonTool = (function() {
             else if (tuitionInfo == "No") {
                 setAddStage(4, "success-no-data");    
             }
+            else if ($('#step-two input:radio[name="program"]:checked').val() == "grad") {
+                setAddStage(4, "success-no-data");
+            }
             else {
                 $("#step-three .add-school").show();
                 if (onCampus == "Yes") {
@@ -337,6 +340,10 @@ var CFPBComparisonTool = (function() {
                     schoolData.otherexpenses = schoolData.otherwfamily;
                 }
                 schoolData.transportation = global.transportationdefault;
+
+                schools[columnNumber].touchedFields.push("transportation");
+                schools[columnNumber].touchedFields.push("roombrd");
+                schools[columnNumber].touchedFields.push("otherexpenses");
 
                 columns[columnNumber].updateFormValues(schoolData);
             }
