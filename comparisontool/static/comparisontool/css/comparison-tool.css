@@ -570,8 +570,7 @@ font styles, heading styles, etc. Other adjustments happen within components.
     font-family: "Avenir Next", Verdana, sans-serif !important;
 }
 
-.h2,
-thead h2 {
+.h2 {
     color: #101820;
     font-size: 1.3em;
     font-weight: 700;
@@ -581,7 +580,7 @@ thead h2 {
     margin-top: 2.5em;
 }
 
-thead #institution-row h2.inactive {
+thead #institution-row div.inactive {
     color: #babbbd;
     padding-bottom: 2em;
 }
@@ -611,21 +610,24 @@ table h3 {
 h4 {
 	color: #101820;
 	font-size: 1.125em;
+    font-weight: 600;
     letter-spacing: 0;
     text-transform: none;
 }
 
-.totalcont h4,
-.totalcost h4 {
+.totalcont .h4,
+.totalcost .h4 {
 	color: #101820;
     font-size: 1.25em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
-.totalcont h6.data-total,
-.totalcost h6.data-total {
+.totalcont .h6.data-total,
+.totalcost .h6.data-total {
 	color: #101820;
     font-size: 1.5em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
@@ -633,6 +635,7 @@ h4 {
 h6 {
 	color: #101820;
     font-size: 1.125em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
@@ -741,6 +744,7 @@ This contains the majority of the structural styles for table-based elements.
 /* The main table container. */
 #comparison-tables {
     clear: both;
+    margin-top: 3em;
     padding-top: 1em;
 }
 
@@ -760,25 +764,27 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* Remove a school links */
-.comparison-tool thead .removal-row th .remove-this-school {
+.comparison-tool .removal-row .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
+    padding: 0.5em 1.875em;
+    position: absolute;
+        top: -98px;
     text-align: right;
 }
 
-.comparison-tool thead .removal-row th .remove-confirm {
+.comparison-tool .removal-row .remove-confirm {
     background-color: #f6d9d3;
     border: 1px solid #d14124;
     display: none;
     font-weight: 400;
-    margin-left: -1.75em;
-    margin-top: 0.625em;
+    margin: 0.625em 0 auto;
     padding: 1em .5em;
     position: absolute;
-    width: 223px;
+        top: -74px;
 }
 
-.comparison-tool thead .removal-row th .remove-confirm .button-group {
+.comparison-tool .removal-row .remove-confirm .button-group {
     float: right;
     margin-top: 0;
 }
@@ -856,8 +862,9 @@ This contains the majority of the structural styles for table-based elements.
     border-bottom: 5px solid #d14124;
 }
 
-.grants h5, .federal h5, .private h5, .contributions h5 {
+.grants .h5, .federal .h5, .private .h5, .contributions .h5 {
     font-size: 1.125em;
+    font-weight: 600;
 }
 
 .grants h6, .federal h6, .private h6, .contributions h6 {
@@ -1212,6 +1219,10 @@ This contains varous elements that are standalone components within the tool.
 .tooltip-info, .tooltip-info:hover {
     cursor: auto;
     border-bottom: none;
+}
+
+th div.tooltip-info {
+    display: inline;
 }
 
 input.tooltip-info {
@@ -1570,8 +1581,7 @@ label.tooltip-info {
     position: relative;
 }
 
-#comparison-tables .default-rate-chart span {
-    display: block;
+#comparison-tables .default-rate-chart p {
     font-size: .6em;
     position: absolute;
         left: 13px;
@@ -1585,10 +1595,11 @@ label.tooltip-info {
     left: 113px;
 }
 
-#comparison-tables .default-rate-chart span .percent {
-    margin: 0;
+#comparison-tables .default-rate-chart p .percent {
+    display: block;
     font-size: 1.5em;
-    line-height: 1.2em;
+    line-height: 1.2;
+    margin: 0;
 }
 
 #comparison-tables .median-borrowing-chart {

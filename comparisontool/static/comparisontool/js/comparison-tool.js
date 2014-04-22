@@ -292,6 +292,7 @@ var CFPBComparisonTool = (function() {
             }
         }
         if (stage === 4) {
+
             $("#introduction .get-started").not("#step-four").hide();
             $("#introduction #step-four").fadeToggle( "slow", "linear" );
             $("#step-four .success-message").hide();
@@ -417,6 +418,12 @@ var CFPBComparisonTool = (function() {
 			request.fail(function() {
 				// Your fail message here.
 			});
+            // Set the Costs of Attendance to 0 for now
+            schoolData.otherexpenses = 0;
+            schoolData.tuitionfees = 0;
+            schoolData.roombrd = 0;
+            schoolData.books = 0;
+            schoolData.transportation = 0;
 
 			this.schoolData = schoolData;
 		} // end getSchoolData
@@ -1416,7 +1423,7 @@ var CFPBComparisonTool = (function() {
             if (state === 'active') {
                 columnObj.find(ninjas).show();
                 columnObj.find(grays).removeClass('inactive');
-                columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
+                columnObj.find('div[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
                 columnObj.find('input').removeAttr('disabled');
                 circles[this.columnNumber].attr({fill: "Gray"});
@@ -1425,7 +1432,7 @@ var CFPBComparisonTool = (function() {
             if (state === 'inactive') {
                 columnObj.find(ninjas).hide();
                 columnObj.find(grays).addClass('inactive');
-                columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
+                columnObj.find('div[data-nickname="institution_name"]').addClass('inactive');
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
                 columnObj.find('input.school-data').val('$').attr('disabled', true);
@@ -1719,7 +1726,7 @@ var CFPBComparisonTool = (function() {
                 $('.remove-confirm').hide();
                 var columnNumber = $(this).closest("[data-column]").attr("data-column");
                 if (columns[columnNumber].fetchSchoolID() != "") {
-                    var removeWindow = $(this).closest("[data-column]").children(".remove-confirm");
+                    var removeWindow = $(this).closest(".removal-row").children(".remove-confirm");
                     removeWindow.show();
                     ev.stopPropagation();
                     $('html').on('click', 'body', function() {
@@ -1746,7 +1753,7 @@ var CFPBComparisonTool = (function() {
 
             // Wait, no, I don't want to remove it!
             $(".remove-confirm .remove-no").click( function() {
-                $(this).closest("[data-column]").children(".remove-confirm").hide();
+                $(this).closest(".removal-row").children(".remove-confirm").hide();
             })
 
             // -----------
