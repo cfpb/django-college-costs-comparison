@@ -254,7 +254,7 @@ var CFPBComparisonTool = (function() {
                     $("#step-three .add-xml").show();
                 }
                 else {
-                    setAddStage(4, "offer-no-data");
+                    setAddStage(4, "success-offer-no-data");
                 }
             }
             else if (tuitionInfo == "No") {
@@ -276,11 +276,12 @@ var CFPBComparisonTool = (function() {
             }
         }
         if (stage === 4) {
+
             $("#introduction .get-started").not("#step-four").hide();
             $("#introduction #step-four").fadeToggle( "slow", "linear" );
             $("#step-four .success-message").hide();
             if (flag !== undefined) {
-                $('#success-' + flag).show();
+                $('#' + flag).show();
             }
 
             // Add the School
@@ -290,8 +291,14 @@ var CFPBComparisonTool = (function() {
             schools[columnNumber] = new School(schoolID);
             schools[columnNumber].getSchoolData();
             schools[columnNumber].importAddForm();
-            columns[columnNumber].addSchoolInfo(schools[columnNumber].schoolData);
-            columns[columnNumber].updateFormValues(schools[columnNumber].schoolData);
+
+            var schoolData = schools[columnNumber].schoolData;
+            columns[columnNumber].addSchoolInfo(schoolData);
+            columns[columnNumber].updateFormValues(schoolData);
+
+            $('#' + flag + ' .success-school-name').html(schoolData.school);
+            var navigatorLink = "http://nces.ed.gov/collegenavigator/?id=" + schoolData.school_id;
+            $('#' + flag + ' .navigator-link').attr('href', navigatorLink)
 
             if ( findEmptyColumn() === false ) {
                 maxSchools(true);
@@ -1588,7 +1595,52 @@ var CFPBComparisonTool = (function() {
             // [step-three] User clicks Continue at step-three
             $("#step-three .continue").click( function(ev) {
                 ev.preventDefault();
-                setAddStage(4);
+                var kbyoss = $("#school-name-search").attr("data-kbyoss")
+                var financialAid = $("#finaidoffer").is(":checked");
+                if (kbyoss == "Yes" && financialAid === true) {
+                    var xml = $('#xml-text').val();
+                    if (xml !== undefined & xml !== "") {
+                        var data = processXML(xml);
+                    }
+                    if (xml == "") {
+                        data = false;
+                    }
+                    // xml was not valid
+                    if (data === false) {
+                        if ( xml === previousXML ) {
+                            data = "invalid"; // Invalid XML entered twice, so ignore XML
+                        }
+                        else {
+                            previousXML = xml;
+                            $('.xml-error').show();
+                        }
+                    }
+                    if (data !== false) {
+                        setAddStage(4, "success-offer-xml");
+                        if (data == "invalid") {
+                            $('#step-four .no-cost-data').show();
+                        }
+                        else {
+                            $('#step-four .valid-xml').show();
+                        }
+                        var columnNumber = findEmptyColumn();
+                        var schoolID = $("#school-name-search").attr("data-schoolid");
+                        $('#institution-row [data-column="' + columnNumber + '"]').attr("data-schoolid", schoolID);
+                        schools[columnNumber] = new School(schoolID);
+                        schools[columnNumber].getSchoolData();
+                        schools[columnNumber].importAddForm();
+                        columns[columnNumber].addSchoolInfo(schools[columnNumber].schoolData);
+                        columns[columnNumber].updateFormValues(data);
+                        if ( findEmptyColumn() === false ) {
+                            maxSchools(true);
+                        }
+                        // If there's XML, process it and update
+                        calculateAndDraw(columnNumber);
+                    }
+                }
+                else {
+
+                }
             });
 
             // [step-four] User clicks Continue at step-four
