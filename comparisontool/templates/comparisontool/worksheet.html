@@ -133,7 +133,7 @@ var restoredata = {{ data_js|safe }};
 				<p></p>
 			</div>
 			<h2 class="h3 vert-pad bottom-border bold">Compare Schools</h2>
-			<div id="step-zero" class="get-started clearfix">
+			<div id="step-one" class="get-started step-one clearfix">
 				<div class="step-left">
 					<div class="pfc-container-left">
 						<h3 class="h4">Compare college costs and financial aid offers.</h3>
@@ -142,25 +142,58 @@ var restoredata = {{ data_js|safe }};
 						<p><em>Hint: you can save your progress at the bottom of this page and come back later.</em></p>
 						<p class="max-schools">Your worksheet is full. Remove a school below to add a new one.</p>
 					</div>
-				</div>
+				</div><!--/step-left -->
 				<div class="step-right">
 					<div class="pfc-container-right center">
 						<button class="pfc-button" id="get-started-button">Get started</button>
 					</div>
-				</div>
-			</div>
-			<div id="step-one" class="get-started step-one clearfix">
+				</div><!--/step-right -->
+			</div><!--/step-one -->
+			<div id="step-two" class="get-started step-two clearfix">
 				<fieldset id="add-a-school">
 					<legend class="h4 demi step-legend">Tell us more information about the school</legend>
 					<div class="step-left">
 						<div class="pfc-container-left">
-							<div class="school-search staged stage-search">
-								<label for="school-name-search" class="school-name">School name</label>
-								<input type="text" name="schoolname-search" placeholder="Search school name" id="school-name-search" class="school-search-box">
+							<div class="school-search staged stage-search clearfix">
+								<label for="school-name-search" class="school-name">
+									School name
+									<span class="cfpb_visually_hide">(required)</span>
+								</label>
+								<input type="text" name="schoolname-search" placeholder="Search school name" required="required" aria-required="true" id="school-name-search" class="school-search-box">
 								<ul class="search-results"></ul>
+								<div class="get-started-ckbx-group">
+									<input id="finaidoffer" class="finaidoffer" type="checkbox" name="finaidoffer"><label for="finaidoffer">I have a financial aid offer from this school</label>
+								</div>
 							</div><!--/school-search /staged /stage-search -->
-							<div class="prgmlength-selection staged stage-prgmlength step-left">	
-								<label class="prgmlength" for="prgmlength">Program Length</label>
+							<div class="program-selection staged stage-program clearfix">
+								<fieldset class="clearfix">
+									<legend class="demi">Program Type</legend>
+									<div class="get-started-radios">
+										<div class="get-started-radio-group">
+											<input id="program1" class="prgmtype radio-input" type="radio" name="program" value="aa">
+											<label class="prgmtype" for="program1">
+												Associates or certificate
+											</label>
+										</div><!-- /get-started-radio-group -->
+										<div class="get-started-radio-group">
+											<input id="program2" class="prgmtype radio-input" type="radio" name="program" value="ba" checked="checked">
+											<label class="prgmtype" for="program2">
+												Bachelors
+											</label>
+										</div><!-- /get-started-radio-group -->
+										<div class="get-started-radio-group">
+											<input id="program3" class="radio-input" type="radio" name="program" value="grad">	
+											<label class="prgmtype" for="program3">
+												Graduate
+											</label>
+										</div><!-- /get-started-radio-group -->
+									</div><!-- /get-started-radios -->
+								</fieldset>
+							</div><!--/prgmlength-selection /staged /stage-program -->
+							<div class="prgmlength-selection staged stage-prgmlength clearfix">
+								<label class="prgmlength" for="prgmlength">
+									Program Length
+								</label>
 								<select id="prgmlength" name="prgmlength">
 									<option value="5">5 years</option>
 									<option value="4" selected="selected">4 years</option>
@@ -171,28 +204,6 @@ var restoredata = {{ data_js|safe }};
 							</div><!--/prgmlength-selection /staged /stage-prgmlength -->
 						</div><!-- /pfc-container-left -->
 					</div><!--/step-left -->
-					<div class="program-selection staged stage-program step-middle">
-						<fieldset>
-							<legend class="pfc-left demi">Program Type</legend>
-							<div class="pfc-left">
-								<div class="get-started-radio-group">
-									<input id="program1" class="prgmtype radio-input" type="radio" name="program" value="aa">
-									<label class="prgmtype" for="program1">Associates or certificate</label>
-								</div><!-- /get-started-radio-group -->
-								<div class="get-started-radio-group">
-									<input id="program2" class="prgmtype radio-input" type="radio" name="program" value="ba" checked="checked">
-									<label class="prgmtype" for="program2">Bachelors</label>
-								</div><!-- /get-started-radio-group -->
-								<div class="get-started-radio-group">	
-									<input id="program3" class="radio-input" type="radio" name="program" value="grad">
-									<label class="prgmtype" for="program3">Graduate</label>
-								</div><!-- /get-started-radio-group -->
-							</div>
-							<div class="get-started-ckbx-group">
-								<input id="finaidoffer" class="finaidoffer" type="checkbox" name="finaidoffer"><label for="finaidoffer">I have a financial aid offer from this school</label>
-							</div>
-						</fieldset>
-					</div><!--/prgmlength-selection /staged /stage-program /step-middle -->
 					<div class="step-right">
 						<div class="pfc-container-right">
 							<button disabled class="continue disabled">Continue</button>
@@ -200,15 +211,17 @@ var restoredata = {{ data_js|safe }};
 						</div><!--/pfc-container-right -->
 					</div><!--/step-right -->
 				</fieldset>
-			</div><!--/step-one -->
-			<div id="step-two" class="get-started step-two clearfix">
-				<div class="add-xml xml-info staged stage-xml step-left">
-					<div class="pfc-container-left">
-						<h4>This school pledged to use the Financial Aid Shopping Sheet!</h4>
+			</div><!--/step-two -->
+
+			<div id="step-three" class="get-started step-three clearfix">
+			    <div class="add-xml xml-info staged step-3b stage-xml step-left">
+			        <div class="pfc-container-left">
+			        	<h4>This school pledged to use the Financial Aid Shopping Sheet!</h4>
 						<p>This will make things easier. If they provided an XML file with your financial aid offer, copy and paste the code below. If not, just click continue.</p>
 						<p class="xml-error">Looks like that XML didn’t work. Try adding new XML, or click continue to skip this step.</p>
 						<label for="xml-text" class="xml">School XML data (optional)</label>
 						<textarea name="xmlbukkit" id="xml-text" class="xml-text" data-nickname="xmlbukkit" placeholder="Paste XML code here. Example: xmlfile_example.xml"></textarea>
+<<<<<<< HEAD
 					</div><!-- /pfc-container-left -->
 				</div><!-- /add-xml /xml-info /staged /stage-xml /step-left -->
 				<div class="step-right">
@@ -247,6 +260,94 @@ var restoredata = {{ data_js|safe }};
 					</div><!-- /pfc-container-right -->
 				</div><!-- /step-right -->
 			</div><!--/step-success -->
+=======
+			        </div><!-- /pfc-container-left -->
+			    </div><!-- /add-xml /xml-info /staged /step-3b /stage-xml /step-left -->
+			    <div class="add-school staged stage-res-hse step-3d3 res-hse step-left">
+			        <div class="pfc-container-left">
+			        	<h4>Residency</h4>
+			        	<fieldset>
+			        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
+							<div id="residency-in-district" class="get-started-radio-group radio-indistrict">
+								<input id="residency-radio-1" class="restype radio-input" type="radio" name="step-three-residency" value="indis">
+								<label class="restype" for="residency-radio-1">
+									I am an “in-district” resident for this school (what’s this?)
+								</label>
+							</div><!-- /get-started-radio-group -->
+							<div class="get-started-radio-group">
+								<input id="residency-radio-2" class="restype radio-input" type="radio" name="step-three-residency" value="instate">
+								<label class="restype" for="residency-radio-2">
+									I am a resident in the same state as this school (in-state)
+								</label>
+							</div><!-- /get-started-radio-group -->
+							<div class="get-started-radio-group">
+								<input id="residency-radio-3" class="restype radio-input" type="radio" name="step-three-residency" value="outstate">
+								<label class="restype" for="residency-radio-3">
+									I live in a different state (out-of-state)
+								</label>
+							</div><!-- /get-started-radio-group -->
+			        	</fieldset>
+			        	<hr>
+			        	<h4>Housing situation</h4>
+			        	<fieldset>
+			        		<legend class="demi">Where do you plan to live?</legend>
+			        		<div id="housing-on-campus" class="get-started-radio-group">
+								<input id="housing11" class="housingtype radio-input" type="radio" name="step-three-housing" value="oc">
+								<label class="houstype" for="housing11">
+									On campus
+								</label>
+							</div><!-- /get-started-radio-group -->
+							<div class="get-started-radio-group">
+								<input id="housing12" class="housingtype radio-input" type="radio" name="step-three-housing" value="ofc">
+								<label class="houstype" for="housing12">
+									Off campus (in an apartment or similar)
+								</label>
+							</div><!-- /get-started-radio-group -->
+							<div class="get-started-radio-group">
+								<input id="housing13" class="housingtype radio-input" type="radio" name="step-three-housing" value="wfam">
+								<label class="houstype" for="housing13">
+									With family (little or no cost to you)
+								</label>
+							</div><!-- /get-started-radio-group -->
+			        	</fieldset>			            
+			        </div><!-- /pfc-container-left -->
+			    </div><!-- /add-school /staged /stage-res-hse /step-3d3 /res-hse /step-left -->
+			    <div class="step-right">
+			        <div class="pfc-container-right">
+			            <button class="continue">Continue</button>
+			            <button class="add-cancel button-link">Cancel</button>
+			        </div><!-- /pfc-container-right -->
+			    </div><!-- /step-right -->
+			</div><!--/step-three -->
+
+			<div id="step-four" class="get-started step-four clearfix">
+		        <div class="pfc-container-left">
+		        	<h4>Success!</h4>
+		        	<div id="success-no-data" class="success-message">
+		        		<p>You have added <span class="success-school-name"></span> to the chart below. We don’t have all the cost info for this school, but you can look up this information on <a href="" class="navigator-link" target="_blank">College Navigator</a>.</p>
+		        		<p>Add another school, or continue to enter your financial aid offer below.</p>
+		       	 	</div>
+		        	<div id="success-offer-xml" class="success-message">
+			        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below.</p>
+			        	<p>Add another school, or continue to review this info.</p>
+			        </div>
+			        <div id="success-offer-no-data" class="success-message">
+			        	<p>You have added <span class="success-school-name"></span> to the chart below, but you still need to enter your financial aid offer.</p>
+			        	<p>Add another school, or continue to enter your financial aid offer below.</p>
+			        </div>
+			        <div id="success-prepop" class="success-message">
+			        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below. We’ve added this school’s cost info from last year based on what they reported to the Department of Education.</p>
+			        	<p>Add another school, or compare costs/add Money for School below.</p>
+			        </div>
+		        </div><!-- /pfc-container-left -->
+			    <div class="step-right">
+			        <div class="pfc-container-right">
+			            <button class="add-another-school">Add another school</button>
+			            <button class="continue">Continue</button>
+			        </div><!-- /pfc-container-right -->
+			    </div><!-- /step-right -->
+			</div>
+>>>>>>> master
 		</section>
 		<section id="comparison-tables" class="comparison-tables">
 			<table>
