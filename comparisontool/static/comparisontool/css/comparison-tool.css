@@ -364,8 +364,7 @@ This is for each step in the process.
 #introduction #step-three,
 #introduction #step-four,
 /* We're hiding these portions of steps, and will display them with JS, based on user input. */
-#step-three .stage-success,
-#step-four .stage-success {
+#step-four .success-message {
     display: none;
 }
 
@@ -422,13 +421,21 @@ This is for each step in the process.
     width: 387.5px;
 }
 
+<<<<<<< HEAD
+#step-success .step-left {
+=======
 #step-four .step-left {
+>>>>>>> master
     float: left;
     margin-right: 30px;
     width: 554.5px;
 }
 
+<<<<<<< HEAD
+#step-success .step-right {
+=======
 #step-four .step-right {
+>>>>>>> master
     margin-right: 0;
     position: absolute;
     	right: 0;
@@ -559,10 +566,6 @@ This is for each step in the process.
 
 .get-started .finaidoffer {
     vertical-align: middle;
-}
-
-.navigator-link {
-    display: none;
 }
 
 /* TYPOGRAPHY
