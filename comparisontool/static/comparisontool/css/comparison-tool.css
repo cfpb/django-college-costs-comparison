@@ -387,8 +387,10 @@ This is for each step in the process.
 }
 
 #step-one .max-schools {
+    color: #d12124;
     display: none;
-    color: #d12124;   
+    margin-left: 3.5em;
+    text-align: left;
 }
 
 #step-two .step-left {
