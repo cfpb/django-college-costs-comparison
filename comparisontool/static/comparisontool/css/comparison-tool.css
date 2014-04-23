@@ -423,6 +423,9 @@ This is for each step in the process.
     width: 387.5px;
 }
 
+#step-three fieldset {
+    margin: 1.25em 0;
+}
 
 #step-four .step-left {
     float: left;
@@ -539,6 +542,7 @@ This is for each step in the process.
     font-size: 0.875em;
     display: block;
     margin-right: 1.25em;
+    padding: 1.25em 0;
     text-align: right;
     width: 24%; 
 }
