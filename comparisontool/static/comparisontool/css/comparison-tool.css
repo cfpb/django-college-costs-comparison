@@ -767,10 +767,14 @@ This contains the majority of the structural styles for table-based elements.
 .comparison-tool .removal-row .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
-    padding: 0.5em 1.875em;
+    padding: 0.5em 0 0.5em 1.875em;
     position: absolute;
         top: -98px;
-    text-align: right;
+        right: 0;
+}
+
+.comparison-tool #institution-row .removal-row .remove-this-school button {
+    margin-right: 0;
 }
 
 .comparison-tool .removal-row .remove-confirm {
@@ -836,7 +840,7 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 .comparison-tool thead th {
-    text-align: left;
+    text-align: right;
 }
 
 .comparison-tool tbody > th, tbody thead th:first-child {
@@ -1936,8 +1940,8 @@ This contains varous elements that are standalone components within the tool.
 }
 
 /* Stylistic stuff */
-.orange {
-    color: #D83D00 !important;
+.medium {
+    font-weight: 500 !important;
 }
 
 .demi {
