@@ -18,6 +18,8 @@ class Command(BaseCommand):
                 with open(path) as csv_file:
                     reader = csv.DictReader(csv_file)
                     for record in reader:
+                        # Last load took 14 minutes, this will add a visual indicator that smth is happening
+                        print record['SCHOOL_ID']
                         aliases = set()
                         primary_school_name = record.get("SCHOOL")
                         aliases.add(primary_school_name)
