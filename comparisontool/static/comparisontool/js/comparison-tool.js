@@ -235,14 +235,19 @@ var CFPBComparisonTool = (function() {
         }
         if (stage === 2) {
             $("#introduction .get-started").not("#step-two").hide();
+            $("#introduction #step-two").children().first().attr("tabindex", "-1");
             $("#introduction #step-two").fadeToggle( "slow", "linear" );
+            $("#introduction #step-two").children().first().focus();
             var col = findEmptyColumn();
             clearHighlights();
             columns[col].toggleHighlight("active");
         }
         if (stage === 3) {
             $("#introduction .get-started").not("#step-three").hide();
+            $("#introduction #step-two").children().first().removeAttr("tabindex", "-1");
+            $("#introduction #step-three").children().first().attr("tabindex", "-1");
             $("#introduction #step-three").fadeToggle( "slow", "linear" );
+            $("#introduction #step-three").children().first().focus();
             $("#step-three .staged").hide();
             var financialAid = $("#finaidoffer").is(":checked");
             var kbyoss = $("#school-name-search").attr("data-kbyoss");
@@ -252,7 +257,10 @@ var CFPBComparisonTool = (function() {
             var control = $("#school-name-search").attr("data-control");
             if (financialAid === true) {
                 if (kbyoss == "Yes") {
+                    $("#introduction #step-three").children().first().removeAttr("tabindex", "-1");
+                    $("#step-three .add-xml").children().first().attr("tabindex", "-1");
                     $("#step-three .add-xml").show();
+                    $("#step-three .add-xml").children().first().focus();
                 }
                 else {
                     setAddStage(4, "success-offer-no-data");
@@ -294,10 +302,14 @@ var CFPBComparisonTool = (function() {
         if (stage === 4) {
 
             $("#introduction .get-started").not("#step-four").hide();
-            $("#introduction #step-four").fadeToggle( "slow", "linear" );
+            $("#introduction #step-three").children().first().removeAttr("tabindex", "-1");
+            $("#introduction #step-four").fadeToggle("slow", "linear");
             $("#step-four .success-message").hide();
             if (flag !== undefined) {
+                $('#' + flag).children().first().css("color", "red"); //test, worky
+                $('#' + flag).children().first().attr("tabindex", "-1"); // no worky
                 $('#' + flag).show();
+                $('#' + flag).children().first().focus();
             }
 
             // Add the School
@@ -358,6 +370,7 @@ var CFPBComparisonTool = (function() {
             }
             calculateAndDraw(columnNumber);
             $("#get-started-button").html("Add another school");
+            $('#' + flag).children().first().removeAttr( "tabindex", "-1" );
         }
     } // end setAddStage()
 
