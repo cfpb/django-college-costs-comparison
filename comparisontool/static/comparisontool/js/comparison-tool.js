@@ -230,10 +230,14 @@ var CFPBComparisonTool = (function() {
     //-- Set the state of the Add a School section --//
     function setAddStage(stage, flag) {
         if (stage === 1) {
+            $("#step-four .success-message").children().first().removeAttr("tabindex");
+            $("#step-four .success-message").hide();
             $("#introduction .get-started").not("#step-one").hide();
             $("#introduction #step-one").fadeToggle( "slow", "linear" );
         }
         if (stage === 2) {
+            $("#step-four .success-message").children().first().removeAttr("tabindex");
+            $("#step-four .success-message").hide();
             $("#introduction .get-started").not("#step-two").hide();
             $("#introduction #step-two").children().first().attr("tabindex", "-1");
             $("#introduction #step-two").fadeToggle( "slow", "linear" );
@@ -244,7 +248,7 @@ var CFPBComparisonTool = (function() {
         }
         if (stage === 3) {
             $("#introduction .get-started").not("#step-three").hide();
-            $("#introduction #step-two").children().first().removeAttr("tabindex", "-1");
+            $("#introduction #step-two").children().first().removeAttr("tabindex");
             $("#introduction #step-three").children().first().attr("tabindex", "-1");
             $("#introduction #step-three").fadeToggle( "slow", "linear" );
             $("#introduction #step-three").children().first().focus();
@@ -254,9 +258,9 @@ var CFPBComparisonTool = (function() {
             var onCampus = $("#school-name-search").attr("data-oncampusavail");
             var inDistrict = $("#school-name-search").attr("data-indis");
             var tuitionInfo = $("#school-name-search").attr("data-tuitioninfo");
+            var control = $("#school-name-search").attr("data-control");
             if (financialAid === true) {
                 if (kbyoss == "Yes") {
-                    $("#introduction #step-three").children().first().removeAttr("tabindex", "-1");
                     $("#step-three .add-xml").children().first().attr("tabindex", "-1");
                     $("#step-three .add-xml").show();
                     $("#step-three .add-xml").children().first().focus();
@@ -268,30 +272,52 @@ var CFPBComparisonTool = (function() {
             else if (tuitionInfo == "No") {
                 setAddStage(4, "success-no-data");    
             }
+            else if ($('#step-two input:radio[name="program"]:checked').val() == "grad") {
+                setAddStage(4, "success-no-data");
+            }
             else {
+                $("#step-three .add-school").show();
                 if (onCampus == "Yes") {
-                    $("#step-three #housing-on-campus").show();
+                    $('#step-three #housing-on-campus').children().first().attr("tabindex", "-1");
+                    $('#step-three #housing-on-campus').show();
+                    $('#step-three #housing-on-campus').children().first().focus();
+                    $('#housing-radio-1').attr("checked", "checked");
                 }
                 else {
                     $("#step-three #housing-on-campus").hide();
+                    $('#housing-radio-2').attr("checked", true);
                 }
-                if (inDistrict == "Yes") {
-                    $("#step-three #residency-in-district").show();
+                if (control == "Public") {
+                    $('#add-school-residency').children().first().attr("tabindex", "-1");
+                    $('#add-school-residency').show();
+                    $('#add-school-residency').children().first().focus();
+                    if (inDistrict == "Yes") {
+                        $("#step-three #residency-in-district").children().first().attr("tabindex", "-1");
+                        $("#step-three #residency-in-district").show();
+                        $("#step-three #residency-in-district").children().first().focus();
+                        $('#residency-radio-1').attr("checked", true);
+                    }
+                    else {
+                        $("#step-three #residency-in-district").hide();
+                        $('#residency-radio-2').attr("checked", true);
+                    }
                 }
                 else {
-                    $("#step-three #residency-in-district").hide();                    
+                    $('#add-school-residency').hide();
+                    $('#residency-radio-2').attr("checked", true);
                 }
             }
         }
         if (stage === 4) {
-
+            $("#introduction #step-three").children().first().removeAttr("tabindex");
+            $("#step-three #housing-on-campus").children().first().removeAttr("tabindex");
+            $('#add-school-residency').children().first().removeAttr("tabindex");
+            $("#step-three #residency-in-district").children().first().removeAttr("tabindex");
             $("#introduction .get-started").not("#step-four").hide();
-            $("#introduction #step-three").children().first().removeAttr("tabindex", "-1");
             $("#introduction #step-four").fadeToggle("slow", "linear");
             $("#step-four .success-message").hide();
             if (flag !== undefined) {
-                $('#' + flag).children().first().css("color", "red"); //test, worky
-                $('#' + flag).children().first().attr("tabindex", "-1"); // no worky
+                $('#' + flag).children().first().attr("tabindex", "-1");
                 $('#' + flag).show();
                 $('#' + flag).children().first().focus();
             }
@@ -311,7 +337,37 @@ var CFPBComparisonTool = (function() {
                 var data = processXML(xml);
                 columns[columnNumber].updateFormValues(data);
             }
-            else {
+            else if (flag == "success-prepop") {
+                var residency = $('input[name="step-three-residency"]:checked').val();
+                if (residency == "indis") {
+                    schoolData.tuitionfees = schoolData.tuitionunderindis;
+                }
+                else if (residency == "outstate") {
+                    schoolData.tuitionfees = schoolData.tuitionundeross;
+                }
+                else {
+                    schoolData.tuitionfees = schoolData.tuitionunderins;                    
+                }
+                
+                var housing = $('input[name="step-three-housing"]:checked').val();
+                if (housing == "oc") {
+                    schoolData.roombrd = schoolData.roombrdoncampus;
+                    schoolData.otherexpenses = schoolData.otheroncampus;
+                }
+                else if (housing == "ofc") {
+                    schoolData.roombrd = schoolData.roombrdoffcampus;
+                    schoolData.otherexpenses = schoolData.otheroffcampus;   
+                }
+                else if (housing == "wfam") {
+                    schoolData.roombrd = global.roombrdwfamily;
+                    schoolData.otherexpenses = schoolData.otherwfamily;
+                }
+                schoolData.transportation = global.transportationdefault;
+
+                schools[columnNumber].touchedFields.push("transportation");
+                schools[columnNumber].touchedFields.push("roombrd");
+                schools[columnNumber].touchedFields.push("otherexpenses");
+
                 columns[columnNumber].updateFormValues(schoolData);
             }
 
@@ -324,7 +380,6 @@ var CFPBComparisonTool = (function() {
             }
             calculateAndDraw(columnNumber);
             $("#get-started-button").html("Add another school");
-            $('#' + flag).children().first().removeAttr( "tabindex", "-1" );
         }
     } // end setAddStage()
 
@@ -1583,6 +1638,8 @@ var CFPBComparisonTool = (function() {
                 $("#school-name-search").attr("data-kbyoss", schoolData.kbyoss);
                 // does the school have on-campus housing?
                 $("#school-name-search").attr("data-oncampusavail", schoolData.oncampusavail);
+                // Control of the school
+                $("#school-name-search").attr("data-control", schoolData.control);
                 // does the school have in-district !== in-state?
                 if ( schoolData.tuitionunderindis !== schoolData.tuitionunderins ) {
                     $("#school-name-search").attr("data-indis", "Yes");
@@ -1625,23 +1682,13 @@ var CFPBComparisonTool = (function() {
                     if (xml == "") {
                         data = false;
                     }
-                }
-                if (data !== false) {
-                    setAddStage(3);
-                    if (data == "invalid") {
-                        $('#step-success .no-cost-data').show();
-                    }
-                    else {
-                        $('#step-success .valid-xml').show();
-                    }
-                    // xml was not valid
                     if (data === false) {
                         if ( xml === previousXML ) {
                             data = "invalid"; // Invalid XML entered twice, so ignore XML
                         }
                         else {
                             previousXML = xml;
-                            $('.xml-error').show();
+                            $('#step-three .xml-error').show();
                         }
                     }
                     if (data !== false) {
@@ -1654,6 +1701,9 @@ var CFPBComparisonTool = (function() {
                             setAddStage(4, "success-offer-xml");
                         }
                     }
+                }
+                else {
+                    setAddStage(4, "success-prepop");
                 }
             });
 
