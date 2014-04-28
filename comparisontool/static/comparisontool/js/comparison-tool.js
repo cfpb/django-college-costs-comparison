@@ -230,10 +230,14 @@ var CFPBComparisonTool = (function() {
     //-- Set the state of the Add a School section --//
     function setAddStage(stage, flag) {
         if (stage === 1) {
+            $("#step-four .success-message").children().first().removeAttr("tabindex");
+            $("#step-four .success-message").hide();
             $("#introduction .get-started").not("#step-one").hide();
             $("#introduction #step-one").fadeToggle( "slow", "linear" );
         }
         if (stage === 2) {
+            $("#step-four .success-message").children().first().removeAttr("tabindex");
+            $("#step-four .success-message").hide();
             $("#introduction .get-started").not("#step-two").hide();
             $("#introduction #step-two").children().first().attr("tabindex", "-1");
             $("#introduction #step-two").fadeToggle( "slow", "linear" );
@@ -244,7 +248,7 @@ var CFPBComparisonTool = (function() {
         }
         if (stage === 3) {
             $("#introduction .get-started").not("#step-three").hide();
-            $("#introduction #step-two").children().first().removeAttr("tabindex", "-1");
+            $("#introduction #step-two").children().first().removeAttr("tabindex");
             $("#introduction #step-three").children().first().attr("tabindex", "-1");
             $("#introduction #step-three").fadeToggle( "slow", "linear" );
             $("#introduction #step-three").children().first().focus();
@@ -257,7 +261,6 @@ var CFPBComparisonTool = (function() {
             var control = $("#school-name-search").attr("data-control");
             if (financialAid === true) {
                 if (kbyoss == "Yes") {
-                    $("#introduction #step-three").children().first().removeAttr("tabindex", "-1");
                     $("#step-three .add-xml").children().first().attr("tabindex", "-1");
                     $("#step-three .add-xml").show();
                     $("#step-three .add-xml").children().first().focus();
@@ -275,7 +278,9 @@ var CFPBComparisonTool = (function() {
             else {
                 $("#step-three .add-school").show();
                 if (onCampus == "Yes") {
+                    $('#step-three #housing-on-campus').children().first().attr("tabindex", "-1");
                     $('#step-three #housing-on-campus').show();
+                    $('#step-three #housing-on-campus').children().first().focus();
                     $('#housing-radio-1').attr("checked", "checked");
                 }
                 else {
@@ -283,9 +288,13 @@ var CFPBComparisonTool = (function() {
                     $('#housing-radio-2').attr("checked", true);
                 }
                 if (control == "Public") {
+                    $('#add-school-residency').children().first().attr("tabindex", "-1");
                     $('#add-school-residency').show();
+                    $('#add-school-residency').children().first().focus();
                     if (inDistrict == "Yes") {
+                        $("#step-three #residency-in-district").children().first().attr("tabindex", "-1");
                         $("#step-three #residency-in-district").show();
+                        $("#step-three #residency-in-district").children().first().focus();
                         $('#residency-radio-1').attr("checked", true);
                     }
                     else {
@@ -300,8 +309,12 @@ var CFPBComparisonTool = (function() {
             }
         }
         if (stage === 4) {
-
+            $("#introduction #step-three").children().first().removeAttr("tabindex");
+            $("#step-three #housing-on-campus").children().first().removeAttr("tabindex");
+            $('#add-school-residency').children().first().removeAttr("tabindex");
+            $("#step-three #residency-in-district").children().first().removeAttr("tabindex");
             $("#introduction .get-started").not("#step-four").hide();
+<<<<<<< HEAD
             $("#introduction #step-three").children().first().removeAttr("tabindex");
             $("#introduction #step-four").fadeToggle("slow", "linear");
             $("#step-four .success-message").hide();
@@ -309,6 +322,13 @@ var CFPBComparisonTool = (function() {
                 $('#' + flag).show();
                 $('#' + flag).children().first().css("color", "red"); //test, worky
                 $('#' + flag).children().first().attr("tabindex", "-1"); // no worky
+=======
+            $("#introduction #step-four").fadeToggle("slow", "linear");
+            $("#step-four .success-message").hide();
+            if (flag !== undefined) {
+                $('#' + flag).children().first().attr("tabindex", "-1");
+                $('#' + flag).show();
+>>>>>>> 802b383e5826e3cc003144e8e99110052054de0a
                 $('#' + flag).children().first().focus();
             }
 
@@ -370,7 +390,6 @@ var CFPBComparisonTool = (function() {
             }
             calculateAndDraw(columnNumber);
             $("#get-started-button").html("Add another school");
-            $('#' + flag).children().first().removeAttr( "tabindex", "-1" );
         }
     } // end setAddStage()
 
@@ -2044,16 +2063,64 @@ var CFPBComparisonTool = (function() {
 
             // --- Start the page up! --- //
 
-            // Set vertical tabbing
-            for (c = 1; c <= 3; c++) {
-                var school = $("[data-column='" + c + "']");
-                var tabindex = 1;
-                school.find("input, select").each(function() {
-                    var i = (c * 100) + tabindex;
-                    $(this).attr("tabindex", i);
-                    tabindex++;
-                });
-            }
+            // Add arrow key navigation in main table. //
+            (function ($) {
+                $.fn.enableCellNavigation = function () {
+                    var arrow = { left: 37, up: 38, right: 39, down: 40 };
+             
+                    // select all on focus
+                    this.find('input').keydown(function (e) {
+             
+                        // shortcut for key other than arrow keys
+                        if ($.inArray(e.which, [arrow.left, arrow.up, arrow.right, arrow.down]) < 0) { return; }
+                        var input = e.target;
+                        var td = $(e.target).closest('td');
+                        var moveTo = null;
+                        switch (e.which) {
+                            case arrow.left: {
+                                if (input.selectionStart == 0) {
+                                    moveTo = td.prev('td:has(input,textarea)');
+                                }
+                                break;
+                            }
+                            case arrow.right: {
+                                if (input.selectionEnd == input.value.length) {
+                                    moveTo = td.next('td:has(input,textarea)');
+                                }
+                                break;
+                            }      
+                            case arrow.up:
+                            case arrow.down: {
+                                var tr = td.closest('tr');
+                                var pos = td[0].cellIndex;
+                                var moveToRow = null;
+                                if (e.which == arrow.down) {
+                                    moveToRow = tr.next('tr');
+                                }
+                                else if (e.which == arrow.up) {
+                                    moveToRow = tr.prev('tr');
+                                }      
+                                if (moveToRow.length) {
+                                    moveTo = $(moveToRow[0].cells[pos]);
+                                }
+                                break;
+                            }
+                        }
+             
+                        if (moveTo && moveTo.length) {     
+                            e.preventDefault();
+                            moveTo.find('input,textarea').each(function (i, input) {
+                                input.focus();
+                                input.select();
+                            });
+                        }
+                    });
+                };
+            })(jQuery);
+             
+            $(function() {
+              $('#comparison-tables').enableCellNavigation();
+            });
 
             // Check to see if there is restoredata
             if(window.location.hash){
