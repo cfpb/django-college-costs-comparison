@@ -1532,11 +1532,8 @@ var CFPBComparisonTool = (function() {
 	        // Initialize columns[] with an instance of Column() for each column
 	        for (var x=1;x<=3;x++) {
 	            columns[x] = new Column(x);
-	        }
-
-	        // Make all columns inactive
-	        for (var x=1; x<=3; x++) {
-	            columns[x].toggleActive("inactive");
+                // Make all columns inactive
+                columns[x].toggleActive("inactive");
 	        }
 
             // Notification for mobile screens //
@@ -1552,7 +1549,15 @@ var CFPBComparisonTool = (function() {
                 $(this).parents().toggleClass( "focus" );
             } );
             
-            
+            // Set up special vertical tabbing for comparison-tables
+            for (c = 1; c <= 3; c++) {
+                var tabOrder = 1;
+                $('[data-column="' + c + '"]').find("input.school-data").each(function() {
+                    var i = (c * 100) + tabOrder;
+                    $(this).attr("data-tab-order", i);
+                    tabOrder++;
+                });
+            }
 
         //---------------------------//
         //    JQUERY EVENT HANDLERS
@@ -1909,6 +1914,40 @@ var CFPBComparisonTool = (function() {
                     }, 500);
             });
 
+            // Manually move focus when user presses tab in the #comparison-tables inputs
+            $("#comparison-tables").on("keydown", "input.school-data", function (ev) {
+                var code = event.keyCode || event.which;
+                if (code == 9) {
+                    var tabOrder = parseInt($(this).attr('data-tab-order'));
+                    if (event.shiftKey) {
+                        var nextTab = tabOrder - 1;
+                    }
+                    else {
+                        var nextTab = tabOrder + 1; 
+                    }
+
+                    var nextInput = $('[data-tab-order="' + nextTab + '"]:visible');
+                    if ( nextInput.length > 0 && nextInput.attr('disabled') == undefined ) {
+                        event.preventDefault();
+                        nextInput.focus();
+                    }
+
+                    else {
+                        if (event.shiftKey) {
+                            var column = Math.floor(tabOrder / 100) - 1
+                            nextInput = $('[data-column="' + column + '"] input:visible').last();
+                        }
+                        else {
+                            nextTab = Math.ceil(tabOrder / 100) * 100  + 1;
+                            nextInput = $('[data-tab-order="' + nextTab + '"]:visible');
+                        }
+                        if ( nextInput.length > 0 && nextInput.attr('disabled') == undefined ) {
+                            event.preventDefault();
+                            nextInput.focus();
+                        }
+                    }
+                }
+            });
 
             $(".bar-info").on('mouseover', function() {
                 // position bar-info-container based on the element clicked
