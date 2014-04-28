@@ -1552,7 +1552,8 @@ var CFPBComparisonTool = (function() {
             // Set up special vertical tabbing for comparison-tables
             for (c = 1; c <= 3; c++) {
                 var tabOrder = 1;
-                $('[data-column="' + c + '"]').find("input.school-data").each(function() {
+                var selectors = "input.school-data, .gibill-calculator, .rate-change";
+                $('[data-column="' + c + '"]').find(selectors).each(function() {
                     var i = (c * 100) + tabOrder;
                     $(this).attr("data-tab-order", i);
                     tabOrder++;
