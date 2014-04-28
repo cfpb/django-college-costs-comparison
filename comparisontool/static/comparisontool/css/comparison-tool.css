@@ -1157,6 +1157,10 @@ Make them smaller and push them right to make it all look presentable. */
     width: 10px;
 }
 
+#comparison-tables .private-row td button.rate-change:focus {
+    border: 1px dotted #101820;
+}
+
 /* FORM ELEMENTS
 This contains the form elements for manipulating data within the tool.
 -------------------------------------------------------------------------------*/
