@@ -702,15 +702,30 @@ The buttons differ from others on the site. */
 .paying-for-college #wrapper button[disabled=disabled],
 .paying-for-college #wrapper button[disabled],
 .paying-for-college #wrapper button.disabled,
-.paying-for-college #wrapper button.cancel,
 .paying-for-college #wrapper button.preset,
 .paying-for-college #wrapper .button.disabled,
-.paying-for-college #wrapper .button.cancel,
 .paying-for-college #wrapper .button.preset {
     background-color: #e7e7e6;
     color: #75787b;
     cursor: default; /* Fallback for IE/Opera */
     cursor: not-allowed;
+}
+
+.paying-for-college #wrapper button.cancel {
+    background-color: #75787b;
+    color: #fff;
+}
+
+.paying-for-college #wrapper button.cancel:hover,
+.paying-for-college #wrapper button.cancel:focus
+ {
+    background-color: #8E9193;
+    color: #fff;
+}
+
+.paying-for-college #wrapper button.cancel:active, {
+    background-color: #515355;
+    color: #fff;
 }
 
 .paying-for-college #wrapper button.destructive {
