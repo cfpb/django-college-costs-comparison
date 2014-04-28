@@ -302,13 +302,13 @@ var CFPBComparisonTool = (function() {
         if (stage === 4) {
 
             $("#introduction .get-started").not("#step-four").hide();
-            $("#introduction #step-three").children().first().removeAttr("tabindex", "-1");
+            $("#introduction #step-three").children().first().removeAttr("tabindex");
             $("#introduction #step-four").fadeToggle("slow", "linear");
             $("#step-four .success-message").hide();
             if (flag !== undefined) {
+                $('#' + flag).show();
                 $('#' + flag).children().first().css("color", "red"); //test, worky
                 $('#' + flag).children().first().attr("tabindex", "-1"); // no worky
-                $('#' + flag).show();
                 $('#' + flag).children().first().focus();
             }
 
