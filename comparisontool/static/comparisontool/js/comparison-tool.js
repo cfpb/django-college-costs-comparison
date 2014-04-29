@@ -440,12 +440,6 @@ var CFPBComparisonTool = (function() {
 			request.fail(function() {
 				// Your fail message here.
 			});
-            // Set the Costs of Attendance to 0 for now
-            schoolData.otherexpenses = 0;
-            schoolData.tuitionfees = 0;
-            schoolData.roombrd = 0;
-            schoolData.books = 0;
-            schoolData.transportation = 0;
 
 			this.schoolData = schoolData;
 		} // end getSchoolData
