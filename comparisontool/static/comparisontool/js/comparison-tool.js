@@ -281,12 +281,13 @@ var CFPBComparisonTool = (function() {
                     $('#step-three #housing-on-campus').children().first().attr("tabindex", "-1");
                     $('#step-three #housing-on-campus').show();
                     $('#step-three #housing-on-campus').children().first().focus();
-                    $('#housing-radio-1').attr("checked", "checked");
+                    $('#housing-radio-1').prop("checked", true);
                 }
                 else {
                     $("#step-three #housing-on-campus").hide();
-                    $('#housing-radio-2').attr("checked", true);
+                    $('#housing-radio-2').prop("checked", true);
                 }
+
                 if (control == "Public") {
                     $('#add-school-residency').children().first().attr("tabindex", "-1");
                     $('#add-school-residency').show();
@@ -295,16 +296,16 @@ var CFPBComparisonTool = (function() {
                         $("#step-three #residency-in-district").children().first().attr("tabindex", "-1");
                         $("#step-three #residency-in-district").show();
                         $("#step-three #residency-in-district").children().first().focus();
-                        $('#residency-radio-1').attr("checked", true);
+                        $('#residency-radio-1').prop("checked", true);
                     }
                     else {
                         $("#step-three #residency-in-district").hide();
-                        $('#residency-radio-2').attr("checked", true);
+                        $('#residency-radio-2').prop("checked", true);
                     }
                 }
                 else {
                     $('#add-school-residency').hide();
-                    $('#residency-radio-2').attr("checked", true);
+                    $('#residency-radio-2').prop("checked", true);
                 }
             }
         }
