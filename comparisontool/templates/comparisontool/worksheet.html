@@ -24,7 +24,8 @@
 
     <!-- H5BP's Asynchronous Google Analytics snippet. -->
     <script>
-      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      // var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', ''],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
       g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
@@ -369,7 +370,7 @@ var restoredata = {{ data_js|safe }};
 						<th class="width-holder" data-column="3"></th>
 					</tr>
 					<tr id="open" class="totalcost show arrw-collapse" data-arrwname="Cost of Attendance">
-						<th scope="row" data-column="0"><div class="h4">Cost of attendance</div></th>
+						<th scope="row" data-column="0"><a class="arrw-click">Expand Cost of Attendance</a><div class="h4">Cost of attendance</div></th>
 						<td data-column="1"><div class="h6 data-total" data-nickname="firstyrcostattend">$0</div></td>
 						<td data-column="2"><div class="h6 data-total" data-nickname="firstyrcostattend">$0</div></td>
 						<td data-column="3"><div class="h6 data-total" data-nickname="firstyrcostattend">$0</div></td>
@@ -416,13 +417,13 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3"></td>
 					</tr>
 					<tr class="totalcont show arrw-collapse" data-arrwname="Money for school">
-						<th scope="row" data-column="0"><div class="h4">Money for school</div></th>
+						<th scope="row" data-column="0"><a class="arrw-click">Expand Money for school</a><div class="h4">Money for school</div></th>
 						<td data-column="1"><div class="h6 data-total" data-nickname="moneyforcollege">$0</div></td>
 						<td data-column="2"><div class="h6 data-total" data-nickname="moneyforcollege">$0</div></td>
 						<td data-column="3"><div class="h6 data-total" data-nickname="moneyforcollege">$0</div></td>
 					</tr>
 					<tr class="grants hide arrw-collapse highlighted-row" data-arrwname="Scholarships and Grants">
-						<th scope="row" data-column="0"><div class="h5">Grants &amp; scholarships</div></th>
+						<th scope="row" data-column="0"><a class="arrw-click">Expand Scholarships and Grants</a><div class="h5">Grants &amp; scholarships</div></th>
 						<td data-column="1"><div class="h6 data-total" data-nickname="grantstotal">$0</div></td>
 						<td data-column="2"><div class="h6 data-total" data-nickname="grantstotal">$0</div></td>
 						<td data-column="3"><div class="h6 data-total" data-nickname="grantstotal">$0</div></td>
@@ -594,7 +595,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="contributions hide arrw-collapse highlighted-row" data-arrwname="Contributions">
-						<th scope="row" data-column="0"><div class="h5">Contributions</div></th>
+						<th scope="row" data-column="0"><a class="arrw-click">Expand Contributions</a><div class="h5">Contributions</div></th>
 						<td data-column="1"><div class="h6 data-total" data-nickname="savingstotal">$0</div></td>
 						<td data-column="2"><div class="h6 data-total" data-nickname="savingstotal">$0</div></td>
 						<td data-column="3"><div class="h6 data-total" data-nickname="savingstotal">$0</div></td>
@@ -628,7 +629,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="federal hide arrw-collapse highlighted-row" data-arrwname="Federal loans">
-						<th data-column="0"><div class="h5">Federal loans</div></th>
+						<th data-column="0"><a class="arrw-click">Expand Federal Loans</a><div class="h5">Federal loans</div></th>
 						<td data-column="1"><div class="h6 data-total" data-nickname="federaltotal">$0</div></td>
 						<td data-column="2"><div class="h6 data-total" data-nickname="federaltotal">$0</div></td>
 						<td data-column="3"><div class="h6 data-total" data-nickname="federaltotal">$0</div></td>
@@ -662,7 +663,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="private arrw-collapse hide highlighted-row" data-arrwname="Private loans">
-						<th data-column="0"><div class="h5">Private loans</div></th>
+						<th data-column="0"><a class="arrw-click">Expand Private Loans</a><div class="h5">Private loans</div></th>
 						<td data-column="1"><div class="h6 data-total" data-nickname="privatetotal">$0</div></td>
 						<td data-column="2"><div class="h6 data-total" data-nickname="privatetotal">$0</div></td>
 						<td data-column="3"><div class="h6 data-total" data-nickname="privatetotal">$0</div></td>
