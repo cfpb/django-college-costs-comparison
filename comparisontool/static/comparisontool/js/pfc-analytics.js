@@ -146,8 +146,9 @@ var PFCAnalytics = (function() {
     // Fire an event when adding a school.
     function newSchoolEvent() {
         var schoolID = $("#school-name-search").attr("data-schoolid");
-        var program = $('#step-one input:radio[name="program"]:checked').val();
-        var prgmlength = String($('#step-one select[name="prgmlength"]').val());
+        var program = $('#step-two input:radio[name="program"]:checked').val();
+        var kbyoss = $("#school-name-search").attr("data-kbyoss");
+        var prgmlength = String($('#step-two select[name="prgmlength"]').val());
         var offer = "No";
         global.schoolsAdded++;
         var schoolCount = String(global.schoolsAdded);
@@ -160,13 +161,14 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
         if (offer === "Yes") {
             _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked"] );
+            if ( $('#xml-text').val() === "" &&  kbyoss == "Yes") {
+                _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "Blank"] );
+            }
+            else {
+                _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "XML text"] );
+            }
         }
-        if ( $('#xml-text').val() === "" ) {
-            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "Blank"] );
-        }
-        else {
-            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "XML text"] );
-        }
+
     }
 
     // Check for a new school added when .continue and .add-another-school are clicked
