@@ -112,7 +112,6 @@ breadcrumbs do not exist unfortunately. :( Bug reported; to be fixed in future. 
 #introduction,
 #comparison-tables,
 #save-footer,
-#save-drawer,
 .sub-page-wrapper {
     padding-left: 20px;
     padding-right: 20px;
@@ -1184,7 +1183,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input[type="url"],
 .comparison-tool input[type="password"],
 .comparison-tool input[type="search"],
-.comparison-tool textarea {
+.comparison-tool textarea,
+#modal input[type="text"],
+#modal input[type="email"],
+#modal input[type="url"],
+#modal input[type="password"],
+#modal input[type="search"],
+#modal textarea {
     background: #ffffff;
     border: 1px solid #75787b;
     border-radius: 0;
@@ -1199,7 +1204,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input[type="url"]:focus,
 .comparison-tool input[type="password"]:focus,
 .comparison-tool input[type="search"]:focus,
-.comparison-tool textarea:focus {
+.comparison-tool textarea:focus,
+#modal input[type="text"]:focus,
+#modal input[type="email"]:focus,
+#modal input[type="url"]:focus,
+#modal input[type="password"]:focus,
+#modal input[type="search"]:focus,
+#modal textarea:focus {
       border: 1px solid #0072ce;
       border-color: #0072ce;
       outline: 1px solid #0072ce;
@@ -1213,7 +1224,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input.error[type="url"],
 .comparison-tool input.error[type="password"],
 .comparison-tool input.error[type="search"],
-.comparison-tool textarea.error {
+.comparison-tool textarea.error,
+#modal input.error[type="text"],
+#modal input.error[type="email"],
+#modal input.error[type="url"],
+#modal input.error[type="password"],
+#modal input.error[type="search"],
+#modal textarea.error {
       border: 1px solid #d12124;
       outline: 1px solid #d12124;
 }
@@ -1223,7 +1240,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input.success[type="url"],
 .comparison-tool input.success[type="password"],
 .comparison-tool input.success[type="search"],
-.comparison-tool textarea.success {
+.comparison-tool textarea.success,
+#modal input.success[type="text"],
+#modal input.success[type="email"],
+#modal input.success[type="url"],
+#modal input.success[type="password"],
+#modal input.success[type="search"],
+#modal textarea.success {
       border: 1px solid #2cb34a;
       outline: 1px solid #2cb34a;
 }
@@ -1664,132 +1687,115 @@ label.tooltip-info {
 
 
 /* SAVE & SHARE */
-.save-footer div {
-    display: inline-block;
-    padding: 1em 2em;
-    width: 40%;
-}
-
-.save-footer div .button {
-    font-size: 1.25em;
-}
-
-.save-drawer {
-    background: #e6e6e6;    
+#modal-overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* places the modal overlay between the main page and the modal dialog*/
+    background-color: #000;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: none;
-    padding: 1.5em;
+    margin: 0;
+    padding: 0;
 }
 
-.save-drawer div {
-    margin: 1em 0 1em 5em;
+
+#modal {
+    background-color: #fff;
+    border: 3px solid #2cb34a;
+    display: none;
+    font-family: "Avenir Next", Arial, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    position: fixed;
+        top: 25%;
+        left: 25%;
+    width: 53%;
+    z-index: 3; /* places the modal dialog on top of everything else */
 }
 
-.save-drawer label {
-    clear: left;
-    color: #808184; 
-    display: inline-block;  
-    font-weight: 500;
-    padding:  0em 5px 0em 32px;
-    text-align: left;
-    width: 45px;
+#modal-title {
+    font-size: 1.125em;
+    font-weight: 600;
 }
 
-.save-drawer #timestamp {
-    font-size: .7em;
-    font-style: italic;
-    margin: 0 3em 0 3em;
-    text-transform: lowercase;
+#modal #close-modal {
+    background-color: transparent;
+    margin: 0;
+    padding: 0.5em;
+    position: absolute;
+        right: 0.5em;
+        top: 0.5em;
 }
 
-.save-drawer #save-current {
-    float: right;
-    font-size: .8em;
-    position: relative;
-        right: 0px;
+#modal #close-modal .icon-delete-alt {
+    color: #0072ce;
 }
 
-.save-drawer .unique-label {
-    background: url(../images/save-link.png) 0 .25em no-repeat;
+#modal #close-modal:hover .icon-delete-alt,
+#modal #close-modal:focus .icon-delete-alt {
+    color: #328ed8; /* Pacific/80 */
 }
 
-.save-drawer .email-label {
-    background: url(../images/save-email.png) 0 .25em no-repeat;
+#modal #close-modal:focus .icon-delete-alt {
+    outline: thin dotted;
 }
 
-.save-drawer input[type=text] {
-    background-color: #eee;
-    border: 1px solid #808184;
-    border-radius: 0;
-    box-shadow: none;
-    color: #808184;
-    display: inline;
-    font-family: "Avenir Next", Verdana, sans-serif !important;
-    font-size: 1em;
-    height: 1.5em;
-    padding:  1px 5px;
-    margin: 0px;
+#modal #close-modal:active .icon-delete-alt {
+    color: #33578e; /* Navy/80 */
 }
 
-.save-footer .save-container {
+.modal-container {
+    margin-right: 2%;
+    width: 78%;
+}
+
+.form-container {
     margin: 1em 0;
-    padding: .25em 10px;
 }
 
-.save-drawer #unique {
-    font-size: .75em;
-    height: 2em;
-    width: 500px;
-}
-
-.save-drawer #email {
-    width: 425px;
-}
-
-.save-drawer #send-email {
+.save-modal .unique-label,
+.save-modal .email-label {
     display: inline-block;
-}
-
-.save-drawer .no-save {
-    display: block;
-    padding-top: .625em;
-    padding-bottom: 1.25em;
-    font-size: .625em;
-    color: #767676;
-    font-weight: 500;
-}
-
-.save-drawer .save-share-tools {
-    margin-top: 1.2em;
-    font-size: .75em;
-    color: #6d6e70;
-    font-weight: 500;
-}
-
-.save-drawer .save-share-tools .share-facebook {
-    display: inline-block;
-    width: 19px;
-    height: 19px;
-    text-indent: -9999px;
-    background: url(../images/share-icons.png) 0 0 no-repeat;
-    border-bottom: none;
-    margin-left: 12px;
-}
-
-.save-drawer .save-share-tools .share-twitter {
-    display: inline-block;
-    width: 24px;
-    height: 19px;
-    text-indent: -9999px;
-    background: url(../images/share-icons.png) -33px 0 no-repeat;
-    border-bottom: none;
-    margin-left: 12px;
-}
-
-/* The about link near the bottom of page. */
-.about-worksheet {
-    display: block;
-    padding: 1em 10% 0 0;
+    font-weight: 600;
     text-align: right;
+    width: 8%;
+}
+
+.save-modal #unique,
+.save-modal #email {
+    display: inline-block;
+    margin-left: 1%;
+    width: 77%;
+}
+
+.save-modal .email-group {
+    position: absolute;
+        bottom: 32%;
+        right: 2%;
+}
+
+#send-email {
+    margin: 0;
+}
+
+.no-save {
+    font-size: 0.875em;
+    font-weight: 500;
+    padding-left: 10%;
+    width: 80%;
+}
+
+.time {
+    margin-bottom: 0;
+}
+
+#modal .icon-approved-alt {
+    color: #75787b;
+    margin-right: 0.25em;
 }
 
 /* OTHER PAGES
