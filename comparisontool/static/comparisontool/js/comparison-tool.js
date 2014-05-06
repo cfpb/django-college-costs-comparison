@@ -1224,20 +1224,26 @@ var CFPBComparisonTool = (function() {
 
                 if ( ( schoolData.gradraterank != undefined ) && ( schoolData.gradrate != "NR" ) ) {
                     columnObj.find(".gradrisk-container").closest("td").children().show();
+                    // Low
                     if ( schoolData.gradrate < groupmed ) {
                         rankcount = grmax - grmed;
                         place = schoolData.gradraterank - grmed;
-                        gradoffset = firstStop + Math.floor( ( rankcount - place ) * ( firstWidth / rankcount))     
+                        gradoffset = firstStop + Math.floor( ( rankcount - place ) * ( firstWidth / rankcount))
+                        columnObj.find(".gradrisk-indc").html("Low graduation rate");
                     }
+                    // Med
                     else if ( schoolData.gradrate < grouphigh ) {
                         rankcount = grmed - grhigh;
                         place = schoolData.gradraterank - grhigh;
-                        gradoffset = secondStop + Math.floor( ( rankcount - place ) * ( secondWidth / rankcount))    
+                        gradoffset = secondStop + Math.floor( ( rankcount - place ) * ( secondWidth / rankcount))
+                        columnObj.find(".gradrisk-indc").html("Medium graduation rate");    
                     }
+                    // High
                     else {
                         rankcount = grhigh;
                         place =  schoolData.gradraterank;
                         gradoffset = thirdStop + Math.floor( ( rankcount - place  ) * ( thirdWidth / rankcount ) );
+                        columnObj.find(".gradrisk-indc").html("High graduation rate");
                     }
                     columnObj.find(".gradrisk-container").css("left", gradoffset + "px");
                 }
@@ -1280,20 +1286,26 @@ var CFPBComparisonTool = (function() {
                 var place = 1;
                 if ( ( schoolData.avgstuloandebtrank != undefined ) && ( schoolData.avgstuloandebt != "NR" ) ) {
                     columnObj.find(".median-borrowing-chart").closest("td").children().show();
+                    // Low
                     if ( schoolData.avgstuloandebt < groupmed ) {
                         rankcount = grmed;
                         place = schoolData.avgstuloandebtrank;
-                        borrowangle = 3 + Math.floor( ( place ) * ( 45 / rankcount))    
+                        borrowangle = 3 + Math.floor( ( place ) * ( 45 / rankcount ));
+                        columnObj.find(".indicator-text").html("Low");
                     }
+                    // Med
                     else if ( schoolData.avgstuloandebt < grouphigh ) {
                         rankcount = grhigh - grmed;
                         place = schoolData.avgstuloandebtrank - grmed;
-                        borrowangle = 55 + Math.floor( ( place ) * ( 60 / rankcount));
+                        borrowangle = 55 + Math.floor( ( place ) * ( 60 / rankcount ));
+                        columnObj.find(".indicator-text").html("Medium");
                     }
+                    // High
                     else {
                         rankcount = grmax - grhigh;
                         place =  schoolData.avgstuloandebtrank - grhigh;
-                        borrowangle = 130 + Math.floor( ( place ) * ( 47 / rankcount ) );
+                        borrowangle = 130 + Math.floor( ( place ) * ( 47 / rankcount ));
+                        columnObj.find(".indicator-text").html("High");
                     }  
                     // Convert to radians
                     borrowangle = ( Math.PI * 2 * borrowangle ) / 360;
