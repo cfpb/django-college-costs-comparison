@@ -1093,29 +1093,32 @@ var restoredata = {{ data_js|safe }};
 				<p>You can save this comparison and come back to it later, or share the link with your parents or guidance counselor. We want you to be able to make the best decision for your educational and financial future.</p>
 				<input type="button" id="save-and-share" class="button" value="Save &amp; Share">
 			</div>
-		</div><!-- end #save-footer -->	
+		</div><!-- end #save-footer -->
 
-		<div id="save-drawer" class="save-drawer">
-			<h2>Save your work <span id="timestamp"></span> <button id="save-current">Save Current Worksheet</button></h2>
-			<div class="save-container">
-				<label class="unique-label" for="unique">URL</label>
-				<input id="unique" type="text" value="http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef" readonly="readonly">
-			</div>
-
-			<div class="save-container">
-				<label class="email-label" for="email">Email</label>
-
-				<input id="email" type="text" value=""> <button id="send-email" class="button button-small">Send</button> <span id="send-email-confirm" style="display:none;">Success!</span>
-				<span class="no-save">The CFPB does not share your email address. We will only use it to send you this information.</span>
-			</div>
-			
-			<div class="save-share-tools">
-				Share this tool with your friends <a class="save-share-facebook" href="http://www.facebook.com/sharer.php?u=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;t=CFPB" title="Share on Facebook" target="_blank">Facebook</a> <a class="save-share-twitter" href="http://twitter.com/share?text=Check%20out%20the%20CFPB's%20tool%20for%20comparing%20college%20offers%20and%20costs!&amp;url=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;via=CFPB&amp;related=CFPB" title="Share on Twitter" target="_blank">Twitter</a>
-			</div>
-		</div><!-- end #save-drawer -->
-
-	<p class="about-worksheet"><a class="school-link" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this tool</a></p>
+		<p class="about-worksheet"><a class="school-link" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this tool</a></p>
 
 	</div><!-- end #comparison-tool -->
+
+	<div id="modal" class="save-modal" aria-hidden="true" aria-labelledby="modal-title" aria-describedby="modal-description" role="dialog">
+		<div id="modal-description" class="cfpb_visually_hide">Beginning of dialog window. It begins with a heading 1 called &quot;Your work has been saved!&quot;. Escape will cancel and close the window.</div>
+		<h1 id="modal-title">Your work has been saved!</h1>
+		<p>Copy and save the unique URL below to come back to your completed worksheet. You can also use the form to email the URL to yourself or to anyone helping you with your decision!</p>
+		<div class="modal-container">
+			<div class="form-container">
+				<label class="unique-label" for="unique">URL</label>
+				<textarea id="unique" rows="3" cols="50" readonly="readonly">http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef</textarea>
+			</div>
+			<div class="form-container">
+				<label class="email-label" for="email">Email</label>
+				<input id="email" type="text" value="">
+			</div>
+			<p class="no-save">The CFPB does not share your email address. We will only use it to send you this information.</p>
+		</div>
+		<div class="email-group">
+			<button id="send-email" class="button">Email worksheet</button> <span id="send-email-confirm" style="display:none;">Success!</span>
+		</div>
+		<p class="time"><i class="icon-approved-alt"></i><span id="timestamp"></span></p>
+		<button id="close-modal"><i class="icon-delete-alt"></i><span class="cfpb_visually_hide">Close modal</span></button>
+	</div><!-- end #modal -->
 
 {% endblock content %}
