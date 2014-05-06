@@ -923,46 +923,59 @@ This contains the majority of the structural styles for table-based elements.
     display: none;
 }
 
-.arrw-collapse th:first-child,
-.arrw th:first-child {
+#comparison-tables tr th a.arrw-click {
+    display: block;
+    float: left;
+    height: 35px;
+    text-indent: -9999px;
+    text-decoration: none;
+    border: none;
+    position: relative;
+    left: -15px;
+    top: -10px;
+    width: 35px;
+}
+
+.arrw-collapse th:first-child .arrw-click,
+.arrw th:first-child .arrw-click{
     background: url(../images/collapse_arrows.png) no-repeat 15px -26px;
     cursor: pointer;
 }
 
-.totalcost.arrw-collapse.arrw th:first-child,
-.totalcont.arrw-collapse.arrw th:first-child {
+.totalcost.arrw-collapse.arrw th:first-child .arrw-click,
+.totalcont.arrw-collapse.arrw th:first-child .arrw-click{
     background-position: 15px 13px;
 }
 
-.grants.arrw-collapse th:first-child {
+.grants.arrw-collapse th:first-child .arrw-click {
     background-position: 15px -96px;
 }
 
-.grants.arrw-collapse.arrw th:first-child {
+.grants.arrw-collapse.arrw th:first-child .arrw-click  {
     background-position: 15px -61px;
 }
 
-.contributions.arrw-collapse th:first-child {
+.contributions.arrw-collapse th:first-child .arrw-click  {
     background-position: 15px -166px;
 }
 
-.contributions.arrw-collapse.arrw th:first-child {
+.contributions.arrw-collapse.arrw th:first-child .arrw-click  {
     background-position: 15px -131px;
 }
 
-.federal.arrw-collapse th:first-child {
+.federal.arrw-collapse th:first-child .arrw-click  {
     background-position: 15px -236px;
 }
 
-.federal.arrw-collapse.arrw th:first-child {
+.federal.arrw-collapse.arrw th:first-child .arrw-click  {
     background-position: 15px -201px;
 }
 
-.private.arrw-collapse th:first-child {
+.private.arrw-collapse th:first-child .arrw-click  {
     background-position: 15px -306px;
 }
 
-.private.arrw-collapse.arrw th:first-child {
+.private.arrw-collapse.arrw th:first-child .arrw-click  {
     background-position: 15px -271px;
 }
 
