@@ -1574,7 +1574,15 @@ var CFPBComparisonTool = (function() {
             // Accordions (not the instrument, sadly)
             $('tr.show').click(function() {
                 $(this).closest('tbody').children(':not(.show, .tr-hide)').toggleClass('hide');
-                $(this).closest('.arrw-collapse').toggleClass('arrw'); 
+                $(this).closest('.arrw-collapse').toggleClass('arrw');
+                if ( $(this).closest('.arrw-collapse').hasClass('arrw') ) {
+                    var text = "Collapse " + $(this).attr('data-arrwname');
+                    $(this).find('.arrw-click').html(text);
+                }
+                else {
+                    var text = "Expand " + $(this).attr('data-arrwname');
+                    $(this).find('.arrw-click').html(text);
+                }
             });
             // Show the instructions on expand the first time and let it be
             $('tr.totalcont').click(function() {
