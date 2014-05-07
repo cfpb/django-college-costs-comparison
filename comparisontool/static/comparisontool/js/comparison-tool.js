@@ -1775,7 +1775,7 @@ var CFPBComparisonTool = (function() {
                 }
             });
             $('.arrw-click').click(function(ev) {
-                ev.preventDefault
+                ev.preventDefault();
             });
 
             // Show the instructions on expand the first time and let it be
