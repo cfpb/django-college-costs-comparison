@@ -926,15 +926,16 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 #comparison-tables tr th a.arrw-click {
+    border: none;
     display: block;
     float: left;
     height: 35px;
-    text-indent: -9999px;
-    text-decoration: none;
-    border: none;
     position: relative;
-    left: -15px;
-    top: -10px;
+        top: -10px;
+        left: -15px;
+    text-align: left;
+    text-decoration: none;
+    text-indent: -9999px;
     width: 35px;
 }
 
