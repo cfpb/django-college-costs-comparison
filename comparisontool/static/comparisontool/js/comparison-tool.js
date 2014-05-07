@@ -1774,6 +1774,10 @@ var CFPBComparisonTool = (function() {
                     $(this).find('.arrw-click').html(text);
                 }
             });
+            $('.arrw-click').click(function(ev) {
+                ev.preventDefault
+            });
+
             // Show the instructions on expand the first time and let it be
             $('tr.totalcont').click(function() {
                 $('tr.instructions').removeClass('tr-hide');
