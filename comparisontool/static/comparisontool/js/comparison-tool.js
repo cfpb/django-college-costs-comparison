@@ -381,6 +381,7 @@ var CFPBComparisonTool = (function() {
             }
             calculateAndDraw(columnNumber);
             $("#get-started-button").html("Add another school");
+            $("#save-and-share").show();
         }
     } // end setAddStage()
 
