@@ -1762,7 +1762,7 @@ label.tooltip-info {
 
 .modal-container {
     margin-right: 2%;
-    width: 75%;
+    width: 74%;
 }
 
 .form-container {
@@ -1775,19 +1775,19 @@ label.tooltip-info {
     font-weight: 600;
     text-align: right;
     text-transform: uppercase;
-    width: 12%;
+    width: 14%;
 }
 
 .save-modal #unique,
 .save-modal #email {
     display: inline-block;
     margin-left: 2%;
-    width: 80%;
+    width: 76%;
 }
 
 .save-modal .email-group {
     position: absolute;
-        bottom: 30%;
+        bottom: 29%;
         right: 3%;
 }
 
@@ -1798,8 +1798,6 @@ label.tooltip-info {
 .no-save {
     font-size: 0.875em;
     padding-left: 15%;
-    padding-right: 3%;
-    width: 82%;
 }
 
 .time {
