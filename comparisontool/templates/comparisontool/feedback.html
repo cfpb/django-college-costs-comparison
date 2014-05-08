@@ -10,6 +10,7 @@
 
 {% block page_js %}
 <script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/cfpb-comparison-analytics-min.js"></script>
+<script src="{{ STATIC_PREFIX }}comparisontool/js/feedback.js"></script>
 {% endblock %}
 
 {% block content %}		
@@ -62,7 +63,7 @@
 							</div>
 							<div class="col7">
 								<p>First, let us know what you think of this <a target="_blank" href="{% url 'worksheet' %}">tool</a>.</p>
-								<form method="post">
+								<form method="post" id="feedback-container">
 								{% csrf_token %}
 								<p>{{ form.message }}</p>
 								<p><button>Submit your comment</button></p>

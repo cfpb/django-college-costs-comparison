@@ -275,7 +275,7 @@ var PFCAnalytics = (function() {
 
         // Give google analytics time to do its thing before changing the page url
         // http://support.google.com/analytics/answer/1136920?hl=en
-        setTimeout(function() { document.location.href = link_url; }, 500);
+        setTimeout(function() { window.open(link_url, "_blank"); }, 500);
     });
     // Email address submission on /paying-for-college/
     /* $('.email-button').click(function() {
