@@ -112,7 +112,6 @@ breadcrumbs do not exist unfortunately. :( Bug reported; to be fixed in future. 
 #introduction,
 #comparison-tables,
 #save-footer,
-#save-drawer,
 .sub-page-wrapper {
     padding-left: 20px;
     padding-right: 20px;
@@ -351,6 +350,12 @@ This is for each step in the process.
     font-size: 1.125em;
 }
 
+.about-link {
+    position: absolute;
+        top: -20px;
+        right: 50px;
+}
+
 .get-started {
     background-color: #f8f8f8;
     border: 1px solid #e3e4e5;
@@ -387,8 +392,10 @@ This is for each step in the process.
 }
 
 #step-one .max-schools {
+    color: #d12124;
     display: none;
-    color: #d12124;   
+    margin-left: 3.5em;
+    text-align: left;
 }
 
 #step-two .step-left {
@@ -419,6 +426,10 @@ This is for each step in the process.
     	bottom: 24px;
     text-align: right;
     width: 387.5px;
+}
+
+#step-three fieldset {
+    margin: 1.25em 0;
 }
 
 #step-four .step-left {
@@ -461,6 +472,23 @@ This is for each step in the process.
     font-size: 1.125em;
     margin-top: 2.5em;
     padding: 0.75em 2em;
+}
+
+.paying-for-college #wrapper .get-started #save-and-share {
+    background-color: #75787b;
+    display: none;
+    font-size: 1.125em;
+    margin-top: 1em;
+    padding: 0.75em 2.9em;
+}
+
+.paying-for-college #wrapper .get-started #save-and-share:hover,
+.paying-for-college #wrapper .get-started #save-and-share:focus {
+    background-color: #919395;
+}
+
+.paying-for-college #wrapper .get-started #save-and-share:active {
+    background-color: #43484e;
 }
 
 .get-started .step-legend {
@@ -536,6 +564,7 @@ This is for each step in the process.
     font-size: 0.875em;
     display: block;
     margin-right: 1.25em;
+    padding: 1.25em 0;
     text-align: right;
     width: 24%; 
 }
@@ -569,8 +598,7 @@ font styles, heading styles, etc. Other adjustments happen within components.
     font-family: "Avenir Next", Verdana, sans-serif !important;
 }
 
-.h2,
-thead h2 {
+.h2 {
     color: #101820;
     font-size: 1.3em;
     font-weight: 700;
@@ -580,7 +608,7 @@ thead h2 {
     margin-top: 2.5em;
 }
 
-thead #institution-row h2.inactive {
+thead #institution-row div.inactive {
     color: #babbbd;
     padding-bottom: 2em;
 }
@@ -610,21 +638,24 @@ table h3 {
 h4 {
 	color: #101820;
 	font-size: 1.125em;
+    font-weight: 600;
     letter-spacing: 0;
     text-transform: none;
 }
 
-.totalcont h4,
-.totalcost h4 {
+.totalcont .h4,
+.totalcost .h4 {
 	color: #101820;
     font-size: 1.25em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
-.totalcont h6.data-total,
-.totalcost h6.data-total {
+.totalcont .h6.data-total,
+.totalcost .h6.data-total {
 	color: #101820;
     font-size: 1.5em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
@@ -632,6 +663,7 @@ h4 {
 h6 {
 	color: #101820;
     font-size: 1.125em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
@@ -692,12 +724,30 @@ The buttons differ from others on the site. */
 .paying-for-college #wrapper button[disabled=disabled],
 .paying-for-college #wrapper button[disabled],
 .paying-for-college #wrapper button.disabled,
-.paying-for-college #wrapper button.cancel,
 .paying-for-college #wrapper button.preset,
 .paying-for-college #wrapper .button.disabled,
-.paying-for-college #wrapper .button.cancel,
 .paying-for-college #wrapper .button.preset {
-    background-color: #8e9193;
+    background-color: #e7e7e6;
+    color: #75787b;
+    cursor: default; /* Fallback for IE/Opera */
+    cursor: not-allowed;
+}
+
+.paying-for-college #wrapper button.cancel {
+    background-color: #75787b;
+    color: #fff;
+}
+
+.paying-for-college #wrapper button.cancel:hover,
+.paying-for-college #wrapper button.cancel:focus
+ {
+    background-color: #8E9193;
+    color: #fff;
+}
+
+.paying-for-college #wrapper button.cancel:active, {
+    background-color: #515355;
+    color: #fff;
 }
 
 .paying-for-college #wrapper button.destructive {
@@ -740,6 +790,7 @@ This contains the majority of the structural styles for table-based elements.
 /* The main table container. */
 #comparison-tables {
     clear: both;
+    margin-top: 3em;
     padding-top: 1em;
 }
 
@@ -759,25 +810,31 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 /* Remove a school links */
-.comparison-tool thead .removal-row th .remove-this-school {
+.comparison-tool .removal-row .remove-this-school {
     font-size: 0.75em;
     font-weight: 400;
-    text-align: right;
+    padding: 0.5em 0 0.5em 1.875em;
+    position: absolute;
+        top: -98px;
+        right: 0;
 }
 
-.comparison-tool thead .removal-row th .remove-confirm {
+.comparison-tool #institution-row .removal-row .remove-this-school button {
+    margin-right: 0;
+}
+
+.comparison-tool .removal-row .remove-confirm {
     background-color: #f6d9d3;
     border: 1px solid #d14124;
     display: none;
     font-weight: 400;
-    margin-left: -1.75em;
-    margin-top: 0.625em;
+    margin: 0.625em 0 auto;
     padding: 1em .5em;
     position: absolute;
-    width: 223px;
+        top: -74px;
 }
 
-.comparison-tool thead .removal-row th .remove-confirm .button-group {
+.comparison-tool .removal-row .remove-confirm .button-group {
     float: right;
     margin-top: 0;
 }
@@ -829,7 +886,7 @@ This contains the majority of the structural styles for table-based elements.
 }
 
 .comparison-tool thead th {
-    text-align: left;
+    text-align: right;
 }
 
 .comparison-tool tbody > th, tbody thead th:first-child {
@@ -855,8 +912,9 @@ This contains the majority of the structural styles for table-based elements.
     border-bottom: 5px solid #d14124;
 }
 
-.grants h5, .federal h5, .private h5, .contributions h5 {
+.grants .h5, .federal .h5, .private .h5, .contributions .h5 {
     font-size: 1.125em;
+    font-weight: 600;
 }
 
 .grants h6, .federal h6, .private h6, .contributions h6 {
@@ -889,47 +947,59 @@ This contains the majority of the structural styles for table-based elements.
     display: none;
 }
 
-.arrw-collapse th:first-child,
-.arrw th:first-child {
-    background: url(../images/collapse_arrows.png) no-repeat 15px -26px;
+#comparison-tables tr th a.arrw-click {
+    border: none;
+    color: #101820;
+    display: block;
+    text-align: right;
+    text-decoration: none;
+}
+
+#comparison-tables tr th a.arrw-click:focus {
+    outline: thin dotted;
+}
+
+.arrw-collapse th:first-child .arrw-click,
+.arrw th:first-child .arrw-click{
+    background: url(../images/collapse_arrows.png) no-repeat 5px -36px;
     cursor: pointer;
 }
 
-.totalcost.arrw-collapse.arrw th:first-child,
-.totalcont.arrw-collapse.arrw th:first-child {
-    background-position: 15px 13px;
+.totalcost.arrw-collapse.arrw th:first-child .arrw-click,
+.totalcont.arrw-collapse.arrw th:first-child .arrw-click{
+    background-position: 5px -3px;
 }
 
-.grants.arrw-collapse th:first-child {
-    background-position: 15px -96px;
+.grants.arrw-collapse th:first-child .arrw-click {
+    background-position: 5px -106px;
 }
 
-.grants.arrw-collapse.arrw th:first-child {
-    background-position: 15px -61px;
+.grants.arrw-collapse.arrw th:first-child .arrw-click  {
+    background-position: 5px -71px;
 }
 
-.contributions.arrw-collapse th:first-child {
-    background-position: 15px -166px;
+.contributions.arrw-collapse th:first-child .arrw-click  {
+    background-position: 5px -176px;
 }
 
-.contributions.arrw-collapse.arrw th:first-child {
-    background-position: 15px -131px;
+.contributions.arrw-collapse.arrw th:first-child .arrw-click  {
+    background-position: 5px -141px;
 }
 
-.federal.arrw-collapse th:first-child {
-    background-position: 15px -236px;
+.federal.arrw-collapse th:first-child .arrw-click  {
+    background-position: 5px -246px;
 }
 
-.federal.arrw-collapse.arrw th:first-child {
-    background-position: 15px -201px;
+.federal.arrw-collapse.arrw th:first-child .arrw-click  {
+    background-position: 5px -211px;
 }
 
-.private.arrw-collapse th:first-child {
-    background-position: 15px -306px;
+.private.arrw-collapse th:first-child .arrw-click  {
+    background-position: 5px -316px;
 }
 
-.private.arrw-collapse.arrw th:first-child {
-    background-position: 15px -271px;
+.private.arrw-collapse.arrw th:first-child .arrw-click  {
+    background-position: 5px -281px;
 }
 
 /* The GI Bill section. */
@@ -1136,6 +1206,10 @@ Make them smaller and push them right to make it all look presentable. */
     width: 10px;
 }
 
+#comparison-tables .private-row td button.rate-change:focus {
+    border: 1px dotted #101820;
+}
+
 /* FORM ELEMENTS
 This contains the form elements for manipulating data within the tool.
 -------------------------------------------------------------------------------*/
@@ -1144,7 +1218,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input[type="url"],
 .comparison-tool input[type="password"],
 .comparison-tool input[type="search"],
-.comparison-tool textarea {
+.comparison-tool textarea,
+#modal input[type="text"],
+#modal input[type="email"],
+#modal input[type="url"],
+#modal input[type="password"],
+#modal input[type="search"],
+#modal textarea {
     background: #ffffff;
     border: 1px solid #75787b;
     border-radius: 0;
@@ -1159,7 +1239,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input[type="url"]:focus,
 .comparison-tool input[type="password"]:focus,
 .comparison-tool input[type="search"]:focus,
-.comparison-tool textarea:focus {
+.comparison-tool textarea:focus,
+#modal input[type="text"]:focus,
+#modal input[type="email"]:focus,
+#modal input[type="url"]:focus,
+#modal input[type="password"]:focus,
+#modal input[type="search"]:focus,
+#modal textarea:focus {
       border: 1px solid #0072ce;
       border-color: #0072ce;
       outline: 1px solid #0072ce;
@@ -1173,7 +1259,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input.error[type="url"],
 .comparison-tool input.error[type="password"],
 .comparison-tool input.error[type="search"],
-.comparison-tool textarea.error {
+.comparison-tool textarea.error,
+#modal input.error[type="text"],
+#modal input.error[type="email"],
+#modal input.error[type="url"],
+#modal input.error[type="password"],
+#modal input.error[type="search"],
+#modal textarea.error {
       border: 1px solid #d12124;
       outline: 1px solid #d12124;
 }
@@ -1183,7 +1275,13 @@ This contains the form elements for manipulating data within the tool.
 .comparison-tool input.success[type="url"],
 .comparison-tool input.success[type="password"],
 .comparison-tool input.success[type="search"],
-.comparison-tool textarea.success {
+.comparison-tool textarea.success,
+#modal input.success[type="text"],
+#modal input.success[type="email"],
+#modal input.success[type="url"],
+#modal input.success[type="password"],
+#modal input.success[type="search"],
+#modal textarea.success {
       border: 1px solid #2cb34a;
       outline: 1px solid #2cb34a;
 }
@@ -1211,6 +1309,10 @@ This contains varous elements that are standalone components within the tool.
 .tooltip-info, .tooltip-info:hover {
     cursor: auto;
     border-bottom: none;
+}
+
+th div.tooltip-info {
+    display: inline;
 }
 
 input.tooltip-info {
@@ -1569,8 +1671,7 @@ label.tooltip-info {
     position: relative;
 }
 
-#comparison-tables .default-rate-chart span {
-    display: block;
+#comparison-tables .default-rate-chart p {
     font-size: .6em;
     position: absolute;
         left: 13px;
@@ -1584,10 +1685,11 @@ label.tooltip-info {
     left: 113px;
 }
 
-#comparison-tables .default-rate-chart span .percent {
-    margin: 0;
+#comparison-tables .default-rate-chart p .percent {
+    display: block;
     font-size: 1.5em;
-    line-height: 1.2em;
+    line-height: 1.2;
+    margin: 0;
 }
 
 #comparison-tables .median-borrowing-chart {
@@ -1620,132 +1722,114 @@ label.tooltip-info {
 
 
 /* SAVE & SHARE */
-.save-footer div {
-    display: inline-block;
-    padding: 1em 2em;
-    width: 40%;
-}
-
-.save-footer div .button {
-    font-size: 1.25em;
-}
-
-.save-drawer {
-    background: #e6e6e6;    
+#modal-overlay {
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* places the modal overlay between the main page and the modal dialog*/
+    background-color: #000;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: none;
-    padding: 1.5em;
+    margin: 0;
+    padding: 0;
 }
 
-.save-drawer div {
-    margin: 1em 0 1em 5em;
+
+#modal {
+    background-color: #fff;
+    border-top: 3px solid #2cb34a;
+    display: none;
+    font-family: "Avenir Next", Arial, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    position: fixed;
+        top: 25%;
+        left: 25%;
+    width: 40%;
+    z-index: 3; /* places the modal dialog on top of everything else */
 }
 
-.save-drawer label {
-    clear: left;
-    color: #808184; 
-    display: inline-block;  
-    font-weight: 500;
-    padding:  0em 5px 0em 32px;
-    text-align: left;
-    width: 45px;
+#modal-title {
+    font-size: 1.125em;
+    font-weight: 600;
 }
 
-.save-drawer #timestamp {
-    font-size: .7em;
-    font-style: italic;
-    margin: 0 3em 0 3em;
-    text-transform: lowercase;
+#modal #close-modal {
+    background-color: transparent;
+    margin: 0;
+    padding: 0.5em;
+    position: absolute;
+        right: 1%;
+        top: 2%;
 }
 
-.save-drawer #save-current {
-    float: right;
-    font-size: .8em;
-    position: relative;
-        right: 0px;
+#modal #close-modal .icon-delete-alt {
+    color: #0072ce;
 }
 
-.save-drawer .unique-label {
-    background: url(../images/save-link.png) 0 .25em no-repeat;
+#modal #close-modal:hover .icon-delete-alt,
+#modal #close-modal:focus .icon-delete-alt {
+    color: #328ed8; /* Pacific/80 */
 }
 
-.save-drawer .email-label {
-    background: url(../images/save-email.png) 0 .25em no-repeat;
+#modal #close-modal:focus .icon-delete-alt {
+    outline: thin dotted;
 }
 
-.save-drawer input[type=text] {
-    background-color: #eee;
-    border: 1px solid #808184;
-    border-radius: 0;
-    box-shadow: none;
-    color: #808184;
-    display: inline;
-    font-family: "Avenir Next", Verdana, sans-serif !important;
-    font-size: 1em;
-    height: 1.5em;
-    padding:  1px 5px;
-    margin: 0px;
+#modal #close-modal:active .icon-delete-alt {
+    color: #33578e; /* Navy/80 */
 }
 
-.save-footer .save-container {
+.modal-container {
+    margin-right: 2%;
+    width: 74%;
+}
+
+.form-container {
     margin: 1em 0;
-    padding: .25em 10px;
 }
 
-.save-drawer #unique {
-    font-size: .75em;
-    height: 2em;
-    width: 500px;
-}
-
-.save-drawer #email {
-    width: 425px;
-}
-
-.save-drawer #send-email {
+.save-modal .unique-label,
+.save-modal .email-label {
     display: inline-block;
-}
-
-.save-drawer .no-save {
-    display: block;
-    padding-top: .625em;
-    padding-bottom: 1.25em;
-    font-size: .625em;
-    color: #767676;
-    font-weight: 500;
-}
-
-.save-drawer .save-share-tools {
-    margin-top: 1.2em;
-    font-size: .75em;
-    color: #6d6e70;
-    font-weight: 500;
-}
-
-.save-drawer .save-share-tools .share-facebook {
-    display: inline-block;
-    width: 19px;
-    height: 19px;
-    text-indent: -9999px;
-    background: url(../images/share-icons.png) 0 0 no-repeat;
-    border-bottom: none;
-    margin-left: 12px;
-}
-
-.save-drawer .save-share-tools .share-twitter {
-    display: inline-block;
-    width: 24px;
-    height: 19px;
-    text-indent: -9999px;
-    background: url(../images/share-icons.png) -33px 0 no-repeat;
-    border-bottom: none;
-    margin-left: 12px;
-}
-
-/* The about link near the bottom of page. */
-.about-worksheet {
-    display: block;
-    padding: 1em 10% 0 0;
+    font-weight: 600;
     text-align: right;
+    text-transform: uppercase;
+    width: 14%;
+}
+
+.save-modal #unique,
+.save-modal #email {
+    display: inline-block;
+    margin-left: 2%;
+    width: 76%;
+}
+
+.save-modal .email-group {
+    position: absolute;
+        bottom: 29%;
+        right: 3%;
+}
+
+#send-email {
+    margin-right: 0 !important;
+}
+
+.no-save {
+    font-size: 0.875em;
+    padding-left: 15%;
+}
+
+.time {
+    margin-bottom: 0;
+}
+
+#modal .icon-approved-alt {
+    color: #75787b;
+    margin-right: 0.25em;
 }
 
 /* OTHER PAGES
@@ -1924,8 +2008,8 @@ This contains varous elements that are standalone components within the tool.
 }
 
 /* Stylistic stuff */
-.orange {
-    color: #D83D00 !important;
+.medium {
+    font-weight: 500 !important;
 }
 
 .demi {
