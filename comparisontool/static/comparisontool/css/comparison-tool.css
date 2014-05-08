@@ -1710,7 +1710,7 @@ label.tooltip-info {
 
 #modal {
     background-color: #fff;
-    border: 3px solid #2cb34a;
+    border-top: 3px solid #2cb34a;
     display: none;
     font-family: "Avenir Next", Arial, sans-serif;
     margin-left: auto;
@@ -1719,7 +1719,7 @@ label.tooltip-info {
     position: fixed;
         top: 25%;
         left: 25%;
-    width: 53%;
+    width: 40%;
     z-index: 3; /* places the modal dialog on top of everything else */
 }
 
@@ -1733,8 +1733,8 @@ label.tooltip-info {
     margin: 0;
     padding: 0.5em;
     position: absolute;
-        right: 0.5em;
-        top: 0.5em;
+        right: 1%;
+        top: 2%;
 }
 
 #modal #close-modal .icon-delete-alt {
@@ -1756,7 +1756,7 @@ label.tooltip-info {
 
 .modal-container {
     margin-right: 2%;
-    width: 78%;
+    width: 75%;
 }
 
 .form-container {
@@ -1768,31 +1768,32 @@ label.tooltip-info {
     display: inline-block;
     font-weight: 600;
     text-align: right;
-    width: 8%;
+    text-transform: uppercase;
+    width: 12%;
 }
 
 .save-modal #unique,
 .save-modal #email {
     display: inline-block;
-    margin-left: 1%;
-    width: 77%;
+    margin-left: 2%;
+    width: 80%;
 }
 
 .save-modal .email-group {
     position: absolute;
-        bottom: 32%;
-        right: 2%;
+        bottom: 30%;
+        right: 3%;
 }
 
 #send-email {
-    margin: 0;
+    margin-right: 0 !important;
 }
 
 .no-save {
     font-size: 0.875em;
-    font-weight: 500;
-    padding-left: 10%;
-    width: 80%;
+    padding-left: 15%;
+    padding-right: 3%;
+    width: 82%;
 }
 
 .time {
