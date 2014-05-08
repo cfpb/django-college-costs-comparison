@@ -350,6 +350,12 @@ This is for each step in the process.
     font-size: 1.125em;
 }
 
+.about-link {
+    position: absolute;
+        top: -20px;
+        right: 50px;
+}
+
 .get-started {
     background-color: #f8f8f8;
     border: 1px solid #e3e4e5;
