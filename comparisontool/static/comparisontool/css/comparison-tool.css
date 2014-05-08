@@ -468,6 +468,23 @@ This is for each step in the process.
     padding: 0.75em 2em;
 }
 
+.paying-for-college #wrapper .get-started #save-and-share {
+    background-color: #75787b;
+    display: none;
+    font-size: 1.125em;
+    margin-top: 1em;
+    padding: 0.75em 2.9em;
+}
+
+.paying-for-college #wrapper .get-started #save-and-share:hover,
+.paying-for-college #wrapper .get-started #save-and-share:focus {
+    background-color: #919395;
+}
+
+.paying-for-college #wrapper .get-started #save-and-share:active {
+    background-color: #43484e;
+}
+
 .get-started .step-legend {
 	padding: 0 30px;
 	margin: 1em 0;
