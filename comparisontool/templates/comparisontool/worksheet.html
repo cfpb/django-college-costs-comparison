@@ -24,7 +24,8 @@
 
     <!-- H5BP's Asynchronous Google Analytics snippet. -->
     <script>
-      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      // var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov'],['_trackPageview']];
+      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', ''],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
       g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
@@ -128,24 +129,25 @@ var restoredata = {{ data_js|safe }};
 		    </div><!-- end .pfc-nav-wrapper -->
 		</header><!-- end #comparison-tool-header -->
 
-		<section id="introduction" class="introduction">
+		<section id="introduction" class="introduction p-rel">
 			<div class="pfc-intro-text">
 				<p></p>
 			</div>
 			<h2 class="h3 vert-pad bottom-border bold">Compare Schools</h2>
+			<span class="about-link"><a class="school-link" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this tool</a></span>
 			<div id="step-one" class="get-started step-one clearfix">
 				<div class="step-left">
 					<div class="pfc-container-left">
 						<h3 class="h4">Compare college costs and financial aid offers.</h3>
 						<p>Add some information about the schools you’re considering to see the financial impact down the road. If you don’t have a financial aid offer, we’ll show you where to find cost info for each school.</p>
 						<p>You can compare up to 3 schools.</p>
-						<p><em>Hint: you can save your progress at the bottom of this page and come back later.</em></p>
-						<p class="max-schools">Your worksheet is full. Remove a school below to add a new one.</p>
 					</div>
 				</div><!--/step-left -->
 				<div class="step-right">
 					<div class="pfc-container-right center">
 						<button class="pfc-button" id="get-started-button">Get started</button>
+						<button id="save-and-share" class="button">Save your work</button>
+						<p class="max-schools">Your worksheet is full. Remove a school below to add a new one.</p>
 					</div>
 				</div><!--/step-right -->
 			</div><!--/step-one -->
@@ -217,7 +219,7 @@ var restoredata = {{ data_js|safe }};
 			    <div class="add-xml xml-info staged step-3b stage-xml step-left">
 			        <div class="pfc-container-left">
 			        	<h4>This school pledged to use the Financial Aid Shopping Sheet!</h4>
-						<p>This will make things easier. If they provided an XML file with your financial aid offer, copy and paste the code below. If not, just click continue.</p>
+						<p>This standardized financial aid offer format will make things a lot easier. If they provided an XML file with your offer, copy and paste the code below. If not, just click continue.</p>
 						<p class="xml-error">Looks like that XML didn’t work. Try adding new XML, or click continue to skip this step.</p>
 						<label for="xml-text" class="xml">School XML data (optional)</label>
 						<textarea name="xmlbukkit" id="xml-text" class="xml-text" data-nickname="xmlbukkit" placeholder="Paste XML code here. Example: xmlfile_example.xml"></textarea>
@@ -225,47 +227,49 @@ var restoredata = {{ data_js|safe }};
 			    </div><!-- /add-xml /xml-info /staged /step-3b /stage-xml /step-left -->
 			    <div class="add-school staged stage-res-hse step-3d3 res-hse step-left">
 			        <div class="pfc-container-left">
-			        	<h4>Residency</h4>
-			        	<fieldset>
-			        		<legend class="demi">This school has different tuition/fees depending on your residency situation:</legend>
-							<div id="residency-in-district" class="get-started-radio-group radio-indistrict">
-								<input id="residency-radio-1" class="restype radio-input" type="radio" name="step-three-residency" value="indis">
-								<label class="restype" for="residency-radio-1">
-									I am an “in-district” resident for this school (what’s this?)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="residency-radio-2" class="restype radio-input" type="radio" name="step-three-residency" value="instate">
-								<label class="restype" for="residency-radio-2">
-									I am a resident in the same state as this school (in-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-							<div class="get-started-radio-group">
-								<input id="residency-radio-3" class="restype radio-input" type="radio" name="step-three-residency" value="outstate">
-								<label class="restype" for="residency-radio-3">
-									I live in a different state (out-of-state)
-								</label>
-							</div><!-- /get-started-radio-group -->
-			        	</fieldset>
-			        	<hr>
+			        	<div id="add-school-residency">
+				        	<h4>Residency</h4>
+				        	<fieldset>
+				        		<legend class="medium">This school has different tuition/fees depending on your residency situation:</legend>
+								<div id="residency-in-district" class="get-started-radio-group radio-indistrict">
+									<input id="residency-radio-1" class="restype radio-input" type="radio" name="step-three-residency" value="indis">
+									<label class="restype" for="residency-radio-1">
+										I am an “in-district” resident for this school (what’s this?)
+									</label>
+								</div><!-- /get-started-radio-group -->
+								<div class="get-started-radio-group">
+									<input id="residency-radio-2" class="restype radio-input" type="radio" name="step-three-residency" value="instate">
+									<label class="restype" for="residency-radio-2">
+										I am a resident in the same state as this school (in-state)
+									</label>
+								</div><!-- /get-started-radio-group -->
+								<div class="get-started-radio-group">
+									<input id="residency-radio-3" class="restype radio-input" type="radio" name="step-three-residency" value="outstate">
+									<label class="restype" for="residency-radio-3">
+										I live in a different state (out-of-state)
+									</label>
+								</div><!-- /get-started-radio-group -->
+				        	</fieldset>
+				        	<hr>
+			       		</div>
 			        	<h4>Housing situation</h4>
 			        	<fieldset>
-			        		<legend class="demi">Where do you plan to live?</legend>
+			        		<legend class="medium">Where do you plan to live?</legend>
 			        		<div id="housing-on-campus" class="get-started-radio-group">
-								<input id="housing11" class="housingtype radio-input" type="radio" name="step-three-housing" value="oc">
-								<label class="houstype" for="housing11">
+								<input id="housing-radio-1" class="housingtype radio-input" type="radio" name="step-three-housing" value="oc">
+								<label class="houstype" for="housing-radio-1">
 									On campus
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="housing12" class="housingtype radio-input" type="radio" name="step-three-housing" value="ofc">
-								<label class="houstype" for="housing12">
+								<input id="housing-radio-2" class="housingtype radio-input" type="radio" name="step-three-housing" value="ofc">
+								<label class="houstype" for="housing-radio-2">
 									Off campus (in an apartment or similar)
 								</label>
 							</div><!-- /get-started-radio-group -->
 							<div class="get-started-radio-group">
-								<input id="housing13" class="housingtype radio-input" type="radio" name="step-three-housing" value="wfam">
-								<label class="houstype" for="housing13">
+								<input id="housing-radio-3" class="housingtype radio-input" type="radio" name="step-three-housing" value="wfam">
+								<label class="houstype" for="housing-radio-3">
 									With family (little or no cost to you)
 								</label>
 							</div><!-- /get-started-radio-group -->
@@ -281,25 +285,27 @@ var restoredata = {{ data_js|safe }};
 			</div><!--/step-three -->
 
 			<div id="step-four" class="get-started step-four clearfix">
-		        <div class="pfc-container-left">
-		        	<h4>Success!</h4>
-		        	<div id="success-no-data" class="success-message">
-		        		<p>You have added <span class="success-school-name"></span> to the chart below. We don’t have all the cost info for this school, but you can look up this information on <a href="" class="navigator-link" target="_blank">College Navigator</a>.</p>
-		        		<p>Add another school, or continue to enter your financial aid offer below.</p>
-		       	 	</div>
-		        	<div id="success-offer-xml" class="success-message">
-			        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below.</p>
-			        	<p>Add another school, or continue to review this info.</p>
-			        </div>
-			        <div id="success-offer-no-data" class="success-message">
-			        	<p>You have added <span class="success-school-name"></span> to the chart below, but you still need to enter your financial aid offer.</p>
-			        	<p>Add another school, or continue to enter your financial aid offer below.</p>
-			        </div>
-			        <div id="success-prepop" class="success-message">
-			        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below. We’ve added this school’s cost info from last year based on what they reported to the Department of Education.</p>
-			        	<p>Add another school, or compare costs/add Money for School below.</p>
-			        </div>
-		        </div><!-- /pfc-container-left -->
+				<div class="step-left">
+			        <div class="pfc-container-left">
+			        	<h4>Success!</h4>
+			        	<div id="success-no-data" class="success-message">
+			        		<p>You have added <span class="success-school-name"></span> to the chart below. We don’t have all the cost info for this school, but you can look up this information on <a href="" class="navigator-link" target="_blank">College Navigator</a>.</p>
+			        		<p>Add another school, or continue to enter your financial aid offer below.</p>
+			       	 	</div>
+			        	<div id="success-offer-xml" class="success-message">
+				        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below.</p>
+				        	<p>Add another school, or continue to review this info.</p>
+				        </div>
+				        <div id="success-offer-no-data" class="success-message">
+				        	<p>You have added <span class="success-school-name"></span> to the chart below, but you still need to enter your financial aid offer.</p>
+				        	<p>Add another school, or continue to enter your financial aid offer below.</p>
+				        </div>
+				        <div id="success-prepop" class="success-message">
+				        	<p>You have added <span class="success-school-name"></span> to the comparison chart. Your information has been added below. We’ve added this school’s cost info from last year based on what they reported to the Department of Education.</p>
+				        	<p>Add another school, or compare costs/add Money for School below.</p>
+				        </div>
+			        </div><!-- /pfc-container-left -->
+			    </div><!-- /step-left -->
 			    <div class="step-right">
 			        <div class="pfc-container-right">
 			            <button class="add-another-school">Add another school</button>
@@ -311,61 +317,64 @@ var restoredata = {{ data_js|safe }};
 		<section id="comparison-tables" class="comparison-tables">
 			<table>
 				<thead>
-					<tr class="removal-row">
-						<td data-column="0"></td>
-						<th scope="col" data-column="1" data-schoolid="" class="header-cell">
-							<div class="remove-this-school">
-								<button class="remove-school-link button-link">Remove this school</button>
-							</div>
-							<div class="remove-confirm hidden-box">
-								<p>Are you sure you want to remove this school?</p>
-								<p class="button-group"><button class="destructive remove-yes">Yes</button> <button class="cancel remove-no">No</button></p>
-							</div>
-						</th>
-						<th scope="col" data-column="2" data-schoolid="" class="header-cell">
-							<div class="remove-this-school">
-								<button class="remove-school-link button-link">Remove this school</button>
-							</div>
-							<div class="remove-confirm hidden-box">
-								<p>Are you sure you want to remove this school?</p>
-								<p class="button-group"><button class="destructive remove-yes">Yes</button> <button class="cancel remove-no">No</button></p>
-							</div>
-						</th>
-						<th scope="col" data-column="3" data-schoolid="" class="header-cell">
-							<div class="remove-this-school">
-								<button class="remove-school-link button-link">Remove this school</button>
-							</div>
-							<div class="remove-confirm hidden-box">
-								<p>Are you sure you want to remove this school?</p>
-								<p class="button-group"><button class="destructive remove-yes">Yes</button> <button class="cancel remove-no">No</button></p>
-							</div>
-						</th>
-					</tr>
 					<tr id="institution-row" class="institution-row highlighted-row">
 						<td data-column="0"></td>
 						<th scope="col" data-column="1" data-schoolid="" class="header-cell">
-							<h2 data-nickname="institution_name">School 1</h2>
+							<div class="p-rel">
+							    <div class="h2" data-nickname="institution_name">School 1</div>
+							    <div class="removal-row">
+							        <div class="remove-this-school">
+							            <button class="remove-school-link button-link">Remove this school</button>
+							        </div>
+							        <div class="remove-confirm hidden-box">
+							            <p>Are you sure you want to remove this school?</p>
+							            <p class="button-group"><button class="destructive remove-yes">Yes</button> <button class="cancel remove-no">No</button></p>
+							        </div>
+							    </div>
+							</div>
 						</th>
 						<th scope="col" data-column="2" data-schoolid="" class="header-cell">
-							<h2 data-nickname="institution_name">School 2</h2>
+							<div class="p-rel">
+							    <div class="h2" data-nickname="institution_name">School 2</div>
+							    <div class="removal-row">
+							        <div class="remove-this-school">
+							            <button class="remove-school-link button-link">Remove this school</button>
+							        </div>
+							        <div class="remove-confirm hidden-box">
+							            <p>Are you sure you want to remove this school?</p>
+							            <p class="button-group"><button class="destructive remove-yes">Yes</button> <button class="cancel remove-no">No</button></p>
+							        </div>
+							    </div>
+							</div>
 						</th>
 						<th scope="col" data-column="3" data-schoolid="" class="header-cell">
-							<h2 data-nickname="institution_name">School 3</h2>
+							<div class="p-rel">
+							    <div class="h2" data-nickname="institution_name">School 3</div>
+							    <div class="removal-row">
+							        <div class="remove-this-school">
+							            <button class="remove-school-link button-link">Remove this school</button>
+							        </div>
+							        <div class="remove-confirm hidden-box">
+							            <p>Are you sure you want to remove this school?</p>
+							            <p class="button-group"><button class="destructive remove-yes">Yes</button> <button class="cancel remove-no">No</button></p>
+							        </div>
+							    </div>
+							</div>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="show highlighted-row">
-						<th class="width-holder" data-column="0"><h3 id="first-year-costs">First year costs</h3></th>
+						<th class="width-holder" data-column="0"><div id="first-year-costs" class="h3">First year costs</div></th>
 						<th class="width-holder" data-column="1"></th>
 						<th class="width-holder" data-column="2"></th>
 						<th class="width-holder" data-column="3"></th>
 					</tr>
 					<tr id="open" class="totalcost show arrw-collapse" data-arrwname="Cost of Attendance">
-						<th scope="row" data-column="0"><h4>Cost of attendance</h4></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="firstyrcostattend">$0</h6></td>
+						<th scope="row" data-column="0"><a class="arrw-click" href="#"><span class="cfpb_visually_hide arrw-collapsable">Expand</span><div class="h4">Cost of attendance</div></a></th>
+						<td data-column="1"><div class="h6 data-total" data-nickname="firstyrcostattend">$0</div></td>
+						<td data-column="2"><div class="h6 data-total" data-nickname="firstyrcostattend">$0</div></td>
+						<td data-column="3"><div class="h6 data-total" data-nickname="firstyrcostattend">$0</div></td>
 					</tr>
 					<tr class="hide highlighted-row">
 						<td class="full" colspan="4">If you have a financial aid offer from this school, use it to enter your information here. If not, you can go to <a href="http://www.collegenavigator.gov/" target="_blank" class="exit-link">www.collegenavigator.gov</a> to look up this school’s cost of attendance info, add it to the fields below, then add more schools to see how they compare.</td>
@@ -403,22 +412,22 @@ var restoredata = {{ data_js|safe }};
 				</tbody>
 				<tbody>
 					<tr class="show highlighted-row">
-						<th data-column="0"><h3>First year financial aid offer</h3></th>
+						<th data-column="0"><div class="h3">First year financial aid offer</div></th>
 						<td data-column="1"></td>
 						<td data-column="2"></td>
 						<td data-column="3"></td>
 					</tr>
 					<tr class="totalcont show arrw-collapse" data-arrwname="Money for school">
-						<th scope="row" data-column="0"><h4>Money for school</h4></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="moneyforcollege">$0</h6></td>
+						<th scope="row" data-column="0"><a class="arrw-click" href="#"><span class="cfpb_visually_hide arrw-collapsable">Expand</span><div class="h4">Money for school</div></a></th>
+						<td data-column="1"><div class="h6 data-total" data-nickname="moneyforcollege">$0</div></td>
+						<td data-column="2"><div class="h6 data-total" data-nickname="moneyforcollege">$0</div></td>
+						<td data-column="3"><div class="h6 data-total" data-nickname="moneyforcollege">$0</div></td>
 					</tr>
 					<tr class="grants hide arrw-collapse highlighted-row" data-arrwname="Scholarships and Grants">
-						<th scope="row" data-column="0"><h5>Grants &amp; scholarships</h5></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="grantstotal">$0</h6></td>
+						<th scope="row" data-column="0"><a class="arrw-click" href="#"><span class="cfpb_visually_hide arrw-collapsable">Expand</span><div class="h5">Grants &amp; scholarships</div></a></th>
+						<td data-column="1"><div class="h6 data-total" data-nickname="grantstotal">$0</div></td>
+						<td data-column="2"><div class="h6 data-total" data-nickname="grantstotal">$0</div></td>
+						<td data-column="3"><div class="h6 data-total" data-nickname="grantstotal">$0</div></td>
 					</tr>
 					<tr class="grants-row instructions tr-hide highlighted-row">
 						<td class="full" colspan="4">Grants, scholarships, military tuition assistance, including the GI Bill.</td>
@@ -587,10 +596,10 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="contributions hide arrw-collapse highlighted-row" data-arrwname="Contributions">
-						<th scope="row" data-column="0"><h5>Contributions</h5></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="savingstotal">$0</h6></td>
+						<th scope="row" data-column="0"><a class="arrw-click" href="#"><span class="cfpb_visually_hide arrw-collapsable">Expand</span><div class="h5">Contributions</div></a></th>
+						<td data-column="1"><div class="h6 data-total" data-nickname="savingstotal">$0</div></td>
+						<td data-column="2"><div class="h6 data-total" data-nickname="savingstotal">$0</div></td>
+						<td data-column="3"><div class="h6 data-total" data-nickname="savingstotal">$0</div></td>
 					</tr>
 					<tr class="contrib-row instructions tr-hide highlighted-row">
 						<td class="full" colspan="4">What you can pay, what others are contributing to your studies.</td>
@@ -621,10 +630,10 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="federal hide arrw-collapse highlighted-row" data-arrwname="Federal loans">
-						<th data-column="0"><h5>Federal loans</h5></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="federaltotal">$0</h6></td>
+						<th data-column="0"><a class="arrw-click" href="#"><span class="cfpb_visually_hide arrw-collapsable">Expand</span><div class="h5">Federal loans</div></a></th>
+						<td data-column="1"><div class="h6 data-total" data-nickname="federaltotal">$0</div></td>
+						<td data-column="2"><div class="h6 data-total" data-nickname="federaltotal">$0</div></td>
+						<td data-column="3"><div class="h6 data-total" data-nickname="federaltotal">$0</div></td>
 					</tr>
 					<tr class="federal-row instructions tr-hide highlighted-row">
 						<td class="full" colspan="4">Borrowed money from the government that must be repaid with interest. Typically lower interest rates than private loans.</td>
@@ -655,10 +664,10 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 
 					<tr class="private arrw-collapse hide highlighted-row" data-arrwname="Private loans">
-						<th data-column="0"><h5>Private loans</h5></th>
-						<td data-column="1"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
-						<td data-column="2"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
-						<td data-column="3"><h6 class="data-total" data-nickname="privatetotal">$0</h6></td>
+						<th data-column="0"><a class="arrw-click" href="#"><span class="cfpb_visually_hide arrw-collapsable">Expand</span><div class="h5">Private loans</div></a></th>
+						<td data-column="1"><div class="h6 data-total" data-nickname="privatetotal">$0</div></td>
+						<td data-column="2"><div class="h6 data-total" data-nickname="privatetotal">$0</div></td>
+						<td data-column="3"><div class="h6 data-total" data-nickname="privatetotal">$0</div></td>
 					</tr>
 					<tr class="private-row instructions tr-hide highlighted-row">
 						<td class="full" colspan="4">Borrowed money that must be repaid with interest.</td>
@@ -715,7 +724,7 @@ var restoredata = {{ data_js|safe }};
 				<tbody class="bg-spacer">
 					<tr class="breakdown">
 						<th class="bg-spacing" data-column="0">
-							<h4>Compare first year costs</h4>
+							<div class="h4">Compare first year costs</div>
 							<p>Edit the contribution amounts above and see how it affects the breakdown</p>
 						</th>
 						<td class="bg-spacing" data-column="1">
@@ -881,7 +890,7 @@ var restoredata = {{ data_js|safe }};
 				</tbody>
 				<tbody id="after-school-section">
 					<tr class="stop bottom-border">
-						<th class="nopad-horiz" colspan="4"><h3 class="bold">After school</h3></th>
+						<th class="nopad-horiz" colspan="4"><div class="h3 bold">After school</div></th>
 					</tr>
 					<tr class="school-name-row">
 						<td data-column="0">&nbsp;</td>
@@ -896,14 +905,14 @@ var restoredata = {{ data_js|safe }};
 						</th>
 					</tr>
 					<tr class="visualization-row">
-						<th scope="row" data-column="0"><h4 class="tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</h4></th>
+						<th scope="row" data-column="0"><div class="h4 tooltip-info" data-tooltip="An estimate of how much you will owe in students loans when you begin repayment after you graduate" data-tipname="totaldebtgrad">Debt at graduation</div></th>
 						<td data-column="1"><span data-nickname="totaldebtgrad" class="visualization school-data total-debt">$0</span></td>
 						<td data-column="2"><span data-nickname="totaldebtgrad" class="visualization school-data total-debt">$0</span></td>
 						<td data-column="3"><span data-nickname="totaldebtgrad" class="visualization school-data total-debt">$0</span></td>
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Monthly payments</h4>
+							<div class="h4">Monthly payments</div>
 							<p>Per month for 10 years to cover your total borrowing</p>
 						</th>
 						<td data-column="1">
@@ -930,7 +939,7 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4 class="tooltip-info" data-tooltip="Debt Burden: Based on your estimated debt and the average national salary for bachelors graduates. Not school specific." data-tipname="debtburden">Debt burden</h4>
+							<div class="h4 tooltip-info" data-tooltip="Debt Burden: Based on your estimated debt and the average national salary for bachelors graduates. Not school specific." data-tipname="debtburden">Debt burden</div>
 						</th>
 						<td data-column="1" class="debt-burden-cell"><span data-nickname="debtburden" class="visualization">None</span></td>
 						<td data-column="2" class="debt-burden-cell"><span data-nickname="debtburden" class="visualization">None</span></td>
@@ -940,7 +949,7 @@ var restoredata = {{ data_js|safe }};
 				<tbody>
 					<tr class="bottom-border" id="indicators-row">
 						<th class="nopad-horiz" colspan="4">
-							<h3 class="bold">School indicators (<a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</h3>
+							<div class="h3 bold">School indicators (<a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</div>
 						</th>
 					</tr>
 					<tr class="school-name-row">
@@ -957,14 +966,14 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Graduation rate</h4>
+							<div class="h4">Graduation rate</div>
 							<p>Percentage of full-time students who graduate within 6 years or 3 years for undergraduate and associates programs, respectively.</p>
 						</th>
 						<td data-column="1">
 							<div class="hide-on-inactive">
 								<div class="graduation-rate-chart">
 									<div class="gradrisk-container">
-										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>
+										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span><span class="gradrisk-indc cfpb_visually_hide"></span>
 										<div class="gradrisk-pointer"></div>	
 									</div>
 									<div class="gradrisk-bar">
@@ -978,7 +987,7 @@ var restoredata = {{ data_js|safe }};
 							<div class="hide-on-inactive">
 								<div class="graduation-rate-chart">
 									<div class="gradrisk-container">
-										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>
+										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>span class="gradrisk-indc cfpb_visually_hide"></span>
 										<div class="gradrisk-pointer"></div>	
 									</div>
 									<div class="gradrisk-bar">
@@ -992,7 +1001,7 @@ var restoredata = {{ data_js|safe }};
 							<div class="hide-on-inactive">
 								<div class="graduation-rate-chart">
 									<div class="gradrisk-container">
-										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>
+										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span>span class="gradrisk-indc cfpb_visually_hide"></span>
 										<div class="gradrisk-pointer"></div>	
 									</div>
 									<div class="gradrisk-bar">
@@ -1005,14 +1014,14 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Loan Default Rate</h4>
+							<div class="h4">Loan Default Rate</div>
 							<p>Percentage of borrowers who have defaulted on their loan after entering repayment. </p>
 						</th>
 						<td data-column="1">
 							<div class="hide-on-inactive">
 								<div class="default-rate-chart">
-									<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
-									<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
+									<p class="default-rate-this">This school<span class="percent">&nbsp;</span></p>
+									<p class="default-rate-avg">National average<span class="percent">&nbsp;</span></p>
 								</div>
 								<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 							</div>
@@ -1020,8 +1029,8 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="2">
 							<div class="hide-on-inactive">
 								<div class="default-rate-chart">
-									<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
-									<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
+									<p class="default-rate-this">This school<span class="percent">&nbsp;</span></p>
+									<p class="default-rate-avg">National average<span class="percent">&nbsp;</span></p>
 								</div>
 								<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 							</div>
@@ -1029,8 +1038,8 @@ var restoredata = {{ data_js|safe }};
 						<td data-column="3">
 							<div class="hide-on-inactive">
 								<div class="default-rate-chart">
-									<span class="default-rate-this">This school<p class="percent">&nbsp;</p></span>
-									<span class="default-rate-avg">National average<p class="percent">&nbsp;</p></span>
+									<p class="default-rate-this">This school<span class="percent">&nbsp;</span></p>
+									<p class="default-rate-avg">National average<span class="percent">&nbsp;</span></p>
 								</div>
 								<p data-nickname="defaultrisk" class="defaultrisk-text indicator-textbox">&nbsp;</p>
 							</div>
@@ -1038,28 +1047,28 @@ var restoredata = {{ data_js|safe }};
 					</tr>
 					<tr class="visualization-row">
 						<th scope="row" data-column="0">
-							<h4>Median Borrowing</h4>
+							<div class="h4">Median Borrowing</div>
 							<p>Families typically borrow this amount in federal loans for a student’s undergraduate study. This shows the Federal loan payment over 10 years for this amount. Your borrowing may be different.</p>
 						</th>
 						<td data-column="1">
 							<div class="hide-on-inactive">
 								<div class="median-borrowing-chart">
 								</div>
-								<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
+								<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p><span class="cfpb_visually_hide indicator-text"></span>
 							</div>
 						</td>
 						<td data-column="2">
 							<div class="hide-on-inactive">
 								<div class="median-borrowing-chart">
 								</div>
-								<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
+								<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p><span class="cfpb_visually_hide indicator-text"></span>
 							</div>
 						</td>
 						<td data-column="3">
 							<div class="hide-on-inactive">
 								<div class="median-borrowing-chart">
 								</div>
-								<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p>
+								<p data-nickname="loandebtrisk" class="median-borrowing-text indicator-textbox">&nbsp;</p><span class="cfpb_visually_hide indicator-text"></span>
 							</div>
 						</td>
 					</tr>
@@ -1080,35 +1089,31 @@ var restoredata = {{ data_js|safe }};
 		<div id="save-footer" class="save-footer">
 			<div class="feedback-container">
 				<p>If you have any ideas or feedback, let us know.</p>
-				<a class="feedback button school-link" href="/paying-for-college/compare-financial-aid-and-college-cost/feedback/" target="_blank">Give us Feedback</a>
+				<a class="feedback button school-link" target="_blank" href="/paying-for-college/compare-financial-aid-and-college-cost/feedback/">Give us Feedback</a>
 			</div>
-			<div id="save-container" class="save-container">
-				<p>You can save this comparison and come back to it later, or share the link with your parents or guidance counselor. We want you to be able to make the best decision for your educational and financial future.</p>
-				<input type="button" id="save-and-share" class="button" value="Save &amp; Share">
-			</div>
-		</div><!-- end #save-footer -->	
-
-		<div id="save-drawer" class="save-drawer">
-			<h2>Save your work <span id="timestamp"></span> <button id="save-current">Save Current Worksheet</button></h2>
-			<div class="save-container">
-				<label class="unique-label" for="unique">URL</label>
-				<input id="unique" type="text" value="http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef" readonly="readonly">
-			</div>
-
-			<div class="save-container">
-				<label class="email-label" for="email">Email</label>
-
-				<input id="email" type="text" value=""> <button id="send-email" class="button button-small">Send</button> <span id="send-email-confirm" style="display:none;">Success!</span>
-				<span class="no-save">The CFPB does not share your email address. We will only use it to send you this information.</span>
-			</div>
-			
-			<div class="save-share-tools">
-				Share this tool with your friends <a class="save-share-facebook" href="http://www.facebook.com/sharer.php?u=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;t=CFPB" title="Share on Facebook" target="_blank">Facebook</a> <a class="save-share-twitter" href="http://twitter.com/share?text=Check%20out%20the%20CFPB's%20tool%20for%20comparing%20college%20offers%20and%20costs!&amp;url=http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/&amp;via=CFPB&amp;related=CFPB" title="Share on Twitter" target="_blank">Twitter</a>
-			</div>
-		</div><!-- end #save-drawer -->
-
-	<p class="about-worksheet"><a class="school-link" href="/paying-for-college/compare-financial-aid-and-college-cost/technote/" target="compare_info">About this tool</a></p>
-
+		</div><!-- end #save-footer -->
 	</div><!-- end #comparison-tool -->
+
+	<div id="modal" class="save-modal" aria-hidden="true" aria-labelledby="modal-title" aria-describedby="modal-description" role="dialog">
+		<div id="modal-description" class="cfpb_visually_hide">Beginning of dialog window. It begins with a heading 1 called &quot;Your work has been saved!&quot;. Escape will cancel and close the window.</div>
+		<h1 id="modal-title">Your work has been saved!</h1>
+		<p>Copy and save the unique URL below to come back to your completed worksheet. You can also use the form to email the URL to yourself or to anyone helping you with your decision!</p>
+		<div class="modal-container">
+			<div class="form-container">
+				<label class="unique-label" for="unique">URL</label>
+				<textarea id="unique" rows="4" cols="50" readonly="readonly">http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef</textarea>
+			</div>
+			<div class="form-container">
+				<label class="email-label" for="email">Email</label>
+				<input id="email" type="text" value="">
+			</div>
+			<p class="no-save">The CFPB does not share your email address. We will only use it to send you this information.</p>
+		</div>
+		<div class="email-group">
+			<button id="send-email" class="button">Email worksheet</button> <span id="send-email-confirm" style="display:none;">Success!</span>
+		</div>
+		<p class="time"><i class="icon-approved-alt"></i><span id="timestamp"></span></p>
+		<button id="close-modal"><i class="icon-delete-alt"></i><span class="cfpb_visually_hide">Close modal</span></button>
+	</div><!-- end #modal -->
 
 {% endblock content %}

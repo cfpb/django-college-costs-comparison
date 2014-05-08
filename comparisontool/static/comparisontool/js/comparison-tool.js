@@ -230,28 +230,40 @@ var CFPBComparisonTool = (function() {
     //-- Set the state of the Add a School section --//
     function setAddStage(stage, flag) {
         if (stage === 1) {
+            $("#step-four .success-message").children().first().removeAttr("tabindex");
+            $("#step-four .success-message").hide();
             $("#introduction .get-started").not("#step-one").hide();
             $("#introduction #step-one").fadeToggle( "slow", "linear" );
         }
         if (stage === 2) {
+            $("#step-four .success-message").children().first().removeAttr("tabindex");
+            $("#step-four .success-message").hide();
             $("#introduction .get-started").not("#step-two").hide();
+            $("#introduction #step-two").children().first().attr("tabindex", "-1");
             $("#introduction #step-two").fadeToggle( "slow", "linear" );
+            $("#introduction #step-two").children().first().focus();
             var col = findEmptyColumn();
             clearHighlights();
             columns[col].toggleHighlight("active");
         }
         if (stage === 3) {
             $("#introduction .get-started").not("#step-three").hide();
+            $("#introduction #step-two").children().first().removeAttr("tabindex");
+            $("#introduction #step-three").children().first().attr("tabindex", "-1");
             $("#introduction #step-three").fadeToggle( "slow", "linear" );
+            $("#introduction #step-three").children().first().focus();
             $("#step-three .staged").hide();
             var financialAid = $("#finaidoffer").is(":checked");
             var kbyoss = $("#school-name-search").attr("data-kbyoss");
             var onCampus = $("#school-name-search").attr("data-oncampusavail");
             var inDistrict = $("#school-name-search").attr("data-indis");
             var tuitionInfo = $("#school-name-search").attr("data-tuitioninfo");
+            var control = $("#school-name-search").attr("data-control");
             if (financialAid === true) {
                 if (kbyoss == "Yes") {
+                    $("#step-three .add-xml").children().first().attr("tabindex", "-1");
                     $("#step-three .add-xml").show();
+                    $("#step-three .add-xml").children().first().focus();
                 }
                 else {
                     setAddStage(4, "success-offer-no-data");
@@ -260,28 +272,55 @@ var CFPBComparisonTool = (function() {
             else if (tuitionInfo == "No") {
                 setAddStage(4, "success-no-data");    
             }
+            else if ($('#step-two input:radio[name="program"]:checked').val() == "grad") {
+                setAddStage(4, "success-no-data");
+            }
             else {
+                $("#step-three .add-school").show();
                 if (onCampus == "Yes") {
-                    $("#step-three #housing-on-campus").show();
+                    $('#step-three #housing-on-campus').children().first().attr("tabindex", "-1");
+                    $('#step-three #housing-on-campus').show();
+                    $('#step-three #housing-on-campus').children().first().focus();
+                    $('#housing-radio-1').prop("checked", true);
                 }
                 else {
                     $("#step-three #housing-on-campus").hide();
+                    $('#housing-radio-2').prop("checked", true);
                 }
-                if (inDistrict == "Yes") {
-                    $("#step-three #residency-in-district").show();
+
+                if (control == "Public") {
+                    $('#add-school-residency').children().first().attr("tabindex", "-1");
+                    $('#add-school-residency').show();
+                    $('#add-school-residency').children().first().focus();
+                    if (inDistrict == "Yes") {
+                        $("#step-three #residency-in-district").children().first().attr("tabindex", "-1");
+                        $("#step-three #residency-in-district").show();
+                        $("#step-three #residency-in-district").children().first().focus();
+                        $('#residency-radio-1').prop("checked", true);
+                    }
+                    else {
+                        $("#step-three #residency-in-district").hide();
+                        $('#residency-radio-2').prop("checked", true);
+                    }
                 }
                 else {
-                    $("#step-three #residency-in-district").hide();                    
+                    $('#add-school-residency').hide();
+                    $('#residency-radio-2').prop("checked", true);
                 }
             }
         }
         if (stage === 4) {
-
+            $("#introduction #step-three").children().first().removeAttr("tabindex");
+            $("#step-three #housing-on-campus").children().first().removeAttr("tabindex");
+            $('#add-school-residency').children().first().removeAttr("tabindex");
+            $("#step-three #residency-in-district").children().first().removeAttr("tabindex");
             $("#introduction .get-started").not("#step-four").hide();
-            $("#introduction #step-four").fadeToggle( "slow", "linear" );
+            $("#introduction #step-four").fadeToggle("slow", "linear");
             $("#step-four .success-message").hide();
             if (flag !== undefined) {
+                $('#' + flag).children().first().attr("tabindex", "-1");
                 $('#' + flag).show();
+                $('#' + flag).children().first().focus();
             }
 
             // Add the School
@@ -299,7 +338,37 @@ var CFPBComparisonTool = (function() {
                 var data = processXML(xml);
                 columns[columnNumber].updateFormValues(data);
             }
-            else {
+            else if (flag == "success-prepop") {
+                var residency = $('input[name="step-three-residency"]:checked').val();
+                if (residency == "indis") {
+                    schoolData.tuitionfees = schoolData.tuitionunderindis;
+                }
+                else if (residency == "outstate") {
+                    schoolData.tuitionfees = schoolData.tuitionundeross;
+                }
+                else {
+                    schoolData.tuitionfees = schoolData.tuitionunderins;                    
+                }
+                
+                var housing = $('input[name="step-three-housing"]:checked').val();
+                if (housing == "oc") {
+                    schoolData.roombrd = schoolData.roombrdoncampus;
+                    schoolData.otherexpenses = schoolData.otheroncampus;
+                }
+                else if (housing == "ofc") {
+                    schoolData.roombrd = schoolData.roombrdoffcampus;
+                    schoolData.otherexpenses = schoolData.otheroffcampus;   
+                }
+                else if (housing == "wfam") {
+                    schoolData.roombrd = global.roombrdwfamily;
+                    schoolData.otherexpenses = schoolData.otherwfamily;
+                }
+                schoolData.transportation = global.transportationdefault;
+
+                schools[columnNumber].touchedFields.push("transportation");
+                schools[columnNumber].touchedFields.push("roombrd");
+                schools[columnNumber].touchedFields.push("otherexpenses");
+
                 columns[columnNumber].updateFormValues(schoolData);
             }
 
@@ -312,6 +381,7 @@ var CFPBComparisonTool = (function() {
             }
             calculateAndDraw(columnNumber);
             $("#get-started-button").html("Add another school");
+            $("#save-and-share").show();
         }
     } // end setAddStage()
 
@@ -372,12 +442,6 @@ var CFPBComparisonTool = (function() {
 			request.fail(function() {
 				// Your fail message here.
 			});
-            // Set the Costs of Attendance to 0 for now
-            schoolData.otherexpenses = 0;
-            schoolData.tuitionfees = 0;
-            schoolData.roombrd = 0;
-            schoolData.books = 0;
-            schoolData.transportation = 0;
 
 			this.schoolData = schoolData;
 		} // end getSchoolData
@@ -1161,20 +1225,26 @@ var CFPBComparisonTool = (function() {
 
                 if ( ( schoolData.gradraterank != undefined ) && ( schoolData.gradrate != "NR" ) ) {
                     columnObj.find(".gradrisk-container").closest("td").children().show();
+                    // Low
                     if ( schoolData.gradrate < groupmed ) {
                         rankcount = grmax - grmed;
                         place = schoolData.gradraterank - grmed;
-                        gradoffset = firstStop + Math.floor( ( rankcount - place ) * ( firstWidth / rankcount))     
+                        gradoffset = firstStop + Math.floor( ( rankcount - place ) * ( firstWidth / rankcount))
+                        columnObj.find(".gradrisk-indc").html("Low graduation rate");
                     }
+                    // Med
                     else if ( schoolData.gradrate < grouphigh ) {
                         rankcount = grmed - grhigh;
                         place = schoolData.gradraterank - grhigh;
-                        gradoffset = secondStop + Math.floor( ( rankcount - place ) * ( secondWidth / rankcount))    
+                        gradoffset = secondStop + Math.floor( ( rankcount - place ) * ( secondWidth / rankcount))
+                        columnObj.find(".gradrisk-indc").html("Medium graduation rate");    
                     }
+                    // High
                     else {
                         rankcount = grhigh;
                         place =  schoolData.gradraterank;
                         gradoffset = thirdStop + Math.floor( ( rankcount - place  ) * ( thirdWidth / rankcount ) );
+                        columnObj.find(".gradrisk-indc").html("High graduation rate");
                     }
                     columnObj.find(".gradrisk-container").css("left", gradoffset + "px");
                 }
@@ -1217,20 +1287,26 @@ var CFPBComparisonTool = (function() {
                 var place = 1;
                 if ( ( schoolData.avgstuloandebtrank != undefined ) && ( schoolData.avgstuloandebt != "NR" ) ) {
                     columnObj.find(".median-borrowing-chart").closest("td").children().show();
+                    // Low
                     if ( schoolData.avgstuloandebt < groupmed ) {
                         rankcount = grmed;
                         place = schoolData.avgstuloandebtrank;
-                        borrowangle = 3 + Math.floor( ( place ) * ( 45 / rankcount))    
+                        borrowangle = 3 + Math.floor( ( place ) * ( 45 / rankcount ));
+                        columnObj.find(".indicator-text").html("Low");
                     }
+                    // Med
                     else if ( schoolData.avgstuloandebt < grouphigh ) {
                         rankcount = grhigh - grmed;
                         place = schoolData.avgstuloandebtrank - grmed;
-                        borrowangle = 55 + Math.floor( ( place ) * ( 60 / rankcount));
+                        borrowangle = 55 + Math.floor( ( place ) * ( 60 / rankcount ));
+                        columnObj.find(".indicator-text").html("Medium");
                     }
+                    // High
                     else {
                         rankcount = grmax - grhigh;
                         place =  schoolData.avgstuloandebtrank - grhigh;
-                        borrowangle = 130 + Math.floor( ( place ) * ( 47 / rankcount ) );
+                        borrowangle = 130 + Math.floor( ( place ) * ( 47 / rankcount ));
+                        columnObj.find(".indicator-text").html("High");
                     }  
                     // Convert to radians
                     borrowangle = ( Math.PI * 2 * borrowangle ) / 360;
@@ -1377,7 +1453,7 @@ var CFPBComparisonTool = (function() {
             if (state === 'active') {
                 columnObj.find(ninjas).show();
                 columnObj.find(grays).removeClass('inactive');
-                columnObj.find('h2[data-nickname="institution_name"]').removeClass('inactive');
+                columnObj.find('div[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
                 columnObj.find('input').removeAttr('disabled');
                 circles[this.columnNumber].attr({fill: "Gray"});
@@ -1386,7 +1462,7 @@ var CFPBComparisonTool = (function() {
             if (state === 'inactive') {
                 columnObj.find(ninjas).hide();
                 columnObj.find(grays).addClass('inactive');
-                columnObj.find('h2[data-nickname="institution_name"]').addClass('inactive');
+                columnObj.find('div[data-nickname="institution_name"]').addClass('inactive');
                 columnObj.find('span.institution-name').addClass('inactive');
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
                 columnObj.find('input.school-data').val('$').attr('disabled', true);
@@ -1420,7 +1496,172 @@ var CFPBComparisonTool = (function() {
 
         } // end .updateFormValues()
 
-    } // end Column() class   
+    } // end Column() class
+
+    //== Functiond for Save modal dialog ==//
+    //== Code from https://github.com/gdkraus/accessible-modal-dialog ==//
+
+    /*
+ 
+     ============================================
+     License for Application
+     ============================================
+     
+     This license is governed by United States copyright law, and with respect to matters
+     of tort, contract, and other causes of action it is governed by North Carolina law,
+     without regard to North Carolina choice of law provisions.  The forum for any dispute
+     resolution shall be in Wake County, North Carolina.
+     
+     Redistribution and use in source and binary forms, with or without modification, are
+     permitted provided that the following conditions are met:
+     
+     1. Redistributions of source code must retain the above copyright notice, this list
+     of conditions and the following disclaimer.
+     
+     2. Redistributions in binary form must reproduce the above copyright notice, this
+     list of conditions and the following disclaimer in the documentation and/or other
+     materials provided with the distribution.
+     
+     3. The name of the author may not be used to endorse or promote products derived from
+     this software without specific prior written permission.
+     
+     THIS SOFTWARE IS PROVIDED BY THE AUTHOR "AS IS" AND ANY EXPRESS OR IMPLIED
+     WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+     AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE
+     LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+     DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+     LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+     THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+     NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+     ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+     
+     */
+
+     // jQuery formatted selector to search for focusable items when modal launches
+    var focusableElementsString = "a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]";
+
+    // Store the item that has focus before opening the modal window
+    var focusedElementBeforeModal;
+
+    function trapSpaceKey(obj, evt, f) {
+        // If space key pressed
+        if (evt.which == 32) {
+            // Fire the user passed event
+            f();
+            evt.preventDefault();
+        }
+    }
+
+    function trapEscapeKey(obj, evt) {
+
+        // If escape pressed
+        if (evt.which == 27) {
+
+            // Get list of all children elements in given object
+            var o = obj.find('*');
+
+            // Get list of focusable items
+            var cancelElement;
+            cancelElement = o.filter("#close-modal")
+
+            // Close the modal window
+            cancelElement.click();
+            evt.preventDefault();
+        }
+
+    }
+
+    function trapTabKey(obj, evt) {
+
+        // If tab or shift-tab pressed
+        if (evt.which == 9) {
+
+            // Get list of all children elements in given object
+            var o = obj.find('*');
+
+            // Get list of focusable items
+            var focusableItems;
+            focusableItems = o.filter(focusableElementsString).filter(':visible')
+
+            // Get currently focused item
+            var focusedItem;
+            focusedItem = jQuery(':focus');
+
+            // Get the number of focusable items
+            var numberOfFocusableItems;
+            numberOfFocusableItems = focusableItems.length
+
+            // get the index of the currently focused item
+            var focusedItemIndex;
+            focusedItemIndex = focusableItems.index(focusedItem);
+
+            if (evt.shiftKey) {
+                // Back tab
+                // If focused on first item and user preses back-tab, go to the last focusable item
+                if (focusedItemIndex == 0) {
+                    focusableItems.get(numberOfFocusableItems - 1).focus();
+                    evt.preventDefault();
+                }
+
+            } else {
+                // Forward tab
+                // If focused on the last item and user preses tab, go to the first focusable item
+                if (focusedItemIndex == numberOfFocusableItems - 1) {
+                    focusableItems.get(0).focus();
+                    evt.preventDefault();
+                }
+            }
+        }
+
+    }
+
+    function setInitialFocusModal(obj) {
+        // Get list of all children elements in given object
+        var o = obj.find("*");
+
+        // Set focus to first focusable item
+        var focusableItems;
+        focusableItems = o.filter(focusableElementsString).filter(":visible").first().focus();
+
+    }
+
+    function enterButtonModal() {
+        // BEGIN logic for executing the Enter button action for the modal window
+        alert("form submitted");
+        // END logic for executing the Enter button action for the modal window
+        hideModal();
+    }
+
+    function showModal(obj) {
+        $("#page").attr("aria-hidden", "true"); // mark the main page as hidden
+        $("#modal-overlay").css("display", "block"); // insert an overlay to prevent clicking and make a visual change to indicate the main apge is not available
+        $("#modal").css("display", "block"); // make the modal window visible
+        $("#modal").attr("aria-hidden", "false"); // mark the modal window as visible
+
+        // Save current focus
+        focusedElementBeforeModal = $(":focus");
+
+        // Get list of all children elements in given object
+        var o = obj.find('*');
+
+        // Safari and VoiceOver shim
+        // If VoiceOver in Safari is used, set the initial focus to the modal window itself instead of the first keyboard focusable item. This causes VoiceOver to announce the aria-labelled attributes. Otherwise, Safari and VoiceOver will not announce the labels attached to the modal window.
+
+        // Set the focus to the first keyboard focusable item
+        o.filter(focusableElementsString).filter(":visible").first().focus();
+
+
+    }
+
+    function hideModal() {
+        $("#modal-overlay").css("display", "none"); // remove the overlay in order to make the main screen available again
+        $("#modal").css("display", "none"); // hide the modal window
+        $("#modal").attr("aria-hidden", "true"); // mark the modal window as hidden
+        $("#page").attr("aria-hidden", "false"); // mark the main page as visible
+
+        // set focus back to element that had it before the modal was opened
+        focusedElementBeforeModal.focus();
+    }
 
     //-----------------------//
     //    DOCUMENT.READY     //
@@ -1464,11 +1705,8 @@ var CFPBComparisonTool = (function() {
 	        // Initialize columns[] with an instance of Column() for each column
 	        for (var x=1;x<=3;x++) {
 	            columns[x] = new Column(x);
-	        }
-
-	        // Make all columns inactive
-	        for (var x=1; x<=3; x++) {
-	            columns[x].toggleActive("inactive");
+                // Make all columns inactive
+                columns[x].toggleActive("inactive");
 	        }
 
             // Notification for mobile screens //
@@ -1484,17 +1722,64 @@ var CFPBComparisonTool = (function() {
                 $(this).parents().toggleClass( "focus" );
             } );
             
-            
+            // Set up special vertical tabbing for comparison-tables
+            for (c = 1; c <= 3; c++) {
+                var tabOrder = 1;
+                var selectors = "input.school-data, .gibill-calculator, .rate-change";
+                $('[data-column="' + c + '"]').find(selectors).each(function() {
+                    var i = (c * 100) + tabOrder;
+                    $(this).attr("data-tab-order", i);
+                    tabOrder++;
+                });
+            }
 
         //---------------------------//
         //    JQUERY EVENT HANDLERS
         //---------------------------//
 
+            // Modal save dialog
+            $( "body" ).append( "<div id='modal-overlay' tabindex='-1'></div>" );
+
+            $("#save-and-share").click(function(e) {
+                showModal($('#modal'));
+            });
+            $("#enter").click(function(e) {
+                enterButtonModal();
+            });
+            $("#close-modal").click(function(e) {
+                hideModal();
+            });
+            $("#close-modal").keydown(function(event) {
+                trapSpaceKey($(this), event, hideModal);
+            });
+            $("html").on("click", "#modal-overlay", function(e) {
+                hideModal();
+                $("html").off("click");
+            });
+            $("#modal").keydown(function(event) {
+                trapTabKey($(this), event);
+            });
+            $("#modal").keydown(function(event) {
+                trapEscapeKey($(this), event);
+            });
+
             // Accordions (not the instrument, sadly)
             $('tr.show').click(function() {
                 $(this).closest('tbody').children(':not(.show, .tr-hide)').toggleClass('hide');
-                $(this).closest('.arrw-collapse').toggleClass('arrw'); 
+                $(this).closest('.arrw-collapse').toggleClass('arrw');
+                if ( $(this).closest('.arrw-collapse').hasClass('arrw') ) {
+                    var text = "Collapse";
+                    $(this).find('.arrw-collapsable').html(text);
+                }
+                else {
+                    var text = "Expand";
+                    $(this).find('.arrw-collapsable').html(text);
+                }
             });
+            $('.arrw-click').click(function(ev) {
+                ev.preventDefault();
+            });
+
             // Show the instructions on expand the first time and let it be
             $('tr.totalcont').click(function() {
                 $('tr.instructions').removeClass('tr-hide');
@@ -1570,6 +1855,8 @@ var CFPBComparisonTool = (function() {
                 $("#school-name-search").attr("data-kbyoss", schoolData.kbyoss);
                 // does the school have on-campus housing?
                 $("#school-name-search").attr("data-oncampusavail", schoolData.oncampusavail);
+                // Control of the school
+                $("#school-name-search").attr("data-control", schoolData.control);
                 // does the school have in-district !== in-state?
                 if ( schoolData.tuitionunderindis !== schoolData.tuitionunderins ) {
                     $("#school-name-search").attr("data-indis", "Yes");
@@ -1612,14 +1899,13 @@ var CFPBComparisonTool = (function() {
                     if (xml == "") {
                         data = false;
                     }
-                    // xml was not valid
                     if (data === false) {
                         if ( xml === previousXML ) {
                             data = "invalid"; // Invalid XML entered twice, so ignore XML
                         }
                         else {
                             previousXML = xml;
-                            $('.xml-error').show();
+                            $('#step-three .xml-error').show();
                         }
                     }
                     if (data !== false) {
@@ -1634,9 +1920,10 @@ var CFPBComparisonTool = (function() {
                     }
                 }
                 else {
-
+                    setAddStage(4, "success-prepop");
                 }
             });
+
 
             // [step-four] User clicks Continue at step-four
             $("#step-four .continue").click( function(ev) {
@@ -1678,7 +1965,7 @@ var CFPBComparisonTool = (function() {
                 $('.remove-confirm').hide();
                 var columnNumber = $(this).closest("[data-column]").attr("data-column");
                 if (columns[columnNumber].fetchSchoolID() != "") {
-                    var removeWindow = $(this).closest("[data-column]").children(".remove-confirm");
+                    var removeWindow = $(this).closest(".removal-row").children(".remove-confirm");
                     removeWindow.show();
                     ev.stopPropagation();
                     $('html').on('click', 'body', function() {
@@ -1705,7 +1992,7 @@ var CFPBComparisonTool = (function() {
 
             // Wait, no, I don't want to remove it!
             $(".remove-confirm .remove-no").click( function() {
-                $(this).closest("[data-column]").children(".remove-confirm").hide();
+                $(this).closest(".removal-row").children(".remove-confirm").hide();
             })
 
             // -----------
@@ -1839,6 +2126,40 @@ var CFPBComparisonTool = (function() {
                     }, 500);
             });
 
+            // Manually move focus when user presses tab in the #comparison-tables inputs
+            $("#comparison-tables").on("keydown", "input.school-data", function (ev) {
+                var code = event.keyCode || event.which;
+                if (code == 9) {
+                    var tabOrder = parseInt($(this).attr('data-tab-order'));
+                    if (event.shiftKey) {
+                        var nextTab = tabOrder - 1;
+                    }
+                    else {
+                        var nextTab = tabOrder + 1; 
+                    }
+
+                    var nextInput = $('[data-tab-order="' + nextTab + '"]:visible');
+                    if ( nextInput.length > 0 && nextInput.attr('disabled') == undefined ) {
+                        event.preventDefault();
+                        nextInput.focus();
+                    }
+
+                    else {
+                        if (event.shiftKey) {
+                            var column = Math.floor(tabOrder / 100) - 1
+                            nextInput = $('[data-column="' + column + '"] input:visible').last();
+                        }
+                        else {
+                            nextTab = Math.ceil(tabOrder / 100) * 100  + 1;
+                            nextInput = $('[data-tab-order="' + nextTab + '"]:visible');
+                        }
+                        if ( nextInput.length > 0 && nextInput.attr('disabled') == undefined ) {
+                            event.preventDefault();
+                            nextInput.focus();
+                        }
+                    }
+                }
+            });
 
             $(".bar-info").on('mouseover', function() {
                 // position bar-info-container based on the element clicked
@@ -1962,7 +2283,6 @@ var CFPBComparisonTool = (function() {
                             + "#"
                             + global.worksheet_id;
                 $("#unique").val(geturl);
-                $("#save-drawer").slideDown(300);
                 var t  = new Date();
                 var minutes = t.getMinutes();
                 if ( minutes < 10 ) {
@@ -1983,16 +2303,64 @@ var CFPBComparisonTool = (function() {
 
             // --- Start the page up! --- //
 
-            // Set vertical tabbing
-            for (c = 1; c <= 3; c++) {
-                var school = $("[data-column='" + c + "']");
-                var tabindex = 1;
-                school.find("input, select").each(function() {
-                    var i = (c * 100) + tabindex;
-                    $(this).attr("tabindex", i);
-                    tabindex++;
-                });
-            }
+            // Add arrow key navigation in main table. //
+            (function ($) {
+                $.fn.enableCellNavigation = function () {
+                    var arrow = { left: 37, up: 38, right: 39, down: 40 };
+             
+                    // select all on focus
+                    this.find('input').keydown(function (e) {
+             
+                        // shortcut for key other than arrow keys
+                        if ($.inArray(e.which, [arrow.left, arrow.up, arrow.right, arrow.down]) < 0) { return; }
+                        var input = e.target;
+                        var td = $(e.target).closest('td');
+                        var moveTo = null;
+                        switch (e.which) {
+                            case arrow.left: {
+                                if (input.selectionStart == 0) {
+                                    moveTo = td.prev('td:has(input,textarea)');
+                                }
+                                break;
+                            }
+                            case arrow.right: {
+                                if (input.selectionEnd == input.value.length) {
+                                    moveTo = td.next('td:has(input,textarea)');
+                                }
+                                break;
+                            }      
+                            case arrow.up:
+                            case arrow.down: {
+                                var tr = td.closest('tr');
+                                var pos = td[0].cellIndex;
+                                var moveToRow = null;
+                                if (e.which == arrow.down) {
+                                    moveToRow = tr.next('tr');
+                                }
+                                else if (e.which == arrow.up) {
+                                    moveToRow = tr.prev('tr');
+                                }      
+                                if (moveToRow.length) {
+                                    moveTo = $(moveToRow[0].cells[pos]);
+                                }
+                                break;
+                            }
+                        }
+             
+                        if (moveTo && moveTo.length) {     
+                            e.preventDefault();
+                            moveTo.find('input,textarea').each(function (i, input) {
+                                input.focus();
+                                input.select();
+                            });
+                        }
+                    });
+                };
+            })(jQuery);
+             
+            $(function() {
+              $('#comparison-tables').enableCellNavigation();
+            });
 
             // Check to see if there is restoredata
             if(window.location.hash){
