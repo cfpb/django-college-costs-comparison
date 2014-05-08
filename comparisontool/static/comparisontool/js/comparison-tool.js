@@ -1498,7 +1498,7 @@ var CFPBComparisonTool = (function() {
 
     } // end Column() class
 
-    //== Functiond for Save modal dialog ==//
+    //== Functions for Save modal dialog ==//
     //== Code from https://github.com/gdkraus/accessible-modal-dialog ==//
 
     /*
@@ -1599,7 +1599,7 @@ var CFPBComparisonTool = (function() {
 
             // Get currently focused item
             var focusedItem;
-            focusedItem = jQuery(':focus');
+            focusedItem = $(':focus');
 
             // Get the number of focusable items
             var numberOfFocusableItems;
@@ -1655,7 +1655,7 @@ var CFPBComparisonTool = (function() {
         // If VoiceOver in Safari is used, set the initial focus to the modal window itself instead of the first keyboard focusable item. This causes VoiceOver to announce the aria-labelled attributes. Otherwise, Safari and VoiceOver will not announce the labels attached to the modal window.
         if(usingSafari()) {
             // set a tabIndex of -1 to the modal window itself so we can set the focus on it
-            jQuery('#modal').attr('tabindex','-1');
+            $('#modal').attr('tabindex','-1');
             
             // set the focus to the modal window itself
             obj.focus();
@@ -1665,6 +1665,7 @@ var CFPBComparisonTool = (function() {
         }
 
         // Set the focus to the first keyboard focusable item
+        $('#modal').attr('tabindex','-1');
         o.filter(focusableElementsString).filter(":visible").first().focus();
 
 
