@@ -1766,12 +1766,12 @@ var CFPBComparisonTool = (function() {
                 $(this).closest('tbody').children(':not(.show, .tr-hide)').toggleClass('hide');
                 $(this).closest('.arrw-collapse').toggleClass('arrw');
                 if ( $(this).closest('.arrw-collapse').hasClass('arrw') ) {
-                    var text = "Collapse " + $(this).attr('data-arrwname');
-                    $(this).find('.arrw-click').html(text);
+                    var text = "Collapse";
+                    $(this).find('.arrw-collapsable').html(text);
                 }
                 else {
-                    var text = "Expand " + $(this).attr('data-arrwname');
-                    $(this).find('.arrw-click').html(text);
+                    var text = "Expand";
+                    $(this).find('.arrw-collapsable').html(text);
                 }
             });
             $('.arrw-click').click(function(ev) {

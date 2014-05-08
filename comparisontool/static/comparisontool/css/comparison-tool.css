@@ -924,59 +924,57 @@ This contains the majority of the structural styles for table-based elements.
 
 #comparison-tables tr th a.arrw-click {
     border: none;
+    color: #101820;
     display: block;
-    float: left;
-    height: 35px;
-    position: relative;
-        top: -10px;
-        left: -15px;
-    text-align: left;
+    text-align: right;
     text-decoration: none;
-    text-indent: -9999px;
-    width: 35px;
+}
+
+#comparison-tables tr th a.arrw-click:focus {
+    outline: thin dotted;
 }
 
 .arrw-collapse th:first-child .arrw-click,
 .arrw th:first-child .arrw-click{
-    background: url(../images/collapse_arrows.png) no-repeat 15px -26px;
+    background: url(../images/collapse_arrows.png) no-repeat 5px -36px;
     cursor: pointer;
 }
 
 .totalcost.arrw-collapse.arrw th:first-child .arrw-click,
 .totalcont.arrw-collapse.arrw th:first-child .arrw-click{
-    background-position: 15px 13px;
+    background-position: 5px -3px;
 }
 
 .grants.arrw-collapse th:first-child .arrw-click {
-    background-position: 15px -96px;
+    background-position: 5px -106px;
 }
 
 .grants.arrw-collapse.arrw th:first-child .arrw-click  {
-    background-position: 15px -61px;
+    background-position: 5px -71px;
 }
 
 .contributions.arrw-collapse th:first-child .arrw-click  {
-    background-position: 15px -166px;
+    background-position: 5px -176px;
 }
 
 .contributions.arrw-collapse.arrw th:first-child .arrw-click  {
-    background-position: 15px -131px;
+    background-position: 5px -141px;
 }
 
 .federal.arrw-collapse th:first-child .arrw-click  {
-    background-position: 15px -236px;
+    background-position: 5px -246px;
 }
 
 .federal.arrw-collapse.arrw th:first-child .arrw-click  {
-    background-position: 15px -201px;
+    background-position: 5px -211px;
 }
 
 .private.arrw-collapse th:first-child .arrw-click  {
-    background-position: 15px -306px;
+    background-position: 5px -316px;
 }
 
 .private.arrw-collapse.arrw th:first-child .arrw-click  {
-    background-position: 15px -271px;
+    background-position: 5px -281px;
 }
 
 /* The GI Bill section. */
