@@ -672,13 +672,15 @@ This contains basic HTML elements.
 The buttons differ from others on the site. */
 
 /* Override current styles */
-.paying-for-college #wrapper button {
+.paying-for-college #wrapper button,
+.paying-for-college #modal button {
     letter-spacing: 0;
     text-transform: none;
 }
 
 .paying-for-college #wrapper button,
-.paying-for-college #wrapper .button {
+.paying-for-college #wrapper .button,
+.paying-for-college #modal button {
     box-sizing: border-box;
     display: inline-block;
     
@@ -708,47 +710,59 @@ The buttons differ from others on the site. */
 .paying-for-college #wrapper button:hover,
 .paying-for-college #wrapper button:focus,
 .paying-for-college #wrapper .button:hover,
-.paying-for-college #wrapper .button:focus {
-    /* Class included for static state examples */
+.paying-for-college #wrapper .button:focus,
+.paying-for-college #modal button:hover,
+.paying-for-college #modal button:focus {
     background-color: #328ed8; /* Pacific/80 */
 }
 
 .paying-for-college #wrapper button:active,
-.paying-for-college #wrapper .button:active {
-    /* Class included for static state examples */
+.paying-for-college #wrapper .button:active,
+.paying-for-college #modal .button:active,
+.paying-for-college #modal button:active {
     background-color: #33578e; /* Navy/80 */
 }
 
 .paying-for-college #wrapper button[disabled=disabled],
+.paying-for-college #modal button[disabled=disabled],
 .paying-for-college #wrapper button[disabled],
+.paying-for-college #modal button[disabled],
 .paying-for-college #wrapper button.disabled,
+.paying-for-college #modal button.disabled,
 .paying-for-college #wrapper button.preset,
+.paying-for-college #modal button.preset,
 .paying-for-college #wrapper .button.disabled,
-.paying-for-college #wrapper .button.preset {
+.paying-for-college #modal .button.disabled,
+.paying-for-college #wrapper .button.preset,
+.paying-for-college #modal .button.preset {
     background-color: #e7e7e6;
     color: #75787b;
     cursor: default; /* Fallback for IE/Opera */
     cursor: not-allowed;
 }
 
-.paying-for-college #wrapper button.cancel {
+.paying-for-college #wrapper button.cancel,
+.paying-for-college #modal button.cancel {
     background-color: #75787b;
     color: #fff;
 }
 
 .paying-for-college #wrapper button.cancel:hover,
-.paying-for-college #wrapper button.cancel:focus
- {
+.paying-for-college #wrapper button.cancel:focus,
+.paying-for-college #modal button.cancel:hover,
+.paying-for-college #modal button.cancel:focus {
     background-color: #8E9193;
     color: #fff;
 }
 
-.paying-for-college #wrapper button.cancel:active, {
+.paying-for-college #wrapper button.cancel:active,
+.paying-for-college #modal button.cancel:active {
     background-color: #515355;
     color: #fff;
 }
 
-.paying-for-college #wrapper button.destructive {
+.paying-for-college #wrapper button.destructive,
+.paying-for-college #modal button.destructive {
     background-color: #d14124;
     color: #fff;
 }
@@ -758,8 +772,13 @@ The buttons differ from others on the site. */
 .paying-for-college #wrapper button.destructive:focus,
 .paying-for-college #wrapper .button.destructive:hover,
 .paying-for-college #wrapper .button.destructive:active,
-.paying-for-college #wrapper .button.destructive:focus
- {
+.paying-for-college #wrapper .button.destructive:focus,
+.paying-for-college #modal button.destructive:hover,
+.paying-for-college #modal button.destructive:active,
+.paying-for-college #modal button.destructive:focus,
+.paying-for-college #modal .button.destructive:hover,
+.paying-for-college #modal .button.destructive:active,
+.paying-for-college #modal .button.destructive:focus {
     background-color: #da6750;
     color: #fff;
 }

@@ -1094,27 +1094,29 @@ var restoredata = {{ data_js|safe }};
 			</div>
 		</div><!-- end #save-footer -->
 	</div><!-- end #comparison-tool -->
-
-	<div id="modal" class="save-modal" aria-hidden="true" aria-labelledby="modal-title" aria-describedby="modal-description" role="dialog">
-		<div id="modal-description" class="cfpb_visually_hide">Beginning of dialog window. It begins with a heading 1 called &quot;Your work has been saved!&quot;. Escape will cancel and close the window.</div>
-		<h1 id="modal-title">Your work has been saved!</h1>
-		<p>Copy and save the unique URL below to come back to your completed worksheet. You can also use the form to email the URL to yourself or to anyone helping you with your decision!</p>
-		<div class="modal-container">
-			<div class="form-container">
-				<label class="unique-label" for="unique">URL</label>
-				<textarea id="unique" rows="4" cols="50" readonly="readonly">http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef</textarea>
-			</div>
-			<div class="form-container">
-				<label class="email-label" for="email">Email</label>
-				<input id="email" type="text" value="">
-			</div>
-			<p class="no-save">The CFPB does not share your email address. We will only use it to send you this information.</p>
-		</div>
-		<div class="email-group">
-			<button id="send-email" class="button">Email worksheet</button> <span id="send-email-confirm" style="display:none;">Success!</span>
-		</div>
-		<p class="time"><i class="icon-approved-alt"></i><span id="timestamp"></span></p>
-		<button id="close-modal"><i class="icon-delete-alt"></i><span class="cfpb_visually_hide">Close modal</span></button>
-	</div><!-- end #modal -->
-
 {% endblock content %}
+
+{% block app_modal %}
+<div id="modal" class="save-modal" aria-hidden="true" aria-labelledby="modal-title" aria-describedby="modal-description" role="dialog">
+	<div id="modal-description" class="cfpb_visually_hide">Beginning of dialog window. It begins with a heading 1 called &quot;Your work has been saved!&quot;. Escape will cancel and close the window.</div>
+	<h1 id="modal-title">Your work has been saved!</h1>
+	<p>Copy and save the unique URL below to come back to your completed worksheet. You can also use the form to email the URL to yourself or to anyone helping you with your decision!</p>
+	<div class="modal-container">
+		<div class="form-container">
+			<label class="unique-label" for="unique">URL</label>
+			<textarea id="unique" rows="4" cols="50" readonly="readonly">http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/?restore=871e01a4-a12b-403c-9e9a-5523909cecef</textarea>
+		</div>
+		<div class="form-container">
+			<label class="email-label" for="email">Email</label>
+			<input id="email" type="text" value="">
+		</div>
+		<p class="no-save">The CFPB does not share your email address. We will only use it to send you this information.</p>
+	</div>
+	<div class="email-group">
+		<button id="send-email" class="button">Email worksheet</button> <span id="send-email-confirm" style="display:none;">Success!</span>
+	</div>
+	<p class="time"><i class="icon-approved-alt"></i><span id="timestamp"></span></p>
+	<button id="close-modal"><i class="icon-delete-alt"></i><span class="cfpb_visually_hide">Close modal</span></button>
+</div><!-- end #modal -->
+<div id="modal-overlay" tabindex="-1"></div>
+{% endblock %}
