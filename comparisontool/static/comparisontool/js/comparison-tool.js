@@ -1757,13 +1757,11 @@ var CFPBComparisonTool = (function() {
 
             // Modal save dialog
             $( "body" ).append( "<div id='modal-overlay' tabindex='-1'></div>" );
+            $("#modal-overlay").css("display", "none");
             $("#page").attr("aria-hidden", "false"); // mark the main page as visible
 
             $("#save-and-share").click(function(e) {
                 showModal($('#modal'));
-            });
-            $("#enter").click(function(e) {
-                enterButtonModal();
             });
             $("#close-modal").click(function(e) {
                 hideModal();
