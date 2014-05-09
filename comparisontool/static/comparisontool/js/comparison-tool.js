@@ -1665,7 +1665,6 @@ var CFPBComparisonTool = (function() {
         }
 
         // Set the focus to the first keyboard focusable item
-        $('#modal').attr('tabindex','-1');
         o.filter(focusableElementsString).filter(":visible").first().focus();
 
 
@@ -1755,7 +1754,6 @@ var CFPBComparisonTool = (function() {
         //---------------------------//
 
             // Modal save dialog
-            $( "body" ).append( "<div id='modal-overlay' tabindex='-1'></div>" );
             $("#modal-overlay").css("display", "none");
             $("#page").attr("aria-hidden", "false"); // mark the main page as visible
 
