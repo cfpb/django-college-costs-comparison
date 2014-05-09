@@ -1963,6 +1963,57 @@ This contains styles for
     font-weight: 500;
 }
 
+.feedback-container {
+    width: 56%;
+}
+
+.comparison-tool .feedback-header {
+    padding-top: 2em;
+}
+
+.comparison-tool .feedback-header h1 {
+    font-size: 1.625em;
+    font-weight: 400;
+}
+
+.comparison-tool .feedback-section h2 {
+    font-size: 1.125em;
+    font-weight: 600;
+    text-transform: none;
+}
+
+.feedback-section .pfc-feedback {
+    display: block;
+    margin: 1em 0;
+}
+
+.feedback-section .pfc-signup {
+    background-color: #e3e4e5;
+}
+
+.feedback-section .pfc-signup label {
+    display: block;
+    float: left;
+    font-weight: 600;
+    text-align: right;
+    width: 25%;
+}
+
+.feedback-section .pfc-signup #email,
+.feedback-section .pfc-signup #questionid_10376 {
+    display: block;
+    float: right;
+    width: 70%;
+}
+
+.pfc-signup .pfc-send-email {
+    text-align: right;
+}
+
+.paying-for-college #wrapper #pfc-send-email {
+    margin-right: 0;
+}
+
 /* HELPER CLASSES
 This contains varous elements that are standalone components within the tool.
 -------------------------------------------------------------------------------*/
