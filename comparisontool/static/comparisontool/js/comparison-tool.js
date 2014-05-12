@@ -1498,7 +1498,7 @@ var CFPBComparisonTool = (function() {
 
     } // end Column() class
 
-    //== Functiond for Save modal dialog ==//
+    //== Functions for Save modal dialog ==//
     //== Code from https://github.com/gdkraus/accessible-modal-dialog ==//
 
     /*
@@ -1543,6 +1543,20 @@ var CFPBComparisonTool = (function() {
     // Store the item that has focus before opening the modal window
     var focusedElementBeforeModal;
 
+    function usingSafari() {
+        var ua = navigator.userAgent.toLowerCase(); 
+        if (ua.indexOf('safari')!=-1){ 
+            if( ua.indexOf('chrome')  > -1 ) {
+                return false; // chrome
+            } else {
+                return true; // safari
+            }
+        } else {
+            return false;
+        }
+        
+    }
+
     function trapSpaceKey(obj, evt, f) {
         // If space key pressed
         if (evt.which == 32) {
@@ -1585,7 +1599,7 @@ var CFPBComparisonTool = (function() {
 
             // Get currently focused item
             var focusedItem;
-            focusedItem = jQuery(':focus');
+            focusedItem = $(':focus');
 
             // Get the number of focusable items
             var numberOfFocusableItems;
@@ -1625,13 +1639,6 @@ var CFPBComparisonTool = (function() {
 
     }
 
-    function enterButtonModal() {
-        // BEGIN logic for executing the Enter button action for the modal window
-        alert("form submitted");
-        // END logic for executing the Enter button action for the modal window
-        hideModal();
-    }
-
     function showModal(obj) {
         $("#page").attr("aria-hidden", "true"); // mark the main page as hidden
         $("#modal-overlay").css("display", "block"); // insert an overlay to prevent clicking and make a visual change to indicate the main apge is not available
@@ -1646,6 +1653,16 @@ var CFPBComparisonTool = (function() {
 
         // Safari and VoiceOver shim
         // If VoiceOver in Safari is used, set the initial focus to the modal window itself instead of the first keyboard focusable item. This causes VoiceOver to announce the aria-labelled attributes. Otherwise, Safari and VoiceOver will not announce the labels attached to the modal window.
+        if(usingSafari()) {
+            // set a tabIndex of -1 to the modal window itself so we can set the focus on it
+            $('#modal').attr('tabindex','-1');
+            
+            // set the focus to the modal window itself
+            obj.focus();
+        } else {
+            // set the focus to the first keyboard focusable item
+            o.filter(focusableElementsString).filter(':visible').first().focus();
+        }
 
         // Set the focus to the first keyboard focusable item
         o.filter(focusableElementsString).filter(":visible").first().focus();
@@ -1725,7 +1742,7 @@ var CFPBComparisonTool = (function() {
             // Set up special vertical tabbing for comparison-tables
             for (c = 1; c <= 3; c++) {
                 var tabOrder = 1;
-                var selectors = "input.school-data, .gibill-calculator, .rate-change";
+                var selectors = "input.school-data, .gibill-calculator, .rate-change, .arrw-click";
                 $('[data-column="' + c + '"]').find(selectors).each(function() {
                     var i = (c * 100) + tabOrder;
                     $(this).attr("data-tab-order", i);
@@ -1738,13 +1755,11 @@ var CFPBComparisonTool = (function() {
         //---------------------------//
 
             // Modal save dialog
-            $( "body" ).append( "<div id='modal-overlay' tabindex='-1'></div>" );
+            $("#modal-overlay").css("display", "none");
+            $("#page").attr("aria-hidden", "false"); // mark the main page as visible
 
             $("#save-and-share").click(function(e) {
                 showModal($('#modal'));
-            });
-            $("#enter").click(function(e) {
-                enterButtonModal();
             });
             $("#close-modal").click(function(e) {
                 hideModal();
