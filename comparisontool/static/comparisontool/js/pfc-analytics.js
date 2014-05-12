@@ -146,8 +146,9 @@ var PFCAnalytics = (function() {
     // Fire an event when adding a school.
     function newSchoolEvent() {
         var schoolID = $("#school-name-search").attr("data-schoolid");
-        var program = $('#step-one input:radio[name="program"]:checked').val();
-        var prgmlength = String($('#step-one select[name="prgmlength"]').val());
+        var program = $('#step-two input:radio[name="program"]:checked').val();
+        var kbyoss = $("#school-name-search").attr("data-kbyoss");
+        var prgmlength = String($('#step-two select[name="prgmlength"]').val());
         var offer = "No";
         global.schoolsAdded++;
         var schoolCount = String(global.schoolsAdded);
@@ -160,13 +161,14 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
         if (offer === "Yes") {
             _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked"] );
+            if ( $('#xml-text').val() === "" &&  kbyoss == "Yes") {
+                _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "Blank"] );
+            }
+            else {
+                _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "XML text"] );
+            }
         }
-        if ( $('#xml-text').val() === "" ) {
-            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "Blank"] );
-        }
-        else {
-            _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "XML text"] );
-        }
+
     }
 
     // Check for a new school added when .continue and .add-another-school are clicked
@@ -262,7 +264,6 @@ var PFCAnalytics = (function() {
 
         // Stop the link from going anywhere
         // (it's ok we saved the href and we'll fire it later)
-        e.preventDefault();
 
         // Use a try statement in case there are google analytics errors
         // that could prevent the rest of this code from changing the url
@@ -273,7 +274,9 @@ var PFCAnalytics = (function() {
 
         // Give google analytics time to do its thing before changing the page url
         // http://support.google.com/analytics/answer/1136920?hl=en
-        setTimeout(function() { document.location.href = link_url; }, 500);
+
+        setTimeout(function() { window.open(link_url, '_blank'); }, 500);
+
     });
     // Email address submission on /paying-for-college/
     /* $('.email-button').click(function() {
