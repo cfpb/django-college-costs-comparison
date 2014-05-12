@@ -3,8 +3,11 @@ var CFPBComparisonFeedback = (function() {
 
     $(document).ready(function() {
         $('#feedback-container').on('keyup', 'textarea', function() {
-            if ( $(this).val != "" ) {
+            if ( $(this).val() != "" ) {
                 $('#feedback-container button').removeAttr('disabled');            
+            }
+            else {
+                $('#feedback-container button').attr('disabled', true);
             }
         });
     });
