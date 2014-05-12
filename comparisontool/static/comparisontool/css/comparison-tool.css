@@ -2008,6 +2008,10 @@ This contains styles for
     background-color: #e3e4e5;
 }
 
+.feedback-section #id_message {
+    width: 97%;
+}
+
 .feedback-section .pfc-signup label {
     display: block;
     float: left;
