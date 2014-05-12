@@ -264,6 +264,7 @@ var PFCAnalytics = (function() {
 
         // Stop the link from going anywhere
         // (it's ok we saved the href and we'll fire it later)
+        e.preventDefault();
 
         // Use a try statement in case there are google analytics errors
         // that could prevent the rest of this code from changing the url
@@ -274,6 +275,7 @@ var PFCAnalytics = (function() {
 
         // Give google analytics time to do its thing before changing the page url
         // http://support.google.com/analytics/answer/1136920?hl=en
+        setTimeout(function() { window.open(link_url, '_blank'); }, 500);
     });
     // Email address submission on /paying-for-college/
     /* $('.email-button').click(function() {
