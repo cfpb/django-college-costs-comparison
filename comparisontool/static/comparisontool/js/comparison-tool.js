@@ -1844,6 +1844,8 @@ var CFPBComparisonTool = (function() {
             // [step-two] User clicks on a school from the search-results list
             $("#step-two .search-results").on("click", ".school-result a", function(event) {
                 event.preventDefault();
+                $('#finaidoffer').focus();
+
                 var school_id = $(this).attr("href");
 
                 // AJAX the schoolData
@@ -1890,6 +1892,7 @@ var CFPBComparisonTool = (function() {
                 $("#school-name-search").val($(this).html());
                 $("#step-two .search-results").html("").hide();
                 $("#step-two .continue").removeClass("disabled").removeAttr("disabled");
+                $('body').scrollTop( $('#introduction').offset().top - 50 );
             });
 
 
