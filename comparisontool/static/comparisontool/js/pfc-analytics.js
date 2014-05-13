@@ -88,10 +88,14 @@ var PFCAnalytics = (function() {
         var serving = $('[data-column="1"] .military-status-select :selected').html();
         var tier = $("[data-column='1'] .military-tier-select").find(":selected").html();
         var residency = $("[data-column='1'] .military-residency-panel :radio:checked").val();
+        var control = $('.header-cell[data-column="' + columnNumber + '"]').attr('data-control');
+
         _gaq.push(["_trackEvent", "School Interactions", "GI Bill Calculator Submit", schoolID]); 
         _gaq.push(["_trackEvent", "School Interactions", "Military Status", serving]); 
         _gaq.push(["_trackEvent", "School Interactions", "Cumulative service", tier]); 
-        _gaq.push(["_trackEvent", "School Interactions", "GI Residency", residency]);        
+        if (control == "Public") {
+            _gaq.push(["_trackEvent", "School Interactions", "GI Residency", residency]);            
+        }
     });
 
     // Fire an event when Send Email is clicked
