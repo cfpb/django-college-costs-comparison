@@ -353,15 +353,15 @@ var CFPBComparisonTool = (function() {
                 }
                 
                 var housing = $('input[name="step-three-housing"]:checked').val();
-                if (housing == "oc") {
+                if (housing == "oncampus") {
                     schoolData.roombrd = schoolData.roombrdoncampus;
                     schoolData.otherexpenses = schoolData.otheroncampus;
                 }
-                else if (housing == "ofc") {
+                else if (housing == "offcampus") {
                     schoolData.roombrd = schoolData.roombrdoffcampus;
                     schoolData.otherexpenses = schoolData.otheroffcampus;   
                 }
-                else if (housing == "wfam") {
+                else if (housing == "withfamily") {
                     schoolData.roombrd = global.roombrdwfamily;
                     schoolData.otherexpenses = schoolData.otherwfamily;
                 }
