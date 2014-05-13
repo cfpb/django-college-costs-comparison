@@ -163,11 +163,6 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "School Added", schoolID ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
-        _gaq.push([ "_trackEvent", "School Interactions", "Housing", housing ] );
-        if (control == "Public") {
-            _gaq.push([ "_trackEvent", "School Interactions", "Residency", residency ] );
-        }
-
 
         if (offer === "Yes") {
             _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked"] );
@@ -179,6 +174,12 @@ var PFCAnalytics = (function() {
             }
         }
 
+        else {
+            _gaq.push([ "_trackEvent", "School Interactions", "Housing", housing ] );
+            if (control == "Public") {
+                _gaq.push([ "_trackEvent", "School Interactions", "Residency", residency ] );
+            }
+        }
     }
 
     // Check for a new school added when .continue and .add-another-school are clicked
