@@ -149,7 +149,11 @@ var PFCAnalytics = (function() {
         var program = $('#step-two input:radio[name="program"]:checked').val();
         var kbyoss = $("#school-name-search").attr("data-kbyoss");
         var prgmlength = String($('#step-two select[name="prgmlength"]').val());
+        var housing = $('input[name="step-three-housing"]:checked').val();
+        var control = $("#school-name-search").attr("data-control");
+        var residency = $('input[name="step-three-residency"]:checked').val();
         var offer = "No";
+
         global.schoolsAdded++;
         var schoolCount = String(global.schoolsAdded);
         if ( $("#finaidoffer").is(":checked")) {
@@ -159,12 +163,18 @@ var PFCAnalytics = (function() {
         _gaq.push([ "_trackEvent", "School Interactions", "School Added", schoolID ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Type", program ] );
         _gaq.push([ "_trackEvent", "School Interactions", "Program Length", prgmlength ] );
+        _gaq.push([ "_trackEvent", "School Interactions", "Housing", housing ] );
+        if (control == "Public") {
+            _gaq.push([ "_trackEvent", "School Interactions", "Residency", residency ] );
+        }
+
+
         if (offer === "Yes") {
             _gaq.push([ "_trackEvent", "School Interactions", "Financial Aid Clicked"] );
             if ( $('#xml-text').val() === "" &&  kbyoss == "Yes") {
                 _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "Blank"] );
             }
-            else {
+            else if ( $('#xml-text').val() !== "" && kbyoss == "Yes") {
                 _gaq.push([ "_trackEvent", "School Interactions", "School Added - XML", "XML text"] );
             }
         }
