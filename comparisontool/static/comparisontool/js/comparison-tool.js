@@ -1001,7 +1001,8 @@ var CFPBComparisonTool = (function() {
 			columnObj.find('[data-nickname="institution_name"]').html(schoolData.school);
             $('.stage-success').find('span.success-school-name').html(schoolData.school);
             $(".stage-success").find("a.navigator-link").show().attr("href", navigatorlink);
-			columnObj.find('.header-cell').attr("data-schoolid", schoolData.school_id);
+			$('.header-cell[data-column="' + this.columnNumber + '"').attr("data-schoolid", schoolData.school_id);
+            $('.header-cell[data-column="' + this.columnNumber + '"').attr("data-control", schoolData.control);
 			columnObj.find('input.school-data').not(".interest-rate").val("$0");
 			columnObj.find('input[data-nickname="institutional_loan_rate"]').val(global.institutionalloanratedefault * 100 + '%');
 			columnObj.find('input[data-nickname="private_loan_rate"]').val(global.privateloanratedefault * 100 + '%');
