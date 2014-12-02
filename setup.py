@@ -13,7 +13,7 @@ def read_file(filename):
 
 
 setup(
-    name='django-comparisontool',
+    name='django-college-cost-comparison',
     version=__import__('comparisontool').__version__,
     author='<Include Your Name Here>',
     author_email='<Include Your Email Here>',
