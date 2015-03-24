@@ -5303,11 +5303,14 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
 }
 
 #repaying-student-debt .ds-section.ds-clear-all {
-  padding: 70px 0;
+  padding: 0px 0px 50px;
+}
+
+#repaying-student-debt .ds-section.ds-clear-all button.button-right {
+  float: right;
 }
 
 #repaying-student-debt .ds-section .option-box {
-  border-bottom: 1px solid #BABBBD;
   margin-bottom: 30px;
   margin-top: 40px;
 }
