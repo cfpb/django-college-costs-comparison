@@ -33,10 +33,16 @@
       // destination is a module
       else {
         destination = '#' + decisionStackerTargets[code]['module'];
+        $('.ds-clear-all.ds-clear-after-m').show();
       }
       $( destination ).slideDown( 200, function() {
+        var scrollTop = $( destination ).offset().top;
+        // customization:
+        if ( destination.substring(0,2) == '#q' ) {
+          scrollTop = $( '#your-situation' ).offset().top;
+        }
         $( 'html, body' ).animate({
-            scrollTop: $( destination ).offset().top
+            scrollTop: scrollTop
         }, 800);
       });
       $( destination ).attr('data-ds-origin', code);
@@ -44,7 +50,7 @@
       var $section = $(this).closest('.ds-section');
       $section.find('[data-responds-to="' + $(this).attr('data-name') + '"]').show();
       $section.find('.ds-content').slideUp( 200 );
-      $('.ds-clear-all').show();
+      $('.ds-clear-all.ds-clear-after-q').show();
 
     });
     $('.ds-response-container .go-back').click( function() {
@@ -59,7 +65,7 @@
       });
       $section.find( '.ds-response-container div' ).hide();
       $('.ds-module').hide();
-      $section.find( '.ds-content' ).slideDown(200, function(){
+      $section.find( '.ds-content' ).slideDown(400, function(){
         $( 'html, body' ).animate({
             scrollTop: $section.offset().top
         }, 800);
