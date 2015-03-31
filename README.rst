@@ -1,7 +1,11 @@
-comparisontool
+College Cost Comparion tool
 ========================
 
-Making it go (preliminary)
+This Django application allows students to compare financial aid offors. You can see the live version at:
+
+http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/
+
+Installation and Usage
 ------------------------------------
 
 Prerequisites: working virtualenv and virtualenvwrapper::
