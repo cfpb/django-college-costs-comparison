@@ -8,22 +8,20 @@ http://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-coll
 Installation and Usage
 ------------------------------------
 
-Prerequisites: working virtualenv and virtualenvwrapper::
+Install the requirements::
 
-    # check out https://github.cfpb.gov/rosskarchner/cfpb_common and make note of where you put it
-    # checkout this repo, and cd into it
-    mkvirtualenv comparisontool
-    add2virtualenv <path to the cfpb_common checkout>
-    add2virtualenv .
     pip install -r requirements.txt
-    django-admin.py runserver --settings=example_project.settings
-    # open http://127.0.0.1:8000/comparisontool/ in your browser!
 
+Add 'comparisontools' to your project's INSTALLED_APPS_, and add a URL to your
+urls_ that includes `comparisontool.urls`::
+
+
+.. _INSTALLED_APPS: https://docs.djangoproject.com/en/1.6/ref/settings/#installed-apps
+.. _urls: https://docs.djangoproject.com/en/1.6/topics/http/urls/#including-other-urlconfs
 
 Create the database and tables
 ----------------------------------------
 
-The syncdb/migrate dance::
     
     django-admin.py syncdb  --settings=example_project.settings
     django-admin.py migrate comparisontool   --settings=example_project.settings
@@ -51,13 +49,23 @@ use the load_school command::
 
     django-admin.py load_school data/schools.csv --settings=example_project.settings
 
-Shove it into Solr::
+Load it into Solr::
     
     django-admin.py rebuild_index --settings=example_project.settings
 
 Load the BAH Rates::
 
     django-admin.py load_bah data/bah-lookup.csv --settings=example_project.settings
+
+
+
+Run the app
+-----------------------------------
+
+    django-admin.py runserver --settings=example_project.settings
+    # open http://127.0.0.1:8000/comparisontool/ in your browser!
+
+The URL may be different, depending on what you set in urls.py
 
 The school search API
 ------------------------------------
