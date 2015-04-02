@@ -20,9 +20,9 @@ that includes \`comparisontool.urls\`:
 Create the database and tables
 ==============================
 
-> django-admin.py syncdb --settings=example\_project.settings
-> django-admin.py migrate comparisontool
-> --settings=example\_project.settings
+    django-admin.py syncdb --settings=example\_project.settings
+    django-admin.py migrate comparisontool
+    --settings=example\_project.settings
 
 Setting up Solr
 ===============
@@ -30,7 +30,7 @@ Setting up Solr
 -   Download the latest release of Solr 3.x and unzip it somewhere
 -   Generate the solr schema with:
 
-> django-admin.py build_solr_schema --settings=example_project.settings >  schema.xml
+    django-admin.py build_solr_schema --settings=example_project.settings >  schema.xml
 
 put that schema.xml whereever you unpacked Solr:
 example/solr/conf/schema.xml
