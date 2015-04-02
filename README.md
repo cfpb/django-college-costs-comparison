@@ -58,8 +58,8 @@ Load the BAH Rates:
 Run the app
 ===========
 
-> django-admin.py runserver --settings=example\_project.settings \# open
-> <http://127.0.0.1:8000/comparisontool/> in your browser!
+    django-admin.py runserver --settings=example\_project.settings
+    # open <http://127.0.0.1:8000/comparisontool/> in your browser!
 
 The URL may be different, depending on what you set in urls.py
 
