@@ -149,10 +149,6 @@ Accepts post requests with two parameters: 'id' and 'email'.
 
 'email' is the recipients email.
 
-example\_project.settings is now configured to use the "console"
-backend, as described here:
-<https://docs.djangoproject.com/en/dev/topics/email/#console-backend>
-
 Running the Tests
 =================
 
