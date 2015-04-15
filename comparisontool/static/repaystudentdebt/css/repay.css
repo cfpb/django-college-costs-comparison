@@ -5341,7 +5341,7 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
 }
 
 #repaying-student-debt .sample-text {
-
+  font-family: Georgia, serif;
 } 
 
 #repaying-student-debt .highlighted {
@@ -5442,10 +5442,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
   display: none;
 }
 
-#repaying-student-debt .helpful-advice {
-  margin-left: 40px;
-}
-
 #repaying-student-debt .big-right-arrow {
   color: #337E7D;
   font-size: 40px;
@@ -5480,3 +5476,11 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
   margin-top: 20px;
 }
 
+#repaying-student-debt .helpful-advice ul {
+  padding-left: 0px;
+}
+
+#repaying-student-debt .helpful-advice ul li {
+  list-style-position: inside;
+  margin-bottom: 40px;
+}
