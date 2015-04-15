@@ -2,6 +2,8 @@
  * Decision tree where each previous choice is visible
  */
 (function ($) {
+  var slideSpeed = 200,
+      scrollSpeed = 400;
 
   function assignButtons( code ) {
     // this function relies on decisionStackerTargets object
@@ -16,6 +18,18 @@
       if ( sectionData.hasOwnProperty( name ) ) {
         $(this).val(sectionData['question'] + sectionData[name]);
       }
+    });
+  }
+
+  function scrollToDestination( destination ) {
+    $( destination ).slideDown( slideSpeed, function() {
+      var scrollTop = $( destination ).offset().top;
+      if ( destination.substring(0,2) == '#q' ) {
+        scrollTop = $( '#your-situation' ).offset().top;
+      }
+      $( 'html, body' ).animate({
+          scrollTop: scrollTop
+      }, scrollSpeed);
     });
   }
 
@@ -35,16 +49,7 @@
         destination = '#' + decisionStackerTargets[code]['module'];
         $('.ds-clear-all.ds-clear-after-m').show();
       }
-      $( destination ).slideDown( 200, function() {
-        var scrollTop = $( destination ).offset().top;
-        // customization:
-        if ( destination.substring(0,2) == '#q' ) {
-          scrollTop = $( '#your-situation' ).offset().top;
-        }
-        $( 'html, body' ).animate({
-            scrollTop: scrollTop
-        }, 800);
-      });
+      scrollToDestination( destination );
       $( destination ).attr('data-ds-origin', code);
       assignButtons( code );
       var $section = $(this).closest('.ds-section');
@@ -65,11 +70,7 @@
       });
       $section.find( '.ds-response-container div' ).hide();
       $('.ds-module').hide();
-      $section.find( '.ds-content' ).slideDown(400, function(){
-        $( 'html, body' ).animate({
-            scrollTop: $section.offset().top
-        }, 800);
-      });
+      scrollToDestination( '#' + questionNumber );
       if ( questionNumber === 1 ) {
         $('.ds-clear-all').hide();
       }
