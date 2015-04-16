@@ -20,9 +20,9 @@ that includes \`comparisontool.urls\`:
 Create the database and tables
 ==============================
 
-> django-admin.py syncdb --settings=example\_project.settings
-> django-admin.py migrate comparisontool
-> --settings=example\_project.settings
+    django-admin.py syncdb --settings=example\_project.settings
+    django-admin.py migrate comparisontool
+    --settings=example\_project.settings
 
 Setting up Solr
 ===============
@@ -30,7 +30,7 @@ Setting up Solr
 -   Download the latest release of Solr 3.x and unzip it somewhere
 -   Generate the solr schema with:
 
-        django-admin.py build_solr_schema --settings=example_project.settings >  schema.xml
+    django-admin.py build_solr_schema --settings=example_project.settings >  schema.xml
 
 put that schema.xml whereever you unpacked Solr:
 example/solr/conf/schema.xml
@@ -58,8 +58,8 @@ Load the BAH Rates:
 Run the app
 ===========
 
-> django-admin.py runserver --settings=example\_project.settings \# open
-> <http://127.0.0.1:8000/comparisontool/> in your browser!
+    django-admin.py runserver --settings=example\_project.settings
+    # open <http://127.0.0.1:8000/comparisontool/> in your browser!
 
 The URL may be different, depending on what you set in urls.py
 
@@ -148,10 +148,6 @@ Accepts post requests with two parameters: 'id' and 'email'.
 'id' is a WORKSHEET ID
 
 'email' is the recipients email.
-
-example\_project.settings is now configured to use the "console"
-backend, as described here:
-<https://docs.djangoproject.com/en/dev/topics/email/#console-backend>
 
 Running the Tests
 =================
