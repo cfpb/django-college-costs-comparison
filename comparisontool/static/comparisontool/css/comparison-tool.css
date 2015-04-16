@@ -596,8 +596,7 @@ font styles, heading styles, etc. Other adjustments happen within components.
     font-family: "Avenir Next", Verdana, sans-serif !important;
 }
 
-.h2,
-thead h2 {
+.h2 {
     color: #101820;
     font-size: 1.3em;
     font-weight: 700;
@@ -607,7 +606,7 @@ thead h2 {
     margin-top: 2.5em;
 }
 
-thead #institution-row h2.inactive {
+thead #institution-row div.inactive {
     color: #babbbd;
     padding-bottom: 2em;
 }
@@ -637,14 +636,16 @@ table h3 {
 h4 {
 	color: #101820;
 	font-size: 1.125em;
+    font-weight: 600;
     letter-spacing: 0;
     text-transform: none;
 }
 
-.totalcont h4,
-.totalcost h4 {
+.totalcont .h4,
+.totalcost .h4 {
 	color: #101820;
     font-size: 1.25em;
+    font-weight: 600;
     letter-spacing: 0;
 }
 
@@ -928,8 +929,9 @@ This contains the majority of the structural styles for table-based elements.
     border-bottom: 5px solid #d14124;
 }
 
-.grants h5, .federal h5, .private h5, .contributions h5 {
+.grants .h5, .federal .h5, .private .h5, .contributions .h5 {
     font-size: 1.125em;
+    font-weight: 600;
 }
 
 .grants h6, .federal h6, .private h6, .contributions h6 {
@@ -1324,6 +1326,10 @@ This contains varous elements that are standalone components within the tool.
 .tooltip-info, .tooltip-info:hover {
     cursor: auto;
     border-bottom: none;
+}
+
+th div.tooltip-info {
+    display: inline;
 }
 
 input.tooltip-info {

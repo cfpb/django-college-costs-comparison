@@ -43,7 +43,45 @@ describe("CFPBComparisonTool.numToMoney(), the number to text converter...", fun
     });
 });
 
-describe("CFPBComparisonTool.Column.setByNickname, which sets an element to a value using the 'data-nickname' attribute...", function() {
+describe("findEmptyColumn should return the first empty column, returns column number (1-3)", function() {
+    beforeEach(function() {
+        setFixtures('<table><thead><tr id="institution-row" class="institution-row"><th scope="col" data-column="1" data-schoolid=""></th><th scope="col" data-column="2" data-schoolid=""></th><th scope="col" data-column="3" data-schoolid=""></th></tr></thead></table>');
+    });
+
+    it("should return 1 if the none of the columns have data in them", function() {
+        var expected_col = 1;
+        var actual_col = CFPBComparisonTool.findEmptyColumn();
+        expect(actual_col).toEqual(expected_col);
+    });
+
+    it("should return 2 if the first column has data in it", function() {
+        // arrange
+        $("#institution-row [data-column='1']").attr("data-schoolid", "123");
+
+        // action
+        var actual_col = CFPBComparisonTool.findEmptyColumn();
+
+        // assert
+        expect(actual_col).toEqual(2);
+    });
+
+    it("should return undefined if all of the columns are filled with school IDs", function() {
+        // arrange 
+        $("#institution-row [data-column='1']").attr("data-schoolid", "123");
+        $("#institution-row [data-column='2']").attr("data-schoolid", "456");
+        $("#institution-row [data-column='3']").attr("data-schoolid", "789");
+
+        // action
+        var actual_col = CFPBComparisonTool.findEmptyColumn();
+
+        // assert
+        expect(actual_col).toEqual(false);
+    });
+});
+
+
+
+/*describe("jQuery.fn.setbyname, which sets an element to a value using the 'name' attribute...", function() {
     beforeEach(function() {
         var fixture = '<table><tr><td data-column="1"><input type="text" data-nickname="foofaa" /></td>';
         fixture += '<td data-column="1"><h2 data-nickname="faafaa">Faafaa</h2></td>';
@@ -65,4 +103,4 @@ describe("CFPBComparisonTool.Column.setByNickname, which sets an element to a va
         column.setByNickname('foofoo', .5, "p");
         expect($('input[data-nickname="foofoo"]').val()).toEqual("50%");
     });
-});
+});*/
