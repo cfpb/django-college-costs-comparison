@@ -480,6 +480,7 @@ This has similar styles as the global site navigation.
 }
 #repaying-student-debt b,
 #repaying-student-debt strong {
+  font-family: "AvenirNextLTW01-Demi";
   font-weight: bold;
 }
 #repaying-student-debt dfn {
@@ -5292,14 +5293,10 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
 
 #repaying-student-debt .ds-section .some-options {
   border-top: 3px solid #2CB34A;
-  font-size: 2.25em;
-  border-bottom: 1px solid #DFE1DF;
   text-align: center;
-  padding: 42px 0;
-  background-color: #F8F8F8;
   margin-bottom: 70px;
   margin-left: -20px;
-  width: 976px;
+  width: 1016px;
 }
 
 #repaying-student-debt .ds-section.ds-clear-all {
@@ -5445,6 +5442,7 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
 #repaying-student-debt .big-right-arrow {
   color: #337E7D;
   font-size: 40px;
+  margin-left: 25px;
 }
 
 #repaying-student-debt .key-differences-list {
@@ -5468,6 +5466,10 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
   margin: 2em 0;
 }
 
+#repaying-student-debt .communicating-with-collectors h4 {
+  font-weight: normal;
+}
+
 #repaying-student-debt .sample-letter-button {
   text-align: right;
 }
@@ -5481,6 +5483,36 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
 }
 
 #repaying-student-debt .helpful-advice ul li {
-  list-style-position: inside;
+  margin-left: 15px;
   margin-bottom: 40px;
+}
+
+#repaying-student-debt .subtitle {
+  font-size: 1.125em;
+}
+
+#repaying-student-debt .image-left {
+  float: left;
+  margin-right: 1em;
+  margin-top: -0.5em;
+}
+
+#repaying-student-debt #your-situation {
+  margin-top: 35px;
+}
+
+#repaying-student-debt .payment-plans,
+#repaying-student-debt .get-started {
+  margin-top: 35px;
+}
+
+#repaying-student-debt .numbered-list-icon {
+  display: inline-block;
+  width: 8%;
+  vertical-align: top;
+}
+
+#repaying-student-debt .numbered-list-icon + div {
+  display: inline-block;
+  width: 91%;
 }
