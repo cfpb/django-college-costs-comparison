@@ -24,8 +24,6 @@
 
   function processHash( position ) {
     hashes = location.hash.replace('#', '').split(':');
-    console.log('Clicking button: ');
-    console.log($('.ds-buttons:visible button[data-ds-name="' + hashes[position] + '"]'));
     $('.ds-buttons:visible button[data-ds-name="' + hashes[position] + '"]').click();
     if ( position + 1 < hashes.length ) {
       processHash( position + 1 );
@@ -97,7 +95,6 @@
             hash = hash + ':'
           }
           hash = hash + $(this).attr( 'data-ds-decision' );
-          console.log('debug: ' + questionNumber + ' - ' + hash);
         }
       });
       $section.find( '.ds-response-container div' ).hide();
