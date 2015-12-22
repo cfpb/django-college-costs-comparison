@@ -30,6 +30,8 @@ The main styles for the unique elements on this page.
 }
 
 .act {
+    display: block;
+    margin-bottom: 1.25em;
     background: #eee url("/static/repaystudentdebt/images/take-action.png") no-repeat 10px 10px;
 }
 
@@ -61,7 +63,7 @@ The styles for the tooltip interactions on this page.
 }
 
 p.tooltip-info {
-    display: inline;    
+    display: inline;
 }
 
 #tooltip-container {
@@ -5339,7 +5341,7 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
 
 #repaying-student-debt .sample-text {
   font-family: Georgia, serif;
-} 
+}
 
 #repaying-student-debt .highlighted {
   background: #F1F2F2;
