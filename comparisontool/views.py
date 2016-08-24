@@ -147,7 +147,7 @@ class EmailLink(View):
                       fail_silently=False)
 
         document = {'status': 'ok'}
-        return HttpResponse(json.dumps(document), mimetype='application/javascript')
+        return HttpResponse(json.dumps(document), content_type='application/javascript')
 
 
 class CreateWorksheetView(View):
@@ -183,7 +183,7 @@ def bah_lookup_api(request):
         document_as_json = json.dumps(document)
     except:
         document_as_json = json.dumps({})
-    return HttpResponse(document_as_json, mimetype='application/javascript')
+    return HttpResponse(document_as_json, content_type='application/javascript')
 
 
 def school_search_api(request):
