@@ -143,7 +143,7 @@ class EmailLink(View):
             body_template = get_template('comparisontool/email_body.txt')
             body = body_template.render(RequestContext(request,dict(guid=worksheet.guid)))
 
-            send_mail(subject, body, 'no-reply@cfpb.gov', [recipient],
+            send_mail(subject, body, 'no-reply-cfgov@cfpb.gov', [recipient],
                       fail_silently=False)
 
         document = {'status': 'ok'}
