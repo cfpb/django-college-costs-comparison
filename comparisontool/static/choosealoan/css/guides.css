@@ -248,7 +248,6 @@ section,header {border-color:#3B7187;}
 .bubble-text{min-height:150px;background-repeat:no-repeat;background-position:20px 20px;
     padding:80px 20px 0 20px;color:black;font-size:18px;line-height:26px;}
 .bubble.bubble-active .bubble-text{color:#101820;}
-.bubble-text.key-options {background-image:url("/static/choosealoan/images/key_options.png");}
 .bubble-text.key-dollar {background-image:url("/static/choosealoan/images/key_dollar.png");}
 .bubble-text.key-check {background-image:url("/static/choosealoan/images/key_check.png");}
 .bubble-text.key-clock {background-image:url("/static/choosealoan/images/key_clock.png");}
