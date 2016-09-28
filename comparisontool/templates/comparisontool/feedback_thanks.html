@@ -1,15 +1,16 @@
 {% extends "front/base_nonresponsive.html" %} 
+{% load static from staticfiles %}
 
 {% block title %}Paying for College - Compare financial aid and college cost{% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
+<link rel="stylesheet" href="{% static 'comparisontool/css/comparison-tool.css' %}">
 {% endblock %}
 
 
 {% block page_js %}
-<script type="text/javascript" src="{{ STATIC_PREFIX }}comparisontool/js/cfpb-comparison-analytics-min.js"></script>
-<script src="{{ STATIC_PREFIX }}comparisontool/js/feedback.js"></script>
+<script type="text/javascript" src="{% static 'comparisontool/js/cfpb-comparison-analytics-min.js' %}"></script>
+<script src="{% static 'comparisontool/js/feedback.js' %}"></script>
 {% endblock %}
 
 {% block body_class %}page paying-for-college{% endblock %}
