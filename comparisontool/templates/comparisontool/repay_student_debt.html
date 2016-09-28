@@ -1,4 +1,5 @@
 {% extends "front/base_nonresponsive.html" %}
+{% load static from staticfiles %}
 
 {% block page_meta %}
 <meta charset="UTF-8" />
@@ -14,7 +15,7 @@
 
 
 {% block page_css %}
-    <link href="{{ STATIC_PREFIX }}repaystudentdebt/css/repay.css" rel="stylesheet">
+    <link href="{% static 'repaystudentdebt/css/repay.css' %}" rel="stylesheet">
     <link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
     <!--[if IE 7]>
     <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
@@ -59,7 +60,7 @@
       <p>Paying off student debt can be confusing. Walk through your options and optimize how to pay off your loans.</p>
     </div>
     <div class="pfc-hero-image alignbottomright">
-      <img alt="" src="{{ STATIC_PREFIX }}repaystudentdebt/images/3_hero_repaying_debt.png">
+      <img alt="" src="{% static 'repaystudentdebt/images/3_hero_repaying_debt.png' %}">
     </div>
   </div><!-- end .pfc-hero-wrapper -->
   <a class="cfpb_visually_hide focusable" href="#wizroot">Skip to main content</a>
@@ -90,7 +91,7 @@
         <p>Get started by answering a few questions below.</p>
       </div>
       <div class="content-l_col content-l_col-1-4">
-        <!-- <img class="repaying-page-icon" src="{{ STATIC_PREFIX }}repaystudentdebt/images/Page_icon.png"> -->
+        <!-- <img class="repaying-page-icon" src="{% static 'repaystudentdebt/images/Page_icon.png' %}"> -->
       </div>
     </div>
 
@@ -640,13 +641,13 @@
 
           <div class="content-l payment-plans">
             <div class="content-l_col content-l__main content-l_col-1-2">
-              <img class="image-left" src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_1_35x35.png">
+              <img class="image-left" src="{% static 'repaystudentdebt/images/Icon_1_35x35.png' %}">
               <h3>Pay As You Earn</h3>
 
               <p>If you are a recent grad, <a href="http://www.consumerfinance.gov/askcfpb/1555/what-pay-you-earn-paye-how-do-i-know-if-i-qualify.html" target="_blank" class="internal-link">Pay As You Earn (PAYE)</a> is a newer repayment plan that is likely available for your federal student loans. The plan caps your monthly federal student loan payment at 10 percent of your discretionary income. If you think you might be eligible, learn more about <a href="http://www.consumerfinance.gov/askcfpb/1555/what-pay-you-earn-paye-how-do-i-know-if-i-qualify.html" target="_blank" class="internal-link">who qualifies for PAYE here</a>.</p>
             </div>
             <div class="content-l_col content-l_col-1-2">
-              <img class="image-left" src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_2_35x35.png">
+              <img class="image-left" src="{% static 'repaystudentdebt/images/Icon_2_35x35.png' %}">
               <h3>REPAYE</h3>
 
               <p>If you don’t think you’re eligible for Pay As You Earn, you should look into REPAYE (<em>Revised</em> Pay As You Earn). You can get a lower payment if your federal student loan debt is high compared to your income and family size. You can <a href="http://blog.ed.gov/2015/12/your-federal-student-loans-just-got-easier-to-repaye/">learn more here</a> about who is eligible and the differences between these plans. </p>
@@ -991,7 +992,7 @@
           <p>You’re well on your way as long as you keep up with your loan payments. Here's some helpful advice to keep you on track:</p>
           <div class="content-l option-box">
             <div class="content-l_col content-l_col-1-8">
-              <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_1_40x40.png">
+              <img src="{% static 'repaystudentdebt/images/Icon_1_40x40.png' %}">
             </div>
             <div class="content-l_col content-l_col-7-8">
               <h3>Consider enrolling in auto-debit (setting up automatic payments)</h3>
@@ -1001,7 +1002,7 @@
           <hr>
           <div class="content-l option-box">
             <div class="content-l_col content-l_col-1-8">
-              <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_2_40x40.png">
+              <img src="{% static 'repaystudentdebt/images/Icon_2_40x40.png' %}">
             </div>
             <div class="content-l_col content-l_col-7-8 read-more read-more_is-closed">
 
@@ -1050,7 +1051,7 @@
           <hr>
           <div class="content-l option-box">
             <div class="content-l_col content-l_col-1-8">
-              <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_3_40x40.png">
+              <img src="{% static 'repaystudentdebt/images/Icon_3_40x40.png' %}">
             </div>
             <div class="content-l_col content-l_col-7-8">
               <h3>Find out about consolidating (or refinancing) your private loans at a lower interest rate.</h3>
@@ -1065,7 +1066,7 @@
           <hr>
           <div class="content-l option-box">
             <div class="content-l_col content-l_col-1-8">
-              <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_4_40x40.png">
+              <img src="{% static 'repaystudentdebt/images/Icon_4_40x40.png' %}">
             </div>
             <div class="content-l_col content-l_col-7-8 read-more read-more_is-closed">
               <h3 class="inline-header">Release your co-signer.</h3>
@@ -1299,7 +1300,7 @@
             <ul class="samples-list">
               <li class="read-more read-more_is-closed">
                 <div class="numbered-list-icon">
-                  <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_1_40x40.png">
+                  <img src="{% static 'repaystudentdebt/images/Icon_1_40x40.png' %}">
                 </div>
                 <div>
                   <h4>Ask for more information about the debt</h4>
@@ -1372,7 +1373,7 @@
 
               <li class="read-more read-more_is-closed">
                 <div class="numbered-list-icon">
-                  <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_2_40x40.png">
+                  <img src="{% static 'repaystudentdebt/images/Icon_2_40x40.png' %}">
                 </div>
                 <div>
                   <h4>Dispute the debt and ask collector to prove responsibility or stop communication</h4>
@@ -1409,7 +1410,7 @@
 
               <li class="read-more read-more_is-closed">
                 <div class="numbered-list-icon">
-                  <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_3_40x40.png">
+                  <img src="{% static 'repaystudentdebt/images/Icon_3_40x40.png' %}">
                 </div>
                 <div>
                   <h4>Restrict how and when a debt collector can contact you</h4>
@@ -1451,7 +1452,7 @@
 
               <li class="read-more read-more_is-closed">
                 <div class="numbered-list-icon">
-                  <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_4_40x40.png">
+                  <img src="{% static 'repaystudentdebt/images/Icon_4_40x40.png' %}">
                 </div>
                 <div>
                   <h4>Inform a collector that you have hired a lawyer</h4>
@@ -1488,7 +1489,7 @@
 
               <li class="read-more read-more_is-closed">
                 <div class="numbered-list-icon">
-                  <img src="{{ STATIC_PREFIX }}repaystudentdebt/images/Icon_5_40x40.png">
+                  <img src="{% static 'repaystudentdebt/images/Icon_5_40x40.png' %}">
                 </div>
                 <div>
                   <h4>Stop all communication</h4>
@@ -1620,7 +1621,7 @@
 {% endblock %}
 
 {% block page_js %}
-    <script src="{{ STATIC_PREFIX }}repaystudentdebt/js/repay.js"></script>
-    <script src="{{ STATIC_PREFIX }}repaystudentdebt/js/decision-stacker.js"></script>
-    <script src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
+    <script src="{% static 'repaystudentdebt/js/repay.js' %}"></script>
+    <script src="{% static 'repaystudentdebt/js/decision-stacker.js' %}"></script>
+    <script src="{% static 'comparisontool/js/pfc-analytics.js' %}"></script>
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends "front/base_nonresponsive.html" %}
+{% load static from staticfiles %}
 
 {% block page_meta %}
 <meta charset="UTF-8" />
@@ -11,11 +12,11 @@
 {% block title %}Manage college money{% endblock %}
 
 {% block page_css %}
-    <link href="{{ STATIC_PREFIX }}choosealoan/css/guides.css" rel="stylesheet" media="screen">
-    <link href="{{ STATIC_PREFIX }}choosealoan/css/print.css" rel="stylesheet" media="print">
-    <link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
+    <link href="{% static 'choosealoan/css/guides.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'choosealoan/css/print.css' %}" rel="stylesheet" media="print">
+    <link rel='stylesheet' id='cfpb_icon_font-css'  href="{% static 'nemo/_/cfpb-icon-font/css/icons.css' %}" type="text/css" media="all">
     <!--[if IE 7]>
-    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
+    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="{% static 'nemo/_/cfpb-icon-font/css/icons-ie7.css' %}" type="text/css" media="all" />
     <![endif]-->
 {% endblock %}
 
@@ -32,7 +33,7 @@
             <p>Practical advice on how to make sure you’re getting the best deal.</p>
         </div>
         <div class="pfc-hero-image alignbottomright">
-            <img alt="" src="{{ STATIC_PREFIX }}manageyourmoney/images/2_hero_explore.png">
+            <img alt="" src="{% static 'manageyourmoney/images/2_hero_explore.png' %}">
         </div>
     </div><!-- end .pfc-hero-wrapper -->
     <a class="cfpb_visually_hide focusable" href="#guide-content">Skip to main content</a>
@@ -69,19 +70,19 @@
         <div class="bubble-text key-clock">
 			When should I get a bank account? 
 		</div>
-        <img alt="" src="{{ STATIC_PREFIX }}pb/payingforcollege/key_questions/negbubble.png">
+        <img alt="" src="{% static 'pb/payingforcollege/key_questions/negbubble.png' %}">
 	</div>
 	<div class="bubble" _id='o2' id='_o2' rel="answer2">
 		<div class="bubble-text key-dollar">
 			How do I avoid paying unexpected fees?
 		</div>
-        <img alt="" src="{{ STATIC_PREFIX }}pb/payingforcollege/key_questions/negbubble.png">
+       <img alt="" src="{% static 'pb/payingforcollege/key_questions/negbubble.png' %}">
 	</div>
 	<div class="bubble" _id='o3' id='_o3' rel="answer3">
 		<div class="bubble-text key-bank">
 			Do I have to get an account with the bank at my school? 
 		</div>
-        <img alt="" src="{{ STATIC_PREFIX }}pb/payingforcollege/key_questions/negbubble.png">
+        <img alt="" src="{% static 'pb/payingforcollege/key_questions/negbubble.png' %}">
 	</div>
 	
 	<div style='clear:both;'></div>		
@@ -427,6 +428,6 @@ What is a financial aid disbursement? </div>
 {% endblock %}
 
 {% block page_js %}
-    <script src="{{ STATIC_PREFIX }}manageyourmoney/js/guides.js"></script>
-    <script src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
+    <script src="{% static 'manageyourmoney/js/guides.js' %}"></script>
+    <script src="{% static 'comparisontool/js/pfc-analytics.js' %}"></script>
 {% endblock %}
