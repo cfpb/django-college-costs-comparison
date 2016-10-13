@@ -1,7 +1,7 @@
 body {font-family: "Avenir Next", Arial, sans-serif;}
 .screen-hide{display:none;}
 h1, h2, h3, h4, h5, h6 {margin:0; font-weight:normal; margin-bottom:6px; margin-left:0px;}
-h1 {font-size:36px; font-weight:500;}
+h1 {font-size:36px; font-weight:500;margin-bottom:.882em !important;}
 h2,h3,h4 {text-transform:uppercase;}
 h2 {font-size:18px;}
 h3 {font-size:18px;line-height:24px; margin-bottom:18px;}
