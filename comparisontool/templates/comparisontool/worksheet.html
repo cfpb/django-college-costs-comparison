@@ -1,8 +1,7 @@
-{% extends "front/base_update.html" %} 
+{% extends "front/base_nonresponsive.html" %} 
 
-{% load static %}
-{% get_static_prefix as STATIC_PREFIX %}
-{% get_media_prefix as MEDIA_PREFIX %}
+{% load static from staticfiles %}
+
 
 {% block title %}Compare financial aid and college cost{% endblock %}
 
@@ -11,10 +10,10 @@
 {% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{{ STATIC_PREFIX }}comparisontool/css/comparison-tool.css">
-<link rel='stylesheet' id='cfpb_icon_font-css'  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons.css?ver=all" type="text/css" media="all">
+<link rel="stylesheet" href="{% static 'comparisontool/css/comparison-tool.css' %}">
+<link rel='stylesheet' id='cfpb_icon_font-css'  href="{% static 'nemo/_/cfpb-icon-font/css/icons.css' %}" type="text/css" media="all">
     <!--[if IE 7]>
-    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="/wp-content/themes/cfpb_nemo/_/cfpb-icon-font/css/icons-ie7.css?ver=all" type="text/css" media="all" />
+    <link rel="stylesheet" id="cfpb_icon_font_ie7-css"  href="{% static 'nemo/_/cfpb-icon-font/css/icons-ie7.css' %}" type="text/css" media="all" />
     <![endif]-->
 {% endblock %}
 
@@ -66,10 +65,10 @@ jQuery(document).ajaxSend(function(event, xhr, settings) {
 var restoredata = {{ data_js|safe }};
 </script>
 
-<script src="{{ STATIC_PREFIX }}comparisontool/js/xml2json.js"></script>
-<script src="{{ STATIC_PREFIX }}comparisontool/js/raphael-min.js"></script>
-<script src="{{ STATIC_PREFIX }}comparisontool/js/comparison-tool.js"></script>
-<script src="{{ STATIC_PREFIX }}comparisontool/js/pfc-analytics.js"></script>
+<script src="{% static 'comparisontool/js/xml2json.js' %}"></script>
+<script src="{% static 'comparisontool/js/raphael-min.js' %}"></script>
+<script src="{% static 'comparisontool/js/comparison-tool.js' %}"></script>
+<script src="{{ static 'comparisontool/js/pfc-analytics.js' %}"></script>
 {% endblock page_js %}
 
 {% block body_class %}page paying-for-college{% endblock %}
@@ -94,7 +93,7 @@ var restoredata = {{ data_js|safe }};
 		    		<p>Compare college costs and financial aid offers to see how they might impact you down the road. Just researching schools? Check out <a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">College Scorecard</a>.</p>
 		    	</div>
 		    	<div class="pfc-hero-image">
-		    		<img alt="" src="{{ STATIC_PREFIX }}comparisontool/images/hero_compare.png">
+		    		<img alt="" src="{% static 'comparisontool/images/hero_compare.png' %}">
 		    	</div>
 		    </div><!-- end .pfc-hero-wrapper -->
 		    <a class="cfpb_visually_hide focusable" href="#introduction">Skip to main content</a>
@@ -923,16 +922,8 @@ var restoredata = {{ data_js|safe }};
 							</div>
 						</td>
 					</tr>
-					<tr class="visualization-row">
-						<th scope="row" data-column="0">
-							<div class="h4 tooltip-info" data-tooltip="Debt Burden: Based on your estimated debt and the average national salary for bachelors graduates. Not school specific." data-tipname="debtburden">Debt burden</div>
-						</th>
-						<td data-column="1" class="debt-burden-cell"><span data-nickname="debtburden" class="visualization">None</span></td>
-						<td data-column="2" class="debt-burden-cell"><span data-nickname="debtburden" class="visualization">None</span></td>
-						<td data-column="3" class="debt-burden-cell"><span data-nickname="debtburden" class="visualization">None</span></td>
-					</tr>
 				</tbody>
-				<tbody>
+				<tbody style="display:none">
 					<tr class="bottom-border" id="indicators-row">
 						<th class="nopad-horiz" colspan="4">
 							<div class="h3 bold">School indicators (<a class="exit-link" href="http://collegecost.ed.gov/scorecard/index.aspx" target="_blank">Source</a>)</div>

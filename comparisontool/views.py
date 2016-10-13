@@ -128,7 +128,7 @@ class SchoolRepresentation(View):
 
     def get(self, request, school_id, **kwargs):
         school = self.get_school(school_id)
-        return HttpResponse(school.data_json, mimetype='application/json')
+        return HttpResponse(school.data_json, content_type='application/json')
 
 
 class EmailLink(View):
@@ -143,11 +143,11 @@ class EmailLink(View):
             body_template = get_template('comparisontool/email_body.txt')
             body = body_template.render(RequestContext(request,dict(guid=worksheet.guid)))
 
-            send_mail(subject, body, 'no-reply@cfpb.gov', [recipient],
+            send_mail(subject, body, 'no-reply-cfgov@cfpb.gov', [recipient],
                       fail_silently=False)
 
         document = {'status': 'ok'}
-        return HttpResponse(json.dumps(document), mimetype='application/javascript')
+        return HttpResponse(json.dumps(document), content_type='application/javascript')
 
 
 class CreateWorksheetView(View):
@@ -183,7 +183,7 @@ def bah_lookup_api(request):
         document_as_json = json.dumps(document)
     except:
         document_as_json = json.dumps({})
-    return HttpResponse(document_as_json, mimetype='application/javascript')
+    return HttpResponse(document_as_json, content_type='application/javascript')
 
 
 def school_search_api(request):
@@ -199,4 +199,4 @@ def school_search_api(request):
                 for school in sqs]
     json_doc = json.dumps(document)
 
-    return HttpResponse(json_doc, mimetype='application/json')
+    return HttpResponse(json_doc, content_type='application/json')
