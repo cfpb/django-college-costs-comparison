@@ -35,8 +35,6 @@ $(document).ready(function() {
         
         $(window).bind("hashchange",function(e){
             $('#_' + document.location.hash.replace("#","")).click();
-            // Place tracking here to avoid double-fire when in pfc-analytics.js file
-            _gaq.push(['_trackEvent', 'Page Interactions', 'Click', 'Collapsed_Tabs_Key_Questions']);
         });
     });
 
