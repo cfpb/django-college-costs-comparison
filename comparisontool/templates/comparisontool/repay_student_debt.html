@@ -23,27 +23,6 @@
 {% endblock %}
 
 {% block analytics_js %}
-    <!-- this is where we put our custom analytics -->
-    <script src="/wp-content/themes/cfpb_nemo/_/js/analytics-global.js{{ STATIC_VERSION }}"></script>
-
-    <!-- H5BP's Asynchronous Google Analytics snippet. -->
-    <script>
-      var _gaq=[['_setAccount','UA-20466645-3'],['_setDomainName', '.consumerfinance.gov']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-      $(function(){
-            var prev_hash_val = location.hash;
-            _gaq.push(["_trackPageview", location.pathname + location.search + location.hash]);
-
-            $(window).bind("hashchange", function (e) {
-                if(prev_hash_val != location.hash){
-                    prev_hash_val = location.hash;
-                    _gaq.push(["_trackPageview", location.pathname + location.search + location.hash]);
-                }
-            });
-        });
-    </script>
 {% endblock %}
 
 {% block body_class %}page paying-for-college{% endblock %}
