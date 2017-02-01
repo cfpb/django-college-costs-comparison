@@ -14,7 +14,7 @@ def read_file(filename):
 
 setup(
     name='comparisontool',
-    version=__import__('comparisontool').__version__,
+    version_format='{tag}.dev{commitcount}+{gitsha}',
     author='<Include Your Name Here>',
     author_email='<Include Your Email Here>',
     packages=find_packages(),
@@ -35,4 +35,5 @@ setup(
     long_description=read_file('README.rst'),
     test_suite="runtests.runtests",
     zip_safe=False,
+    setup_requires=['setuptools-git-version'],
 )
