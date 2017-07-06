@@ -407,18 +407,18 @@ The buttons differ from others on the site.
 .paying-for-college #wrapper .button {
     box-sizing: border-box;
     display: inline-block;
-    
+
     padding: 0.71428571428571em 1em; /* 10/14 14/14 */
-    
+
     border: none;
     -webkit-border-radius: 4px;
        -moz-border-radius: 4px;
             border-radius: 4px;
 
     margin-right: 1em;
-    
+
     background-color: #0072ce; /* Pacific */
-    
+
     color: #fff;
     font-size: 1em;
     line-height: 1;
@@ -487,4 +487,17 @@ The sharing module differs from others on the site.
 /* Tweak external link icon to match existing link color. */
 .icon-external-link {
     color: #4d819a;
+}
+
+.legal-disclaimer {
+    margin-top: 30px;
+    font-family: "Avenir Next", Arial, sans-serif;
+}
+
+.legal-disclaimer h5 {
+    font-size: 14px !important;
+}
+
+.legal-disclaimer p {
+    font-family: "Avenir Next", Arial, sans-serif;
 }
