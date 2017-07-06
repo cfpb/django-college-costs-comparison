@@ -2155,5 +2155,6 @@ a img.aligncenter {
 }
 
 .legal-disclaimer p {
+    max-width: 670px;
     font-family: "Avenir Next", Arial, sans-serif;
 }
