@@ -1,11 +1,11 @@
-{% extends "front/base_nonresponsive.html" %} 
+{% extends "front/base_nonresponsive.html" %}
 
 {% load static from staticfiles %}
 
 
 {% block title %}Compare financial aid and college cost{% endblock %}
 
-{% block page_viewport %}	
+{% block page_viewport %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 {% endblock %}
 
@@ -168,7 +168,7 @@ var restoredata = {{ data_js|safe }};
 											</label>
 										</div><!-- /get-started-radio-group -->
 										<div class="get-started-radio-group">
-											<input id="program3" class="radio-input" type="radio" name="program" value="grad">	
+											<input id="program3" class="radio-input" type="radio" name="program" value="grad">
 											<label class="prgmtype" for="program3">
 												Graduate
 											</label>
@@ -257,7 +257,7 @@ var restoredata = {{ data_js|safe }};
 									With family (little or no cost to you)
 								</label>
 							</div><!-- /get-started-radio-group -->
-			        	</fieldset>			            
+			        	</fieldset>
 			        </div><!-- /pfc-container-left -->
 			    </div><!-- /add-school /staged /stage-res-hse /step-3d3 /res-hse /step-left -->
 			    <div class="step-right">
@@ -761,7 +761,7 @@ var restoredata = {{ data_js|safe }};
 										<td>Left to pay:</td>
 										<td data-nickname="gap" class="value">$0</td>
 									</tr>
-								</table><!-- end .bars -->		
+								</table><!-- end .bars -->
 							</div><!-- end .meter -->
 						</td>
 						<td class="bg-spacing" data-column="2">
@@ -814,7 +814,7 @@ var restoredata = {{ data_js|safe }};
 										<td>Left to pay:</td>
 										<td data-nickname="gap" class="value">$0</td>
 									</tr>
-								</table><!-- end .bars -->		
+								</table><!-- end .bars -->
 							</div><!-- end .meter -->
 						</td>
 						<td class="bg-spacing" data-column="3">
@@ -867,7 +867,7 @@ var restoredata = {{ data_js|safe }};
 										<td>Left to pay:</td>
 										<td data-nickname="gap" class="value">$0</td>
 									</tr>
-								</table><!-- end .bars -->		
+								</table><!-- end .bars -->
 							</div><!-- end .meter -->
 						</td>
 					</tr>
@@ -950,7 +950,7 @@ var restoredata = {{ data_js|safe }};
 								<div class="graduation-rate-chart">
 									<div class="gradrisk-container">
 										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span><span class="gradrisk-indc cfpb_visually_hide"></span>
-										<div class="gradrisk-pointer"></div>	
+										<div class="gradrisk-pointer"></div>
 									</div>
 									<div class="gradrisk-bar">
 										<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
@@ -964,7 +964,7 @@ var restoredata = {{ data_js|safe }};
 								<div class="graduation-rate-chart">
 									<div class="gradrisk-container">
 										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span><span class="gradrisk-indc cfpb_visually_hide"></span>
-										<div class="gradrisk-pointer"></div>	
+										<div class="gradrisk-pointer"></div>
 									</div>
 									<div class="gradrisk-bar">
 										<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
@@ -978,7 +978,7 @@ var restoredata = {{ data_js|safe }};
 								<div class="graduation-rate-chart">
 									<div class="gradrisk-container">
 										<span data-nickname="gradriskpercent" class="gradrisk-percent"></span><span class="gradrisk-indc cfpb_visually_hide"></span>
-										<div class="gradrisk-pointer"></div>	
+										<div class="gradrisk-pointer"></div>
 									</div>
 									<div class="gradrisk-bar">
 										<div class="low">Low</div><div class="medium">Medium</div><div class="high">High</div>
@@ -1069,7 +1069,12 @@ var restoredata = {{ data_js|safe }};
 				<a class="feedback button school-link" target="_blank" href="/paying-for-college/compare-financial-aid-and-college-cost/feedback/">Give us Feedback</a>
 			</div>
 		</div><!-- end #save-footer -->
+		<section class="legal-disclaimer">
+		    <h5>Legal Disclaimer:</h5>
+		    <p>The content on this page provides general consumer information. It is not legal advice or regulatory guidance. The CFPB updates this information periodically. This information may include links or references to third-party resources or content. We do not endorse the third-party or guarantee the accuracy of this third-party information. There may be other resources that also serve your needs.</p>
+		</section>
 	</div><!-- end #comparison-tool -->
+
 {% endblock content %}
 
 {% block app_modal %}

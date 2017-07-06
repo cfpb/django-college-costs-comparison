@@ -5518,3 +5518,17 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
   display: inline-block;
   width: 91%;
 }
+
+.legal-disclaimer {
+    margin-top: 30px;
+    font-family: "Avenir Next", Arial, sans-serif;
+}
+
+.legal-disclaimer h5 {
+    font-size: 14px !important;
+}
+
+.legal-disclaimer p {
+    max-width: 670px;
+    font-family: "Avenir Next", Arial, sans-serif;
+}
