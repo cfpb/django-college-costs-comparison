@@ -499,5 +499,6 @@ The sharing module differs from others on the site.
 }
 
 .legal-disclaimer p {
+    max-width: 670px;
     font-family: "Avenir Next", Arial, sans-serif;
 }
