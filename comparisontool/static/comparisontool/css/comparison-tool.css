@@ -514,7 +514,7 @@ This is for each step in the process.
     display: block;
     margin-right: 1.25em;
     text-align: right;
-    width: 24%; 
+    width: 24%;
 }
 
 .school-search {
@@ -564,7 +564,7 @@ This is for each step in the process.
     margin-right: 1.25em;
     padding: 1.25em 0;
     text-align: right;
-    width: 24%; 
+    width: 24%;
 }
 
 .get-started-radios {
@@ -683,18 +683,18 @@ The buttons differ from others on the site. */
 .paying-for-college #modal button {
     box-sizing: border-box;
     display: inline-block;
-    
+
     padding: 0.71428571428571em 1em; /* 10/14 14/14 */
-    
+
     border: none;
     -webkit-border-radius: 4px;
        -moz-border-radius: 4px;
             border-radius: 4px;
 
     margin-right: 1em;
-    
+
     background-color: #0072ce; /* Pacific */
-    
+
     color: #fff;
     font-size: 1em;
     line-height: 1;
@@ -1189,7 +1189,7 @@ Make them smaller and push them right to make it all look presentable. */
     font-size: 1em;
     height: 1.75em;
     margin: 0;
-    padding: 0 0 0 0.4em;   
+    padding: 0 0 0 0.4em;
     position: absolute;
         right: 1.825em;
     text-align: left;
@@ -1303,7 +1303,7 @@ This contains the form elements for manipulating data within the tool.
       outline: 1px solid #2cb34a;
 }
 
-.comparison-tool td input.disabled, td input.disabled:hover,  
+.comparison-tool td input.disabled, td input.disabled:hover,
 .comparison-tool td h6.disabled, td h6.disabled:hover {
     border: none;
     color: transparent;
@@ -1350,7 +1350,7 @@ h4.tooltip-info {
 }
 
 label.tooltip-info {
-    display: inline;    
+    display: inline;
 }
 
 #tooltip-container {
@@ -1518,7 +1518,7 @@ label.tooltip-info {
 #comparison-tables .breakdown .meter .bars .bar.overage {
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
     filter: alpha(opacity=50);
-    opacity: 0.9;   
+    opacity: 0.9;
 }
 
 #comparison-tables .breakdown .meter .cost-of-attendance th {
@@ -1637,7 +1637,7 @@ label.tooltip-info {
 #comparison-tables .gradrisk-container .gradrisk-percent {
     display: block;
     font-size: .9em;
-    text-align: center; 
+    text-align: center;
     position: relative;
     width: 3em;
 }
@@ -2141,4 +2141,19 @@ a img.aligncenter {
     display: block;
     margin-left: auto;
     margin-right: auto
+}
+
+.legal-disclaimer {
+    margin-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-family: "Avenir Next", Arial, sans-serif;
+}
+
+.legal-disclaimer h5 {
+    font-size: 14px !important;
+}
+
+.legal-disclaimer p {
+    font-family: "Avenir Next", Arial, sans-serif;
 }
