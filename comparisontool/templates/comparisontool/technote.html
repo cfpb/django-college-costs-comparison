@@ -3,6 +3,22 @@
 
 {% block title %}Paying for College Cost Comparison Tool{% endblock %}
 
+{% block page_meta %}
+<meta charset="UTF-8" />
+<meta property="og:title" content="{{ page.title }} &gt; Consumer Financial Protection Bureau"/>
+<meta property="og:url" content="{{ URL }}"/>
+<meta name="description" content="Comparing your options helps you find the loan best suited for your needs."/>
+
+<meta property="og:description" content="Comparing your options helps you find the loan best suited for your needs."/>
+{% endblock %}
+
+{% block open_graph_image %}
+<meta property="og:image"
+    content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png">
+<meta property="twitter:image"
+    content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png">
+{% endblock %}
+
 {% block page_css %}
 <link rel="stylesheet" href="{% static 'comparisontool/css/comparison-tool.css' %}">
 {% endblock %}

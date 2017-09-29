@@ -1,19 +1,23 @@
 {% extends "front/base_nonresponsive.html" %}
 {% load static from staticfiles %}
 
+{% block title %}Repay Student Debt{% endblock %}
+
 {% block page_meta %}
 <meta charset="UTF-8" />
-<meta property="og:title" content="Repay Student Debt &gt; Consumer Financial Protection Bureau"/>
-<meta property="og:type" content="government"/>
-<meta property="og:image" content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png"/>
+<meta property="og:title" content="{{ page.title }} &gt; Consumer Financial Protection Bureau"/>
 <meta property="og:url" content="{{ URL }}"/>
 <meta name="description" content="This tool provides information and advice for optimizing how you pay off your student loans based on some basic information about your financial situation."/>
 
 <meta property="og:description" content="This tool provides information and advice for optimizing how you pay off your student loans based on some basic information about your financial situation."/>
-
 {% endblock %}
 
-{% block title %}Repay Student Debt{% endblock %}
+{% block open_graph_image %}
+<meta property="og:image"
+    content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png">
+<meta property="twitter:image"
+    content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png">
+{% endblock %}
 
 {% block breadcrumbs %}
 {% endblock %}
