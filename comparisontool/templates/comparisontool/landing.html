@@ -1,19 +1,24 @@
 {% extends "front/base_nonresponsive.html" %}
 {% load static from staticfiles %}
 
+{% block title %}Paying for College{% endblock %}
+
 {% block page_meta %}
 <meta charset="UTF-8" />
-<meta property="og:title" content="Paying for College &gt; Consumer Financial Protection Bureau"/>
-<meta property="og:type" content="government"/>
-<meta property="og:image" content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png"/>
+<meta property="og:title" content="{{ page.title }} &gt; Consumer Financial Protection Bureau"/>
 <meta property="og:url" content="{{ URL }}"/>
 <meta name="description" content="Whether you’re enrolling in college soon, are a current student, or already have student loans, our resources can help you make the best decisions for you."/>  
       
 <meta property="og:description"
-              content="Whether you’re enrolling in college soon, are a current student, or already have student loans, our resources can help you make the best decisions for you."/>
+      content="Whether you’re enrolling in college soon, are a current student, or already have student loans, our resources can help you make the best decisions for you."/>
 {% endblock %}
 
-{% block title %}Paying for College{% endblock %}
+{% block open_graph_image %}
+<meta property="og:image"
+    content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png">
+<meta property="twitter:image"
+    content="https://s3.amazonaws.com/files.consumerfinance.gov/f/images/ask-cfpb-social-student-loans.original.png">
+{% endblock %}
 
 {% block body_class %}page paying-for-college{% endblock %}
 
