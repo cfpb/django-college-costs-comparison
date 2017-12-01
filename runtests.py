@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-import sys
 
+from django import setup
 from django.conf import settings
-
+from django.core.management import call_command
 
 if not settings.configured:
     settings.configure(
@@ -14,24 +14,17 @@ if not settings.configured:
         },
         INSTALLED_APPS=(
             'comparisontool',
-            'django_nose',
         ),
         SITE_ID=1,
         SECRET_KEY='this-is-just-for-tests-so-not-that-secret',
-        TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
     )
 
-
-from django.test.utils import get_runner
+setup()
 
 
 def runtests():
-    TestRunner = get_runner(settings)
-    test_runner = TestRunner(verbosity=1, interactive=True, failfast=False)
-    failures = test_runner.run_tests(['comparisontool.tests', ])
-    sys.exit(failures)
+    call_command('test', 'comparisontool.tests')
 
 
 if __name__ == '__main__':
     runtests()
-
