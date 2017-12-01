@@ -1,7 +1,0 @@
-Django==1.4.3
-pysolr
-distribute==0.6.31
-django-haystack==1.2.7
-django-nose==1.1
-nose==1.2.1
-south

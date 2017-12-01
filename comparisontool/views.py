@@ -2,12 +2,9 @@
 import json
 import uuid
 
-from django.middleware import csrf
 from django.core.urlresolvers import reverse
 from django.views.generic import View, TemplateView
 from django.shortcuts import get_object_or_404, render_to_response
-from django.core import serializers
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.template import RequestContext
 from django.template.loader import get_template
@@ -16,7 +13,12 @@ from django.http import HttpResponse
 from haystack.query import SearchQuerySet
 
 from models import School, Worksheet, Feedback, BAHRate
-from forms import FeedbackForm, EmailForm
+from forms import (FeedbackForm, EmailForm, SchoolSearchForm,
+                   BAHZipSearchForm)
+
+
+class WorksheetJsonValidationError(Exception):
+    pass
 
 
 class FeedbackView(TemplateView):
@@ -52,74 +54,6 @@ class BuildComparisonView(View):
                                   {'data_js': "0"},
                                   context_instance=RequestContext(request))
 
-    def post(self, request):
-        # extract id's and in-state information
-
-        index = 1
-        schools = {}
-        data = {
-            "global": {
-            "aaprgmlength": 2,
-            "yrincollege": 1,
-            "gradprgmlength": 2,
-            "familyincome": 48,
-            "vet": False,
-            "serving": "no",
-            "tier": 100,
-            "program": request.POST.get('school-program', 'ba')
-
-            },
-            "schools": {}
-        }
-
-        for school_id in [value for key, value in request.POST.iteritems() if key.endswith('-unitid')] + [100000, 100001]:
-            if school_id:
-                institution = Institution.objects.get(pk=int(school_id))
-                in_state = request.POST.get('school-state-%s' % index, 'in')
-                field_dict = serializers.serialize(
-                    "python", [institution])[0]['fields']
-                field_dict["institutionname"] = unicode(
-                    institution.primary_alias)
-                field_dict['instate'] = True if in_state == 'in' else False
-                field_dict['color'] = False
-                field_dict['fouryruniv'] = field_dict['four_year']
-                field_dict.update({"color": False,
-                                   "oncampus": True,
-                                   "tuitionfees": 0,
-                                   "roombrd": 0,
-                                   "books": 0,
-                                   "personal": 0,
-
-                                   "pell": 0,
-                                   "scholar": 0,
-                                   "tuitionassist": 0,
-                                   "gibill": 0,
-                                   "perkins": 0,
-                                   "staffsubsidized": 0,
-                                   "staffunsubsidized": 0,
-                                   "gradplus": 0,
-
-                                   "savings": 0,
-                                   "family": 0,
-                                   "state529plan": 0,
-                                   "workstudy": 0,
-
-                                   "privateloan": 0,
-                                   "institutionalloan": 0,
-                                   "parentplus": 0,
-                                   "homeequity": 0,
-                                   "order": index - 1})
-
-                csrf.get_token(request)
-                data['schools'][str(school_id)] = field_dict
-                index += 1
-
-        data_js = json.dumps(data)
-        csrf.get_token(request)
-        return render_to_response('comparisontool/worksheet.html',
-                                  locals(),
-                                  context_instance=RequestContext(request))
-
 
 class SchoolRepresentation(View):
 
@@ -135,19 +69,21 @@ class EmailLink(View):
     def post(self, request):
         form = EmailForm(request.POST)
         if form.is_valid():
-    
+
             worksheet_guid = form.cleaned_data['id']
             worksheet = Worksheet.objects.get(guid=worksheet_guid)
             recipient = form.cleaned_data['email']
             subject = "Your Personalized College Financial Aid Information"
             body_template = get_template('comparisontool/email_body.txt')
-            body = body_template.render(RequestContext(request,dict(guid=worksheet.guid)))
+            body = body_template.render(RequestContext(request,
+                                        dict(guid=worksheet.guid)))
 
             send_mail(subject, body, 'no-reply-cfgov@cfpb.gov', [recipient],
                       fail_silently=False)
 
         document = {'status': 'ok'}
-        return HttpResponse(json.dumps(document), content_type='application/javascript')
+        return HttpResponse(json.dumps(document),
+                            content_type='application/javascript')
 
 
 class CreateWorksheetView(View):
@@ -161,42 +97,117 @@ class CreateWorksheetView(View):
         return response
 
 
-# TODO: JSON should only allow a whitelist of keys through.
-# TODO: Validator should also enforce field value types
 class DataStorageView(View):
+    def validate_json(self, worksheet_raw):
+        data = json.loads(worksheet_raw)
+        allowed_keys = ['id', '1', '2', '3']
+        allowed_fields = [u'netprice75k', u'gradrate', u'netprice', u'roombrd',
+                          u'state529plan', u'roombrdoncampus',
+                          u'institutionalloangrad', u'avgstuloandebtrank',
+                          u'personal', u'program', u'staffsubsidizedwithfee',
+                          u'borrowingtotal', u'defaultrate', u'tuitionfees',
+                          u'gibilltf', u'offeraa', u'school', u'scholar',
+                          u'parentpluswithfee', u'undergrad',
+                          u'staffunsubsidizeddep_max',
+                          u'institutionalloanrate', u'bah', u'tuitionassist',
+                          u'books', u'otherexpenses', u'gibillinstatetuition',
+                          u'offergrad', u'gradpluswithfee', u'privateloangrad',
+                          u'overborrowing', u'badalias', u'perkins_max',
+                          u'yrincollege', u'avgstuloandebt', u'state',
+                          u'instate', u'parentplus', u'loandebt1yr',
+                          u'loanlifetime', u'netpriceok', u'tuitiongradins',
+                          u'tuitiongradindis', u'transportation',
+                          u'moneyforcollege', u'grantstotal',
+                          u'otheroffcampus', u'tfinstate',
+                          u'staffunsubsidizedindep_max', u'institutionalloan',
+                          u'avgmonthlypay', u'gradplus', u'privateloanrate',
+                          u'netpricegeneral', u'institutionalloan_max',
+                          u'tuitionunderindis', u'family', u'offerba',
+                          u'perkinsgrad', u'perkins', u'privateloan',
+                          u'workstudy', u'gradplusgrad', u'city',
+                          u'loanmonthly', u'zip', u'staffunsubsidized_max',
+                          u'staffsubsidizedgrad', u'savingstotal',
+                          u'otheroncampus', u'firstyrcostattend',
+                          u'federaltotal', u'school_id', u'pell_max',
+                          u'tuitiongradoss', u'staffsubsidized_max', u'gap',
+                          u'salaryneeded', u'homeequity', u'gradplus_max',
+                          u'tuitionunderins', u'homeequitygrad',
+                          u'netprice48k', u'pell', u'salarymonthly',
+                          u'unsubsidizedrate', u'control',
+                          u'staffunsubsidizedgrad', u'parentplusgrad',
+                          u'indicatorgroup', u'gradraterank', u'riskofdefault',
+                          u'privatetotal', u'totalgrantsandsavings', u'alias',
+                          u'savings', u'totaldebtgrad', u'remainingcost',
+                          u'online', u'roombrdoffcampus',
+                          u'salaryexpected25yrs', u'loanmonthlyparent',
+                          u'staffsubsidized', u'privateloan_max',
+                          u'staffunsubsidizedwithfee', u'staffunsubsidized',
+                          u'tuitionassist_max', u'tuitionundeross', u'gibill',
+                          u'gibillla', u'retentrate', u'otherwfamily',
+                          u'oncampusavail', u'netprice110k', u'prgmlength',
+                          u'firstyrnetcost', u'gibillbs', u'repaymentterm',
+                          u'totaloutofpocket', u'kbyoss', u'origin',
+                          u'netprice3ok']
+        for index in data.keys():
+            if index not in allowed_keys:
+                raise WorksheetJsonValidationError
+            if index == 'id':
+                try:
+                    # if the index is 'id', value must be a
+                    # valid UUID
+                    uuid.UUID(data[index])
+                except ValueError:
+                    raise WorksheetJsonValidationError
+
+            else:
+                for fieldname in data[index].keys():
+                    if fieldname not in allowed_fields:
+                        raise WorksheetJsonValidationError("field: %s"
+                                                           % fieldname)
+
     def post(self, request, guid):
         worksheet = Worksheet.objects.get(
             guid=guid,
         )
         if request.body:
+            self.validate_json(request.body)
             worksheet.saved_data = request.body
             worksheet.save()
+        else:
+            self.validate_json(worksheet.saved_data)
 
         return HttpResponse(worksheet.saved_data)
 
 
 def bah_lookup_api(request):
-    zip5 = request.GET.get('zip5')
-    try:
+    form = BAHZipSearchForm(request.GET)
+    if form.is_valid():
+        zip5 = form.cleaned_data['zip5'][:5]
         rate = BAHRate.objects.filter(zip5=zip5).get()
         document = {'rate': rate.value}
         document_as_json = json.dumps(document)
-    except:
+    else:
         document_as_json = json.dumps({})
-    return HttpResponse(document_as_json, content_type='application/javascript')
+    return HttpResponse(document_as_json,
+                        content_type='application/javascript')
 
 
 def school_search_api(request):
-    sqs = SearchQuerySet().models(School)
-    sqs = sqs.autocomplete(autocomplete=request.GET.get('q', ''))
+    form = SchoolSearchForm(request.GET)
+    if form.is_valid():
+        sqs = SearchQuerySet().models(School)
+        sqs = sqs.autocomplete(autocomplete=form.cleaned_data['q'])
 
-    document = [{'schoolname': school.text,
-                'id': school.school_id,
-                'city':school.city,
-                'state':school.state,
-                'url': reverse('school-json',
-                args=[school.school_id])}
-                for school in sqs]
+        document = [{'schoolname': school.text,
+                     'id': school.school_id,
+                     'city': school.city,
+                     'state': school.state,
+                     'url': reverse('school-json',
+                                    args=[school.school_id])}
+                    for school in sqs]
+    else:
+        document = []
+
     json_doc = json.dumps(document)
 
     return HttpResponse(json_doc, content_type='application/json')
