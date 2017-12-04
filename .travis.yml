@@ -1,0 +1,17 @@
+language: python
+python:
+- '2.7'
+install: pip install tox
+script:
+- tox
+- python setup.py bdist_wheel
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: hpgKHfi+LnCZpoNVZqCemA2POQa1TWGtQ+SgV1XymNRaKOtmRBjoMvy7PEFp5hkdHJdUe/AbOPo5dtGE5QFdpIB1DSQnxedLY0KXDRgajETKw6x0MXMf6acXHfpMoN1JjuKRGBQoX+yY/EdkyI5ot9Zw7LnHrIbuAFIyQxGdx/jWODEIIKthtdOGUHf788s6gVmgADlKbOFQaPn5Y7/a90n7IWTHjc2qytYvjer6Bo32IPBze8QYS3DGlyhcm0S6LN3lwE3LrGDE4AxQVuyApyjV3s6Bg7bhj3m6DgWA0ccsmXUrbGtx5z0YfDLUmghUMT6cEsqMg0HtSKzHB4fIbqYwkoRjLBexY14IPHg3qa5mJYlABaHBs7c5213Xs2RlEQ7sidITWWR/Wdrwpp5Pz+gmzqdOEkZuQSalR67UlfF+PJaeMR65MO+18VxkT4Ux9i9vZ2HPJmEDI4Z7euJcLeE714kntY8wH9BJqvN74AH0WT4iJfZMzQdu/I0CUigArRkCuTvDScZoE/xHymA1tIXtHHBkHpEyQgFWRV4QCUmhCiDVL+3iKfapIcr/b7BpAIEMn+3Kl+/h46PdzMPBrMOBESwVtKw7Jrhg2d2N3revDDVD7mCliREFwrn8OBe+Y+QCNFy6g/qhMAK5lYQyAsdHveCfZiVJrqFqZZm2xU0=
+  file_glob: true
+  file: dist/*.whl
+  on:
+   tags: true
