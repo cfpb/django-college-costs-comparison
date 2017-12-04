@@ -14,4 +14,4 @@ deploy:
   file_glob: true
   file: dist/*.whl
   on:
-   - tags: true
+   tags: true
