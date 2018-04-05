@@ -2120,23 +2120,28 @@ var CFPBComparisonTool = (function() {
                     json_schools[key] = data;                        
                 });
                 json_schools = JSON.stringify( json_schools );
-                var request = $.ajax({
-                    type: "POST",
-                    url: posturl,
-                    dataType: "JSON",
-                    data: json_schools
-                });
-                request.done( function ( result ) {
 
-                });
-                request.fail( function ( xmlHttpRequest, textStatus ) {
-                    var foo = "";
-                    $.each(xmlHttpRequest, function(i, v) {
-                        foo += " " + i + ":" + v;
-                    });
-                    // alert( "Save failed!");
-                    $("#save-container").append( "Save failed!" + foo + " " + textStatus);
-                });
+                if ( global.worksheet_id !== "none") {
+                  var request = $.ajax({
+                      type: "POST",
+                      url: posturl,
+                      dataType: "JSON",
+                      data: json_schools
+                  });
+                  request.done( function ( result ) {
+
+                  });
+                  request.fail( function ( xmlHttpRequest, textStatus ) {
+                      var foo = "";
+                      $.each(xmlHttpRequest, function(i, v) {
+                          foo += " " + i + ":" + v;
+                      });
+                      // alert( "Save failed!");
+                      $("#save-container").append( "Save failed!" + foo + " " + textStatus);
+                  });
+                } else {
+                  $("#save-container").append( "Save failed! (invalid worksheet id)" );
+                }
                 var geturl = "http://" + document.location.host
                             + "/paying-for-college/compare-financial-aid-and-college-cost/"
                             + "#"
