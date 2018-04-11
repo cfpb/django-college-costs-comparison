@@ -178,17 +178,29 @@ var CFPBComparisonTool = (function() {
 
 
     //-- getWorksheetID() - gets a new worksheet id, and sets global.worksheet_id --//
-    function getWorksheetID() {
-        var request = $.ajax({
+    var getWorksheetID = function () {
+        return $.when( $.ajax( {
             type: "POST",
             async: false,
             url: "api/worksheet/"
-        });
-        request.done( function( data, textStatus, jqXHR) {
+          } )
+          .done( function( data, textStatus, jqXHR) {
             var data = jQuery.parseJSON(jqXHR.responseText);
             global.worksheet_id = data.id;
-        });
-    } // end getWorksheetID()
+          })
+          .fail( function() {
+            // console.log( 'failed to get worksheet id' );
+          } )
+        )
+        .then(
+          function() {
+            return global.worksheet_id;
+          }
+        );
+    }
+
+
+    // end getWorksheetID()
 
 
     //-- process XML text into JSON, return a data object similar to schoolData --//
@@ -1706,7 +1718,7 @@ var CFPBComparisonTool = (function() {
                     });
                 });
                 request.fail(function() {
-                    // Your fail message here.
+                    // console.log( 'schoolData fetch failed')
                 }); 
                 $("#school-name-search").attr("data-schoolid", school_id);
                 // does the school participate in the electronic shopping sheet?
@@ -2108,62 +2120,64 @@ var CFPBComparisonTool = (function() {
 
             // toggle save drawer
             $("#save-and-share").click( function( event, native ) {
-                if ( global.worksheet_id == "none") {
-                    getWorksheetID();
-                }
-                var posturl = "api/worksheet/" + global.worksheet_id + ".json";
-                
-                // put schoolData into a nice JSON object
-                var json_schools = new Object;
-                $.each(schools, function(key, val) {
-                    var data = val.schoolData;
-                    json_schools[key] = data;                        
-                });
-                json_schools = JSON.stringify( json_schools );
+                $.when( getWorksheetID() )
+                  .done( function() {
+                    var posturl = "api/worksheet/" + global.worksheet_id + ".json";
 
-                if ( global.worksheet_id !== "none") {
-                  var request = $.ajax({
-                      type: "POST",
-                      url: posturl,
-                      dataType: "JSON",
-                      data: json_schools
-                  });
-                  request.done( function ( result ) {
+                    // put schoolData into a nice JSON object
+                    var json_schools = new Object;
+                    $.each(schools, function(key, val) {
+                        var data = val.schoolData;
+                        json_schools[key] = data;                        
+                    });
+                    json_schools = JSON.stringify( json_schools );
 
-                  });
-                  request.fail( function ( xmlHttpRequest, textStatus ) {
-                      var foo = "";
-                      $.each(xmlHttpRequest, function(i, v) {
-                          foo += " " + i + ":" + v;
-                      });
-                      // alert( "Save failed!");
-                      $("#save-container").append( "Save failed!" + foo + " " + textStatus);
-                  });
-                } else {
-                  $("#save-container").append( "Save failed! (invalid worksheet id)" );
-                }
-                var geturl = "http://" + document.location.host
-                            + "/paying-for-college/compare-financial-aid-and-college-cost/"
-                            + "#"
-                            + global.worksheet_id;
-                $("#unique").val(geturl);
-                var t  = new Date();
-                var minutes = t.getMinutes();
-                if ( minutes < 10 ) {
-                    minutes = "0" + minutes;
-                }
-                var seconds = t.getSeconds();
-                if ( seconds < 10 ) {
-                    seconds = "0" + seconds;
-                }
-                var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDate() + "/" + t.getFullYear();
-                timestamp = timestamp + " at " + t.getHours() + ":" + minutes + ":" + seconds;
-                $("#timestamp").html("Saved on " + timestamp);
-            }); 
+                    // Save the schoolData to the API
+                    var request = $.ajax({
+                        type: "POST",
+                        url: posturl,
+                        dataType: "JSON",
+                        data: json_schools
+                    });
+                    request.done( function ( result ) {
+
+                    });
+                    request.fail( function ( xmlHttpRequest, textStatus ) {
+                        var foo = "";
+                        $.each(xmlHttpRequest, function(i, v) {
+                            foo += " " + i + ":" + v;
+                        });
+                        // alert( "Save failed!");
+                        $("#save-container").append( "Save failed!" + foo + " " + textStatus);
+                    });
+
+                    // Update the UI with save information
+                    var geturl = "https://" + document.location.host
+                                + "/paying-for-college/compare-financial-aid-and-college-cost/"
+                                + "#"
+                                + global.worksheet_id;
+                    $("#unique").val( geturl );
+                    var t  = new Date();
+                    var minutes = t.getMinutes();
+                    if ( minutes < 10 ) {
+                        minutes = "0" + minutes;
+                    }
+                    var seconds = t.getSeconds();
+                    if ( seconds < 10 ) {
+                        seconds = "0" + seconds;
+                    }
+                    var timestamp = ( t.getMonth() + 1 ) + "/" + t.getDate() + "/" + t.getFullYear();
+                    timestamp = timestamp + " at " + t.getHours() + ":" + minutes + ":" + seconds;
+                    $( "#timestamp" ).html("Saved on " + timestamp);
+                  } )
+                  .fail( function() {
+                    $("#save-container").append( "Save failed! A worksheet ID could not be retrieved." );
+                  } );
+            });
+
             $("#save-current").click( function() {
                 $("#save-and-share").trigger("click", ['save-current']);
             });
-
 
             // --- Start the page up! --- //
 
