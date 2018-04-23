@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from comparisontool.views import *
 
-urlpatterns = patterns(
-    'comparisontool.views',
+
+urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='comparisontool/landing.html'), name='pfc-landing'),
     url(r'^choose-a-student-loan/$', TemplateView.as_view(template_name='comparisontool/choose_a_loan.html'), name='pfc-choose'),
     url(r'^manage-your-college-money/$', TemplateView.as_view(template_name='comparisontool/manage_your_money.html'), name='pfc-manage'),
@@ -34,4 +34,4 @@ urlpatterns = patterns(
     url(r'^compare-financial-aid-and-college-cost/api/worksheet/$',
         CreateWorksheetView.as_view(),
         name='create_worksheet')
-)
+]
