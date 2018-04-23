@@ -7,7 +7,7 @@ from comparisontool.models import School
 
 
 class LoadSchoolTests(TestCase):
-    def test_load_csv(self):
+    def test_load_from_csv_creates_school_and_alias_objects(self):
         with tempfile.NamedTemporaryFile() as tf:
             tf.write(
                 'SCHOOL_ID,SCHOOL,ALIAS,CITY,STATE\n'
