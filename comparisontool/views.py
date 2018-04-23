@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.core.mail import send_mail
 from django.template import RequestContext
 from django.template.loader import get_template
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 
 from haystack.query import SearchQuerySet
 
@@ -44,7 +44,7 @@ class FeedbackView(TemplateView):
                                       locals(),
                                       context_instance=RequestContext(request))
         else:
-            return
+            return HttpResponseBadRequest('bad request')
 
 
 class BuildComparisonView(View):
