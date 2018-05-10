@@ -4,7 +4,7 @@ import uuid
 
 from django.core.urlresolvers import reverse
 from django.views.generic import View, TemplateView
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.core.mail import send_mail
 from django.template import RequestContext
 from django.template.loader import get_template
@@ -40,9 +40,8 @@ class FeedbackView(TemplateView):
         if form.is_valid():
             feedback = Feedback(message=form.cleaned_data['message'])
             feedback.save()
-            return render_to_response("comparisontool/feedback_thanks.html",
-                                      locals(),
-                                      context_instance=RequestContext(request))
+            return render(request, "comparisontool/feedback_thanks.html")
+
         else:
             return HttpResponseBadRequest('bad request')
 
@@ -50,9 +49,8 @@ class FeedbackView(TemplateView):
 class BuildComparisonView(View):
 
     def get(self, request):
-        return render_to_response('comparisontool/worksheet.html',
-                                  {'data_js': "0"},
-                                  context_instance=RequestContext(request))
+        return render(request, 'comparisontool/worksheet.html',
+                      {'data_js': "0"})
 
 
 class SchoolRepresentation(View):
@@ -75,8 +73,8 @@ class EmailLink(View):
             recipient = form.cleaned_data['email']
             subject = "Your Personalized College Financial Aid Information"
             body_template = get_template('comparisontool/email_body.txt')
-            body = body_template.render(RequestContext(request,
-                                        dict(guid=worksheet.guid)))
+            context = {'guid': worksheet.guid}
+            body = body_template.render(context, request)
 
             send_mail(subject, body, 'no-reply-cfgov@cfpb.gov', [recipient],
                       fail_silently=False)
