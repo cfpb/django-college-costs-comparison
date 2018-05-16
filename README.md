@@ -4,10 +4,6 @@
 
 This is Javascript application, and the Django API that powers it.
 
-## Dependencies
-
-This code is only tested with [the main consumerfinance.gov Django project](https://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/)
-
 ## Installation
 
 We'll assume you have [cfgov-refresh up and running, either in the standalone or Docker configuration](https://cfpb.github.io/cfgov-refresh/installation/).
@@ -19,6 +15,10 @@ For Docker, check the app out into cfgov-refresh/develop-apps.
 To populate the search index: `cfgov/manage.py update_index comparisontool`
 
 (this assumes you have a recent database dump)
+
+## Testing
+
+To run the unit tests, from the root directory of this repo: `tox`.
 
 ## Getting help
 
