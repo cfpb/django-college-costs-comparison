@@ -18,7 +18,9 @@ To populate the search index: `cfgov/manage.py update_index comparisontool`
 
 ## Testing
 
-To run the unit tests, from the root directory of this repo: `tox`.
+If you have [Tox](https://tox.readthedocs.io/en/latest/) installed (recommended), you can run the specs for this project with the `tox` command.
+
+If not, this command will run the specs on the python version your local environment has installed: `./manage.py test`.
 
 ## Getting help
 
