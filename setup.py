@@ -37,11 +37,9 @@ setup(
     zip_safe=False,
     setup_requires=['setuptools-git-version'],
     install_requires=[
+        'dj-database-url==0.4.2',
         'Django>=1.8,<1.12',
         'django-haystack==2.6.0',
         'django-localflavor==1.1',
-    ],
-    extras_require={
-        'testing': ['dj-database-url==0.4.2'],
-    }
+    ]
 )
