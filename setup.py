@@ -39,7 +39,7 @@ setup(
     install_requires=[
         'dj-database-url==0.4.2',
         'Django>=1.8,<1.12',
-        'django-haystack==2.6.0',
+        'django-haystack==2.7.0',
         'django-localflavor==1.1',
     ]
 )
