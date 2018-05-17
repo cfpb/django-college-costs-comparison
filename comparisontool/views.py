@@ -22,7 +22,7 @@ class WorksheetJsonValidationError(Exception):
 
 
 class FeedbackView(TemplateView):
-    template_name = "comparisontool/feedback.html"
+    template_name = 'comparisontool/feedback.html'
 
     @property
     def form(self):
@@ -40,7 +40,7 @@ class FeedbackView(TemplateView):
         if form.is_valid():
             feedback = Feedback(message=form.cleaned_data['message'])
             feedback.save()
-            return render(request, "comparisontool/feedback_thanks.html")
+            return render(request, 'comparisontool/feedback_thanks.html')
 
         else:
             return HttpResponseBadRequest('bad request')
@@ -50,7 +50,7 @@ class BuildComparisonView(View):
 
     def get(self, request):
         return render(request, 'comparisontool/worksheet.html',
-                      {'data_js': "0"})
+                      {'data_js': '0'})
 
 
 class SchoolRepresentation(View):
@@ -71,7 +71,7 @@ class EmailLink(View):
             worksheet_guid = form.cleaned_data['id']
             worksheet = Worksheet.objects.get(guid=worksheet_guid)
             recipient = form.cleaned_data['email']
-            subject = "Your Personalized College Financial Aid Information"
+            subject = 'Your Personalized College Financial Aid Information'
             body_template = get_template('comparisontool/email_body.txt')
             context = {'guid': worksheet.guid}
             body = body_template.render(context, request)
@@ -160,7 +160,7 @@ class DataStorageView(View):
             else:
                 for fieldname in data[index].keys():
                     if fieldname not in allowed_fields:
-                        raise WorksheetJsonValidationError("field: %s"
+                        raise WorksheetJsonValidationError('field: %s'
                                                            % fieldname)
 
     def post(self, request, guid):
