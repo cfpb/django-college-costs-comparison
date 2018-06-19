@@ -1021,7 +1021,6 @@ var CFPBComparisonTool = (function() {
             else {
                 columnObj.find(".military-residency-panel").show();
             }
-			this.drawSchoolIndicators(schoolData);
 		} // end .addSchoolInfo()
 
 		this.drawCostBars = function(schoolData) {
@@ -1176,168 +1175,6 @@ var CFPBComparisonTool = (function() {
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
             }           
         }
-
-        //-- Draws the various indicators for a school --//
-        this.drawSchoolIndicators = function(schoolData) { 
-            // Clean up possible data gaps
-            if ( schoolData.defaultrate == "" || schoolData.defaultrate == " ") {
-                schoolData.defaultrate = "NR";
-            }
-            if ( schoolData.gradrate == "" || schoolData.gradrate == " ") {
-                schoolData.gradrate = "NR";
-            }            
-            if ( schoolData.avgstuloandebt == "" || schoolData.avgstuloandebt == " ") {
-                schoolData.avgstuloandebt = "NR";
-            }
-            if (schoolData.gradrate !== "NR") {
-                schoolData.gradrate = parseFloat(schoolData.gradrate);
-            }
-            // Grad programs don't have indicators, nor group 4
-            if ( (schoolData.undergrad != true) || (schoolData.indicatorgroup === "4") ) {
-                columnObj.find(".graduation-rate-chart").hide();
-                columnObj.find(".default-rate-chart").hide();
-                columnObj.find(".median-borrowing-chart").hide();
-                columnObj.find(".indicator-textbox").html("not available");
-            }
-            else { // Groups 1, 2, 3, and 5 have indicators
-                // Draw the graduation rate chart
-                columnObj.find(".gradrisk-percent").html(schoolData.gradrate + "%");
-                // Note: ranks go from 1 to X, and X is "max"
-                var barWidth = columnObj.find('.gradrisk-bar .low').outerWidth();
-                barWidth += columnObj.find('.gradrisk-bar .medium').outerWidth();
-                barWidth += columnObj.find('.gradrisk-bar .high').outerWidth();
-                var offLeft = Math.floor( columnObj.find('.gradrisk-bar').innerWidth() - barWidth ) / 2;
-                columnObj.find('.gradrisk-pointer').css('left', offLeft + 'px');
-                columnObj.find('.gradrisk-percent').css('left', '-' + (offLeft * 2) + 'px');
-
-		        var firstWidth = Math.ceil(barWidth / 3) - 5;
-		        var secondWidth = Math.ceil(barWidth / 3) - 10;
-		        var thirdWidth = Math.ceil(barWidth / 3) - 5;
-		        var firstStop = 0 + offLeft;
-		        var secondStop = Math.ceil(barWidth / 3) + 5;
- 		        var thirdStop = Math.ceil(barWidth * 2 / 3) + 5;
-                var grouphigh = parseFloat(global["group" + schoolData.indicatorgroup + "GradHigh"]);
-                var groupmed = parseFloat(global["group" + schoolData.indicatorgroup + "GradMed"]);
-                var grhigh = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
-                var grmax = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankMax"]);
-                var grmed = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankMed"]);
-                var grhigh = parseFloat(global["group" + schoolData.indicatorgroup + "GradRankHigh"]);
-                var rankcount = 1;
-                var place = 1;
-                var gradoffset = 0; 
-
-                if ( ( schoolData.gradraterank != undefined ) && ( schoolData.gradrate != "NR" ) ) {
-                    columnObj.find(".gradrisk-container").closest("td").children().show();
-                    // Low
-                    if ( schoolData.gradrate < groupmed ) {
-                        rankcount = grmax - grmed;
-                        place = schoolData.gradraterank - grmed;
-                        gradoffset = firstStop + Math.floor( ( rankcount - place ) * ( firstWidth / rankcount))
-                        columnObj.find(".gradrisk-indc").html("Low graduation rate");
-                    }
-                    // Med
-                    else if ( schoolData.gradrate < grouphigh ) {
-                        rankcount = grmed - grhigh;
-                        place = schoolData.gradraterank - grhigh;
-                        gradoffset = secondStop + Math.floor( ( rankcount - place ) * ( secondWidth / rankcount))
-                        columnObj.find(".gradrisk-indc").html("Medium graduation rate");    
-                    }
-                    // High
-                    else {
-                        rankcount = grhigh;
-                        place =  schoolData.gradraterank;
-                        gradoffset = thirdStop + Math.floor( ( rankcount - place  ) * ( thirdWidth / rankcount ) );
-                        columnObj.find(".gradrisk-indc").html("High graduation rate");
-                    }
-                    columnObj.find(".gradrisk-container").css("left", gradoffset + "px");
-                }
-                else {
-                    columnObj.find(".graduation-rate-chart").hide();
-                    columnObj.find(".gradrisk-text").html("not available"); 
-                }
-
-
-                // Draw the default rate indicator
-                if ( schoolData.defaultrate != "NR" ) {
-                    columnObj.find(".default-rate-chart").closest("td").children().show();
-                    var height = ( schoolData.defaultrate / ( global.cdravg * 2 ) ) * 100;
-                    var y = 100 - height;
-                    defaultbars[this.columnNumber].attr({"y": y, "height": height});
-                    if ( height > 100 ) {
-                        var avgheight = ( global.cdravg / schoolData.defaultrate ) * 100;
-                        var avgy = 100 - avgheight;
-                        averagebars[this.columnNumber].attr({"y": avgy, "height": avgheight})
-                    }
-                    var percent = schoolData.defaultrate + "%";
-                    columnObj.find(".default-rate-this .percent").html(percent);
-                    var average = ( global.cdravg) + "%";
-                    columnObj.find(".default-rate-avg .percent").html(average);
-                }
-                else {
-                    columnObj.find(".default-rate-chart").hide();
-                    columnObj.find(".defaultrisk-text ").html("not available");       
-                }
-
-                // Draw the avg borrowing meter
-                var grouphigh = global["group" + schoolData.indicatorgroup + "loanhigh"];
-                var groupmed = global["group" + schoolData.indicatorgroup + "loanmed"];
-                var grhigh = global["group" + schoolData.indicatorgroup + "loanrankhigh"];
-                var grmax = global["group" + schoolData.indicatorgroup + "loanrankmax"];
-                var grmed = global["group" + schoolData.indicatorgroup + "loanrankmed"];
-                var grhigh = global["group" + schoolData.indicatorgroup + "loanrankhigh"];
-                var borrowangle = 0;
-                var rankcount = 1;
-                var place = 1;
-                if ( ( schoolData.avgstuloandebtrank != undefined ) && ( schoolData.avgstuloandebt != "NR" ) ) {
-                    columnObj.find(".median-borrowing-chart").closest("td").children().show();
-                    // Low
-                    if ( schoolData.avgstuloandebt < groupmed ) {
-                        rankcount = grmed;
-                        place = schoolData.avgstuloandebtrank;
-                        borrowangle = 3 + Math.floor( ( place ) * ( 45 / rankcount ));
-                        columnObj.find(".indicator-text").html("Low");
-                    }
-                    // Med
-                    else if ( schoolData.avgstuloandebt < grouphigh ) {
-                        rankcount = grhigh - grmed;
-                        place = schoolData.avgstuloandebtrank - grmed;
-                        borrowangle = 55 + Math.floor( ( place ) * ( 60 / rankcount ));
-                        columnObj.find(".indicator-text").html("Medium");
-                    }
-                    // High
-                    else {
-                        rankcount = grmax - grhigh;
-                        place =  schoolData.avgstuloandebtrank - grhigh;
-                        borrowangle = 130 + Math.floor( ( place ) * ( 47 / rankcount ));
-                        columnObj.find(".indicator-text").html("High");
-                    }  
-                    // Convert to radians
-                    borrowangle = ( Math.PI * 2 * borrowangle ) / 360;
-                    // Coordinates of indicating point
-                    x = 100 - ( Math.cos(borrowangle) * 40 );
-                    y = 100 - ( Math.sin(borrowangle) * 40 );
-                    // coordinates of left base point
-                    var trailingangle = borrowangle - ( Math.PI / 2 );
-                    var x2 = 100 - ( Math.cos(trailingangle) * 4 );
-                    var y2 = 100 - ( Math.sin(trailingangle) * 4 );
-                    // coordinates of right base point
-                    var leadingangle = borrowangle + ( Math.PI / 2 );
-                    var x3 = 100 - ( Math.cos(leadingangle) * 4 );
-                    var y3 = 100 - ( Math.sin(leadingangle) * 4 );
-                    var path = "M " + x + " " + y + " L " + x2 + " " + y2 + " L " + x3 + " " + y3 + " z";
-                    meterarrows[this.columnNumber].attr({"path": path, "fill": "#f5f5f5"});
-                    meterarrows[this.columnNumber].toBack();
-                    // Display borrowing amount in textbox
-                    var content = "<em>" + numToMoney(schoolData.avgstuloandebt) + "</em>";
-                    columnObj.find(".median-borrowing-text").html(content);
-                    columnObj.find(".median-borrowing-text").css("font-weight", "600")
-                }
-                else {
-                    columnObj.find(".median-borrowing-chart").hide();
-                    columnObj.find(".median-borrowing-text").html("not available");
-                }
-            } 
-        } // end .drawSchoolIndicators()
 
         //-- "fetch" (read) the values from the form elements into a data object --//
         this.fetchFormValues = function() {
@@ -1700,26 +1537,6 @@ var CFPBComparisonTool = (function() {
                 circles[x].attr({fill: "Gray", stroke: "White", "stroke-width": 2});
                 loans[x] = pies[x].path("M 62 62");
                 loans[x].attr({fill: "Red", stroke: "White", "stroke-width": 2});   
-            }
-
-            // Default Rate Bars
-            for (x = 1; x <= 3; x++ ) {
-                bars[x] = Raphael($("[data-column='" + x + "'] .default-rate-chart")[0], 200, 100);
-                var bottomline = bars[x].path("M 0 100 L 200 100");
-                bottomline.attr({"stroke": "#585858", "stroke-width": 3})
-                averagebars[x] = bars[x].rect(120, 50, 60, 50);
-                averagebars[x].attr({"fill":"#585858", "stroke": "#585858"});
-                defaultbars[x] = bars[x].rect(20, 100, 60, 0);
-                defaultbars[x].attr({"fill":"#585858", "stroke": "#585858"});
-            }
-
-            // Borrowing meter
-            for (x = 1; x <= 3; x++ ) {
-                meters[x] = Raphael($("[data-column='" + x + "'] .median-borrowing-chart")[0], 200, 100);
-                var circle = meters[x].circle(101, 100, 8);
-                circle.attr({"stroke": "#585858", "stroke-width": 1, "fill": "#585858"});
-                meterarrows[x] = meters[x].path("M 100 100 L 50 100");
-                meterarrows[x].attr({"stroke": "#f5f5f5", "stroke-width": 2});
             }
 
 	        // Initialize columns[] with an instance of Column() for each column
