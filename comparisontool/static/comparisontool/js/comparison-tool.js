@@ -11,14 +11,9 @@ var CFPBComparisonTool = (function() {
     var columns = new Object(); // Object (array-ish) that holds Column objects, keyed by column number
     var schools = new Object(); // Object (array-ish) that holds School objects, keyed by column number
     var schools_zeroed = new Object(); // Object for Google analytics, for schools where gap reaches 0
-    var pies = []; // Object holding monthly loan pie chart Raphael objects (the whole object)
-    var circles = []; // Object holding monthly loan pie chart Raphael objects (the outer circle part)
-    var loans = []; // Object holding monthly loan pie chart Raphael objects (the pie part)
-    var bars = []; // Object holding default rate bar Raphael objects (both bars, the whole shebang)
-    var averagebars = []; // Object holding default rate bar Raphael objects (the average bar)
-    var defaultbars = []; // Object holding default rate bar Raphael objects (the school's bar)
-    var meters = []; // Object holding average loan Raphael objects (the whole meter)
-    var meterarrows = []; // Object holding average loan Raphael objects (the needle/arrow)
+    var pies = []; // Object holding monthly loan pie chart objects (the whole object)
+    var circles = []; // Object holding monthly loan pie chart objects (the outer circle part)
+    var loans = []; // Object holding monthly loan pie chart objects (the pie part)
     var previousXML = ""; // This holds the xml data last submitted for comparison in XML processing
 
 	// A bunch of global defaults and such - see GLOBALS.txt for descriptions of the parameters
@@ -63,6 +58,14 @@ var CFPBComparisonTool = (function() {
     jQuery.fn.exists = function() {
         return this.length > 0;
     }
+
+  function setMultiAttr( elem, obj ) {
+     for (var prop in obj) {
+       if (obj.hasOwnProperty( prop ) ) {
+         elem.setAttribute( prop, obj[prop] );
+       }
+     }
+   }
 
 	//-- moneyToNum(): Convert from money string to number --//
 	function moneyToNum(money) { 	
@@ -1146,7 +1149,7 @@ var CFPBComparisonTool = (function() {
 				string += "A 50 50 0 0 1 62 12 ";
 			}
 			string += "A 50 50 0 0 1 " + x + " " + y + " z";
-			loans[this.columnNumber].attr("path", string);			
+			loans[this.columnNumber].setAttribute( 'd', string );
 		}
 
 		//-- Draws the debt burden gauge --//
@@ -1296,7 +1299,7 @@ var CFPBComparisonTool = (function() {
                 columnObj.find('div[data-nickname="institution_name"]').removeClass('inactive');
                 columnObj.find('span.institution-name').removeClass('inactive');
                 columnObj.find('input').removeAttr('disabled');
-                circles[this.columnNumber].attr({fill: "Gray"});
+                circles[this.columnNumber].setAttribute( 'fill', 'Gray' );
             }
 
             if (state === 'inactive') {
@@ -1307,7 +1310,7 @@ var CFPBComparisonTool = (function() {
                 columnObj.find("[data-nickname='debtburden']").closest("td").css("background-position", "30% 60px");
                 columnObj.find('input.school-data').val('$').attr('disabled', true);
                 columnObj.find('.data-total').html('$0');
-                circles[this.columnNumber].attr({fill: "#babbbd"});
+                circles[this.columnNumber].setAttribute( 'fill', '#babbbd' );
             }
 
         } // end .toggleActive()
@@ -1531,12 +1534,30 @@ var CFPBComparisonTool = (function() {
             // Pie Charts
             var x;
             for (x = 1; x <= 3; x++ ) {
-                pies[x] = Raphael($("[data-column='" + x + "'] .debt-pie")[0], 125, 125);
-                pies[x].circle(62, 62, 50);
-                circles[x] = pies[x].circle(62, 62, 50);
-                circles[x].attr({fill: "Gray", stroke: "White", "stroke-width": 2});
-                loans[x] = pies[x].path("M 62 62");
-                loans[x].attr({fill: "Red", stroke: "White", "stroke-width": 2});   
+                pies[x] = document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' );
+                $( '[data-column="' + x + '"] .debt-pie' ).append( pies[x] );
+                setMultiAttr( pies[x], {
+                  height: '125',
+                  width: '125'
+                } );
+                circles[x] = document.createElementNS( 'http://www.w3.org/2000/svg', 'circle' );
+                $( '[data-column="' + x + '"] .debt-pie svg' ).append( circles[x] );
+                setMultiAttr( circles[x], {
+                  cx: '62',
+                  cy: '62',
+                  r: '50',
+                  fill: 'Gray',
+                  stroke: 'White',
+                  'stroke-width': '2'
+                } );
+                loans[x] = document.createElementNS( 'http://www.w3.org/2000/svg', 'path' );
+                $( '[data-column="' + x + '"] .debt-pie svg' ).append( loans[x] );
+                setMultiAttr( loans[x], {
+                  d: 'M 62 62',
+                  fill: 'Red',
+                  stroke: 'White',
+                  'stroke-width': '2'
+                } );
             }
 
 	        // Initialize columns[] with an instance of Column() for each column
