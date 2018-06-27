@@ -1,0 +1,32 @@
+{
+  "name": "django-college-cost-comparison",
+  "version": "1.6.1",
+  "description": "A cost comparison worksheet for the CFPB's Paying for College site",
+  "main": "index.js",
+  "dependencies": {
+    "browserify": "^16.2.0",
+    "browser-sync": "^2.23.6",
+    "del": "^3.0.0",
+    "glob-all": "^3.1.0",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.5.0",
+    "require-dir": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Test command not yet implemented.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfpb/django-college-costs-comparison.git"
+  },
+  "keywords": [
+    "cfpb"
+  ],
+  "author": "cfpb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfpb/django-college-costs-comparison/issues"
+  },
+  "homepage": "https://github.com/cfpb/django-college-costs-comparison#readme"
+}
