@@ -117,7 +117,7 @@ module.exports = function(grunt) {
         reporter: 'checkstyle',
         reporterOutput: 'jshint.xml'
       },
-      files: ['js/*.js', 'Gruntfile.js', '!js/raphael-min.js', '!js/xml2json.js']
+      files: ['js/*.js', 'Gruntfile.js', '!js/xml2json.js']
     }
   });
 
