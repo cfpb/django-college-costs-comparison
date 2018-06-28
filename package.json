@@ -4,17 +4,23 @@
   "description": "A cost comparison worksheet for the CFPB's Paying for College site",
   "main": "index.js",
   "dependencies": {
+    "autoprefixer": "^8.6.4",
+    "browser-sync": "^2.24.5",
     "browserify": "^16.2.0",
-    "browser-sync": "^2.23.6",
     "del": "^3.0.0",
     "glob-all": "^3.1.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
+    "gulp-header": "^2.0.5",
+    "gulp-less": "^3.5.0",
     "gulp-load-plugins": "^1.5.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sourcemaps": "^2.6.4",
     "require-dir": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Test command not yet implemented.\""
+    "test": "echo \"Test command not yet implemented.\"",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
