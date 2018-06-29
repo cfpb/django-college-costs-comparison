@@ -33,7 +33,15 @@ module.exports = {
     ]
   },
   scripts: {
-    src: '../src/js/**/*.js'
+    entry: './src/js/index.js',
+    src: [
+      './node_modules/jquery/dist/jquery.js'
+    ],
+    dest: './comparisontool/static/comparisontool/js/',
+    output: {
+      path: './comparisontool/static/comparisontool/js',
+      filename: 'main.js'
+    }
   },
   styles: {
     cwd: './src/css',
