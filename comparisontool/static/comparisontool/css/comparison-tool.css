@@ -916,6 +916,10 @@ This contains the majority of the structural styles for table-based elements.
     font-weight: 700;
 }
 
+#comparison-tables .h3 {
+    font-size: .8125em;
+}
+
 /* Accordion elements, not the instrument, sadly */
 .grants th, .grants td {
     border-bottom: 5px solid #0072ce;
@@ -932,6 +936,12 @@ This contains the majority of the structural styles for table-based elements.
 .grants .h5, .federal .h5, .private .h5, .contributions .h5 {
     font-size: 1.125em;
     font-weight: 600;
+    margin: 0;
+    text-transform: none;
+    padding: 0;
+    border: 0;
+    line-height: 1.5;
+    letter-spacing: 0;
 }
 
 .grants h6, .federal h6, .private h6, .contributions h6 {
