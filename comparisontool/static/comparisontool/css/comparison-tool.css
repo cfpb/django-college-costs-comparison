@@ -932,6 +932,11 @@ This contains the majority of the structural styles for table-based elements.
 .grants .h5, .federal .h5, .private .h5, .contributions .h5 {
     font-size: 1.125em;
     font-weight: 600;
+    margin: 0;
+    text-transform: none;
+    padding: 0;
+    border: 0;
+    line-height: 1.5;
 }
 
 .grants h6, .federal h6, .private h6, .contributions h6 {
