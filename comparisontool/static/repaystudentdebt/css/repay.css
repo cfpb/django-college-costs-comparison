@@ -2715,7 +2715,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -2732,7 +2731,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -2749,7 +2747,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -2766,7 +2763,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -2783,7 +2779,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -2800,7 +2795,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -2817,7 +2811,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -2834,7 +2827,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (max-width: 37.4375em) {
@@ -2952,7 +2944,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 50.0625em) {
@@ -2976,7 +2967,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 50.0625em) {
@@ -2994,7 +2984,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
   #repaying-student-debt .content__1-3 .content_main {
     display: inline-block;
@@ -3010,7 +2999,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
   #repaying-student-debt .content__1-3 .content_main:after {
     content: '';
@@ -3033,7 +3021,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
   #repaying-student-debt .content__2-1 .content_main:after {
     right: -1.875em;
@@ -3052,7 +3039,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
 }
 @media only all and (min-width: 64em) {
@@ -3070,7 +3056,6 @@ button#repaying-student-debt .expandable_header {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/static/vendor/box-sizing-polyfill/boxsizing.htc');
   }
   .lt-ie8 #repaying-student-debt .content__2-1 .content_main__narrow {
     padding-right: 0;
@@ -5100,7 +5085,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -5117,7 +5101,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -5134,7 +5117,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -5151,7 +5133,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
   #repaying-student-debt .content-l_col-3-4 {
     display: inline-block;
@@ -5166,7 +5147,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -5183,7 +5163,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -5200,7 +5179,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
 }
 @media only all and (min-width: 37.5em) {
@@ -5217,7 +5195,6 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
     display: inline;
     margin-right: 0;
     zoom: 1;
-    behavior: url('/cf-grid/custom-demo/static/css/boxsizing.htc');
   }
 }
 #repaying-student-debt .ds-section {
