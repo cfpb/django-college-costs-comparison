@@ -916,6 +916,10 @@ This contains the majority of the structural styles for table-based elements.
     font-weight: 700;
 }
 
+#comparison-tables .h3 {
+    font-size: .8125em;
+}
+
 /* Accordion elements, not the instrument, sadly */
 .grants th, .grants td {
     border-bottom: 5px solid #0072ce;
