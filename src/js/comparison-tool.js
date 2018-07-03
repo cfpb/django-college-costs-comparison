@@ -1631,22 +1631,6 @@ var CFPBComparisonTool = (function() {
                 trapEscapeKey($(this), event);
             });
 
-            // Accordions (not the instrument, sadly)
-            $('tr.show').click(function() {
-                $(this).closest('tbody').children(':not(.show, .tr-hide)').toggleClass('hide');
-                $(this).closest('.arrw-collapse').toggleClass('arrw');
-                if ( $(this).closest('.arrw-collapse').hasClass('arrw') ) {
-                    var text = "Collapse";
-                    $(this).find('.arrw-collapsable').html(text);
-                }
-                else {
-                    var text = "Expand";
-                    $(this).find('.arrw-collapsable').html(text);
-                }
-            });
-            $('.arrw-click').click(function(ev) {
-                ev.preventDefault();
-            });
 
             // Show the instructions on expand the first time and let it be
             $('tr.totalcont').click(function() {

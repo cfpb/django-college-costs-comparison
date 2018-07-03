@@ -33,10 +33,11 @@ module.exports = {
     ]
   },
   scripts: {
-    entry: './src/js/index.js',
-    src: [
-      './node_modules/jquery/dist/jquery.js'
-    ],
+    src: './src/js/index.js',
+    // src: [
+    //   './src/js/index.js',
+    //   './node_modules/jquery/dist/jquery.js'
+    // ],
     dest: './comparisontool/static/comparisontool/js/',
     output: {
       path: './comparisontool/static/comparisontool/js',
@@ -50,6 +51,19 @@ module.exports = {
     settings: {
       compress: true
     },
+  },
+  watch: {
+    scripts: {
+      src: [
+        './src/js/*',
+        './src/js/**/*'
+      ]
+    },
+    styles: {
+      src: [
+        './src/css/*'
+      ]
+    }
   },
   copy: {
 
