@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 from glob import glob
 from json import dumps
 import csv
@@ -18,14 +16,14 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         path_spec = options['path_spec']
         for path in glob(path_spec):
-            print("loading schools:", path)
+            self.stdout.write("loading schools:" + path)
             with open(path) as csv_file:
                 reader = csv.DictReader(csv_file)
-                print("Schools loaded: ", end="")
+                self.stdout.write("Schools loaded: ", ending="")
                 for record in reader:
                     # Last load took 14 minutes, this will add a visual indicator
                     #  that something is happening
-                    print(record['SCHOOL_ID'], end=", ")
+                    self.stdout.write(record['SCHOOL_ID'], ending=", ")
                     aliases = set()
                     primary_school_name = record.get("SCHOOL")
                     aliases.add(primary_school_name)
@@ -47,4 +45,4 @@ class Command(BaseCommand):
                                 alias=alias_str,
                                 is_primary=(alias_str == primary_school_name))
                         alias.save()
-                print("... done!")
+                self.stdout.write("... done!")
