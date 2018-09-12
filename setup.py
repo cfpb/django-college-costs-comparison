@@ -25,7 +25,7 @@ setup(
     classifiers=[
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Intended Audience :: Developers',
-        'Programming Language :: Python',      
+        'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Framework :: Django',
@@ -37,9 +37,9 @@ setup(
     zip_safe=False,
     setup_requires=['setuptools-git-version'],
     install_requires=[
-        'dj-database-url==0.4.2',
+        'dj-database-url>=0.4.2,<1',
         'Django>=1.8,<1.12',
-        'django-haystack==2.7.0',
-        'django-localflavor==1.1',
+        'django-haystack==2.7.0',  # Latest version that supports both Django 1.8 and 1.11
+        'django-localflavor>=1.1,<2',
     ]
 )
