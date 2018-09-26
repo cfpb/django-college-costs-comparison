@@ -38,8 +38,8 @@ setup(
     setup_requires=['setuptools-git-version'],
     install_requires=[
         'dj-database-url>=0.4.2,<1',
-        'Django>=1.8,<1.12',
-        'django-haystack==2.7.0',  # Latest version that supports both Django 1.8 and 1.11
+        'Django>=1.11,<1.12',
+        'django-haystack>=2.7,<2.9',
         'django-localflavor>=1.1,<2',
     ]
 )
