@@ -8,7 +8,12 @@ This is Javascript application, and the Django API that powers it.
 
 We'll assume you have [cfgov-refresh up and running, either in the standalone or Docker configuration](https://cfpb.github.io/cfgov-refresh/installation/).
 
-For the standalone setup, check it out anywhere on your computer, and `pip install -e [path-to-checkout]`.
+For the standalone setup, check it out anywhere on your computer, and `pip install -e [path-to-checkout]`,
+for example `pip install -e ../django-college-costs-comparison`,
+if it was a sibling project to cfgov-refresh.
+
+Restart the webserver and visit
+http://localhost:8000/paying-for-college/manage-your-college-money/#o1
 
 For Docker, check the app out into cfgov-refresh/develop-apps.
 
