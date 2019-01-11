@@ -60,6 +60,10 @@ class DataStorageViewTests(TestCase):
         response = self.client.get(self.path('1234'))
         self.assertEqual(response.status_code, 405)
 
+    def test_post_to_nonexistent_worksheet_returns_404(self):
+        response = self.client.post(self.path('invalid'))
+        self.assertEqual(response.status_code, 404)
+
     def test_post_with_no_body_returns_current_worksheet(self):
         # This test can't use the Django test client because it's not possible
         # to do a POST without a body that way.
