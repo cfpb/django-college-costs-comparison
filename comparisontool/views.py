@@ -164,9 +164,8 @@ class DataStorageView(View):
                                                            % fieldname)
 
     def post(self, request, guid):
-        worksheet = Worksheet.objects.get(
-            guid=guid,
-        )
+        worksheet = get_object_or_404(Worksheet, guid=guid)
+
         if request.body:
             self.validate_json(request.body)
             worksheet.saved_data = request.body
