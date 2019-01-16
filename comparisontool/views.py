@@ -3,47 +3,20 @@ import json
 import uuid
 
 from django.core.urlresolvers import reverse
-from django.views.generic import View, TemplateView
+from django.views.generic import TemplateView, View
 from django.shortcuts import get_object_or_404, render
 from django.core.mail import send_mail
-from django.template import RequestContext
 from django.template.loader import get_template
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse
 
 from haystack.query import SearchQuerySet
 
-from models import School, Worksheet, Feedback, BAHRate
-from forms import (FeedbackForm, EmailForm, SchoolSearchForm,
-                   BAHZipSearchForm)
+from models import School, Worksheet, BAHRate
+from forms import EmailForm, SchoolSearchForm, BAHZipSearchForm
 
 
 class WorksheetJsonValidationError(Exception):
     pass
-
-
-class FeedbackView(TemplateView):
-    template_name = 'comparisontool/feedback.html'
-
-    @property
-    def form(self):
-        if self.request.method == 'GET':
-            return FeedbackForm()
-
-        elif self.request.method == 'POST':
-            return FeedbackForm(self.request.POST)
-
-    def get_context_data(self):
-        return dict(form=self.form)
-
-    def post(self, request):
-        form = self.form
-        if form.is_valid():
-            feedback = Feedback(message=form.cleaned_data['message'])
-            feedback.save()
-            return render(request, 'comparisontool/feedback_thanks.html')
-
-        else:
-            return HttpResponseBadRequest('bad request')
 
 
 class BuildComparisonView(View):

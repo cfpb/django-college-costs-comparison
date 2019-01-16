@@ -12,10 +12,6 @@ urlpatterns = [
     url(r'^compare-financial-aid-and-college-cost/$', BuildComparisonView.as_view(), name='worksheet'),
     url(r'^compare-financial-aid-and-college-cost/api/email/$', EmailLink.as_view(), name='email'),
 
-    url(r'^compare-financial-aid-and-college-cost/feedback/$',
-        FeedbackView.as_view(),
-        name='pfc-feedback'),
-
     url(r'^compare-financial-aid-and-college-cost/technote/$',
         TemplateView.as_view(template_name="comparisontool/technote.html"),
         name='pfc-technote'),

@@ -2,12 +2,10 @@ import json
 import uuid
 
 from django.core import mail
-from django.core.management import call_command
 from django.core.urlresolvers import reverse
-from django.http import Http404
 from django.test import RequestFactory, TestCase
 
-from comparisontool.models import Alias, BAHRate, School, Worksheet
+from comparisontool.models import BAHRate, School, Worksheet
 from comparisontool.views import (
     DataStorageView, WorksheetJsonValidationError, bah_lookup_api,
     school_search_api
@@ -150,30 +148,6 @@ class EmailLinkTests(TestCase):
     def test_invalid_post_still_returns_ok(self):
         response = self.client.post(self.path)
         self.assertContains(response, '{"status": "ok"}')
-
-
-class FeedbackViewTests(TestCase):
-    def setUp(self):
-        self.path = reverse('pfc-feedback')
-
-    def test_get_uses_template(self):
-        response = self.client.get(self.path)
-        self.assertTemplateUsed(response, 'comparisontool/feedback.html')
-
-    def test_valid_post_returns_200(self):
-        response = self.client.post(self.path, {'message': 'Feedback'})
-        self.assertEqual(response.status_code, 200)
-
-    def test_valid_post_uses_template(self):
-        response = self.client.post(self.path, {'message': 'Feedback'})
-        self.assertTemplateUsed(
-            response,
-            'comparisontool/feedback_thanks.html'
-        )
-
-    def test_invalid_post_returns_400(self):
-        response = self.client.post(self.path, {})
-        self.assertEqual(response.status_code, 400)
 
 
 class SchoolRepresentationTests(TestCase):
