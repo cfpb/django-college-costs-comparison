@@ -2,7 +2,7 @@ from unittest import TestCase
 from uuid import uuid4
 
 from comparisontool.forms import (
-    BAHZipSearchForm, EmailForm, FeedbackForm, SchoolSearchForm
+    BAHZipSearchForm, EmailForm, SchoolSearchForm
 )
 
 
@@ -35,16 +35,7 @@ class EmailFormTests(TestCase):
 
     def test_invalid_email(self):
         form = EmailForm({'id': uuid4(), 'email': 'not-email'})
-
-
-class FeedbackFormTests(TestCase):
-    def test_message_required(self):
-        form = FeedbackForm({})
         self.assertFalse(form.is_valid())
-
-    def test_message_provided(self):
-        form = FeedbackForm({'message': 'Here is some feedback.'})
-        self.assertTrue(form.is_valid())
 
 
 class SchoolSearchFormTests(TestCase):
