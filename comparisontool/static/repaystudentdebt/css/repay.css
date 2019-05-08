@@ -4146,7 +4146,7 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
 #repaying-student-debt .cf-icon-svg {
   font-size: 1.75em;
   position: relative;
-    top: 0.1em;
+  top: -0.25em;
 }
 
 #repaying-student-debt .ds-section .ds-response-container {
