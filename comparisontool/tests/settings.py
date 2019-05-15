@@ -1,5 +1,7 @@
-import dj_database_url
 import os
+
+import dj_database_url
+
 
 DEBUG = True
 
@@ -11,7 +13,7 @@ DATABASES = {
 }
 
 if 'DATABASE_URL' in os.environ:
-    DATABASES['default']  =  dj_database_url.config()
+    DATABASES['default'] = dj_database_url.config()
 
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -28,7 +30,7 @@ ROOT_URLCONF = 'comparisontool.urls'
 SECRET_KEY = 'this-is-just-for-tests-so-not-that-secret'
 SITE_ID = 1
 
-TEMPLATES  =  [
+TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,

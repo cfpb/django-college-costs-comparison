@@ -10,8 +10,10 @@ from django.utils.encoding import force_text
 
 from comparisontool.models import BAHRate, School, Worksheet
 from comparisontool.views import (
-    DataStorageView, WorksheetJsonValidationError, bah_lookup_api,
-    school_search_api
+    DataStorageView,
+    WorksheetJsonValidationError,
+    bah_lookup_api,
+    school_search_api,
 )
 
 
@@ -20,7 +22,7 @@ class BAHLookupAPITests(TestCase):
         self.factory = RequestFactory()
 
     def test_valid_request_returns_rate(self):
-        rate = BAHRate.objects.create(zip5='22203', value='1234')
+        BAHRate.objects.create(zip5='22203', value='1234')
         request = self.factory.get('/?zip5=22203')
         self.assertContains(bah_lookup_api(request), '{"rate": 1234}')
 
@@ -136,8 +138,8 @@ class EmailLinkTests(TestCase):
 
     def test_valid_post_sends_email(self):
         guid = uuid.uuid4()
-        worksheet = Worksheet.objects.create(guid=guid)
-        response = self.client.post(
+        Worksheet.objects.create(guid=guid)
+        self.client.post(
             self.path,
             {'id': guid, 'email': 'foo@bar.com'}
         )
@@ -162,7 +164,7 @@ class SchoolRepresentationTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_valid_school_returns_json(self):
-        school = School.objects.create(school_id=123)
+        School.objects.create(school_id=123)
         response = self.client.get(self.path(school_id=123))
         self.assertEqual(response['Content-type'], 'application/json')
 
@@ -181,7 +183,7 @@ class SchoolSearchAPITests(TestCase):
         self.factory = RequestFactory()
 
     def test_valid_request_returns_matching_school(self):
-        school = School.objects.create(
+        School.objects.create(
             school_id=123,
             data_json='',
             city='Washington',

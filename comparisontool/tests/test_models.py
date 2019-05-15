@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+
 from django.test import TestCase
 
 from comparisontool.models import Alias, School
@@ -39,7 +40,7 @@ class SchoolTests(TestCase):
             city='Washington',
             state='DC'
         )
-        alias = Alias.objects.create(
+        Alias.objects.create(
             institution=school,
             alias='foo',
             is_primary=True
