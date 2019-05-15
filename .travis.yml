@@ -2,7 +2,9 @@ language: python
 python:
 - 2.7
 - 3.6
-install: pip install tox
+install: 
+- pip install tox-travis
+- pip install tox
 before_script: psql -c 'create database dccc;' -U postgres
 script:
 - tox
