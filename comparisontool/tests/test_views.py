@@ -1,9 +1,12 @@
+from __future__ import unicode_literals
+
 import json
 import uuid
 
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import RequestFactory, TestCase
+from django.utils.encoding import force_text
 
 from comparisontool.models import BAHRate, School, Worksheet
 from comparisontool.views import (
@@ -70,8 +73,8 @@ class DataStorageViewTests(TestCase):
 
         view = DataStorageView.as_view()
         response = view(request, guid=self.worksheet.guid)
-        self.assertEqual(
-            json.loads(response.content),
+        self.assertJSONEqual(
+            force_text(response.content),
             {'id': self.worksheet.guid}
         )
 
@@ -166,7 +169,7 @@ class SchoolRepresentationTests(TestCase):
     def test_valid_school_returns_school_data_json(self):
         school = School.objects.create(
             school_id=123,
-            data_json='{"foo": "bar"}'
+            data_json=b'{"foo": "bar"}'
         )
 
         response = self.client.get(self.path(school_id=123))
@@ -186,15 +189,15 @@ class SchoolSearchAPITests(TestCase):
         )
 
         request = self.factory.get('/?q=s')
-        self.assertEqual(
-            school_search_api(request).content,
-            json.dumps([{
+        self.assertJSONEqual(
+            force_text(school_search_api(request).content),
+            [{
                 'schoolname': None,
                 'id': 123,
                 'city': 'Washington',
                 'state': 'DC',
                 'url': reverse('school-json', args=(123,)),
-            }])
+            }]
         )
 
     def test_invalid_request_returns_empty_dict(self):

@@ -11,8 +11,8 @@ from django.http import HttpResponse
 
 from haystack.query import SearchQuerySet
 
-from models import School, Worksheet, BAHRate
-from forms import EmailForm, SchoolSearchForm, BAHZipSearchForm
+from comparisontool.models import School, Worksheet, BAHRate
+from comparisontool.forms import EmailForm, SchoolSearchForm, BAHZipSearchForm
 
 
 class WorksheetJsonValidationError(Exception):
