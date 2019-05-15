@@ -1,6 +1,8 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class School(models.Model):
     """
     Represents a school
@@ -10,8 +12,8 @@ class School(models.Model):
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=2)
 
-    def __unicode__(self):
-        return self.primary_alias + u"(%s)" % self.school_id
+    def __str__(self):
+        return self.primary_alias + "(%s)" % self.school_id
 
     @property
     def primary_alias(self):
@@ -21,6 +23,7 @@ class School(models.Model):
             return 'Not Available'
 
 
+@python_2_unicode_compatible
 class Alias(models.Model):
     """
     One of potentially several names for a school
@@ -29,8 +32,8 @@ class Alias(models.Model):
     alias = models.TextField()
     is_primary = models.BooleanField(default=False)
 
-    def __unicode__(self):
-        return u"%s (alias for %s)" % (self.alias, unicode(self.institution))
+    def __str__(self):
+        return "%s (alias for %s)" % (self.alias, self.institution)
 
 
 class BAHRate(models.Model):
