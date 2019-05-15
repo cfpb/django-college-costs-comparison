@@ -1,10 +1,10 @@
+import csv
 from glob import glob
 from json import dumps
-import csv
 
 from django.core.management.base import BaseCommand
 
-from comparisontool.models import *
+from comparisontool.models import Alias, School
 
 
 class Command(BaseCommand):
@@ -21,8 +21,8 @@ class Command(BaseCommand):
                 reader = csv.DictReader(csv_file)
                 self.stdout.write("Schools loaded: ", ending="")
                 for record in reader:
-                    # Last load took 14 minutes, this will add a visual indicator
-                    #  that something is happening
+                    # Last load took 14 minutes, this will add a visual
+                    # indicator that something is happening
                     self.stdout.write(record['SCHOOL_ID'], ending=", ")
                     aliases = set()
                     primary_school_name = record.get("SCHOOL")
@@ -34,15 +34,19 @@ class Command(BaseCommand):
                     state = record.get('STATE')
                     school_id = int(record['SCHOOL_ID'])
                     data_json = dumps(record)
-                    school = School(school_id=school_id,
-                            city=city,
-                            state=state,
-                            data_json=data_json)
+                    school = School(
+                        school_id=school_id,
+                        city=city,
+                        state=state,
+                        data_json=data_json
+                    )
                     school.save()
                     school.alias_set.all().delete()
                     for (index, alias_str) in enumerate(aliases):
-                        alias = Alias(institution=school,
-                                alias=alias_str,
-                                is_primary=(alias_str == primary_school_name))
+                        alias = Alias(
+                            institution=school,
+                            alias=alias_str,
+                            is_primary=(alias_str == primary_school_name)
+                        )
                         alias.save()
                 self.stdout.write("... done!")

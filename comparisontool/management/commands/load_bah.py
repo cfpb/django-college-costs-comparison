@@ -1,9 +1,9 @@
-from glob import glob
 import csv
+from glob import glob
 
 from django.core.management.base import BaseCommand
 
-from comparisontool.models import *
+from comparisontool.models import BAHRate
 
 
 class Command(BaseCommand):
