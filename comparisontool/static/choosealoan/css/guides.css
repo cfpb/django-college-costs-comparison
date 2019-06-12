@@ -57,9 +57,11 @@ h4 {font-size:14px;font-weight:500;}
 .ico-explore{ background-position: 0 -77px; width: 23px; height: 13px; margin-bottom:7px; }
 .ico-compare{ background-position: 0 -110px; width: 19px; height: 19px; margin-bottom:1px; }
 .icon {width:23px;height:23px;background: url("/static/choosealoan/images/icons.png") no-repeat top left;position:absolute;}
-.ico-bullet_check{ background-position: 0 0; width: 17px; height: 17px;}
-.ico-bullet_minus{ background-position: -37px 0; width: 17px; height: 17px;}
-.ico-bullet_plus{ background-position: -74px 0; width: 17px; height: 17px; }
+
+.ico-bullet_check .cf-icon-svg{ color: #20aa3f; }
+.ico-bullet_minus .cf-icon-svg{ color: #d14124; }
+.ico-bullet_plus .cf-icon-svg{ color: #257675; }
+
 .ico-criteria_eligibility{ background-position: -111px 0; width: 21px; height: 19px; }
 .ico-criteria_interest{ background-position: -152px 0; width: 20px; height: 18px; }
 .ico-criteria_limits{ background-position: -192px 0; width: 23px; height: 17px; }
@@ -71,8 +73,9 @@ h4 {font-size:14px;font-weight:500;}
 .ico-process-loans{ background-position: -94px 0; }
 .ico-process-loans.selected,
 .ico-process-loans:hover { background-position: -141px 0; }
-.icon-positioning-fix {position: relative; display: block; }
-.icon-positioning-fix .icon { left:-23px; top:-14px;}
+.icon-positioning-fix {position: relative; display: block;}
+.icon-positioning-fix .cf-icon-svg {left:-15px; top:0;position: absolute;font-size:1.2em;}
+.no-pad .icon-positioning-fix .cf-icon-svg {left:-23px;}
 .rh{text-align:right;}
 .uc {text-transform:uppercase; font-weight:400;}
 .no-pad{padding:0px;}
@@ -268,8 +271,6 @@ h3 {text-transform:none; color:#212121;}
 .comparison-h2{font-size:24px;}
 p {line-height:1.4em;}
 .rel-ico-span{position: relative;width:300px;margin-left:21px; float:left; height:100%;}
-.rel-ico-span h4{margin-left:22px;}
-.rel-ico-span .icon{margin-top:1px;}
 #ask-cfpb-print {display:none;}
 .guide-hero{margin-top:40px;}
 
@@ -349,11 +350,30 @@ thead th {padding:1px;}
 h2{text-transform:none;margin-left:0px;letter-spacing:0px;}
 .td2 h2{font-weight:500; padding-bottom:.4em; border-bottom:1px solid #212121;}
 #ask-cfpb-print{display:none;}
+
+/* Round numbered bullets. */
 ol.action-steps,ul.action-steps {padding:0; list-style: none;}
-ol.action-steps li {margin-bottom:10px;padding-left:30px;background-position-y:2px;}
-ol.action-steps .li-1 {background-image:url("/static/choosealoan/images/bullet-1.png");background-repeat: no-repeat;}
-ol.action-steps .li-2 {background-image:url("/static/choosealoan/images/bullet-2.png");background-repeat: no-repeat;}
-ol.action-steps .li-3 {background-image:url("/static/choosealoan/images/bullet-3.png");background-repeat: no-repeat;}
+ol.action-steps li {margin-bottom:10px;padding-left:30px;}
+ol.action-steps {counter-reset: bullets;}
+ol.action-steps li {position: relative;}
+ol.action-steps li:before {
+    counter-increment: bullets;
+    content: counter( bullets );
+    position: absolute;
+    top: 3px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    width: 1.7em;
+    height: 1.5em;
+    padding-top: 0.2em;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    border-radius: 100%;
+    font-size: 0.7em;
+}
+
 .intro-row {margin-top: 50px;}
 .intro-row{margin-left:-20px;font-family: "Avenir Next", Arial, sans-serif;}
 .intro-row:before,.row:after{content:"";display:table;}

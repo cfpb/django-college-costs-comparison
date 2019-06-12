@@ -1206,13 +1206,8 @@ button#repaying-student-debt .expandable_header {
 #repaying-student-debt .expandable-group .expandable_content {
   margin-bottom: 0;
 }
-#repaying-student-debt .cf-icon-svg,
 #repaying-student-debt .cf-icon-svg {
   display: inline-block;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
 }
 #repaying-student-debt .content-l {
   position: relative;
@@ -4147,6 +4142,12 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
   font-size: 1.75em;
   position: relative;
   top: -0.25em;
+}
+
+#repaying-student-debt a .cf-icon-svg {
+  /* Reset the icon position and size for external link icons. */
+  font-size: 1em;
+  top: 0;
 }
 
 #repaying-student-debt .ds-section .ds-response-container {

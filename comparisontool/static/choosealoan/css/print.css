@@ -24,7 +24,7 @@ body {font-family: "Avenir Next"; color: #000 !important;}
 
 .well-solid h1 {font-size:32px; text-transform:none; line-height:36px;}
 .guide-hero h1,
-.guide-hero h2 {text-transform:none; margin:0;} 
+.guide-hero h2 {text-transform:none; margin:0;}
 .guide-hero h1 {font-size:32px; line-height:36px; font-weight:500; letter-spacing: .5px; margin-bottom:8px; padding-top:.67em;}
 .guide-hero h2 {font-size:32px; line-height:36px;}
 
@@ -50,7 +50,7 @@ body {font-family: "Avenir Next"; color: #000 !important;}
 .related-resources p {margin: 0px; font-size: 14px; line-height: 20px;}
 
 #its-important { }
-#print-questions {display:block; text-transform: none; font-size: 18px; font-weight: 400; color:#212121;} 
+#print-questions {display:block; text-transform: none; font-size: 18px; font-weight: 400; color:#212121;}
 #print-questions ul, li {font-family:"Georgia"; font-size: 12px;}
 #print-questions h2 {}
 
@@ -63,8 +63,8 @@ a, .lnk {border-bottom:1px dotted #004D6B; text-decoration:none; color: #3A7188;
 a.ec,a.ec-blk {
     font-weight:500;
     text-decoration:none;
-    padding-left:0px;   
-    background-repeat:no-repeat; 
+    padding-left:0px;
+    background-repeat:no-repeat;
     background-position-x:0px;
     background-position-y:0px;
 }
@@ -132,10 +132,10 @@ ol .li-3 {background-image:url(../images/bullet-3.png);background-repeat: no-rep
 }
 
 .ico {background: url(../images/resources.png) no-repeat top left;padding-left:26px;padding-top:3px;}
-.ico-ask { background-position: 0 0; width: 12px; height: 17px; } 
-.ico-watch{ background-position: 0 -37px; width: 21px; height: 20px; } 
-.ico-explore{ background-position: 0 -77px; width: 23px; height: 13px; } 
-.ico-compare{ background-position: 0 -110px; width: 19px; height: 19px; } 
+.ico-ask { background-position: 0 0; width: 12px; height: 17px; }
+.ico-watch{ background-position: 0 -37px; width: 21px; height: 20px; }
+.ico-explore{ background-position: 0 -77px; width: 23px; height: 13px; }
+.ico-compare{ background-position: 0 -110px; width: 19px; height: 19px; }
 
 /* Options Table */
 table{border:0px;border-collapse: separate;border-spacing: 18px 0px;padding-bottom: 20px;}
@@ -166,11 +166,11 @@ td, .smlr-text{font-family: georgia;font-size: 12px;line-height: 20px;font-weigh
 #print-ask-cfpb li {font-size:14px;line-height:20px;font-family: Georgia; margin:0 0 10px;}
 .bullet {float:left; display:inline-block;height:25px;width:25px;text-align:center;line-height:26px;font-size:1.5em;border-radius:100%;-moz-border-radius:100%;-webkit-border-radius:100%; margin-right:5px;font-weight:600; margin-top:-6px;}
 
-.ico-criteria_repayment{ background-position: -235px 0; width: 20px; height: 19px; } 
+.ico-criteria_repayment{ background-position: -235px 0; width: 20px; height: 19px; }
 .print-hide{display:none;}
 .accordion-item{display:block !important;}
 
-.ico-criteria_repayment{ background-position: -235px 0; width: 20px; height: 19px; } 
+.ico-criteria_repayment{ background-position: -235px 0; width: 20px; height: 19px; }
 .print-hide{display:none;}
 
 @page {
