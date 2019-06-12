@@ -4138,6 +4138,18 @@ tbody > tr:nth-child(odd) > #repaying-student-debt td {
   font-weight: bold;
 }
 
+#repaying-student-debt .cf-icon-svg {
+  font-size: 1.75em;
+  position: relative;
+  top: -0.25em;
+}
+
+#repaying-student-debt a .cf-icon-svg {
+  /* Reset the icon position and size for external link icons. */
+  font-size: 1em;
+  top: 0;
+}
+
 #repaying-student-debt .ds-section .ds-response-container {
   border-bottom: 1px solid #A9ABAC;
   font-family: "AvenirNextLTW01-Regular", Arial, sans-serif;
