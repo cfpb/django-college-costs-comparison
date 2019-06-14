@@ -1,9 +1,7 @@
 from unittest import TestCase
 from uuid import uuid4
 
-from comparisontool.forms import (
-    BAHZipSearchForm, EmailForm, SchoolSearchForm
-)
+from comparisontool.forms import BAHZipSearchForm, EmailForm, SchoolSearchForm
 
 
 class BAHZipSearchFormTests(TestCase):

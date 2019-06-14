@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.test import TestCase
 
 from comparisontool.models import Alias, School
@@ -17,7 +19,7 @@ class AliasTests(TestCase):
             is_primary=True
         )
 
-        self.assertEqual(unicode(alias), 'foo (alias for foo(1))')
+        self.assertEqual(str(alias), 'foo (alias for foo(1))')
 
 
 class SchoolTests(TestCase):
@@ -29,7 +31,7 @@ class SchoolTests(TestCase):
             state='DC'
         )
 
-        self.assertEqual(unicode(school), 'Not Available(1)')
+        self.assertEqual(str(school), 'Not Available(1)')
 
     def test_unicode_alias(self):
         school = School.objects.create(
@@ -38,10 +40,10 @@ class SchoolTests(TestCase):
             city='Washington',
             state='DC'
         )
-        alias = Alias.objects.create(
+        Alias.objects.create(
             institution=school,
             alias='foo',
             is_primary=True
         )
 
-        self.assertEqual(unicode(school), 'foo(1)')
+        self.assertEqual(str(school), 'foo(1)')

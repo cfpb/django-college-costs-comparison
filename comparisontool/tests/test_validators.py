@@ -1,5 +1,5 @@
-from django.test import TestCase
 from django.core.exceptions import ValidationError
+from django.test import TestCase
 
 from comparisontool.validators import validate_uuid4
 

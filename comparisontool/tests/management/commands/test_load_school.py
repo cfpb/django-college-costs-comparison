@@ -10,9 +10,9 @@ class LoadSchoolTests(TestCase):
     def test_load_from_csv_creates_school_and_alias_objects(self):
         with tempfile.NamedTemporaryFile() as tf:
             tf.write(
-                'SCHOOL_ID,SCHOOL,ALIAS,CITY,STATE\n'
-                '1,Harvard,Big H|The Harv,Cambridge,MA\n'
-                '2,University of Pennsylvania,UPenn|Penn,Philadelphia,PA\n'
+                b'SCHOOL_ID,SCHOOL,ALIAS,CITY,STATE\n'
+                b'1,Harvard,Big H|The Harv,Cambridge,MA\n'
+                b'2,University of Pennsylvania,UPenn|Penn,Philadelphia,PA\n'
             )
             tf.seek(0)
 
@@ -23,7 +23,7 @@ class LoadSchoolTests(TestCase):
         harvard = School.objects.first()
         self.assertEqual(harvard.city, 'Cambridge')
         self.assertEqual(harvard.state, 'MA')
-        self.assertItemsEqual(
+        self.assertCountEqual(
             harvard.alias_set.values_list('alias', flat=True),
             ['Harvard', 'Big H', 'The Harv']
         )

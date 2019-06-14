@@ -9,7 +9,7 @@ from comparisontool.models import BAHRate
 class LoadBAHTests(TestCase):
     def test_load_from_csv_creates_bahrate_objects(self):
         with tempfile.NamedTemporaryFile() as tf:
-            tf.write('ZIP,BAH\n22203,123\n22205,0\n22207,456\n')
+            tf.write(b'ZIP,BAH\n22203,123\n22205,0\n22207,456\n')
             tf.seek(0)
 
             call_command('load_bah', tf.name)

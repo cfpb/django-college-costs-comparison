@@ -2,17 +2,16 @@
 import json
 import uuid
 
-from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView, View
-from django.shortcuts import get_object_or_404, render
 from django.core.mail import send_mail
-from django.template.loader import get_template
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
+from django.template.loader import get_template
+from django.views.generic import View
 
+from comparisontool.forms import BAHZipSearchForm, EmailForm, SchoolSearchForm
+from comparisontool.models import BAHRate, School, Worksheet
 from haystack.query import SearchQuerySet
-
-from models import School, Worksheet, BAHRate
-from forms import EmailForm, SchoolSearchForm, BAHZipSearchForm
 
 
 class WorksheetJsonValidationError(Exception):

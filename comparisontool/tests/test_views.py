@@ -1,14 +1,19 @@
+from __future__ import unicode_literals
+
 import json
 import uuid
 
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import RequestFactory, TestCase
+from django.utils.encoding import force_text
 
 from comparisontool.models import BAHRate, School, Worksheet
 from comparisontool.views import (
-    DataStorageView, WorksheetJsonValidationError, bah_lookup_api,
-    school_search_api
+    DataStorageView,
+    WorksheetJsonValidationError,
+    bah_lookup_api,
+    school_search_api,
 )
 
 
@@ -17,7 +22,7 @@ class BAHLookupAPITests(TestCase):
         self.factory = RequestFactory()
 
     def test_valid_request_returns_rate(self):
-        rate = BAHRate.objects.create(zip5='22203', value='1234')
+        BAHRate.objects.create(zip5='22203', value='1234')
         request = self.factory.get('/?zip5=22203')
         self.assertContains(bah_lookup_api(request), '{"rate": 1234}')
 
@@ -70,8 +75,8 @@ class DataStorageViewTests(TestCase):
 
         view = DataStorageView.as_view()
         response = view(request, guid=self.worksheet.guid)
-        self.assertEqual(
-            json.loads(response.content),
+        self.assertJSONEqual(
+            force_text(response.content),
             {'id': self.worksheet.guid}
         )
 
@@ -133,8 +138,8 @@ class EmailLinkTests(TestCase):
 
     def test_valid_post_sends_email(self):
         guid = uuid.uuid4()
-        worksheet = Worksheet.objects.create(guid=guid)
-        response = self.client.post(
+        Worksheet.objects.create(guid=guid)
+        self.client.post(
             self.path,
             {'id': guid, 'email': 'foo@bar.com'}
         )
@@ -159,14 +164,14 @@ class SchoolRepresentationTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_valid_school_returns_json(self):
-        school = School.objects.create(school_id=123)
+        School.objects.create(school_id=123)
         response = self.client.get(self.path(school_id=123))
         self.assertEqual(response['Content-type'], 'application/json')
 
     def test_valid_school_returns_school_data_json(self):
         school = School.objects.create(
             school_id=123,
-            data_json='{"foo": "bar"}'
+            data_json=b'{"foo": "bar"}'
         )
 
         response = self.client.get(self.path(school_id=123))
@@ -178,7 +183,7 @@ class SchoolSearchAPITests(TestCase):
         self.factory = RequestFactory()
 
     def test_valid_request_returns_matching_school(self):
-        school = School.objects.create(
+        School.objects.create(
             school_id=123,
             data_json='',
             city='Washington',
@@ -186,15 +191,15 @@ class SchoolSearchAPITests(TestCase):
         )
 
         request = self.factory.get('/?q=s')
-        self.assertEqual(
-            school_search_api(request).content,
-            json.dumps([{
+        self.assertJSONEqual(
+            force_text(school_search_api(request).content),
+            [{
                 'schoolname': None,
                 'id': 123,
                 'city': 'Washington',
                 'state': 'DC',
                 'url': reverse('school-json', args=(123,)),
-            }])
+            }]
         )
 
     def test_invalid_request_returns_empty_dict(self):
