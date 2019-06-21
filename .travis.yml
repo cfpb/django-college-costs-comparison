@@ -8,7 +8,7 @@ install:
 before_script: psql -c 'create database dccc;' -U postgres
 script:
 - tox
-- python setup.py bdist_wheel
+- python setup.py bdist_wheel --universal
 
 deploy:
   provider: releases
