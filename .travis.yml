@@ -2,10 +2,13 @@ language: python
 python:
 - 2.7
 - 3.6
+services:
+- postgresql
 install: 
 - pip install tox-travis
 - pip install tox
-before_script: psql -c 'create database dccc;' -U postgres
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
 script:
 - tox
 - python setup.py bdist_wheel --universal
