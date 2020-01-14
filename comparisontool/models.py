@@ -1,8 +1,6 @@
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 
-@python_2_unicode_compatible
 class School(models.Model):
     """
     Represents a school
@@ -23,7 +21,6 @@ class School(models.Model):
             return 'Not Available'
 
 
-@python_2_unicode_compatible
 class Alias(models.Model):
     """
     One of potentially several names for a school
