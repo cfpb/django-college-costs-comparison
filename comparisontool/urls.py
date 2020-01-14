@@ -11,7 +11,6 @@ from comparisontool.views import (
     school_search_api,
 )
 
-
 urlpatterns = [
     url(
         r'^$',
