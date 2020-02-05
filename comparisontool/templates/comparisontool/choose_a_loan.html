@@ -4,10 +4,9 @@
 {% block title %}Choose a student loan{% endblock %}
 
 {% block page_meta %}
-<meta charset="UTF-8" />
-<meta property="og:title" content="Choose a student loan | Consumer Financial Protection Bureau"/>
-<meta property="og:url" content="{{ URL }}"/>
-<meta name="description" content="Comparing your options helps you find the loan best suited for your needs."/>
+<meta property="og:title" content="Choose a student loan | Consumer Financial Protection Bureau">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta name="description" content="Comparing your options helps you find the loan best suited for your needs.">
 
 <meta property="og:description" content="Comparing your options helps you find the loan best suited for your needs."/>
 {% endblock %}
@@ -50,7 +49,7 @@
         <nav>
             <ul class="pfc-nav">
                 <li><a href="/paying-for-college/">Get started</a></li>
-                <li><span class="fake-link is-active" tabindex="0" class="fake-link">Student financial guides</span>
+                <li><span class="fake-link is-active" tabindex="0">Student financial guides</span>
                     <ul>
                         <li><a href="/paying-for-college/choose-a-student-loan/">Student loans</a></li>
                         <li><a href="/paying-for-college/manage-your-college-money/">Student banking</a></li>
@@ -62,7 +61,6 @@
         </nav>
     </div><!-- end .pfc-nav-wrapper -->
 </header><!-- end #repay-debt-header -->
-<div class="cfpb-logo" alt="Consumer Financial Protection Bureau"></div>
 
 <div id='guide-content' class='guide-content'>
     <!-- HEADER -->
@@ -122,6 +120,7 @@
                         <div class='answer-entry' id="answer2">
                             <p>If your grants and federal loans are not enough to cover the cost of your education, you should consider the following options:</p>
 
+                            <ul>
                             <li>Search for scholarships. Look for <a class="exit-link" href="http://wdcrobcolp01.ed.gov/Programs/EROD/org_list.cfm?category_cd=SGT" target="_blank" rel="noopener noreferrer">state and local grants</a> and <a class="exit-link" href="http://www.careerinfonet.org/scholarshipsearch/ScholarshipCategory.asp?searchtype=category&amp;nodeid=22" target="_blank" rel="noopener noreferrer">scholarships</a> using one of the many free scholarship search options available. Servicemembers, veterans, and their families may be eligible for <a class="exit-link" href="http://gibill.va.gov/" target="_blank" rel="noopener noreferrer">GI Bill benefits</a> and/or military tuition assistance.</li>
 
                             <li>Cut costs. Consider getting one or more roommates or a part-time job, possibly through <a class="exit-link" href="http://studentaid.ed.gov/types/work-study" target="_blank" rel="noopener noreferrer">Federal Work-Study.</a></li>
@@ -129,6 +128,7 @@
                             <li> See what your family can contribute. Your parents may be able to get tax credits for their contributions. Parents can also explore the federal Direct PLUS Loan program.</li>
 
                             <li>Shop around for a private loan. Remember that these loans generally have higher interest rates and less repayment flexibility compared to federal student loans. You generally should turn to private loans only after you have explored all other grant, scholarship, and federal loan options. If you can show you have a very high credit rating, you may find an affordable private student loan, though you will likely need a co-signer, who will be legally obligated to repay the loan if you can't or don't. Look for the one with the lowest interest rate and flexible repayment options.</li>
+                            </ul>
                         </div>
 
                         <div class='answer-entry' id="answer3">
@@ -136,12 +136,14 @@
 
                             <p>Here are some factors to consider: </p>
 
+                            <ul>
                             <li>Talk to your school's financial aid office to get a form certifying that you need additional aid to cover the cost of attendance - most lenders require it.</li>
 
                             <li>Shop for lower interest rates and loans that offer flexibility if you have trouble making payments. </li>
 
                             <li>Some private lenders may advertise very low interest rates - remember that only borrowers with the best credit will qualify for these rates.  Your rate could be much higher. </li>
                             <li>In 2011, over 90% of private student loans required a co-signer, so make sure you have someone like a parent or another relative lined up. Your co-signer will be legally obligated to repay the loan if you can't or don't. You may want to consider loans that offer "co-signer release" after a number of on-time payments. </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -158,25 +160,27 @@
                     <p>For most people, federal student loans are a better deal than private student loans, so you'll want to take advantage of federal options first.</p>
                     <h2 class="font-xxl nc">What if my grants and federal loans don't cover the cost of attendance? </h2>
                     <p>If your grants and federal loans are not enough to cover the cost of your education, you should consider the following options:</p>
-
+                    <ul>
                     <li>Search for scholarships. Look for <a class="exit-link" href="http://wdcrobcolp01.ed.gov/Programs/EROD/org_list.cfm?category_cd=SGT" target="_blank" rel="noopener noreferrer">state and local grants</a> and <a class="exit-link" href="http://www.careerinfonet.org/scholarshipsearch/ScholarshipCategory.asp?searchtype=category&amp;nodeid=22" target="_blank" rel="noopener noreferrer">scholarships</a> using one of the many free scholarship search options available. Servicemembers, veterans, and their families may be eligible for <a class="exit-link" href="http://gibill.va.gov/" target="_blank" rel="noopener noreferrer">GI Bill benefits</a> and/or military tuition assistance.</li>
 
                     <li>Cut costs. Consider getting one or more roommates or a part-time job, possibly through <a class="exit-link" href="http://studentaid.ed.gov/types/work-study" target="_blank" rel="noopener noreferrer">Federal Work-Study.</a></li>
 
                     <li> See what your family can contribute. Your parents may be able to get tax credits for their contributions. Parents can also explore the federal Direct PLUS Loan program.</li>
 
-                    <li>Shop around for a private loan. Remember that these loans generally have higher interest rates and less repayment flexibility compared to federal student loans. You generally should turn to private loans only after you have explored all other grant, scholarship, and federal loan options. If you can show you have a very high credit rating, you may find an affordable private student loan, though you will likely need a co-signer, who will be legally obligated to repay the loan if you can't or don't. Look for the one with the lowest interest rate and flexible repayment options.</li></p><br>
+                    <li>Shop around for a private loan. Remember that these loans generally have higher interest rates and less repayment flexibility compared to federal student loans. You generally should turn to private loans only after you have explored all other grant, scholarship, and federal loan options. If you can show you have a very high credit rating, you may find an affordable private student loan, though you will likely need a co-signer, who will be legally obligated to repay the loan if you can't or don't. Look for the one with the lowest interest rate and flexible repayment options.</li>
+                    </ul>
                     <h2 class="font-xxl nc">What should I consider when shopping for a private loan?</h2>
                     <p>First, make sure you need a private student loan. These loans generally are not as affordable as federal student loans and offer little repayment flexibility. </p>
 
                     <p>Here are some factors to consider: </p>
-
+                    <ul>
                     <li>Talk to your school's financial aid office to get a form certifying that you need additional aid to cover the cost of attendance - most lenders require it.</li>
 
                     <li>Shop for lower interest rates and loans that offer flexibility if you have trouble making payments. </li>
 
                     <li>Some private lenders may advertise very low interest rates - remember that only borrowers with the best credit will qualify for these rates.  Your rate could be much higher. </li>
-                    <li>In 2011, over 90% of private student loans required a co-signer, so make sure you have someone like a parent or another relative lined up. Your co-signer will be legally obligated to repay the loan if you can't or don't. You may want to consider loans that offer "201cco-signer release" after a number of on-time payments. </li></p>
+                    <li>In 2011, over 90% of private student loans required a co-signer, so make sure you have someone like a parent or another relative lined up. Your co-signer will be legally obligated to repay the loan if you can't or don't. You may want to consider loans that offer "201cco-signer release" after a number of on-time payments. </li>
+                    </ul>
                 </div>
             </div>
             <div class='span3'>
@@ -199,11 +203,10 @@
         <div class='row'>
             <div class='span9'>
                 <!--WHAT ARE THE OPTIONS-->
-                <table class="lbtable loans-table vspace2">
+                <table class="lbtable loans-table vspace2" id="loans-table">
                     <thead class="">
                         <tr>
                             <th>&nbsp;</th>
-                            <a name="loans-table"></a>
                             <th class="font-xxxl">Federal Loans</th>
                             <th class="font-xxxl">Private Loans</th>
                         </tr>
@@ -428,29 +431,23 @@
                             <p>Federal student loans almost always cost less and are easier to repay than private loans. You must complete the <a class="exit-link" href="http://www.fafsa.ed.gov/" target="_blank" rel="noopener noreferrer">Free Application for Federal Student Aid (FAFSA) </a> to be eligible for federal student loans.</p>
 
                             <h4>Perkins Loans</h4>
-                            <p>
                                 <p>Subsidized with a fixed 5% interest rate, administered through your school, and awarded based on financial need</p>
 
                                 <p>If you are eligible, you should take this loan first</p>
                                 <!--<a href='<br>{"hidden":true,"alt_view":"hidden"}'>More info</a>-->
-                            </p>
 
                             <h4>Direct Loans</h4>
-                            <p>
                                 <p>Either subsidized or unsubsidized</p>
 
                                 <p>Everyone is eligible for the Unsubsidized Direct Loan, and Subsidized Direct Loans are awarded based on financial need</p>
                                 <!--<a href='<br>{"hidden":true,"alt_view":"hidden"}'>More info</a>-->
-                            </p>
 
                             <h4>Parent or Grad PLUS Loans</h4>
-                            <p>
                                 <p>Available to graduate students and parents</p>
 
                                 <p>Parents with PLUS loans are responsible for repaying those loans</p>
                                 <!--<a href='<br>{"hidden":true,"alt_view":"hidden"}'>Usually your best option if your other federal aid does not cover your expense. Parents are responsible for
                                 repaying this loan.</a>-->
-                            </p>
 
 
                             <h3>Private Loan Options</h3>
@@ -461,28 +458,22 @@
                             <p>However if you need a private student loan, you should know that there are some unexpected places to look for deals. It's important to shop around and compare different loan offers.</p>
 
                             <h4>State Agency Loans</h4>
-                            <p>
                                 <p>Loans offered by states to residents, or for students attending school in the state</p>
                                 <p>Ask your school's financial aid office for more information about "state sponsored alternative loans"</p>
                                 <!--<a href='{"hidden":true,"alt_view":"hidden"}'>More info</a>-->
-                            </p>
 
                             <h4>Traditional Bank Loans</h4>
-                            <p>
                                 <p>These loans come from commercial banks. You may be more familiar with their checking or savings accounts</p>
                                 <p>Talk to your parent or someone you trust about this option because you will likely need a co-signer.</p>
                                 <!--<a href='{"hidden":true,"alt_view":"hidden"}'>More info</a>-->
-                            </p>
 
                             <h4>School Loans</h4>
-                            <p>
                                 <p>Some schools have their own loan program for students, which tend to have fixed rates.</p>
                                 <p>Ask your school's financial aid office for more information.</p>
-                            </p>
 
                         </div>
                         <section class="major-sect" id="ask-cfpb-print">
-                            <h5 class"guide-sect-header black vspace2 tb" style="font-size:1em; color:#d83d00; font-weight:500; padding-top:.1em; text-transform:uppercase; margin-top:1.5em;">Ask CFPB!</h5>
+                            <h5 class="guide-sect-header black vspace2 tb" style="font-size:1em; color:#d83d00; font-weight:500; padding-top:.1em; text-transform:uppercase; margin-top:1.5em;">Ask CFPB!</h5>
                         </section>
 
                         </div>
