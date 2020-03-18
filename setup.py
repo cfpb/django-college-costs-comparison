@@ -26,7 +26,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Intended Audience :: Developers',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3',
         'Framework :: Django',
         'Development Status :: 4 - Beta',
         'Operating System :: OS Independent',
@@ -37,7 +37,7 @@ setup(
     setup_requires=['setuptools-git-version'],
     install_requires=[
         'dj-database-url>=0.4.2,<1',
-        'Django>=1.11,<1.12',
+        'Django>=1.11,<2.3',
         'django-haystack>=2.7,<2.9',
         'django-localflavor>=1.1,<2',
     ]

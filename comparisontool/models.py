@@ -25,7 +25,7 @@ class Alias(models.Model):
     """
     One of potentially several names for a school
     """
-    institution = models.ForeignKey(School)
+    institution = models.ForeignKey(School, on_delete=models.CASCADE)
     alias = models.TextField()
     is_primary = models.BooleanField(default=False)
 
