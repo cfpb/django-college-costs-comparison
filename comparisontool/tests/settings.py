@@ -1,5 +1,7 @@
 import os
 
+import django
+
 import dj_database_url
 
 DEBUG = True
@@ -39,9 +41,15 @@ TEMPLATES = [
     },
 ]
 
-MIDDLEWARE_CLASSES = [
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-]
+if django.VERSION >= (2, 0):
+    MIDDLEWARE = [
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+    ]
+else:
+    MIDDLEWARE_CLASSES = [
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+    ]
 
 STATIC_URL = '/static/'

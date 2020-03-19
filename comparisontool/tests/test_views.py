@@ -1,10 +1,7 @@
-from __future__ import unicode_literals
-
 import json
 import uuid
 
 from django.core import mail
-from django.core.urlresolvers import reverse
 from django.test import RequestFactory, TestCase
 from django.utils.encoding import force_text
 
@@ -15,6 +12,11 @@ from comparisontool.views import (
     bah_lookup_api,
     school_search_api,
 )
+
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 
 class BAHLookupAPITests(TestCase):
