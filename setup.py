@@ -39,6 +39,6 @@ setup(
         'dj-database-url>=0.4.2,<1',
         'Django>=1.11,<2.3',
         'django-haystack>=2.7,<2.9',
-        'django-localflavor>=1.1,<2',
+        'django-localflavor>=1.1,<4',
     ]
 )
