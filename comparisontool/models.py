@@ -43,7 +43,7 @@ class BAHRate(models.Model):
 
 class Worksheet(models.Model):
     """
-    The saved state of a students comaprison worksheet
+    The saved state of a students comparison worksheet
     """
     guid = models.CharField(max_length=64, primary_key=True)
     saved_data = models.TextField()
