@@ -25,7 +25,7 @@ class Alias(models.Model):
     """
     One of potentially several names for a school
     """
-    institution = models.ForeignKey(School)
+    institution = models.ForeignKey(School, on_delete=models.CASCADE)
     alias = models.TextField()
     is_primary = models.BooleanField(default=False)
 
@@ -43,7 +43,7 @@ class BAHRate(models.Model):
 
 class Worksheet(models.Model):
     """
-    The saved state of a students comaprison worksheet
+    The saved state of a students comparison worksheet
     """
     guid = models.CharField(max_length=64, primary_key=True)
     saved_data = models.TextField()
