@@ -1,3 +1,4 @@
+from django.urls import re_path
 from django.views.generic import TemplateView
 
 from comparisontool.views import (
@@ -9,12 +10,6 @@ from comparisontool.views import (
     bah_lookup_api,
     school_search_api,
 )
-
-try:
-    from django.urls import re_path
-except ImportError:
-    from django.conf.urls import url as re_path
-
 
 urlpatterns = [
     re_path(
