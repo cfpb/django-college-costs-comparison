@@ -3,19 +3,15 @@ import json
 import uuid
 
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.template.loader import get_template
+from django.urls import reverse
 from django.views.generic import View
 
 from comparisontool.forms import BAHZipSearchForm, EmailForm, SchoolSearchForm
 from comparisontool.models import BAHRate, School, Worksheet
 from haystack.query import SearchQuerySet
-
-try:
-    from django.urls import reverse
-except ImportError:
-    from django.core.urlresolvers import reverse
 
 
 class WorksheetJsonValidationError(Exception):
@@ -63,11 +59,12 @@ class EmailLink(View):
 class CreateWorksheetView(View):
     def post(self, request):
         worksheet_guid = str(uuid.uuid4())
+        data_starter = {'id': worksheet_guid}
         worksheet = Worksheet(guid=worksheet_guid,
-                              saved_data=json.dumps({'id': worksheet_guid})
+                              saved_data=json.dumps(data_starter)
                               )
         worksheet.save()
-        response = HttpResponse(worksheet.saved_data, status=201)
+        response = JsonResponse(data_starter, status=201)
         return response
 
 
@@ -75,76 +72,78 @@ class DataStorageView(View):
     def validate_json(self, worksheet_raw):
         data = json.loads(worksheet_raw)
         allowed_keys = ['id', '1', '2', '3']
-        allowed_fields = [u'netprice75k', u'gradrate', u'netprice', u'roombrd',
-                          u'state529plan', u'roombrdoncampus',
-                          u'institutionalloangrad', u'avgstuloandebtrank',
-                          u'personal', u'program', u'staffsubsidizedwithfee',
-                          u'borrowingtotal', u'defaultrate', u'tuitionfees',
-                          u'gibilltf', u'offeraa', u'school', u'scholar',
-                          u'parentpluswithfee', u'undergrad',
-                          u'staffunsubsidizeddep_max',
-                          u'institutionalloanrate', u'bah', u'tuitionassist',
-                          u'books', u'otherexpenses', u'gibillinstatetuition',
-                          u'offergrad', u'gradpluswithfee', u'privateloangrad',
-                          u'overborrowing', u'badalias', u'perkins_max',
-                          u'yrincollege', u'avgstuloandebt', u'state',
-                          u'instate', u'parentplus', u'loandebt1yr',
-                          u'loanlifetime', u'netpriceok', u'tuitiongradins',
-                          u'tuitiongradindis', u'transportation',
-                          u'moneyforcollege', u'grantstotal',
-                          u'otheroffcampus', u'tfinstate',
-                          u'staffunsubsidizedindep_max', u'institutionalloan',
-                          u'avgmonthlypay', u'gradplus', u'privateloanrate',
-                          u'netpricegeneral', u'institutionalloan_max',
-                          u'tuitionunderindis', u'family', u'offerba',
-                          u'perkinsgrad', u'perkins', u'privateloan',
-                          u'workstudy', u'gradplusgrad', u'city',
-                          u'loanmonthly', u'zip', u'staffunsubsidized_max',
-                          u'staffsubsidizedgrad', u'savingstotal',
-                          u'otheroncampus', u'firstyrcostattend',
-                          u'federaltotal', u'school_id', u'pell_max',
-                          u'tuitiongradoss', u'staffsubsidized_max', u'gap',
-                          u'salaryneeded', u'homeequity', u'gradplus_max',
-                          u'tuitionunderins', u'homeequitygrad',
-                          u'netprice48k', u'pell', u'salarymonthly',
-                          u'unsubsidizedrate', u'control',
-                          u'staffunsubsidizedgrad', u'parentplusgrad',
-                          u'indicatorgroup', u'gradraterank', u'riskofdefault',
-                          u'privatetotal', u'totalgrantsandsavings', u'alias',
-                          u'savings', u'totaldebtgrad', u'remainingcost',
-                          u'online', u'roombrdoffcampus',
-                          u'salaryexpected25yrs', u'loanmonthlyparent',
-                          u'staffsubsidized', u'privateloan_max',
-                          u'staffunsubsidizedwithfee', u'staffunsubsidized',
-                          u'tuitionassist_max', u'tuitionundeross', u'gibill',
-                          u'gibillla', u'retentrate', u'otherwfamily',
-                          u'oncampusavail', u'netprice110k', u'prgmlength',
-                          u'firstyrnetcost', u'gibillbs', u'repaymentterm',
-                          u'totaloutofpocket', u'kbyoss', u'origin',
-                          u'netprice3ok']
-        for index in data.keys():
+        allowed_fields = ['netprice75k', 'gradrate', 'netprice', 'roombrd',
+                          'state529plan', 'roombrdoncampus',
+                          'institutionalloangrad', 'avgstuloandebtrank',
+                          'personal', 'program', 'staffsubsidizedwithfee',
+                          'borrowingtotal', 'defaultrate', 'tuitionfees',
+                          'gibilltf', 'offeraa', 'school', 'scholar',
+                          'parentpluswithfee', 'undergrad',
+                          'staffunsubsidizeddep_max',
+                          'institutionalloanrate', 'bah', 'tuitionassist',
+                          'books', 'otherexpenses', 'gibillinstatetuition',
+                          'offergrad', 'gradpluswithfee', 'privateloangrad',
+                          'overborrowing', 'badalias', 'perkins_max',
+                          'yrincollege', 'avgstuloandebt', 'state',
+                          'instate', 'parentplus', 'loandebt1yr',
+                          'loanlifetime', 'netpriceok', 'tuitiongradins',
+                          'tuitiongradindis', 'transportation',
+                          'moneyforcollege', 'grantstotal',
+                          'otheroffcampus', 'tfinstate',
+                          'staffunsubsidizedindep_max', 'institutionalloan',
+                          'avgmonthlypay', 'gradplus', 'privateloanrate',
+                          'netpricegeneral', 'institutionalloan_max',
+                          'tuitionunderindis', 'family', 'offerba',
+                          'perkinsgrad', 'perkins', 'privateloan',
+                          'workstudy', 'gradplusgrad', 'city',
+                          'loanmonthly', 'zip', 'staffunsubsidized_max',
+                          'staffsubsidizedgrad', 'savingstotal',
+                          'otheroncampus', 'firstyrcostattend',
+                          'federaltotal', 'school_id', 'pell_max',
+                          'tuitiongradoss', 'staffsubsidized_max', 'gap',
+                          'salaryneeded', 'homeequity', 'gradplus_max',
+                          'tuitionunderins', 'homeequitygrad',
+                          'netprice48k', 'pell', 'salarymonthly',
+                          'unsubsidizedrate', 'control',
+                          'staffunsubsidizedgrad', 'parentplusgrad',
+                          'indicatorgroup', 'gradraterank', 'riskofdefault',
+                          'privatetotal', 'totalgrantsandsavings', 'alias',
+                          'savings', 'totaldebtgrad', 'remainingcost',
+                          'online', 'roombrdoffcampus',
+                          'salaryexpected25yrs', 'loanmonthlyparent',
+                          'staffsubsidized', 'privateloan_max',
+                          'staffunsubsidizedwithfee', 'staffunsubsidized',
+                          'tuitionassist_max', 'tuitionundeross', 'gibill',
+                          'gibillla', 'retentrate', 'otherwfamily',
+                          'oncampusavail', 'netprice110k', 'prgmlength',
+                          'firstyrnetcost', 'gibillbs', 'repaymentterm',
+                          'totaloutofpocket', 'kbyoss', 'origin',
+                          'netprice3ok']
+        keys = list(data.keys())
+        for index in keys:
             if index not in allowed_keys:
-                raise WorksheetJsonValidationError
+                raise WorksheetJsonValidationError(f"Illegal json key {index}")
             if index == 'id':
+                _id = data[index]
                 try:
-                    # if the index is 'id', value must be a
-                    # valid UUID
-                    uuid.UUID(data[index])
+                    # if the index is 'id', the value must be a valid UUID
+                    uuid.UUID(_id)
                 except ValueError:
-                    raise WorksheetJsonValidationError
-
+                    raise WorksheetJsonValidationError(
+                        f'GUID {_id} is not valid')
             else:
                 for fieldname in data[index].keys():
                     if fieldname not in allowed_fields:
-                        raise WorksheetJsonValidationError('field: %s'
-                                                           % fieldname)
+                        raise WorksheetJsonValidationError(
+                            f'Invalid field: {fieldname}'
+                        )
 
     def post(self, request, guid):
         worksheet = get_object_or_404(Worksheet, guid=guid)
 
         if request.body:
-            self.validate_json(request.body)
-            worksheet.saved_data = request.body
+            self.validate_json(request.body.decode('utf-8'))
+            worksheet.saved_data = request.body.decode('utf-8')
             worksheet.save()
         else:
             self.validate_json(worksheet.saved_data)
