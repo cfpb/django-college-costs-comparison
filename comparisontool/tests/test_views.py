@@ -1,9 +1,9 @@
 import json
 import uuid
 
-import django
 from django.core import mail
 from django.test import RequestFactory, TestCase
+from django.urls import reverse
 from django.utils.encoding import force_text
 
 from comparisontool.models import BAHRate, School, Worksheet
@@ -13,11 +13,6 @@ from comparisontool.views import (
     bah_lookup_api,
     school_search_api,
 )
-
-try:
-    from django.urls import reverse
-except ImportError:
-    from django.core.urlresolvers import reverse
 
 
 class BAHLookupAPITests(TestCase):
@@ -109,13 +104,11 @@ class DataStorageViewTests(TestCase):
             }),
             content_type='application/json'
         )
-
         self.worksheet.refresh_from_db()
-        if django.VERSION < (2, 0):
-            self.assertEqual(
-                json.loads(self.worksheet.saved_data)['1'],
-                saved_data_json
-            )
+        self.assertEqual(
+            json.loads(self.worksheet.saved_data)['1'],
+            saved_data_json
+        )
 
     def test_post_with_invalid_field_raises_error(self):
         with self.assertRaises(WorksheetJsonValidationError):
@@ -174,15 +167,10 @@ class SchoolRepresentationTests(TestCase):
     def test_valid_school_returns_school_data_json(self):
         school = School.objects.create(
             school_id=123,
-            data_json=b'{"foo": "bar"}'
+            data_json=json.dumps({"foo": "bar"})
         )
-
         response = self.client.get(self.path(school_id=123))
-        if django.VERSION < (2, 0):
-            self.assertEqual(response.content, school.data_json)
-        else:
-            school_data_json = b'b\'{"foo": "bar"}\''
-            self.assertEqual(response.content, school_data_json)
+        self.assertEqual(response.content, school.data_json.encode('utf-8'))
 
 
 class SchoolSearchAPITests(TestCase):
