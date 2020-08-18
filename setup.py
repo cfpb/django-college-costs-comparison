@@ -2,6 +2,20 @@ import os
 from setuptools import setup, find_packages
 
 
+install_requires = [
+    'Django>=2.1,<3.2',
+    'dj-database-url>=0.4.2,<1',
+    'django-haystack>=2.7,<2.9',
+    'django-localflavor>=1.1,<3.1',
+]
+
+
+setup_requires = [
+    'cfgov-setup==1.2',
+    'setuptools-git-version==1.0.3',
+]
+
+
 def read_file(filename):
     """Read a file into a string"""
     path = os.path.abspath(os.path.dirname(__file__))
@@ -15,8 +29,8 @@ def read_file(filename):
 setup(
     name='comparisontool',
     version_format='{tag}.dev{commitcount}+{gitsha}',
-    author='<Include Your Name Here>',
-    author_email='<Include Your Email Here>',
+    author='CFPB',
+    author_email='tech@cfpb.gov',
     packages=find_packages(),
     include_package_data=True,
     url='<Include Link to Project>',
@@ -34,11 +48,7 @@ setup(
     long_description=read_file('README.rst'),
     test_suite="runtests.runtests",
     zip_safe=False,
-    setup_requires=['setuptools-git-version'],
-    install_requires=[
-        'dj-database-url>=0.4.2,<1',
-        'Django>=1.11,<3.2',
-        'django-haystack>=2.7,<2.9',
-        'django-localflavor>=1.1,<3.1',
-    ]
+    python_requires=">=3.6",
+    install_requires=install_requires,
+    setup_requires=setup_requires,
 )
