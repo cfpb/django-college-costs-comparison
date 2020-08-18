@@ -1,5 +1,5 @@
 import os
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 
 install_requires = [
@@ -16,16 +16,6 @@ setup_requires = [
 ]
 
 
-def read_file(filename):
-    """Read a file into a string"""
-    path = os.path.abspath(os.path.dirname(__file__))
-    filepath = os.path.join(path, filename)
-    try:
-        return open(filepath).read()
-    except IOError:
-        return ''
-
-
 setup(
     name='comparisontool',
     version_format='{tag}.dev{commitcount}+{gitsha}',
@@ -33,8 +23,8 @@ setup(
     author_email='tech@cfpb.gov',
     packages=find_packages(),
     include_package_data=True,
-    url='<Include Link to Project>',
-    license='<Include License Name>',
+    url='https://github.com/cfpb/django-college-costs-comparison',
+    license='CCO',
     description=u' '.join(__import__('comparisontool').__doc__.splitlines()).strip(),
     classifiers=[
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
@@ -45,7 +35,7 @@ setup(
         'Development Status :: 4 - Beta',
         'Operating System :: OS Independent',
     ],
-    long_description=read_file('README.rst'),
+    long_description=open("README.rst", "r", encoding="utf-8").read(),
     test_suite="runtests.runtests",
     zip_safe=False,
     python_requires=">=3.6",
