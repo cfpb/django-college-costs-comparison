@@ -6,19 +6,19 @@ jobs:
   backend:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        # Add the appropriate Tox environments for the satellite here
-        toxenv:
-            - py36
-            - py38
-        include:
-          # Adjust the Python versions required for the tox environments as 
-          # needed
-          - toxenv: py36-dj22
-            python-version: 3.6
-          - toxenv: py38-dj22
-            python-version: 3.8
+    # strategy:
+    #   matrix:
+    #     # Add the appropriate Tox environments for the satellite here
+    #     toxenv:
+    #         - py36
+    #         - py38
+    #     include:
+    #       # Adjust the Python versions required for the tox environments as 
+    #       # needed
+    #       - toxenv: py36-dj22
+    #         python-version: 3.6
+    #       - toxenv: py38-dj22
+    #         python-version: 3.8
 
     steps:
       - uses: actions/checkout@v2
@@ -36,5 +36,5 @@ jobs:
       - name: Run back-end tests
         run: |
           tox
-        env: 
-          TOXENV: ${{ matrix.toxenv }}
+        # env: 
+        #   TOXENV: ${{ matrix.toxenv }}
