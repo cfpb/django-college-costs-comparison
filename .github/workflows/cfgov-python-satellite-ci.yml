@@ -36,5 +36,5 @@ jobs:
       - name: Run back-end tests
         run: |
           python -m tox
-        # env: 
-        #   TOXENV: ${{ matrix.toxenv }}
+        env: 
+          TOXENV: ${{ matrix.toxenv }}
