@@ -1,5 +1,6 @@
-from comparisontool.models import School
 from haystack import indexes
+
+from comparisontool.models import School
 
 
 class SchoolIndex(indexes.SearchIndex, indexes.Indexable):
