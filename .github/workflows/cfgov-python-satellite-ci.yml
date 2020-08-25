@@ -1,6 +1,14 @@
 name: Python CI workflow
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
 
 jobs:
   backend:
