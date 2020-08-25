@@ -9,9 +9,10 @@ from django.template.loader import get_template
 from django.urls import reverse
 from django.views.generic import View
 
+from haystack.query import SearchQuerySet
+
 from comparisontool.forms import BAHZipSearchForm, EmailForm, SchoolSearchForm
 from comparisontool.models import BAHRate, School, Worksheet
-from haystack.query import SearchQuerySet
 
 
 class WorksheetJsonValidationError(Exception):
