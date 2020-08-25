@@ -1,6 +1,6 @@
 name: Python CI workflow
 
-on: [pull_request, push]
+on: [pull_request]
 
 jobs:
   backend:
