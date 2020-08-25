@@ -16,13 +16,19 @@ jobs:
         # Add the appropriate Tox environments for the satellite here
         toxenv:
             - py36-dj22
+            - py36-dj31
             - py38-dj22
+            - py38-dj31
         include:
           # Adjust the Python versions required for the tox environments as 
           # needed
           - toxenv: py36-dj22
             python-version: 3.6
+          - toxenv: py36-dj31
+            python-version: 3.6
           - toxenv: py38-dj22
+            python-version: 3.8
+          - toxenv: py38-dj31
             python-version: 3.8
 
     services:
