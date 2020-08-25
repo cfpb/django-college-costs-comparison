@@ -10,7 +10,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v1
@@ -48,4 +50,3 @@ jobs:
           asset_path: dist/${{ steps.build.outputs.sdist }}
           asset_name: ${{ steps.build.outputs.sdist }}
           asset_content_type: application/gzip
-
