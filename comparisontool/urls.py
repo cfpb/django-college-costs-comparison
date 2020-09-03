@@ -13,13 +13,6 @@ from comparisontool.views import (
 
 urlpatterns = [
     re_path(
-        r'^$',
-        TemplateView.as_view(
-            template_name='comparisontool/landing.html'
-        ),
-        name='pfc-landing'
-    ),
-    re_path(
         r'^choose-a-student-loan/$',
         TemplateView.as_view(
             template_name='comparisontool/choose_a_loan.html'
