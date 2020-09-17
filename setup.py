@@ -1,6 +1,6 @@
 import os
-from setuptools import find_packages, setup
 
+from setuptools import find_packages, setup
 
 install_requires = [
     'Django>=2.1,<3.2',
