@@ -1,12 +1,10 @@
 import os
-from setuptools import find_packages, setup
 
+from setuptools import find_packages, setup
 
 install_requires = [
     'Django>=2.1,<3.2',
     'dj-database-url>=0.4.2,<1',
-    'django-haystack==3.0b1',
-    'django-localflavor>=1.1,<3.1',
 ]
 
 
