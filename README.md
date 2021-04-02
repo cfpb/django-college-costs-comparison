@@ -1,5 +1,7 @@
 # Django College Cost Comparison Tool
 
+# :warning: THIS REPO IS DEPRECATED (April 2, 2021) :warning:
+
 **Description**:  This application allows potential students to compare financial aid offers. You can use the live version at https://www.consumerfinance.gov/paying-for-college/compare-financial-aid-and-college-cost/
 
 This is Javascript application, and the Django API that powers it.
